@@ -1,0 +1,447 @@
+{
+  "schema_version": 1,
+  "status": "planned_contracts_not_learner_completion",
+  "units": [
+    {
+      "unit_id": "GAP-OPENAPI-01",
+      "calendar_study_day": 71,
+      "date": "2027-01-04",
+      "title": "Observe producer and consumer behavior",
+      "category": "openapi",
+      "assistant_architecture": "Treat the versioned OpenAPI file as the consumer contract and compare it with the existing controller/DTO boundary. The assistant supplies the current routes and expected compatibility policy; the learner implements the checker and its tests. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Inspect LocalPolicyIssueController and PolicyIssueRequest. Record the two operations, auth boundary, request fields, returned status codes, and independent expected field sets. Do not change application behavior.",
+      "source": {
+        "title": "OpenAPI 3.2.1",
+        "section": "4.1.2 OpenAPI Description Structure",
+        "url": "https://spec.openapis.org/oas/v3.2.1.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OpenApiCompatibilityInfrastructureTest test",
+      "evidence_path": "docs/reboot/evidence/gap-openapi-01.json",
+      "allocation": "25/85/10",
+      "acceptance": "OpenAPICompatibilityInfrastructureTest: operation set and source DTO fields are fixed independently.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-OPENAPI-02",
+      "calendar_study_day": 72,
+      "date": "2027-01-05",
+      "title": "Complete the versioned API description",
+      "category": "openapi",
+      "assistant_architecture": "Treat the versioned OpenAPI file as the consumer contract and compare it with the existing controller/DTO boundary. The assistant supplies the current routes and expected compatibility policy; the learner implements the checker and its tests. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Edit src/main/resources/contracts/coverstory-policies-v1.json to describe the existing POST and GET routes, request/response schemas, auth, and exact status variants including POST 200/201/400/401/404/409. Preserve the independent fixture assertions.",
+      "source": {
+        "title": "OpenAPI 3.2.1",
+        "section": "4.8 Paths Object; 4.10 Operation Object; 4.24 Schema Object",
+        "url": "https://spec.openapis.org/oas/v3.2.1.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OpenApiCompatibilityInfrastructureTest test",
+      "evidence_path": "docs/reboot/evidence/gap-openapi-02.json",
+      "allocation": "25/85/10",
+      "acceptance": "Infrastructure checks resolve required fields/statuses and reject undocumented or extra controller operations.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-OPENAPI-03",
+      "calendar_study_day": 73,
+      "date": "2027-01-06",
+      "title": "Compare the contract with actual Spring mappings",
+      "category": "openapi",
+      "assistant_architecture": "Treat the versioned OpenAPI file as the consumer contract and compare it with the existing controller/DTO boundary. The assistant supplies the current routes and expected compatibility policy; the learner implements the checker and its tests. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Extend OpenApiCompatibilityInfrastructureTest to compare documented verb/path pairs against LocalPolicyIssueController annotations; include method, missing-route, and extra-route counterfactuals.",
+      "source": {
+        "title": "OpenAPI 3.2.1",
+        "section": "4.9 Path Item Object; 4.10 Operation Object",
+        "url": "https://spec.openapis.org/oas/v3.2.1.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OpenApiCompatibilityInfrastructureTest#contractOperationsMatchTheActualSpringControllerMappings test",
+      "evidence_path": "docs/reboot/evidence/gap-openapi-03.json",
+      "allocation": "25/85/10",
+      "acceptance": "Actual Spring annotations and contract operation sets must be equal; mutants adding/removing a route fail.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-OPENAPI-04",
+      "calendar_study_day": 74,
+      "date": "2027-01-07",
+      "title": "Evaluate consumer compatibility for provider changes",
+      "category": "openapi",
+      "assistant_architecture": "Treat the versioned OpenAPI file as the consumer contract and compare it with the existing controller/DTO boundary. The assistant supplies the current routes and expected compatibility policy; the learner implements the checker and its tests. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Implement the compatibility learner seam for additive optional response fields versus removed consumed fields, new required request fields, changed response status, and changed field types.",
+      "source": {
+        "title": "OpenAPI 3.2.1",
+        "section": "4.16 Responses Object; 4.24 Schema Object",
+        "url": "https://spec.openapis.org/oas/v3.2.1.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Plearner-tests -Dtest=OpenApiCompatibilityAcceptanceTest test",
+      "evidence_path": "docs/reboot/evidence/gap-openapi-04.json",
+      "allocation": "25/85/10",
+      "acceptance": "Independent expected diagnostics verify exact changed operations and preserve optional additions as compatible.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-OPENAPI-05",
+      "calendar_study_day": 75,
+      "date": "2027-01-08",
+      "title": "Run compatibility mutation controls and capture evidence",
+      "category": "openapi",
+      "assistant_architecture": "Treat the versioned OpenAPI file as the consumer contract and compare it with the existing controller/DTO boundary. The assistant supplies the current routes and expected compatibility policy; the learner implements the checker and its tests. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Run the compatibility witness against unchanged, additive, and breaking documents; introduce a deliberate always-compatible mutant and confirm the independent actual-path assertion rejects it.",
+      "source": {
+        "title": "OpenAPI 3.2.1",
+        "section": "4.16 Responses Object; 4.24 Schema Object",
+        "url": "https://spec.openapis.org/oas/v3.2.1.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OpenApiCompatibilityInfrastructureTest test",
+      "evidence_path": "docs/reboot/evidence/gap-openapi-05.json",
+      "allocation": "25/85/10",
+      "acceptance": "The immutable expected operation/field/status diagnostics reject always-compatible and wrong-diagnostic mutants.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-OIDC-01",
+      "calendar_study_day": 76,
+      "date": "2027-01-09",
+      "title": "Define an isolated resource-server lab seam",
+      "category": "oidc",
+      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Review the isolated oidc-contract-lab profile and loopback-only synthetic issuer. Trace the learner policy seam; preserve the existing cookie-session configuration and never configure an external issuer.",
+      "source": {
+        "title": "Spring Security",
+        "section": "Specifying the Authorization Server",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OidcContractLabInfrastructureTest test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-01.json",
+      "allocation": "25/85/10",
+      "acceptance": "Infrastructure test proves issuer/JWKS URLs are loopback-only and the profile is separate from application sessions.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-OIDC-02",
+      "calendar_study_day": 77,
+      "date": "2027-01-10",
+      "title": "Route bearer authentication through Spring Security",
+      "category": "oidc",
+      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Trace the real SecurityFilterChain, issuer/time validator, audience validator, and default-deny route handling. Implement OidcTenantPolicy separately; do not replace token verification with a mock Authentication.",
+      "source": {
+        "title": "Spring Security",
+        "section": "Startup Expectations; Runtime Expectations",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OidcContractLabInfrastructureTest test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-02.json",
+      "allocation": "25/85/10",
+      "acceptance": "Actual MockMvc bearer path proves valid signed tokens reach authorization and invalid tokens fail before the handler.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-OIDC-03",
+      "calendar_study_day": 78,
+      "date": "2027-01-11",
+      "title": "Exercise provider discovery and JWKS signature verification",
+      "category": "oidc",
+      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Use the disposable local issuer's discovery metadata and JWKS. Follow one signed synthetic token through discovery, key selection, signature verification, and the protected handler.",
+      "source": {
+        "title": "Spring Security",
+        "section": "Specifying the Authorization Server; Startup Expectations",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OidcContractLabInfrastructureTest#signedTokenDiscoveredThroughLocalIssuerReachesProtectedHandler test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-03.json",
+      "allocation": "25/85/10",
+      "acceptance": "The test observes a real signed bearer request and successful protected response; mock tokens are not accepted by this path.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-OIDC-04",
+      "calendar_study_day": 79,
+      "date": "2027-01-12",
+      "title": "Reject issuer, audience, time, and malformed-token failures",
+      "category": "oidc",
+      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Use independently signed wrong-issuer, wrong-audience, expired, and malformed tokens. Assert HTTP 401, no private body, and no successful handler response.",
+      "source": {
+        "title": "Spring Security",
+        "section": "Runtime Expectations; Supplying Audiences",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OidcContractLabInfrastructureTest#issuerAudienceAndExpiryFailuresReturn401WithoutClaims test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-04.json",
+      "allocation": "25/85/10",
+      "acceptance": "Each counterfactual is independently expected to fail authentication and expose no synthetic subject.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-OIDC-05",
+      "calendar_study_day": 80,
+      "date": "2027-01-13",
+      "title": "Reject unknown key identifiers and invalid token structure",
+      "category": "oidc",
+      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Exercise malformed compact token and a validly signed token whose kid is absent from the JWKS. Confirm the filter chain returns 401 without claim disclosure.",
+      "source": {
+        "title": "Spring Security",
+        "section": "Runtime Expectations",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OidcContractLabInfrastructureTest#rotationAcceptsNewKidAndRejectsUnknownSigningKey test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-05.json",
+      "allocation": "25/85/10",
+      "acceptance": "Unknown kid and malformed token controls fail on actual decoder path; no unsigned-token bypass.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-OIDC-06",
+      "calendar_study_day": 81,
+      "date": "2027-01-14",
+      "title": "Test key rotation and overlap",
+      "category": "oidc",
+      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Use only the local synthetic issuer. Verify the previously active and newly published key IDs during overlap, then an unknown-key denial; record that this lab does not establish immediate revocation behavior.",
+      "source": {
+        "title": "Keycloak Server Administration Guide",
+        "section": "Configuring realm keys; Rotating keys",
+        "url": "https://www.keycloak.org/docs/latest/server_admin/",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OidcContractLabInfrastructureTest#rotationAcceptsNewKidAndRejectsUnknownSigningKey test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-06.json",
+      "allocation": "25/85/10",
+      "acceptance": "Positive controls for both published keys and a negative unknown-key control exercise JWKS retrieval.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-OIDC-07",
+      "calendar_study_day": 82,
+      "date": "2027-01-15",
+      "title": "Enforce tenant ownership in the authorization path",
+      "category": "oidc",
+      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Implement the learner OidcTenantPolicy using exact tenant claim equality. Reject foreign, absent, blank, and wrongly typed claims; the instructor witness remains separate from learner implementation.",
+      "source": {
+        "title": "Spring Security",
+        "section": "Multi-tenancy",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/multitenancy.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Plearner-tests -Dtest=OidcTenantPolicyAcceptanceTest test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-07.json",
+      "allocation": "25/85/10",
+      "acceptance": "Same-tenant positive control and malformed/foreign-tenant negative controls use fixed claims.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-OIDC-08",
+      "calendar_study_day": 83,
+      "date": "2027-01-16",
+      "title": "Apply least-privilege scope checks",
+      "category": "oidc",
+      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Require the exact policy.read permission for this GET route. Verify policy.write, unknown scopes, substrings, blank scopes, and tenant mismatch do not authorize.",
+      "source": {
+        "title": "Spring Security",
+        "section": "Runtime Expectations; Supplying Audiences",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Plearner-tests -Dtest=OidcTenantPolicyAcceptanceTest test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-08.json",
+      "allocation": "25/85/10",
+      "acceptance": "The acceptance matrix tests scope tokenization and tenant relation independently.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-OIDC-09",
+      "calendar_study_day": 84,
+      "date": "2027-01-17",
+      "title": "Run full protocol and authorization acceptance",
+      "category": "oidc",
+      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Run the complete isolated protocol suite and learner policy acceptance. Preserve the actual issuer/JWKS test path and record any failure as a blocker, not completion.",
+      "source": {
+        "title": "Spring Security",
+        "section": "JWT Resource Server",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OidcContractLabInfrastructureTest test && ./mvnw -Plearner-tests -Dtest=OidcTenantPolicyAcceptanceTest test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-09.json",
+      "allocation": "25/85/10",
+      "acceptance": "Protocol infrastructure and learner authorization acceptance are separately reported.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-SCHEMA-01",
+      "calendar_study_day": 169,
+      "date": "2027-04-12",
+      "title": "Pin the baseline rows and compatibility boundary",
+      "category": "schema",
+      "assistant_architecture": "Use an expand/backfill/contract sequence: additive schema first, bounded stable-ID batches with row updates and cursor committed together, then destructive cleanup only after old-reader retirement. The assistant supplies this migration sequence; the learner implements the backfill and eligibility seam against disposable PostgreSQL. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Use disposable embedded PostgreSQL and migration V001 in the isolated schema-evolution lab. Record exact fixture IDs/values and create an independent expected row map for old and new readers.",
+      "source": {
+        "title": "PostgreSQL 18",
+        "section": "ALTER TABLE",
+        "url": "https://www.postgresql.org/docs/18/sql-altertable.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=SchemaEvolutionInfrastructureTest test",
+      "evidence_path": "docs/reboot/evidence/gap-schema-01.json",
+      "allocation": "25/85/10",
+      "acceptance": "Fixed expected rows and schema columns are asserted before any candidate migration.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-SCHEMA-02",
+      "calendar_study_day": 170,
+      "date": "2027-04-13",
+      "title": "Apply an additive expand migration",
+      "category": "schema",
+      "assistant_architecture": "Use an expand/backfill/contract sequence: additive schema first, bounded stable-ID batches with row updates and cursor committed together, then destructive cleanup only after old-reader retirement. The assistant supplies this migration sequence; the learner implements the backfill and eligibility seam against disposable PostgreSQL. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Apply the lab's versioned nullable column migration. Verify the preexisting rows remain exact, old insert/read SQL still works, and the new column accepts a value.",
+      "source": {
+        "title": "PostgreSQL 18",
+        "section": "ALTER TABLE",
+        "url": "https://www.postgresql.org/docs/18/sql-altertable.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=SchemaEvolutionInfrastructureTest#expandMigrationPreservesRowsAndOldWriterCompatibility test",
+      "evidence_path": "docs/reboot/evidence/gap-schema-02.json",
+      "allocation": "25/85/10",
+      "acceptance": "Independent row snapshot is byte-stable across expansion and an old-shape insert remains valid.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-SCHEMA-03",
+      "calendar_study_day": 171,
+      "date": "2027-04-14",
+      "title": "Backfill bounded batches with a durable cursor",
+      "category": "schema",
+      "assistant_architecture": "Use an expand/backfill/contract sequence: additive schema first, bounded stable-ID batches with row updates and cursor committed together, then destructive cleanup only after old-reader retirement. The assistant supplies this migration sequence; the learner implements the backfill and eligibility seam against disposable PostgreSQL. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Implement the resumable backfill learner seam over stable integer IDs using bounded ordered batches and a stored cursor. The expected target values and IDs are fixed independently.",
+      "source": {
+        "title": "PostgreSQL 18",
+        "section": "UPDATE",
+        "url": "https://www.postgresql.org/docs/18/sql-update.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Plearner-tests -Dtest=ResumableBackfillAcceptanceTest test",
+      "evidence_path": "docs/reboot/evidence/gap-schema-03.json",
+      "allocation": "25/85/10",
+      "acceptance": "Acceptance compares exact IDs, values, cursor and total row count after each bounded batch.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-SCHEMA-04",
+      "calendar_study_day": 172,
+      "date": "2027-04-15",
+      "title": "Interrupt and resume without skips or duplicates",
+      "category": "schema",
+      "assistant_architecture": "Use an expand/backfill/contract sequence: additive schema first, bounded stable-ID batches with row updates and cursor committed together, then destructive cleanup only after old-reader retirement. The assistant supplies this migration sequence; the learner implements the backfill and eligibility seam against disposable PostgreSQL. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Run two batches, close the runner, recreate it from the persisted cursor, and finish. Reject malformed/out-of-range cursors and record exact row-state before and after restart.",
+      "source": {
+        "title": "PostgreSQL 18",
+        "section": "UPDATE",
+        "url": "https://www.postgresql.org/docs/18/sql-update.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=SchemaEvolutionInfrastructureTest#restartResumesFromPersistedCursorWithoutSkippingOrDuplicating test",
+      "evidence_path": "docs/reboot/evidence/gap-schema-04.json",
+      "allocation": "25/130/10 + shared 45",
+      "acceptance": "Independent exact final rows and per-ID update counts prove restart correctness; wrong cursor mutant fails.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-SCHEMA-05",
+      "calendar_study_day": 173,
+      "date": "2027-04-16",
+      "title": "Check old/new reader and writer compatibility",
+      "category": "schema",
+      "assistant_architecture": "Use an expand/backfill/contract sequence: additive schema first, bounded stable-ID batches with row updates and cursor committed together, then destructive cleanup only after old-reader retirement. The assistant supplies this migration sequence; the learner implements the backfill and eligibility seam against disposable PostgreSQL. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Execute fixed old-shape read/write SQL before and after backfill, and new-shape reads after it. Verify exact row sets and that the additive field does not break old code paths.",
+      "source": {
+        "title": "PostgreSQL 18",
+        "section": "ALTER TABLE",
+        "url": "https://www.postgresql.org/docs/18/sql-altertable.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=SchemaEvolutionInfrastructureTest#oldAndNewReadersRemainCompatibleAcrossBackfill test",
+      "evidence_path": "docs/reboot/evidence/gap-schema-05.json",
+      "allocation": "25/130/10 + shared 45",
+      "acceptance": "Actual SQL queries for both schema generations match independent expected rows.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-SCHEMA-06",
+      "calendar_study_day": 174,
+      "date": "2027-04-17",
+      "title": "Reject destructive change and demonstrate forward recovery",
+      "category": "schema",
+      "assistant_architecture": "Use an expand/backfill/contract sequence: additive schema first, bounded stable-ID batches with row updates and cursor committed together, then destructive cleanup only after old-reader retirement. The assistant supplies this migration sequence; the learner implements the backfill and eligibility seam against disposable PostgreSQL. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Prove a destructive candidate migration fails the schema/row acceptance boundary. Recover only by applying a forward migration in a fresh disposable DB and compare exact rows.",
+      "source": {
+        "title": "PostgreSQL 18",
+        "section": "ALTER TABLE",
+        "url": "https://www.postgresql.org/docs/18/sql-altertable.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=SchemaEvolutionInfrastructureTest#forwardMigrationRepairsDriftAndContractRequiresRetiredReaders test",
+      "evidence_path": "docs/reboot/evidence/gap-schema-06.json",
+      "allocation": "25/130/10 + shared 45",
+      "acceptance": "A dropped-column mutant is rejected; forward migration restores the expected schema/values without claiming rollback semantics.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    },
+    {
+      "unit_id": "GAP-SCHEMA-07",
+      "calendar_study_day": 175,
+      "date": "2027-04-18",
+      "title": "Verify cleanup eligibility and publish migration evidence",
+      "category": "schema",
+      "assistant_architecture": "Use an expand/backfill/contract sequence: additive schema first, bounded stable-ID batches with row updates and cursor committed together, then destructive cleanup only after old-reader retirement. The assistant supplies this migration sequence; the learner implements the backfill and eligibility seam against disposable PostgreSQL. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "In a new disposable database, run the full expand/backfill/compatibility sequence and only contract after an independent retired-reader fixture says removal is safe. Capture exact migration history and row digest.",
+      "source": {
+        "title": "PostgreSQL 18",
+        "section": "ALTER TABLE; Flyway",
+        "url": "https://documentation.red-gate.com/flyway/database-development-using-flyway/working-with-data",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=SchemaEvolutionInfrastructureTest test",
+      "evidence_path": "docs/reboot/evidence/gap-schema-07.json",
+      "allocation": "25/130/10 + shared 45",
+      "acceptance": "Contract precondition is tested both true and false; exact expected rows, column set, and Flyway history are checked.",
+      "status": "not_attempted",
+      "learner_completion_awarded": false
+    }
+  ]
+}

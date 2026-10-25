@@ -29,5 +29,4 @@ CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Dtest=Day99To112InfrastructureTest test
 
 Learner acceptance remains separate and expected red at named TODOs.
 
-
 Each day uses 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence.

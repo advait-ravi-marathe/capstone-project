@@ -42,12 +42,9 @@ class StreamForge169182ManifestTest(unittest.TestCase):
             self.assertEqual("starter_draft_not_board_published", day["status"])
             prose = (BATCH / day["contract_file"]).read_text(encoding="utf-8")
             self.assertIn(day["title"], prose)
-            if day["day"] >= 172:
-                self.assertIn("165 engineering minutes", prose)
-                self.assertIn("45 minutes total", prose)
-                self.assertTrue("not additive" in prose or "counted once" in prose)
-            else:
-                self.assertIn("120 engineering minutes", prose)
+            self.assertIn("165 engineering minutes", prose)
+            self.assertTrue("45-minute question-bank session" in prose or "45 minutes total" in prose)
+            self.assertTrue("not additive" in prose or "counted once" in prose or "separate shared" in prose)
 
     def test_budget_transition_is_explicit_at_day_172_including_recoveries(self):
         for day in self.manifest["days"]:
@@ -55,26 +52,15 @@ class StreamForge169182ManifestTest(unittest.TestCase):
             allocation = engineering["allocation_minutes"]
             self.assertEqual(engineering["budget_minutes"], sum(allocation.values()))
             self.assertEqual(10 if day["day"] <= 171 else 15, allocation["evidence"])
-            if day["day"] <= 171:
-                self.assertEqual(120, engineering["budget_minutes"])
-                if day["day"] in (169, 171):
-                    self.assertEqual(45, day["interview_practice"]["budget_minutes"])
-                    self.assertTrue(day["interview_practice"]["within_engineering_practice"])
-                    self.assertEqual(40, day["interview_practice"]["implementation_minutes_remaining"])
-                    self.assertEqual(45, sum(day["interview_practice"]["allocation_minutes"].values()))
-                else:
-                    self.assertNotIn("interview_practice", day)
+            self.assertEqual(165, engineering["budget_minutes"])
+            block = day.get("shared_interview_block")
+            if block is not None:
+                self.assertEqual(45, block["minutes"])
+                self.assertFalse(block["inside_engineering_budget"])
             else:
-                block = day.get("interview_practice", {})
-                self.assertEqual(165, engineering["budget_minutes"])
-                self.assertEqual(45, block["budget_minutes"])
-                self.assertEqual(210, block["total_daily_minutes"])
-                if day["day"] in MOCK_QUESTIONS:
-                    self.assertEqual("45_minute_mock", block["mode"])
-                    self.assertEqual(45, sum(block["allocation_minutes"].values()))
-                else:
-                    self.assertEqual({"one_substantive_timebox": 30, "recall_or_explain_back": 10,
-                                      "evidence_and_next_due": 5}, block["allocation_minutes"])
+                block = engineering["interview_session"]
+                self.assertEqual(45, block["duration_minutes"])
+                self.assertFalse(block.get("within_engineering_practice", False))
         self.assertEqual([175, 182], [d["day"] for d in self.manifest["days"] if d["recovery_day"]])
 
     def test_owner_export_matches_daily_manifest_without_claiming_learner_completion(self):
@@ -92,8 +78,8 @@ class StreamForge169182ManifestTest(unittest.TestCase):
             self.assertIsNone(card["board_ticket_id"])
 
     def test_total_engineering_allocation_matches_fourteen_day_plan(self):
-        self.assertEqual(2175, sum(day["engineering"]["budget_minutes"] for day in self.manifest["days"]))
-        self.assertEqual(495, sum(day["engineering"]["budget_minutes"] - 120
+        self.assertEqual(2310, sum(day["engineering"]["budget_minutes"] for day in self.manifest["days"]))
+        self.assertEqual(630, sum(day["engineering"]["budget_minutes"] - 120
                                   for day in self.manifest["days"]))
         for key in self.manifest["source_references"]:
             self.assertTrue(self.manifest["source_references"][key]["url"].startswith("https://"))
@@ -131,13 +117,20 @@ class StreamForge169182ManifestTest(unittest.TestCase):
                 self.assertTrue((contract_path := (BATCH / day["contract_file"]).parent / relative).resolve().is_file())
             if number in MOCK_QUESTIONS:
                 qid, title = MOCK_QUESTIONS[number]
-                session = eng["interview_session"]
-                self.assertEqual(qid, session["question_id"])
-                self.assertEqual(title, session["question_title"])
+                session = eng.get("interview_session")
+                migrated = day.get("shared_interview_block", {}).get("migrated_existing_assignment")
+                if migrated:
+                    self.assertEqual(qid, day["shared_interview_block"]["question_id"])
+                    self.assertEqual(title, day["shared_interview_block"]["question_title"])
+                    self.assertEqual(45, day["shared_interview_block"]["minutes"])
+                    self.assertFalse(day["shared_interview_block"]["inside_engineering_budget"])
+                    self.assertEqual(45, sum(migrated["phase_minutes"].values()))
+                else:
+                    self.assertEqual(qid, session["question_id"])
+                    self.assertEqual(title, session["question_title"])
+                    self.assertEqual(45, session["duration_minutes"])
                 self.assertIn(f'<a id="{qid.lower()}"></a>', question_bank)
                 self.assertIn(f"{qid} — {title}.", question_bank)
-                self.assertEqual(45, session["duration_minutes"])
-                self.assertEqual(45, sum(session["phase_minutes"].values()))
                 self.assertIn(title, contract)
             elif number >= 172:
                 self.assertEqual("shared_new_question_or_unfinished_review",
@@ -145,14 +138,15 @@ class StreamForge169182ManifestTest(unittest.TestCase):
                 self.assertEqual(45, eng["interview_session"]["duration_minutes"])
                 self.assertIn("shared interview/new-question/review block", contract.lower())
             else:
-                self.assertIsNone(eng["interview_session"])
+                self.assertIsNone(eng.get("interview_session"))
 
-        for day in (169, 171):
-            eng = next(item["engineering"] for item in self.manifest["days"] if item["day"] == day)
-            self.assertTrue(eng["interview_session"]["within_engineering_practice"])
-            self.assertEqual(40, eng["interview_session"]["implementation_minutes_remaining"])
-            self.assertEqual(85, eng["allocation_minutes"]["practice_and_test"])
-            self.assertIn("leaving a 40-minute", (BATCH / f"contracts/day-{day}.md").read_text())
+        for number in (169, 171):
+            row = next(item for item in self.manifest["days"] if item["day"] == number)
+            migrated = row["shared_interview_block"]["migrated_existing_assignment"]
+            self.assertTrue(migrated["historical_within_engineering_practice"])
+            self.assertEqual(45, row["shared_interview_block"]["minutes"])
+            self.assertEqual(130, row["engineering"]["allocation_minutes"]["practice_and_test"])
+            self.assertNotIn("leaving a 40-minute", (BATCH / f"contracts/day-{number}.md").read_text())
         self.assertEqual([169, 171, 173, 176, 179, 182], sorted(MOCK_QUESTIONS))
 
     def test_ab_gate_reads_authoritative_records_and_can_become_met(self):

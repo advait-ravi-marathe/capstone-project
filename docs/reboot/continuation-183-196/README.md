@@ -1,4 +1,4 @@
-# Engineering units 183–196 · calendar study days 204–217 · 2027-05-17–2027-05-30 — StreamForge Days 183–196: a bounded content-profile experiment
+# Engineering units 183–196 · calendar study days 204–217 · 2027-05-17–2027-05-30 — a bounded content-profile experiment
 
 Calendar mapping: stable engineering unit IDs 183–196 occupy study days 204–217 (2027-05-17 through 2027-05-30).
 

@@ -29,11 +29,11 @@ class StreamForge155168ManifestTest(unittest.TestCase):
     def test_fourteen_dates_and_recovery_days_are_bounded(self):
         days = self.manifest["days"]
         self.assertEqual(list(range(155, 169)), [row["day"] for row in days])
-        start = date(2027, 3, 29)
+        start = date(2027, 4, 19)
         self.assertEqual([start + timedelta(days=i) for i in range(14)], [date.fromisoformat(row["date"]) for row in days])
         self.assertEqual([161, 168], [row["day"] for row in days if row["recovery_day"]])
         readme = (BATCH / "README.md").read_text(encoding="utf-8")
-        self.assertIn("March 29–April 11, 2027", readme)
+        self.assertIn("2027-04-19–2027-05-02", readme)
         self.assertNotIn("March 27–April 9, 2027", readme)
         self.assertEqual(14, len(self.owner["cards"]))
         self.assertFalse(self.manifest["board_writes"])
@@ -59,12 +59,12 @@ class StreamForge155168ManifestTest(unittest.TestCase):
 
     def test_daily_engineering_time_remains_bounded(self):
         for daily in self.manifest["days"]:
-            self.assertEqual(120, daily["engineering"]["budget_minutes"])
-            self.assertEqual({"concept_or_course": 25, "implementation_and_testing": 85, "evidence": 10},
+            self.assertEqual(165, daily["engineering"]["budget_minutes"])
+            self.assertEqual({"concept_or_course": 25, "implementation_and_testing": 130, "evidence": 10},
                              daily["engineering"]["allocation_minutes"])
             self.assertEqual(1500, daily["engineering"]["study_total_seconds"])
             self.assertEqual(0, daily["engineering"]["video_seconds"])
-        self.assertEqual(120, self.manifest["engineering_minutes_per_day"])
+        self.assertEqual(165, self.manifest["engineering_minutes_per_day"])
 
     def test_catalog_has_only_official_docs_and_no_invented_python_course(self):
         catalog = json.loads((BATCH / "verified-data-foundation-155-168-catalog.json").read_text(encoding="utf-8"))
@@ -141,7 +141,7 @@ class StreamForge155168ManifestTest(unittest.TestCase):
         plan_by_day = {row["day"]: row for row in self.plan["daily_contracts"]}
         mock_days = [155, 159, 163, 167]
         self.assertEqual([155, 159, 163, 167], [row["day"] for row in self.manifest["days"]
-                                                if row["engineering"].get("interview_assignment")])
+                                                if row.get("shared_interview_block", {}).get("migrated_existing_assignment")])
         self.assertEqual([4, 4, 4], [b - a for a, b in zip(mock_days, mock_days[1:])])
         question_ids = []
         for day in self.manifest["days"]:
@@ -162,10 +162,10 @@ class StreamForge155168ManifestTest(unittest.TestCase):
             self.assertIn("Assistant-supplied capstone architecture", contract)
             self.assertIn(note_ref.rsplit("#", 1)[1], contract)
             if n in mock_days:
-                assignment = eng["interview_assignment"]
+                assignment = day["shared_interview_block"]["migrated_existing_assignment"]
                 question_ids.append(assignment["question_id"])
-                self.assertEqual(assignment, owner["interview_assignment"])
-                self.assertEqual(assignment, plan["interview_assignment"])
+                self.assertEqual(assignment, owner["shared_interview_block"]["migrated_existing_assignment"])
+                self.assertEqual(assignment, plan["shared_interview_block"]["migrated_existing_assignment"])
                 self.assertEqual("system_design_interview_question_only", assignment["proposal_scope"])
                 self.assertEqual("assistant_supplied", assignment["capstone_architecture"])
                 self.assertEqual(45, assignment["mock_minutes"])
@@ -176,8 +176,8 @@ class StreamForge155168ManifestTest(unittest.TestCase):
                                  [x["minutes"] for x in assignment["mock_phases"]])
                 self.assertTrue(assignment["deferred_work"].startswith(f"S12-D{n}-FULL"))
                 self.assertIn(f"question-bank.md#{assignment['question_id'].lower()}", contract)
-                self.assertIn("45-minute system-design interview", contract)
-                self.assertIn("40-minute implementation slice", contract)
+                self.assertIn("Shared 45-minute question-bank block", contract)
+                self.assertIn("separate interview question bank", contract)
                 self.assertIn(assignment["deferred_work"], contract)
                 for pattern in assignment["pattern_refs"]:
                     self.assertIn(f"<a id=\"{pattern}\"></a>",

@@ -20,9 +20,9 @@ From calendar Study Day 172 onward, each day remains 165 engineering minutes plu
 | `GAP-OPENAPI-01..05` | 71–75 · 4–8 Jan 2027 | 120 engineering min/day | Version one existing API contract; an independent consumer checker accepts an additive compatible change and rejects a breaking response/field change. |
 | `GAP-OIDC-01..09` | 76–84 · 9–17 Jan 2027 | 120 engineering min/day | Exercise the real Spring Security resource-server path against one disposable local OIDC test IdP. Validate issuer/audience/time/signature, key rotation, and tenant isolation. No external IdP, production credentials, or real identity deployment. |
 | `GAP-SCHEMA-01..07` | 169–175 · 12–18 Apr 2027 | Days 169–171: 120 engineering min; 172–175: 165 engineering + one shared 45 | On synthetic PostgreSQL data, rehearse additive expand/contract, old/new version compatibility, checkpointed restartable backfill, interruption/restart idempotence, row reconciliation, and forward recovery. Do not contract while old readers/writers remain. |
-| `GAP-AIGOV-01..07` | 460–466 · 28 Jan–3 Feb 2028 | 165 engineering + one shared 45/day | Define data inventory/minimization and provider boundaries; test retention/deletion across synthetic source, cache/index, and evaluation artifacts; measure relevant access/tenant/deletion evaluation slices with independent expected results. No consequential underwriting or provider call. |
+| `GAP-AIGOV-01..07` | 460–466 · 28 Jan–3 Feb 2028 | 165 engineering + one shared 45/day | Use synthetic CoverStory policy data and fictional tenants; define data inventory/minimization and provider boundaries; test retention/deletion across source, cache/index, and evaluation artifacts; measure relevant access/tenant/deletion slices with independent expected results. Any impact is hypothetical; no consequential underwriting or provider call. |
 | `GAP-IAC-01..07` | 551–557 · 28 Apr–4 May 2028 | 165 engineering + one shared 45/day | Use one IaC tool for offline validation, plan review, drift detection, recreation, rollback and cleanup rehearsals. A valid plan is not a deployment; no credentials, cloud resources, or spending. |
-| `GAP-ENTERPRISE-01..07` | 558–564 · 5–11 May 2028 | 165 engineering + one shared 45/day | Simulate named security, privacy, procurement, service and operations owners; a missing/denied control blocks launch. Simulation never satisfies actual enterprise approval, production operation, or customer evidence. |
+| `GAP-ENTERPRISE-01..07` | 558–564 · 5–11 May 2028 | 165 engineering + one shared 45/day | Simulate a fictional enterprise tenant's CoverStory policy workflow with named security, privacy, procurement, service and operations owners; a missing/denied control blocks launch. Outcomes are hypothetical. Simulation never satisfies actual enterprise approval, production operation, or customer evidence. |
 
 Live execution remains blocked by the existing external authorization rules even before the simulated enterprise gate: no model/provider calls, external data, credentials, cloud account/resources, costs, or deployment without separate authorization. The later AI, IaC and enterprise blocks are outcome-based, not executable labs or pre-created daily Stories.
 
@@ -96,3 +96,22 @@ No cloud deployment, provider/API call, credential grant, customer/workplace dat
 ## Detailed assignment and Story exports
 
 [Calendar study days 1–305](../calendar/story-export-1-305.json) export the 284 existing detailed units and the 21 executable inserted units in chronological order. The stable crosswalk is authoritative for dates and sprint membership; existing EAI issue IDs are mapped only where documented, new IDs remain unassigned, and board writes are disabled. [Engineering units 271–284](../continuation-271-284/README.md) retain their IDs and acceptance scope at calendar study days 292–305. The later 21 inserted units remain outcome-based and are not pre-ticketed. The [Days 197–270 inventory](../continuation-197-270-inventory.json) preserves learner history and evidence.
+
+The inserted API, OIDC, and schema units have day-specific contracts, exact
+official source headings, commands, evidence paths, owner cards, and
+independent acceptance controls in [detailed-insertions.json](../calendar/detailed-insertions.json),
+[gap-owner-manifest.json](../calendar/gap-owner-manifest.json), and
+the [individual contract pages](../contracts/gap-openapi-01.md) under
+`docs/reboot/contracts/`. The
+matching starter seams live in `assignments.contracts`, `assignments.oidc`,
+and `assignments.schema`; infrastructure witnesses are separate from learner
+acceptance. Maven verification is required before the inserted Java labs can
+be considered validated. Nothing here records learner completion.
+
+For the later outcome blocks, the insertion plan records exact official
+references to NIST's Generative AI Profile (`MAP 2.3`, `MEASURE 2.3`,
+`GOVERN 1.7`, `GOVERN 6.1`), HashiCorp's `terraform validate` and `terraform
+plan` command references, and the AWS Well-Architected Security and
+Operational Excellence pillars. These sources must be rechecked when those
+future assignments are detailed; they do not make those blocks executable
+today.

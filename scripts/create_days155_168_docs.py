@@ -69,19 +69,16 @@ def gate_block(gate: dict, *, readme: bool = False) -> str:
 
 
 def practice_block(day: dict) -> str:
-    a = day["engineering"]["interview_assignment"]
-    q = a["question_id"]
-    qhref = "../../interview/question-bank.md#" + q.lower()
-    patterns = ", ".join(f"[{name}](../../interview/pattern-library.md#{name})" for name in a["pattern_refs"])
-    phases = "; ".join(f"{x['minutes']} min {x['name'].lower()}" for x in a["mock_phases"])
+    a = day["shared_interview_block"]["migrated_existing_assignment"]
+    transition = day["calendar_transition_task"]
     return "\n".join([
-        f"**45-minute system-design interview (separate question set):** [{q} — {a['question_title']}]({qhref}). Use the phases {phases}. The learner's interview answer belongs in the question set and is written before hints or AI. Patterns for retrieval: {patterns}. This does not ask the learner to design StreamForge.",
+        f"**40-minute bounded implementation slice:** {a['bounded_task']}",
         "",
-        f"**40-minute implementation slice:** {a['bounded_task']}",
+        f"**45-minute learner acceptance slice:** complete the named cases, negative controls, and remaining TODO in `{a['selector_command']}`. {a['deferred_work']}",
         "",
-        f"**Deferred, still required before day completion:** {a['deferred_work']}",
+        f"**45-minute bounded integration/recovery slice:** {transition['task']} Run `{transition['command']}` and record the independent expected counterexample. Do not add feature scope.",
         "",
-        f"Run the complete day acceptance selector: `{a['selector_command']}`. A bounded sub-milestone or a green infrastructure harness does not substitute for the learner-owned selector and evidence.",
+        f"The separate shared interview question is [{day['shared_interview_block']['question_id']} — {day['shared_interview_block']['question_title']}](../../interview/question-bank.md#{day['shared_interview_block']['question_id'].lower()}); it is outside engineering time. A green instructor harness is not learner evidence.",
     ])
 
 
@@ -94,7 +91,7 @@ def main() -> None:
         title = text.splitlines()[0]
         text = replace_marked(text, ARCH_START, ARCH_END, architecture_block(day), after=title)
         if day["day"] in (155, 159, 163, 167):
-            section = "## Practice — 85 minutes"
+            section = "## Practice — 130 engineering minutes"
             if section not in text:
                 raise ValueError(f"Missing practice section in {path}")
             start = text.index(section)
@@ -144,3 +141,8 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+    import sys
+    sys.path.insert(0, str(ROOT))
+    from scripts.generate_study_calendar import migrate_assignments
+    migrate_assignments()
+    (BATCH / "streamforge-days-155-168-transfer-plan.md").write_bytes((BATCH / "README.md").read_bytes())

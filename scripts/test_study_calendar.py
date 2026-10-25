@@ -1,10 +1,12 @@
 """Regression checks for the stable-unit/calendar-study-day migration."""
 import json
+import re
 import subprocess
 import sys
 import unittest
 from datetime import date
 from pathlib import Path
+from scripts import generate_study_calendar
 
 ROOT = Path(__file__).resolve().parents[1]
 CALENDAR = ROOT / "docs/reboot/calendar/study-calendar.json"
@@ -19,6 +21,7 @@ class StudyCalendarMigrationTest(unittest.TestCase):
 
     def test_generator_matches_checked_in_crosswalk_and_export(self):
         subprocess.run([sys.executable, "scripts/generate_study_calendar.py", "--check"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "scripts/generate_gap_assignments.py", "--check"], cwd=ROOT, check=True)
 
     def test_exact_dates_insertions_and_horizon(self):
         self.assertEqual("2026-10-26", self.calendar["start_date"])
@@ -70,6 +73,50 @@ class StudyCalendarMigrationTest(unittest.TestCase):
         self.assertFalse(self.export["board_writes"])
         self.assertFalse(self.export["new_issue_ids_assigned"])
 
+    def test_new_insertions_have_executable_contract_owner_command_and_source(self):
+        inserted = [row for row in self.export["stories"] if row["unit_id"].startswith("GAP-")]
+        self.assertEqual(21, len(inserted))
+        for story in inserted:
+            self.assertTrue(story["contract_path"])
+            self.assertTrue((ROOT / story["contract_path"]).is_file())
+            self.assertIsInstance(story["owner_card"], dict)
+            self.assertTrue(story["command"].startswith("./mvnw "))
+            self.assertIn("section", story["source"])
+            self.assertEqual("planned_assignment_not_attempted", story["daily_contract_status"])
+            self.assertFalse(story["owner_card"]["learner_completion_awarded"])
+            for command in story["command"].split(" && "):
+                match = re.search(r"-Dtest=([A-Za-z0-9_,]+)(?:#([A-Za-z0-9_]+))?\s+test", command)
+                self.assertIsNotNone(match, f"command has an unrecognized Maven test selector: {command}")
+                for selector in match.group(1).split(","):
+                    class_file = next((ROOT / "src/test/java").rglob(f"{selector}.java"), None)
+                    self.assertIsNotNone(class_file, f"missing test class for owner command: {selector}")
+                    if match.group(2):
+                        self.assertRegex(class_file.read_text(), rf"\b{re.escape(match.group(2))}\s*\(",
+                                         f"missing test method for owner command: {selector}#{match.group(2)}")
+            if story["calendar_study_day"] >= 172:
+                shared = story["owner_card"]["shared_interview_block"]
+                self.assertEqual(45, shared["minutes"])
+                self.assertEqual("separate_system_design_question_bank_session", shared["mode"])
+                self.assertFalse(shared["inside_engineering_budget"])
+            else:
+                self.assertNotIn("shared_interview_block", story["owner_card"])
+        insertions = json.loads((ROOT / "docs/reboot/calendar/detailed-insertions.json").read_text())["units"]
+        self.assertEqual(21, len(insertions))
+        self.assertEqual(list(range(71, 85)) + list(range(169, 176)),
+                         [unit["calendar_study_day"] for unit in insertions])
+        plan = json.loads((ROOT / "docs/reboot/calendar/insertion-plan.json").read_text())
+        self.assertEqual(21, len(plan["detailed_inserted_units"]))
+        for unit in plan["detailed_inserted_units"]:
+            self.assertIn("command", unit)
+            self.assertIn("source", unit)
+            self.assertIn("acceptance", unit)
+            self.assertTrue((ROOT / unit["contract_path"]).is_file())
+        later = plan["later_outcome_acceptance"]
+        for key in ("GAP-AIGOV", "GAP-IAC", "GAP-ENTERPRISE"):
+            self.assertTrue(later[key]["outcomes"])
+            self.assertTrue(later[key]["sources"])
+            self.assertTrue(all(source["status"] == "official_heading_verified" for source in later[key]["sources"]))
+
     def test_role_dates_are_evidence_gated_and_dashboard_is_repo_source(self):
         dashboard = json.loads((ROOT / "docs/reboot/fde-alignment.json").read_text())
         milestones = dashboard["calendar_amendment"]["role_review_milestones"]
@@ -102,6 +149,41 @@ class StudyCalendarMigrationTest(unittest.TestCase):
             self.assertEqual("separate_system_design_question_bank_session", row["shared_interview_block"]["mode"])
             self.assertEqual(45, row["calendar_transition_task"]["additional_minutes"])
             self.assertFalse(row["calendar_transition_task"]["new_feature_scope"])
+
+    def test_rendered_contracts_follow_calendar_even_with_anchor_first(self):
+        for story in self.export["stories"]:
+            unit = story["legacy_engineering_unit_number"]
+            contract = story["contract_path"]
+            if unit is None or unit < 71 or not contract:
+                continue
+            text = (ROOT / contract).read_text()
+            heading = next((line for line in text.splitlines() if line.startswith("# ")), "")
+            self.assertIn(f"Calendar study day {story['calendar_study_day']}", heading, contract)
+            self.assertIn(story["date"], heading, contract)
+            if 155 <= unit <= 171:
+                self.assertIn("165 engineering minutes (25 study, 130 implementation/testing, 10 evidence)", text, contract)
+                self.assertIn("## Practice — 130 engineering minutes", text, contract)
+                self.assertIn("## Shared 45-minute question-bank block", text, contract)
+                self.assertNotIn("120 engineering minutes", text, contract)
+                self.assertNotIn("inside the 85-minute practice block", text, contract)
+
+    def test_migration_keeps_historical_sprint_and_title_across_reruns(self):
+        sample = {
+            "day_number": 150,
+            "date": generate_study_calendar.current_date(164),
+            "title": "Gate fallback on measured pair evidence",
+            "sprint": "Sprint 12",
+            "legacy_sprint_label": "Sprint 11",
+            "engineering": {"budget_minutes": 120, "allocation_minutes": {
+                "concept_or_course": 25, "implementation_and_testing": 85, "evidence": 10
+            }},
+        }
+        first, _ = generate_study_calendar.migrate_assignment_json("fixture.json", sample)
+        second, _ = generate_study_calendar.migrate_assignment_json("fixture.json", first)
+        self.assertEqual("Sprint 11", first["legacy_sprint_label"])
+        self.assertEqual("Sprint 11", second["legacy_sprint_label"])
+        self.assertEqual("Gate fallback on measured pair evidence", first["title"])
+        self.assertEqual(first["title"], second["title"])
 
 
 if __name__ == "__main__":

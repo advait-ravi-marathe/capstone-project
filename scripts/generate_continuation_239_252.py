@@ -141,7 +141,7 @@ def generate() -> dict:
                 "separate_learning_repository": plan["separate_learning_repository"]}
         cards.append(card)
         notes.append(f'<a id="day-{day}"></a>\n## Day {day} — {task["title"]}\n\n**Architecture:** {architecture}\n')
-        contract_lines = [f'<a id="day-{day}"></a>', f'# Day {day}: {task["title"]}', "",
+        contract_lines = [f'<a id="day-{day}"></a>', f'# Engineering unit Day {day} · Calendar study day {day+21} · {day_date.isoformat()}: {task["title"]}', "",
             f"Date: {day_date.isoformat()}", "", f"**Context:** {task['context']}", "",
             f"**Synthetic data and expected outcomes:** customer `{plan['synthetic_context']['customer_id']}`; owner `{plan['synthetic_context']['owner_id']}`; product `{plan['synthetic_context']['product']}`; policy `{plan['synthetic_context']['policy_version']}`; renewal `{plan['synthetic_context']['renewal_date']}`; account status `{plan['synthetic_context']['status']}`. These are invented local fixture values only. Fixed outcomes: exact policy citation for the supported renewal question, abstention for unsupported evidence, owner filtering before the adapter, and abstention when a response follows a hostile retrieved instruction or requests an action.", "",
             f"**Assistant-supplied architecture — what and why:** {architecture}", "",
@@ -194,4 +194,8 @@ def generate() -> dict:
 
 if __name__ == "__main__":
     generated = generate()
+    import sys
+    sys.path.insert(0, str(ROOT))
+    from scripts.generate_study_calendar import migrate_assignments
+    migrate_assignments()
     print(f"generated {len(generated['days'])} days; engineering={generated['engineering_minutes_total']} min")

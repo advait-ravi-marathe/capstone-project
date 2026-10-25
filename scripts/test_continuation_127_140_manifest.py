@@ -19,11 +19,11 @@ class Continuation127To140ManifestTest(unittest.TestCase):
     def test_days_dates_budgets_and_sprint_are_exact(self):
         days = self.manifest["days"]
         self.assertEqual(list(range(127, 141)), [d["day"] for d in days])
-        expected = datetime.date(2027, 3, 1)
+        expected = datetime.date(2027, 3, 15)
         self.assertEqual([expected + datetime.timedelta(days=i) for i in range(14)],
                          [datetime.date.fromisoformat(d["date"]) for d in days])
         self.assertEqual("Sprint 10", self.manifest["sprint"])
-        self.assertEqual("2027-03-14", self.manifest["end_date"])
+        self.assertEqual("2027-03-28", self.manifest["end_date"])
         self.assertEqual([133, 140], [d["day"] for d in days if d["recovery_day"]])
         for day in days:
             e = day["engineering"]

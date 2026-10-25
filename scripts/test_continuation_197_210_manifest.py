@@ -18,8 +18,8 @@ class Continuation197210ManifestTest(unittest.TestCase):
     def test_dates_budget_and_exports(self):
         days = self.manifest["days"]
         self.assertEqual(list(range(197, 211)), [d["day"] for d in days])
-        self.assertEqual(date(2027, 5, 10), date.fromisoformat(days[0]["date"]))
-        self.assertEqual(date(2027, 5, 23), date.fromisoformat(days[-1]["date"]))
+        self.assertEqual(date(2027, 5, 31), date.fromisoformat(days[0]["date"]))
+        self.assertEqual(date(2027, 6, 13), date.fromisoformat(days[-1]["date"]))
         self.assertEqual([203, 210], [d["day"] for d in days if d["recovery_day"]])
         self.assertEqual(14, self.owner["story_count"])
         self.assertFalse(self.owner["board_writes"])

@@ -267,9 +267,15 @@ def build_story_export() -> dict:
     owners = load_owner_cards()
     rows = []
     gaps = {row["calendar_study_day"]: row for row in gap_units() if row["detailed_now"]}
+    gap_payload = json.loads((OUT / "detailed-insertions.json").read_text(encoding="utf-8"))
+    gap_units_by_day = {row["calendar_study_day"]: row for row in gap_payload["units"]}
+    gap_owner_path = "docs/reboot/calendar/gap-owner-manifest.json"
     for study in range(1, 306):
         gap = gaps.get(study)
         if gap:
+            detail = gap_units_by_day[study]
+            owner = next(card for card in json.loads((OUT / "gap-owner-manifest.json").read_text(encoding="utf-8")).get("cards", [])
+                         if card["calendar_study_day"] == study)
             rows.append({
                 "calendar_study_day": study,
                 "date": current_date(study),
@@ -282,10 +288,16 @@ def build_story_export() -> dict:
                 "eai_issue_id": None,
                 "new_eai_issue_id": None,
                 "issue_id_mapping_status": "new_story_id_not_assigned_board_write_disabled",
-                "source_manifest": "docs/reboot/calendar/insertion-plan.json",
-                "contract_path": None,
-                "daily_contract_status": "added_in_following_reviewable_stage",
-                "owner_card": None,
+                "source_manifest": "docs/reboot/calendar/detailed-insertions.json",
+                "source_owner_export": gap_owner_path,
+                "contract_path": owner["contract_path"],
+                "daily_contract_status": "planned_assignment_not_attempted",
+                "owner_card": owner,
+                "task": detail["assignment"],
+                "acceptance": detail["acceptance"],
+                "command": detail["command"],
+                "evidence_path": detail["evidence_path"],
+                "source": detail["source"],
                 "dsa_section": dsa_section(study),
                 "previous_dsa_section": {"mode": "none", "copied_content": False},
             })
@@ -370,6 +382,7 @@ def render() -> dict[str, str]:
 
 
 def migrate_assignment_json(path: Path, payload):
+    path = Path(path)
     changed = False
 
     def walk(node):
@@ -475,6 +488,69 @@ def migrate_assignment_json(path: Path, payload):
                     "inside_engineering_budget": False,
                 }
                 changed = True
+            # The question session has moved completely out of engineering.
+            # Keep the original details as provenance beneath the shared block,
+            # while removing duplicate active fields from manifests/owner cards.
+            shared = row.get("shared_interview_block")
+            if isinstance(shared, dict):
+                moved = shared.get("migrated_existing_assignment")
+                for key in ("interview_assignment", "interview_session", "interview_practice"):
+                    legacy = row.pop(key, None)
+                    if legacy is None and isinstance(engineering, dict):
+                        legacy = engineering.pop(key, None)
+                    if legacy is not None and moved is None:
+                        moved = dict(legacy) if isinstance(legacy, dict) else legacy
+                if isinstance(moved, dict):
+                    moved = dict(moved)
+                    if "within_engineering_practice" in moved:
+                        moved["historical_within_engineering_practice"] = moved.pop("within_engineering_practice")
+                    if "within_engineering_budget" in moved:
+                        moved["historical_within_engineering_budget"] = moved.pop("within_engineering_budget")
+                    moved["relocated_to_shared_block"] = True
+                    shared["migrated_existing_assignment"] = moved
+                    shared["inside_engineering_budget"] = False
+                    if shared.get("minutes") != 45:
+                        shared["minutes"] = 45
+                    changed = True
+                question_text = (ROOT / "docs/reboot/interview/question-bank.md").read_text(encoding="utf-8")
+                qid = shared.get("question_id")
+                if qid:
+                    match = re.search(rf"\*\*{re.escape(qid)} — ([^*]+)\*\*", question_text)
+                    if match:
+                        shared["question_title"] = match.group(1).strip().rstrip(".")
+                    shared["task"] = "Practice this question only in the separate interview question bank; record an independent answer before hints. No capstone design decision or proposal."
+                # Owner cards use a different compact representation.
+                eng = row.get("engineering")
+                if isinstance(eng, dict) and isinstance(eng.get("minutes"), int):
+                    if eng["minutes"] != 165:
+                        eng.setdefault("historical_120_minute_budget", eng["minutes"])
+                        eng["minutes"] = 165
+                        changed = True
+                    alloc = eng.get("allocation")
+                    if isinstance(alloc, dict):
+                        study_key = "concept_or_course" if "concept_or_course" in alloc else "study"
+                        practice_key = "implementation_and_testing" if "implementation_and_testing" in alloc else "practice_and_test"
+                        revised = {**alloc, study_key: 25, practice_key: 130, "evidence": 10}
+                        if revised != alloc:
+                            eng.setdefault("historical_120_minute_allocation", alloc)
+                            eng["allocation"] = revised
+                            changed = True
+                if isinstance(row.get("budget_minutes"), dict):
+                    budget = row["budget_minutes"]
+                    if budget.get("engineering") != 165 or budget.get("total") != 210:
+                        row.setdefault("historical_budget_minutes", budget)
+                        row["budget_minutes"] = {**budget, "engineering": 165,
+                                                 "shared_interview_or_remaining_reviews": 45, "total": 210}
+                        changed = True
+                practice = row.get("interview_practice")
+                if isinstance(practice, dict):
+                    practice["within_engineering_practice"] = False
+                    practice["outside_engineering_budget"] = True
+                    practice["total_daily_minutes"] = 210
+                    changed = True
+                if isinstance(row.get("interview_practice"), dict):
+                    row.pop("interview_practice", None)
+                    changed = True
         card_unit = row.get("day_number")
         if (isinstance(card_unit, int) and 71 <= card_unit <= DETAIL_THROUGH
                 and isinstance(row.get("engineering"), dict)
@@ -491,7 +567,9 @@ def migrate_assignment_json(path: Path, payload):
                     changed = True
             old_sprint = row.get("sprint")
             if isinstance(old_sprint, str):
-                if row.get("legacy_sprint_label") != old_sprint:
+                # Keep the label from the first migration immutable. The current
+                # sprint is derived from the crosswalk and may change on reruns.
+                if "legacy_sprint_label" not in row:
                     row["legacy_sprint_label"] = old_sprint
                     changed = True
                 new_sprint = f"Sprint {fields['calendar_sprint']}"
@@ -499,10 +577,13 @@ def migrate_assignment_json(path: Path, payload):
                     row["sprint"] = new_sprint
                     changed = True
             original_title = row["title"]
-            if not original_title.startswith("Calendar study day "):
-                row["title"] = (f"Calendar study day {fields['calendar_study_day']} · engineering unit "
-                                f"{card_unit} · {original_title}")
+            migrated_title = re.match(r"^Calendar study day \d+ · engineering unit \d+ · (.+)$", original_title)
+            if migrated_title and unit <= 270:
+                row["title"] = migrated_title.group(1)
                 changed = True
+            # Assignment titles are historical curriculum identifiers. The
+            # calendar label belongs in calendar_study_day/date fields and the
+            # chronological export, never prepended to owner-manifest titles.
         # Preserve original issue-window/unit boundaries while adding their current calendar range.
         first = row.get("first_day")
         last = row.get("last_day")
@@ -524,6 +605,17 @@ def migrate_assignment_json(path: Path, payload):
             unit_rows = [n for n in unit_rows if isinstance(n, int) and 71 <= n <= LEGACY_HORIZON]
             if unit_rows:
                 a, b = min(unit_rows), max(unit_rows)
+                planned_dates = row.get("dates")
+                if isinstance(planned_dates, dict):
+                    revised_dates = dict(planned_dates)
+                    for key, value in {"start": current_date(study_day_for_legacy(a)),
+                                       "end": current_date(study_day_for_legacy(b))}.items():
+                        if key in revised_dates and revised_dates[key] != value:
+                            revised_dates.setdefault(f"historical_{key}", revised_dates[key])
+                            revised_dates[key] = value
+                            changed = True
+                    if revised_dates != planned_dates:
+                        row["dates"] = revised_dates
                 if isinstance(row.get("date_range"), dict):
                     date_range = dict(row["date_range"])
                     for key, value in {"start": current_date(study_day_for_legacy(a)),
@@ -596,6 +688,39 @@ def migrate_assignment_json(path: Path, payload):
 
     updated = walk(payload)
     if isinstance(updated, dict):
+        window_match = re.search(r"continuation-(\d+)-(\d+)", path.as_posix())
+        if window_match:
+            first_unit, last_unit = map(int, window_match.groups())
+            if 71 <= first_unit <= last_unit <= LEGACY_HORIZON:
+                for key, value in {
+                    "start_date": current_date(study_day_for_legacy(first_unit)),
+                    "end_date": current_date(study_day_for_legacy(last_unit)),
+                }.items():
+                    if key in updated and updated[key] != value:
+                        updated.setdefault(f"historical_{key}", updated[key])
+                        updated[key] = value
+                        changed = True
+                if first_unit >= 155 and study_day_for_legacy(first_unit) > 171:
+                    for key in ("engineering_minutes_per_day", "engineering_daily_minutes",
+                                "engineering_minutes_days_169_to_171"):
+                        if updated.get(key) == 120:
+                            updated.setdefault(f"historical_{key}", 120)
+                            updated[key] = 165
+                            changed = True
+                    for key in ("engineering_allocation_minutes", "engineering_allocation"):
+                        allocation = updated.get(key)
+                        if isinstance(allocation, dict) and sum(v for v in allocation.values() if isinstance(v, int)) == 120:
+                            updated.setdefault(f"historical_{key}", allocation)
+                            revised = dict(allocation)
+                            study_key = "concept_or_course" if "concept_or_course" in revised else "study"
+                            practice_key = next((name for name in ("implementation_and_testing", "practice_and_test") if name in revised), None)
+                            evidence_key = "evidence" if "evidence" in revised else "evidence_minutes"
+                            if practice_key:
+                                revised[study_key] = 25
+                                revised[practice_key] = 130
+                                revised[evidence_key] = 10
+                                updated[key] = revised
+                                changed = True
         for collection_name, active_name, history_name in (
             ("cards", "sprint_boundaries", "historical_sprint_boundaries"),
             ("days", "sprints", "historical_sprints"),
@@ -654,37 +779,87 @@ def migrate_assignment_markdown(path: Path) -> bool:
     lines = text.splitlines()
     if not lines:
         return False
-    old = lines[0]
     fields = unit_calendar_fields(unit)
-    if re.match(rf"# Day {unit}(?:\s|[:·—-])", old):
-        title = re.sub(rf"^# Day {unit}\s*(?:[·—:-]\s*)?", "", old)
+    title_index = next((index for index, line in enumerate(lines)
+                        if re.match(rf"# (?:Engineering unit )?Day {unit}(?:\s|[:·—-])", line)), None)
+    if title_index is not None:
+        old = lines[title_index]
+        title = re.sub(rf"^# (?:Engineering unit )?Day {unit}\s*(?:[·—:-]\s*)?", "", old)
+        title = re.sub(r"^Calendar study day \d+ · (?:engineering unit \d+ · )?", "", title)
         title = re.sub(r"^\d{4}-\d{2}-\d{2}\s*(?:[·—:-]\s*)?", "", title)
-        lines[0] = (f"# Engineering unit Day {unit} · Calendar study day "
-                    f"{fields['calendar_study_day']} · {fields['date']}: {title}")
-    elif not old.startswith(f"# Engineering unit Day {unit} · Calendar study day {fields['calendar_study_day']} · {fields['date']}:"):
-        return False
-    if 155 <= unit <= 171 and "## Calendar budget transition" not in text:
-        shared = None
-        command = None
-        for manifest_path in [ROOT / "docs/reboot/manifest.json", *sorted((ROOT / "docs/reboot").glob("continuation-*/manifest.json"))]:
-            try:
-                manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-            except (OSError, json.JSONDecodeError):
-                continue
-            found = next((item for item in manifest.get("days", []) if item.get("day") == unit), None)
-            if found:
-                shared = found.get("shared_interview_block")
-                eng = found.get("engineering", {})
-                commands = eng.get("acceptance_commands") or [eng.get("proposed_acceptance_command")]
-                command = " && ".join(value for value in commands if isinstance(value, str) and value)
-                break
+        lines[title_index] = (f"# Engineering unit Day {unit} · Calendar study day "
+                              f"{fields['calendar_study_day']} · {fields['date']}: {title}")
+    # Some rendered contracts put an HTML anchor before the H1; update planned
+    # dates there too. These dates are active schedule fields, not provenance.
+    for index, line in enumerate(lines):
+        if re.match(r"^Date: \d{4}-\d{2}-\d{2}$", line):
+            lines[index] = f"Date: {fields['date']}"
+
+    shared = None
+    command = None
+    for manifest_path in [ROOT / "docs/reboot/manifest.json", *sorted((ROOT / "docs/reboot").glob("continuation-*/manifest.json"))]:
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        found = next((item for item in manifest.get("days", []) if item.get("day") == unit), None)
+        if found:
+            shared = found.get("shared_interview_block")
+            eng = found.get("engineering", {})
+            commands = eng.get("acceptance_commands") or [eng.get("proposed_acceptance_command")]
+            command = " && ".join(value for value in commands if isinstance(value, str) and value)
+            break
+    if 155 <= unit <= 171:
         qid = shared.get("question_id", "assigned question-bank prompt") if isinstance(shared, dict) else "assigned question-bank prompt"
-        lines.extend([
-            "",
-            "## Calendar budget transition",
-            "",
-            f"This stable engineering unit is scheduled on calendar study day {fields['calendar_study_day']} ({fields['date']}). Its allocation is **165 engineering minutes** (25 study, 130 implementation/testing, 10 evidence) plus **one separate shared 45-minute question-bank session ({qid})**. The prior interview practice is moved out of the engineering block. Transition task: {THRESHOLD_TASKS[unit]} Run `{command or 'the exact acceptance selector named in the manifest'}`. Use the additional capacity for bounded recovery/integration/negative controls only; do not add feature scope or double-count interview practice. The date does not imply prerequisite evidence passed.",
-        ])
+        qtitle = shared.get("question_title", "assigned prompt") if isinstance(shared, dict) else "assigned prompt"
+        question_link = f"[ {qid} — {qtitle} ](../../interview/question-bank.md#{qid.lower()})".replace("[ ", "[").replace(" ](", "](")
+        # Remove older embedded interview instructions; the assigned prompt is
+        # rendered once in the separate shared block below.
+        lines = [line for line in lines if not line.lstrip().startswith("**45-minute system-design interview")]
+        # Replace legacy standalone interview sections with the canonical
+        # shared-session block; their duplicated content was inside old practice.
+        while True:
+            h = next((i for i, line in enumerate(lines) if line == "## Separate system-design interview practice"), None)
+            if h is None:
+                break
+            next_h = next((i for i in range(h+1, len(lines)) if lines[i].startswith("## ")), len(lines))
+            lines[h:next_h] = []
+        for index, line in enumerate(lines):
+            if line.startswith("**Budget:** 120 engineering minutes"):
+                lines[index] = "**Budget:** 165 engineering minutes (25 study, 130 implementation/testing, 10 evidence) plus one separate shared 45-minute interview question-bank session."
+            elif line == "## Practice — 85 minutes":
+                lines[index] = "## Practice — 130 engineering minutes"
+            elif line == "## Practice":
+                lines[index] = "## Practice — 130 engineering minutes"
+        # Remove the stale 120-minute appendix and put one authoritative active
+        # budget/timebox immediately after the H1. Historical values remain in
+        # the structured manifest as provenance only.
+        appendix = next((i for i, line in enumerate(lines) if line in {
+            "## Calendar budget transition", "## Calendar budget and shared-session allocation"
+        }), None)
+        if appendix is not None:
+            lines = lines[:appendix]
+        active = (
+            f"**Calendar allocation:** study day {fields['calendar_study_day']} ({fields['date']}); 165 engineering minutes "
+            "(25 study, 130 implementation/testing, 10 evidence) plus one separate shared 45-minute question-bank session. "
+            f"Within engineering practice, use 40 minutes for this contract's bounded task, 45 minutes to complete its named acceptance cases and negative controls using `{command or 'the command in this contract'}`, "
+            f"and 45 minutes for bounded integration/recovery only: {THRESHOLD_TASKS[unit]} Do not add feature scope. "
+            "Record exact commands, independent expected results, remaining learner TODOs, and blockers. Calendar dates do not imply a gate passed."
+        )
+        # Collapse any duplicate blocks left by an earlier migration run.
+        lines = [line for line in lines if not line.startswith("**Calendar allocation:**")]
+        title_line = next((i for i, line in enumerate(lines) if line.startswith("# ")), None)
+        if title_line is not None:
+            insert = title_line + 1
+            while insert < len(lines) and not lines[insert].strip():
+                del lines[insert]
+            lines[insert:insert] = ["", active]
+    if 155 <= unit <= 171 and "## Shared 45-minute question-bank block" not in lines:
+        # Keep interview practice visibly separate from the capstone task.
+        insert = next((i for i, line in enumerate(lines) if line.startswith("## Separate DSA track")), len(lines))
+        lines[insert:insert] = ["## Shared 45-minute question-bank block", "", f"{question_link} — use the question-bank session only; record an independent answer before hints. This block is outside the engineering allocation.", ""]
+    while lines and not lines[-1].strip():
+        lines.pop()
     rendered = "\n".join(lines) + ("\n" if text.endswith("\n") else "")
     if rendered != text:
         path.write_text(rendered, encoding="utf-8")
@@ -727,6 +902,15 @@ def migrate_assignments() -> None:
             continue
         study_first, study_last = study_day_for_legacy(first), study_day_for_legacy(last)
         text = path.read_text(encoding="utf-8")
+        if first == 155 and last == 168:
+            text = re.sub(r"(?m)^- Sprint 12 dates: .*\.$",
+                          f"- Sprint 13 dates: {current_date(study_first)} through {current_date(study_last)}.", text)
+            text = re.sub(r"(?m)^- Engineering remains 120 minutes/day \(25 study, 85 practice/testing, 10 evidence\)\.$",
+                          "- Engineering is 165 minutes/day (25 study, 130 implementation/testing, 10 evidence) plus one separate shared 45-minute question-bank block.", text)
+            text = re.sub(r"(?m)^Each day uses 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence\.$",
+                          "Each day uses 165 engineering minutes: 25 study, 130 implementation/testing, and 10 evidence, plus one separate shared 45-minute question-bank block.", text)
+            text = text.replace("Those sessions replace 45 minutes of practice and leave a bounded 40-minute task; they add no time.",
+                                "Those sessions use the separate shared 45-minute block; engineering practice remains within the 165-minute allocation.")
         lines = text.splitlines()
         if not lines:
             continue
@@ -740,7 +924,8 @@ def migrate_assignments() -> None:
             except (OSError, subprocess.CalledProcessError, IndexError):
                 pass
             title = original.removeprefix("# ").strip()
-            title = re.sub(r"^Days?\s+\d+[–-]\d+\s*[—–:-]\s*", "", title, flags=re.I)
+            title = re.sub(r"^Engineering units .*? — ", "", title, flags=re.I)
+            title = re.sub(r"^(?:StreamForge\s+)?Days?\s+\d+[–-]\d+\s*[—–:-]\s*", "", title, flags=re.I)
             title = re.sub(r"\s*[—–-]\s*Days?\s+\d+[–-]\d+\s*$", "", title, flags=re.I)
             lines[0] = (f"# Engineering units {first}–{last} · calendar study days "
                         f"{study_first}–{study_last} · {current_date(study_first)}–{current_date(study_last)}")
@@ -756,7 +941,9 @@ def migrate_assignments() -> None:
         while remainder and remainder[0] == "":
             remainder.pop(0)
         lines = [lines[0], "", info, ""] + remainder
-        path.write_text("\n".join(lines) + ("\n" if text.endswith("\n") else ""), encoding="utf-8")
+        rendered = "\n".join(lines) + ("\n" if text.endswith("\n") else "")
+        rendered = re.sub(r"\n{3,}", "\n\n", rendered)
+        path.write_text(rendered, encoding="utf-8")
 
 
 def main() -> int:

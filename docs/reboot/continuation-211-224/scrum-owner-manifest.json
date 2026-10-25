@@ -9,7 +9,7 @@
     {
       "day_number": 211,
       "date": "2027-06-14",
-      "title": "Calendar study day 232 · engineering unit 211 · Inspect Day 210 entry evidence and gate",
+      "title": "Inspect Day 210 entry evidence and gate",
       "learner_seam": "dynamic_entry_gate",
       "signature": "scripts/check_continuation_211_entry_gate.py, evidence/continuation-197-210/day-210-entry-review.json",
       "selectors": [
@@ -155,7 +155,7 @@
     {
       "day_number": 212,
       "date": "2027-06-15",
-      "title": "Calendar study day 233 · engineering unit 212 · Validate bounded source-bundle schema",
+      "title": "Validate bounded source-bundle schema",
       "learner_seam": "bounded_ingestion",
       "signature": "docs/reboot/continuation-211-224/source-bundle.schema.json, ai/grounded/continuation_211.py",
       "selectors": [
@@ -303,7 +303,7 @@
     {
       "day_number": 213,
       "date": "2027-06-16",
-      "title": "Calendar study day 234 · engineering unit 213 · Reject malformed, oversized and non-exact records",
+      "title": "Reject malformed, oversized and non-exact records",
       "learner_seam": "strict_bundle_validation",
       "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
       "selectors": [
@@ -451,7 +451,7 @@
     {
       "day_number": 214,
       "date": "2027-06-17",
-      "title": "Calendar study day 235 · engineering unit 214 · Enforce stable unique source and version keys",
+      "title": "Enforce stable unique source and version keys",
       "learner_seam": "stable_source_identity",
       "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
       "selectors": [
@@ -599,7 +599,7 @@
     {
       "day_number": 215,
       "date": "2027-06-18",
-      "title": "Calendar study day 236 · engineering unit 215 · Exclude draft versions from reference retrieval",
+      "title": "Exclude draft versions from reference retrieval",
       "learner_seam": "approved_version_filter",
       "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
       "selectors": [
@@ -747,7 +747,7 @@
     {
       "day_number": 216,
       "date": "2027-06-19",
-      "title": "Calendar study day 237 · engineering unit 216 · Filter approved owner-scoped rows before ranking",
+      "title": "Filter approved owner-scoped rows before ranking",
       "learner_seam": "pre_rank_owner_filter",
       "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
       "selectors": [
@@ -895,7 +895,7 @@
     {
       "day_number": 217,
       "date": "2027-06-20",
-      "title": "Calendar study day 238 · engineering unit 217 · Bound deterministic top-k retrieval and ties",
+      "title": "Bound deterministic top-k retrieval and ties",
       "learner_seam": "deterministic_top_k",
       "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
       "selectors": [
@@ -1043,7 +1043,7 @@
     {
       "day_number": 218,
       "date": "2027-06-21",
-      "title": "Calendar study day 239 · engineering unit 218 · Bind explanation citations to exact source versions",
+      "title": "Bind explanation citations to exact source versions",
       "learner_seam": "citation_version_binding",
       "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
       "selectors": [
@@ -1191,7 +1191,7 @@
     {
       "day_number": 219,
       "date": "2027-06-22",
-      "title": "Calendar study day 240 · engineering unit 219 · Abstain explicitly when evidence is insufficient",
+      "title": "Abstain explicitly when evidence is insufficient",
       "learner_seam": "unsupported_fallback",
       "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
       "selectors": [
@@ -1339,7 +1339,7 @@
     {
       "day_number": 220,
       "date": "2027-06-23",
-      "title": "Calendar study day 241 · engineering unit 220 · Measure citation and abstention outcomes against fixed labels",
+      "title": "Measure citation and abstention outcomes against fixed labels",
       "learner_seam": "independent_offline_metrics",
       "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
       "selectors": [
@@ -1487,7 +1487,7 @@
     {
       "day_number": 221,
       "date": "2027-06-24",
-      "title": "Calendar study day 242 · engineering unit 221 · Treat hostile retrieved instructions as untrusted text",
+      "title": "Treat hostile retrieved instructions as untrusted text",
       "learner_seam": "untrusted_source_content",
       "signature": "ai/grounded/continuation_211.py, ai/grounded/continuation_211_fixture.json, ai/grounded/learner_acceptance/test_continuation_211.py",
       "selectors": [
@@ -1635,7 +1635,7 @@
     {
       "day_number": 222,
       "date": "2027-06-25",
-      "title": "Calendar study day 243 · engineering unit 222 · Create stable canonical bundle bytes and digest",
+      "title": "Create stable canonical bundle bytes and digest",
       "learner_seam": "canonical_snapshot",
       "signature": "ai/grounded/continuation_211.py, ai/grounded/continuation_211_fixture.json",
       "selectors": [
@@ -1783,7 +1783,7 @@
     {
       "day_number": 223,
       "date": "2027-06-26",
-      "title": "Calendar study day 244 · engineering unit 223 · Reproduce local JSON report in fresh processes",
+      "title": "Reproduce local JSON report in fresh processes",
       "learner_seam": "fresh_process_reproducibility",
       "signature": "ai/grounded/continuation_cli.py, ai/grounded/learner_acceptance/test_continuation_211.py",
       "selectors": [
@@ -1931,7 +1931,7 @@
     {
       "day_number": 224,
       "date": "2027-06-27",
-      "title": "Calendar study day 245 · engineering unit 224 · Run full local workflow and preserve synthetic source bytes",
+      "title": "Run full local workflow and preserve synthetic source bytes",
       "learner_seam": "synthetic_round_trip",
       "signature": "ai/grounded/continuation_211.py, ai/grounded/continuation_cli.py, ai/grounded/learner_acceptance/test_continuation_211.py",
       "selectors": [
@@ -2081,42 +2081,6 @@
     "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
   },
   "sprint_boundaries": [
-    {
-      "name": "Sprint 17",
-      "calendar_sprint_number": 17,
-      "calendar_study_days_in_this_batch": [
-        232,
-        233,
-        234,
-        235,
-        236,
-        237,
-        238
-      ],
-      "calendar_dates": "2027-06-07..2027-06-20",
-      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
-      "batch_story_count": 7,
-      "sprint_story_count_after_batch": 14
-    },
-    {
-      "name": "Sprint 18",
-      "calendar_sprint_number": 18,
-      "calendar_study_days_in_this_batch": [
-        239,
-        240,
-        241,
-        242,
-        243,
-        244,
-        245
-      ],
-      "calendar_dates": "2027-06-21..2027-07-04",
-      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
-      "batch_story_count": 7,
-      "sprint_story_count_after_batch": 14
-    }
-  ],
-  "historical_sprint_boundaries": [
     {
       "name": "Sprint 17",
       "calendar_sprint_number": 17,

@@ -2,7 +2,7 @@
 
 Calendar mapping: stable engineering unit IDs 253–266 occupy study days 274–287 (2027-07-26 through 2027-08-08).
 
-Status: bounded starter for review; dates 5–18 July 2027. This selects Branch A only from the reviewed fifth-window proposal. It rehearses one synthetic document and already-verified adapter assertion; no actual SAML parsing, IdP, AWS account, credential, provider, network, live data, external mutation or StreamForge work.
+Status: bounded starter for review; dates 26 July–8 August 2027. This selects Branch A only from the reviewed fifth-window proposal. It rehearses one synthetic document and already-verified adapter assertion; no actual SAML parsing, IdP, AWS account, credential, provider, network, live data, external mutation or StreamForge work.
 
 Run `python3 scripts/check_continuation_253_entry_gate.py` before learner workflow selectors. If not eligible, use the first unmet CoverStory recovery selector for project time. Eligibility is not completion. Learner evidence remains unobserved until earned.
 

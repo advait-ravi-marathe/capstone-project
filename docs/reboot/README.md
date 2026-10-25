@@ -71,6 +71,16 @@ external DSA association without copying DSA content. The [dated milestone
 dashboard source](fde-alignment.json) contains evidence-gated review dates;
 they do not grant readiness or learner completion.
 
+The 42-day insertion is fully represented in the governing [amendment and
+capacity plan](continuation-271-732/README.md). The first 21 inserted units
+have executable starter/test paths and dated contracts under
+[`contracts/gap-*.md`](contracts/); their structured source, task, command,
+acceptance, and owner records are in
+[`detailed-insertions.json`](calendar/detailed-insertions.json) and
+[`gap-owner-manifest.json`](calendar/gap-owner-manifest.json). The remaining
+21 units have outcome gates only and are intentionally not detailed or
+ticketed in advance. All inserted records remain planned and not attempted.
+
 ## Chronological index
 
 | Day/date | Engineering contract | State |

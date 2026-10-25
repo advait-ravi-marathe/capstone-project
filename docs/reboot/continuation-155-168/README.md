@@ -1,17 +1,17 @@
-# Engineering units 155–168 · calendar study days 176–189 · 2027-04-19–2027-05-02 — StreamForge Days 155–168: synthetic temporal-data foundation
+# Engineering units 155–168 · calendar study days 176–189 · 2027-04-19–2027-05-02 — synthetic temporal-data foundation
 
 Calendar mapping: stable engineering unit IDs 155–168 occupy study days 176–189 (2027-04-19 through 2027-05-02).
 
 **Draft starter scope. No board tickets have been created or updated.** This batch prepares and validates a tiny original synthetic catalog and event log, splits unique events by a fixed UTC cutoff, and emits reproducible local JSON with train-only summaries and separate holdout diagnostics. It is not a recommender, ML model, service, media importer, or deployment.
 
 - Base source: `5dc558eeda441177dc4aac87725d0a18417c5abd`; isolated branch `learning/streamforge-days-155-168`.
-- Sprint 12 dates: March 29–April 11, 2027. Recovery days: 161 and 168.
-- Engineering remains 120 minutes/day (25 study, 85 practice/testing, 10 evidence).
+- Sprint 13 dates: 2027-04-19 through 2027-05-02.
+- Engineering is 165 minutes/day (25 study, 130 implementation/testing, 10 evidence) plus one separate shared 45-minute question-bank block.
 - Python interpreter observed before publication: Python 3.12.14. No third-party Python dependency is required.
 - The earlier Days 153–154 learner-owned A/B evidence gate has status not met: `evidence/continuation-141-154/day-153.json` records `not_attempted` / `not_run`, tested-source SHA null, 0 artifact hashes, and learner completion `false`; `evidence/continuation-141-154/day-154.json` records `not_attempted` / `not_run`, tested-source SHA null, 0 artifact hashes, and learner completion `false`. The StreamForge scaffold and instructor witnesses cannot satisfy it. Re-evaluate the authoritative records when genuine learner evidence is added; keep progression blocked until both qualify under `manifest.json`.
 - No AWS/cloud resource, credential, spending, deployment, external media ingestion, user history, or real learner data.
 
-Each day uses 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence.
+Each day uses 165 engineering minutes: 25 study, 130 implementation/testing, and 10 evidence, plus one separate shared 45-minute question-bank block.
 
 ## Data contract
 
@@ -31,7 +31,7 @@ Train outputs use only training events and fixed contract/split configuration. H
 
 ## Assistant-supplied implementation architecture
 
-The assistant specifies the capstone architecture for each implementation day; learners implement and test those decisions. See [day-by-day explanations](assistant-architecture-notes.md). System-design practice occurs only in the separate question-bank sessions on Days 155, 159, 163, and 167. Those sessions replace 45 minutes of practice and leave a bounded 40-minute task; they add no time. The four questions are Q09, Q15, Q24, and Q34.
+The assistant specifies the capstone architecture for each implementation day; learners implement and test those decisions. See [day-by-day explanations](assistant-architecture-notes.md). System-design practice occurs only in the separate question-bank sessions on Days 155, 159, 163, and 167. Those sessions use the separate shared 45-minute block; engineering practice remains within the 165-minute allocation. The four questions are Q09, Q15, Q24, and Q34.
 
 ## Bounded architecture
 

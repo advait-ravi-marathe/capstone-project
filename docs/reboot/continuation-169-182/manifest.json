@@ -7,7 +7,7 @@
   "end_date": "2027-05-16",
   "publication_status": "draft_not_board_published",
   "board_writes": false,
-  "engineering_minutes_days_169_to_171": 120,
+  "engineering_minutes_days_169_to_171": 165,
   "engineering_minutes_day_172_onward": 165,
   "engineering_allocation_day_172_onward": {
     "study": 35,
@@ -100,27 +100,6 @@
         "scope": "Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope."
       },
       "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
-      "interview_practice": {
-        "budget_minutes": 45,
-        "mode": "45_minute_mock",
-        "question_id": "Q33",
-        "question_title": "Analytics: event to metric",
-        "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
-        "duration_minutes": 45,
-        "allocation_minutes": {
-          "requirements": 5,
-          "capacity_and_constraints": 5,
-          "initial_architecture_and_data_model": 15,
-          "bottlenecks_reliability_scaling": 10,
-          "tradeoffs_failures_followups": 10
-        },
-        "total_daily_minutes": 120,
-        "within_engineering_practice": true,
-        "implementation_minutes_remaining": 40,
-        "proposal_scope": "system_design_interview_question_only",
-        "relocated_to_shared_block": true,
-        "outside_engineering_budget": true
-      },
       "unit_id": "EAI-UNIT-169",
       "calendar_study_day": 190,
       "calendar_sprint": 14,
@@ -146,14 +125,13 @@
         "question_id": "Q33",
         "question_title": "Analytics: event to metric",
         "question_bank": "docs/reboot/interview/question-bank.md",
-        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "task": "Practice this question only in the separate interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
         "migrated_existing_assignment": {
           "mode": "45_minute_system_design_question",
           "question_id": "Q33",
           "question_title": "Analytics: event to metric",
           "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
           "duration_minutes": 45,
-          "within_engineering_practice": true,
           "implementation_minutes_remaining": 40,
           "phase_minutes": {
             "requirements": 5,
@@ -162,7 +140,8 @@
             "bottlenecks_reliability_scaling": 10,
             "tradeoffs_failures_followups": 10
           },
-          "relocated_to_shared_block": true
+          "relocated_to_shared_block": true,
+          "historical_within_engineering_practice": true
         },
         "inside_engineering_budget": false
       }
@@ -242,7 +221,7 @@
         "question_id": "Q16",
         "question_title": "Messaging: ordering and replay",
         "question_bank": "docs/reboot/interview/question-bank.md",
-        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "task": "Practice this question only in the separate interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
         "migrated_existing_assignment": null,
         "inside_engineering_budget": false
       }
@@ -298,27 +277,6 @@
         "scope": "Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope."
       },
       "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
-      "interview_practice": {
-        "budget_minutes": 45,
-        "mode": "45_minute_mock",
-        "question_id": "Q34",
-        "question_title": "Analytics: late and duplicate data",
-        "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
-        "duration_minutes": 45,
-        "allocation_minutes": {
-          "requirements": 5,
-          "capacity_and_constraints": 5,
-          "initial_architecture_and_data_model": 15,
-          "bottlenecks_reliability_scaling": 10,
-          "tradeoffs_failures_followups": 10
-        },
-        "total_daily_minutes": 120,
-        "within_engineering_practice": true,
-        "implementation_minutes_remaining": 40,
-        "proposal_scope": "system_design_interview_question_only",
-        "relocated_to_shared_block": true,
-        "outside_engineering_budget": true
-      },
       "unit_id": "EAI-UNIT-171",
       "calendar_study_day": 192,
       "calendar_sprint": 14,
@@ -344,14 +302,13 @@
         "question_id": "Q34",
         "question_title": "Analytics: late and duplicate data",
         "question_bank": "docs/reboot/interview/question-bank.md",
-        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "task": "Practice this question only in the separate interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
         "migrated_existing_assignment": {
           "mode": "45_minute_system_design_question",
           "question_id": "Q34",
           "question_title": "Analytics: late and duplicate data",
           "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
           "duration_minutes": 45,
-          "within_engineering_practice": true,
           "implementation_minutes_remaining": 40,
           "phase_minutes": {
             "requirements": 5,
@@ -360,7 +317,8 @@
             "bottlenecks_reliability_scaling": 10,
             "tradeoffs_failures_followups": 10
           },
-          "relocated_to_shared_block": true
+          "relocated_to_shared_block": true,
+          "historical_within_engineering_practice": true
         },
         "inside_engineering_budget": false
       }
@@ -1457,5 +1415,6 @@
       "batch_story_count": 7,
       "sprint_total_after_batch": 14
     }
-  ]
+  ],
+  "historical_engineering_minutes_days_169_to_171": 120
 }

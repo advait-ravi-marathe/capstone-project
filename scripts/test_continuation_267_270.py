@@ -72,7 +72,7 @@ class CloseoutInventoryTests(unittest.TestCase):
         self.assertEqual([(197,210),(211,224),(225,238),(239,252),(253,266),(267,270)],
                          [(x["start_day"],x["end_day"]) for x in inventory["windows"]])
         for i,(task,row,card) in enumerate(zip(src["days"],man["days"],owner["cards"])):
-            self.assertEqual((__import__("datetime").date(2027,7,19)+__import__("datetime").timedelta(days=i)).isoformat(),row["date"])
+            self.assertEqual((__import__("datetime").date(2027,8,9)+__import__("datetime").timedelta(days=i)).isoformat(),row["date"])
             self.assertEqual(task["date"],row["date"]); self.assertEqual(165,sum(row["workstream_minutes"].values()))
             self.assertEqual(45,row["shared_interview_block"]["minutes"])
             self.assertEqual("unobserved_not_implied_by_scaffold",row["learner_status"])

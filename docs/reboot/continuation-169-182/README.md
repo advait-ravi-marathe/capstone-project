@@ -1,4 +1,4 @@
-# Engineering units 169–182 · calendar study days 190–203 · 2027-05-03–2027-05-16 — StreamForge Days 169–182: frozen offline baseline
+# Engineering units 169–182 · calendar study days 190–203 · 2027-05-03–2027-05-16 — frozen offline baseline
 
 Calendar mapping: stable engineering unit IDs 169–182 occupy study days 190–203 (2027-05-03 through 2027-05-16).
 
@@ -29,7 +29,6 @@ python3 -m unittest discover -s ai/tests -p test_infrastructure.py
 ```
 
 Learner acceptance remains expected red at named TODOs until actual work is completed. AWS execution, production validation, exam choice, and future model work remain deferred.
-
 
 ## Prior A/B gate (re-evaluated from authoritative records)
 

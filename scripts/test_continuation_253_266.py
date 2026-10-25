@@ -51,7 +51,7 @@ class ManifestTests(unittest.TestCase):
   q08=[x['task']['shared_task'] for x in man['days'] if x['task'].get('question_id')=='Q08']
   self.assertEqual(4,len(q08));self.assertEqual(4,len(set(q08)))
   for i,(task,row,card) in enumerate(zip(src['tasks'],man['days'],own['cards'])):
-   self.assertEqual((date(2027,7,5)+timedelta(days=i)).isoformat(),row['date']);self.assertEqual(task['date'],row['date']) if 'date' in task else None
+   self.assertEqual((date(2027,7,26)+timedelta(days=i)).isoformat(),row['date']);self.assertEqual(task['date'],row['date']) if 'date' in task else None
    self.assertEqual(165,sum(row['workstream_minutes'].values()));self.assertEqual(45,row['shared_interview_block']['minutes']);self.assertEqual('unobserved_not_implied_by_scaffold',row['learner_status']);self.assertFalse(row['engineering_architecture']['capstone_proposal_required']);self.assertEqual('separate_interview_question_bank_only',row['engineering_architecture']['system_design_scope'])
    self.assertEqual(set(EXPECTED),set(row['workstream_minutes']));self.assertEqual(row['workstream_minutes'],card['engineering']['allocation'])
    contract=(OUT/f'contracts/day-{row["day"]}.md').read_text();self.assertIn(f'id="day-{row["day"]}"',contract);self.assertIn('Assistant-supplied architecture',contract)

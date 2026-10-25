@@ -128,169 +128,526 @@
       "unit_id": "GAP-OPENAPI-01",
       "calendar_study_day": 71,
       "date": "2027-01-04",
-      "task": "Inventory the selected policy API consumer and producer routes",
-      "acceptance": "Record exact request, success, error, auth and ownership behavior from LocalPolicyIssueController; pin independent fixture."
+      "task": "Observe producer and consumer behavior",
+      "acceptance": "OpenAPICompatibilityInfrastructureTest: operation set and source DTO fields are fixed independently.",
+      "title": "Observe producer and consumer behavior",
+      "category": "openapi",
+      "assignment": "Inspect LocalPolicyIssueController and PolicyIssueRequest. Record the two operations, auth boundary, request fields, returned status codes, and independent expected field sets. Do not change application behavior.",
+      "source": {
+        "title": "OpenAPI 3.2.1",
+        "section": "4.1.2 OpenAPI Description Structure",
+        "url": "https://spec.openapis.org/oas/v3.2.1.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OpenApiCompatibilityInfrastructureTest test",
+      "evidence_path": "docs/reboot/evidence/gap-openapi-01.json",
+      "allocation": "25/85/10",
+      "contract_path": "docs/reboot/contracts/gap-openapi-01.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-OPENAPI-02",
       "calendar_study_day": 72,
       "date": "2027-01-05",
-      "task": "Author OpenAPI operations and request/response schemas",
-      "acceptance": "Represent GET /api/policies/{policyId} and POST /api/policies with 200/201/400/401/404 outcomes; validate paths, methods, required fields and status schema."
+      "task": "Complete the versioned API description",
+      "acceptance": "Infrastructure checks resolve required fields/statuses and reject undocumented or extra controller operations.",
+      "title": "Complete the versioned API description",
+      "category": "openapi",
+      "assignment": "Edit src/main/resources/contracts/coverstory-policies-v1.json to describe the existing POST and GET routes, request/response schemas, auth, and exact status variants including POST 200/201/400/401/404/409. Preserve the independent fixture assertions.",
+      "source": {
+        "title": "OpenAPI 3.2.1",
+        "section": "4.8 Paths Object; 4.10 Operation Object; 4.24 Schema Object",
+        "url": "https://spec.openapis.org/oas/v3.2.1.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OpenApiCompatibilityInfrastructureTest test",
+      "evidence_path": "docs/reboot/evidence/gap-openapi-02.json",
+      "allocation": "25/85/10",
+      "contract_path": "docs/reboot/contracts/gap-openapi-02.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-OPENAPI-03",
       "calendar_study_day": 73,
       "date": "2027-01-06",
-      "task": "Check the contract against runtime Spring mappings",
-      "acceptance": "Compare method/path set and required request/response fields against actual controller mappings; fail on missing or extra public operation."
+      "task": "Compare the contract with actual Spring mappings",
+      "acceptance": "Actual Spring annotations and contract operation sets must be equal; mutants adding/removing a route fail.",
+      "title": "Compare the contract with actual Spring mappings",
+      "category": "openapi",
+      "assignment": "Extend OpenApiCompatibilityInfrastructureTest to compare documented verb/path pairs against LocalPolicyIssueController annotations; include method, missing-route, and extra-route counterfactuals.",
+      "source": {
+        "title": "OpenAPI 3.2.1",
+        "section": "4.9 Path Item Object; 4.10 Operation Object",
+        "url": "https://spec.openapis.org/oas/v3.2.1.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OpenApiCompatibilityInfrastructureTest#contractOperationsMatchTheActualSpringControllerMappings test",
+      "evidence_path": "docs/reboot/evidence/gap-openapi-03.json",
+      "allocation": "25/85/10",
+      "contract_path": "docs/reboot/contracts/gap-openapi-03.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-OPENAPI-04",
       "calendar_study_day": 74,
       "date": "2027-01-07",
-      "task": "Run consumer compatibility against an additive provider revision",
-      "acceptance": "Independent expected consumer accepts optional response additions and unchanged required fields; reject removed/renamed required field and changed status."
+      "task": "Evaluate consumer compatibility for provider changes",
+      "acceptance": "Independent expected diagnostics verify exact changed operations and preserve optional additions as compatible.",
+      "title": "Evaluate consumer compatibility for provider changes",
+      "category": "openapi",
+      "assignment": "Implement the compatibility learner seam for additive optional response fields versus removed consumed fields, new required request fields, changed response status, and changed field types.",
+      "source": {
+        "title": "OpenAPI 3.2.1",
+        "section": "4.16 Responses Object; 4.24 Schema Object",
+        "url": "https://spec.openapis.org/oas/v3.2.1.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Plearner-tests -Dtest=OpenApiCompatibilityAcceptanceTest test",
+      "evidence_path": "docs/reboot/evidence/gap-openapi-04.json",
+      "allocation": "25/85/10",
+      "contract_path": "docs/reboot/contracts/gap-openapi-04.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-OPENAPI-05",
       "calendar_study_day": 75,
       "date": "2027-01-08",
-      "task": "Add mutation controls and publish compatibility evidence",
-      "acceptance": "Mutate canonical spec to break method/path/required field/status and ensure actual oracle rejects; capture command, diff and exact errors."
+      "task": "Run compatibility mutation controls and capture evidence",
+      "acceptance": "The immutable expected operation/field/status diagnostics reject always-compatible and wrong-diagnostic mutants.",
+      "title": "Run compatibility mutation controls and capture evidence",
+      "category": "openapi",
+      "assignment": "Run the compatibility witness against unchanged, additive, and breaking documents; introduce a deliberate always-compatible mutant and confirm the independent actual-path assertion rejects it.",
+      "source": {
+        "title": "OpenAPI 3.2.1",
+        "section": "4.16 Responses Object; 4.24 Schema Object",
+        "url": "https://spec.openapis.org/oas/v3.2.1.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OpenApiCompatibilityInfrastructureTest test",
+      "evidence_path": "docs/reboot/evidence/gap-openapi-05.json",
+      "allocation": "25/85/10",
+      "contract_path": "docs/reboot/contracts/gap-openapi-05.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-OIDC-01",
       "calendar_study_day": 76,
       "date": "2027-01-09",
-      "task": "Add the isolated OIDC learner seam and offline issuer fixture",
-      "acceptance": "Keep existing cookie-session profile intact; define test-only issuer metadata, JWKS and synthetic tenant mapping; no live keys."
+      "task": "Define an isolated resource-server lab seam",
+      "acceptance": "Infrastructure test proves issuer/JWKS URLs are loopback-only and the profile is separate from application sessions.",
+      "title": "Define an isolated resource-server lab seam",
+      "category": "oidc",
+      "assignment": "Review the isolated oidc-contract-lab profile and loopback-only synthetic issuer. Trace the learner policy seam; preserve the existing cookie-session configuration and never configure an external issuer.",
+      "source": {
+        "title": "Spring Security",
+        "section": "Specifying the Authorization Server",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OidcContractLabInfrastructureTest test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-01.json",
+      "allocation": "25/85/10",
+      "contract_path": "docs/reboot/contracts/gap-oidc-01.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-OIDC-02",
       "calendar_study_day": 77,
       "date": "2027-01-10",
-      "task": "Configure actual Spring Security JWT resource-server path",
-      "acceptance": "Validate issuer, signature, audience and standard temporal claims using framework decoder; protected route defaults deny."
+      "task": "Route bearer authentication through Spring Security",
+      "acceptance": "Actual MockMvc bearer path proves valid signed tokens reach authorization and invalid tokens fail before the handler.",
+      "title": "Route bearer authentication through Spring Security",
+      "category": "oidc",
+      "assignment": "Trace the real SecurityFilterChain, issuer/time validator, audience validator, and default-deny route handling. Implement OidcTenantPolicy separately; do not replace token verification with a mock Authentication.",
+      "source": {
+        "title": "Spring Security",
+        "section": "Startup Expectations; Runtime Expectations",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OidcContractLabInfrastructureTest test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-02.json",
+      "allocation": "25/85/10",
+      "contract_path": "docs/reboot/contracts/gap-oidc-02.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-OIDC-03",
       "calendar_study_day": 78,
       "date": "2027-01-11",
-      "task": "Exercise discovery and signed JWKS token through HTTP",
-      "acceptance": "Use local disposable issuer serving OIDC discovery/JWKS and signed synthetic tokens; assert actual filter chain returns expected response."
+      "task": "Exercise provider discovery and JWKS signature verification",
+      "acceptance": "The test observes a real signed bearer request and successful protected response; mock tokens are not accepted by this path.",
+      "title": "Exercise provider discovery and JWKS signature verification",
+      "category": "oidc",
+      "assignment": "Use the disposable local issuer's discovery metadata and JWKS. Follow one signed synthetic token through discovery, key selection, signature verification, and the protected handler.",
+      "source": {
+        "title": "Spring Security",
+        "section": "Specifying the Authorization Server; Startup Expectations",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OidcContractLabInfrastructureTest#signedTokenDiscoveredThroughLocalIssuerReachesProtectedHandler test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-03.json",
+      "allocation": "25/85/10",
+      "contract_path": "docs/reboot/contracts/gap-oidc-03.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-OIDC-04",
       "calendar_study_day": 79,
       "date": "2027-01-12",
-      "task": "Test wrong issuer, audience and expired token denials",
-      "acceptance": "Each must produce 401 with no protected body and no handler invocation; independent signed variants."
+      "task": "Reject issuer, audience, time, and malformed-token failures",
+      "acceptance": "Each counterfactual is independently expected to fail authentication and expose no synthetic subject.",
+      "title": "Reject issuer, audience, time, and malformed-token failures",
+      "category": "oidc",
+      "assignment": "Use independently signed wrong-issuer, wrong-audience, expired, and malformed tokens. Assert HTTP 401, no private body, and no successful handler response.",
+      "source": {
+        "title": "Spring Security",
+        "section": "Runtime Expectations; Supplying Audiences",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OidcContractLabInfrastructureTest#issuerAudienceAndExpiryFailuresReturn401WithoutClaims test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-04.json",
+      "allocation": "25/85/10",
+      "contract_path": "docs/reboot/contracts/gap-oidc-04.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-OIDC-05",
       "calendar_study_day": 80,
       "date": "2027-01-13",
-      "task": "Test missing signature, malformed token and unknown key",
-      "acceptance": "Each denies closed; no bypassing decoder or mock Authentication in protocol path."
+      "task": "Reject unknown key identifiers and invalid token structure",
+      "acceptance": "Unknown kid and malformed token controls fail on actual decoder path; no unsigned-token bypass.",
+      "title": "Reject unknown key identifiers and invalid token structure",
+      "category": "oidc",
+      "assignment": "Exercise malformed compact token and a validly signed token whose kid is absent from the JWKS. Confirm the filter chain returns 401 without claim disclosure.",
+      "source": {
+        "title": "Spring Security",
+        "section": "Runtime Expectations",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OidcContractLabInfrastructureTest#rotationAcceptsNewKidAndRejectsUnknownSigningKey test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-05.json",
+      "allocation": "25/85/10",
+      "contract_path": "docs/reboot/contracts/gap-oidc-05.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-OIDC-06",
       "calendar_study_day": 81,
       "date": "2027-01-14",
-      "task": "Rotate local signing key and verify overlap behavior",
-      "acceptance": "Publish keyset with old+new kid, then new-only; verify cached/refresh behavior and retired-key denial."
+      "task": "Test key rotation and overlap",
+      "acceptance": "Positive controls for both published keys and a negative unknown-key control exercise JWKS retrieval.",
+      "title": "Test key rotation and overlap",
+      "category": "oidc",
+      "assignment": "Use only the local synthetic issuer. Verify the previously active and newly published key IDs during overlap, then an unknown-key denial; record that this lab does not establish immediate revocation behavior.",
+      "source": {
+        "title": "Keycloak Server Administration Guide",
+        "section": "Configuring realm keys; Rotating keys",
+        "url": "https://www.keycloak.org/docs/latest/server_admin/",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OidcContractLabInfrastructureTest#rotationAcceptsNewKidAndRejectsUnknownSigningKey test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-06.json",
+      "allocation": "25/85/10",
+      "contract_path": "docs/reboot/contracts/gap-oidc-06.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-OIDC-07",
       "calendar_study_day": 82,
       "date": "2027-01-15",
-      "task": "Enforce tenant claim against requested tenant boundary",
-      "acceptance": "Valid same-tenant succeeds; foreign, missing and malformed tenant claim deny with no content disclosure."
+      "task": "Enforce tenant ownership in the authorization path",
+      "acceptance": "Same-tenant positive control and malformed/foreign-tenant negative controls use fixed claims.",
+      "title": "Enforce tenant ownership in the authorization path",
+      "category": "oidc",
+      "assignment": "Implement the learner OidcTenantPolicy using exact tenant claim equality. Reject foreign, absent, blank, and wrongly typed claims; the instructor witness remains separate from learner implementation.",
+      "source": {
+        "title": "Spring Security",
+        "section": "Multi-tenancy",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/multitenancy.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Plearner-tests -Dtest=OidcTenantPolicyAcceptanceTest test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-07.json",
+      "allocation": "25/85/10",
+      "contract_path": "docs/reboot/contracts/gap-oidc-07.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-OIDC-08",
       "calendar_study_day": 83,
       "date": "2027-01-16",
-      "task": "Check scope/audience and permission matrix",
-      "acceptance": "Assert least-privilege scope grants only assigned read; write/unknown scope is denied and error body is sanitized."
+      "task": "Apply least-privilege scope checks",
+      "acceptance": "The acceptance matrix tests scope tokenization and tenant relation independently.",
+      "title": "Apply least-privilege scope checks",
+      "category": "oidc",
+      "assignment": "Require the exact policy.read permission for this GET route. Verify policy.write, unknown scopes, substrings, blank scopes, and tenant mismatch do not authorize.",
+      "source": {
+        "title": "Spring Security",
+        "section": "Runtime Expectations; Supplying Audiences",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Plearner-tests -Dtest=OidcTenantPolicyAcceptanceTest test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-08.json",
+      "allocation": "25/85/10",
+      "contract_path": "docs/reboot/contracts/gap-oidc-08.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-OIDC-09",
       "calendar_study_day": 84,
       "date": "2027-01-17",
-      "task": "Run full positive and negative protocol acceptance",
-      "acceptance": "One real local discovery→JWKS→Spring JWT verification flow plus all denial controls; record exact selectors and evidence."
+      "task": "Run full protocol and authorization acceptance",
+      "acceptance": "Protocol infrastructure and learner authorization acceptance are separately reported.",
+      "title": "Run full protocol and authorization acceptance",
+      "category": "oidc",
+      "assignment": "Run the complete isolated protocol suite and learner policy acceptance. Preserve the actual issuer/JWKS test path and record any failure as a blocker, not completion.",
+      "source": {
+        "title": "Spring Security",
+        "section": "JWT Resource Server",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=OidcContractLabInfrastructureTest test && ./mvnw -Plearner-tests -Dtest=OidcTenantPolicyAcceptanceTest test",
+      "evidence_path": "docs/reboot/evidence/gap-oidc-09.json",
+      "allocation": "25/85/10",
+      "contract_path": "docs/reboot/contracts/gap-oidc-09.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-SCHEMA-01",
       "calendar_study_day": 169,
       "date": "2027-04-12",
-      "task": "Pin baseline schema and old/new reader contract",
-      "acceptance": "Use disposable PostgreSQL and existing Flyway V005 baseline; enumerate exact rows and readers/writers before additive migration."
+      "task": "Pin the baseline rows and compatibility boundary",
+      "acceptance": "Fixed expected rows and schema columns are asserted before any candidate migration.",
+      "title": "Pin the baseline rows and compatibility boundary",
+      "category": "schema",
+      "assignment": "Use disposable embedded PostgreSQL and migration V001 in the isolated schema-evolution lab. Record exact fixture IDs/values and create an independent expected row map for old and new readers.",
+      "source": {
+        "title": "PostgreSQL 18",
+        "section": "ALTER TABLE",
+        "url": "https://www.postgresql.org/docs/18/sql-altertable.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=SchemaEvolutionInfrastructureTest test",
+      "evidence_path": "docs/reboot/evidence/gap-schema-01.json",
+      "allocation": "25/85/10",
+      "contract_path": "docs/reboot/contracts/gap-schema-01.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-SCHEMA-02",
       "calendar_study_day": 170,
       "date": "2027-04-13",
-      "task": "Expand schema additively with nullable/versioned field",
-      "acceptance": "Flyway migration must leave old reader/writer operational and exact preexisting rows unchanged."
+      "task": "Apply an additive expand migration",
+      "acceptance": "Independent row snapshot is byte-stable across expansion and an old-shape insert remains valid.",
+      "title": "Apply an additive expand migration",
+      "category": "schema",
+      "assignment": "Apply the lab's versioned nullable column migration. Verify the preexisting rows remain exact, old insert/read SQL still works, and the new column accepts a value.",
+      "source": {
+        "title": "PostgreSQL 18",
+        "section": "ALTER TABLE",
+        "url": "https://www.postgresql.org/docs/18/sql-altertable.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=SchemaEvolutionInfrastructureTest#expandMigrationPreservesRowsAndOldWriterCompatibility test",
+      "evidence_path": "docs/reboot/evidence/gap-schema-02.json",
+      "allocation": "25/85/10",
+      "contract_path": "docs/reboot/contracts/gap-schema-02.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-SCHEMA-03",
       "calendar_study_day": 171,
       "date": "2027-04-14",
-      "task": "Implement bounded deterministic backfill batches",
-      "acceptance": "Idempotent cursor/checkpoint over stable primary key; expected IDs/count/hash are independently fixed in fixture."
+      "task": "Backfill bounded batches with a durable cursor",
+      "acceptance": "Acceptance compares exact IDs, values, cursor and total row count after each bounded batch.",
+      "title": "Backfill bounded batches with a durable cursor",
+      "category": "schema",
+      "assignment": "Implement the resumable backfill learner seam over stable integer IDs using bounded ordered batches and a stored cursor. The expected target values and IDs are fixed independently.",
+      "source": {
+        "title": "PostgreSQL 18",
+        "section": "UPDATE",
+        "url": "https://www.postgresql.org/docs/18/sql-update.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Plearner-tests -Dtest=ResumableBackfillAcceptanceTest test",
+      "evidence_path": "docs/reboot/evidence/gap-schema-03.json",
+      "allocation": "25/85/10",
+      "contract_path": "docs/reboot/contracts/gap-schema-03.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-SCHEMA-04",
       "calendar_study_day": 172,
       "date": "2027-04-15",
-      "task": "Interrupt between batches and restart from checkpoint",
-      "acceptance": "Kill/restart process; prove no skipped/duplicate updates and exact final values; malformed cursor fails closed."
+      "task": "Interrupt and resume without skips or duplicates",
+      "acceptance": "Independent exact final rows and per-ID update counts prove restart correctness; wrong cursor mutant fails.",
+      "title": "Interrupt and resume without skips or duplicates",
+      "category": "schema",
+      "assignment": "Run two batches, close the runner, recreate it from the persisted cursor, and finish. Reject malformed/out-of-range cursors and record exact row-state before and after restart.",
+      "source": {
+        "title": "PostgreSQL 18",
+        "section": "UPDATE",
+        "url": "https://www.postgresql.org/docs/18/sql-update.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=SchemaEvolutionInfrastructureTest#restartResumesFromPersistedCursorWithoutSkippingOrDuplicating test",
+      "evidence_path": "docs/reboot/evidence/gap-schema-04.json",
+      "allocation": "25/130/10 + shared 45",
+      "contract_path": "docs/reboot/contracts/gap-schema-04.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-SCHEMA-05",
       "calendar_study_day": 173,
       "date": "2027-04-16",
-      "task": "Exercise old and new application compatibility",
-      "acceptance": "Run old code against expanded schema and new code against expanded data; assert exact values and no destructive change."
+      "task": "Check old/new reader and writer compatibility",
+      "acceptance": "Actual SQL queries for both schema generations match independent expected rows.",
+      "title": "Check old/new reader and writer compatibility",
+      "category": "schema",
+      "assignment": "Execute fixed old-shape read/write SQL before and after backfill, and new-shape reads after it. Verify exact row sets and that the additive field does not break old code paths.",
+      "source": {
+        "title": "PostgreSQL 18",
+        "section": "ALTER TABLE",
+        "url": "https://www.postgresql.org/docs/18/sql-altertable.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=SchemaEvolutionInfrastructureTest#oldAndNewReadersRemainCompatibleAcrossBackfill test",
+      "evidence_path": "docs/reboot/evidence/gap-schema-05.json",
+      "allocation": "25/130/10 + shared 45",
+      "contract_path": "docs/reboot/contracts/gap-schema-05.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-SCHEMA-06",
       "calendar_study_day": 174,
       "date": "2027-04-17",
-      "task": "Prove forward recovery after deliberately bad candidate",
-      "acceptance": "Reject unsafe contract migration; restore via forward migration and reconcile exact row set/checksum."
+      "task": "Reject destructive change and demonstrate forward recovery",
+      "acceptance": "A dropped-column mutant is rejected; forward migration restores the expected schema/values without claiming rollback semantics.",
+      "title": "Reject destructive change and demonstrate forward recovery",
+      "category": "schema",
+      "assignment": "Prove a destructive candidate migration fails the schema/row acceptance boundary. Recover only by applying a forward migration in a fresh disposable DB and compare exact rows.",
+      "source": {
+        "title": "PostgreSQL 18",
+        "section": "ALTER TABLE",
+        "url": "https://www.postgresql.org/docs/18/sql-altertable.html",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=SchemaEvolutionInfrastructureTest#forwardMigrationRepairsDriftAndContractRequiresRetiredReaders test",
+      "evidence_path": "docs/reboot/evidence/gap-schema-06.json",
+      "allocation": "25/130/10 + shared 45",
+      "contract_path": "docs/reboot/contracts/gap-schema-06.md",
+      "learner_completion_awarded": false
     },
     {
       "unit_id": "GAP-SCHEMA-07",
       "calendar_study_day": 175,
       "date": "2027-04-18",
-      "task": "Verify contract/cleanup eligibility and publish evidence",
-      "acceptance": "Contract only in isolated disposable DB after old readers retired; assert row equivalence, migrations and exact evidence; no live database."
+      "task": "Verify cleanup eligibility and publish migration evidence",
+      "acceptance": "Contract precondition is tested both true and false; exact expected rows, column set, and Flyway history are checked.",
+      "title": "Verify cleanup eligibility and publish migration evidence",
+      "category": "schema",
+      "assignment": "In a new disposable database, run the full expand/backfill/compatibility sequence and only contract after an independent retired-reader fixture says removal is safe. Capture exact migration history and row digest.",
+      "source": {
+        "title": "PostgreSQL 18",
+        "section": "ALTER TABLE; Flyway",
+        "url": "https://documentation.red-gate.com/flyway/database-development-using-flyway/working-with-data",
+        "status": "official_source_heading_verified"
+      },
+      "command": "./mvnw -Dtest=SchemaEvolutionInfrastructureTest test",
+      "evidence_path": "docs/reboot/evidence/gap-schema-07.json",
+      "allocation": "25/130/10 + shared 45",
+      "contract_path": "docs/reboot/contracts/gap-schema-07.md",
+      "learner_completion_awarded": false
     }
   ],
   "later_outcome_acceptance": {
-    "GAP-AIGOV": [
-      "Synthetic data inventory and minimized-field map with source-to-index-to-eval retention lineage.",
-      "Deletion evidence across source/cache/index/evaluation artifacts with independent expected counts and no silent residue.",
-      "Independent relevant slices for tenant/access/deletion/uncertainty; report denominators, uncertainty and limitations.",
-      "Provider data boundary and authorization decision; no provider calls absent separate authorization."
-    ],
-    "GAP-IAC": [
-      "One selected IaC tool and version, local fixture/module with no credentials or cloud apply.",
-      "Offline validate/plan plus independent expected plan summary and drift mutation rejection.",
-      "Recreate/rollback/cleanup rehearsal with exact resource inventory and no real cloud state.",
-      "Actual deployment remains blocked pending separately authorized spend, credentials, account and security review."
-    ],
-    "GAP-ENTERPRISE": [
-      "Named simulated security, privacy, procurement, service and operations decision owners and required evidence.",
-      "A missing/denied approval blocks release; test allowed, denied and deferred launch outcomes.",
-      "Real customer/workplace data, production deployment and enterprise approval remain external gates.",
-      "Simulations never count as external approval, live operations or customer outcome."
-    ]
+    "reverification_note": "These later units remain outcome-based, not ticketed. Recheck versions and exact official headings when the next daily window is planned.",
+    "GAP-AIGOV": {
+      "outcomes": [
+        "Use only synthetic CoverStory policy data and fictional enterprise tenants; record hypothetical customer impacts without presenting them as real outcomes.",
+        "Synthetic data inventory and minimized-field map with source-to-index-to-eval retention lineage.",
+        "Deletion evidence across source/cache/index/evaluation artifacts with independent expected counts and no silent residue.",
+        "Independent relevant slices for tenant/access/deletion/uncertainty; report denominators, uncertainty and limitations.",
+        "Provider data boundary and authorization decision; no provider calls absent separate authorization."
+      ],
+      "sources": [
+        {
+          "title": "Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile",
+          "section": "MAP 2.3 \u2014 Scientific integrity and TEVV considerations",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+          "status": "official_heading_verified"
+        },
+        {
+          "title": "Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile",
+          "section": "MEASURE 2.3 \u2014 Performance or assurance criteria",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+          "status": "official_heading_verified"
+        },
+        {
+          "title": "Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile",
+          "section": "GOVERN 1.7 \u2014 Decommissioning and phasing out AI systems",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+          "status": "official_heading_verified"
+        }
+      ]
+    },
+    "GAP-IAC": {
+      "selected_tool": "Terraform CLI; exact version is to be pinned when this future window is detailed.",
+      "outcomes": [
+        "One providerless/local Terraform module with no credentials or cloud apply.",
+        "Offline init/validate and speculative plan with an independent expected plan summary and drift mutation rejection; do not mistake validate for remote-state/provider validation.",
+        "Recreate/rollback/cleanup rehearsal with exact resource inventory and no real cloud state.",
+        "Actual deployment remains blocked pending separately authorized spend, credentials, account and security review."
+      ],
+      "sources": [
+        {
+          "title": "terraform validate command",
+          "section": "Introduction \u2014 backend-free initialization; validation scope",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands/validate",
+          "status": "official_heading_verified"
+        },
+        {
+          "title": "terraform plan command",
+          "section": "Planning Modes \u2014 Refresh-only mode; Planning Options",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands/plan",
+          "status": "official_heading_verified"
+        }
+      ]
+    },
+    "GAP-ENTERPRISE": {
+      "outcomes": [
+        "Run a simulated CoverStory enterprise launch review for a fictional tenant and synthetic policy workflow, with named security, privacy, procurement, service and operations decision owners and required evidence.",
+        "A missing/denied approval blocks release; test allowed, denied and deferred launch outcomes.",
+        "Any customer impact/outcome is explicitly hypothetical; real customer/workplace data, production deployment and enterprise approval remain external gates.",
+        "Simulations never count as external approval, live operations or customer outcome."
+      ],
+      "sources": [
+        {
+          "title": "Security Pillar \u2014 AWS Well-Architected Framework",
+          "section": "Security Pillar",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html",
+          "status": "official_heading_verified"
+        },
+        {
+          "title": "Operational Excellence Pillar \u2014 AWS Well-Architected Framework",
+          "section": "Operational Excellence Pillar",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/welcome.html",
+          "status": "official_heading_verified"
+        },
+        {
+          "title": "Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile",
+          "section": "GOVERN 6.1 \u2014 Third-party entities and acquisition risk",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+          "status": "official_heading_verified"
+        }
+      ]
+    }
   },
   "first_21_units": {
     "status": "contracts_and_starter_tests_added_in_this_amendment",

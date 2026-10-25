@@ -159,7 +159,7 @@ class Continuation225ManifestTests(unittest.TestCase):
             self.assertEqual(165, sum(day["workstream_minutes"].values()))
             self.assertEqual(45, day["shared_interview_block"]["minutes"])
             self.assertEqual(day["date"], card["date"])
-            self.assertEqual(f"2027-06-{7+i:02d}", day["date"])
+            self.assertEqual((__import__("datetime").date(2027, 6, 28)+__import__("datetime").timedelta(days=i)).isoformat(), day["date"])
             self.assertEqual(task["selector"], day["selectors"][1])
             self.assertTrue(day["task_minutes"]["project_implementation_tests"])
             self.assertTrue(day["task_minutes"]["ai_workflow_implementation_evaluation"])

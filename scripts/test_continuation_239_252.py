@@ -179,7 +179,7 @@ class Continuation239ManifestTests(unittest.TestCase):
         for index, (task, day, card) in enumerate(zip(source["tasks"], manifest["days"], owner["cards"])):
             self.assertEqual(task["day"], day["day"])
             self.assertEqual(day["date"], task["date"])
-            self.assertEqual((date(2027, 6, 21) + timedelta(days=index)).isoformat(), day["date"])
+            self.assertEqual((date(2027, 7, 12) + timedelta(days=index)).isoformat(), day["date"])
             self.assertEqual(task["selector"], day["selectors"][1])
             self.assertEqual(day["workstream_minutes"], card["engineering"]["allocation"])
             self.assertEqual(165, sum(day["workstream_minutes"].values()))

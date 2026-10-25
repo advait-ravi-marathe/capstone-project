@@ -20,9 +20,7 @@ The restore proof is local and single-database. It does not establish RDS point-
 
 Use root-preserving frontend build commands and the exact selectors in each contract. The Day 44/45 default browser transport smokes serve test-owned pages so the default instructor suite does not depend on learner UI buttons; tagged browser acceptance continues to cover the production learner UI. All credentials must remain outside logs and manifests. No learner completion is inferred from these instructor-owned tests or temporary witnesses.
 
-
 Each day uses 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence.
-
 
 ## Interview practice and supplied capstone architecture
 

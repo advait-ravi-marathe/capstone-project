@@ -30,9 +30,9 @@ class Continuation141To154CurriculumTest(unittest.TestCase):
     def test_all_days_keep_dates_budgets_history_and_separate_dsa(self):
         self.assertEqual(list(range(141, 155)), [day["day"] for day in self.days])
         self.assertEqual(14, len(self.cards))
-        self.assertEqual("2027-03-15", self.manifest["start_date"])
-        self.assertEqual("2027-03-28", self.manifest["end_date"])
-        first = datetime.date(2027, 3, 15)
+        self.assertEqual("2027-03-29", self.manifest["start_date"])
+        self.assertEqual("2027-04-11", self.manifest["end_date"])
+        first = datetime.date(2027, 3, 29)
         for i, day in enumerate(self.days):
             self.assertEqual((first + datetime.timedelta(days=i)).isoformat(), day["date"])
             self.assertEqual(day["date"], self.cards[day["day"]]["date"])
