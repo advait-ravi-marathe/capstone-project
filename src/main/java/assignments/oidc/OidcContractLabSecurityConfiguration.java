@@ -22,6 +22,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.intercept.RequestAuthorizationContext;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.core.annotation.Order;
 
 /** Isolated offline OIDC resource-server path; it never changes the existing cookie-session profile. */
 @Configuration(proxyBeanMethods = false)
@@ -29,6 +30,18 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @EnableWebSecurity
 public class OidcContractLabSecurityConfiguration {
     @Bean
+    @Order(1)
+    SecurityFilterChain oidcBrowserLoginChain(HttpSecurity http) throws Exception {
+        http.securityMatcher("/oauth2/**", "/login/oauth2/**", "/api/oidc/login")
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/oauth2/**", "/login/oauth2/**").permitAll()
+                        .requestMatchers("/api/oidc/login").authenticated())
+                .oauth2Login(Customizer.withDefaults());
+        return http.build();
+    }
+
+    @Bean
+    @Order(2)
     SecurityFilterChain oidcContractLabChain(HttpSecurity http,
             org.springframework.security.authorization.AuthorizationManager<RequestAuthorizationContext> tenantReadAuthorization)
             throws Exception {
@@ -47,7 +60,7 @@ public class OidcContractLabSecurityConfiguration {
     NimbusJwtDecoder oidcContractLabDecoder(@Value("${assignments.oidc.issuer}") String issuer) {
         NimbusJwtDecoder decoder = NimbusJwtDecoder.withIssuerLocation(issuer).build();
         OAuth2TokenValidator<Jwt> issuerAndTime = JwtValidators.createDefaultWithIssuer(issuer);
-        OAuth2TokenValidator<Jwt> audience = jwt -> jwt.getAudience().contains("coverstory-oidc-lab")
+        OAuth2TokenValidator<Jwt> audience = jwt -> jwt.getAudience() != null && jwt.getAudience().contains("coverstory-oidc-lab")
                 ? OAuth2TokenValidatorResult.success()
                 : OAuth2TokenValidatorResult.failure(new OAuth2Error("invalid_token", "Required audience is absent", null));
         decoder.setJwtValidator(new org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator<>(issuerAndTime, audience));

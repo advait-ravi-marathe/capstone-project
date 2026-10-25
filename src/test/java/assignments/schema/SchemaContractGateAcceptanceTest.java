@@ -7,11 +7,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Tag("learnerAcceptance")
 class SchemaContractGateAcceptanceTest {
-    @Test void every_required_old_reader_must_be_retired_before_contract() {
-        Set<String> required = Set.of("legacy-policy-reader", "legacy-reporting-job");
-        assertFalse(SchemaContractGate.mayContract(Set.of("legacy-policy-reader"), required));
-        assertTrue(SchemaContractGate.mayContract(required, required));
-        assertFalse(SchemaContractGate.mayContract(null, required));
-        assertFalse(SchemaContractGate.mayContract(required, null));
+    @Test void readers_writers_and_complete_backfill_are_all_required_before_contract() {
+        Set<String> readers = Set.of("legacy-policy-reader", "legacy-reporting-job");
+        Set<String> writers = Set.of("legacy-policy-writer");
+        assertFalse(SchemaContractGate.mayContract(readers, readers, writers, writers, false));
+        assertFalse(SchemaContractGate.mayContract(Set.of("legacy-policy-reader"), readers, writers, writers, true));
+        assertFalse(SchemaContractGate.mayContract(readers, readers, Set.of(), writers, true));
+        assertFalse(SchemaContractGate.mayContract(null, readers, writers, writers, true));
+        assertFalse(SchemaContractGate.mayContract(readers, Set.of(), writers, writers, true));
+        assertFalse(SchemaContractGate.mayContract(readers, readers, writers, Set.of(), true));
+        assertTrue(SchemaContractGate.mayContract(readers, readers, writers, writers, true));
     }
 }

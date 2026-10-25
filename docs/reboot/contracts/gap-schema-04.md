@@ -10,7 +10,7 @@ Use an expand/backfill/contract sequence: additive schema first, bounded stable-
 
 ## Task
 
-Run two batches, close the runner, recreate it from the persisted cursor, and finish. Reject malformed/out-of-range cursors and record exact row-state before and after restart.
+Use fresh bounded-runner invocations against only the persisted database cursor; this is not a claimed JVM-crash reproduction. Inject a failure after the first row update and before checkpoint commit, verify transaction rollback, then resume and compare all ordered rows/cursor exactly.
 
 ## Source
 
@@ -18,10 +18,10 @@ Run two batches, close the runner, recreate it from the persisted cursor, and fi
 
 ## Acceptance
 
-Independent exact final rows and per-ID update counts prove restart correctness; wrong cursor mutant fails.
+Failure injection proves atomic rollback before resume; exact IDs, full values, version/update counts, final cursor and wrong-cursor mutant are checked.
 
 ## Command and evidence
 
-`./mvnw -Dtest=SchemaEvolutionInfrastructureTest#restartResumesFromPersistedCursorWithoutSkippingOrDuplicating test`
+`./mvnw -Dtest=SchemaEvolutionInfrastructureTest test`
 
 Record the actual command, outcome, changed paths, blockers, and exact evidence at `docs/reboot/evidence/gap-schema-04.json`. This is not learner completion until genuinely attempted and independently reviewed.

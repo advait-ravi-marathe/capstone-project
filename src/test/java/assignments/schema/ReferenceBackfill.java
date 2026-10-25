@@ -12,6 +12,10 @@ final class ReferenceBackfill {
     private ReferenceBackfill() { }
 
     static Integer runBatch(DataSource source, String jobId, int limit) throws Exception {
+        return runBatch(source, jobId, limit, () -> { });
+    }
+
+    static Integer runBatch(DataSource source, String jobId, int limit, Runnable afterFirstRow) throws Exception {
         if (jobId == null || jobId.isBlank() || limit < 1 || limit > 4) throw new IllegalArgumentException("invalid job or batch size");
         try (Connection connection = source.getConnection()) {
             connection.setAutoCommit(false);
@@ -41,6 +45,7 @@ final class ReferenceBackfill {
                         update.setInt(1, id);
                         if (update.executeUpdate() != 1) throw new IllegalStateException("source row was absent or already updated");
                     }
+                    if (id == ids.get(0)) afterFirstRow.run();
                 }
                 int next = ids.get(ids.size() - 1);
                 try (PreparedStatement checkpoint = connection.prepareStatement("""

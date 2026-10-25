@@ -2,12 +2,14 @@ package assignments.schema;
 
 import java.util.Set;
 
-/** Learner seam for authorizing destructive contract migrations only after old readers retire. */
+/** Learner seam for destructive cleanup after both old access paths retire and backfill is complete. */
 public final class SchemaContractGate {
     private SchemaContractGate() { }
 
-    public static boolean mayContract(Set<String> activeReaders, Set<String> requiredReaders) {
-        // TODO: require a complete, explicit retirement record for every required old reader.
+    public static boolean mayContract(Set<String> retiredReaders, Set<String> requiredReaders,
+                                      Set<String> retiredWriters, Set<String> requiredWriters,
+                                      boolean backfillComplete) {
+        // TODO: require reader and writer retirement records and a verified complete backfill.
         return false;
     }
 }

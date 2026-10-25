@@ -174,7 +174,7 @@ class LocalSecurityAcceptanceTest {
 
         String beforeAnonymousWithToken = allLifecycleRows();
         mvc.perform(post("/api/policies").with(csrf()).contentType(MediaType.APPLICATION_JSON).content(request))
-                .andExpect(status().isUnauthorized());
+                .andExpect(status().isUnauthorized()).andExpect(content().json("{\"code\":\"UNAUTHENTICATED\"}", true));
         assertEquals(beforeAnonymousWithToken, allLifecycleRows());
         org.mockito.Mockito.verify(issueController, org.mockito.Mockito.never())
                 .issue(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any());

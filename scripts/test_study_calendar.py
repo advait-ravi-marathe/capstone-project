@@ -62,6 +62,9 @@ class StudyCalendarMigrationTest(unittest.TestCase):
             self.assertEqual(unit, row["owner_card"]["engineering_unit_number"])
             self.assertEqual(row["date"], row["owner_card"]["date"])
             self.assertEqual(row["calendar_sprint"], row["sprint_membership_migration"]["calendar_sprint_number"])
+            if 71 <= unit <= 196:
+                provenance = json.loads((ROOT / "docs/reboot/calendar/legacy-sprint-provenance.json").read_text())
+                self.assertEqual(provenance["unit_sprint_labels"][str(unit)], row["owner_card"]["legacy_sprint_label"])
             if row["calendar_study_day"] <= 150:
                 self.assertEqual(row["calendar_study_day"], row["dsa_section"].get("dsa_calendar_day"))
             elif row["calendar_study_day"] <= 171:
@@ -72,6 +75,13 @@ class StudyCalendarMigrationTest(unittest.TestCase):
         self.assertEqual((305, 21, 22, 11), (sprints["detailed_calendar_story_count"], sprints["full_calendar_sprints"], sprints["calendar_sprint_count"], sprints["final_partial_sprint_days"]))
         self.assertFalse(self.export["board_writes"])
         self.assertFalse(self.export["new_issue_ids_assigned"])
+
+    def test_legacy_sprint_provenance_is_pinned_to_immutable_preamendment_owner_exports(self):
+        provenance = json.loads((ROOT / "docs/reboot/calendar/legacy-sprint-provenance.json").read_text())
+        self.assertEqual("4a07a57e707d2d1be68f4263d1cbac1e391886c4", provenance["source_commit"])
+        self.assertEqual({str(unit) for unit in range(71, 197)}, set(provenance["unit_sprint_labels"]))
+        self.assertEqual({f"Sprint {(unit - 1) // 14 + 1}" for unit in range(71, 197)},
+                         set(provenance["unit_sprint_labels"].values()))
 
     def test_new_insertions_have_executable_contract_owner_command_and_source(self):
         inserted = [row for row in self.export["stories"] if row["unit_id"].startswith("GAP-")]
@@ -149,6 +159,24 @@ class StudyCalendarMigrationTest(unittest.TestCase):
             self.assertEqual("separate_system_design_question_bank_session", row["shared_interview_block"]["mode"])
             self.assertEqual(45, row["calendar_transition_task"]["additional_minutes"])
             self.assertFalse(row["calendar_transition_task"]["new_feature_scope"])
+
+    def test_shared_question_ids_match_every_migrated_contract_and_owner_card(self):
+        cards = {}
+        for path in [ROOT / "docs/reboot/scrum-owner-manifest.json", *sorted((ROOT / "docs/reboot").glob("continuation-*/scrum-owner-manifest.json"))]:
+            for card in json.loads(path.read_text()).get("cards", []):
+                unit = card.get("engineering_unit_number", card.get("legacy_engineering_unit_number", card.get("day_number")))
+                if isinstance(unit, int) and 155 <= unit <= 171:
+                    cards[unit] = card
+        self.assertEqual(set(range(155, 172)), set(cards))
+        for unit, card in cards.items():
+            contract = next((path for path in (ROOT / "docs/reboot").glob(f"continuation-*/contracts/day-{unit}.md")), None)
+            self.assertIsNotNone(contract)
+            expected = re.search(r"question-bank\.md#q(\d+)", contract.read_text(), re.I)
+            self.assertIsNotNone(expected)
+            active = card.get("shared_interview_block") or {}
+            self.assertEqual(f"Q{int(expected.group(1)):02}", active.get("question_id"), f"owner card QID for unit {unit}")
+            row = next(item for item in self.export["stories"] if item.get("legacy_engineering_unit_number") == unit)
+            self.assertEqual(active.get("question_id"), row["owner_card"].get("shared_interview_block", {}).get("question_id"))
 
     def test_rendered_contracts_follow_calendar_even_with_anchor_first(self):
         for story in self.export["stories"]:

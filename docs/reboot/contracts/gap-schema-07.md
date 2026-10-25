@@ -10,18 +10,18 @@ Use an expand/backfill/contract sequence: additive schema first, bounded stable-
 
 ## Task
 
-In a new disposable database, run the full expand/backfill/compatibility sequence and only contract after an independent retired-reader fixture says removal is safe. Capture exact migration history and row digest.
+In a new disposable database, run the learner bounded backfill, prove exact values/cursor/update counts, and contract only when every old reader and writer is retired and backfill completion is verified. Capture exact migration history and row digest.
 
 ## Source
 
-[PostgreSQL 18 — ALTER TABLE; Flyway](https://documentation.red-gate.com/flyway/database-development-using-flyway/working-with-data)
+[Flyway — Working with data](https://documentation.red-gate.com/flyway/database-development-using-flyway/working-with-data)
 
 ## Acceptance
 
-Contract precondition is tested both true and false; exact expected rows, column set, and Flyway history are checked.
+Learner backfill/gate acceptance plus independent PostgreSQL fixture verify complete exact rows, both reader/writer retirements, migration history, and denied premature contract.
 
 ## Command and evidence
 
-`./mvnw -Dtest=SchemaEvolutionInfrastructureTest test`
+`./mvnw -Plearner-tests -Dtest=ResumableBackfillAcceptanceTest,SchemaContractGateAcceptanceTest test && ./mvnw -Dtest=SchemaEvolutionInfrastructureTest test`
 
 Record the actual command, outcome, changed paths, blockers, and exact evidence at `docs/reboot/evidence/gap-schema-07.json`. This is not learner completion until genuinely attempted and independently reviewed.

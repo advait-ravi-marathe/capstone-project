@@ -100,10 +100,10 @@
         "url": "https://spec.openapis.org/oas/v3.2.1.html",
         "status": "official_source_heading_verified"
       },
-      "command": "./mvnw -Dtest=OpenApiCompatibilityInfrastructureTest test",
+      "command": "./mvnw -Dtest=OpenApiCompatibilityInfrastructureTest test && ./mvnw -Plearner-tests -Dtest=LocalSecurityAcceptanceTest test",
       "evidence_path": "docs/reboot/evidence/gap-openapi-05.json",
       "allocation": "25/85/10",
-      "acceptance": "The immutable expected operation/field/status diagnostics reject always-compatible and wrong-diagnostic mutants.",
+      "acceptance": "Exact expected operation/field/status diagnostics reject compatibility mutants; declared cookie-session and CSRF requirements are checked beside actual unauthorized/CSRF-denied Spring requests and the fixed 401 body.",
       "status": "not_attempted",
       "learner_completion_awarded": false
     },
@@ -111,14 +111,14 @@
       "unit_id": "GAP-OIDC-01",
       "calendar_study_day": 76,
       "date": "2027-01-09",
-      "title": "Define an isolated resource-server lab seam",
+      "title": "Define isolated browser-login and resource-server paths",
       "category": "oidc",
-      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
-      "assignment": "Review the isolated oidc-contract-lab profile and loopback-only synthetic issuer. Trace the learner policy seam; preserve the existing cookie-session configuration and never configure an external issuer.",
+      "assistant_architecture": "Keep bearer verification in an isolated stateless Spring resource-server chain and browser login in a separate Spring OAuth2 client chain. The loopback issuer serves discovery, JWKS, authorization-code redirects, and a one-use token exchange; Spring enforces state, nonce, signature, issuer, time and audience. The provider and all keys/data are synthetic; the existing cookie-session application stays unchanged. The assistant supplies this architecture; the learner implements and tests the assigned tenant/scope policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assignment": "Review the isolated oidc-contract-lab profile and loopback-only synthetic issuer. Trace its authorization-code and token exchange through Spring OAuth2 Login, then the separate bearer resource-server path; preserve the existing cookie-session configuration and never configure an external issuer.",
       "source": {
         "title": "Spring Security",
-        "section": "Specifying the Authorization Server",
-        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html",
+        "section": "Core Configuration",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/login/core.html",
         "status": "official_source_heading_verified"
       },
       "command": "./mvnw -Dtest=OidcContractLabInfrastructureTest test",
@@ -134,7 +134,7 @@
       "date": "2027-01-10",
       "title": "Route bearer authentication through Spring Security",
       "category": "oidc",
-      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assistant_architecture": "Keep bearer verification in an isolated stateless Spring resource-server chain and browser login in a separate Spring OAuth2 client chain. The loopback issuer serves discovery, JWKS, authorization-code redirects, and a one-use token exchange; Spring enforces state, nonce, signature, issuer, time and audience. The provider and all keys/data are synthetic; the existing cookie-session application stays unchanged. The assistant supplies this architecture; the learner implements and tests the assigned tenant/scope policy seam. No capstone design proposal or post-hoc design defense is assigned.",
       "assignment": "Trace the real SecurityFilterChain, issuer/time validator, audience validator, and default-deny route handling. Implement OidcTenantPolicy separately; do not replace token verification with a mock Authentication.",
       "source": {
         "title": "Spring Security",
@@ -155,7 +155,7 @@
       "date": "2027-01-11",
       "title": "Exercise provider discovery and JWKS signature verification",
       "category": "oidc",
-      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assistant_architecture": "Keep bearer verification in an isolated stateless Spring resource-server chain and browser login in a separate Spring OAuth2 client chain. The loopback issuer serves discovery, JWKS, authorization-code redirects, and a one-use token exchange; Spring enforces state, nonce, signature, issuer, time and audience. The provider and all keys/data are synthetic; the existing cookie-session application stays unchanged. The assistant supplies this architecture; the learner implements and tests the assigned tenant/scope policy seam. No capstone design proposal or post-hoc design defense is assigned.",
       "assignment": "Use the disposable local issuer's discovery metadata and JWKS. Follow one signed synthetic token through discovery, key selection, signature verification, and the protected handler.",
       "source": {
         "title": "Spring Security",
@@ -176,7 +176,7 @@
       "date": "2027-01-12",
       "title": "Reject issuer, audience, time, and malformed-token failures",
       "category": "oidc",
-      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assistant_architecture": "Keep bearer verification in an isolated stateless Spring resource-server chain and browser login in a separate Spring OAuth2 client chain. The loopback issuer serves discovery, JWKS, authorization-code redirects, and a one-use token exchange; Spring enforces state, nonce, signature, issuer, time and audience. The provider and all keys/data are synthetic; the existing cookie-session application stays unchanged. The assistant supplies this architecture; the learner implements and tests the assigned tenant/scope policy seam. No capstone design proposal or post-hoc design defense is assigned.",
       "assignment": "Use independently signed wrong-issuer, wrong-audience, expired, and malformed tokens. Assert HTTP 401, no private body, and no successful handler response.",
       "source": {
         "title": "Spring Security",
@@ -197,7 +197,7 @@
       "date": "2027-01-13",
       "title": "Reject unknown key identifiers and invalid token structure",
       "category": "oidc",
-      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assistant_architecture": "Keep bearer verification in an isolated stateless Spring resource-server chain and browser login in a separate Spring OAuth2 client chain. The loopback issuer serves discovery, JWKS, authorization-code redirects, and a one-use token exchange; Spring enforces state, nonce, signature, issuer, time and audience. The provider and all keys/data are synthetic; the existing cookie-session application stays unchanged. The assistant supplies this architecture; the learner implements and tests the assigned tenant/scope policy seam. No capstone design proposal or post-hoc design defense is assigned.",
       "assignment": "Exercise malformed compact token and a validly signed token whose kid is absent from the JWKS. Confirm the filter chain returns 401 without claim disclosure.",
       "source": {
         "title": "Spring Security",
@@ -218,7 +218,7 @@
       "date": "2027-01-14",
       "title": "Test key rotation and overlap",
       "category": "oidc",
-      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assistant_architecture": "Keep bearer verification in an isolated stateless Spring resource-server chain and browser login in a separate Spring OAuth2 client chain. The loopback issuer serves discovery, JWKS, authorization-code redirects, and a one-use token exchange; Spring enforces state, nonce, signature, issuer, time and audience. The provider and all keys/data are synthetic; the existing cookie-session application stays unchanged. The assistant supplies this architecture; the learner implements and tests the assigned tenant/scope policy seam. No capstone design proposal or post-hoc design defense is assigned.",
       "assignment": "Use only the local synthetic issuer. Verify the previously active and newly published key IDs during overlap, then an unknown-key denial; record that this lab does not establish immediate revocation behavior.",
       "source": {
         "title": "Keycloak Server Administration Guide",
@@ -239,7 +239,7 @@
       "date": "2027-01-15",
       "title": "Enforce tenant ownership in the authorization path",
       "category": "oidc",
-      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assistant_architecture": "Keep bearer verification in an isolated stateless Spring resource-server chain and browser login in a separate Spring OAuth2 client chain. The loopback issuer serves discovery, JWKS, authorization-code redirects, and a one-use token exchange; Spring enforces state, nonce, signature, issuer, time and audience. The provider and all keys/data are synthetic; the existing cookie-session application stays unchanged. The assistant supplies this architecture; the learner implements and tests the assigned tenant/scope policy seam. No capstone design proposal or post-hoc design defense is assigned.",
       "assignment": "Implement the learner OidcTenantPolicy using exact tenant claim equality. Reject foreign, absent, blank, and wrongly typed claims; the instructor witness remains separate from learner implementation.",
       "source": {
         "title": "Spring Security",
@@ -260,7 +260,7 @@
       "date": "2027-01-16",
       "title": "Apply least-privilege scope checks",
       "category": "oidc",
-      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assistant_architecture": "Keep bearer verification in an isolated stateless Spring resource-server chain and browser login in a separate Spring OAuth2 client chain. The loopback issuer serves discovery, JWKS, authorization-code redirects, and a one-use token exchange; Spring enforces state, nonce, signature, issuer, time and audience. The provider and all keys/data are synthetic; the existing cookie-session application stays unchanged. The assistant supplies this architecture; the learner implements and tests the assigned tenant/scope policy seam. No capstone design proposal or post-hoc design defense is assigned.",
       "assignment": "Require the exact policy.read permission for this GET route. Verify policy.write, unknown scopes, substrings, blank scopes, and tenant mismatch do not authorize.",
       "source": {
         "title": "Spring Security",
@@ -281,12 +281,12 @@
       "date": "2027-01-17",
       "title": "Run full protocol and authorization acceptance",
       "category": "oidc",
-      "assistant_architecture": "Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.",
+      "assistant_architecture": "Keep bearer verification in an isolated stateless Spring resource-server chain and browser login in a separate Spring OAuth2 client chain. The loopback issuer serves discovery, JWKS, authorization-code redirects, and a one-use token exchange; Spring enforces state, nonce, signature, issuer, time and audience. The provider and all keys/data are synthetic; the existing cookie-session application stays unchanged. The assistant supplies this architecture; the learner implements and tests the assigned tenant/scope policy seam. No capstone design proposal or post-hoc design defense is assigned.",
       "assignment": "Run the complete isolated protocol suite and learner policy acceptance. Preserve the actual issuer/JWKS test path and record any failure as a blocker, not completion.",
       "source": {
         "title": "Spring Security",
-        "section": "JWT Resource Server",
-        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html",
+        "section": "OAuth 2.0 Login",
+        "url": "https://docs.spring.io/spring-security/reference/servlet/oauth2/login/index.html",
         "status": "official_source_heading_verified"
       },
       "command": "./mvnw -Dtest=OidcContractLabInfrastructureTest test && ./mvnw -Plearner-tests -Dtest=OidcTenantPolicyAcceptanceTest test",
@@ -366,17 +366,17 @@
       "title": "Interrupt and resume without skips or duplicates",
       "category": "schema",
       "assistant_architecture": "Use an expand/backfill/contract sequence: additive schema first, bounded stable-ID batches with row updates and cursor committed together, then destructive cleanup only after old-reader retirement. The assistant supplies this migration sequence; the learner implements the backfill and eligibility seam against disposable PostgreSQL. No capstone design proposal or post-hoc design defense is assigned.",
-      "assignment": "Run two batches, close the runner, recreate it from the persisted cursor, and finish. Reject malformed/out-of-range cursors and record exact row-state before and after restart.",
+      "assignment": "Use fresh bounded-runner invocations against only the persisted database cursor; this is not a claimed JVM-crash reproduction. Inject a failure after the first row update and before checkpoint commit, verify transaction rollback, then resume and compare all ordered rows/cursor exactly.",
       "source": {
         "title": "PostgreSQL 18",
         "section": "UPDATE",
         "url": "https://www.postgresql.org/docs/18/sql-update.html",
         "status": "official_source_heading_verified"
       },
-      "command": "./mvnw -Dtest=SchemaEvolutionInfrastructureTest#restartResumesFromPersistedCursorWithoutSkippingOrDuplicating test",
+      "command": "./mvnw -Dtest=SchemaEvolutionInfrastructureTest test",
       "evidence_path": "docs/reboot/evidence/gap-schema-04.json",
       "allocation": "25/130/10 + shared 45",
-      "acceptance": "Independent exact final rows and per-ID update counts prove restart correctness; wrong cursor mutant fails.",
+      "acceptance": "Failure injection proves atomic rollback before resume; exact IDs, full values, version/update counts, final cursor and wrong-cursor mutant are checked.",
       "status": "not_attempted",
       "learner_completion_awarded": false
     },
@@ -429,17 +429,17 @@
       "title": "Verify cleanup eligibility and publish migration evidence",
       "category": "schema",
       "assistant_architecture": "Use an expand/backfill/contract sequence: additive schema first, bounded stable-ID batches with row updates and cursor committed together, then destructive cleanup only after old-reader retirement. The assistant supplies this migration sequence; the learner implements the backfill and eligibility seam against disposable PostgreSQL. No capstone design proposal or post-hoc design defense is assigned.",
-      "assignment": "In a new disposable database, run the full expand/backfill/compatibility sequence and only contract after an independent retired-reader fixture says removal is safe. Capture exact migration history and row digest.",
+      "assignment": "In a new disposable database, run the learner bounded backfill, prove exact values/cursor/update counts, and contract only when every old reader and writer is retired and backfill completion is verified. Capture exact migration history and row digest.",
       "source": {
-        "title": "PostgreSQL 18",
-        "section": "ALTER TABLE; Flyway",
+        "title": "Flyway",
+        "section": "Working with data",
         "url": "https://documentation.red-gate.com/flyway/database-development-using-flyway/working-with-data",
         "status": "official_source_heading_verified"
       },
-      "command": "./mvnw -Dtest=SchemaEvolutionInfrastructureTest test",
+      "command": "./mvnw -Plearner-tests -Dtest=ResumableBackfillAcceptanceTest,SchemaContractGateAcceptanceTest test && ./mvnw -Dtest=SchemaEvolutionInfrastructureTest test",
       "evidence_path": "docs/reboot/evidence/gap-schema-07.json",
       "allocation": "25/130/10 + shared 45",
-      "acceptance": "Contract precondition is tested both true and false; exact expected rows, column set, and Flyway history are checked.",
+      "acceptance": "Learner backfill/gate acceptance plus independent PostgreSQL fixture verify complete exact rows, both reader/writer retirements, migration history, and denied premature contract.",
       "status": "not_attempted",
       "learner_completion_awarded": false
     }

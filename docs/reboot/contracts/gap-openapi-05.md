@@ -18,10 +18,10 @@ Run the compatibility witness against unchanged, additive, and breaking document
 
 ## Acceptance
 
-The immutable expected operation/field/status diagnostics reject always-compatible and wrong-diagnostic mutants.
+Exact expected operation/field/status diagnostics reject compatibility mutants; declared cookie-session and CSRF requirements are checked beside actual unauthorized/CSRF-denied Spring requests and the fixed 401 body.
 
 ## Command and evidence
 
-`./mvnw -Dtest=OpenApiCompatibilityInfrastructureTest test`
+`./mvnw -Dtest=OpenApiCompatibilityInfrastructureTest test && ./mvnw -Plearner-tests -Dtest=LocalSecurityAcceptanceTest test`
 
 Record the actual command, outcome, changed paths, blockers, and exact evidence at `docs/reboot/evidence/gap-openapi-05.json`. This is not learner completion until genuinely attempted and independently reviewed.

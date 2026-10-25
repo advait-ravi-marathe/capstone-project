@@ -1,4 +1,4 @@
-# Calendar study day 76 — GAP-OIDC-01: Define an isolated resource-server lab seam
+# Calendar study day 76 — GAP-OIDC-01: Define isolated browser-login and resource-server paths
 
 **Date:** 2027-01-09  
 **Budget:** 25/85/10 minutes  
@@ -6,15 +6,15 @@
 
 ## Assistant-provided architecture
 
-Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam. No capstone design proposal or post-hoc design defense is assigned.
+Keep bearer verification in an isolated stateless Spring resource-server chain and browser login in a separate Spring OAuth2 client chain. The loopback issuer serves discovery, JWKS, authorization-code redirects, and a one-use token exchange; Spring enforces state, nonce, signature, issuer, time and audience. The provider and all keys/data are synthetic; the existing cookie-session application stays unchanged. The assistant supplies this architecture; the learner implements and tests the assigned tenant/scope policy seam. No capstone design proposal or post-hoc design defense is assigned.
 
 ## Task
 
-Review the isolated oidc-contract-lab profile and loopback-only synthetic issuer. Trace the learner policy seam; preserve the existing cookie-session configuration and never configure an external issuer.
+Review the isolated oidc-contract-lab profile and loopback-only synthetic issuer. Trace its authorization-code and token exchange through Spring OAuth2 Login, then the separate bearer resource-server path; preserve the existing cookie-session configuration and never configure an external issuer.
 
 ## Source
 
-[Spring Security — Specifying the Authorization Server](https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html)
+[Spring Security — Core Configuration](https://docs.spring.io/spring-security/reference/servlet/oauth2/login/core.html)
 
 ## Acceptance
 

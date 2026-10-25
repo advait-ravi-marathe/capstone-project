@@ -14,6 +14,7 @@ START = date(2026, 10, 26)
 
 OPENAPI = "https://spec.openapis.org/oas/v3.2.1.html"
 SPRING_JWT = "https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html"
+SPRING_OAUTH_LOGIN = "https://docs.spring.io/spring-security/reference/servlet/oauth2/login/core.html"
 KEYCLOAK = "https://www.keycloak.org/docs/latest/server_admin/"
 PG_ALTER = "https://www.postgresql.org/docs/18/sql-altertable.html"
 PG_UPDATE = "https://www.postgresql.org/docs/18/sql-update.html"
@@ -35,9 +36,9 @@ UNITS = [
      "./mvnw -Plearner-tests -Dtest=OpenApiCompatibilityAcceptanceTest test", "docs/reboot/evidence/gap-openapi-04.json", "25/85/10", "Independent expected diagnostics verify exact changed operations and preserve optional additions as compatible."),
     ("GAP-OPENAPI-05", 75, "Run compatibility mutation controls and capture evidence", "OpenAPI 3.2.1 — 4.16 Responses Object; 4.24 Schema Object", OPENAPI,
      "Run the compatibility witness against unchanged, additive, and breaking documents; introduce a deliberate always-compatible mutant and confirm the independent actual-path assertion rejects it.",
-     "./mvnw -Dtest=OpenApiCompatibilityInfrastructureTest test", "docs/reboot/evidence/gap-openapi-05.json", "25/85/10", "The immutable expected operation/field/status diagnostics reject always-compatible and wrong-diagnostic mutants."),
-    ("GAP-OIDC-01", 76, "Define an isolated resource-server lab seam", "Spring Security — Specifying the Authorization Server", SPRING_JWT,
-     "Review the isolated oidc-contract-lab profile and loopback-only synthetic issuer. Trace the learner policy seam; preserve the existing cookie-session configuration and never configure an external issuer.",
+     "./mvnw -Dtest=OpenApiCompatibilityInfrastructureTest test && ./mvnw -Plearner-tests -Dtest=LocalSecurityAcceptanceTest test", "docs/reboot/evidence/gap-openapi-05.json", "25/85/10", "Exact expected operation/field/status diagnostics reject compatibility mutants; declared cookie-session and CSRF requirements are checked beside actual unauthorized/CSRF-denied Spring requests and the fixed 401 body."),
+    ("GAP-OIDC-01", 76, "Define isolated browser-login and resource-server paths", "Spring Security — Core Configuration", SPRING_OAUTH_LOGIN,
+     "Review the isolated oidc-contract-lab profile and loopback-only synthetic issuer. Trace its authorization-code and token exchange through Spring OAuth2 Login, then the separate bearer resource-server path; preserve the existing cookie-session configuration and never configure an external issuer.",
      "./mvnw -Dtest=OidcContractLabInfrastructureTest test", "docs/reboot/evidence/gap-oidc-01.json", "25/85/10", "Infrastructure test proves issuer/JWKS URLs are loopback-only and the profile is separate from application sessions."),
     ("GAP-OIDC-02", 77, "Route bearer authentication through Spring Security", "Spring Security — Startup Expectations; Runtime Expectations", SPRING_JWT,
      "Trace the real SecurityFilterChain, issuer/time validator, audience validator, and default-deny route handling. Implement OidcTenantPolicy separately; do not replace token verification with a mock Authentication.",
@@ -60,7 +61,7 @@ UNITS = [
     ("GAP-OIDC-08", 83, "Apply least-privilege scope checks", "Spring Security — Runtime Expectations; Supplying Audiences", SPRING_JWT,
      "Require the exact policy.read permission for this GET route. Verify policy.write, unknown scopes, substrings, blank scopes, and tenant mismatch do not authorize.",
      "./mvnw -Plearner-tests -Dtest=OidcTenantPolicyAcceptanceTest test", "docs/reboot/evidence/gap-oidc-08.json", "25/85/10", "The acceptance matrix tests scope tokenization and tenant relation independently."),
-    ("GAP-OIDC-09", 84, "Run full protocol and authorization acceptance", "Spring Security — JWT Resource Server", SPRING_JWT,
+    ("GAP-OIDC-09", 84, "Run full protocol and authorization acceptance", "Spring Security — OAuth 2.0 Login", "https://docs.spring.io/spring-security/reference/servlet/oauth2/login/index.html",
      "Run the complete isolated protocol suite and learner policy acceptance. Preserve the actual issuer/JWKS test path and record any failure as a blocker, not completion.",
      "./mvnw -Dtest=OidcContractLabInfrastructureTest test && ./mvnw -Plearner-tests -Dtest=OidcTenantPolicyAcceptanceTest test", "docs/reboot/evidence/gap-oidc-09.json", "25/85/10", "Protocol infrastructure and learner authorization acceptance are separately reported."),
     ("GAP-SCHEMA-01", 169, "Pin the baseline rows and compatibility boundary", "PostgreSQL 18 — ALTER TABLE", PG_ALTER,
@@ -73,17 +74,17 @@ UNITS = [
      "Implement the resumable backfill learner seam over stable integer IDs using bounded ordered batches and a stored cursor. The expected target values and IDs are fixed independently.",
      "./mvnw -Plearner-tests -Dtest=ResumableBackfillAcceptanceTest test", "docs/reboot/evidence/gap-schema-03.json", "25/85/10", "Acceptance compares exact IDs, values, cursor and total row count after each bounded batch."),
     ("GAP-SCHEMA-04", 172, "Interrupt and resume without skips or duplicates", "PostgreSQL 18 — UPDATE", PG_UPDATE,
-     "Run two batches, close the runner, recreate it from the persisted cursor, and finish. Reject malformed/out-of-range cursors and record exact row-state before and after restart.",
-     "./mvnw -Dtest=SchemaEvolutionInfrastructureTest#restartResumesFromPersistedCursorWithoutSkippingOrDuplicating test", "docs/reboot/evidence/gap-schema-04.json", "25/130/10 + shared 45", "Independent exact final rows and per-ID update counts prove restart correctness; wrong cursor mutant fails."),
+     "Use fresh bounded-runner invocations against only the persisted database cursor; this is not a claimed JVM-crash reproduction. Inject a failure after the first row update and before checkpoint commit, verify transaction rollback, then resume and compare all ordered rows/cursor exactly.",
+     "./mvnw -Dtest=SchemaEvolutionInfrastructureTest test", "docs/reboot/evidence/gap-schema-04.json", "25/130/10 + shared 45", "Failure injection proves atomic rollback before resume; exact IDs, full values, version/update counts, final cursor and wrong-cursor mutant are checked."),
     ("GAP-SCHEMA-05", 173, "Check old/new reader and writer compatibility", "PostgreSQL 18 — ALTER TABLE", PG_ALTER,
      "Execute fixed old-shape read/write SQL before and after backfill, and new-shape reads after it. Verify exact row sets and that the additive field does not break old code paths.",
      "./mvnw -Dtest=SchemaEvolutionInfrastructureTest#oldAndNewReadersRemainCompatibleAcrossBackfill test", "docs/reboot/evidence/gap-schema-05.json", "25/130/10 + shared 45", "Actual SQL queries for both schema generations match independent expected rows."),
     ("GAP-SCHEMA-06", 174, "Reject destructive change and demonstrate forward recovery", "PostgreSQL 18 — ALTER TABLE", PG_ALTER,
      "Prove a destructive candidate migration fails the schema/row acceptance boundary. Recover only by applying a forward migration in a fresh disposable DB and compare exact rows.",
      "./mvnw -Dtest=SchemaEvolutionInfrastructureTest#forwardMigrationRepairsDriftAndContractRequiresRetiredReaders test", "docs/reboot/evidence/gap-schema-06.json", "25/130/10 + shared 45", "A dropped-column mutant is rejected; forward migration restores the expected schema/values without claiming rollback semantics."),
-    ("GAP-SCHEMA-07", 175, "Verify cleanup eligibility and publish migration evidence", "PostgreSQL 18 — ALTER TABLE; Flyway — Working with data", FLYWAY_DATA,
-     "In a new disposable database, run the full expand/backfill/compatibility sequence and only contract after an independent retired-reader fixture says removal is safe. Capture exact migration history and row digest.",
-     "./mvnw -Dtest=SchemaEvolutionInfrastructureTest test", "docs/reboot/evidence/gap-schema-07.json", "25/130/10 + shared 45", "Contract precondition is tested both true and false; exact expected rows, column set, and Flyway history are checked."),
+    ("GAP-SCHEMA-07", 175, "Verify cleanup eligibility and publish migration evidence", "Flyway — Working with data", FLYWAY_DATA,
+     "In a new disposable database, run the learner bounded backfill, prove exact values/cursor/update counts, and contract only when every old reader and writer is retired and backfill completion is verified. Capture exact migration history and row digest.",
+     "./mvnw -Plearner-tests -Dtest=ResumableBackfillAcceptanceTest,SchemaContractGateAcceptanceTest test && ./mvnw -Dtest=SchemaEvolutionInfrastructureTest test", "docs/reboot/evidence/gap-schema-07.json", "25/130/10 + shared 45", "Learner backfill/gate acceptance plus independent PostgreSQL fixture verify complete exact rows, both reader/writer retirements, migration history, and denied premature contract."),
 ]
 
 
@@ -94,8 +95,8 @@ def data() -> dict:
             architecture = ("Treat the versioned OpenAPI file as the consumer contract and compare it with the existing controller/DTO boundary. ")
             architecture += "The assistant supplies the current routes and expected compatibility policy; the learner implements the checker and its tests."
         elif unit_id.startswith("GAP-OIDC"):
-            architecture = ("Keep this experiment in an isolated, stateless Spring Security resource-server profile. Spring verifies issuer, time, audience and JWKS signature; a small tenant/scope policy runs only after authentication. ")
-            architecture += "The synthetic issuer binds to loopback, preserving the existing cookie-session application. The assistant supplies this architecture; the learner implements and tests its assigned policy seam."
+            architecture = ("Keep bearer verification in an isolated stateless Spring resource-server chain and browser login in a separate Spring OAuth2 client chain. The loopback issuer serves discovery, JWKS, authorization-code redirects, and a one-use token exchange; Spring enforces state, nonce, signature, issuer, time and audience. ")
+            architecture += "The provider and all keys/data are synthetic; the existing cookie-session application stays unchanged. The assistant supplies this architecture; the learner implements and tests the assigned tenant/scope policy seam."
         else:
             architecture = ("Use an expand/backfill/contract sequence: additive schema first, bounded stable-ID batches with row updates and cursor committed together, then destructive cleanup only after old-reader retirement. ")
             architecture += "The assistant supplies this migration sequence; the learner implements the backfill and eligibility seam against disposable PostgreSQL."

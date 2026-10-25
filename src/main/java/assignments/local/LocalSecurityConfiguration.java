@@ -1,6 +1,7 @@
 package assignments.local;
 
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -45,11 +46,20 @@ public class LocalSecurityConfiguration {
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .csrfTokenRequestHandler(csrfRequestHandler))
                 .exceptionHandling(errors -> errors.authenticationEntryPoint(
-                        (request, response, exception) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED)))
+                        LocalSecurityConfiguration::writeUnauthenticated))
                 .requestCache(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .logout(AbstractHttpConfigurer::disable);
         return http.build();
+    }
+
+    private static void writeUnauthenticated(jakarta.servlet.http.HttpServletRequest request,
+                                             HttpServletResponse response,
+                                             org.springframework.security.core.AuthenticationException exception) throws IOException {
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write("{\"code\":\"UNAUTHENTICATED\"}");
     }
 }

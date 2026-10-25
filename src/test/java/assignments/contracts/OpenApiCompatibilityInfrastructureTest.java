@@ -46,7 +46,7 @@ class OpenApiCompatibilityInfrastructureTest {
         assertEquals(Set.of("journeyId", "quoteVersionId", "clientRequestId", "effectiveDate"), strings(request.path("required")));
         JsonNode snapshot = doc.at("/components/schemas/PolicySnapshot");
         assertEquals(Set.of("policyId", "ownerId", "journeyId", "quoteVersionId", "currency", "status", "version", "endorsements"), strings(snapshot.path("required")));
-        assertEquals(Set.of("200", "201", "400", "401", "404", "409"), names(doc.at("/paths/~1api~1policies/post/responses")));
+        assertEquals(Set.of("200", "201", "400", "401", "403", "404", "409"), names(doc.at("/paths/~1api~1policies/post/responses")));
         assertEquals(Set.of("200", "401", "404"), names(doc.at("/paths/~1api~1policies~1{policyId}/get/responses")));
         assertEquals(recordFields(PolicyIssueRequest.class), names(doc.at("/components/schemas/PolicyIssueRequest/properties")));
         assertEquals(recordFields(PolicySnapshot.class), names(doc.at("/components/schemas/PolicySnapshot/properties")));
@@ -54,6 +54,17 @@ class OpenApiCompatibilityInfrastructureTest {
         assertEquals("int64", doc.at("/components/schemas/PolicySnapshot/properties/version/format").asText());
         assertEquals(Set.of("ISSUED", "CANCEL_SCHEDULED", "CANCELLED"),
                 strings(doc.at("/components/schemas/PolicySnapshot/properties/status/enum")));
+        assertEquals("apiKey", doc.at("/components/securitySchemes/trainingSession/type").asText());
+        assertEquals("cookie", doc.at("/components/securitySchemes/trainingSession/in").asText());
+        assertEquals("JSESSIONID", doc.at("/components/securitySchemes/trainingSession/name").asText());
+        assertEquals("header", doc.at("/components/securitySchemes/csrfHeader/in").asText());
+        assertEquals("X-XSRF-TOKEN", doc.at("/components/securitySchemes/csrfHeader/name").asText());
+        assertEquals(Set.of("trainingSession", "csrfHeader"),
+                names(doc.at("/paths/~1api~1policies/post/security/0")));
+        assertTrue(doc.at("/paths/~1api~1policies/post/responses/403/content").isMissingNode(),
+                "CSRF rejection has no response body in the actual Spring filter path");
+        assertEquals(Set.of("trainingSession"),
+                names(doc.at("/paths/~1api~1policies~1{policyId}/get/security/0")));
     }
 
     @Test void independentExpectedResultsAndMutantsExerciseTheCompatibilityAssertionPath() throws Exception {
@@ -94,6 +105,17 @@ class OpenApiCompatibilityInfrastructureTest {
         ((tools.jackson.databind.node.ObjectNode) removedRoute.path("paths")).remove("/api/policies/{policyId}");
         assertWith(OpenApiCompatibilityReference::compare, baseline, removedRoute, false,
                 List.of("removed operation path /api/policies/{policyId}"));
+
+        JsonNode missingSchema = baseline.deepCopy();
+        ((tools.jackson.databind.node.ObjectNode) missingSchema.at("/paths/~1api~1policies/post/responses/201")).remove("content");
+        assertWith(OpenApiCompatibilityReference::compare, baseline, missingSchema, false,
+                List.of("POST /api/policies: response 201 removed content schema"));
+        JsonNode nestedType = baseline.deepCopy();
+        ((tools.jackson.databind.node.ObjectNode) nestedType.at("/components/schemas/PolicyEndorsement/properties/version")).put("type", "string");
+        assertWith(OpenApiCompatibilityReference::compare, baseline, nestedType, false, List.of(
+                "GET /api/policies/{policyId}: response 200 changed type for field endorsements[].version",
+                "POST /api/policies: response 200 changed type for field endorsements[].version",
+                "POST /api/policies: response 201 changed type for field endorsements[].version"));
     }
 
     private static void assertWith(BiFunction<JsonNode, JsonNode, OpenApiCompatibilityAnalyzer.CompatibilityReport> analyzer,

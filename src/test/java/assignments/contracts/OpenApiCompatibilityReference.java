@@ -53,13 +53,14 @@ final class OpenApiCompatibilityReference {
                                                    String prefix, TreeSet<String> issues) {
         JsonNode oldBody = resolveSchema(oldDocument, oldOperation.path("requestBody").path("content").path("application/json").path("schema"));
         JsonNode newBody = resolveSchema(newDocument, newOperation.path("requestBody").path("content").path("application/json").path("schema"));
-        if (oldBody.isMissingNode() || newBody.isMissingNode()) return;
+        if (oldBody.isMissingNode()) return;
+        if (newBody.isMissingNode()) { issues.add(prefix + "removed request schema"); return; }
         Set<String> oldRequired = stringSet(oldBody.path("required"));
         Set<String> newRequired = stringSet(newBody.path("required"));
         for (String field : newRequired) {
             if (!oldRequired.contains(field)) issues.add(prefix + "new required request field " + field);
         }
-        compareTypes(oldBody, newBody, prefix + "request", issues);
+        compareSchemaProperties(oldDocument, newDocument, oldBody, newBody, prefix + "request", issues, 0);
     }
 
     private static void compareResponseSchemas(JsonNode oldOperation, JsonNode newOperation,
@@ -71,29 +72,59 @@ final class OpenApiCompatibilityReference {
             if (nextResponse.isMissingNode()) continue;
             JsonNode oldSchema = oldResponses.path(status).path("content").path("application/json").path("schema");
             JsonNode newSchema = nextResponse.path("content").path("application/json").path("schema");
-            String oldRef = oldSchema.path("$ref").asText("");
-            String newRef = newSchema.path("$ref").asText("");
-            if (oldRef.isEmpty() || newRef.isEmpty()) continue;
-            JsonNode oldResolved = resolve(oldDocument, oldRef);
-            JsonNode newResolved = resolve(newDocument, newRef);
+            if (oldSchema.isMissingNode()) continue;
+            if (newSchema.isMissingNode()) { issues.add(prefix + "response " + status + " removed content schema"); continue; }
+            JsonNode oldResolved = resolveSchema(oldDocument, oldSchema);
+            JsonNode newResolved = resolveSchema(newDocument, newSchema);
+            String responsePrefix = prefix + "response " + status;
+            if (oldResolved.isMissingNode() || newResolved.isMissingNode()) {
+                issues.add(responsePrefix + " unresolved schema reference");
+                continue;
+            }
             for (String field : stringSet(oldResolved.path("required"))) {
-                if (!stringSet(newResolved.path("required")).contains(field)) {
-                    issues.add(prefix + "response " + status + " removed required field " + field);
+                if (!stringSet(newResolved.path("required")).contains(field) || newResolved.path("properties").path(field).isMissingNode()) {
+                    issues.add(responsePrefix + " removed required field " + field);
                 }
             }
-            compareTypes(oldResolved, newResolved, prefix + "response " + status, issues);
+            compareSchemaProperties(oldDocument, newDocument, oldResolved, newResolved,
+                    responsePrefix, issues, 0);
         }
     }
 
-    private static void compareTypes(JsonNode oldSchema, JsonNode newSchema, String prefix,
-                                     TreeSet<String> issues) {
-        JsonNode oldProps = oldSchema.path("properties"), newProps = newSchema.path("properties");
-        for (String name : names(oldProps)) {
-            JsonNode next = newProps.path(name);
-            if (next.isMissingNode()) continue;
-            String oldType = schemaType(oldProps.path(name).path("type"));
-            String newType = schemaType(next.path("type"));
-            if (!oldType.equals(newType)) issues.add(prefix + " changed type for field " + name);
+    private static void compareSchemaProperties(JsonNode oldDocument, JsonNode newDocument,
+                                                JsonNode oldSchema, JsonNode newSchema, String prefix,
+                                                TreeSet<String> issues, int depth) {
+        if (depth > 12) { issues.add(prefix + " schema reference depth exceeded"); return; }
+        JsonNode oldProperties = oldSchema.path("properties"), newProperties = newSchema.path("properties");
+        for (String name : names(oldProperties)) {
+            JsonNode oldProperty = oldProperties.path(name), newProperty = newProperties.path(name);
+            if (newProperty.isMissingNode()) continue;
+            compareProperty(oldDocument, newDocument, oldProperty, newProperty, name, prefix, issues, depth + 1);
+        }
+    }
+
+    private static void compareProperty(JsonNode oldDocument, JsonNode newDocument, JsonNode oldRaw, JsonNode newRaw,
+                                        String path, String prefix, TreeSet<String> issues, int depth) {
+        JsonNode oldSchema = resolveSchema(oldDocument, oldRaw), newSchema = resolveSchema(newDocument, newRaw);
+        if (oldSchema.isMissingNode() || newSchema.isMissingNode()) {
+            issues.add(prefix + " unresolved schema for field " + path);
+            return;
+        }
+        if (!schemaType(oldSchema.path("type")).equals(schemaType(newSchema.path("type")))) {
+            issues.add(prefix + " changed type for field " + path);
+            return;
+        }
+        if (oldSchema.path("type").asText("").equals("array")) {
+            JsonNode oldItems = oldSchema.path("items"), newItems = newSchema.path("items");
+            if (!oldItems.isMissingNode() && !newItems.isMissingNode())
+                compareProperty(oldDocument, newDocument, oldItems, newItems, path + "[]", prefix, issues, depth + 1);
+        }
+        if (oldSchema.isObject() || oldSchema.path("type").asText("").equals("object")) {
+            for (String field : stringSet(oldSchema.path("required"))) {
+                if (!stringSet(newSchema.path("required")).contains(field) || newSchema.path("properties").path(field).isMissingNode())
+                    issues.add(prefix + " removed required field " + path + "." + field);
+            }
+            compareSchemaProperties(oldDocument, newDocument, oldSchema, newSchema, prefix, issues, depth + 1);
         }
     }
 
@@ -116,7 +147,9 @@ final class OpenApiCompatibilityReference {
 
     private static JsonNode resolveSchema(JsonNode document, JsonNode schema) {
         String ref = schema.path("$ref").asText("");
-        return ref.isEmpty() ? schema : resolve(document, ref);
+        if (ref.isEmpty()) return schema;
+        JsonNode resolved = resolve(document, ref);
+        return resolved.isMissingNode() ? resolved : resolved;
     }
 
     private static List<String> names(JsonNode object) {

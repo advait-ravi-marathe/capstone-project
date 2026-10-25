@@ -39,10 +39,25 @@ class SchemaEvolutionInfrastructureTest {
             assertEquals(3, ReferenceBackfill.runBatch(db, JOB, 3));
             assertEquals(6, ReferenceBackfill.runBatch(db, JOB, 3));
             assertPartial(db, 6);
-            // New runner invocation simulates a process restart; only the database cursor survives.
+            // A new runner invocation uses only the durable DB cursor; this is not a JVM-crash simulation.
             assertEquals(9, ReferenceBackfill.runBatch(db, JOB, 3));
             assertEquals(10, ReferenceBackfill.runBatch(db, JOB, 3));
             assertNull(ReferenceBackfill.runBatch(db, JOB, 3));
+            assertRows(db, ExpectedBackfillRows.VALUES, true);
+            assertEquals("10", scalar(db, "SELECT last_item_id FROM gap_backfill_checkpoint WHERE job_id='" + JOB + "'"));
+        }
+    }
+
+    @Test void midBatchFailureRollsBackRowsAndCursorThenTheNextInvocationResumesExactly() throws Exception {
+        try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
+            DataSource db = expanded(postgres);
+            assertThrows(IllegalStateException.class, () -> ReferenceBackfill.runBatch(db, JOB, 3,
+                    () -> { throw new IllegalStateException("injected failure after first row, before cursor commit"); }));
+            assertEquals("10", scalar(db, "SELECT count(*) FROM gap_backfill_item WHERE normalized_value IS NULL AND normalization_version IS NULL AND update_count=0"));
+            assertEquals("0", scalar(db, "SELECT count(*) FROM gap_backfill_checkpoint WHERE job_id='" + JOB + "'"));
+            assertEquals(3, ReferenceBackfill.runBatch(db, JOB, 3));
+            assertPartial(db, 3);
+            while (ReferenceBackfill.runBatch(db, JOB, 3) != null) { }
             assertRows(db, ExpectedBackfillRows.VALUES, true);
             assertEquals("10", scalar(db, "SELECT last_item_id FROM gap_backfill_checkpoint WHERE job_id='" + JOB + "'"));
         }
@@ -93,12 +108,17 @@ class SchemaEvolutionInfrastructureTest {
             assertRows(db, ExpectedBackfillRows.VALUES, false);
 
             Set<String> required = Set.of("legacy-policy-reader", "legacy-reporting-job");
-            assertFalse(attemptContract(db, Set.of("legacy-policy-reader"), required,
-                    ReferenceSchemaContractGate::mayContract));
+            Set<String> writers = Set.of("legacy-policy-writer");
+            assertFalse(attemptContract(db, Set.of("legacy-policy-reader"), Set.of("legacy-policy-writer"), true,
+                    required, writers, ReferenceSchemaContractGate::mayContract));
             assertTrue(hasColumn(db, "legacy_value"), "denied contract must leave the old column untouched");
             assertEquals("003", flyway(db).info().current().getVersion().toString());
-            assertTrue(attemptContract(db, Set.of("legacy-policy-reader", "legacy-reporting-job"), required,
-                    ReferenceSchemaContractGate::mayContract));
+            assertFalse(attemptContract(db, required, Set.of(), true, required, writers,
+                    ReferenceSchemaContractGate::mayContract), "old writer must also be retired");
+            assertTrue(hasColumn(db, "legacy_value"));
+            assertFalse(attemptContract(db, required, writers, false, required, writers,
+                    ReferenceSchemaContractGate::mayContract), "an incomplete backfill must block contract");
+            assertTrue(attemptContract(db, required, writers, true, required, writers, ReferenceSchemaContractGate::mayContract));
             assertFalse(hasColumn(db, "legacy_value"));
             assertEquals("policy alpha", scalar(db, "SELECT normalized_value FROM gap_backfill_item WHERE item_id=1"));
         }
@@ -106,12 +126,16 @@ class SchemaEvolutionInfrastructureTest {
 
     @Test void contractGateMutantsAreRejectedByIndependentEligibilityOracle() {
         Set<String> required = Set.of("old-api-reader", "old-reporting-job");
-        assertFalse(ReferenceSchemaContractGate.mayContract(Set.of("old-api-reader"), required));
-        assertTrue(ReferenceSchemaContractGate.mayContract(Set.of("old-api-reader", "old-reporting-job", "unknown"), required),
+        Set<String> writers = Set.of("old-api-writer");
+        assertFalse(ReferenceSchemaContractGate.mayContract(Set.of("old-api-reader"), required, writers, writers, true));
+        assertFalse(ReferenceSchemaContractGate.mayContract(required, required, Set.of(), writers, true));
+        assertFalse(ReferenceSchemaContractGate.mayContract(required, required, writers, writers, false));
+        assertTrue(ReferenceSchemaContractGate.mayContract(Set.of("old-api-reader", "old-reporting-job", "unknown"), required,
+                        Set.of("old-api-writer", "unknown"), writers, true),
                 "a superset of required retirements remains eligible");
-        assertTrue(ReferenceSchemaContractGate.mayContract(required, required));
+        assertTrue(ReferenceSchemaContractGate.mayContract(required, required, writers, writers, true));
         assertThrows(AssertionError.class, () -> assertEquals(false,
-                alwaysPermitContract(Set.of("old-api-reader"), required)),
+                alwaysPermitContract(Set.of("old-api-reader"), required, writers, writers, false)),
                 "always-permit mutant must fail the actual eligibility assertion");
     }
 
@@ -119,8 +143,9 @@ class SchemaEvolutionInfrastructureTest {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
             DataSource db = expanded(postgres);
             Set<String> required = Set.of("legacy-policy-reader", "legacy-reporting-job");
+            Set<String> writers = Set.of("legacy-policy-writer");
             assertThrows(AssertionError.class, () -> {
-                boolean eligible = attemptContract(db, Set.of("legacy-policy-reader"), required,
+                boolean eligible = attemptContract(db, Set.of("legacy-policy-reader"), Set.of(), false, required, writers,
                         SchemaEvolutionInfrastructureTest::alwaysPermitContract);
                 assertEquals(false, eligible, "actual acceptance path must reject a premature contract");
             });
@@ -129,11 +154,17 @@ class SchemaEvolutionInfrastructureTest {
         }
     }
 
-    private static boolean alwaysPermitContract(Set<String> active, Set<String> required) { return true; }
+    private static boolean alwaysPermitContract(Set<String> readers, Set<String> requiredReaders,
+                                                Set<String> writers, Set<String> requiredWriters, boolean complete) { return true; }
 
-    private static boolean attemptContract(DataSource db, Set<String> active, Set<String> required,
-                                           java.util.function.BiPredicate<Set<String>, Set<String>> gate) {
-        if (!gate.test(active, required)) return false;
+    @FunctionalInterface private interface ContractGate {
+        boolean test(Set<String> readers, Set<String> requiredReaders, Set<String> writers,
+                     Set<String> requiredWriters, boolean backfillComplete);
+    }
+
+    private static boolean attemptContract(DataSource db, Set<String> readers, Set<String> writers, boolean complete,
+                                           Set<String> requiredReaders, Set<String> requiredWriters, ContractGate gate) {
+        if (!gate.test(readers, requiredReaders, writers, requiredWriters, complete)) return false;
         migrateTo(db, "4");
         return true;
     }

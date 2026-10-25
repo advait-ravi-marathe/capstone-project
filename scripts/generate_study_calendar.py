@@ -14,6 +14,7 @@ START = date(2026, 10, 26)
 LEGACY_HORIZON = 732
 HORIZON = 774
 DETAIL_THROUGH = 284
+LEGACY_SPRINT_PROVENANCE = OUT / "legacy-sprint-provenance.json"
 MILESTONES = [
     (175, "Backend / Full-Stack SDE II", "Demonstrate learner-owned backend/API/data implementation, tests, debugging and safe local operation."),
     (459, "Senior Backend", "Diagnose unfamiliar distributed consistency, failure and recovery cases; show repeated integrated evidence and a truthful handoff."),
@@ -316,7 +317,11 @@ def build_story_export() -> dict:
         card_copy["day_number"] = study
         card_copy["date"] = current_date(study)
         if isinstance(card_copy.get("sprint"), str):
-            card_copy.setdefault("legacy_sprint_label", card_copy["sprint"])
+            if 71 <= legacy <= 196:
+                provenance = json.loads(LEGACY_SPRINT_PROVENANCE.read_text(encoding="utf-8"))
+                card_copy["legacy_sprint_label"] = provenance["unit_sprint_labels"][str(legacy)]
+            else:
+                card_copy["legacy_sprint_label"] = f"Sprint {(legacy - 1) // 14 + 1}"
             card_copy["sprint"] = f"Calendar Sprint {(study - 1) // 14 + 1}"
         card_copy["title"] = f"Calendar study day {study} · engineering unit {legacy} · {title}"
         contract = next((p for p in (ROOT / "docs/reboot").glob("continuation-*/contracts/day-*.md")
@@ -512,6 +517,10 @@ def migrate_assignment_json(path: Path, payload):
                     if shared.get("minutes") != 45:
                         shared["minutes"] = 45
                     changed = True
+                    migrated_question = moved.get("question_id")
+                    if isinstance(migrated_question, str) and shared.get("question_id") != migrated_question:
+                        shared["question_id"] = migrated_question
+                        changed = True
                 question_text = (ROOT / "docs/reboot/interview/question-bank.md").read_text(encoding="utf-8")
                 qid = shared.get("question_id")
                 if qid:
@@ -567,10 +576,14 @@ def migrate_assignment_json(path: Path, payload):
                     changed = True
             old_sprint = row.get("sprint")
             if isinstance(old_sprint, str):
-                # Keep the label from the first migration immutable. The current
-                # sprint is derived from the crosswalk and may change on reruns.
-                if "legacy_sprint_label" not in row:
-                    row["legacy_sprint_label"] = old_sprint
+                unit_key = row.get("engineering_unit_number", row.get("legacy_engineering_unit_number", row.get("day_number")))
+                if isinstance(unit_key, int) and 71 <= unit_key <= 196:
+                    provenance = json.loads(LEGACY_SPRINT_PROVENANCE.read_text(encoding="utf-8"))
+                    expected_legacy_sprint = provenance["unit_sprint_labels"][str(unit_key)]
+                else:
+                    expected_legacy_sprint = f"Sprint {(unit_key - 1) // 14 + 1}" if isinstance(unit_key, int) else old_sprint
+                if row.get("legacy_sprint_label") != expected_legacy_sprint:
+                    row["legacy_sprint_label"] = expected_legacy_sprint
                     changed = True
                 new_sprint = f"Sprint {fields['calendar_sprint']}"
                 if old_sprint != new_sprint:

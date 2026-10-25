@@ -5,12 +5,14 @@
     "/api/policies": {
       "post": {
         "operationId": "issuePolicy",
+        "security": [{"trainingSession": [], "csrfHeader": []}],
         "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/PolicyIssueRequest"}}}},
         "responses": {
           "200": {"description": "Idempotent replay", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/PolicySnapshot"}}}},
           "201": {"description": "Issued", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/PolicySnapshot"}}}},
           "400": {"description": "Rejected request", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ApiError"}}}},
           "401": {"description": "Unauthenticated", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ApiError"}}}},
+          "403": {"description": "Forbidden when the CSRF token is missing or invalid"},
           "404": {"description": "Quote or request reference not found", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ApiError"}}}},
           "409": {"description": "Conflicting idempotency request", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ApiError"}}}}
         }
@@ -19,6 +21,7 @@
     "/api/policies/{policyId}": {
       "get": {
         "operationId": "readPolicy",
+        "security": [{"trainingSession": []}],
         "parameters": [{"name": "policyId", "in": "path", "required": true, "schema": {"type": "string"}}],
         "responses": {
           "200": {"description": "Owner-scoped snapshot", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/PolicySnapshot"}}}},
@@ -29,6 +32,10 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "trainingSession": {"type": "apiKey", "in": "cookie", "name": "JSESSIONID"},
+      "csrfHeader": {"type": "apiKey", "in": "header", "name": "X-XSRF-TOKEN"}
+    },
     "schemas": {
       "PolicyIssueRequest": {
         "type": "object", "additionalProperties": false,
