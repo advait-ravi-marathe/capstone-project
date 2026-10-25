@@ -18,7 +18,7 @@ Use fresh bounded-runner invocations against only the persisted database cursor;
 
 ## Acceptance
 
-Learner-path row-update and checkpoint-write failures prove rollback across the row/cursor transaction; exact IDs, full values, version/update counts, cursor and wrong-row mutant are checked. Independent SQL fixture tests remain separate.
+The learner and instructor reference use the same checkpoint-failure acceptance oracle; it verifies rollback/resume and rejects a non-transactional row-plus-cursor mutant against exact IDs, values, versions, updates and cursor. Independent SQL fixture tests remain separate.
 
 ## Command and evidence
 

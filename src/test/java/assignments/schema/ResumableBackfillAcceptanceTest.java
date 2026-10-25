@@ -5,9 +5,6 @@ import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /** Learner acceptance seam; remains red while ResumableBackfill is TODO. */
@@ -52,36 +49,8 @@ class ResumableBackfillAcceptanceTest {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
             var db = postgres.getPostgresDatabase();
             Flyway.configure().dataSource(db).locations("classpath:db/gap_schema").target("2").load().migrate();
-            try (var c = db.getConnection(); var s = c.createStatement()) {
-                s.execute("""
-                        CREATE FUNCTION fail_backfill_checkpoint_write() RETURNS trigger LANGUAGE plpgsql AS $$
-                        BEGIN
-                          IF EXISTS (SELECT 1 FROM gap_backfill_item WHERE normalized_value IS NOT NULL) THEN
-                            RAISE EXCEPTION 'injected checkpoint write failure after row updates';
-                          END IF;
-                          RETURN NEW;
-                        END; $$
-                        """);
-                s.execute("CREATE CONSTRAINT TRIGGER fail_backfill_checkpoint_write AFTER INSERT OR UPDATE "
-                        + "ON gap_backfill_checkpoint DEFERRABLE INITIALLY DEFERRED "
-                        + "FOR EACH ROW EXECUTE FUNCTION fail_backfill_checkpoint_write()");
-            }
-            assertThrows(Exception.class,
-                    () -> ResumableBackfill.runBatch(db, "coverstory-policy-normalization-v1", 3),
-                    "checkpoint failure after row updates must abort the learner transaction");
-            try (var c = db.getConnection(); var s = c.createStatement()) {
-                s.execute("DROP TRIGGER fail_backfill_checkpoint_write ON gap_backfill_checkpoint");
-                s.execute("DROP FUNCTION fail_backfill_checkpoint_write()");
-            }
-            // A non-transactional row UPDATE followed by an UPSERT would leave rows changed but no cursor.
-            assertLearnerSnapshot(db, 0);
-            assertEquals(3, ResumableBackfill.runBatch(db, "coverstory-policy-normalization-v1", 3));
-            assertLearnerSnapshot(db, 3);
-            Integer cursor;
-            do {
-                cursor = ResumableBackfill.runBatch(db, "coverstory-policy-normalization-v1", 3);
-            } while (cursor != null);
-            assertLearnerSnapshot(db, 10);
+            BackfillAtomicityAcceptanceOracle.checkpointWriteFailureRollsBackAndResumes(
+                    db, "coverstory-policy-normalization-v1", ResumableBackfill::runBatch);
         }
     }
 
@@ -115,32 +84,7 @@ class ResumableBackfillAcceptanceTest {
         }
     }
 
-    private record ObservedRow(int id, String normalized, Integer version, int updates) { }
-
     private static void assertLearnerSnapshot(javax.sql.DataSource db, int cursor) throws Exception {
-        List<ObservedRow> actual = new ArrayList<>();
-        try (var c = db.getConnection(); var s = c.createStatement();
-             var rows = s.executeQuery("SELECT item_id,normalized_value,normalization_version,update_count FROM gap_backfill_item ORDER BY item_id")) {
-            while (rows.next()) actual.add(new ObservedRow(rows.getInt(1), rows.getString(2),
-                    rows.getObject(3, Integer.class), rows.getInt(4)));
-        }
-        List<ObservedRow> expected = new ArrayList<>();
-        for (int id = 1; id <= 10; id++) {
-            boolean done = id <= cursor;
-            expected.add(new ObservedRow(id, done ? ExpectedBackfillRows.VALUES.get(id) : null,
-                    done ? 1 : null, done ? 1 : 0));
-        }
-        Integer actualCursor = null;
-        try (var c = db.getConnection(); var s = c.prepareStatement(
-                "SELECT last_item_id FROM gap_backfill_checkpoint WHERE job_id=?")) {
-            s.setString(1, "coverstory-policy-normalization-v1");
-            try (var rows = s.executeQuery()) { if (rows.next()) actualCursor = rows.getInt(1); }
-        }
-        assertEquals(expected, actual, "all ten ordered rows, exact normalized values, versions and update counts");
-        assertEquals(cursor == 0 ? null : cursor, actualCursor, "durable cursor must exactly match the rows committed");
-    }
-
-    private static int scalar(javax.sql.DataSource db, String sql) throws Exception {
-        try (var c = db.getConnection(); var s = c.createStatement(); var rows = s.executeQuery(sql)) { rows.next(); return rows.getInt(1); }
+        BackfillAtomicityAcceptanceOracle.assertSnapshot(db, "coverstory-policy-normalization-v1", cursor);
     }
 }

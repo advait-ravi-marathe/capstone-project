@@ -63,6 +63,37 @@ class SchemaEvolutionInfrastructureTest {
         }
     }
 
+    @Test void sharedCheckpointAtomicityOracleAcceptsReferenceAndRejectsNonTransactionalMutant() throws Exception {
+        try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
+            DataSource db = expanded(postgres);
+            BackfillAtomicityAcceptanceOracle.checkpointWriteFailureRollsBackAndResumes(db, JOB,
+                    ReferenceBackfill::runBatch);
+        }
+        try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
+            DataSource db = expanded(postgres);
+            assertThrows(AssertionError.class,
+                    () -> BackfillAtomicityAcceptanceOracle.checkpointWriteFailureRollsBackAndResumes(db, JOB,
+                            SchemaEvolutionInfrastructureTest::nonTransactionalBackfillMutant),
+                    "the shared learner oracle must reject committed row updates when checkpoint persistence fails");
+            assertEquals("3", scalar(db, "SELECT count(*) FROM gap_backfill_item WHERE normalized_value IS NOT NULL"));
+            assertEquals("0", scalar(db, "SELECT count(*) FROM gap_backfill_checkpoint WHERE job_id='" + JOB + "'"));
+        }
+    }
+
+    private static Integer nonTransactionalBackfillMutant(DataSource db, String jobId, int batchSize) throws Exception {
+        if (!JOB.equals(jobId) || batchSize != 3) throw new IllegalArgumentException("unexpected mutant fixture");
+        try (Connection c = db.getConnection(); Statement s = c.createStatement()) {
+            s.executeUpdate("UPDATE gap_backfill_item SET normalized_value=lower(trim(legacy_value)), "
+                    + "normalization_version=1, update_count=update_count+1 WHERE item_id BETWEEN 1 AND 3");
+        }
+        try (Connection c = db.getConnection(); PreparedStatement s = c.prepareStatement(
+                "INSERT INTO gap_backfill_checkpoint(job_id,last_item_id) VALUES (?,3) "
+                        + "ON CONFLICT(job_id) DO UPDATE SET last_item_id=EXCLUDED.last_item_id")) {
+            s.setString(1, jobId); s.executeUpdate();
+        }
+        return 3;
+    }
+
     @Test void wrongCursorAndBatchMutantsFailTheExactRowAndCursorOracle() throws Exception {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
             DataSource db = expanded(postgres);

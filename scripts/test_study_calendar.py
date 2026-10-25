@@ -168,10 +168,21 @@ class StudyCalendarMigrationTest(unittest.TestCase):
         self.assertIn("injected mid-batch failure", body.group())
         checkpoint = re.search(r"void checkpointWriteFailureRollsBackEarlierLearnerRowUpdatesThenFreshConnectionResumesExactly\(\).*?\n    }", test_source, re.S)
         self.assertIsNotNone(checkpoint)
-        for evidence in ("CREATE CONSTRAINT TRIGGER fail_backfill_checkpoint_write", "DEFERRABLE INITIALLY DEFERRED", "ResumableBackfill.runBatch", "assertLearnerSnapshot(db, 0)", "assertLearnerSnapshot(db, 10)"):
-            self.assertIn(evidence, checkpoint.group())
-        self.assertIn("checkpoint write failure after row updates", checkpoint.group())
-        self.assertIn("WHERE normalized_value IS NOT NULL", checkpoint.group())
+        self.assertIn("BackfillAtomicityAcceptanceOracle.checkpointWriteFailureRollsBackAndResumes", checkpoint.group())
+        self.assertIn("ResumableBackfill::runBatch", checkpoint.group())
+        oracle = (ROOT / "src/test/java/assignments/schema/BackfillAtomicityAcceptanceOracle.java").read_text()
+        for evidence in ("CREATE CONSTRAINT TRIGGER fail_backfill_checkpoint_write", "DEFERRABLE INITIALLY DEFERRED", "WHERE normalized_value IS NOT NULL", "assertSnapshot(db, jobId, 0)", "assertSnapshot(db, jobId, 10)"):
+            self.assertIn(evidence, oracle)
+        infrastructure = (ROOT / "src/test/java/assignments/schema/SchemaEvolutionInfrastructureTest.java").read_text()
+        shared_test = re.search(r"void sharedCheckpointAtomicityOracleAcceptsReferenceAndRejectsNonTransactionalMutant\(\).*?\n    }", infrastructure, re.S)
+        self.assertIsNotNone(shared_test)
+        self.assertIn("ReferenceBackfill::runBatch", shared_test.group())
+        self.assertIn("nonTransactionalBackfillMutant", shared_test.group())
+        self.assertIn("assertThrows(AssertionError.class", shared_test.group())
+        mutant = re.search(r"Integer nonTransactionalBackfillMutant\(.*?\n    }", infrastructure, re.S)
+        self.assertIsNotNone(mutant)
+        self.assertIn("UPDATE gap_backfill_item", mutant.group())
+        self.assertIn("INSERT INTO gap_backfill_checkpoint", mutant.group())
 
     def test_schema_07_executes_real_contract_migration_through_learner_gate(self):
         row = next(item for item in self.export["stories"] if item["unit_id"] == "GAP-SCHEMA-07")

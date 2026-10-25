@@ -486,7 +486,7 @@
       "calendar_study_day": 172,
       "date": "2027-04-15",
       "task": "Interrupt and resume without skips or duplicates",
-      "acceptance": "Learner-path row-update and checkpoint-write failures prove rollback across the row/cursor transaction; exact IDs, full values, version/update counts, cursor and wrong-row mutant are checked. Independent SQL fixture tests remain separate.",
+      "acceptance": "The learner and instructor reference use the same checkpoint-failure acceptance oracle; it verifies rollback/resume and rejects a non-transactional row-plus-cursor mutant against exact IDs, values, versions, updates and cursor. Independent SQL fixture tests remain separate.",
       "title": "Interrupt and resume without skips or duplicates",
       "category": "schema",
       "assignment": "Use fresh bounded-runner invocations against only the persisted database cursor; this is not a claimed JVM-crash reproduction. Inject failures both during a row update and with a deferred database trigger on the checkpoint write after row updates in the learner implementation. Verify all rows and cursor roll back on fresh connections, then rerun the learner and compare every ordered row/cursor exactly.",
