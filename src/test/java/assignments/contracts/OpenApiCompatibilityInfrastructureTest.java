@@ -30,8 +30,11 @@ class OpenApiCompatibilityInfrastructureTest {
             if (post != null) actual.add("POST " + prefix + first(post.value()));
         }
         Set<String> documented = new TreeSet<>();
-        contract.path("paths").propertyNames().forEachRemaining(path ->
-                contract.path("paths").path(path).propertyNames().forEachRemaining(verb -> documented.add(verb.toUpperCase(Locale.ROOT) + " " + path)));
+        for (String path : contract.path("paths").propertyNames()) {
+            for (String verb : contract.path("paths").path(path).propertyNames()) {
+                documented.add(verb.toUpperCase(Locale.ROOT) + " " + path);
+            }
+        }
         assertEquals(expected, actual);
         assertEquals(actual, documented);
     }
@@ -125,6 +128,6 @@ class OpenApiCompatibilityInfrastructureTest {
         return out;
     }
     private static Set<String> names(JsonNode node) {
-        TreeSet<String> out = new TreeSet<>(); node.propertyNames().forEachRemaining(out::add); return out;
+        return new TreeSet<>(node.propertyNames());
     }
 }

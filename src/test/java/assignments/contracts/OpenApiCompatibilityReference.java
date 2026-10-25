@@ -3,7 +3,6 @@ package assignments.contracts;
 import tools.jackson.databind.JsonNode;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -112,8 +111,7 @@ final class OpenApiCompatibilityReference {
 
     private static List<String> names(JsonNode object) {
         List<String> values = new ArrayList<>();
-        Iterator<String> properties = object.propertyNames();
-        properties.forEachRemaining(values::add);
+        values.addAll(object.propertyNames());
         return values;
     }
 

@@ -36,4 +36,11 @@ class OpenApiCompatibilityAcceptanceTest {
             assertNotNull(stream); return mapper.readTree(stream);
         }
     }
+
+    private static void removeString(tools.jackson.databind.node.ArrayNode array, String value) {
+        for (int index = 0; index < array.size(); index++) {
+            if (array.get(index).asText().equals(value)) { array.remove(index); return; }
+        }
+        fail("expected contract field not found: " + value);
+    }
 }
