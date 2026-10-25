@@ -26,6 +26,7 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /** Actual Spring Security bearer/JWKS/discovery path against a loopback-only synthetic issuer. */
 @SpringBootTest(classes = OidcContractLabInfrastructureTest.TestApplication.class)
