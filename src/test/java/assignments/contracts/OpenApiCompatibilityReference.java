@@ -60,7 +60,7 @@ final class OpenApiCompatibilityReference {
         for (String field : newRequired) {
             if (!oldRequired.contains(field)) issues.add(prefix + "new required request field " + field);
         }
-        compareSchemaProperties(oldDocument, newDocument, oldBody, newBody, prefix + "request", issues, 0);
+        compareSchemaProperties(oldDocument, newDocument, oldBody, newBody, prefix + "request", "", issues, 0);
     }
 
     private static void compareResponseSchemas(JsonNode oldOperation, JsonNode newOperation,
@@ -87,19 +87,20 @@ final class OpenApiCompatibilityReference {
                 }
             }
             compareSchemaProperties(oldDocument, newDocument, oldResolved, newResolved,
-                    responsePrefix, issues, 0);
+                    responsePrefix, "", issues, 0);
         }
     }
 
     private static void compareSchemaProperties(JsonNode oldDocument, JsonNode newDocument,
-                                                JsonNode oldSchema, JsonNode newSchema, String prefix,
+                                                JsonNode oldSchema, JsonNode newSchema, String prefix, String pathPrefix,
                                                 TreeSet<String> issues, int depth) {
         if (depth > 12) { issues.add(prefix + " schema reference depth exceeded"); return; }
         JsonNode oldProperties = oldSchema.path("properties"), newProperties = newSchema.path("properties");
         for (String name : names(oldProperties)) {
             JsonNode oldProperty = oldProperties.path(name), newProperty = newProperties.path(name);
             if (newProperty.isMissingNode()) continue;
-            compareProperty(oldDocument, newDocument, oldProperty, newProperty, name, prefix, issues, depth + 1);
+            String path = pathPrefix.isEmpty() ? name : pathPrefix + "." + name;
+            compareProperty(oldDocument, newDocument, oldProperty, newProperty, path, prefix, issues, depth + 1);
         }
     }
 
@@ -124,7 +125,7 @@ final class OpenApiCompatibilityReference {
                 if (!stringSet(newSchema.path("required")).contains(field) || newSchema.path("properties").path(field).isMissingNode())
                     issues.add(prefix + " removed required field " + path + "." + field);
             }
-            compareSchemaProperties(oldDocument, newDocument, oldSchema, newSchema, prefix, issues, depth + 1);
+            compareSchemaProperties(oldDocument, newDocument, oldSchema, newSchema, prefix, path, issues, depth + 1);
         }
     }
 
