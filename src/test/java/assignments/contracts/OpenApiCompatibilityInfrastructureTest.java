@@ -117,7 +117,9 @@ class OpenApiCompatibilityInfrastructureTest {
         }
     }
 
-    private static JsonNode resolve(JsonNode root, String pointer) { return root.at(pointer); }
+    private static JsonNode resolve(JsonNode root, String pointer) {
+        return root.at(pointer.startsWith("#") ? pointer.substring(1) : pointer);
+    }
     private static String first(String[] values) { return values.length == 0 ? "" : values[0]; }
     private static Set<String> strings(JsonNode array) {
         TreeSet<String> out = new TreeSet<>(); array.forEach(item -> out.add(item.asText())); return out;

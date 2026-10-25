@@ -10,7 +10,7 @@ import java.util.Map;
 @RestController
 public class OidcContractLabController {
     @GetMapping("/api/oidc/tenant/{tenant}/read")
-    public Map<String, String> read(@PathVariable String tenant, JwtAuthenticationToken principal) {
+    public Map<String, String> read(@PathVariable("tenant") String tenant, JwtAuthenticationToken principal) {
         return Map.of("subject", principal.getToken().getSubject(), "tenant", tenant, "scope", "policy.read");
     }
 }

@@ -91,10 +91,20 @@ final class OpenApiCompatibilityReference {
         for (String name : names(oldProps)) {
             JsonNode next = newProps.path(name);
             if (next.isMissingNode()) continue;
-            String oldType = oldProps.path(name).path("type").asText();
-            String newType = next.path("type").asText();
+            String oldType = schemaType(oldProps.path(name).path("type"));
+            String newType = schemaType(next.path("type"));
             if (!oldType.equals(newType)) issues.add(prefix + " changed type for field " + name);
         }
+    }
+
+    private static String schemaType(JsonNode type) {
+        if (type.isArray()) {
+            List<String> values = new ArrayList<>();
+            type.forEach(value -> values.add(value.asText()));
+            Collections.sort(values);
+            return String.join("|", values);
+        }
+        return type.asText();
     }
 
     private static JsonNode resolve(JsonNode document, String ref) {

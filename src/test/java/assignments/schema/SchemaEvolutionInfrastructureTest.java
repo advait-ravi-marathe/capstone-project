@@ -96,7 +96,7 @@ class SchemaEvolutionInfrastructureTest {
             assertFalse(attemptContract(db, Set.of("legacy-policy-reader"), required,
                     ReferenceSchemaContractGate::mayContract));
             assertTrue(hasColumn(db, "legacy_value"), "denied contract must leave the old column untouched");
-            assertEquals("3", flyway(db).info().current().getVersion().toString());
+            assertEquals("003", flyway(db).info().current().getVersion().toString());
             assertTrue(attemptContract(db, Set.of("legacy-policy-reader", "legacy-reporting-job"), required,
                     ReferenceSchemaContractGate::mayContract));
             assertFalse(hasColumn(db, "legacy_value"));
