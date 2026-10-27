@@ -1,55 +1,35 @@
-# AI-first learning roadmap
+# Model-building-first AI learning roadmap
 
-**Active local review draft:** the learner has completed zero days. Day 1 is
-planned for **27 October 2026 (Asia/Kolkata)**. No learner status is inferred
-from the age of the repository or existing test scaffolds.
+**Active local review draft:** no learner days are recorded complete. Day 1 is
+**27 October 2026 (Asia/Kolkata)**. The planned learning horizon is 548 days,
+ending 26 April 2028, subject to evidence gates and recovery time.
 
-The active sequence is [the 365-day AI-first roadmap](docs/ai-first-roadmap/README.md).
-Its detailed first 30 contracts are generated from
-[`manifest.json`](docs/ai-first-roadmap/manifest.json); the existing 305 EAI
-Story IDs are accounted for in the [read-only migration proposal](docs/ai-first-roadmap/legacy-issue-migration.json).
-No YouTrack or DSA repository writes are part of this draft.
+Read the [active model-first roadmap](docs/model-first-roadmap/README.md), its
+[manifest and first 30 contracts](docs/model-first-roadmap/manifest.json), and
+the [read-only 305-issue migration proposal](docs/model-first-roadmap/legacy-issue-migration.json).
+DSA remains in its separate repository and is not copied or changed here.
 
-## Day 1 now
+## Day 1
 
-Run the short Python/JSON worked example:
-
-```sh
-python3 -m ai.coverstory_assistant.day01_example
-python3 -m unittest ai.coverstory_assistant.tests.test_day01_infrastructure ai.coverstory_assistant.tests.test_day01_oracle
-```
-
-Then implement `build_policy_prompt` in
-[`learner.py`](ai/coverstory_assistant/learner.py) and run its learner test:
+Run the CPU-only worked example and instructor checks:
 
 ```sh
-python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_01
+python3 -m ai.model_building.day01_example
+python3 -m unittest ai.model_building.tests.test_day01_infrastructure
 ```
 
-The learner command is expected to fail at the explicit TODO until implemented.
-This is not a setup failure and does not record completion. Day 1 uses one
-fixed synthetic excerpt and makes no model call.
+Then attempt the learner-owned one-step logistic regression contract:
 
-## Provider boundary
+```sh
+python3 -m unittest ai.model_building.learner_acceptance.test_day_01
+```
 
-The starter includes a real, configurable OpenAI Responses API client and
-hermetic loopback protocol tests. Infrastructure tests do not call a provider.
-A live call requires externally supplied configuration and an explicit
-`--confirm-provider-usage` flag; no such call, credential creation, cloud
-deployment, purchase, or enrollment is authorized or performed here. A local
-HTTP fixture or mock is not live-model evidence.
+That command is expected to fail at the explicit TODO until implemented. It
+does not indicate a setup failure or learner completion. Day 1 makes no
+provider call and needs only Python's standard library.
 
-## Historical material
-
-The old quote-selection/FE/BE curriculum, its contracts, manifests, receipts,
-and issue definitions are preserved as historical artifacts. They do not
-represent the active sequence. The detailed legacy entrypoint is
-[marked historical here](docs/reboot/README.md); the pre-migration root README
-is retained at
-[`docs/ai-first-roadmap/archive/root-README-8d27f57.md`](docs/ai-first-roadmap/archive/root-README-8d27f57.md).
-
-FE/BE learning in the new sequence means reading supplied application code,
-tracing requests, diagnosing seeded failures, and answering interview
-questions. The assistant supplies React/Spring plumbing. The learner writes
-DSA in the separate `dsa-prep` repository and AI components in this repository.
-System-design practice remains in the separate question bank.
+The earlier API-first roadmap candidate, code and experiments remain preserved
+for possible later integration under
+[`docs/ai-first-roadmap`](docs/ai-first-roadmap/README.md). It is not the active
+sequence. No YouTrack, DSA repository, deployment, paid service, credential,
+purchase or enrollment action is included in this draft.

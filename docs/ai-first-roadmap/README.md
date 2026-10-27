@@ -1,4 +1,10 @@
-# AI-first learning roadmap
+# Preserved API-first candidate (superseded)
+
+> **Status:** This is the preserved, unshipped API-first review candidate. It is
+> not the active learning sequence and must not be used to infer learner
+> progress. The active plan is the [model-building-first roadmap](../model-first-roadmap/README.md).
+> Its existing starter code and contracts are retained as possible later
+> product-integration material; no files or issue history were deleted.
 
 **Status:** local review draft. No learner day is recorded complete. The prior
 305 EAI Story definitions, issue IDs, statuses, and history remain available
@@ -128,7 +134,8 @@ exam booking, or certification pass is claimed or authorized.
 
 The old quote-selection and conventional FE/BE assignment sequence is
 historical. Its manifests, contracts, source receipts, code, and tests remain
-preserved. The active entrypoints point to this AI-first plan. The separate
+preserved. At the time this proposal was drafted, entrypoints pointed to it;
+current entrypoints direct learners to the model-building-first plan. The separate
 [`legacy issue migration proposal`](legacy-issue-migration.json) maps 30
 existing EAI issues to the detailed active units and accounts for the other
 275 as superseded—not deleted or completed. It records the original title and

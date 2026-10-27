@@ -1540,68 +1540,73 @@
     "No repository/board writes by this planner"
   ],
   "calendar_amendment": {
-    "status": "planned_only_not_learner_completion",
-    "start_date": "2026-10-26",
-    "learning_horizon_day": 774,
-    "learning_horizon_date": "2028-12-07",
+    "status": "model_first_review_draft_not_learner_completion",
+    "start_date": "2026-10-27",
+    "timezone": "Asia/Kolkata",
+    "learning_horizon_day": 548,
+    "learning_horizon_date": "2028-04-26",
+    "active_manifest": "docs/model-first-roadmap/manifest.json",
+    "active_contracts": "docs/model-first-roadmap/contracts/",
+    "story_migration_proposal": "docs/model-first-roadmap/legacy-issue-migration.json",
     "professional_ownership_review_date": "2029-10-26",
-    "crosswalk": "docs/reboot/calendar/study-calendar.json",
-    "detailed_story_migration": "docs/reboot/calendar/story-export-1-305.json",
-    "stable_engineering_unit_ids_preserved": true,
+    "dsa_source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
     "dsa_repository_unchanged": "https://github.com/advait-ravi-marathe/dsa-prep",
     "board_writes_by_repository_exporter": false,
+    "learner_completion": "none_recorded",
     "role_review_milestones": [
       {
-        "calendar_study_day": 175,
-        "date": "2027-04-18",
-        "target": "Backend / Full-Stack SDE II",
-        "gate": "Learner-owned backend/API/data implementation, tests, debugging and safe local operation; compare with current role evidence."
+        "study_day": 150,
+        "target": "ML/model foundations evidence review",
+        "gate": "Python/math/classical ML, clean held-out split, independently checked baselines; no title or job-readiness inference.",
+        "date": "2027-03-25"
       },
       {
-        "calendar_study_day": 459,
-        "date": "2028-01-27",
-        "target": "Senior Backend",
-        "gate": "Unfamiliar distributed diagnosis, repeated integrated recovery evidence and truthful handoff."
+        "study_day": 274,
+        "target": "AI Product / Applied AI SWE portfolio checkpoint",
+        "gate": "One strong CoverStory vertical slice plus model experiments only if actual held-out and integration evidence qualifies; applications may begin earlier.",
+        "date": "2027-07-27"
       },
       {
-        "calendar_study_day": 550,
-        "date": "2028-04-27",
-        "target": "Applied AI",
-        "gate": "Python/ML grounding, independent evaluation, uncertainty, security and measured limits."
+        "study_day": 365,
+        "target": "CoverStory evidence review",
+        "gate": "Grounding, retrieval/citations, permissions, abstention, evaluation and honest live-provider status; no automatic completion.",
+        "date": "2027-10-26"
       },
       {
-        "calendar_study_day": 648,
-        "date": "2028-08-03",
-        "target": "Senior AI",
-        "gate": "AI evidence alongside security, deployment readiness, observability and sustained operations; local rehearsal alone is not production ownership."
+        "study_day": 450,
+        "target": "StreamForge model/product evidence review",
+        "gate": "Held-out ranking against baseline, cold-start/failure slices and reproducible metrics; no fabricated adoption.",
+        "date": "2028-01-19"
       },
       {
-        "calendar_study_day": 718,
-        "date": "2028-10-12",
-        "target": "Senior FDE",
-        "gate": "Externally validated discovery, enterprise integration, stakeholder delivery and actual adoption/outcome evidence."
+        "study_day": 520,
+        "target": "Developer Workflow Assistant and later FDE evidence checkpoint",
+        "gate": "Measured tool-task outcomes and safe permissions; FDE evidence additionally requires real external discovery/stakeholder delivery/adoption.",
+        "date": "2028-03-29"
       },
       {
-        "calendar_study_day": 774,
-        "date": "2028-12-07",
-        "target": "Staff/FDE/Architect portfolio checkpoint",
-        "gate": "Portfolio review only; employer-specific titles, Architect is not universally above Staff, and calendar completion grants no role or readiness."
+        "study_day": 548,
+        "target": "Three-project portfolio review",
+        "gate": "Review each project and open external/production gates; no role, title, certification, mastery or professional ownership claim.",
+        "date": "2028-04-26"
       },
       {
-        "calendar_study_day": null,
+        "study_day": null,
         "date": "2029-10-26",
         "target": "Professional Staff-responsibility review",
-        "gate": "Externally verified sustained ownership, technical influence, adoption, cross-team impact and review."
+        "gate": "Requires externally verified sustained ownership, technical influence, adoption, cross-team impact and review; distinct from the learning calendar."
       }
     ],
     "application_may_begin_earlier": true,
-    "calendar_completion_grants_readiness": false
+    "calendar_completion_grants_readiness": false,
+    "role_benchmarks": "docs/ai-first-roadmap/role-alignment.md"
   },
   "published_coverage": {
     "days_1_270": "published_assignment_coverage",
     "days_197_270": "published_planning_only_not_learner_completion",
-    "days_271_774": "outcome_roadmap_with_only_existing_271_284_detailed",
-    "first_30_days_and_history_preserved": true
+    "days_271_774": "superseded_prior_outcome_plan_preserved_as_history",
+    "first_30_days_and_history_preserved": true,
+    "current_active_learning_plan": "docs/model-first-roadmap/manifest.json"
   },
   "historical_new_batch_status": {
     "days197_to210": "paused_uncommitted_not_authorized_for_activation",
@@ -1610,83 +1615,234 @@
   },
   "new_batch_status": {
     "days197_to270": "published_planning_assignments_not_learner_completion",
-    "days271_to774": "outcome_roadmap_published; only existing units271_to284 are daily detailed",
+    "days271_to774": "superseded_prior_outcome_plan_preserved; not the active learning sequence",
     "added_gap_units": 21,
     "new_eai_issue_ids_assigned": false,
     "board_writes_by_repo_exporter": false,
     "learner_completion_or_eligibility_granted": false,
     "authoritative_calendar": "docs/reboot/calendar/study-calendar.json",
-    "authoritative_story_export": "docs/reboot/calendar/story-export-1-305.json"
+    "authoritative_story_export": "docs/reboot/calendar/story-export-1-305.json",
+    "current_active_plan": "docs/model-first-roadmap/manifest.json"
   },
   "active_learning_sequence": {
-    "title": "AI-first learning roadmap",
-    "path": "docs/ai-first-roadmap/manifest.json",
+    "title": "Model-building-first AI roadmap",
+    "path": "docs/model-first-roadmap/manifest.json",
     "status": "local_review_draft_not_published",
     "start_date": "2026-10-27",
     "timezone": "Asia/Kolkata",
-    "horizon_days": 365,
-    "end_date": "2027-10-26",
-    "legacy_305_issue_migration": "docs/ai-first-roadmap/legacy-issue-migration.json",
+    "horizon_days": 548,
+    "end_date": "2028-04-26",
+    "legacy_305_issue_migration": "docs/model-first-roadmap/legacy-issue-migration.json",
     "learner_completion": "none_recorded",
     "board_writes": false,
     "dsa_repository_writes": false,
-    "projects": [
-      {
-        "days": [
-          1,
-          150
-        ],
-        "name": "CoverStory AI",
-        "status": "planned_evidence_gated"
-      },
-      {
-        "days": [
-          151,
-          255
-        ],
-        "name": "StreamForge AI search/recommendation/ranking",
-        "status": "planned_evidence_gated"
-      },
-      {
-        "days": [
-          256,
-          340
-        ],
-        "name": "Developer Workflow Assistant",
-        "status": "planned_evidence_gated"
-      },
-      {
-        "days": [
-          341,
-          365
-        ],
-        "name": "shared evaluation/observability integration and portfolio closeout",
-        "status": "planned_evidence_gated"
-      }
-    ],
     "capacity": {
-      "total_engineering_hours": 875.5,
-      "reserved_fraction_inside_existing_hours": 0.2,
-      "reserved_hours": 175.1,
-      "planned_build_hours": 700.4,
-      "hours_added": false,
+      "days_1_to_171_engineering_minutes_per_day": 120,
+      "days_172_to_548_engineering_minutes_per_day": 165,
+      "days_172_to_548_shared_minutes_per_day": 45,
+      "engineering_hours": 1378.75,
+      "shared_hours": 282.75,
+      "reserved_fraction_inside_engineering": 0.2,
+      "reserved_hours": 275.75,
+      "planned_build_hours": 1103.0,
       "phase_envelopes": [
-        {"days": [1, 150], "dates": ["2026-10-27", "2027-03-25"], "engineering_hours": 300.0, "reserve_hours": 60.0, "planned_build_hours": 240.0},
-        {"days": [151, 255], "dates": ["2027-03-26", "2027-07-08"], "engineering_hours": 273.0, "reserve_hours": 54.6, "planned_build_hours": 218.4},
-        {"days": [256, 340], "dates": ["2027-07-09", "2027-10-01"], "engineering_hours": 233.75, "reserve_hours": 46.75, "planned_build_hours": 187.0},
-        {"days": [341, 365], "dates": ["2027-10-02", "2027-10-26"], "engineering_hours": 68.75, "reserve_hours": 13.75, "planned_build_hours": 55.0}
-      ],
-      "allocation_note": "Reserve is for remediation, integration, observation, and reassessment inside the existing engineering budget; it does not add study time."
+        {
+          "days": [
+            1,
+            60
+          ],
+          "engineering_hours": 120,
+          "name": "foundations",
+          "dates": [
+            "2026-10-27",
+            "2026-12-25"
+          ],
+          "focus": "Python, NumPy, probability/linear algebra fundamentals, gradient intuition, data hygiene and first baselines"
+        },
+        {
+          "days": [
+            61,
+            150
+          ],
+          "engineering_hours": 180,
+          "name": "classical-ml",
+          "dates": [
+            "2026-12-26",
+            "2027-03-25"
+          ],
+          "focus": "Classical ML, evaluation slices, leakage prevention, uncertainty, feature design and reusable evaluation harness"
+        },
+        {
+          "days": [
+            151,
+            230
+          ],
+          "engineering_hours": 204.25,
+          "name": "neural-models",
+          "dates": [
+            "2027-03-26",
+            "2027-06-13"
+          ],
+          "focus": "PyTorch tensors/autograd/training loops/optimization; small CPU neural models; tiny educational transformer"
+        },
+        {
+          "days": [
+            231,
+            300
+          ],
+          "engineering_hours": 192.5,
+          "name": "language-model-adaptation",
+          "dates": [
+            "2027-06-14",
+            "2027-08-22"
+          ],
+          "focus": "Tokenization, pretrained model use, fine-tuning readiness and license/compute/data checks; CoverStory integration starts earlier only after model baseline/held-out gates"
+        },
+        {
+          "days": [
+            301,
+            365
+          ],
+          "engineering_hours": 178.75,
+          "name": "coverstory",
+          "dates": [
+            "2027-08-23",
+            "2027-10-26"
+          ],
+          "focus": "Harden the CoverStory integration that starts after model readiness around Day 211; complete retrieval, citations, permission boundaries, abstention, evaluations and supplied app infrastructure"
+        },
+        {
+          "days": [
+            366,
+            450
+          ],
+          "engineering_hours": 233.75,
+          "name": "streamforge",
+          "dates": [
+            "2027-10-27",
+            "2028-01-19"
+          ],
+          "focus": "Train/evaluate a recommender or ranker with public/synthetic data and supplied platform plumbing"
+        },
+        {
+          "days": [
+            451,
+            520
+          ],
+          "engineering_hours": 192.5,
+          "name": "developer-workflow",
+          "dates": [
+            "2028-01-20",
+            "2028-03-29"
+          ],
+          "focus": "Train/evaluate a bounded classification/ranking capability in the Developer Workflow Assistant with read-only-first tool use"
+        },
+        {
+          "days": [
+            521,
+            548
+          ],
+          "engineering_hours": 77,
+          "name": "integration-closeout",
+          "dates": [
+            "2028-03-30",
+            "2028-04-26"
+          ],
+          "focus": "Reuse evaluation/observability across all three projects, recovery, portfolio and readiness review"
+        }
+      ]
     },
     "evaluation_observability": "shared capability across the three projects, not a fourth flagship",
     "nine_month_checkpoint": {
       "date": "2027-07-27",
       "study_day": 274,
       "status": "conditional_evidence_review_not_completion",
-      "first_two_project_gates_may_be_reviewed": "only if actual evidence qualifies",
-      "developer_workflow_assistant": "early_in_progress",
+      "target": "One strong end-to-end CoverStory flagship plus model-training experiments, subject to held-out evidence; StreamForge and Developer Workflow Assistant are later work.",
       "role_or_job_guarantee": false
-    }
+    },
+    "prior_api_first_candidate": "docs/ai-first-roadmap/README.md",
+    "phase_map": "docs/model-first-roadmap/manifest.json#phases",
+    "feasibility": "One strong flagship plus model experiments by nine months is a conditional target; three substantial flagships are a 12–18 month planning range, not a guarantee.",
+    "checkpoints": [
+      {
+        "date": "2027-07-27",
+        "study_day": 274,
+        "status": "conditional_evidence_review_not_completion",
+        "target": "One strong CoverStory flagship plus model experiments; later projects not complete by this date."
+      },
+      {
+        "date": "2028-04-26",
+        "study_day": 548,
+        "status": "conditional portfolio review, not role/certification guarantee",
+        "target": "Review distinct project evidence and unresolved production/external gates."
+      },
+      {
+        "date": "2029-10-26",
+        "status": "professional ownership review remains separate",
+        "target": "Requires real external ownership, influence and adoption evidence; calendar learning does not grant it."
+      }
+    ],
+    "application_comprehension_and_scalability_lane": "Within existing time: assistant-supplied FE/BE/HLD/LLD/load harnesses; learner traces code, diagnoses, answers question-bank prompts and interprets declared local metrics. See docs/model-first-roadmap/manifest.json.",
+    "redis_kafka_devops_mlops": "Staged only when project need and prerequisites justify; no tool checklist, external load, cloud spend or production claim.",
+    "projects": [
+      {
+        "days": [
+          211,
+          365
+        ],
+        "dates": [
+          "2027-05-25",
+          "2027-10-26"
+        ],
+        "name": "CoverStory AI",
+        "status": "planned_evidence_gated"
+      },
+      {
+        "days": [
+          366,
+          450
+        ],
+        "dates": [
+          "2027-10-27",
+          "2028-01-19"
+        ],
+        "name": "StreamForge AI recommender/ranker",
+        "status": "planned_evidence_gated"
+      },
+      {
+        "days": [
+          451,
+          520
+        ],
+        "dates": [
+          "2028-01-20",
+          "2028-03-29"
+        ],
+        "name": "Developer Workflow Assistant",
+        "status": "planned_evidence_gated"
+      },
+      {
+        "days": [
+          521,
+          548
+        ],
+        "dates": [
+          "2028-03-30",
+          "2028-04-26"
+        ],
+        "name": "Shared evaluation/observability and closeout",
+        "status": "planned_evidence_gated"
+      }
+    ],
+    "role_benchmarks": "docs/ai-first-roadmap/role-alignment.md",
+    "course_and_credential_targets": "docs/model-first-roadmap/manifest.json"
   },
-  "previous_roadmap_status": "superseded_historical_assignments_and_evidence_preserved"
+  "previous_roadmap_status": "superseded_historical_assignments_and_evidence_preserved",
+  "superseded_calendar_amendment_774_day_plan": {
+    "status": "superseded_planning_provenance_preserved",
+    "original_start_date": "2026-10-26",
+    "original_learning_horizon_day": 774,
+    "original_learning_horizon_date": "2028-12-07",
+    "note": "Prior outcome roadmap and milestones are superseded by the model-building-first active plan; no learner progress was credited."
+  }
 }

@@ -1,4 +1,4 @@
-> **Historical sequence notice (27 October 2026).** The quote-selection and conventional FE/BE learner assignments below are preserved historical curriculum and are no longer the active study sequence. The active local review draft is the [AI-first roadmap](../ai-first-roadmap/README.md). The historical assignment files, tests, source receipts, dates, issue IDs, and learner evidence have not been deleted or credited as completed.
+> **Historical sequence notice (27 October 2026).** The quote-selection and conventional FE/BE learner assignments below are preserved historical curriculum and are no longer active. The prior API-first candidate is also superseded. The active local review draft is the [model-building-first roadmap](../model-first-roadmap/README.md). Historical assignment files, tests, source receipts, dates, issue IDs, and learner evidence are preserved and receive no completion credit.
 
 # CoverStory 30-day reboot contracts
 
@@ -58,9 +58,10 @@ integration remain evidence-based; forecasts do not mark work complete.
 Reviewed continuation windows are indexed separately from this first-30-day
 manifest. The [Days 197–270 assignment inventory](continuation-197-270-inventory.json)
 links those bounded windows, including the four-day closeout. The accepted
-[Days 271–774 outcome roadmap](continuation-271-732/README.md) extends the
-calendar through 7 December 2028 while preserving Days 1–270 work, evidence
-and status and shifting their planned dates by two days. Its [first 14-unit
+[Prior Days 271–774 outcome roadmap](continuation-271-732/README.md) was a
+superseded planning amendment ending 7 December 2028; its files and provenance
+remain preserved. The active 548-day model-building plan ends 26 April 2028.
+The old roadmap preserves its prior assignment/evidence status. Its [first 14-unit
 detailed window](continuation-271-284/README.md) is the only newly detailed
 daily window; later phases are evidence-gated outcomes rather than pre-created
 tickets. These are assignments and plans, not learner completion.
@@ -73,8 +74,9 @@ external DSA association without copying DSA content. The [dated milestone
 dashboard source](fde-alignment.json) contains evidence-gated review dates;
 they do not grant readiness or learner completion.
 
-The 42-day insertion is fully represented in the governing [amendment and
-capacity plan](continuation-271-732/README.md). The first 21 inserted units
+The prior 42-day insertion plan remains fully represented in its preserved
+[amendment and capacity record](continuation-271-732/README.md); it is not the
+active roadmap. The first 21 inserted units
 have executable starter/test paths and dated contracts under
 [`contracts/gap-*.md`](contracts/); their structured source, task, command,
 acceptance, and owner records are in
