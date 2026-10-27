@@ -12,11 +12,11 @@ Mean and scale are learned on train, then reused unchanged
 
 ## Learner-owned AI/model work
 
-Implement a tiny two-feature standardizer fit only on the training partition
+Fit a two-feature standardizer on train rows and transform distinct shifted held-out rows with those same statistics
 
 **Acceptance command:** `python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_09_standardizer_uses_training_statistics`
-**Acceptance:** Train transformed columns have expected mean/scale; test uses same stored values
-**Negative control:** Fitting on combined train+test data is caught by a shifted test fixture
+**Acceptance:** Train transforms have zero mean/unit scale and fixed held-out values use train-only statistics
+**Negative control:** A transform refitted on held-out or combined rows is caught by shifted values; source inputs remain unchanged
 
 
 **Evidence category:** `dataset_hygiene_and_independent_evaluation`

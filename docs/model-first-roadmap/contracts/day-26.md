@@ -6,16 +6,16 @@
 
 ## Learn
 
-Read-only trace: UI event → supplied Spring boundary → Python model service
+Manual read-only trace: UI event → supplied Spring boundary → Python fixture service
 
 **Source:** [Repository source: supplied AI route and Python fixture service](../../../frontend/src/ai/AiFirstCoverStoryApp.tsx)
 
 ## Learner-owned AI/model work
 
-Inspect provided code and record exact files, inputs and outputs; spend remaining time on a small model slice/error review
+Record exact files, request fields and outputs, then inspect one existing model error; no new model experiment is claimed
 
 **Acceptance command:** `python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_26_supplied_route_reading_is_paired_with_model_error_analysis`
-**Acceptance:** Trace answers match source behavior and model metric counts match fixture
+**Acceptance:** Manual evidence names exact source lines and observed values
 **Negative control:** Claiming learner-authored app code or a live model call is rejected
 
 ## Read-only application comprehension
@@ -29,10 +29,10 @@ Answer from source; do not edit FE/BE files.
 - The UI posts to /api/ai/policy-assistant with question and same-origin credentials plus CSRF. It sends no owner field in that request. Spring checks Authentication and forwards authentication.getName() as owner.
 
 
-**Evidence category:** `read_only_application_comprehension_plus_model_experiment`
+**Evidence category:** `manual_read_only_application_comprehension`
 
 ## Evidence
 
-Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.
+Manual source-comprehension note with exact file/line anchors, request or failure path, observed output and limits; automated helper test is separate; no FE/BE code-edit audit or completion is inferred.
 
 The learner acceptance is expected to remain red while its explicit TODO is unimplemented. Instructor fixtures and tests do not count as learner work. Record attempts accurately; a calendar date does not confer completion.

@@ -8,15 +8,19 @@
 
 A simple baseline can expose class imbalance and weak modeling
 
-**Source:** [Python Tutorial, 3. An Informal Introduction to Python](https://docs.python.org/3/tutorial/introduction.html)
+## Worked teaching example
+
+A majority baseline predicts the most frequent training label (this contract breaks ties toward 0). A nearest-centroid classifier averages each class's training rows, then assigns a query to the closest centroid by squared Euclidean distance. Never use held-out rows to form the centroids.
+
+**Source:** [NearestCentroid](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.NearestCentroid.html)
 
 ## Learner-owned AI/model work
 
-Compare majority-class and nearest-centroid predictions on fixed labeled rows
+Compare majority-class and nearest-centroid predictions; fit centroids only on training rows
 
-**Acceptance command:** `python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_10_majority_tie_breaks_to_zero`
-**Acceptance:** Exact predictions and independent accuracy counts match
-**Negative control:** A baseline that learns from held-out labels fails
+**Acceptance command:** `python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_10_majority_tie_breaks_to_zero ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_10_nearest_centroid_is_fit_on_training_rows`
+**Acceptance:** Exact majority and centroid predictions match independently computed values
+**Negative control:** A baseline that learns from held-out labels, breaks ties inconsistently, or mixes feature axes fails
 
 
 **Evidence category:** `dataset_hygiene_and_independent_evaluation`

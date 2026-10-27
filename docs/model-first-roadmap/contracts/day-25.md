@@ -8,15 +8,15 @@
 
 A useful model is measured against a trivial baseline on held-out data
 
-**Source:** [3.4. Metrics and scoring: quantifying the quality of predictions](https://scikit-learn.org/stable/common_pitfalls.html)
+**Source:** [3.4. Metrics and scoring: quantifying the quality of predictions](https://scikit-learn.org/stable/modules/model_evaluation.html)
 
 ## Learner-owned AI/model work
 
-Compare majority, lexical and linear model errors on the same held-out fixture
+Train majority, centroid and one-step linear baselines using development rows; compare with a fixed lexical rule on the same held-out IDs/labels
 
 **Acceptance command:** `python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_25_error_ids_retain_order_and_ignore_correct_rows`
-**Acceptance:** Independent confusion tables and selected error IDs match
-**Negative control:** Changing test labels to improve the model is detected
+**Acceptance:** Each candidate has an independently checked confusion table, accuracy and ordered error IDs
+**Negative control:** Omitting/changing a candidate, using held-out labels for fitting, or reordering IDs is rejected
 
 
 **Evidence category:** `synthetic_document_model_and_evaluation`

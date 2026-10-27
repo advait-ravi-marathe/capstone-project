@@ -8,7 +8,7 @@
 
 On a simple convex loss, a step that is too large can oscillate and diverge; this is a teaching probe, not a universal model claim
 
-**Source:** [Python Tutorial, 3. An Informal Introduction to Python](https://docs.python.org/3/tutorial/introduction.html)
+**Source:** [math — Mathematical functions: Power, exponential and logarithmic functions](https://docs.python.org/3/library/math.html#power-exponential-and-logarithmic-functions)
 
 ## Learner-owned AI/model work
 

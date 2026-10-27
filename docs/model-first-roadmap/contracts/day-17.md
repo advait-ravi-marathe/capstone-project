@@ -12,11 +12,11 @@ Array reductions must preserve feature and batch axes
 
 ## Learner-owned AI/model work
 
-Implement a NumPy batch gradient and compare with Day 6 hand oracle
+Implement a NumPy mean batch gradient and compare a non-square three-row, two-feature batch with an independent oracle
 
 **Acceptance command:** `python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_17_gradient_keeps_bias_and_feature_axes`
 **Acceptance:** Bias and both feature gradients match expected values
-**Negative control:** Summing wrong axis or dividing by feature count is rejected
+**Negative control:** Summing rather than averaging rows, wrong axis, or dividing by feature count is rejected
 
 
 **Evidence category:** `numerical_array_and_ml_experiment`

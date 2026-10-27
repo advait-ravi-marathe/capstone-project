@@ -8,7 +8,11 @@
 
 Average per-example gradients before one update; learning rate controls step size
 
-**Source:** [Python Tutorial, 3. An Informal Introduction to Python](https://docs.python.org/3/tutorial/introduction.html)
+## Worked teaching example
+
+At zero weights on the two Day 1 rows, the mean gradient is [0,-0.25,0.25], not the sum [0,-0.5,0.5]. With rate 0.2, subtract it to get [0,0.05,-0.05]. Reversing the sign or dividing by feature count rather than number of rows changes the result.
+
+**Source:** [math — Mathematical functions: Power, exponential and logarithmic functions](https://docs.python.org/3/library/math.html#power-exponential-and-logarithmic-functions)
 
 ## Learner-owned AI/model work
 

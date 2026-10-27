@@ -52,13 +52,28 @@ def find_target_leakage(feature_names: Sequence[str], forbidden: Sequence[str]) 
     return _todo(8)
 
 
-def fit_standardizer(rows: Sequence[Sequence[float]]):
-    """Day 9: return training-only column means/scales and transformed rows."""
+def fit_threshold_classifier(training_values, training_labels):
+    """Day 8: fit a one-feature 0/1 threshold rule using training rows only."""
+    return _todo(8)
+
+
+def predict_threshold_classifier(model, values):
+    """Day 8: apply the fitted threshold rule without refitting."""
+    return _todo(8)
+
+
+def fit_standardizer(training_rows: Sequence[Sequence[float]], heldout_rows: Sequence[Sequence[float]]):
+    """Day 9: fit only training rows and transform both train and held-out rows."""
     return _todo(9)
 
 
 def majority_prediction(labels: Sequence[int]) -> int:
     """Day 10: return deterministic majority label (ties choose 0)."""
+    return _todo(10)
+
+
+def nearest_centroid_predictions(training_rows, training_labels, query_rows):
+    """Day 10: compare query rows with centroids calculated from training data."""
     return _todo(10)
 
 
@@ -72,17 +87,22 @@ def precision_recall(counts: dict[str, int]) -> dict[str, float | None]:
     return _todo(12)
 
 
-def metrics_by_slice(labels: Sequence[int], predictions: Sequence[int], slices: Sequence[str]):
+def threshold_predictions(probabilities: Sequence[float], threshold: float) -> list[int]:
+    """Day 12: map probabilities to labels using the declared threshold."""
+    return _todo(12)
+
+
+def metrics_by_slice(labels: Sequence[int], predictions: Sequence[int], slices: Sequence[str], expected_slices=None):
     """Day 13: retain exact slice membership counts and confusion metrics."""
     return _todo(13)
 
 
-def matrix_shape(rows: Sequence[Sequence[float]]) -> tuple[int, int]:
-    """Day 15: return an ndarray for a rectangular numeric matrix."""
+def matrix_shape(rows: Sequence[Sequence[float]], labels: Sequence[int]):
+    """Day 15: return numeric feature and label arrays with verified shapes."""
     return _todo(15)
 
 
-def linear_scores(rows: Sequence[Sequence[float]], weights: Sequence[float], bias: float) -> list[float]:
+def linear_scores(rows: Sequence[Sequence[float]], weights: Sequence[float], bias: float):
     """Day 16: use NumPy array operations for batch linear scores."""
     return _todo(16)
 
@@ -112,6 +132,21 @@ def fit_id_guard(training_ids: Sequence[str], transform_fit_ids: Sequence[str], 
     return _todo(22)
 
 
+def fold_evaluation_summary(fold_names, fold_labels, fold_predictions, final_test_labels, final_test_predictions):
+    """Day 22: retain each fold score and one separate final-test score."""
+    return _todo(22)
+
+
+def deterministic_folds(record_ids, fold_count):
+    """Day 22: partition ordered development IDs into deterministic validation folds."""
+    return _todo(22)
+
+
+def reproducible_predictions(record_ids, labels, predictions, seed):
+    """Day 20: return a stable split/order/prediction record for a fresh run."""
+    return _todo(20)
+
+
 def calibration_bins(probabilities: Sequence[float], labels: Sequence[int], edges: Sequence[float]):
     """Day 23: report deterministic bin count/confidence/accuracy records."""
     return _todo(23)
@@ -132,8 +167,28 @@ def report_model_limit(score: float, predicted_label: int, downstream_decision: 
     return _todo(28)
 
 
-def score_rows(weights: Sequence[float], rows: Sequence[Sequence[float]]) -> list[float]:
-    """Day 30: score rows using the loaded model's declared feature order."""
+def score_rows(weights: Sequence[float], rows: Sequence[Sequence[float]]):
+    """Day 16/29: score feature rows using bias-first weights and declared feature order."""
+    return _todo(16)
+
+
+def fit_document_type_centroids(rows, labels, record_ids, feature_names):
+    """Day 30: train a small, deterministic three-class centroid model."""
+    return _todo(30)
+
+
+def predict_document_type(model, rows):
+    """Day 30: classify rows using the fitted centroid model."""
+    return _todo(30)
+
+
+def serialize_document_type_model(model):
+    """Day 30: serialize ordered model metadata and class centroids."""
+    return _todo(30)
+
+
+def load_document_type_model(serialized: str):
+    """Day 30: validate and reload a centroid model artifact."""
     return _todo(30)
 
 

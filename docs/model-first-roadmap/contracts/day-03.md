@@ -8,7 +8,11 @@
 
 Log loss penalizes confident wrong predictions; labels are 0/1
 
-**Source:** [Python Tutorial, 3. An Informal Introduction to Python](https://docs.python.org/3/tutorial/introduction.html)
+## Worked teaching example
+
+For probabilities [0.8, 0.25] and labels [1,0], per-row losses are -ln(0.8)=0.223144 and -ln(0.75)=0.287682; mean loss is 0.255413. A confident wrong prediction is penalized more. Clip only if the contract explicitly defines clipping; reject invalid probabilities and misaligned batches.
+
+**Source:** [math — Mathematical functions: Power, exponential and logarithmic functions](https://docs.python.org/3/library/math.html#power-exponential-and-logarithmic-functions)
 
 ## Learner-owned AI/model work
 

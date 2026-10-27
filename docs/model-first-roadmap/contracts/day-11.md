@@ -8,7 +8,7 @@
 
 True/false positives/negatives answer different questions
 
-**Source:** [3.4. Metrics and scoring: quantifying the quality of predictions](https://scikit-learn.org/stable/common_pitfalls.html)
+**Source:** [3.4. Metrics and scoring: quantifying the quality of predictions](https://scikit-learn.org/stable/modules/model_evaluation.html)
 
 ## Learner-owned AI/model work
 

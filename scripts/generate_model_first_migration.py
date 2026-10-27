@@ -25,6 +25,7 @@ def generate() -> dict:
         prior = old_active[issue]
         mappings.append({
             "active_unit_id": day["unit_id"], "active_day": day["day"], "active_date": day["date"],
+            "active_sprint_number": (day["day"] - 1) // 14 + 1,
             "existing_issue_id": issue,
             "mapping_status": "candidate_restatement_requires_parent_review_and_board_migration",
             "legacy_unit_id": prior["legacy_unit_id"],
@@ -46,6 +47,7 @@ def generate() -> dict:
         "source_prior_candidate_mapping": "docs/ai-first-roadmap/legacy-issue-migration.json",
         "active_manifest": "docs/model-first-roadmap/manifest.json",
         "active_days": 30, "active_issue_count": len(mappings),
+        "detailed_sprint_windows": active["detailed_sprint_windows"],
         "superseded_issue_count": len(superseded), "total_legacy_issue_count": len(mappings) + len(superseded),
         "existing_ids_reused_without_new_issue_creation": True,
         "old_definitions_and_statuses_preserved": True,

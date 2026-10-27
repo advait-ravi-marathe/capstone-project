@@ -6,16 +6,16 @@
 
 ## Learn
 
-A document-type label is not an answer, eligibility decision, or calibrated confidence
+Manual review: a document-type label is not an answer, eligibility decision, or calibrated confidence
 
 **Source:** [Repository source: supplied model fixture and application boundary](../../../ai/coverstory_assistant)
 
 ## Learner-owned AI/model work
 
-Read a supplied prediction report, identify unsupported interpretation, and test a fixed counterexample
+Read a supplied prediction report and explain its boundary using the fixed counterexample; no new model experiment is claimed
 
 **Acceptance command:** `python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_28_report_does_not_promote_score_to_decision`
-**Acceptance:** Answer distinguishes class score, label, and downstream decision with exact fixture evidence
+**Acceptance:** Manual response distinguishes class score, label and downstream decision with exact fixture evidence
 **Negative control:** Treating a toy score as customer truth or changing UI/backend code fails
 
 ## Read-only application comprehension
@@ -29,10 +29,10 @@ Answer from source; do not edit FE/BE files.
 - offline_synthetic_fixture, false, false; no. The fixture is not model output, insurance advice or a coverage decision.
 
 
-**Evidence category:** `read_only_application_comprehension_plus_model_experiment`
+**Evidence category:** `manual_read_only_application_comprehension`
 
 ## Evidence
 
-Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.
+Manual source-comprehension note with exact file/line anchors, request or failure path, observed output and limits; automated helper test is separate; no FE/BE code-edit audit or completion is inferred.
 
 The learner acceptance is expected to remain red while its explicit TODO is unimplemented. Instructor fixtures and tests do not count as learner work. Record attempts accurately; a calendar date does not confer completion.

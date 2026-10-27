@@ -25,10 +25,14 @@ separate repository and daily schedule.
 | Days 521–548 (30 Mar–26 Apr 2028) | 77 hours | Shared evaluation, recovery, portfolio review |
 
 Total capacity is **1,378.75 engineering hours** and **282.75 shared hours**.
-The roadmap reserves 20% of engineering time *inside* this capacity for
+The roadmap reserves 20% of engineering time *inside* each phase envelope for
 recovery, integration, observation and reassessment; the planned build envelope
-is 1,103 engineering hours. The 25–39-week model-to-product estimate is an
-active-work estimate, not a promise that all phases or gates pass on schedule.
+is 1,103 engineering hours. Topic overlap is sequencing guidance, not additive
+capacity: reserve is carved out before feature allocation and cannot be spent
+by adding work beyond the stated daily 120/165-minute engineering budget.
+Unused reserve rolls forward as recovery capacity, not as a requirement to fill
+every minute. The 25–39-week model-to-product estimate is conditional, not a
+promise that all phases or gates pass on schedule.
 At nine months, Day 274, planned engineering capacity is about **625.25
 hours**. The target is one strong, evidence-backed CoverStory flagship plus
 model experiments; the other two projects are not represented as complete.
@@ -89,8 +93,9 @@ spend or deployment is included.
 All days are actionable from Python/JSON basics through an independently
 evaluated synthetic document-type model. Day 1 is a CPU-only logistic-regression
 step with a tiny worked example; it is not an API call. No paid service or
-dependency installation is required for Day 1. The individual day contracts
-are generated from [`manifest.json`](manifest.json) by
+dependency installation is required for Day 1. Day 1's contract contains the sigmoid, loss, gradient and parameter-update
+walkthrough before the learner task. Days 2–6 also include small formula-level
+examples. The individual day contracts are generated from [`manifest.json`](manifest.json) by
 [`generate_model_first_roadmap.py`](../../scripts/generate_model_first_roadmap.py).
 
 Run the worked example and instructor-only tests:
@@ -98,6 +103,8 @@ Run the worked example and instructor-only tests:
 ```sh
 python3 -m ai.model_building.day01_example
 python3 -m unittest ai.model_building.tests.test_day01_infrastructure
+python3 -m unittest ai.model_building.tests.test_acceptance_witnesses
+python3 -S -m ai.model_building.tests.stdlib_days_02_14
 ```
 
 The learner-owned implementation remains an explicit TODO. Its contract is
@@ -110,12 +117,17 @@ python3 -m unittest ai.model_building.learner_acceptance.test_day_01
 
 Each of the 30 contracts identifies the concept, prerequisite, source, bounded
 AI/model work, exact acceptance command, negative case and evidence. Days
-26–28 combine a model experiment with read-only application comprehension; they
-do not assign FE/BE code changes. Day 30 is a model training/evaluation slice,
+26–28 are manual, read-only application comprehension and source diagnosis;
+they reuse previously introduced model error helpers and do not claim new
+model experiments or assign FE/BE code changes. Their automated checks validate
+small model-output helpers only; they cannot prove a learner avoided every
+out-of-scope FE/BE edit. Day 30 is a model training/evaluation slice,
 not a production or live-provider claim.
 
-Days 1–14 use only Python's standard library. From Day 15, NumPy/scikit-learn
-exercises can use an isolated environment with the pinned CPU dependencies:
+Days 1–14 use only Python's standard library. The acceptance module imports
+without third-party packages; days 2–14 can run before any scientific package
+is installed. Day 15 introduces NumPy; Day 21 introduces scikit-learn. Create
+an isolated environment at that point and install the pinned CPU dependencies:
 
 ```sh
 python3 -m venv .venv-model-first
@@ -123,8 +135,11 @@ python3 -m venv .venv-model-first
 python -m pip install -r requirements-model-first.txt
 ```
 
-This draft does not install dependencies. PyTorch is deferred to the later
-neural-model phase; the first month does not require it.
+No installation is performed by this draft. PyTorch is deferred to the later
+neural-model phase; the first month does not require it. The [first three
+calendar sprints](manifest.json) are 27 Oct–9 Nov (14 detailed cards), 10–23
+Nov (14), and 24 Nov–7 Dec (2 detailed cards); Day 30 is 25 November and the
+third sprint continues beyond the detailed first month.
 
 ## Sources and study targets
 

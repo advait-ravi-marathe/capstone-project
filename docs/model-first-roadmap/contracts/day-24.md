@@ -8,7 +8,7 @@
 
 Labels describe document type, not truth, risk or customer eligibility
 
-**Source:** [9.3. Generated datasets](https://scikit-learn.org/stable/common_pitfalls.html)
+**Source:** [9.3. Generated datasets](https://scikit-learn.org/stable/datasets/sample_generators.html)
 
 ## Learner-owned AI/model work
 

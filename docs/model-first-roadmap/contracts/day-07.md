@@ -8,7 +8,7 @@
 
 Train, validation and test answer different questions; split before fitting
 
-**Source:** [3.1. Cross-validation: evaluating estimator performance](https://scikit-learn.org/stable/common_pitfalls.html)
+**Source:** [3.1. Cross-validation: evaluating estimator performance](https://scikit-learn.org/stable/modules/cross_validation.html)
 
 ## Learner-owned AI/model work
 

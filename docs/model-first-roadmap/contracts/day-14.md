@@ -8,7 +8,7 @@
 
 Change one factor at a time and preserve a clean held-out comparison
 
-**Source:** [3.4. Metrics and scoring: quantifying the quality of predictions](https://scikit-learn.org/stable/common_pitfalls.html)
+**Source:** [3.4. Metrics and scoring: quantifying the quality of predictions](https://scikit-learn.org/stable/modules/model_evaluation.html)
 
 ## Learner-owned AI/model work
 

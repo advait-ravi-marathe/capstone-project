@@ -8,15 +8,15 @@
 
 A score near 0.5 is not proof of calibrated probability
 
-**Source:** [1.16. Probability calibration](https://scikit-learn.org/stable/common_pitfalls.html)
+**Source:** [1.16. Probability calibration](https://scikit-learn.org/stable/modules/calibration.html)
 
 ## Learner-owned AI/model work
 
-Bin a fixed set of probabilities and report counts plus mean confidence/accuracy
+Bin fixed probabilities and report count, mean confidence and observed-positive fraction (not classifier accuracy)
 
 **Acceptance command:** `python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_23_calibration_bins_match_fixed_counts`
-**Acceptance:** Independent bin counts and averages match
-**Negative control:** Empty bins and rounding that changes assignment are detected
+**Acceptance:** Independent bin counts, edge assignment and averages match
+**Negative control:** Empty bins and exact edge values are detected
 
 
 **Evidence category:** `numerical_array_and_ml_experiment`

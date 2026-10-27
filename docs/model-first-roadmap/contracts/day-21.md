@@ -8,7 +8,7 @@
 
 A Pipeline keeps preprocessing and estimator fit behavior together
 
-**Source:** [8.1. Pipelines and composite estimators](https://scikit-learn.org/stable/common_pitfalls.html)
+**Source:** [8.1. Pipelines and composite estimators](https://scikit-learn.org/stable/modules/compose.html)
 
 ## Learner-owned AI/model work
 

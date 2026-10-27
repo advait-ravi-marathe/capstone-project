@@ -8,15 +8,19 @@
 
 Seed, split, feature list and config are part of a reproducible result
 
+## Worked teaching example
+
+Repeat the same three-row CPU logistic update from zero weights with rate 0.1. The mean gradient gives weights [0.0166667, 0.0333333, 0], and the two declared held-out feature rows score 0.05 and 0.0166667, both class 1 under the stated zero-score cutoff. Save seed 41, ordered training IDs, feature order and predictions. A separate Python process recomputes these values; identical metadata alone would not prove the model computation repeated.
+
 **Source:** [Python Tutorial, 3. An Informal Introduction to Python](https://docs.python.org/3/tutorial/introduction.html)
 
 ## Learner-owned AI/model work
 
-Write a compact experiment record and reproduce the same split/model output
+Run the fixed train-only logistic step twice, record ordered IDs/features/predictions, and compare a fresh-process JSON result
 
 **Acceptance command:** `python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_20_experiment_record_preserves_seed_and_ordered_metadata`
-**Acceptance:** Two fresh runs produce the same record fields and predictions
-**Negative control:** Changing split seed without recording it fails the evidence check
+**Acceptance:** Independent fresh process emits the same canonical record and predictions
+**Negative control:** Changed order, omitted seed, or a nondeterministic model output fails
 
 
 **Evidence category:** `numerical_array_and_ml_experiment`

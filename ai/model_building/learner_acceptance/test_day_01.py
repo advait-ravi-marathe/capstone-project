@@ -15,10 +15,20 @@ class Day01LearnerAcceptance(unittest.TestCase):
         self.assertEqual([0.0, 0.0, 0.0], original)
         self.assertLess(loss(updated, rows), loss(original, rows))
 
+        # A bias plus one feature is valid: len(weights) == len(features) + 1.
+        one_feature = train_one_logistic_step([0.0, 0.0], [([1.0], 1)], 0.2)
+        self.assertEqual([0.1, 0.1], one_feature)
+
+        changed = train_one_logistic_step(
+            [0.2, -0.1, 0.3], [([2.0, 1.0], 0), ([1.0, -1.0], 1), ([0.5, 0.5], 1)], 0.05
+        )
+        for actual, expected in zip(changed, [0.20668248272815268, -0.10643787157861116, 0.28480837045783386]):
+            self.assertAlmostEqual(expected, actual, places=14)
+
     def test_rejects_empty_batch_bad_dimensions_bad_labels_and_nonpositive_rate(self):
         invalid = [
             ([], [], 0.2),
-            ([0.0, 0.0], [([1.0], 1)], 0.2),
+            ([0.0, 0.0, 0.0], [([1.0], 1)], 0.2),
             ([0.0, 0.0], [([1.0], 2)], 0.2),
             ([0.0, 0.0], [([1.0], 1)], 0.0),
         ]

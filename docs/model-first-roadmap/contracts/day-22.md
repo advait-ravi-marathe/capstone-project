@@ -8,15 +8,19 @@
 
 Cross-validation estimates variability on training data; final test stays untouched
 
-**Source:** [3.1. Cross-validation: evaluating estimator performance](https://scikit-learn.org/stable/common_pitfalls.html)
+## Worked teaching example
+
+Cross-validation scores describe repeated train/validation folds inside the development data. Keep fold IDs and individual scores, then summarize them; reserve the final test set for one separate check. Three fold accuracies .5, .5, 1.0 have mean 2/3, while a separate 2/3 final score is not another fold.
+
+**Source:** [3.1. Cross-validation: evaluating estimator performance](https://scikit-learn.org/stable/modules/cross_validation.html)
 
 ## Learner-owned AI/model work
 
-Compare fold scores and retain one final test evaluation
+Construct three deterministic validation folds from six development IDs, calculate each fold score, then score two separate final-test IDs once
 
-**Acceptance command:** `python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_22_preprocessing_fit_must_exclude_evaluation_ids`
-**Acceptance:** Fold membership and score count match the fixed split plan
-**Negative control:** Repeated test-driven hyperparameter selection is flagged
+**Acceptance command:** `python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_22_preprocessing_fit_must_exclude_evaluation_ids ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_22_retains_each_fold_score_and_one_final_test_result`
+**Acceptance:** Exact fold membership, fold scores, mean, and separate final-test score match the independent expected report
+**Negative control:** Duplicate IDs, missing/duplicated fold rows, or final-test IDs entering folds is rejected
 
 
 **Evidence category:** `numerical_array_and_ml_experiment`

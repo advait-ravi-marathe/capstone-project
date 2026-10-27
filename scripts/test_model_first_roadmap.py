@@ -17,6 +17,12 @@ class ModelFirstRoadmapTests(unittest.TestCase):
         self.assertEqual(date(2028, 4, 26), start + timedelta(days=547))
         self.assertEqual("2028-04-26", manifest["end_date"])
         self.assertEqual(548, manifest["horizon_days"])
+        self.assertEqual([
+            (1, "2026-10-27", "2026-11-09", 14),
+            (2, "2026-11-10", "2026-11-23", 14),
+            (3, "2026-11-24", "2026-12-07", 2),
+        ], [(s["sprint"], s["start_date"], s["end_date"], s["detailed_card_count"])
+            for s in manifest["detailed_sprint_windows"]])
         budget = manifest["budget"]
         self.assertEqual(1378.75, budget["engineering_hours"])
         self.assertEqual(282.75, budget["shared_hours"])
@@ -55,7 +61,10 @@ class ModelFirstRoadmapTests(unittest.TestCase):
                 self.assertNotEqual(0, completed.returncode, f"Day {index} learner TODO should remain red")
                 self.assertIn("NotImplementedError", completed.stderr)
         self.assertIn("logistic-regression", days[0]["learner_scope"].lower())
+        self.assertIn("per-row gradient", days[0]["worked_lesson"])
+        self.assertIn("[0,-0.25,0.25]", days[0]["worked_lesson"])
         self.assertNotIn("API call", days[0]["learner_scope"])
+        self.assertIn("Days 1–14 use only Python's standard library", (ROOT / "docs/model-first-roadmap/README.md").read_text())
         self.assertTrue(all("code" in days[i]["negative_control"].lower() for i in (25, 26, 27)))
 
     def test_day1_learner_acceptance_is_red_only_at_explicit_todo(self):
@@ -74,6 +83,9 @@ class ModelFirstRoadmapTests(unittest.TestCase):
         self.assertEqual([f"EAI-{n}" for n in range(211, 241)], active_ids)
         self.assertEqual(305, len(set(active_ids + superseded_ids)))
         self.assertEqual(30, len(set(active_ids)))
+        self.assertEqual([(1, 14), (2, 14), (3, 2)],
+                         [(s["sprint"], s["detailed_card_count"]) for s in migration["detailed_sprint_windows"]])
+        self.assertEqual(3, next(r["active_sprint_number"] for r in migration["active_mappings"] if r["active_day"] == 30))
         for row in migration["active_mappings"]:
             self.assertTrue(row["legacy_definition_immutable"])
             self.assertEqual("Open", row["legacy_status_preserved"])
@@ -107,6 +119,22 @@ class ModelFirstRoadmapTests(unittest.TestCase):
         self.assertIn('"providerRequestMade": False', fixture)
         manifest = json.loads((ROOT / "docs/model-first-roadmap/manifest.json").read_text())
         self.assertTrue(all(manifest["detailed_days"][day]["comprehension_questions"] for day in (25, 26, 27)))
+
+    def test_acceptance_scope_matches_taught_exercises_and_evidence_categories(self):
+        manifest = json.loads((ROOT / "docs/model-first-roadmap/manifest.json").read_text())
+        days = {row["day"]: row for row in manifest["detailed_days"]}
+        self.assertIn("scalar sigmoid", days[2]["learner_scope"])
+        self.assertIn("does not accept matrix rows", days[4]["negative_control"])
+        self.assertIn("threshold classifier", days[8]["learner_scope"])
+        self.assertIn("fresh process", days[20]["acceptance"])
+        self.assertIn("deterministic validation folds", days[22]["learner_scope"])
+        self.assertIn("observed-positive fraction", days[23]["learner_scope"])
+        for number in (26, 27, 28):
+            self.assertEqual("manual_read_only_application_comprehension", days[number]["evidence_category"])
+            self.assertIn("no FE/BE code-edit audit", days[number]["evidence"])
+        result = subprocess.run([sys.executable, "-S", "-m", "ai.model_building.tests.stdlib_days_02_14"],
+                                cwd=ROOT, capture_output=True, text=True, check=True)
+        self.assertIn("15 witness-backed checks passed; NumPy was not imported", result.stdout)
 
     def test_generation_checks_and_local_markdown_links(self):
         for command in ([sys.executable, "scripts/generate_model_first_roadmap.py", "--check"],
