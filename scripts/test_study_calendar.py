@@ -296,10 +296,10 @@ class StudyCalendarMigrationTest(unittest.TestCase):
     def test_role_dates_are_evidence_gated_and_dashboard_is_repo_source(self):
         dashboard = json.loads((ROOT / "docs/reboot/fde-alignment.json").read_text())
         milestones = dashboard["calendar_amendment"]["role_review_milestones"]
-        self.assertEqual([(175, "2027-04-18"), (459, "2028-01-27"), (550, "2028-04-27"),
-                          (648, "2028-08-03"), (718, "2028-10-12"), (774, "2028-12-07"),
+        self.assertEqual([(150, "2027-03-25"), (274, "2027-07-27"), (365, "2027-10-26"),
+                          (450, "2028-01-19"), (520, "2028-03-29"), (548, "2028-04-26"),
                           (None, "2029-10-26")],
-                         [(m["calendar_study_day"], m["date"]) for m in milestones])
+                         [(m["study_day"], m["date"]) for m in milestones])
         self.assertTrue(dashboard["calendar_amendment"]["application_may_begin_earlier"])
         self.assertFalse(dashboard["calendar_amendment"]["calendar_completion_grants_readiness"])
         self.assertEqual("2029-10-26", dashboard["calendar_amendment"]["professional_ownership_review_date"])

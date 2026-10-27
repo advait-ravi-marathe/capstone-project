@@ -1,0 +1,950 @@
+{
+  "schema_version": 1,
+  "title": "Model-building-first AI roadmap",
+  "status": "first_30_release_candidate_later_phases_planning_only",
+  "start_date": "2026-10-27",
+  "timezone": "Asia/Kolkata",
+  "horizon_days": 548,
+  "end_date": "2028-04-26",
+  "calendar_note": "Day numbers are study-day positions; dates are planning dates, never evidence or deadlines.",
+  "learner_completion_count": 0,
+  "detailed_sprint_windows": [
+    {
+      "sprint": 1,
+      "start_day": 1,
+      "end_day": 14,
+      "start_date": "2026-10-27",
+      "end_date": "2026-11-09",
+      "detailed_card_count": 14
+    },
+    {
+      "sprint": 2,
+      "start_day": 15,
+      "end_day": 28,
+      "start_date": "2026-11-10",
+      "end_date": "2026-11-23",
+      "detailed_card_count": 14
+    },
+    {
+      "sprint": 3,
+      "start_day": 29,
+      "end_day": 42,
+      "start_date": "2026-11-24",
+      "end_date": "2026-12-07",
+      "detailed_card_count": 2
+    }
+  ],
+  "budget": {
+    "days_1_to_171": {
+      "engineering_minutes": 120,
+      "dsa_separate": true
+    },
+    "days_172_to_548": {
+      "engineering_minutes": 165,
+      "shared_minutes": 45,
+      "dsa_separate": true
+    },
+    "engineering_hours": 1378.75,
+    "shared_hours": 282.75,
+    "reserve_fraction_inside_engineering": 0.2,
+    "no_extra_oa_or_certification_hours": true
+  },
+  "feasibility": {
+    "initial_model_to_product_progression_estimate": "25–39 active study weeks (175–273 daily study units if studying every day); estimate is conditional and includes foundations, training, evaluation, integration and evidence, not just coding.",
+    "nine_month_engineering_hours_by_day_274": 625.25,
+    "nine_month_target": "One strong end-to-end CoverStory flagship plus model-training experiments, conditional on held-out evidence; StreamForge and Developer Workflow Assistant remain later work.",
+    "three_flagship_horizon": "12–18 months is a planning range; this calendar uses 548 days (18 months) with recovery time inside the fixed budget.",
+    "not_promised": [
+      "absolute expertise",
+      "job or title",
+      "professional ownership",
+      "certification pass",
+      "customer adoption",
+      "production operation"
+    ]
+  },
+  "phases": [
+    {
+      "id": "foundations",
+      "days": [
+        1,
+        60
+      ],
+      "focus": "Python, NumPy, probability/linear algebra fundamentals, gradient intuition, data hygiene and first baselines",
+      "exit": "Can reproduce a tiny model update, explain loss/gradient, preserve held-out isolation, compare simple baselines with independent metrics.",
+      "dates": [
+        "2026-10-27",
+        "2026-12-25"
+      ]
+    },
+    {
+      "id": "classical-ml",
+      "days": [
+        61,
+        150
+      ],
+      "focus": "Classical ML, evaluation slices, leakage prevention, uncertainty, feature design and reusable evaluation harness",
+      "exit": "Multiple fixed-label experiments with reproducible train/validation/test splits, baseline comparisons and counterfactual/error slices. A model is called cross-validated only after a fresh estimator/pipeline is fitted inside every development fold and the final test stays untouched; Day 22 fixed-prediction bookkeeping alone is not sufficient.",
+      "dates": [
+        "2026-12-26",
+        "2027-03-25"
+      ]
+    },
+    {
+      "id": "neural-models",
+      "days": [
+        151,
+        230
+      ],
+      "focus": "PyTorch tensors/autograd/training loops/optimization; small CPU neural models; tiny educational transformer",
+      "exit": "Reproducible small-model training, ablations, held-out metrics, runtime/memory limits and honest limitations; not frontier pretraining.",
+      "dates": [
+        "2027-03-26",
+        "2027-06-13"
+      ]
+    },
+    {
+      "id": "language-model-adaptation",
+      "days": [
+        231,
+        300
+      ],
+      "focus": "Tokenization, pretrained model use, fine-tuning readiness and license/compute/data checks; CoverStory integration starts earlier only after model baseline/held-out gates",
+      "exit": "A justified small-model adaptation or explicit no-go based on baseline, license, compute and held-out evaluation; integrated CoverStory has source-grounded tests.",
+      "dates": [
+        "2027-06-14",
+        "2027-08-22"
+      ]
+    },
+    {
+      "id": "coverstory",
+      "days": [
+        301,
+        365
+      ],
+      "focus": "Harden the CoverStory integration that starts after model readiness around Day 211; complete retrieval, citations, permission boundaries, abstention, evaluations and supplied app infrastructure",
+      "exit": "Reproducible offline evaluation, error/security slices, model/data card, and live-provider evidence only if separately authorized and genuinely observed.",
+      "dates": [
+        "2027-08-23",
+        "2027-10-26"
+      ]
+    },
+    {
+      "id": "streamforge",
+      "days": [
+        366,
+        450
+      ],
+      "focus": "Train/evaluate a recommender or ranker with public/synthetic data and supplied platform plumbing",
+      "exit": "Held-out ranking comparison against simple baselines; cold-start/fairness/failure analysis; no fabricated usage claims.",
+      "dates": [
+        "2027-10-27",
+        "2028-01-19"
+      ]
+    },
+    {
+      "id": "developer-workflow",
+      "days": [
+        451,
+        520
+      ],
+      "focus": "Train/evaluate a bounded classification/ranking capability in the Developer Workflow Assistant with read-only-first tool use",
+      "exit": "Task outcomes, injection/permission tests, failure recovery and measured comparison; writes remain approval-gated.",
+      "dates": [
+        "2028-01-20",
+        "2028-03-29"
+      ]
+    },
+    {
+      "id": "integration-closeout",
+      "days": [
+        521,
+        548
+      ],
+      "focus": "Reuse evaluation/observability across all three projects, recovery, portfolio and readiness review",
+      "exit": "Reproducible artifact inventory and limitations; no automatic readiness, certification, role or adoption claim.",
+      "dates": [
+        "2028-03-30",
+        "2028-04-26"
+      ]
+    }
+  ],
+  "application_comprehension_and_scalability_lane": {
+    "budget_policy": "Within existing engineering/shared allocations; supplied app and bounded local load harnesses only. No external load generation or added hours.",
+    "learner_work": "Read/trace supplied FE/BE/HLD/LLD code, diagnose seeded failures, answer question-bank prompts, and interpret measured results. No standalone UI/API/auth/CRUD/DevOps implementation or capstone design essay.",
+    "topics_by_project_need": [
+      {
+        "stage": "Python/model foundations and Day 30 demo",
+        "topics": "request/data-flow trace, array/model memory and local batch inference; declared local concurrency and p50/p95/error measurement."
+      },
+      {
+        "stage": "CoverStory days 151–365",
+        "topics": "retrieval/query indexes; permission and API contract walkthrough; FE rendering/state/network/caching/streaming/large lists; bounded batch inference; latency, memory, throughput, quality and cost trade-offs."
+      },
+      {
+        "stage": "StreamForge days 366–450",
+        "topics": "ranking throughput, caching with Redis only if repeated reads justify it (TTL, invalidation, rate limits, atomicity/failure); Kafka only if asynchronous event flow is justified (partitions, consumer groups, order, replay, lag, delivery guarantees/idempotency). Compare simpler alternatives first."
+      },
+      {
+        "stage": "Developer Workflow days 451–520",
+        "topics": "tool/API boundaries, queues and durable recovery; idempotency, backpressure, retries/timeouts, authorization, safe approval and replay; no write-capable live connector without separate authorization."
+      },
+      {
+        "stage": "Platform integration days 301–548 as prerequisites permit",
+        "topics": "assistant-supplied container/CI/CD/IaC walkthroughs, secrets boundary, rollout/rollback, monitoring and incident scenarios; Kubernetes only after a simpler deployment is understood and justified. MLOps: dataset/model versioning, reproducible training, experiment tracking/registry, evaluation gates, deployment/readiness, drift and retraining."
+      }
+    ],
+    "measurement_contract": "Any local load result states hardware/runtime, dataset, concurrency, duration, p50/p95, error rate and resource bounds; no test is described as global or production scale."
+  },
+  "project_gates": [
+    {
+      "id": "coverstory",
+      "target_days": [
+        211,
+        365
+      ],
+      "gate": "Enter only after model baseline and separate held-out evaluation; document ingestion/provenance; retrieval/citation/abstention checks; tenant and data-governance tests; repeatable demo. Day 274 review targets one coherent end-to-end vertical slice plus measured model experiments, conditional on evidence. Live provider and production gates remain unmet without authorized real evidence.",
+      "target_dates": [
+        "2027-05-25",
+        "2027-10-26"
+      ]
+    },
+    {
+      "id": "streamforge",
+      "target_days": [
+        366,
+        450
+      ],
+      "gate": "Ranking/recommendation model compared to trivial baseline on held-out public/synthetic examples; cold-start and relevant fairness/error slices; reproducible results.",
+      "target_dates": [
+        "2027-10-27",
+        "2028-01-19"
+      ]
+    },
+    {
+      "id": "developer-workflow-assistant",
+      "target_days": [
+        451,
+        520
+      ],
+      "entry": "StreamForge evidence gate passed, or bounded recovery plan recorded; preserve work on both project threads within capacity.",
+      "gate": "Measured task-success evaluation, read-only default, explicit approval for any write path, injection/authorization/recovery controls.",
+      "target_dates": [
+        "2028-01-20",
+        "2028-03-29"
+      ]
+    },
+    {
+      "id": "shared-evaluation",
+      "target_days": [
+        521,
+        548
+      ],
+      "entry": "Prior project results are available; unresolved gates remain explicitly open and receive bounded recovery.",
+      "gate": "Same reusable evaluation schema applied to three distinct model capabilities with independent expected outputs and preserved limitations.",
+      "target_dates": [
+        "2028-03-30",
+        "2028-04-26"
+      ]
+    }
+  ],
+  "milestone_reviews": [
+    {
+      "study_day": 150,
+      "target": "ML/model foundations evidence review",
+      "gate": "Python/math/classical ML, clean held-out split, independently checked baselines; no title or job-readiness inference.",
+      "date": "2027-03-25"
+    },
+    {
+      "study_day": 274,
+      "target": "AI Product / Applied AI SWE portfolio checkpoint",
+      "gate": "One strong CoverStory vertical slice plus model experiments only if actual held-out and integration evidence qualifies; applications may begin earlier.",
+      "date": "2027-07-27"
+    },
+    {
+      "study_day": 365,
+      "target": "CoverStory evidence review",
+      "gate": "Grounding, retrieval/citations, permissions, abstention, evaluation and honest live-provider status; no automatic completion.",
+      "date": "2027-10-26"
+    },
+    {
+      "study_day": 450,
+      "target": "StreamForge model/product evidence review",
+      "gate": "Held-out ranking against baseline, cold-start/failure slices and reproducible metrics; no fabricated adoption.",
+      "date": "2028-01-19"
+    },
+    {
+      "study_day": 520,
+      "target": "Developer Workflow Assistant and later FDE evidence checkpoint",
+      "gate": "Measured tool-task outcomes and safe permissions; FDE evidence additionally requires real external discovery/stakeholder delivery/adoption.",
+      "date": "2028-03-29"
+    },
+    {
+      "study_day": 548,
+      "target": "Three-project portfolio review",
+      "gate": "Review each project and open external/production gates; no role, title, certification, mastery or professional ownership claim.",
+      "date": "2028-04-26"
+    },
+    {
+      "study_day": null,
+      "date": "2029-10-26",
+      "target": "Professional Staff-responsibility review",
+      "gate": "Requires externally verified sustained ownership, technical influence, adoption, cross-team impact and review; distinct from the learning calendar."
+    }
+  ],
+  "course_and_credential_targets": [
+    {
+      "title": "Machine Learning Specialization",
+      "provider": "Stanford Online and DeepLearning.AI",
+      "url": "https://www.deeplearning.ai/specializations/machine-learning",
+      "status": "study target; enrollment and paid certificate access are not authorized",
+      "fit": "Beginner; basic coding and high-school algebra. Provider graded assessment is required for provider certificate."
+    },
+    {
+      "title": "Deep Learning Specialization",
+      "provider": "DeepLearning.AI",
+      "url": "https://www.deeplearning.ai/specializations/deep-learning",
+      "status": "later optional study target; access and certificate are not assumed",
+      "fit": "Intermediate Python and basic linear algebra/ML recommended. Official labs use Python/NumPy and TensorFlow; PyTorch project exercises are supplementary and do not replace graded course requirements."
+    },
+    {
+      "title": "Learn the Basics",
+      "provider": "PyTorch",
+      "url": "https://docs.pytorch.org/tutorials/beginner/basics/intro.html",
+      "status": "official free practice reference",
+      "fit": "Tensors, Datasets & DataLoaders, Build the Neural Network, Automatic Differentiation, Optimizing Model Parameters, Save and Load the Model."
+    },
+    {
+      "title": "Fundamentals of Deep Learning",
+      "provider": "NVIDIA Deep Learning Institute open-source course repository",
+      "url": "https://github.com/NVDLI/fundamentals-of-deep-learning",
+      "status": "optional open-source notebook practice; completing it does not award NVIDIA certification",
+      "fit": "Prerequisites: Python 3.10+, PyTorch 2.5+; CPU-only works but later notebooks may be slow. Modules include An Introduction to Deep Learning, How a Neural Network Trains, Convolutional Neural Networks, Data Augmentation and Deployment, Pre-Trained Models, and Advanced Architectures."
+    },
+    {
+      "title": "Machine Learning Engineer – Associate (MLA-C02)",
+      "provider": "AWS",
+      "url": "https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/",
+      "status": "later readiness-based target after actual AWS ML deployment experience; as of 27 October 2026, MLA-C02 is the updated beta; recheck general availability/version near readiness; no exam booking or pass claim",
+      "fit": "Certification preparation stays inside existing study time. Existing Maarek material remains optional cloud preparation, not model-building evidence."
+    },
+    {
+      "title": "LLM Course",
+      "provider": "Hugging Face",
+      "url": "https://huggingface.co/learn/llm-course/chapter1/1",
+      "status": "later optional free course after Python and introductory deep learning; no credential claim",
+      "fit": "Chapter 1 Transformer models; Chapter 3 Fine-tuning a pretrained model. The course says foundational deep-learning knowledge is helpful before starting."
+    }
+  ],
+  "sources_last_verified": "2026-10-27",
+  "active_role_benchmarks": "docs/model-first-roadmap/role-alignment.md",
+  "superseded_candidate": "The earlier API-first candidate is excluded from this first-30 release and remains preserved on the broader review branch.",
+  "legacy_issue_migration": "docs/model-first-roadmap/legacy-issue-migration.json",
+  "dsa_source": {
+    "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+    "commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+    "policy": "pointer only; DSA source and actual attempts remain unchanged"
+  },
+  "detailed_days": [
+    {
+      "day": 1,
+      "unit_id": "MODEL-001",
+      "date": "2026-10-27",
+      "title": "A first trainable model",
+      "concept": "Python values, lists, loops, JSON, a score, sigmoid and one gradient step",
+      "learner_scope": "Implement one batch logistic-regression step in learner.py using the two fixed synthetic rows",
+      "prerequisite": "None; instructor worked example is runnable first",
+      "source_title_or_path": "Python Tutorial, 3. An Informal Introduction to Python",
+      "source": "https://docs.python.org/3/tutorial/introduction.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_day_01",
+      "acceptance": "Expected weights are [0.0, 0.05, -0.05], inputs remain unchanged, and independent BCE loss falls",
+      "negative_control": "No-update, wrong-sign, no-average and invalid-shape candidates fail; bias plus one feature is valid",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "model_training_and_gradient_work",
+      "budget": "20m concept + 85m model step + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false,
+      "worked_lesson": "### Python and model vocabulary\n\nA Python variable names a value; a list keeps an ordered sequence; `for` visits each row without changing its order. Each example is a pair `(features, label)`: the two feature values are numbers, and the label is exactly 0 or 1. `weights` is a bias-first list `[b, w1, w2]`, so a two-feature row has one fewer weight than the weight list. `json.dumps` converts ordinary lists/numbers into readable JSON; it does not train anything.\n\n### Score and sigmoid\n\nFor features `x=[x1,x2]`, calculate the scalar score `z=b+w1*x1+w2*x2`. The score can be any real number. The sigmoid maps it to a probability: `p=1/(1+exp(-z))`. At `z=0`, `p=0.5`; sigmoid alone does not make a prediction trustworthy.\n\n### Loss and gradient worked by hand\n\nUse row A `(x=[1,0], y=1)` and row B `(x=[0,1], y=0)`, starting weights `[0,0,0]`. Both scores are 0 and probabilities are 0.5. Binary cross-entropy for one row is `-y*ln(p)-(1-y)*ln(1-p)`, so each row has loss `-ln(0.5)=0.693147`; the mean is also 0.693147.\n\nFor this loss, the per-row gradient is `(p-y)*[1,x1,x2]`; the leading 1 is the bias coordinate. Row A gives `[-0.5,-0.5,0]`; row B gives `[0.5,0,0.5]`. Average the two rows coordinate by coordinate to get `[0,-0.25,0.25]`. A gradient says which direction increases loss. Gradient descent subtracts `learning_rate * gradient`, so rate 0.2 gives new weights `[0,0.05,-0.05]`. The independently recomputed mean loss falls to 0.668460. Do not copy the instructor function into learner.py: derive and implement the batch step yourself.\n\nA valid one-feature input is weights `[0,0]` with row `[1]`; a true shape error is weights `[0,0,0]` with row `[1]`. Labels must be binary, the batch nonempty, and the rate positive. The acceptance also changes initial weights/labels, so hard-coded example output is insufficient."
+    },
+    {
+      "day": 2,
+      "unit_id": "MODEL-002",
+      "date": "2026-10-28",
+      "title": "Scores and probabilities",
+      "concept": "A scalar score can be any real number; sigmoid maps it to (0,1)",
+      "learner_scope": "Implement stable scalar sigmoid; predictor shape checks are a later task",
+      "prerequisite": "Day 1 Python lists and arithmetic",
+      "source_title_or_path": "math — Mathematical functions: Power, exponential and logarithmic functions",
+      "source": "https://docs.python.org/3/library/math.html#power-exponential-and-logarithmic-functions",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_02_sigmoid",
+      "acceptance": "Check fixed scalar inputs -2, 0 and 2 against independent values",
+      "negative_control": "Reject NaN and positive/negative infinity; width checks do not belong to this scalar function",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "model_training_and_gradient_work",
+      "budget": "20m concept + 85m model code + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false,
+      "worked_lesson": "Worked example: with one feature x=2 and weights [bias=0, weight=1], score z=2. Sigmoid is 1/(1+e^-2)=0.880797; for score -2 it is 0.119203. The score is not itself a probability. Compute values from the inputs, preserve bias-first shape, and reject nonfinite values."
+    },
+    {
+      "day": 3,
+      "unit_id": "MODEL-003",
+      "date": "2026-10-29",
+      "title": "Binary cross-entropy",
+      "concept": "Log loss penalizes confident wrong predictions; labels are 0/1",
+      "learner_scope": "Implement mean binary cross-entropy for a batch of probabilities and labels",
+      "prerequisite": "Day 2 scores and labels",
+      "source_title_or_path": "math — Mathematical functions: Power, exponential and logarithmic functions",
+      "source": "https://docs.python.org/3/library/math.html#power-exponential-and-logarithmic-functions",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_03_binary_cross_entropy",
+      "acceptance": "Match fixed hand-calculated two-row loss and show it changes with confidence",
+      "negative_control": "Reject empty batches, invalid labels, and probabilities outside (0,1)",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "model_training_and_gradient_work",
+      "budget": "20m concept + 85m model code + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false,
+      "worked_lesson": "For probabilities [0.8, 0.25] and labels [1,0], per-row losses are -ln(0.8)=0.223144 and -ln(0.75)=0.287682; mean loss is 0.255413. A confident wrong prediction is penalized more. Clip only if the contract explicitly defines clipping; reject invalid probabilities and misaligned batches."
+    },
+    {
+      "day": 4,
+      "unit_id": "MODEL-004",
+      "date": "2026-10-30",
+      "title": "Vectors and dot products",
+      "concept": "Represent a feature row and weights as aligned vectors; bias is separate",
+      "learner_scope": "Implement a dot product for two vectors and apply it to three fixed feature/weight pairs",
+      "prerequisite": "Days 1–3",
+      "source_title_or_path": "Python Tutorial, 5.1.3. List Comprehensions",
+      "source": "https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_04_dot_product",
+      "acceptance": "Exact scalar scores match independent arithmetic",
+      "negative_control": "Unequal vector lengths are rejected; this contract does not accept matrix rows",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "model_training_and_gradient_work",
+      "budget": "25m concept + 80m model exercise + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false,
+      "worked_lesson": "A dot product pairs same-position values and sums products: [0.5,2]·[3,2]=0.5*3+2*2=5.5. The vector lengths must match. Keep the bias separate from feature weights so a feature row of width n uses n weights after the bias."
+    },
+    {
+      "day": 5,
+      "unit_id": "MODEL-005",
+      "date": "2026-10-31",
+      "title": "Check a gradient numerically",
+      "concept": "A finite difference estimates how loss changes when one parameter moves",
+      "learner_scope": "Compare a logistic binary-cross-entropy parameter derivative with a central finite-difference estimate",
+      "prerequisite": "Days 1–4",
+      "source_title_or_path": "Python Tutorial, 4.8. Defining Functions",
+      "source": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_05_finite_difference",
+      "acceptance": "Analytic derivative (sigmoid(2w)-1)*2 at w=.3 agrees within 1e-8",
+      "negative_control": "Wrong sign, wrong feature parameter or nonpositive epsilon is detected",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "model_training_and_gradient_work",
+      "budget": "25m concept + 80m model exercise + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false,
+      "worked_lesson": "For f(x)=x² at x=3, the central difference [f(3+ε)-f(3-ε)]/(2ε) approaches 6 as ε gets small. For logistic loss, perturb parameter j only; its analytic derivative is (p-y)*x_j. Two distinct feature coordinates ensure selecting the wrong parameter index changes the answer. Epsilon must be positive and comparison uses a stated tolerance."
+    },
+    {
+      "day": 6,
+      "unit_id": "MODEL-006",
+      "date": "2026-11-01",
+      "title": "Batch gradient descent",
+      "concept": "Average per-example gradients before one update; learning rate controls step size",
+      "learner_scope": "Extend the one-step model to a small deterministic batch",
+      "prerequisite": "Days 1–5",
+      "source_title_or_path": "math — Mathematical functions: Power, exponential and logarithmic functions",
+      "source": "https://docs.python.org/3/library/math.html#power-exponential-and-logarithmic-functions",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_06_batch_step_matches_independent_fixed_contract",
+      "acceptance": "Independent expected gradient and post-step loss match fixed values",
+      "negative_control": "Summing without averaging and reversing the sign are rejected",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "model_training_and_gradient_work",
+      "budget": "20m concept + 85m model code + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false,
+      "worked_lesson": "At zero weights on the two Day 1 rows, the mean gradient is [0,-0.25,0.25], not the sum [0,-0.5,0.5]. With rate 0.2, subtract it to get [0,0.05,-0.05]. Reversing the sign or dividing by feature count rather than number of rows changes the result."
+    },
+    {
+      "day": 7,
+      "unit_id": "MODEL-007",
+      "date": "2026-11-02",
+      "title": "Keep a held-out set",
+      "concept": "Train, validation and test answer different questions; split before fitting",
+      "learner_scope": "Create a deterministic split manifest for synthetic document labels",
+      "prerequisite": "Python collections and Day 6 batch model",
+      "source_title_or_path": "3.1. Cross-validation: evaluating estimator performance",
+      "source": "https://scikit-learn.org/stable/modules/cross_validation.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_07_split_is_disjoint_and_ordered",
+      "acceptance": "Exact record IDs are disjoint and class counts match the independent manifest",
+      "negative_control": "Duplicate IDs and a leaked test row fail",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "dataset_hygiene_and_independent_evaluation",
+      "budget": "25m concept + 80m split/eval + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 8,
+      "unit_id": "MODEL-008",
+      "date": "2026-11-03",
+      "title": "Spot target leakage",
+      "concept": "A feature derived from the answer makes evaluation dishonest",
+      "learner_scope": "Fit a tiny threshold classifier on a synthetic clean feature and a separate target-copy feature; compare both on held-out rows and flag the forbidden column",
+      "prerequisite": "Day 7 split",
+      "source_title_or_path": "12.2. Data leakage",
+      "source": "https://scikit-learn.org/stable/common_pitfalls.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_08_reports_all_forbidden_features",
+      "acceptance": "The clean-feature classifier and target-copy classifier have exact independently checked held-out predictions/errors; the leaky feature is explicitly disallowed",
+      "negative_control": "Fitting on held-out labels, hiding the target-derived feature, or reporting the leaked score as valid fails",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "dataset_hygiene_and_independent_evaluation",
+      "budget": "25m concept + 80m leakage experiment + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false,
+      "worked_lesson": "Fit a threshold rule to clean training values [0,1,2,3] and labels [0,0,1,1]; a cut between 1 and 2 predicts the training labels. On held-out clean values [3,1] with labels [0,1], that learned rule predicts [1,0] and gets both wrong. A second feature copied directly from the training labels creates an invalid shortcut; its held-out copies [0,1] score perfectly. The contrast demonstrates leakage, not a usable model: the target copy cannot exist at prediction time and must be forbidden."
+    },
+    {
+      "day": 9,
+      "unit_id": "MODEL-009",
+      "date": "2026-11-04",
+      "title": "Scale using training data only",
+      "concept": "Mean and scale are learned on train, then reused unchanged",
+      "learner_scope": "Fit a two-feature standardizer on train rows and transform distinct shifted held-out rows with those same statistics",
+      "prerequisite": "Day 7 split and Day 8 leakage",
+      "source_title_or_path": "12.1. Inconsistent preprocessing",
+      "source": "https://scikit-learn.org/stable/common_pitfalls.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_09_standardizer_uses_training_statistics",
+      "acceptance": "Train transforms have zero mean/unit scale and fixed held-out values use train-only statistics",
+      "negative_control": "A transform refitted on held-out or combined rows is caught by shifted values; source inputs remain unchanged",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "dataset_hygiene_and_independent_evaluation",
+      "budget": "25m concept + 80m model exercise + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 10,
+      "unit_id": "MODEL-010",
+      "date": "2026-11-05",
+      "title": "Majority and centroid baselines",
+      "concept": "A simple baseline can expose class imbalance and weak modeling",
+      "learner_scope": "Compare majority-class and nearest-centroid predictions; fit centroids only on training rows",
+      "prerequisite": "Days 7–9",
+      "source_title_or_path": "NearestCentroid",
+      "source": "https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.NearestCentroid.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_10_majority_tie_breaks_to_zero ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_10_nearest_centroid_is_fit_on_training_rows",
+      "acceptance": "Exact majority and centroid predictions match independently computed values",
+      "negative_control": "A baseline that learns from held-out labels, breaks ties inconsistently, or mixes feature axes fails",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "dataset_hygiene_and_independent_evaluation",
+      "budget": "20m concept + 85m baseline experiment + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false,
+      "worked_lesson": "A majority baseline predicts the most frequent training label (this contract breaks ties toward 0). A nearest-centroid classifier averages each class's training rows, then assigns a query to the closest centroid by squared Euclidean distance. Never use held-out rows to form the centroids."
+    },
+    {
+      "day": 11,
+      "unit_id": "MODEL-011",
+      "date": "2026-11-06",
+      "title": "Confusion matrix",
+      "concept": "True/false positives/negatives answer different questions",
+      "learner_scope": "Build a confusion matrix from fixed labels and predictions",
+      "prerequisite": "Day 10 baseline",
+      "source_title_or_path": "3.4. Metrics and scoring: quantifying the quality of predictions",
+      "source": "https://scikit-learn.org/stable/modules/model_evaluation.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_11_confusion_matrix_has_exact_counts",
+      "acceptance": "Exact four cell counts match a hand-derived oracle",
+      "negative_control": "Swapped positive class or omitted row is detected",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "dataset_hygiene_and_independent_evaluation",
+      "budget": "20m concept + 85m metrics + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 12,
+      "unit_id": "MODEL-012",
+      "date": "2026-11-07",
+      "title": "Precision and recall",
+      "concept": "Threshold choices trade missed positives against false alarms",
+      "learner_scope": "Calculate precision/recall and exact confusion counts at thresholds 0.50 and 0.75",
+      "prerequisite": "Day 11 confusion matrix",
+      "source_title_or_path": "3.3. Tuning the decision threshold for class prediction",
+      "source": "https://scikit-learn.org/stable/modules/classification_threshold.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_12_undefined_metrics_remain_none ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_12_two_thresholds_show_precision_recall_tradeoff",
+      "acceptance": "Exact labels, counts and precision/recall match independent enumeration",
+      "negative_control": "Undefined denominator must be explicit, not silently reported as 1.0; threshold comparison cannot reuse test data to tune",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "dataset_hygiene_and_independent_evaluation",
+      "budget": "25m concept + 80m threshold experiment + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false,
+      "worked_lesson": "Thresholding p>=0.50 gives [1,1,0,0]; thresholding at 0.75 gives [1,0,0,0]. Against labels [1,0,1,0], the first has TP/TN/FP/FN=1/1/1/1, precision .5 and recall .5; the second has 1/2/0/1, precision 1 and recall .5. Threshold changes trade false alarms against missed positives; neither threshold is universal."
+    },
+    {
+      "day": 13,
+      "unit_id": "MODEL-013",
+      "date": "2026-11-08",
+      "title": "Inspect errors by slice",
+      "concept": "Aggregate scores can hide minority or document-type failures",
+      "learner_scope": "Report metrics for two predeclared synthetic slices with denominators",
+      "prerequisite": "Days 11–12",
+      "source_title_or_path": "3.4. Metrics and scoring: quantifying the quality of predictions",
+      "source": "https://scikit-learn.org/stable/modules/model_evaluation.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_13_slice_denominators_preserve_rows",
+      "acceptance": "Every slice count and metric matches the independent expected table",
+      "negative_control": "Empty/unknown slice and disappearing rows are rejected",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "dataset_hygiene_and_independent_evaluation",
+      "budget": "25m concept + 80m slice analysis + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 14,
+      "unit_id": "MODEL-014",
+      "date": "2026-11-09",
+      "title": "Improve a linear baseline",
+      "concept": "Change one factor at a time and preserve a clean held-out comparison",
+      "learner_scope": "Compare the Day 1 model with a fixed-feature baseline; write a short error note",
+      "prerequisite": "Days 1–13",
+      "source_title_or_path": "3.4. Metrics and scoring: quantifying the quality of predictions",
+      "source": "https://scikit-learn.org/stable/modules/model_evaluation.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_14_comparison_reports_source_ordered_error_ids",
+      "acceptance": "Result table includes exact split, baseline, metric and error examples",
+      "negative_control": "Selecting a model using test results is flagged as leakage",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "dataset_hygiene_and_independent_evaluation",
+      "budget": "20m concept + 85m controlled experiment + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 15,
+      "unit_id": "MODEL-015",
+      "date": "2026-11-10",
+      "title": "NumPy arrays and shape",
+      "concept": "ndarray stores homogeneous numeric arrays; shape determines valid operations",
+      "learner_scope": "Recreate the fixed feature matrix and report dtype, shape and label shape",
+      "prerequisite": "Comfort with Python lists, loops and dot products",
+      "source_title_or_path": "NumPy: the absolute basics for beginners",
+      "source": "https://numpy.org/doc/stable/user/absolute_beginners.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_15_rectangular_matrix_shape",
+      "acceptance": "Independent expected shape/dtype and values match",
+      "negative_control": "Ragged array or transposed feature matrix is rejected",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "numerical_array_and_ml_experiment",
+      "budget": "25m concept + 80m array exercise + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 16,
+      "unit_id": "MODEL-016",
+      "date": "2026-11-11",
+      "title": "Vectorized prediction",
+      "concept": "Broadcasting applies the same linear operation across rows",
+      "learner_scope": "Implement vectorized scores and compare them row-by-row to Day 4 scalar scores",
+      "prerequisite": "Day 15 shapes",
+      "source_title_or_path": "NumPy: the absolute basics for beginners",
+      "source": "https://numpy.org/doc/stable/user/absolute_beginners.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_16_batched_scores_match_scalar_oracle",
+      "acceptance": "All scores match scalar oracle within 1e-12",
+      "negative_control": "Wrong axis/bias broadcasting fails a non-square fixture",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "numerical_array_and_ml_experiment",
+      "budget": "20m concept + 85m vectorization + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 17,
+      "unit_id": "MODEL-017",
+      "date": "2026-11-12",
+      "title": "Vectorized gradient",
+      "concept": "Array reductions must preserve feature and batch axes",
+      "learner_scope": "Implement a NumPy mean batch gradient and compare a non-square three-row, two-feature batch with an independent oracle",
+      "prerequisite": "Days 15–16",
+      "source_title_or_path": "NumPy: the absolute basics for beginners",
+      "source": "https://numpy.org/doc/stable/user/absolute_beginners.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_17_gradient_keeps_bias_and_feature_axes",
+      "acceptance": "Bias and both feature gradients match expected values",
+      "negative_control": "Summing rather than averaging rows, wrong axis, or dividing by feature count is rejected",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "numerical_array_and_ml_experiment",
+      "budget": "25m concept + 80m gradient exercise + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 18,
+      "unit_id": "MODEL-018",
+      "date": "2026-11-13",
+      "title": "Numerical edge cases",
+      "concept": "Floating-point precision and extreme logits can cause overflow",
+      "learner_scope": "Compare a stable sigmoid implementation over moderate and extreme scores",
+      "prerequisite": "Day 16 vectorized prediction",
+      "source_title_or_path": "NumPy: the absolute basics for beginners",
+      "source": "https://numpy.org/doc/stable/user/absolute_beginners.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_18_extreme_sigmoid_is_finite",
+      "acceptance": "Outputs are finite and monotonic at fixed boundary values",
+      "negative_control": "NaN, overflowed output or clipping that changes moderate values is caught",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "numerical_array_and_ml_experiment",
+      "budget": "25m concept + 80m stability experiment + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 19,
+      "unit_id": "MODEL-019",
+      "date": "2026-11-14",
+      "title": "Learning-rate comparison",
+      "concept": "On a simple convex loss, a step that is too large can oscillate and diverge; this is a teaching probe, not a universal model claim",
+      "learner_scope": "Run three fixed rates on f(w)=(w−2)^2 and record every loss checkpoint",
+      "prerequisite": "Days 6 and 17",
+      "source_title_or_path": "math — Mathematical functions: Power, exponential and logarithmic functions",
+      "source": "https://docs.python.org/3/library/math.html#power-exponential-and-logarithmic-functions",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_19_curve_retains_every_rate_and_checkpoint",
+      "acceptance": "The independent contract requires the small rate to reduce loss and the high rate to increase it",
+      "negative_control": "Cherry-picking only the best endpoint or omitting the high-rate curve fails",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "numerical_array_and_ml_experiment",
+      "budget": "20m concept + 85m controlled runs + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 20,
+      "unit_id": "MODEL-020",
+      "date": "2026-11-15",
+      "title": "Repeatable experiments",
+      "concept": "Seed, split, feature list and config are part of a reproducible result",
+      "learner_scope": "Run the fixed train-only logistic step twice, record ordered IDs/features/predictions, and compare a fresh-process JSON result",
+      "prerequisite": "Days 7–19",
+      "source_title_or_path": "Python Tutorial, 3. An Informal Introduction to Python",
+      "source": "https://docs.python.org/3/tutorial/introduction.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_20_experiment_record_preserves_seed_and_ordered_metadata",
+      "acceptance": "Independent fresh process emits the same canonical record and predictions",
+      "negative_control": "Changed order, omitted seed, or a nondeterministic model output fails",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "numerical_array_and_ml_experiment",
+      "budget": "20m concept + 85m reproducibility + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false,
+      "worked_lesson": "Repeat the same three-row CPU logistic update from zero weights with rate 0.1. The mean gradient gives weights [0.0166667, 0.0333333, 0], and the two declared held-out feature rows score 0.05 and 0.0166667, both class 1 under the stated zero-score cutoff. Save seed 41, ordered training IDs, feature order and predictions. A separate Python process recomputes these values; identical metadata alone would not prove the model computation repeated."
+    },
+    {
+      "day": 21,
+      "unit_id": "MODEL-021",
+      "date": "2026-11-16",
+      "title": "A scikit-learn pipeline baseline",
+      "concept": "A Pipeline keeps preprocessing and estimator fit behavior together",
+      "learner_scope": "Fit a logistic baseline through a preprocessing Pipeline on the training partition",
+      "prerequisite": "Train/test discipline and basic probability",
+      "source_title_or_path": "8.1. Pipelines and composite estimators",
+      "source": "https://scikit-learn.org/stable/modules/compose.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_21_baseline_against_same_heldout_labels",
+      "acceptance": "Predictions and metric counts match a fixed independent control envelope",
+      "negative_control": "Preprocessing fit on held-out rows is rejected",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "numerical_array_and_ml_experiment",
+      "budget": "25m concept + 80m baseline + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 22,
+      "unit_id": "MODEL-022",
+      "date": "2026-11-17",
+      "title": "Fold scoring without test tuning",
+      "concept": "Cross-validation separates development folds from a final test; this bounded exercise scores fixed prediction fixtures and does not retrain a model per fold",
+      "learner_scope": "Construct three deterministic validation folds from six development IDs, score fixed predictions per fold, then score two separate final-test IDs once",
+      "prerequisite": "Day 21 pipeline",
+      "source_title_or_path": "3.1. Cross-validation: evaluating estimator performance",
+      "source": "https://scikit-learn.org/stable/modules/cross_validation.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_22_preprocessing_fit_must_exclude_evaluation_ids ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_22_retains_each_fold_score_and_one_final_test_result",
+      "acceptance": "Exact fold membership, fixed-prediction scores, mean, and separate two-row final-test score match the independent expected report",
+      "negative_control": "Duplicate IDs, missing/duplicated fold rows, or final-test IDs entering folds is rejected",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "numerical_array_and_ml_experiment",
+      "budget": "25m concept + 80m evaluation + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false,
+      "worked_lesson": "Partition six ordered development IDs into three round-robin folds: [a,d], [b,e], [c,f]. This exercise scores declared fixed predictions, yielding .5, .5, 1.0 and a mean of 2/3; it does not refit a model per fold. Two separate final-test IDs scored .5 are checked once and are not another fold. A later model evaluation may be called cross-validated only after it fits a fresh estimator inside each development fold while leaving the final test untouched."
+    },
+    {
+      "day": 23,
+      "unit_id": "MODEL-023",
+      "date": "2026-11-18",
+      "title": "Uncertainty and calibration basics",
+      "concept": "A score near 0.5 is not proof of calibrated probability",
+      "learner_scope": "Bin fixed probabilities and report count, mean confidence and observed-positive fraction (not classifier accuracy)",
+      "prerequisite": "Days 11–13 and probability basics",
+      "source_title_or_path": "1.16. Probability calibration",
+      "source": "https://scikit-learn.org/stable/modules/calibration.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_23_calibration_bins_match_fixed_counts",
+      "acceptance": "Independent bin counts, edge assignment and averages match",
+      "negative_control": "Empty bins and exact edge values are detected",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "numerical_array_and_ml_experiment",
+      "budget": "25m concept + 80m calibration exercise + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 24,
+      "unit_id": "MODEL-024",
+      "date": "2026-11-19",
+      "title": "Build a synthetic document dataset",
+      "concept": "Labels describe document type, not truth, risk or customer eligibility",
+      "learner_scope": "Create the 12 declared synthetic schedule/exclusion/definition rows",
+      "prerequisite": "Days 7–23; no private data",
+      "source_title_or_path": "9.3. Generated datasets",
+      "source": "https://scikit-learn.org/stable/datasets/sample_generators.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_24_document_fixture_is_fixed_and_split_safe",
+      "acceptance": "Exact doc-01..doc-12 IDs, cyclic labels, 6/3/3 splits and fixed text match the independent contract",
+      "negative_control": "Duplicate text/IDs across train, validation or test fail exact row comparison",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "synthetic_document_model_and_evaluation",
+      "budget": "20m concept + 85m dataset curation + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 25,
+      "unit_id": "MODEL-025",
+      "date": "2026-11-20",
+      "title": "Compare document-type baselines",
+      "concept": "A useful model is measured against a trivial baseline on held-out data",
+      "learner_scope": "Train majority, centroid and one-step linear baselines using development rows; compare with a fixed lexical rule on the same held-out IDs/labels",
+      "prerequisite": "Day 24 dataset",
+      "source_title_or_path": "3.4. Metrics and scoring: quantifying the quality of predictions",
+      "source": "https://scikit-learn.org/stable/modules/model_evaluation.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_25_error_ids_retain_order_and_ignore_correct_rows",
+      "acceptance": "Each candidate has an independently checked confusion table, accuracy and ordered error IDs",
+      "negative_control": "Omitting/changing a candidate, using held-out labels for fitting, or reordering IDs is rejected",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "synthetic_document_model_and_evaluation",
+      "budget": "20m concept + 85m baseline comparison + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 26,
+      "unit_id": "MODEL-026",
+      "date": "2026-11-21",
+      "title": "Trace the supplied application shell",
+      "concept": "Manual read-only trace: inspect the existing local UI shell and distinguish rendered content from unwired behavior",
+      "learner_scope": "Record exact rendered text and identify that request/model behavior is not present; pair with one previously introduced model error analysis",
+      "prerequisite": "Day 24–25 model errors",
+      "source_title_or_path": "Repository source: existing local CoverStory UI shell",
+      "source": "../../../frontend/src/local/LocalCoverStoryApp.tsx",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_26_supplied_route_reading_is_paired_with_model_error_analysis",
+      "acceptance": "Manual evidence names exact source lines and separates existing behavior from missing integration",
+      "negative_control": "Claiming an API call or learner-authored FE/BE code where none exists is rejected",
+      "evidence": "Manual source-comprehension note with exact file/line anchors, request or failure path, observed output and limits; automated helper test is separate; no FE/BE code-edit audit or completion is inferred.",
+      "evidence_category": "manual_read_only_application_comprehension",
+      "budget": "20m concept + 30m read-only trace + 55m existing model/error review + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false,
+      "comprehension_questions": [
+        "What does the existing local CoverStory screen render? Which UI or request behaviors are explicitly still unwired?"
+      ],
+      "expected_observations": [
+        "It renders the local training heading and says policy issue/renewal preview will appear after the local API is wired. It contains no current question submission, model request or ownership selection; those are absent, not implied."
+      ]
+    },
+    {
+      "day": 27,
+      "unit_id": "MODEL-027",
+      "date": "2026-11-22",
+      "title": "Trace the existing backend boundary",
+      "concept": "Manual source diagnosis follows an existing policy issue request through owner lookup, idempotency and persistence",
+      "learner_scope": "Read the existing controller call path, note one model-data error from earlier work, and write a concise evidence note without editing FE/BE",
+      "prerequisite": "Day 26 trace",
+      "source_title_or_path": "Repository source: existing local policy issue controller",
+      "source": "../../../src/main/java/assignments/local/LocalPolicyIssueController.java",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_27_seeded_failure_analysis_uses_observed_prediction_errors",
+      "acceptance": "Manual evidence records route, request/auth input, owner lookup, replay guard and persistence call",
+      "negative_control": "Editing React/Spring/auth/controller code or calling this existing route an AI integration fails scope review",
+      "evidence": "Manual source-comprehension note with exact file/line anchors, request or failure path, observed output and limits; automated helper test is separate; no FE/BE code-edit audit or completion is inferred.",
+      "evidence_category": "manual_read_only_application_comprehension",
+      "budget": "20m concept + 25m read-only diagnosis + 60m concise evidence note + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false,
+      "comprehension_questions": [
+        "Which route handles a policy issue request? Where is the owner resolved, what idempotency lookup happens before persistence, and which component persists a new issue?"
+      ],
+      "expected_observations": [
+        "POST /api/policies receives PolicyIssueRequest and Authentication. LocalPolicyOwnerResolver resolves the owner; the controller looks up an existing issue receipt by owner and clientRequestId before asking the lifecycle service for an HTTP status. A new accepted issue is persisted atomically by PolicyLifecycleService. This is existing policy infrastructure, not an AI endpoint."
+      ]
+    },
+    {
+      "day": 28,
+      "unit_id": "MODEL-028",
+      "date": "2026-11-23",
+      "title": "Explain model output limits",
+      "concept": "Manual review: a document-type label is not an answer, eligibility decision, or calibrated confidence",
+      "learner_scope": "Read a fixed synthetic model-output example and state its limits using the counterexample; write a concise evidence note, with no FE/BE edits",
+      "prerequisite": "Day 27 diagnosis",
+      "source_title_or_path": "Repository source: fixed model-output fixture and learner report contract",
+      "source": "../../../ai/model_building/fixtures/day-28-example.json",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_28_report_does_not_promote_score_to_decision",
+      "acceptance": "Manual note distinguishes score, label and downstream decision with exact fixture evidence",
+      "negative_control": "Treating a toy score as customer truth or changing UI/backend code fails",
+      "evidence": "Manual source-comprehension note with exact file/line anchors, request or failure path, observed output and limits; automated helper test is separate; no FE/BE code-edit audit or completion is inferred.",
+      "evidence_category": "manual_read_only_application_comprehension",
+      "budget": "20m concept + 25m read-only review + 60m concise evidence note + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false,
+      "comprehension_questions": [
+        "In the fixed synthetic report, what do score, predicted_label and downstream_decision mean? Does the score establish a claim decision or confidence calibration?"
+      ],
+      "expected_observations": [
+        "The example reports score 0.92, predicted label 1 and downstream_decision not_assessed. It is a synthetic model-output example only; it establishes neither an insurance decision nor calibrated confidence."
+      ]
+    },
+    {
+      "day": 29,
+      "unit_id": "MODEL-029",
+      "date": "2026-11-24",
+      "title": "A reproducible model artifact",
+      "concept": "Persist only a small model/config/feature description with a stable synthetic dataset reference",
+      "learner_scope": "Implement model serialization for the toy linear model, then reload and score fixed rows",
+      "prerequisite": "Days 1–28 model/data basics",
+      "source_title_or_path": "NumPy: the absolute basics for beginners",
+      "source": "https://numpy.org/doc/stable/user/absolute_beginners.html",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_29_roundtrip_model_preserves_feature_order_and_values",
+      "acceptance": "Independent expected predictions and metadata match before/after reload",
+      "negative_control": "Missing feature order, changed labels, or accepting nonfinite weights is rejected",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "model_artifact_and_heldout_evaluation",
+      "budget": "20m concept + 85m AI implementation + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 30,
+      "unit_id": "MODEL-030",
+      "date": "2026-11-25",
+      "title": "Day 30 evaluated model slice",
+      "concept": "A compact model slice trains, saves, reloads and evaluates a three-class synthetic document-type centroid classifier",
+      "learner_scope": "Fit class centroids on six declared training rows, serialize/reload the model, classify three separate held-out rows and report exact errors",
+      "prerequisite": "Days 24–29; fixed synthetic 3-feature dataset",
+      "source_title_or_path": "Repository source: model-building learner contract",
+      "source": "../../../ai/model_building/learner.py",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_30_train_save_reload_and_evaluate_document_type_model",
+      "acceptance": "Class order, feature order, training IDs, centroids, held-out predictions and error count match independent expected values",
+      "negative_control": "Training on held-out IDs, swapping features/classes, malformed artifact data, or claiming customer/production value is rejected",
+      "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
+      "evidence_category": "model_artifact_and_heldout_evaluation",
+      "budget": "20m concept + 85m model build/evaluation + 15m evidence",
+      "status": "not_started",
+      "learner_completion": false,
+      "worked_lesson": "The six training rows form three two-row groups. For each class, average its three feature counts to obtain a centroid; feature order is schedule_count, exclusion_count, definition_count. The three held-out rows are near their matching centroids. Train only on the six train IDs, serialize class/feature order and centroids, reload, then score the held-out IDs and count errors. The tiny fixed synthetic dataset is an implementation exercise, not evidence of generalization to real policy documents."
+    }
+  ]
+}
