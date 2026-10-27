@@ -42,3 +42,12 @@ starter, independent instructor witnesses, migration metadata, generators and
 checks. The 548-day manifest keeps later work as outcome-based planning; it
 does not publish daily assignments after Day 30. Existing main-branch FE/BE
 application code is referenced for read-only comprehension only.
+
+## Existing repository-wide browser test setup
+
+The inherited repository CI still runs its existing Playwright browser
+harnesses. To reproduce those full-suite checks locally, install the locked
+frontend dependencies with `npm ci` and install Chromium. If Chromium is
+already available at the system path, run the Maven suite with
+`CHROMIUM_BIN=/usr/bin/chromium ./mvnw test`. These setup commands support
+existing historical instructor tests; they are not new Day 1 learner tasks.
