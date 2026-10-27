@@ -16,7 +16,7 @@ from ai.model_building.learner_acceptance.test_days_02_30 import Day02To30Accept
 def main():
     functions = (
         "sigmoid", "mean_binary_cross_entropy", "dot", "central_difference",
-        "train_one_logistic_step", "deterministic_split", "find_target_leakage",
+        "train_one_logistic_step", "mean_batch_gradient_python", "deterministic_split", "find_target_leakage",
         "fit_threshold_classifier", "predict_threshold_classifier", "fit_standardizer",
         "majority_prediction", "nearest_centroid_predictions", "confusion_matrix",
         "precision_recall", "threshold_predictions", "metrics_by_slice",

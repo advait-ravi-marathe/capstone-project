@@ -1,6 +1,9 @@
 """Prove public learner acceptance tests pass correct test-only witnesses and reject mutants."""
 
 import unittest
+import json
+import inspect
+from pathlib import Path
 from contextlib import ExitStack
 from unittest.mock import patch
 
@@ -15,6 +18,7 @@ PATCHES = {
     "dot": ref.dot,
     "central_difference": ref.central_difference,
     "train_one_logistic_step": ref.train_one_logistic_step,
+    "mean_batch_gradient_python": ref.mean_batch_gradient_python,
     "deterministic_split": ref.deterministic_split,
     "find_target_leakage": ref.find_target_leakage,
     "fit_threshold_classifier": ref.fit_threshold_classifier,
@@ -50,8 +54,86 @@ PATCHES = {
     "score_rows": ref.score_rows,
 }
 
+# First day when each learner seam is introduced. Later acceptance selectors
+# may reuse earlier seams, but never receive a reference for future work.
+SEAM_DAYS = {
+    1: ("train_one_logistic_step",),
+    2: ("sigmoid",),
+    3: ("mean_binary_cross_entropy",),
+    4: ("dot",),
+    5: ("central_difference",),
+    6: ("mean_batch_gradient_python",),
+    7: ("deterministic_split",),
+    8: ("find_target_leakage", "fit_threshold_classifier", "predict_threshold_classifier"),
+    9: ("fit_standardizer",),
+    10: ("majority_prediction", "nearest_centroid_predictions"),
+    11: ("confusion_matrix",),
+    12: ("precision_recall", "threshold_predictions"),
+    13: ("metrics_by_slice",),
+    14: ("compare_predictions",),
+    15: ("matrix_shape",),
+    16: ("linear_scores",),
+    17: ("batch_gradient",),
+    18: ("finite_sigmoid",),
+    19: ("train_curve",),
+    20: ("experiment_record",),
+    21: ("sklearn_pipeline_baseline",),
+    22: ("fit_id_guard", "fold_evaluation_summary", "deterministic_folds"),
+    23: ("calibration_bins",),
+    24: ("build_document_fixture",),
+    25: ("prediction_error_ids",),
+    28: ("report_model_limit",),
+    29: ("score_rows", "serialize_linear_model", "load_linear_model"),
+    30: ("fit_document_type_centroids", "predict_document_type", "serialize_document_type_model", "load_document_type_model"),
+}
+
 
 class AcceptanceWitnessTests(unittest.TestCase):
+    def test_each_day_selector_passes_with_only_prior_and_current_witnesses(self):
+        manifest = json.loads((Path(__file__).resolve().parents[3] / "docs/model-first-roadmap/manifest.json").read_text())
+        by_day = {row["day"]: row for row in manifest["detailed_days"]}
+        all_seams = {name for names in SEAM_DAYS.values() for name in names}
+        self.assertEqual(all_seams, set(PATCHES), "every learner seam needs one introduction day")
+
+        def execute(day, enabled):
+            with ExitStack() as stack:
+                for seam_day, names in SEAM_DAYS.items():
+                    if seam_day <= enabled:
+                        for name in names:
+                            stack.enter_context(patch.object(learner, name, PATCHES[name]))
+                command = by_day[day]["acceptance_command"]
+                if day == 1:
+                    stack.enter_context(patch.object(test_day_01, "train_one_logistic_step", ref.train_one_logistic_step)
+                                        if enabled >= 1 else patch.object(test_day_01, "train_one_logistic_step", learner.train_one_logistic_step))
+                    suite = unittest.defaultTestLoader.loadTestsFromTestCase(test_day_01.Day01LearnerAcceptance)
+                else:
+                    import re
+                    method_names = re.findall(r"Day02To30Acceptance\.(\w+)", command)
+                    self.assertTrue(method_names, (day, command))
+                    suite = unittest.TestSuite(test_days_02_30.Day02To30Acceptance(name) for name in method_names)
+                result = unittest.TestResult()
+                suite.run(result)
+                return result
+
+        learner_source = inspect.getsource(learner)
+        self.assertIn("return _todo(29)", learner_source)  # no learner implementation was committed
+        for day in range(1, 31):
+            with self.subTest(day=day):
+                for seam_day, names in SEAM_DAYS.items():
+                    if seam_day > day:
+                        for name in names:
+                            self.assertIn("return _todo(", inspect.getsource(getattr(learner, name)),
+                                          f"future seam {name} must remain a learner TODO on Day {day}")
+                correct = execute(day, day)
+                self.assertTrue(correct.wasSuccessful(), f"Day {day} with only seams through current day: {correct.errors}, {correct.failures}")
+                if day in SEAM_DAYS:
+                    unfinished = execute(day, day - 1)
+                    errors = [detail for _, detail in unfinished.errors]
+                    self.assertTrue(any("NotImplementedError" in detail for detail in errors),
+                                    f"Day {day} current TODO should stay red before its witness is enabled")
+                else:
+                    self.assertIn(day, (26, 27), "days without a new learner seam must be explicit manual-comprehension days")
+
     def test_full_day_1_to_30_acceptance_suite_passes_correct_test_only_witnesses(self):
         with ExitStack() as stack:
             for name, candidate in PATCHES.items():
@@ -120,6 +202,7 @@ class AcceptanceWitnessTests(unittest.TestCase):
             ("dot", lambda *_: 0.0, "test_day_04_dot_product"),
             ("central_difference", lambda *_: 0.0, "test_day_05_finite_difference"),
             ("train_one_logistic_step", lambda weights, *_: list(weights), "test_day_06_batch_step_matches_independent_fixed_contract"),
+            ("mean_batch_gradient_python", lambda *_: [0.0, 0.0, 0.0], "test_day_06_batch_step_matches_independent_fixed_contract"),
             ("deterministic_split", lambda records, *_: ([r["id"] for r in records], [r["id"] for r in records], []), "test_day_07_split_is_disjoint_and_ordered"),
             ("find_target_leakage", lambda *_: [], "test_day_08_reports_all_forbidden_features"),
             ("fit_threshold_classifier", lambda *_: {"threshold": -1.0, "training_count": 4}, "test_day_08_reports_all_forbidden_features"),

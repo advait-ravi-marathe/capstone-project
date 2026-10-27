@@ -53,6 +53,8 @@ class ModelFirstRoadmapTests(unittest.TestCase):
             self.assertEqual(date(2026, 10, 27) + timedelta(days=index - 1), date.fromisoformat(day["date"]))
             for key in ("prerequisite", "source_title_or_path", "source", "acceptance_command", "acceptance", "negative_control", "evidence", "evidence_category"):
                 self.assertTrue(day[key], (index, key))
+            allocated = [int(value) for value in re.findall(r"(\d+)m", day["budget"])]
+            self.assertEqual(120, sum(allocated), (index, day["budget"]))
             contract = ROOT / f"docs/model-first-roadmap/contracts/day-{index:02d}.md"
             self.assertTrue(contract.exists())
             self.assertIn(day["acceptance_command"].split()[-1].split(".")[-1], contract.read_text())
@@ -127,7 +129,11 @@ class ModelFirstRoadmapTests(unittest.TestCase):
         self.assertIn("does not accept matrix rows", days[4]["negative_control"])
         self.assertIn("threshold classifier", days[8]["learner_scope"])
         self.assertIn("fresh process", days[20]["acceptance"])
-        self.assertIn("deterministic validation folds", days[22]["learner_scope"])
+        self.assertIn("score fixed predictions", days[22]["learner_scope"])
+        self.assertIn("does not retrain a model per fold", days[22]["concept"])
+        classical_exit = next(row["exit"] for row in manifest["phases"] if row["id"] == "classical-ml")
+        self.assertIn("fresh estimator/pipeline is fitted inside every development fold", classical_exit)
+        self.assertIn("Day 22 fixed-prediction bookkeeping alone is not sufficient", classical_exit)
         self.assertIn("observed-positive fraction", days[23]["learner_scope"])
         for number in (26, 27, 28):
             self.assertEqual("manual_read_only_application_comprehension", days[number]["evidence_category"])

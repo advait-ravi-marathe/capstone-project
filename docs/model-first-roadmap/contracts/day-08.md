@@ -8,6 +8,10 @@
 
 A feature derived from the answer makes evaluation dishonest
 
+## Worked teaching example
+
+Fit a threshold rule to clean training values [0,1,2,3] and labels [0,0,1,1]; a cut between 1 and 2 predicts the training labels. On held-out clean values [3,1] with labels [0,1], that learned rule predicts [1,0] and gets both wrong. A second feature copied directly from the training labels creates an invalid shortcut; its held-out copies [0,1] score perfectly. The contrast demonstrates leakage, not a usable model: the target copy cannot exist at prediction time and must be forbidden.
+
 **Source:** [12.2. Data leakage](https://scikit-learn.org/stable/common_pitfalls.html)
 
 ## Learner-owned AI/model work

@@ -22,6 +22,11 @@ def train_one_logistic_step(
     return _todo(1)
 
 
+def mean_batch_gradient_python(rows, labels, weights):
+    """Day 6: calculate a mean logistic gradient using Python lists and loops."""
+    return _todo(6)
+
+
 def sigmoid(value: float) -> float:
     """Day 2: implement a numerically stable logistic sigmoid."""
     return _todo(2)
@@ -168,8 +173,8 @@ def report_model_limit(score: float, predicted_label: int, downstream_decision: 
 
 
 def score_rows(weights: Sequence[float], rows: Sequence[Sequence[float]]):
-    """Day 16/29: score feature rows using bias-first weights and declared feature order."""
-    return _todo(16)
+    """Day 29: score rows with a reloaded artifact's bias-first weights."""
+    return _todo(29)
 
 
 def fit_document_type_centroids(rows, labels, record_ids, feature_names):

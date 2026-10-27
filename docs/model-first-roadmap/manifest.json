@@ -84,7 +84,7 @@
         150
       ],
       "focus": "Classical ML, evaluation slices, leakage prevention, uncertainty, feature design and reusable evaluation harness",
-      "exit": "Multiple fixed-label experiments with reproducible train/validation/test splits, baseline comparisons and counterfactual/error slices.",
+      "exit": "Multiple fixed-label experiments with reproducible train/validation/test splits, baseline comparisons and counterfactual/error slices. A model is called cross-validated only after a fresh estimator/pipeline is fitted inside every development fold and the final test stays untouched; Day 22 fixed-prediction bookkeeping alone is not sufficient.",
       "dates": [
         "2026-12-26",
         "2027-03-25"
@@ -502,7 +502,8 @@
       "evidence_category": "dataset_hygiene_and_independent_evaluation",
       "budget": "25m concept + 80m leakage experiment + 15m evidence",
       "status": "not_started",
-      "learner_completion": false
+      "learner_completion": false,
+      "worked_lesson": "Fit a threshold rule to clean training values [0,1,2,3] and labels [0,0,1,1]; a cut between 1 and 2 predicts the training labels. On held-out clean values [3,1] with labels [0,1], that learned rule predicts [1,0] and gets both wrong. A second feature copied directly from the training labels creates an invalid shortcut; its held-out copies [0,1] score perfectly. The contrast demonstrates leakage, not a usable model: the target copy cannot exist at prediction time and must be forbidden."
     },
     {
       "day": 9,
@@ -758,21 +759,21 @@
       "day": 22,
       "unit_id": "MODEL-022",
       "date": "2026-11-17",
-      "title": "Cross-validation without test tuning",
-      "concept": "Cross-validation estimates variability on training data; final test stays untouched",
-      "learner_scope": "Construct three deterministic validation folds from six development IDs, calculate each fold score, then score two separate final-test IDs once",
+      "title": "Fold scoring without test tuning",
+      "concept": "Cross-validation separates development folds from a final test; this bounded exercise scores fixed prediction fixtures and does not retrain a model per fold",
+      "learner_scope": "Construct three deterministic validation folds from six development IDs, score fixed predictions per fold, then score two separate final-test IDs once",
       "prerequisite": "Day 21 pipeline",
       "source_title_or_path": "3.1. Cross-validation: evaluating estimator performance",
       "source": "https://scikit-learn.org/stable/modules/cross_validation.html",
       "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_22_preprocessing_fit_must_exclude_evaluation_ids ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_22_retains_each_fold_score_and_one_final_test_result",
-      "acceptance": "Exact fold membership, fold scores, mean, and separate final-test score match the independent expected report",
+      "acceptance": "Exact fold membership, fixed-prediction scores, mean, and separate two-row final-test score match the independent expected report",
       "negative_control": "Duplicate IDs, missing/duplicated fold rows, or final-test IDs entering folds is rejected",
       "evidence": "Record exact command/result, changed AI/model paths, assistance, actual metrics and limitations; no completion is inferred.",
       "evidence_category": "numerical_array_and_ml_experiment",
       "budget": "25m concept + 80m evaluation + 15m evidence",
       "status": "not_started",
       "learner_completion": false,
-      "worked_lesson": "Cross-validation scores describe repeated train/validation folds inside the development data. Keep fold IDs and individual scores, then summarize them; reserve the final test set for one separate check. Three fold accuracies .5, .5, 1.0 have mean 2/3, while a separate 2/3 final score is not another fold."
+      "worked_lesson": "Partition six ordered development IDs into three round-robin folds: [a,d], [b,e], [c,f]. This exercise scores declared fixed predictions, yielding .5, .5, 1.0 and a mean of 2/3; it does not refit a model per fold. Two separate final-test IDs scored .5 are checked once and are not another fold. A later model evaluation may be called cross-validated only after it fits a fresh estimator inside each development fold while leaving the final test untouched."
     },
     {
       "day": 23,
@@ -862,7 +863,7 @@
       "date": "2026-11-22",
       "title": "Diagnose a model-backed failure",
       "concept": "Manual source diagnosis separates model prediction errors from HTTP, serialization and UI transport failures",
-      "learner_scope": "Trace source-defined blank-question/unavailable-service paths and inspect an existing model data error; do not edit FE/BE",
+      "learner_scope": "Trace source-defined blank-question/unavailable-service paths and inspect one existing model data error; write a concise evidence note without editing FE/BE",
       "prerequisite": "Day 26 trace",
       "source_title_or_path": "Repository source: supplied Spring AI controller and Python fixture service",
       "source": "../../../src/main/java/assignments/local/LocalAiAssistantController.java",
@@ -871,7 +872,7 @@
       "negative_control": "Editing React/Spring/auth/controller code or claiming a new model experiment fails scope review",
       "evidence": "Manual source-comprehension note with exact file/line anchors, request or failure path, observed output and limits; automated helper test is separate; no FE/BE code-edit audit or completion is inferred.",
       "evidence_category": "manual_read_only_application_comprehension",
-      "budget": "20m concept + 30m read-only diagnosis + 65m evidence-backed model report + 15m evidence",
+      "budget": "20m concept + 25m read-only diagnosis + 60m concise evidence note + 15m evidence",
       "status": "not_started",
       "learner_completion": false,
       "comprehension_questions": [
@@ -887,16 +888,16 @@
       "date": "2026-11-23",
       "title": "Explain model output limits",
       "concept": "Manual review: a document-type label is not an answer, eligibility decision, or calibrated confidence",
-      "learner_scope": "Read a supplied prediction report and explain its boundary using the fixed counterexample; no new model experiment is claimed",
+      "learner_scope": "Read a supplied prediction report and state its limits using the fixed counterexample; write a concise evidence note, with no FE/BE edits",
       "prerequisite": "Day 27 diagnosis",
       "source_title_or_path": "Repository source: supplied model fixture and application boundary",
       "source": "../../../ai/coverstory_assistant",
       "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_28_report_does_not_promote_score_to_decision",
-      "acceptance": "Manual response distinguishes class score, label and downstream decision with exact fixture evidence",
+      "acceptance": "Manual note distinguishes class score, label and downstream decision with exact fixture evidence",
       "negative_control": "Treating a toy score as customer truth or changing UI/backend code fails",
       "evidence": "Manual source-comprehension note with exact file/line anchors, request or failure path, observed output and limits; automated helper test is separate; no FE/BE code-edit audit or completion is inferred.",
       "evidence_category": "manual_read_only_application_comprehension",
-      "budget": "20m concept + 30m read-only review + 65m evidence-backed report + 15m evidence",
+      "budget": "20m concept + 25m read-only review + 60m concise evidence note + 15m evidence",
       "status": "not_started",
       "learner_completion": false,
       "comprehension_questions": [

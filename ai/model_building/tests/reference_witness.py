@@ -30,6 +30,18 @@ def train_one_logistic_step(weights, examples, learning_rate):
     return [w - learning_rate * g for w, g in zip(weights, gradient)]
 
 
+def mean_batch_gradient_python(rows, labels, weights):
+    if not rows or len(rows)!=len(labels) or not weights or any(len(row)+1!=len(weights) for row in rows):
+        raise ValueError("aligned nonempty rows and bias-first weights required")
+    if any(label not in (0,1) for label in labels): raise ValueError("binary labels required")
+    gradient=[0.0]*len(weights)
+    for row,label in zip(rows,labels):
+        probability=1/(1+math.exp(-(weights[0]+sum(w*x for w,x in zip(weights[1:],row)))))
+        error=probability-label
+        for index,value in enumerate([1.0,*row]): gradient[index]+=error*value/len(rows)
+    return gradient
+
+
 def mean_binary_cross_entropy(probabilities, labels):
     if not probabilities or len(probabilities) != len(labels):
         raise ValueError("aligned nonempty arrays required")

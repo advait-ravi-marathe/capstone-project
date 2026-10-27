@@ -12,7 +12,7 @@ Manual source diagnosis separates model prediction errors from HTTP, serializati
 
 ## Learner-owned AI/model work
 
-Trace source-defined blank-question/unavailable-service paths and inspect an existing model data error; do not edit FE/BE
+Trace source-defined blank-question/unavailable-service paths and inspect one existing model data error; write a concise evidence note without editing FE/BE
 
 **Acceptance command:** `python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_27_seeded_failure_analysis_uses_observed_prediction_errors`
 **Acceptance:** Manual evidence records exact HTTP status, error code, safe UI message and source locations

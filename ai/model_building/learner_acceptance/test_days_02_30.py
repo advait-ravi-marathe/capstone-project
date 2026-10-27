@@ -70,6 +70,11 @@ class Day02To30Acceptance(unittest.TestCase):
         )
         for actual, expected in zip(varied, [0.20668248272815268, -0.10643787157861116, 0.28480837045783386]):
             self.assertAlmostEqual(expected, actual, places=14)
+        gradient = learner.mean_batch_gradient_python(
+            [[2.0, 1.0], [1.0, -1.0], [0.5, 0.5]], [0, 1, 1], [0.2, -0.1, 0.3]
+        )
+        for actual, expected in zip(gradient, [-0.13364965456305328, 0.12875743157222325, 0.30383259084332215]):
+            self.assertAlmostEqual(expected, actual, places=12)
 
     def test_day_07_split_is_disjoint_and_ordered(self):
         records = [{"id": f"r{i}", "label": label} for i, label in enumerate([0, 0, 1, 0, 1, 1])]
@@ -89,15 +94,19 @@ class Day02To30Acceptance(unittest.TestCase):
                          learner.find_target_leakage(["term_count", "answer", "claim_outcome"], ["answer", "claim_outcome"]))
         self.assertEqual([], learner.find_target_leakage(["term_count", "section_count"], ["answer"]))
         training_labels = [0, 0, 1, 1]
-        clean_train = [0.0, 1.0, 0.0, 1.0]
+        clean_train = [0.0, 1.0, 2.0, 3.0]
         target_copy_train = training_labels[:]
         clean_model = learner.fit_threshold_classifier(clean_train, training_labels)
         leak_model = learner.fit_threshold_classifier(target_copy_train, training_labels)
         heldout_labels = [0, 1]
-        clean_predictions = learner.predict_threshold_classifier(clean_model, [1.0, 0.0])
+        clean_predictions = learner.predict_threshold_classifier(clean_model, [3.0, 1.0])
         leaky_predictions = learner.predict_threshold_classifier(leak_model, heldout_labels[:])
-        comparison = learner.compare_predictions(["heldout-a", "heldout-b"], heldout_labels,
-                                                 {"target_copy": leaky_predictions, "clean_feature": clean_predictions})
+        comparison = {}
+        for name, candidate in (("target_copy", leaky_predictions), ("clean_feature", clean_predictions)):
+            errors = [record_id for record_id, expected, actual in zip(("heldout-a", "heldout-b"), heldout_labels, candidate)
+                      if expected != actual]
+            comparison[name] = {"accuracy": (len(heldout_labels) - len(errors)) / len(heldout_labels),
+                                "error_ids": errors}
         self.assertEqual(1.0, comparison["target_copy"]["accuracy"])
         self.assertEqual(0.0, comparison["clean_feature"]["accuracy"])
         self.assertEqual([], comparison["target_copy"]["error_ids"])
@@ -262,7 +271,8 @@ class Day02To30Acceptance(unittest.TestCase):
         weights_b = learner.train_one_logistic_step([0.0, 0.0, 0.0], examples, 0.1)
         self.assertEqual([0.016666666666666666, 0.03333333333333333, 0.0], weights_a)
         self.assertEqual(weights_a, weights_b)
-        predictions = [int(score >= 0.0) for score in learner.score_rows(weights_a, [[1.0, 0.0], [0.0, 1.0]])]
+        predictions = [int(weights_a[0] + sum(w*x for w,x in zip(weights_a[1:], row)) >= 0.0)
+                       for row in [[1.0, 0.0], [0.0, 1.0]]]
         record = learner.experiment_record(41, ids, ["schedule_count", "exclusion_count"], predictions)
         self.assertEqual({"seed": 41, "split_ids": ids, "feature_names": ["schedule_count", "exclusion_count"], "predictions": [1, 1]}, record)
         self.assertNotEqual(record, learner.experiment_record(42, ids, ["schedule_count", "exclusion_count"], predictions))
@@ -302,7 +312,7 @@ class Day02To30Acceptance(unittest.TestCase):
         dev_predictions = {"a": 1, "b": 0, "c": 1, "d": 1, "e": 0, "f": 0}
         fold_labels = [[dev_labels[rid] for rid in fold] for fold in folds]
         fold_predictions = [[dev_predictions[rid] for rid in fold] for fold in folds]
-        final_ids, final_labels, final_predictions = ["g", "h", "i"], [1, 0, 1], [1, 1, 0]
+        final_ids, final_labels, final_predictions = ["g", "h"], [1, 0], [1, 1]
         self.assertFalse(set(ids) & set(final_ids))
         result = learner.fold_evaluation_summary(
             ["fold-a", "fold-b", "fold-c"], fold_labels, fold_predictions, final_labels, final_predictions,
@@ -311,8 +321,8 @@ class Day02To30Acceptance(unittest.TestCase):
             "fold_names": ["fold-a", "fold-b", "fold-c"],
             "fold_accuracies": [0.5, 0.5, 1.0],
             "mean_cv_accuracy": 2 / 3,
-            "final_test_accuracy": 1 / 3,
-            "final_test_count": 3,
+            "final_test_accuracy": 1 / 2,
+            "final_test_count": 2,
         }, result)
         with self.assertRaises(ValueError):
             learner.fold_evaluation_summary(["fold-a"], [[1]], [[1, 0]], [1], [1])
@@ -365,7 +375,8 @@ class Day02To30Acceptance(unittest.TestCase):
         # Fixed lexical rule predicts class 1 at feature >= 2.
         lexical = [int(row[0] >= 2) for row in heldout_rows]
         linear_weights = learner.train_one_logistic_step([0.0, 0.0], list(zip(train_rows, train_labels)), 0.1)
-        linear = [int(score >= 0.5) for score in learner.score_rows(linear_weights, heldout_rows)]
+        linear = [int(linear_weights[0] + sum(w*x for w,x in zip(linear_weights[1:], row)) >= 0.5)
+                  for row in heldout_rows]
         table = learner.compare_predictions(heldout_ids, heldout_labels,
                                             {"majority": majority, "lexical": lexical, "linear": linear, "centroid": centroid})
         self.assertEqual({

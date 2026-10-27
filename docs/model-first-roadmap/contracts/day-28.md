@@ -12,10 +12,10 @@ Manual review: a document-type label is not an answer, eligibility decision, or 
 
 ## Learner-owned AI/model work
 
-Read a supplied prediction report and explain its boundary using the fixed counterexample; no new model experiment is claimed
+Read a supplied prediction report and state its limits using the fixed counterexample; write a concise evidence note, with no FE/BE edits
 
 **Acceptance command:** `python3 -m unittest ai.model_building.learner_acceptance.test_days_02_30.Day02To30Acceptance.test_day_28_report_does_not_promote_score_to_decision`
-**Acceptance:** Manual response distinguishes class score, label and downstream decision with exact fixture evidence
+**Acceptance:** Manual note distinguishes class score, label and downstream decision with exact fixture evidence
 **Negative control:** Treating a toy score as customer truth or changing UI/backend code fails
 
 ## Read-only application comprehension
