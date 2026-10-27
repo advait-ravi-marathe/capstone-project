@@ -1617,5 +1617,76 @@
     "learner_completion_or_eligibility_granted": false,
     "authoritative_calendar": "docs/reboot/calendar/study-calendar.json",
     "authoritative_story_export": "docs/reboot/calendar/story-export-1-305.json"
-  }
+  },
+  "active_learning_sequence": {
+    "title": "AI-first learning roadmap",
+    "path": "docs/ai-first-roadmap/manifest.json",
+    "status": "local_review_draft_not_published",
+    "start_date": "2026-10-27",
+    "timezone": "Asia/Kolkata",
+    "horizon_days": 365,
+    "end_date": "2027-10-26",
+    "legacy_305_issue_migration": "docs/ai-first-roadmap/legacy-issue-migration.json",
+    "learner_completion": "none_recorded",
+    "board_writes": false,
+    "dsa_repository_writes": false,
+    "projects": [
+      {
+        "days": [
+          1,
+          150
+        ],
+        "name": "CoverStory AI",
+        "status": "planned_evidence_gated"
+      },
+      {
+        "days": [
+          151,
+          255
+        ],
+        "name": "StreamForge AI search/recommendation/ranking",
+        "status": "planned_evidence_gated"
+      },
+      {
+        "days": [
+          256,
+          340
+        ],
+        "name": "Developer Workflow Assistant",
+        "status": "planned_evidence_gated"
+      },
+      {
+        "days": [
+          341,
+          365
+        ],
+        "name": "shared evaluation/observability integration and portfolio closeout",
+        "status": "planned_evidence_gated"
+      }
+    ],
+    "capacity": {
+      "total_engineering_hours": 875.5,
+      "reserved_fraction_inside_existing_hours": 0.2,
+      "reserved_hours": 175.1,
+      "planned_build_hours": 700.4,
+      "hours_added": false,
+      "phase_envelopes": [
+        {"days": [1, 150], "dates": ["2026-10-27", "2027-03-25"], "engineering_hours": 300.0, "reserve_hours": 60.0, "planned_build_hours": 240.0},
+        {"days": [151, 255], "dates": ["2027-03-26", "2027-07-08"], "engineering_hours": 273.0, "reserve_hours": 54.6, "planned_build_hours": 218.4},
+        {"days": [256, 340], "dates": ["2027-07-09", "2027-10-01"], "engineering_hours": 233.75, "reserve_hours": 46.75, "planned_build_hours": 187.0},
+        {"days": [341, 365], "dates": ["2027-10-02", "2027-10-26"], "engineering_hours": 68.75, "reserve_hours": 13.75, "planned_build_hours": 55.0}
+      ],
+      "allocation_note": "Reserve is for remediation, integration, observation, and reassessment inside the existing engineering budget; it does not add study time."
+    },
+    "evaluation_observability": "shared capability across the three projects, not a fourth flagship",
+    "nine_month_checkpoint": {
+      "date": "2027-07-27",
+      "study_day": 274,
+      "status": "conditional_evidence_review_not_completion",
+      "first_two_project_gates_may_be_reviewed": "only if actual evidence qualifies",
+      "developer_workflow_assistant": "early_in_progress",
+      "role_or_job_guarantee": false
+    }
+  },
+  "previous_roadmap_status": "superseded_historical_assignments_and_evidence_preserved"
 }

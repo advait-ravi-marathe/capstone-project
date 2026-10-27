@@ -1,0 +1,1153 @@
+{
+  "schema_version": 1,
+  "title": "AI-first roadmap: detailed first 30 study days",
+  "status": "local_review_draft",
+  "start_date": "2026-10-27",
+  "timezone": "Asia/Kolkata",
+  "end_date": "2027-10-26",
+  "horizon_days": 365,
+  "budget": {
+    "days_1_to_171": {
+      "engineering_minutes": 120,
+      "dsa_separate": true
+    },
+    "days_172_to_365": {
+      "engineering_minutes": 165,
+      "shared_minutes": 45,
+      "dsa_separate": true
+    },
+    "engineering_hours": 875.5,
+    "shared_hours": 145.5,
+    "no_extra_oa_or_certification_hours": true
+  },
+  "projects": [
+    {
+      "days": [
+        1,
+        150
+      ],
+      "dates": [
+        "2026-10-27",
+        "2027-03-25"
+      ],
+      "engineering_hours": 300.0,
+      "reserved_hours": 60.0,
+      "planned_build_hours": 240.0,
+      "id": "coverstory-ai",
+      "title": "CoverStory grounded document/policy assistant",
+      "entry": "Begin with Python/JSON basics and fixed synthetic policy excerpts; no live call needed.",
+      "exit": "A substantial assistant with ingestion, permission-aware retrieval, grounded citations, abstention, safe failures, independently labeled evaluation, and a real configured provider path. Offline demo does not satisfy live-provider evidence."
+    },
+    {
+      "days": [
+        151,
+        255
+      ],
+      "dates": [
+        "2027-03-26",
+        "2027-07-08"
+      ],
+      "engineering_hours": 273.0,
+      "reserved_hours": 54.6,
+      "planned_build_hours": 218.4,
+      "id": "streamforge-ai",
+      "title": "AI-powered StreamForge search/recommendation/ranking",
+      "entry": "CoverStory evidence is recorded or bounded recovery is completed; use the provided media/platform application code.",
+      "exit": "A distinct recommendation/ranking capability over public/synthetic data, with fixed baselines, cold-start/failure slices, evaluation, and no fabricated user/adoption metrics."
+    },
+    {
+      "days": [
+        256,
+        340
+      ],
+      "dates": [
+        "2027-07-09",
+        "2027-10-01"
+      ],
+      "engineering_hours": 233.75,
+      "reserved_hours": 46.75,
+      "planned_build_hours": 187.0,
+      "id": "developer-workflow-assistant",
+      "title": "Developer workflow assistant",
+      "entry": "The two project artifacts and shared evaluation approach are reviewed; use read-only tools first.",
+      "exit": "A distinct workflow assistant with read-only tools, approval-gated writes only where explicitly safe, durable recovery, injection/authorization tests, and measured task outcomes."
+    },
+    {
+      "days": [
+        341,
+        365
+      ],
+      "dates": [
+        "2027-10-02",
+        "2027-10-26"
+      ],
+      "engineering_hours": 68.75,
+      "reserved_hours": 13.75,
+      "planned_build_hours": 55.0,
+      "id": "shared-integration-closeout",
+      "title": "Shared evaluation and portfolio integration",
+      "entry": "Prior project evidence is recorded or open gates have recovery routes.",
+      "exit": "One shared evaluation/observability capability applied across the three projects; reproducible portfolio artifacts and honest limitations. No fourth flagship, live-provider claim, customer adoption, certification pass, or professional ownership claim."
+    }
+  ],
+  "shared_capabilities": [
+    "Evaluation and observability begin in the CoverStory first month and are reused across StreamForge and Developer Workflow Assistant; they are not a separate flagship.",
+    "Python/math foundations, held-out labels, uncertainty, prompt/data governance, and model/retrieval comparisons are integrated into project study time.",
+    "Reserve remediation/integration/reassessment time inside each phase's existing budget; do not add hours or interpret every day as feature work."
+  ],
+  "assistant_selected_architecture": {
+    "ui": "Existing React application, with a supplied AI-first route.",
+    "session_and_api": "Existing Spring Boot local application owns synthetic session/CSRF and derives tenant from authenticated principal; supplied controller forwards only question and server-derived tenant.",
+    "ai_application": "Python package owns prompt/retrieval/evaluation seams; deterministic loopback fixture service provides an offline vertical slice.",
+    "provider": "A supplied, configurable OpenAI Responses API adapter is used only when separately authorized and explicitly invoked; no credentials are read from disk or created.",
+    "rationale": "Reuse the existing application/session boundary, keep AI experiments in Python, preserve a clear provider boundary, and make the default demo synthetic and local.",
+    "learner_design_work": "None required; the assistant selects and explains architecture. Learner owns bounded AI implementation, tests, and code comprehension only."
+  },
+  "capacity_policy": {
+    "reserve_fraction": 0.2,
+    "reserve_total_hours": 175.1,
+    "planned_build_total_hours": 700.4,
+    "no_hours_added": true,
+    "note": "The reserve is a planning allocation inside the engineering hours above for remediation, integration, observation, and reassessment; it is not extra study time or a commitment that every phase spends exactly this amount."
+  },
+  "nine_month_checkpoint": {
+    "date": "2027-07-27",
+    "study_day": 274,
+    "status": "conditional_evidence_review_not_completion",
+    "expected_phase_position": "CoverStory and StreamForge exit gates may be reviewed; Developer Workflow Assistant is early/in progress.",
+    "role_or_job_guarantee": false
+  },
+  "certification_targets": [
+    {
+      "target": "NVIDIA Certified Associate: Generative AI LLMs (NCA-GENL)",
+      "mode": "study target; recheck exam availability and blueprint; exam booking/purchase not authorized",
+      "official_reference": "https://www.nvidia.com/en-us/learn/certification/generative-ai-llm-associate/"
+    },
+    {
+      "target": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+      "mode": "first AWS associate target using the already-owned Stephane Maarek material; recheck before study; exam booking/purchase not authorized",
+      "official_reference": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html"
+    },
+    {
+      "target": "AWS Certified Generative AI Developer - Professional (AIP-C01)",
+      "mode": "later readiness-based target after substantial project evidence; not automatic at Day 365; recheck before study; no booking",
+      "official_reference": "https://docs.aws.amazon.com/aws-certification/latest/ai-professional-01/ai-professional-01.html"
+    },
+    {
+      "target": "NVIDIA Building RAG Agents with LLMs course certificate",
+      "mode": "optional only if access is already available; verify current course/assessment access; no enrollment/purchase authorized",
+      "official_reference": "https://learn.nvidia.com/"
+    }
+  ],
+  "preservation": {
+    "legacy_export": "docs/reboot/calendar/story-export-1-305.json",
+    "legacy_issue_ids_and_definitions_mutated": false,
+    "board_writes": false,
+    "dsa_repository_changed": false,
+    "active_issue_migration": "separate explicit export; requires parent review before any board sync",
+    "prior_learner_completion_carried": false
+  },
+  "detailed_days": [
+    {
+      "day": 1,
+      "unit_id": "AI-COVER-001",
+      "date": "2026-10-27",
+      "title": "Build a grounded policy prompt",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Python dictionaries, JSON values, and a bounded prompt",
+      "prerequisite": "None; begin with the worked example.",
+      "learner_scope": "Implement the exact instructions/input object for one synthetic hail-coverage question. Do not call a model.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::build_policy_prompt",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_01",
+      "negative_case": "Blank question or excerpt must raise ValueError; extra prompt fields fail.",
+      "evidence": "Command output plus the exact request object; fixture-only evidence.",
+      "evidence_artifact": "evidence/ai-first/day-01.json",
+      "source": {
+        "title": "Text generation | OpenAI API",
+        "section": "Choosing models and APIs; Message roles and instruction following",
+        "url": "https://developers.openai.com/api/docs/guides/text"
+      },
+      "supplemental_sources": [
+        {
+          "title": "json — JSON encoder and decoder",
+          "section": "Basic Usage",
+          "url": "https://docs.python.org/3/library/json.html"
+        }
+      ],
+      "setup_command": "python3 -m ai.coverstory_assistant.day01_example",
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 1,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 2,
+      "unit_id": "AI-COVER-002",
+      "date": "2026-10-28",
+      "title": "Serialize the provider request",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Python types, JSON serialization, and request boundaries",
+      "prerequisite": "Day 1 prompt object.",
+      "learner_scope": "Implement deterministic JSON-safe request construction with an explicit model placeholder and bounded output-token field.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::build_responses_request",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_02",
+      "negative_case": "Reject missing model, unknown fields, and a prompt that exceeds the fixed fixture limit.",
+      "evidence": "Exact serialized bytes and negative-case results; no provider evidence.",
+      "evidence_artifact": "evidence/ai-first/day-02.json",
+      "source": {
+        "title": "json — JSON encoder and decoder",
+        "section": "Basic Usage",
+        "url": "https://docs.python.org/3/library/json.html"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 2,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 3,
+      "unit_id": "AI-COVER-003",
+      "date": "2026-10-29",
+      "title": "Use the real provider adapter safely",
+      "category": "integrated",
+      "minutes": 120,
+      "concept": "HTTP requests, environment configuration, and response boundaries",
+      "prerequisite": "Days 1–2; instructor-owned adapter and local HTTP test server.",
+      "learner_scope": "Use the supplied configurable Responses API adapter. The local HTTP fixture verifies request/response behavior. A live call is optional only after separate authorization and user-configured access.",
+      "learner_owned_file": "ai/coverstory_assistant/provider.py (provided); learner evidence only",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.tests.test_provider_protocol",
+      "negative_case": "Reject absent configuration and non-success/malformed responses without revealing the key; local server is not live-model evidence.",
+      "evidence": "Local protocol test is infrastructure only; live-provider validation remains unverified until authorized.",
+      "evidence_artifact": "evidence/ai-first/day-03.json",
+      "source": {
+        "title": "urllib.request — Extensible library for opening URLs",
+        "section": "urllib.request.urlopen",
+        "url": "https://docs.python.org/3/library/urllib.request.html"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 3,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 4,
+      "unit_id": "AI-COVER-004",
+      "date": "2026-10-30",
+      "title": "Extract the response text",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Read nested JSON objects and distinguish text from other output items",
+      "prerequisite": "Day 3 adapter response fixture.",
+      "learner_scope": "Implement extraction of completed message output text from a fixed Responses-shaped payload.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::extract_response_text",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_04",
+      "negative_case": "Refusal, incomplete, empty, or tool-only payloads must not be treated as a final answer.",
+      "evidence": "Exact extracted text and rejected payload cases; fixture evidence.",
+      "evidence_artifact": "evidence/ai-first/day-04.json",
+      "source": {
+        "title": "Text generation | OpenAI API",
+        "section": "Choosing models and APIs; Message roles and instruction following",
+        "url": "https://developers.openai.com/api/docs/guides/text"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 4,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 5,
+      "unit_id": "AI-COVER-005",
+      "date": "2026-10-31",
+      "title": "Validate a structured answer",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "JSON object shape, types, and allowed fields",
+      "prerequisite": "Day 4 extracted text.",
+      "learner_scope": "Implement parsing and exact schema validation for answer, claims, citations, and abstained.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::parse_structured_answer",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_05",
+      "negative_case": "Reject wrong types, unknown keys, duplicate citations, and invalid JSON.",
+      "evidence": "Observed parsed object and independent malformed-input results.",
+      "evidence_artifact": "evidence/ai-first/day-05.json",
+      "source": {
+        "title": "Structured model outputs | OpenAI API",
+        "section": "When to use Structured Outputs via function calling vs via text.format; Structured Outputs vs JSON mode",
+        "url": "https://developers.openai.com/api/docs/guides/structured-outputs"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 5,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 6,
+      "unit_id": "AI-COVER-006",
+      "date": "2026-11-01",
+      "title": "Classify provider failures",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Timeout, status, malformed output, and bounded retry policy",
+      "prerequisite": "Day 3 protocol adapter; no live call required.",
+      "learner_scope": "Map deterministic local adapter failures into safe error classes; never retry authorization or schema errors.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::classify_provider_failure",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_06",
+      "negative_case": "A 401, malformed JSON, and timeout must not disclose response body or loop indefinitely.",
+      "evidence": "Error classification and retry-count trace from a local fixture.",
+      "evidence_artifact": "evidence/ai-first/day-06.json",
+      "source": {
+        "title": "Text generation | OpenAI API",
+        "section": "Choosing models and APIs; Message roles and instruction following",
+        "url": "https://developers.openai.com/api/docs/guides/text"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 6,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 7,
+      "unit_id": "AI-COVER-007",
+      "date": "2026-11-02",
+      "title": "Create the first evaluation set",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Fixed inputs, independently written labels, and evaluation cases",
+      "prerequisite": "Days 1–6; no model-generated labels.",
+      "learner_scope": "Add labeled synthetic questions for supported, unsupported, and ambiguous clauses; labels are fixed independent of any model response.",
+      "learner_owned_file": "ai/coverstory_assistant/learner_artifacts/day-07-labels.jsonl",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_07_fixture",
+      "negative_case": "A label copied from candidate output is rejected; duplicate case IDs fail.",
+      "evidence": "Fixture digest, case count, and label review record.",
+      "evidence_artifact": "evidence/ai-first/day-07.json",
+      "source": {
+        "title": "Working with evals | OpenAI API",
+        "section": "Working with evals",
+        "url": "https://developers.openai.com/api/docs/guides/evals"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 7,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 8,
+      "unit_id": "AI-COVER-008",
+      "date": "2026-11-03",
+      "title": "Version one prompt change",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Prompt versioning and controlled comparisons",
+      "prerequisite": "Day 7 fixed labels.",
+      "learner_scope": "Implement a versioned prompt builder and compare two fixed prompt versions on the same cases.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::prompt_for_version",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_08",
+      "negative_case": "Unknown versions and a changed fixture digest fail closed.",
+      "evidence": "Two version IDs, same-case comparison output, and digest.",
+      "evidence_artifact": "evidence/ai-first/day-08.json",
+      "source": {
+        "title": "Prompt engineering | OpenAI API",
+        "section": "Prompt engineering",
+        "url": "https://developers.openai.com/api/docs/guides/prompt-engineering"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 8,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 9,
+      "unit_id": "AI-COVER-009",
+      "date": "2026-11-04",
+      "title": "Normalize synthetic documents",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Python strings, document IDs, and source metadata",
+      "prerequisite": "Days 1–8 Python/JSON basics.",
+      "learner_scope": "Implement conservative whitespace normalization while preserving document ID, section, owner, and source version.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::normalize_document",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_09",
+      "negative_case": "Missing/duplicate IDs and metadata loss are rejected.",
+      "evidence": "Before/after document bytes and field equality assertions.",
+      "evidence_artifact": "evidence/ai-first/day-09.json",
+      "source": {
+        "title": "Retrieval | OpenAI API",
+        "section": "Retrieval",
+        "url": "https://developers.openai.com/api/docs/guides/retrieval"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 9,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 10,
+      "unit_id": "AI-COVER-010",
+      "date": "2026-11-05",
+      "title": "Split documents into stable chunks",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Deterministic segmentation and boundary metadata",
+      "prerequisite": "Day 9 normalized documents.",
+      "learner_scope": "Implement a small deterministic sentence-boundary chunker for the supplied synthetic files; no vector database yet.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::chunk_document",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_10",
+      "negative_case": "Empty chunks, changed text, and duplicate chunk IDs fail.",
+      "evidence": "Exact chunk text/IDs and source section continuity.",
+      "evidence_artifact": "evidence/ai-first/day-10.json",
+      "source": {
+        "title": "Retrieval | OpenAI API",
+        "section": "Retrieval",
+        "url": "https://developers.openai.com/api/docs/guides/retrieval"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 10,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 11,
+      "unit_id": "AI-COVER-011",
+      "date": "2026-11-06",
+      "title": "Build the lexical retrieval baseline",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Term matching as a simple baseline before embeddings",
+      "prerequisite": "Day 10 chunks; Python list/dict/Counter example supplied.",
+      "learner_scope": "Implement exact deterministic lexical scoring against the tiny corpus.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::lexical_search",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_11",
+      "negative_case": "Foreign-tenant and unrelated clauses must not win because they contain common words.",
+      "evidence": "Fixed query ranking and explicit no-match case.",
+      "evidence_artifact": "evidence/ai-first/day-11.json",
+      "source": {
+        "title": "Retrieval | OpenAI API",
+        "section": "Retrieval",
+        "url": "https://developers.openai.com/api/docs/guides/retrieval"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 11,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 12,
+      "unit_id": "AI-COVER-012",
+      "date": "2026-11-07",
+      "title": "Compare a tiny local embedding proxy",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Vectors and cosine similarity using a tiny fixed vocabulary",
+      "prerequisite": "Day 11 lexical baseline; short worked vector example supplied.",
+      "learner_scope": "Implement the bounded bag-of-terms vector comparison and report it beside the lexical baseline; label it a teaching proxy, not a production embedding model.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::tiny_vector_score",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_12",
+      "negative_case": "Zero-vector, dimension mismatch, and tied similarity cases have fixed outcomes.",
+      "evidence": "Both rankings on the same fixed corpus, with limitations stated.",
+      "evidence_artifact": "evidence/ai-first/day-12.json",
+      "source": {
+        "title": "Retrieval | OpenAI API",
+        "section": "Retrieval",
+        "url": "https://developers.openai.com/api/docs/guides/retrieval"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 12,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 13,
+      "unit_id": "AI-COVER-013",
+      "date": "2026-11-08",
+      "title": "Measure retrieval errors",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Recall-at-k and fixed relevant-document labels",
+      "prerequisite": "Days 7 and 11–12.",
+      "learner_scope": "Implement a retrieval metric using independent relevant IDs and compare lexical versus tiny-vector rankings.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::recall_at_k",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_13",
+      "negative_case": "Missing relevant IDs and a self-labeled candidate are rejected.",
+      "evidence": "Exact numerator/denominator by method and fixed case IDs.",
+      "evidence_artifact": "evidence/ai-first/day-13.json",
+      "source": {
+        "title": "Working with evals | OpenAI API",
+        "section": "Working with evals",
+        "url": "https://developers.openai.com/api/docs/guides/evals"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 13,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 14,
+      "unit_id": "AI-COVER-014",
+      "date": "2026-11-09",
+      "title": "Construct source citations",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Bind each claim to a retrieved document and section",
+      "prerequisite": "Days 9–13.",
+      "learner_scope": "Implement citation construction from retrieved chunk IDs; do not invent document names or section labels.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::build_citations",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_14",
+      "negative_case": "Unknown chunk ID and mismatched document version are rejected.",
+      "evidence": "Exact citation rows and source-version digest.",
+      "evidence_artifact": "evidence/ai-first/day-14.json",
+      "source": {
+        "title": "Retrieval | OpenAI API",
+        "section": "Retrieval",
+        "url": "https://developers.openai.com/api/docs/guides/retrieval"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 14,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 15,
+      "unit_id": "AI-COVER-015",
+      "date": "2026-11-10",
+      "title": "Check citation support",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Citation integrity and claim-to-excerpt evidence",
+      "prerequisite": "Day 14 citations.",
+      "learner_scope": "Implement checks that every citation resolves to the exact supplied document version and section.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::validate_citations",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_15",
+      "negative_case": "Valid citation plus unknown/foreign/duplicate extra citation must fail.",
+      "evidence": "All citations checked; exact support and rejection record.",
+      "evidence_artifact": "evidence/ai-first/day-15.json",
+      "source": {
+        "title": "Retrieval | OpenAI API",
+        "section": "Retrieval",
+        "url": "https://developers.openai.com/api/docs/guides/retrieval"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 15,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 16,
+      "unit_id": "AI-COVER-016",
+      "date": "2026-11-11",
+      "title": "Abstain when evidence is insufficient",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Decision thresholds from fixed evidence, not model confidence alone",
+      "prerequisite": "Days 13–15.",
+      "learner_scope": "Implement explicit supported/unsupported/ambiguous outcomes from independent retrieval and claim evidence.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::decide_abstention",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_16",
+      "negative_case": "A confident model output without supporting evidence must abstain.",
+      "evidence": "Decision table results for all three fixed labels.",
+      "evidence_artifact": "evidence/ai-first/day-16.json",
+      "source": {
+        "title": "Safety best practices | OpenAI API",
+        "section": "Constrain user input and limit output tokens",
+        "url": "https://developers.openai.com/api/docs/guides/safety-best-practices"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 16,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 17,
+      "unit_id": "AI-COVER-017",
+      "date": "2026-11-12",
+      "title": "Filter retrieval by tenant",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Authorization before ranking or answer generation",
+      "prerequisite": "Day 9 source ownership fields; Day 16 decision table.",
+      "learner_scope": "Implement pre-retrieval tenant filtering for synthetic user/document memberships.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::filter_authorized_chunks",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_17",
+      "negative_case": "Foreign-owner clauses must not reach the model prompt or citations.",
+      "evidence": "Allowed and denied IDs plus prompt-input disclosure assertion.",
+      "evidence_artifact": "evidence/ai-first/day-17.json",
+      "source": {
+        "title": "Safety best practices | OpenAI API",
+        "section": "Constrain user input and limit output tokens",
+        "url": "https://developers.openai.com/api/docs/guides/safety-best-practices"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 17,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 18,
+      "unit_id": "AI-COVER-018",
+      "date": "2026-11-13",
+      "title": "Return a complete denial",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Fail-closed result shape and non-disclosure",
+      "prerequisite": "Day 17 authorization filter.",
+      "learner_scope": "Implement a denial result with no answer, citations, or private metadata.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::denied_result",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_18",
+      "negative_case": "Mutant with allowed=true or private citation must be rejected even if reason text is correct.",
+      "evidence": "Full denial object and unchanged fixture state.",
+      "evidence_artifact": "evidence/ai-first/day-18.json",
+      "source": {
+        "title": "Safety best practices | OpenAI API",
+        "section": "Constrain user input and limit output tokens",
+        "url": "https://developers.openai.com/api/docs/guides/safety-best-practices"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 18,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 19,
+      "unit_id": "AI-COVER-019",
+      "date": "2026-11-14",
+      "title": "Keep retrieved instructions untrusted",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Prompt injection boundary and source-data handling",
+      "prerequisite": "Days 8 and 17; policy text remains quoted data.",
+      "learner_scope": "Implement prompt assembly that separates fixed instructions from untrusted retrieved excerpts.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::assemble_grounded_input",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_19",
+      "negative_case": "A hostile excerpt cannot replace the fixed instruction or cause a tool/action request.",
+      "evidence": "Exact instruction/input separation and mutation rejection.",
+      "evidence_artifact": "evidence/ai-first/day-19.json",
+      "source": {
+        "title": "Safety best practices | OpenAI API",
+        "section": "Constrain user input and limit output tokens",
+        "url": "https://developers.openai.com/api/docs/guides/safety-best-practices"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 19,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 20,
+      "unit_id": "AI-COVER-020",
+      "date": "2026-11-15",
+      "title": "Evaluate document-quality failures",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Language, stale source, OCR-like noise, and ambiguous text slices",
+      "prerequisite": "Days 7 and 9–19.",
+      "learner_scope": "Add a small independently labeled quality slice and report its outcomes separately.",
+      "learner_owned_file": "ai/coverstory_assistant/learner_artifacts/day-20-quality-labels.jsonl",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_20_quality_slice",
+      "negative_case": "Dropping a failing quality case or relabeling from model output must fail.",
+      "evidence": "Per-slice counts, fixture digest, and unresolved cases.",
+      "evidence_artifact": "evidence/ai-first/day-20.json",
+      "source": {
+        "title": "Working with evals | OpenAI API",
+        "section": "Working with evals",
+        "url": "https://developers.openai.com/api/docs/guides/evals"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 20,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 21,
+      "unit_id": "AI-COVER-021",
+      "date": "2026-11-16",
+      "title": "Combine the evaluation harness",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Independent expected labels and actual pipeline outputs",
+      "prerequisite": "Days 7–20 completed locally.",
+      "learner_scope": "Implement a deterministic evaluator over saved output records; it must not call a model or grade itself.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::evaluate_cases",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_21",
+      "negative_case": "Echoing expected labels without reading actual output is caught by counterfactual cases.",
+      "evidence": "Exact per-case decisions and independent totals.",
+      "evidence_artifact": "evidence/ai-first/day-21.json",
+      "source": {
+        "title": "Working with evals | OpenAI API",
+        "section": "Working with evals",
+        "url": "https://developers.openai.com/api/docs/guides/evals"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 21,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 22,
+      "unit_id": "AI-COVER-022",
+      "date": "2026-11-17",
+      "title": "Report exact metrics",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Confusion counts, citation accuracy, abstention, and denominators",
+      "prerequisite": "Day 21 evaluator.",
+      "learner_scope": "Implement fixed metric counts from per-case outcomes, retaining denominators and undefined cases.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::summarize_metrics",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_22",
+      "negative_case": "Wrong denominator, omitted failure, or score above 100 percent is rejected.",
+      "evidence": "Raw confusion table and independently recomputed ratios.",
+      "evidence_artifact": "evidence/ai-first/day-22.json",
+      "source": {
+        "title": "Working with evals | OpenAI API",
+        "section": "Working with evals",
+        "url": "https://developers.openai.com/api/docs/guides/evals"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 22,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 23,
+      "unit_id": "AI-COVER-023",
+      "date": "2026-11-18",
+      "title": "Challenge the baseline with counterfactuals",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Negative controls and mutation sensitivity",
+      "prerequisite": "Days 21–22.",
+      "learner_scope": "Run fixed answer/citation counterfactuals and show which invariant each one violates.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::run_counterfactuals",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_23",
+      "negative_case": "A changed claim with unchanged citation must be detected; a no-op control stays unchanged.",
+      "evidence": "Before/after outputs and exact rejected-mutant list.",
+      "evidence_artifact": "evidence/ai-first/day-23.json",
+      "source": {
+        "title": "Working with evals | OpenAI API",
+        "section": "Working with evals",
+        "url": "https://developers.openai.com/api/docs/guides/evals"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 23,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 24,
+      "unit_id": "AI-COVER-024",
+      "date": "2026-11-19",
+      "title": "Record a privacy-safe trace",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Trace IDs, prompt versions, and content redaction",
+      "prerequisite": "Days 8 and 21–23.",
+      "learner_scope": "Implement a trace record that links fixture/model/prompt versions while excluding secrets and user/document text.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::make_safe_trace",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_24",
+      "negative_case": "Trace containing API key, raw prompt, or policy text is rejected.",
+      "evidence": "Trace schema, redaction assertions, and fixture-only label.",
+      "evidence_artifact": "evidence/ai-first/day-24.json",
+      "source": {
+        "title": "Safety best practices | OpenAI API",
+        "section": "Constrain user input and limit output tokens",
+        "url": "https://developers.openai.com/api/docs/guides/safety-best-practices"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 24,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 25,
+      "unit_id": "AI-COVER-025",
+      "date": "2026-11-20",
+      "title": "Account for usage without inventing measurements",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Provider usage fields, bounded token/cost accounting",
+      "prerequisite": "Day 3 adapter and Day 24 trace.",
+      "learner_scope": "Implement a report that distinguishes provider-reported usage from unknown usage; never infer actual spend from a mock.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::usage_report",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_25",
+      "negative_case": "Missing usage must remain unknown, not zero; negative or malformed counts fail.",
+      "evidence": "Usage source and exact fields; live usage is unverified without an authorized call.",
+      "evidence_artifact": "evidence/ai-first/day-25.json",
+      "source": {
+        "title": "Text generation | OpenAI API",
+        "section": "Choosing models and APIs; Message roles and instruction following",
+        "url": "https://developers.openai.com/api/docs/guides/text"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 25,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 26,
+      "unit_id": "AI-COVER-026",
+      "date": "2026-11-21",
+      "title": "Read the supplied request path",
+      "category": "comprehension_only",
+      "minutes": 120,
+      "concept": "Code comprehension: supplied React-to-Spring-to-AI request flow",
+      "prerequisite": "Day 1–25 AI component contracts; no FE/BE editing.",
+      "learner_scope": "Read the assistant-owned UI/API code and annotate the request path. This is explicitly comprehension-only.",
+      "learner_owned_file": "None; no learner FE/BE file; record evidence/ai-first/day-26.json",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_code_reading.Day26",
+      "negative_case": "An annotation naming a learner-owned React/controller/auth edit is rejected as out of scope.",
+      "evidence": "Short trace note and successful read-only probe; no implementation credit.",
+      "evidence_artifact": "evidence/ai-first/day-26.json",
+      "source": {
+        "title": "Repository source",
+        "section": "Assistant-supplied local request path",
+        "url": "repo://src/main/java/assignments/local/LocalCoverStoryApplication.java;frontend/src/local/LocalCoverStoryApp.tsx"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 26,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 27,
+      "unit_id": "AI-COVER-027",
+      "date": "2026-11-22",
+      "title": "Trace a synthetic end-to-end request",
+      "category": "comprehension_only",
+      "minutes": 120,
+      "concept": "Code comprehension: input, authorization, retrieval, provider adapter, response",
+      "prerequisite": "Day 26 trace note; no FE/BE edits.",
+      "learner_scope": "Run the supplied offline fixture flow and trace request/response ownership across layers. This is explicitly comprehension-only.",
+      "learner_owned_file": "None; no learner FE/BE file; record evidence/ai-first/day-27.json",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_code_reading.Day27",
+      "negative_case": "A fixture or mock result must not be described as a live provider answer.",
+      "evidence": "Read-only trace output and honest fixture/live classification.",
+      "evidence_artifact": "evidence/ai-first/day-27.json",
+      "source": {
+        "title": "Repository source",
+        "section": "Assistant-supplied local request path",
+        "url": "repo://src/main/java/assignments/local/LocalCoverStoryApplication.java;frontend/src/local/LocalCoverStoryApp.tsx"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 27,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 28,
+      "unit_id": "AI-COVER-028",
+      "date": "2026-11-23",
+      "title": "Diagnose one supplied cross-layer failure",
+      "category": "comprehension_only",
+      "minutes": 120,
+      "concept": "Code comprehension: locate failure without modifying FE/BE",
+      "prerequisite": "Day 27 flow; failure is seeded in an instructor fixture.",
+      "learner_scope": "Inspect the supplied failure and identify the failing AI boundary; do not change Java, TypeScript, UI, controller, or auth tests. This is explicitly comprehension-only.",
+      "learner_owned_file": "None; no learner FE/BE file; record evidence/ai-first/day-28.json",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_code_reading.Day28",
+      "negative_case": "Changing a frontend/controller/auth file is outside the unit; blaming a healthy layer fails the diagnosis rubric.",
+      "evidence": "Diagnosis record with observed output and code location.",
+      "evidence_artifact": "evidence/ai-first/day-28.json",
+      "source": {
+        "title": "Repository source",
+        "section": "Assistant-supplied local request path",
+        "url": "repo://src/main/java/assignments/local/LocalCoverStoryApplication.java;frontend/src/local/LocalCoverStoryApp.tsx"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 28,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 29,
+      "unit_id": "AI-COVER-029",
+      "date": "2026-11-24",
+      "title": "Run the integrated synthetic demonstration",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "AI-only integration and reproducible synthetic evidence",
+      "prerequisite": "Days 1–25 AI seams; Days 26–28 reading evidence.",
+      "learner_scope": "Implement run_offline_pipeline to compose tenant filtering, retrieval, grounded prompt assembly, response parsing, claim-to-source validation, and abstention with a deterministic model fixture. The supplied loopback browser/API/Python service is labeled synthetic; no live call is made.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::run_offline_pipeline and integrated_report",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_29",
+      "negative_case": "A foreign-tenant claim, unsupported answer, or no-evidence query must return a complete abstention; live-provider claims fail the evidence classification.",
+      "evidence": "Exact integrated outputs, prompt sent to the fixed model fixture, source/version citations, and denied counterfactuals.",
+      "evidence_artifact": "evidence/ai-first/day-29.json",
+      "source": {
+        "title": "Working with evals | OpenAI API",
+        "section": "Working with evals",
+        "url": "https://developers.openai.com/api/docs/guides/evals"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 29,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false
+    },
+    {
+      "day": 30,
+      "unit_id": "AI-COVER-030",
+      "date": "2026-11-25",
+      "title": "Review the Day 30 evidence gate",
+      "category": "ai",
+      "minutes": 120,
+      "concept": "Evidence categories, limitations, and unresolved live validation",
+      "prerequisite": "Day 29 integrated synthetic demonstration.",
+      "learner_scope": "Generate a local evidence summary that separates code/tests, understanding, offline fixtures, and independently verified live-provider evidence.",
+      "learner_owned_file": "ai/coverstory_assistant/learner.py::closeout_report",
+      "acceptance_command": "python3 -m unittest ai.coverstory_assistant.learner_acceptance.test_day_30",
+      "negative_case": "Mocks cannot satisfy the live-provider field; missing evidence stays missing rather than becoming pass/fail completion.",
+      "evidence": "Exact summary and open gates; no learner completion is prefilled.",
+      "evidence_artifact": "evidence/ai-first/day-30.json",
+      "source": {
+        "title": "Working with evals | OpenAI API",
+        "section": "Working with evals",
+        "url": "https://developers.openai.com/api/docs/guides/evals"
+      },
+      "supplemental_sources": [],
+      "setup_command": null,
+      "dsa_reference": {
+        "mode": "external_daily_problem",
+        "dsa_calendar_day": 30,
+        "repository": "https://github.com/advait-ravi-marathe/dsa-prep",
+        "source_commit": "c2caee396002bb48b2a34d407545ecd96ecdb1ab",
+        "copied_content": false,
+        "solutions_copied": false
+      },
+      "status": "not_started",
+      "learner_completion": false,
+      "demo_commands": [
+        "scripts/package-local-demo.sh",
+        "scripts/local-demo.sh"
+      ],
+      "demo_url": "http://127.0.0.1:<printed-app-port>/#/ai-first/coverstory"
+    }
+  ]
+}

@@ -1,3 +1,5 @@
+> **Historical sequence notice (27 October 2026).** The quote-selection and conventional FE/BE learner assignments below are preserved historical curriculum and are no longer the active study sequence. The active local review draft is the [AI-first roadmap](../ai-first-roadmap/README.md). The historical assignment files, tests, source receipts, dates, issue IDs, and learner evidence have not been deleted or credited as completed.
+
 # CoverStory 30-day reboot contracts
 
 This folder records the reviewed roadmap proposal for 26 October–24 November
