@@ -33,3 +33,11 @@ for possible later integration under
 [`docs/ai-first-roadmap`](docs/ai-first-roadmap/README.md). It is not the active
 sequence. No YouTrack, DSA repository, deployment, paid service, credential,
 purchase or enrollment action is included in this draft.
+
+## Preserved application-infrastructure reference
+
+The historical browser infrastructure checks still document their environment:
+install the existing frontend dependencies with `npm ci`, then use
+`CHROMIUM_BIN=/usr/bin/chromium` when reproducing the packaged browser harness.
+These commands support assistant-supplied FE/BE scaffolding and do not assign
+frontend or backend implementation work to the learner.
