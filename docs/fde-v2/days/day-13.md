@@ -22,6 +22,7 @@ Score using the [common rubric](../role-bank.md). Do not claim an interview pass
 **Focus:** Data security and storage choices
 **Current source:** [AWS Certified Solutions Architect – Associate (SAA-C03) official exam guide](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain1.html)
 **Exact section:** Content Domain 1; Task 1.3: Determine appropriate data security controls
+**Verified course titles and timebox:** See the [Sprint 1 course map](../sources/sprint1-course-map.md); use the listed free official fallback if paid-video access is unavailable.
 Use the official domain/task statement and one original synthetic scenario. No account setup, AWS deployment, course purchase or exam booking is authorized. If an already-owned course cannot be identified/accessed, record that unknown and use the official guide.
 
 ## AI engineering work (90 minutes)

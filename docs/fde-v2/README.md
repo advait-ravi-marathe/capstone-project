@@ -19,6 +19,8 @@ It reads the synthetic JSON manifest, loads ten fictional records into in-memory
 - [U011 partial Day 14 slice](units/u011.md)
 - [Role interview bank and rubric](role-bank.md)
 - [AWS study map](aws-bank.md)
+- [Verified Sprint 1 course and documentation map](sources/sprint1-course-map.md)
+- [North Star and evidence-gated OKRs](governance/north-star-and-okrs.md)
 - [Role benchmark sources](role-benchmarks.md)
 - [Architecture and later outcome map](phase-map.md)
 - [Model runtime verification status](runtime-verification.md)

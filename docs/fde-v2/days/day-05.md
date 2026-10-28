@@ -22,6 +22,7 @@ Score using the [common rubric](../role-bank.md). Do not claim an interview pass
 **Focus:** Course identity and official scope
 **Current source:** [AWS Certified Solutions Architect – Associate (SAA-C03) official exam guide](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html)
 **Exact section:** Exam guide: Content outline; Scope; revisions
+**Verified course titles and timebox:** See the [Sprint 1 course map](../sources/sprint1-course-map.md); it distinguishes the catalog title from unverified paid-video entitlement.
 Use the official domain/task statement and one original synthetic scenario. No account setup, AWS deployment, course purchase or exam booking is authorized. If an already-owned course cannot be identified/accessed, record that unknown and use the official guide.
 
 ## AI engineering work (90 minutes)

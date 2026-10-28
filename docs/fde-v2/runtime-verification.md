@@ -4,6 +4,8 @@
 
 ## Pinned candidate and runtime shape
 
+The verified Sprint 1 section map for inference and local-only loading is in [sources/sprint1-course-map.md](sources/sprint1-course-map.md). It identifies the current Transformers documentation sections and notes that pinned-version docs were not accessible during source review.
+
 - Model: [Qwen/Qwen2.5-0.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct), pinned revision `7ae557604adf67be50417f59c2c2f167def9a775`, Apache-2.0. See [`model_lock.json`](../../ai/fde_v2/coverstory/model_lock.json).
 - Runtime: Transformers loads verified local files in the Python API process; no Ollama/llama.cpp server, external provider, mock or network inference fallback is configured.
 - HTTP shape: React's same-origin `POST /generate` request reaches FastAPI on loopback `127.0.0.1:8765`. The backend loads the model locally from `FDE_V2_RUNTIME_DIR` (default `~/.cache/fde-v2/models`). `GET /health` and `GET /documents` are separate assistant-supplied paths.
