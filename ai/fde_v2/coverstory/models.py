@@ -12,6 +12,7 @@ from .contracts import RuntimeUnavailable
 
 MODEL_ID = "Qwen/Qwen2.5-0.5B-Instruct"
 MODEL_REVISION = "7ae557604adf67be50417f59c2c2f167def9a775"
+LOCK = json.loads((Path(__file__).with_name("model_lock.json")).read_text(encoding="utf-8"))
 
 
 def _sha256(path: Path) -> str:
@@ -93,13 +94,22 @@ class LocalModels:
             manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError) as exc:
             raise RuntimeUnavailable("local runtime manifest is unreadable") from exc
+        if not isinstance(manifest, dict):
+            raise RuntimeUnavailable("local runtime manifest must be a JSON object")
         record = manifest.get("generation", {})
+        if not isinstance(record, dict):
+            raise RuntimeUnavailable("local generation record must be a JSON object")
+        expected_files = set(LOCK["generation"]["expected_files"])
+        manifested_files = record.get("files")
         if (manifest.get("trust_remote_code") is not False
                 or record.get("repository") != MODEL_ID or record.get("revision") != MODEL_REVISION
-                or not isinstance(record.get("files"), dict) or not record["files"]):
+                or not isinstance(manifested_files, dict)
+                or set(manifested_files) != expected_files):
             raise RuntimeUnavailable("runtime manifest does not match the pinned generation model")
+        if model_dir.is_symlink() or not model_dir.is_dir():
+            raise RuntimeUnavailable("pinned model directory is absent or is a symlink")
         base = model_dir.resolve()
-        for relative, expected in record["files"].items():
+        for relative, expected in manifested_files.items():
             try:
                 candidate = model_dir / relative
                 path = candidate.resolve(strict=True)
@@ -108,6 +118,13 @@ class LocalModels:
             if (candidate.is_symlink() or base not in path.parents or not path.is_file()
                     or not isinstance(expected, str) or _sha256(path) != expected):
                 raise RuntimeUnavailable(f"pinned model file missing or checksum mismatch: {relative}")
+        top_level = {item.name for item in model_dir.iterdir()}
+        unexpected = top_level - expected_files - {".cache"}
+        if unexpected:
+            raise RuntimeUnavailable(f"unverified files beside pinned model are not allowed: {sorted(unexpected)}")
+        cache_dir = model_dir / ".cache"
+        if cache_dir.exists() and (cache_dir.is_symlink() or not cache_dir.is_dir()):
+            raise RuntimeUnavailable("model download metadata cache is unsafe")
         try:
             import torch
             from transformers import AutoModelForCausalLM, AutoTokenizer, StoppingCriteria, StoppingCriteriaList

@@ -5,12 +5,16 @@ from __future__ import annotations
 import json
 import os
 import argparse
+import sys
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from ai.fde_v2.coverstory import learner
 from ai.fde_v2.coverstory.corpus import CorpusStore
 
-ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = ROOT / "fixtures/fde_v2/corpus"
 DATA = Path(os.environ.get("FDE_V2_DATA_DIR", ".runtime/fde-v2")).resolve()
 

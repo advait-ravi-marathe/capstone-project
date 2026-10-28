@@ -28,14 +28,44 @@ class Sprint1MutationControls(unittest.TestCase):
             return Document("wrong", 1, "wrong", "synthetic://wrong", "x", "0" * 64)
         self.reject_mutant("test_u003_parse_document_record", "parse_document_record", wrong)
 
+    def test_u003_acceptance_rejects_version_zero_coercion(self):
+        correct_parser = test_units.candidate.parse_document_record
+        def wrong(raw):
+            adjusted = dict(raw)
+            if adjusted.get("version") == 0:
+                adjusted["version"] = 1
+            return correct_parser(adjusted)
+        self.reject_mutant("test_u003_parse_document_record", "parse_document_record", wrong)
+
     def test_u008_acceptance_rejects_adapter_bypass(self):
         self.reject_mutant("test_u008_generate_text_bounds_and_forwards_to_real_adapter",
                            "generate_text", lambda *_args, **_kwargs: ("constant", 0.0))
+
+    def test_u008_acceptance_rejects_unbounded_prompt_and_unvalidated_adapter_result(self):
+        correct_adapter = test_units.candidate.generate_text
+        def oversized_prompt_mutant(generator, prompt, max_new_tokens=160):
+            return correct_adapter(generator, prompt[:4000], max_new_tokens)
+        self.reject_mutant("test_u008_generate_text_bounds_and_forwards_to_real_adapter",
+                           "generate_text", oversized_prompt_mutant)
+
+        def invalid_result_mutant(generator, prompt, max_new_tokens=160):
+            return ("", float("nan"))
+        self.reject_mutant("test_u008_generate_text_bounds_and_forwards_to_real_adapter",
+                           "generate_text", invalid_result_mutant)
 
     def test_u010_acceptance_rejects_constant_valid_json(self):
         good = {"answer": "x", "citations": [], "abstained": False}
         self.reject_mutant("test_u010_answer_json_rejects_wrong_shapes_and_types",
                            "parse_answer_json", lambda _text: dict(good))
+
+    def test_u010_acceptance_rejects_json_type_coercion(self):
+        def coercing_mutant(text):
+            value = json.loads(text)
+            value["answer"] = str(value.get("answer"))
+            value["citations"] = [str(item) for item in value.get("citations", [])]
+            return value
+        self.reject_mutant("test_u010_answer_json_rejects_wrong_shapes_and_types",
+                           "parse_answer_json", coercing_mutant)
 
     def test_u011_acceptance_rejects_noop_metadata_writer(self):
         self.reject_mutant("test_u011_first_insert_and_identical_reingest",

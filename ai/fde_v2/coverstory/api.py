@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import logging
 import os
+import threading
 import time
 import uuid
 from collections.abc import Callable
@@ -9,13 +10,13 @@ from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 from starlette.responses import JSONResponse
 
+from . import learner
 from .contracts import RuntimeUnavailable
 from .corpus import CorpusStore
 from .models import LocalModels
-from .reference import generate_text as checked_generate_text
 
 logger = logging.getLogger("fde_v2.coverstory")
 
@@ -23,25 +24,38 @@ logger = logging.getLogger("fde_v2.coverstory")
 class GenerateRequest(BaseModel):
     question: str = Field(min_length=1, max_length=2000)
 
+    @field_validator("question")
+    @classmethod
+    def question_must_contain_non_whitespace(cls, value: str) -> str:
+        if not value.strip():
+            raise ValueError("question must contain non-whitespace text")
+        return value
+
 
 def _default_generator():
     return LocalModels.load()
 
 
-def create_app(generator_factory: Callable[[], object] | None = None) -> FastAPI:
+def create_app(generator_factory: Callable[[], object] | None = None,
+               text_adapter: Callable[..., tuple[str, float]] | None = None) -> FastAPI:
     app = FastAPI(title="CoverStory AI local learning app", version="0.1.0", docs_url="/docs")
     factory = generator_factory or _default_generator
+    adapter = text_adapter or learner.generate_text
     app.state.generator = None
+    model_load_lock = threading.Lock()
+    generation_slot = threading.BoundedSemaphore(value=1)
 
     def generator():
         if app.state.generator is None:
-            try:
-                app.state.generator = factory()
-            except RuntimeUnavailable:
-                raise
-            except Exception as exc:
-                logger.exception("local model initialization failed")
-                raise RuntimeUnavailable("pinned local model is unavailable") from exc
+            with model_load_lock:
+                if app.state.generator is None:
+                    try:
+                        app.state.generator = factory()
+                    except RuntimeUnavailable:
+                        raise
+                    except Exception as exc:
+                        logger.exception("local model initialization failed")
+                        raise RuntimeUnavailable("pinned local model is unavailable") from exc
         return app.state.generator
 
     @app.middleware("http")
@@ -79,8 +93,10 @@ def create_app(generator_factory: Callable[[], object] | None = None) -> FastAPI
 
     @app.post("/generate")
     def generate(body: GenerateRequest, request: Request):
+        if not generation_slot.acquire(blocking=False):
+            raise HTTPException(status_code=429, detail="local generation is busy")
         try:
-            answer, elapsed = checked_generate_text(generator(), body.question)
+            answer, elapsed = adapter(generator(), body.question)
         except RuntimeUnavailable as exc:
             raise HTTPException(status_code=503, detail="pinned local generation is unavailable") from exc
         except TimeoutError as exc:
@@ -88,6 +104,8 @@ def create_app(generator_factory: Callable[[], object] | None = None) -> FastAPI
         except Exception as exc:
             logger.exception("generation failed request_id=%s", request.state.request_id)
             raise HTTPException(status_code=502, detail="local generation failed") from exc
+        finally:
+            generation_slot.release()
         return {"answer": answer, "elapsed_ms": round(elapsed, 2),
                 "provider": "pinned-local-model", "request_id": request.state.request_id}
 

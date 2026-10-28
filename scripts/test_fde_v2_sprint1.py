@@ -3,7 +3,11 @@ from __future__ import annotations
 import ast
 import hashlib
 import json
+import os
 import re
+import subprocess
+import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -71,6 +75,23 @@ class Sprint1ContractTests(unittest.TestCase):
         self.assertIn("Tasks 4.1–4.4", aws)
         for day in range(1, 15):
             self.assertTrue((DOCS / "days" / f"day-{day:02d}.md").is_file())
+
+    def test_day14_seed_cli_imports_from_repository_root_without_completing_learner_work(self):
+        help_result = subprocess.run(
+            [sys.executable, "scripts/fde_v2_seed_corpus.py", "--help"], cwd=ROOT,
+            text=True, capture_output=True, check=False, timeout=10,
+        )
+        self.assertEqual(help_result.returncode, 0, help_result.stderr)
+        self.assertIn("Day 14 accepts only the first synthetic record", help_result.stdout)
+        with tempfile.TemporaryDirectory() as data_dir:
+            run_result = subprocess.run(
+                [sys.executable, "scripts/fde_v2_seed_corpus.py"], cwd=ROOT,
+                env={**os.environ, "FDE_V2_DATA_DIR": data_dir},
+                text=True, capture_output=True, check=False, timeout=10,
+            )
+        self.assertNotEqual(run_result.returncode, 0, "the unimplemented learner seam must stay red")
+        self.assertIn("NotImplementedError: Day 3: implement parse_document_record", run_result.stderr)
+        self.assertNotIn("ModuleNotFoundError", run_result.stderr)
 
     def test_relative_markdown_links_in_active_sprint_docs_resolve(self):
         paths = [DOCS / "README.md", DOCS / "implementation-scope.md", DOCS / "phase-map.md",

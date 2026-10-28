@@ -27,6 +27,7 @@ class First30LearnerAcceptance(unittest.TestCase):
         for invalid in (
             {**record, "extra": "not allowed"},
             {**record, "version": True},
+            {**record, "version": 0},
             {**record, "title": "  "},
             {**record, "text": ""},
         ):
@@ -47,12 +48,26 @@ class First30LearnerAcceptance(unittest.TestCase):
         answer, elapsed = candidate.generate_text(generator, "Explain the synthetic workflow", 47)
         self.assertEqual((answer, elapsed), ("an instructor test double response", 8.25))
         self.assertEqual(generator.calls, [([{"role": "user", "content": "Explain the synthetic workflow"}], 47)])
-        for prompt, limit in (("", 8), ("question", 0), ("question", 257), ("question", True)):
+        for prompt, limit in (("", 8), ("question", 0), ("question", 257), ("question", True),
+                              ("x" * 4001, 8)):
             with self.subTest(prompt=prompt, limit=limit):
                 before = len(generator.calls)
                 with self.assertRaises(ValueError):
                     candidate.generate_text(generator, prompt, limit)
                 self.assertEqual(len(generator.calls), before, "invalid request must not reach model adapter")
+
+        class InvalidResultGenerator:
+            def __init__(self, result):
+                self.result = result
+
+            def generate_messages(self, messages, max_new_tokens):
+                return self.result
+
+        for result in (("", 1.0), ("answer", float("nan")), ("answer", -1.0),
+                       ("answer", "8.25"), ["answer", 8.25]):
+            with self.subTest(result=result):
+                with self.assertRaises(RuntimeError):
+                    candidate.generate_text(InvalidResultGenerator(result), "valid question", 8)
 
     def test_u010_answer_json_rejects_wrong_shapes_and_types(self):
         valid = '{"answer":"noted","citations":["policy-v1"],"abstained":false}'
@@ -64,6 +79,8 @@ class First30LearnerAcceptance(unittest.TestCase):
             '{"answer":"x","citations":[],"abstained":false,"extra":1}',
             '{"answer":"x","citations":[],"abstained":"false"}',
             '{"answer":"x","citations":"policy-v1","abstained":false}',
+            '{"answer":7,"citations":[],"abstained":false}',
+            '{"answer":"x","citations":["policy-v1",7],"abstained":false}',
             '{"answer":"x","citations":["same","same"],"abstained":false}',
         )
         for value in invalid:

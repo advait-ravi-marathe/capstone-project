@@ -3,8 +3,10 @@ from __future__ import annotations
 
 import json
 import sqlite3
+import threading
 import tempfile
 import unittest
+from concurrent.futures import ThreadPoolExecutor
 from unittest.mock import patch
 from pathlib import Path
 
@@ -52,7 +54,7 @@ class Sprint1Infrastructure(unittest.TestCase):
                 db.execute("INSERT INTO documents VALUES(?,?,?,?,?)",
                            ("fixture-1", 1, "Fixture", "synthetic://one", "a" * 64))
             with patch.dict("os.environ", {"FDE_V2_DATA_DIR": temporary}):
-                client = TestClient(create_app(lambda: TestGenerator()))
+                client = TestClient(create_app(lambda: TestGenerator(), text_adapter=reference.generate_text))
                 self.assertEqual(client.get("/health").json(),
                                  {"status": "ok", "mode": "local-learning-prototype"})
                 self.assertEqual(client.get("/documents").json()["documents"], [{
@@ -66,7 +68,7 @@ class Sprint1Infrastructure(unittest.TestCase):
                 self.asserted = (messages, max_new_tokens)
                 return ("local witness only", 3.5)
 
-        client = TestClient(create_app(lambda: TestGenerator()))
+        client = TestClient(create_app(lambda: TestGenerator(), text_adapter=reference.generate_text))
         response = client.post("/generate", json={"question": " hello "}, headers={"x-request-id": "req-test"})
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), {"answer": "local witness only", "elapsed_ms": 3.5,
@@ -74,6 +76,8 @@ class Sprint1Infrastructure(unittest.TestCase):
         self.assertEqual(response.headers["x-request-id"], "req-test")
         empty = client.post("/generate", json={"question": ""})
         self.assertEqual(empty.status_code, 422)
+        whitespace = client.post("/generate", json={"question": " \t\n "})
+        self.assertEqual(whitespace.status_code, 422)
         oversized_prompt = "private payload " + "x" * 2001
         oversized = client.post("/generate", json={"question": oversized_prompt})
         self.assertEqual(oversized.status_code, 422)
@@ -82,7 +86,7 @@ class Sprint1Infrastructure(unittest.TestCase):
         def unavailable():
             raise RuntimeUnavailable("private path detail")
 
-        unavailable_client = TestClient(create_app(unavailable))
+        unavailable_client = TestClient(create_app(unavailable, text_adapter=reference.generate_text))
         unavailable_response = unavailable_client.post("/generate", json={"question": "safe prompt"})
         self.assertEqual(unavailable_response.status_code, 503)
         self.assertNotIn("private path detail", unavailable_response.text)
@@ -91,7 +95,8 @@ class Sprint1Infrastructure(unittest.TestCase):
             def generate_messages(self, messages, max_new_tokens):
                 raise RuntimeError("sensitive backend detail")
 
-        broken = TestClient(create_app(lambda: BrokenGenerator())).post("/generate", json={"question": "safe prompt"})
+        broken = TestClient(create_app(lambda: BrokenGenerator(), text_adapter=reference.generate_text)).post(
+            "/generate", json={"question": "safe prompt"})
         self.assertEqual(broken.status_code, 502)
         self.assertNotIn("sensitive backend detail", broken.text)
 
@@ -99,9 +104,61 @@ class Sprint1Infrastructure(unittest.TestCase):
             def generate_messages(self, messages, max_new_tokens):
                 raise TimeoutError("private timeout detail")
 
-        timed_out = TestClient(create_app(lambda: TimedOutGenerator())).post("/generate", json={"question": "safe prompt"})
+        timed_out = TestClient(create_app(lambda: TimedOutGenerator(), text_adapter=reference.generate_text)).post(
+            "/generate", json={"question": "safe prompt"})
         self.assertEqual(timed_out.status_code, 504)
         self.assertNotIn("private timeout detail", timed_out.text)
+
+    def test_default_api_uses_the_learner_generation_seam_without_reference_fallback(self):
+        calls = []
+
+        def learner_implementation(generator, prompt, max_new_tokens=160):
+            calls.append((generator, prompt, max_new_tokens))
+            return "learner-seam-output", 7.25
+
+        with patch("ai.fde_v2.coverstory.api.learner.generate_text", learner_implementation):
+            client = TestClient(create_app(lambda: object()))
+            response = client.post("/generate", json={"question": "learner-owned prompt"})
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["answer"], "learner-seam-output")
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(calls[0][1:], ("learner-owned prompt", 160))
+
+        todo_response = TestClient(create_app(lambda: object())).post(
+            "/generate", json={"question": "do not substitute the reference"})
+        self.assertEqual(todo_response.status_code, 502)
+        self.assertNotIn("reference", todo_response.text.lower())
+
+    def test_generation_is_single_flight_and_rejects_overlap_without_loading_twice(self):
+        entered = threading.Event()
+        release = threading.Event()
+        factory_calls = []
+        adapter_calls = []
+
+        def factory():
+            factory_calls.append(object())
+            return factory_calls[-1]
+
+        def adapter(generator, prompt, max_new_tokens=160):
+            adapter_calls.append((generator, prompt))
+            entered.set()
+            if not release.wait(timeout=3):
+                raise TimeoutError("test request was not released")
+            return "bounded first response", 2.0
+
+        client = TestClient(create_app(factory, text_adapter=adapter))
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            first = pool.submit(client.post, "/generate", json={"question": "first"})
+            self.assertTrue(entered.wait(timeout=2), "first request never entered the model adapter")
+            second = client.post("/generate", json={"question": "overlapping"})
+            release.set()
+            first_response = first.result(timeout=3)
+
+        self.assertEqual(first_response.status_code, 200)
+        self.assertEqual(second.status_code, 429)
+        self.assertEqual(len(factory_calls), 1)
+        self.assertEqual(adapter_calls, [(factory_calls[0], "first")])
 
     def test_local_generation_adapter_has_a_bounded_step_aware_timeout(self):
         import time
@@ -158,6 +215,61 @@ class Sprint1Infrastructure(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             with self.assertRaises(RuntimeUnavailable):
                 LocalModels.load(Path(temporary))
+
+    def test_local_loader_rejects_incomplete_extra_unsafe_and_corrupt_artifacts_before_import(self):
+        import builtins
+        lock = json.loads((ROOT / "ai/fde_v2/coverstory/model_lock.json").read_text(encoding="utf-8"))
+
+        def write_manifest(root: Path):
+            directory = root / "generation"
+            directory.mkdir(parents=True)
+            hashes = {}
+            for name in lock["generation"]["expected_files"]:
+                path = directory / name
+                path.write_bytes(("inert fixture:" + name).encode())
+                import hashlib
+                hashes[name] = hashlib.sha256(path.read_bytes()).hexdigest()
+            manifest = {"trust_remote_code": False, "generation": {
+                "repository": MODEL_ID, "revision": MODEL_REVISION, "files": hashes}}
+            (root / "runtime-manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+            return directory, manifest
+
+        def assert_rejected(change):
+            with tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                directory, manifest = write_manifest(root)
+                change(root, directory, manifest)
+                (root / "runtime-manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+                attempted_imports = []
+                original_import = builtins.__import__
+
+                def guard_model_import(name, *args, **kwargs):
+                    if name == "torch" or name.startswith("transformers"):
+                        attempted_imports.append(name)
+                        raise AssertionError("model loader reached framework imports before artifact validation")
+                    return original_import(name, *args, **kwargs)
+
+                with patch("builtins.__import__", side_effect=guard_model_import):
+                    with self.assertRaises(RuntimeUnavailable):
+                        LocalModels.load(root)
+                self.assertEqual(attempted_imports, [])
+
+        assert_rejected(lambda _root, _directory, manifest:
+                        manifest["generation"]["files"].pop("config.json"))
+        assert_rejected(lambda _root, _directory, manifest:
+                        manifest["generation"]["files"].update({"unapproved.bin": "0" * 64}))
+        assert_rejected(lambda _root, directory, _manifest:
+                        (directory / "unverified-weights.bin").write_bytes(b"extra"))
+        assert_rejected(lambda _root, directory, _manifest:
+                        (directory / "config.json").write_bytes(b"corrupted after hashing"))
+
+        def symlink_expected(_root, directory, manifest):
+            target = directory.parent / "external-config.json"
+            target.write_text("external", encoding="utf-8")
+            (directory / "config.json").unlink()
+            (directory / "config.json").symlink_to(target)
+
+        assert_rejected(symlink_expected)
 
     def test_day14_schema_and_independent_insert_witness(self):
         with sqlite3.connect(":memory:") as db:

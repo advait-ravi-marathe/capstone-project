@@ -10,6 +10,7 @@ The verified Sprint 1 section map for inference and local-only loading is in [so
 - Runtime: Transformers loads verified local files in the Python API process; no Ollama/llama.cpp server, external provider, mock or network inference fallback is configured.
 - HTTP shape: React's same-origin `POST /generate` request reaches FastAPI on loopback `127.0.0.1:8765`. The backend loads the model locally from `FDE_V2_RUNTIME_DIR` (default `~/.cache/fde-v2/models`). `GET /health` and `GET /documents` are separate assistant-supplied paths.
 - The generation adapter defaults to a45-second step-aware deadline, configurable from1–300 seconds with `FDE_V2_GENERATION_TIMEOUT_SECONDS`. It checks between decoder steps and maps expiry to HTTP504. One slow token/kernel call can overrun by that step; this is not an OS-level process kill or production SLA.
+- API initialization is single-flight and the app permits one generation request at a time; an overlapping request gets HTTP429 rather than loading a second model or queueing unbounded model work. This is a small-memory local learning limit, not a throughput claim.
 - `trust_remote_code` is false in both the lock and Transformers load calls. The model runtime binds only to loopback by default. Do not use private/corporate/customer data in this starter.
 
 ## Recorded access blocker

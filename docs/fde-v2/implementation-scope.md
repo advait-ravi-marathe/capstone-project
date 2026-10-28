@@ -4,7 +4,7 @@ This branch release implements the accepted AWS FDE v2.4 plan only through its f
 
 ## Ownership
 
-The learner-owned AI seams assigned by this release are: validate one synthetic document record (Day3), forward a bounded prompt through the real local generator (Day8), strictly parse structured answer JSON (Day13), and begin idempotent insertion of one validated metadata row (Day14, partial U011 slice). These functions are explicit TODOs in `ai/fde_v2/coverstory/learner.py`.
+The learner-owned AI seams assigned by this release are: validate one synthetic document record (Day3), forward a bounded prompt through the real local generator (Days10–11), strictly parse structured answer JSON (Day13), and begin idempotent insertion of one validated metadata row (Day14, partial U011 slice). These functions are explicit TODOs in `ai/fde_v2/coverstory/learner.py`.
 
 The assistant supplies loopback API, generation model loading, React page, SQLite metadata schema, fixtures and deterministic test harness. The learner reads/traces the supplied API/UI, explains request/data flow, and performs the assigned role interview practice. There is no React, Java/Spring, authentication, generic CRUD or infrastructure implementation task in this Sprint 1 release. Future bounded integration ownership checkpoints are planning-only and require separate review.
 

@@ -12,6 +12,34 @@ python -m ai.fde_v2.coverstory.day01_baseline
 
 It reads the synthetic JSON manifest, loads ten fictional records into in-memory SQLite FTS5, and ranks lexical matches. “What is the individual deductible?” starts with `northstar-deductible`. This is instructor-owned keyword retrieval, not generated text, embeddings, RAG or learner completion. Day 1's own task is the baseline/problem brief; see [Day 1](days/day-01.md).
 
+## Run the supplied Sprint 1 application
+
+Use Python 3.12. This installs pinned CPU-capable local dependencies; it makes no cloud or model-provider calls:
+
+```sh
+python3 -m venv .venv-fde-v2
+source .venv-fde-v2/bin/activate
+python -m pip install --index-url https://download.pytorch.org/whl/cpu 'torch==2.14.1'
+python -m pip install -r requirements-fde-v2-sprint1.txt
+```
+
+In terminal 1, start the assistant-supplied loopback API:
+
+```sh
+python -m ai.fde_v2.coverstory.run_api
+```
+
+In terminal 2, from the repository root, install the frontend lockfile dependencies if needed, then launch the separate Vite entrypoint:
+
+```sh
+npm --prefix frontend ci
+VITE_FDE_V2_API_TARGET=http://127.0.0.1:8765 npm --prefix frontend run dev
+```
+
+Open the Vite URL at `/fde-v2.html`. `VITE_FDE_V2_API_TARGET` proxies `/health`, `/documents` and `/generate` to the loopback API. Check `/health` and `/documents` without model weights. Until the pinned model is actually installed, `/generate` returns an explicit unavailable response; no mock or extractive fallback is used. Even after weights are available, the route uses the learner-owned `generate_text` seam and remains an explicit TODO failure until U008 is implemented; instructor reference code is never silently substituted. The runtime cannot perform real generation until the recorded Hub-access blocker is resolved and the separately documented pinned-file fetch is permitted. Startup, mocked tests and visible UI states are not inference evidence or learner completion.
+
+These commands only start supplied infrastructure. Learner tasks stay in the four explicit Python seams; the API and UI remain supplied and are read/trace/diagnose material in this sprint.
+
 ## Sprint 1: actual learning Days 1–14
 
 - [Daily pages, Days 1–14](days/)
@@ -28,7 +56,7 @@ It reads the synthetic JSON manifest, loads ten fictional records into in-memory
 
 Each day's page assigns DSA60 + role/AWS bank30 + AI90 = 180 minutes. A 75-minute DSA revision reduces AI to75; a90-minute revision reduces AI to60. The actual Day 14 allocation spends U010 support30 + the first U011 segment30 + a private evidence note30. U011 remains incomplete. The full accepted unit schedule continues beyond this Sprint 1 release; no Day 15+ pages or learner code are included.
 
-The daily role pages are the exact practice sequence. AWS work is inside the same 30-minute bank: Day5 course/syllabus audit; Day6 secure-access diagnostic; Day12 networking; Day13 data/storage protection. Current official SAA-C03 exam guide and its exact content-domain task headings are linked in [AWS bank](aws-bank.md). The user-reported owned Maarek course is identified there by course ID; current access and lecture numbering are not verified, so no guessed video number is assigned. Official AWS documentation is the fallback. Nothing here books an exam or claims a certificate.
+The daily role pages are the exact practice sequence. AWS work is inside the same 30-minute bank: Day5 course/syllabus audit; Day6 secure-access diagnostic; Day12 networking; Day13 data/storage protection. Current official SAA-C03 exam guide and its exact content-domain task headings are linked in [AWS bank](aws-bank.md). The connected catalog's Maarek course title, ID and listed curriculum durations are mapped in the [Sprint 1 course map](sources/sprint1-course-map.md); personal paid-video entitlement remains unverified. The connector did not return lesson URLs, so no guessed video number is assigned. Official AWS documentation is the fallback. Nothing here books an exam or claims a certificate.
 
 ## Deterministic checks
 

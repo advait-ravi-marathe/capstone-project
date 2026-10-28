@@ -17,8 +17,8 @@ def parse_document_record(raw: Mapping[str, Any]) -> Document:
 
 
 def generate_text(generator, prompt: str, max_new_tokens: int = 160) -> tuple[str, float]:
-    """Day 8: validate bounds and forward a prompt to the real generation adapter."""
-    raise NotImplementedError("Day 8: implement generate_text")
+    """Days 10–11: validate bounds and forward to the real generation adapter."""
+    raise NotImplementedError("Days 10–11: implement generate_text")
 
 
 def parse_answer_json(text: str) -> dict[str, Any]:
