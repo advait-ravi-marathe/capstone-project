@@ -1,4 +1,4 @@
-> **Historical sequence notice (27 October 2026).** The quote-selection and conventional FE/BE learner assignments below are preserved historical curriculum and are no longer active. The prior API-first candidate is also superseded. The active first-30 release candidate is the [model-building-first roadmap](../model-first-roadmap/README.md). Historical assignment files, tests, source receipts, dates, issue IDs, and learner evidence are preserved and receive no completion credit.
+> **Historical sequence notice (27 October 2026).** The quote-selection and conventional FE/BE learner assignments below are preserved historical curriculum and are no longer active. The prior API-first candidate is also superseded. The active roadmap is the [AWS FDE v2.4 plan](../fde-v2/README.md). Historical assignment files, tests, source receipts, dates, issue IDs, and learner evidence are preserved and receive no completion credit.
 
 # CoverStory 30-day reboot contracts
 

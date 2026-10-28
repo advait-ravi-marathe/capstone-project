@@ -1,0 +1,11 @@
+# Role benchmark sources
+
+Checked 28 October 2026. These links are first-party role/career sources used to select interview and delivery skills; a careers index is not proof that a specific requisition is open or available in India. Read the exact role, level, location, work authorization, travel and experience requirements again at application time. This compact list is not an exhaustive market survey.
+
+- [OpenAI Forward Deployed Engineer — San Francisco](https://openai.com/careers/forward-deployed-engineer-%28fde%29-sf-san-francisco/) and [Singapore](https://openai.com/careers/forward-deployed-engineer-singapore-singapore/): the cited descriptions include technical delivery from prototype to production, customer-team work, scope/tradeoffs and direct coding where needed. Location and role-specific prerequisites apply.
+- [Anthropic careers](https://www.anthropic.com/careers/jobs): current role index includes FDE, Applied AI Engineer and Applied AI Architect families in location-specific postings. Do not generalize one posting's language or experience requirements to another geography or level.
+- [Google DeepMind careers](https://deepmind.google/careers/): role descriptions include guiding product development through deployment; this is a benchmark for execution and cross-functional delivery, not a claim of a current FDE opening.
+- [Microsoft careers, Singapore listings](https://careers.microsoft.com/professionals/us/en/l-singapore): AI/Copilot Solution Engineer postings describe technical customer engagements. This is a location-specific adjacent role, not an India opening claim.
+- [Meta careers](https://www.metacareers.com/), [NVIDIA careers](https://www.nvidia.com/en-us/about-nvidia/careers/), [Amazon jobs](https://www.amazon.jobs/), [Databricks careers](https://www.databricks.com/company/careers/open-positions), and [Snowflake careers](https://careers.snowflake.com/): approved benchmark employers; exact current role requirements must be verified from the selected posting.
+
+This roadmap prioritizes interview/job-switch practice immediately. Existing software-engineering evidence remains usable; later AI milestones do not gate applications. A personal local project is portfolio evidence only and does not equal production customer history, broad adoption or a professional title.

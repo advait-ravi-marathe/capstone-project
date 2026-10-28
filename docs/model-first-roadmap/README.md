@@ -1,5 +1,11 @@
 # Model-building-first AI roadmap
 
+> **Superseded as the active sequence on 28 October 2026.** The AWS FDE v2.4
+> interview-first roadmap now governs new study: [active plan](../fde-v2/README.md).
+> This file and its manifests preserve the earlier 548-day model-building-first
+> candidate and history. They do not indicate learner completion or active
+> assignments; do not use the old sequence as a second concurrent roadmap.
+
 **Status:** first-30 release candidate; later phases are planning-only. Zero learner days are recorded complete. Day 1 is
 **27 October 2026 (Asia/Kolkata)**. The previous API-first candidate is
 preserved for later integration, but it is no longer the active sequence.

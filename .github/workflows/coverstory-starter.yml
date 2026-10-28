@@ -2,7 +2,7 @@ name: CoverStory starter checks
 
 on:
   push:
-    branches: [main, review/integration/fde-main-reconciliation, review/fde-coursework-v2-sprint3, review/fde-coursework-v2-sprint4-repair, review/fde-coursework-v2-sprint4-audit, review/fde-coursework-v2-sprint4-days45-56, review/eai-sprint1-interview-first-2026-10-24, review/eai-sprint1-design-ownership-correction-2026-10-24, work/eai-sprint2-onward, learning/coverstory-day-02-30, learning/coverstory-beyond-30, learning/coverstory-days-31-44, learning/coverstory-days-45-56, learning/coverstory-days-57-70, learning/coverstory-days-71-84, docs/coverstory-days-31-84-course-guidance, learning/coverstory-days-85-98, learning/coverstory-days-99-112, learning/coverstory-days-113-126, learning/coverstory-days-127-140, learning/coverstory-days-141-154, learning/streamforge-days-155-168, learning/streamforge-days-169-182, learning/streamforge-days-183-196, release/model-building-days-01-30, review/model-first-integration-ownership]
+    branches: [main, review/integration/fde-main-reconciliation, review/fde-coursework-v2-sprint3, review/fde-coursework-v2-sprint4-repair, review/fde-coursework-v2-sprint4-audit, review/fde-coursework-v2-sprint4-days45-56, review/eai-sprint1-interview-first-2026-10-24, review/eai-sprint1-design-ownership-correction-2026-10-24, work/eai-sprint2-onward, learning/coverstory-day-02-30, learning/coverstory-beyond-30, learning/coverstory-days-31-44, learning/coverstory-days-45-56, learning/coverstory-days-57-70, learning/coverstory-days-71-84, docs/coverstory-days-31-84-course-guidance, learning/coverstory-days-85-98, learning/coverstory-days-99-112, learning/coverstory-days-113-126, learning/coverstory-days-127-140, learning/coverstory-days-141-154, learning/streamforge-days-155-168, learning/streamforge-days-169-182, learning/streamforge-days-183-196, release/model-building-days-01-30, review/model-first-integration-ownership, review/aws-fde-v24-first30, review/aws-fde-v24-sprint1]
   pull_request:
     branches: [main]
 
@@ -73,3 +73,16 @@ jobs:
       - name: Verify React model-integration witness and failure mutants
         working-directory: frontend
         run: npm run test:model-integration-witness
+      - name: Install pinned CPU-only AWS FDE v2.4 Sprint 1 dependencies
+        run: |
+          python3 -m pip install --index-url https://download.pytorch.org/whl/cpu 'torch==2.14.1'
+          python3 -m pip install -r requirements-fde-v2-sprint1.txt
+      - name: Verify AWS FDE v2.4 Sprint 1 contracts and witnesses
+        run: |
+          python3 -m unittest scripts.test_fde_v2_sprint1
+          FDE_V2_CANDIDATE=ai.fde_v2.coverstory.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_units
+          python3 -m unittest ai.fde_v2.tests.test_sprint1 ai.fde_v2.tests.test_sprint1_witnesses
+          python3 -m ai.fde_v2.coverstory.day01_baseline
+      - name: Verify AWS FDE v2.4 assistant-supplied React application
+        working-directory: frontend
+        run: npm run test:fde-v2
