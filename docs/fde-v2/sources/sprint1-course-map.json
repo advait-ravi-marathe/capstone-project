@@ -1,0 +1,2335 @@
+{
+  "schema_version": "sprint1-source-map-2-runtime-aligned",
+  "prepared_date": "2026-10-28",
+  "scope": "Actual learning Days 1–14 of accepted AWS-only v2.4; documentation/course mapping only. No enrollment, purchase, provisioning, repository write, board mutation or completion claim.",
+  "accepted_plan_url": "https://github.com/advait-ravi-marathe/capstone-project/tree/review/aws-fde-v24-plan/docs/fde-v2/accepted",
+  "source_files": [
+    {
+      "name": "first-30-days.json",
+      "sha256": "86f96468ce0d966b824cb16d0715a762c45cffa7792adae3f11cbff850eb0596"
+    },
+    {
+      "name": "first-30-ai-units.json",
+      "sha256": "c405b92d7b25a34c53660707d2ba45876eab757faeca76f30a522006396f9e41"
+    }
+  ],
+  "budget": {
+    "days": 14,
+    "dsa_minutes": 840,
+    "role_bank_minutes": 420,
+    "ai_including_visibility_minutes": 1260,
+    "total_minutes": 2520,
+    "total_hours": 42,
+    "aws_minutes_within_role_bank": 120,
+    "visibility_minutes_within_ai_bank": 60,
+    "added_coursework_minutes": 0
+  },
+  "budget_rules": [
+    "No same-scope compression. Heavier DSA takes AI capacity, remaining unit work carries forward; weekly visibility replaces AI time. Re-estimate after Day 7 andDay 30 from actual minutes, ownership and blockers.",
+    "Each selected video is budgeted at 1× actual catalog duration; slowing, pausing or note taking consumes the remaining same-day bank. Do not rush to finish a full section.",
+    "DSA75 leaves AI75; DSA90 leaves AI60, including scheduled visibility. Drop optional lookup first, then carry unfinished unit work forward; preserve prerequisites/gates."
+  ],
+  "course_inventory": [
+    {
+      "id": "2196488",
+      "title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+      "url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+      "historical_ownership": "User-reported October 20 inventory, independently reported by memoryworker; not checked via current account entitlement.",
+      "catalog_verified_date": "2026-10-28",
+      "current_video_entitlement": "unknown",
+      "last_update_timestamp": "not_returned",
+      "exam_scope": "SAA-C03 primary",
+      "assigned_full_course": false,
+      "assigned_practice_exam": false
+    },
+    {
+      "id": "3142166",
+      "title": "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026",
+      "url": "https://www.udemy.com/course/aws-certified-cloud-practitioner-new?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+      "historical_ownership": "User-reported October 20 inventory, independently reported by memoryworker; not checked via current account entitlement.",
+      "catalog_verified_date": "2026-10-28",
+      "current_video_entitlement": "unknown",
+      "last_update_timestamp": "not_returned",
+      "exam_scope": "CLF-C02 foundation only; not SAA readiness",
+      "assigned_full_course": false,
+      "assigned_practice_exam": false
+    },
+    {
+      "id": "3142170",
+      "title": "6 Practice Exams | AWS Certified Cloud Practitioner CLF-C02",
+      "url": "https://www.udemy.com/course/practice-exams-aws-certified-cloud-practitioner?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+      "historical_ownership": "User-reported October 20 inventory, independently reported by memoryworker; not checked via current account entitlement.",
+      "catalog_verified_date": "2026-10-28",
+      "current_video_entitlement": "unknown",
+      "last_update_timestamp": "not_returned",
+      "exam_scope": "CLF-C02 foundation only; not SAA readiness",
+      "assigned_full_course": false,
+      "assigned_practice_exam": false
+    }
+  ],
+  "scope_distinction": {
+    "SAA": "Primary purchased-course mapping for architecture design. Four bounded diagnostics are not full SAA syllabus coverage or certification readiness.",
+    "CLF": "Optional foundation lookup replacement only. Official CLF guide excludes architecture design/implementation from its target tasks. No required CLF-first detour.",
+    "practice_exams": "The historically owned six-exam product is CLF-C02, not SAA. No full practice exam fits or is assigned in these four 30-minute diagnostics. Do not copy questions or use dumps."
+  },
+  "runtime_alignment": {
+    "status": "source_code_aligned_at_published_commit_not_runtime_verified",
+    "repository": "advait-ravi-marathe/capstone-project",
+    "branch": "review/aws-fde-v24-sprint1",
+    "commit": "6b291d95567de5c9f6943931f004e74c5c9d4d3a",
+    "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+    "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "model_revision_evidence": "Declared in published lock/code; not independently resolved by model metadata API in this task.",
+    "runtime": "In-process Transformers 5.21.0 / PyTorch 2.14.1, CPU-capable; no model-server endpoint",
+    "python": "3.12",
+    "actual_adapter": "LocalGenerator.generate_messages(messages,max_new_tokens=160) -> (answer,elapsed_ms)",
+    "actual_adapter_endpoint_mapping": "React same-origin POST /generate -> FastAPI loopback 127.0.0.1:8765 -> LocalModels.load/generate_messages in the same Python process",
+    "http_contract": {
+      "request": "JSON question string, min1/max2000 characters",
+      "response_fields": [
+        "answer",
+        "elapsed_ms",
+        "provider",
+        "request_id"
+      ],
+      "known_error_statuses": [
+        422,
+        503,
+        504,
+        502
+      ]
+    },
+    "generation_bounds": {
+      "input_token_truncation_max_length": 2048,
+      "max_new_tokens_default": 160,
+      "max_new_tokens_allowed_range": [
+        1,
+        256
+      ],
+      "do_sample": false,
+      "deadline_default_seconds": 45,
+      "deadline_config_range_seconds": [
+        1,
+        300
+      ],
+      "deadline_limitation": "Step-aware between decoder calls; a slow kernel can overrun. Not a hard process deadline and does not cover model loading.",
+      "token_accounting": "not exposed by current adapter; actual token counts unavailable"
+    },
+    "load_policy": {
+      "trust_remote_code": false,
+      "local_files_only": true,
+      "model_dir_default": "~/.cache/fde-v2/models/generation",
+      "required_manifest": "runtime-manifest.json",
+      "files": "Declared pinned source and local SHA256 verification; actual files absent/unverified"
+    },
+    "quantization": "No GGUF/quantized configuration is declared in this adapter; actual dtype/resource profile remains unmeasured.",
+    "embedding_runtime": "None in this Sprint1 release; no embedding candidate assignment.",
+    "not_used": [
+      "Ollama",
+      "llama.cpp server",
+      "OpenAI-compatible model HTTP endpoint",
+      "paid cloud inference",
+      "schema-constrained grammar generation"
+    ],
+    "real_inference_status": "blocked_unverified",
+    "blocker": "Published runtime-verification record reports HTTP403 on official Hub metadata request through configured proxy before transfer; raw request/response/proxy policy reason were not retained. Do not retry without resolution.",
+    "version_docs_note": "Exact v5.21.0 docs URLs were inaccessible; current official Transformers documentation was readable and is labeled as such. Package pins are repository declarations, not installed/runtime proof.",
+    "ownership": "Assistant supplies API/model loading/React/SQLite schema; learner seams are synthetic-record validation, bounded prompt forwarding, strict JSON parsing, and one-record idempotent insert. No extra infrastructure implementation course."
+  },
+  "unknowns_and_errors": [
+    {
+      "type": "unknown",
+      "detail": "Current paid-video entitlement/enrollment and actual instructor last-update timestamp were not returned. Historical ownership and current catalog presence are separate facts."
+    },
+    {
+      "type": "unknown",
+      "detail": "Udemy curriculum item URLs were blank. Use exact section/item titles at the returned course URL; do not invent lecture deep links or numbers."
+    },
+    {
+      "type": "unknown",
+      "detail": "Actual target job posting and present CV evidence must be selected on Day1; no fictional current posting assigned."
+    },
+    {
+      "type": "runtime_blocker",
+      "detail": "Published runtime-verification record reports HTTP403 on official Hub metadata request through configured proxy before transfer; raw request/response/proxy policy reason were not retained. Do not retry without resolution."
+    },
+    {
+      "type": "source_fetch_error",
+      "urls": [
+        "https://huggingface.co/docs/transformers/v5.21.0/en/chat_templating",
+        "https://huggingface.co/docs/transformers/v5.21.0/en/main_classes/text_generation",
+        "https://huggingface.co/docs/transformers/v5.21.0/en/model_doc/auto"
+      ],
+      "detail": "Version-specific docs inaccessible via web tool. Current official unversioned docs succeeded; exact installed API still needs verification after authorized setup."
+    },
+    {
+      "type": "version_caution",
+      "detail": "Python documentation now pinned to3.12 to match starter. Current Transformers/React docs are not proof of installed package versions. No model revision metadata or weights were fetched."
+    }
+  ],
+  "sources": {
+    "SAA-GUIDE": {
+      "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+      "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+      "read_only_these_sections": [
+        "Introduction",
+        "Target candidate description",
+        "Content outline"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "CLF-GUIDE": {
+      "title": "AWS Certified Cloud Practitioner (CLF-C02)",
+      "url": "https://docs.aws.amazon.com/aws-certification/latest/cloud-practitioner-02/cloud-practitioner-02.html",
+      "read_only_these_sections": [
+        "Introduction",
+        "Job tasks that are out of scope for the target candidate"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "SAA-D1": {
+      "title": "SAA-C03: Design Secure Architectures",
+      "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain1.html",
+      "read_only_these_sections": [
+        "Task 1.1: Design secure access to AWS resources",
+        "Task 1.2: Design secure workloads and applications",
+        "Task 1.3: Determine appropriate data security controls"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "SAA-D3": {
+      "title": "SAA-C03: Design High-Performing Architectures",
+      "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html",
+      "read_only_these_sections": [
+        "Task 3.1: Determine high-performing and/or scalable storage solutions",
+        "Task 3.4: Determine high-performing and/or scalable network architectures"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "SAA-D4": {
+      "title": "SAA-C03: Design Cost-Optimized Architectures",
+      "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain4.html",
+      "read_only_these_sections": [
+        "Task 4.1: Design cost-optimized storage solutions"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "AWS-IAM": {
+      "title": "What is IAM?",
+      "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html",
+      "read_only_these_sections": [
+        "Identities",
+        "Access management"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "AWS-IAM-BEST": {
+      "title": "Security best practices in IAM",
+      "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+      "read_only_these_sections": [
+        "Require workloads to use temporary credentials with IAM roles to access AWS",
+        "Apply least-privilege permissions"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "AWS-VPC": {
+      "title": "What is Amazon VPC?",
+      "url": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html",
+      "read_only_these_sections": [
+        "Features: VPC, Subnets, Routing, Gateways and endpoints"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "AWS-SG": {
+      "title": "Control traffic to your AWS resources using security groups",
+      "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html",
+      "read_only_these_sections": [
+        "Opening explanation",
+        "Security group basics"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "AWS-S3": {
+      "title": "What is Amazon S3?",
+      "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html",
+      "read_only_these_sections": [
+        "Opening definition",
+        "Features: Storage classes; Access management and security"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "AWS-S3-ENC": {
+      "title": "Protecting data with encryption",
+      "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingEncryption.html",
+      "read_only_these_sections": [
+        "Opening explanation: transit, at rest, SSE-S3, SSE-KMS"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "AWS-S3-VERSION": {
+      "title": "Retaining multiple versions of objects with S3 Versioning",
+      "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html",
+      "read_only_these_sections": [
+        "Opening explanation",
+        "Version storage-cost note"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "PY-DATA": {
+      "title": "Python: Data Structures",
+      "url": "https://docs.python.org/3.12/tutorial/datastructures.html#list-comprehensions",
+      "read_only_these_sections": [
+        "5.1.3 List Comprehensions"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "PY-SQL": {
+      "title": "Python sqlite3",
+      "url": "https://docs.python.org/3.12/library/sqlite3.html#tutorial",
+      "read_only_these_sections": [
+        "Tutorial; placeholders and transaction behavior needed by the attempt"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "PY-VENV": {
+      "title": "Python venv",
+      "url": "https://docs.python.org/3.12/library/venv.html",
+      "read_only_these_sections": [
+        "Opening explanation",
+        "Creating virtual environments"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "PY-TYPING": {
+      "title": "Python typing",
+      "url": "https://docs.python.org/3.12/library/typing.html#typing.TypedDict",
+      "read_only_these_sections": [
+        "Opening note: annotations are not runtime validation",
+        "TypedDict"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "PY-ERRORS": {
+      "title": "Python: Errors and Exceptions",
+      "url": "https://docs.python.org/3.12/tutorial/errors.html#handling-exceptions",
+      "read_only_these_sections": [
+        "8.3 Handling Exceptions"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "PY-PATH": {
+      "title": "Python pathlib",
+      "url": "https://docs.python.org/3.12/library/pathlib.html#pathlib.Path.resolve",
+      "read_only_these_sections": [
+        "Path.resolve; PurePath.is_relative_to"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Path containment needs tests; path helpers alone are not a complete hostile-filesystem security guarantee."
+    },
+    "PY-TEST": {
+      "title": "Python unittest",
+      "url": "https://docs.python.org/3.12/library/unittest.html#basic-example",
+      "read_only_these_sections": [
+        "Basic example",
+        "assertRaises"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "FASTAPI-BODY": {
+      "title": "FastAPI: Request Body",
+      "url": "https://fastapi.tiangolo.com/tutorial/body/",
+      "read_only_these_sections": [
+        "Create your data model",
+        "Declare it as a parameter",
+        "Results"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "FASTAPI-ERRORS": {
+      "title": "FastAPI: Handling Errors",
+      "url": "https://fastapi.tiangolo.com/tutorial/handling-errors/",
+      "read_only_these_sections": [
+        "Use HTTPException",
+        "Add custom headers",
+        "Override request validation exceptions"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "FASTAPI-TEST": {
+      "title": "FastAPI: Testing",
+      "url": "https://fastapi.tiangolo.com/tutorial/testing/",
+      "read_only_these_sections": [
+        "Using TestClient",
+        "Testing: extended example"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Only if FastAPI is the selected starter stack; do not add a second API framework."
+    },
+    "MDN-CLOSURES": {
+      "title": "MDN: Closures",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures",
+      "read_only_these_sections": [
+        "Lexical scoping",
+        "Closure"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "MDN-LOOP": {
+      "title": "MDN: JavaScript execution model",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Execution_model",
+      "read_only_these_sections": [
+        "Job queue and event loop"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "MDN-PROMISES": {
+      "title": "MDN: Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "read_only_these_sections": [
+        "Chaining",
+        "Error handling"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "REACT-STATE": {
+      "title": "React: State as a Snapshot",
+      "url": "https://react.dev/learn/state-as-a-snapshot",
+      "read_only_these_sections": [
+        "Setting state triggers renders",
+        "Rendering takes a snapshot in time"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "REACT-KEY": {
+      "title": "React: Preserving and Resetting State",
+      "url": "https://react.dev/learn/preserving-and-resetting-state",
+      "read_only_these_sections": [
+        "State is tied to a position in the render tree",
+        "Resetting state with a key"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "MDN-CACHE": {
+      "title": "MDN: HTTP caching",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+      "read_only_these_sections": [
+        "Validation",
+        "Force Revalidation"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "MDN-CRP": {
+      "title": "MDN: Critical rendering path",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path",
+      "read_only_these_sections": [
+        "Understanding CRP"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "REACT-EFFECT": {
+      "title": "React: useEffect",
+      "url": "https://react.dev/reference/react/useEffect#fetching-data-with-effects",
+      "read_only_these_sections": [
+        "Fetching data with Effects",
+        "Specifying reactive dependencies"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "MDN-FETCH": {
+      "title": "MDN: Using the Fetch API",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+      "read_only_these_sections": [
+        "Making a request",
+        "Canceling a request",
+        "Handling the response"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "WAI-BUTTON": {
+      "title": "W3C APG: Button Pattern",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/button/",
+      "read_only_these_sections": [
+        "Keyboard Interaction",
+        "WAI-ARIA Roles, States, and Properties"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "WAI-STATUS": {
+      "title": "W3C: Understanding SC 4.1.3 Status Messages",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
+      "read_only_these_sections": [
+        "Intent",
+        "Examples"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "TEST-ROLE": {
+      "title": "Testing Library: ByRole",
+      "url": "https://testing-library.com/docs/queries/byrole/",
+      "read_only_these_sections": [
+        "API; name option; one matching component query"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "REACT-STRUCTURE": {
+      "title": "React: Choosing the State Structure",
+      "url": "https://react.dev/learn/choosing-the-state-structure",
+      "read_only_these_sections": [
+        "Principles for structuring state",
+        "Avoid contradictions in state"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "MDN-IDEMPOTENT": {
+      "title": "MDN: Idempotent",
+      "url": "https://developer.mozilla.org/en-US/docs/Glossary/Idempotent",
+      "read_only_these_sections": [
+        "Definition and method examples"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "MDN-STATUS": {
+      "title": "MDN: HTTP response status codes",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status",
+      "read_only_these_sections": [
+        "Only codes used by the chosen endpoint"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    "HF-CHAT": {
+      "title": "Transformers: Chat templates",
+      "url": "https://huggingface.co/docs/transformers/en/chat_templating",
+      "read_only_these_sections": [
+        "Using apply_chat_template",
+        "add_generation_prompt",
+        "Special-token duplication warning"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Current official docs accessible; exact pinned v5.21.0 documentation URL was not accessible. Match installed API before execution; this is not installation proof."
+    },
+    "HF-GENERATE": {
+      "title": "Transformers: Generation",
+      "url": "https://huggingface.co/docs/transformers/en/main_classes/text_generation",
+      "read_only_these_sections": [
+        "GenerationConfig: max_new_tokens, do_sample, max_time",
+        "GenerationMixin.generate"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "The published adapter calls model.generate in-process. Its custom stopping criterion is step-aware, not a hard process deadline."
+    },
+    "HF-STOP": {
+      "title": "Transformers: Utilities for generation",
+      "url": "https://huggingface.co/docs/transformers/en/internal/generation_utils",
+      "read_only_these_sections": [
+        "StoppingCriteria",
+        "StoppingCriteriaList"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Read only these classes; the supplied adapter checks its own elapsed-time deadline between decoder steps."
+    },
+    "HF-AUTO": {
+      "title": "Transformers: Auto classes",
+      "url": "https://huggingface.co/docs/transformers/en/model_doc/auto",
+      "read_only_these_sections": [
+        "AutoTokenizer.from_pretrained",
+        "AutoModelForCausalLM.from_pretrained: local_files_only, trust_remote_code"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "The published code loads local files only and disables remote code. A successful documentation fetch does not verify model-file availability."
+    },
+    "HF-DOWNLOAD": {
+      "title": "Hugging Face Hub: Download files",
+      "url": "https://huggingface.co/docs/huggingface_hub/guides/download",
+      "read_only_these_sections": [
+        "From specific version",
+        "Filter files to download"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Read-only provenance/configuration lesson. Do not run the download recipe or retry the recorded metadata 403 blocker without its resolution."
+    },
+    "QWEN-MODEL": {
+      "title": "Qwen/Qwen2.5-0.5B-Instruct model card",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
+      "read_only_these_sections": [
+        "License label",
+        "Model-specific context and output information",
+        "Transformers usage"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Actual published candidate: revision 7ae557604adf67be50417f59c2c2f167def9a775, declared by model_lock.json. Remote pinned-revision metadata and artifact hashes remain unverified because of the recorded403 blocker."
+    },
+    "PY-JSON": {
+      "title": "Python 3.12: json",
+      "url": "https://docs.python.org/3.12/library/json.html#json.loads",
+      "read_only_these_sections": [
+        "json.loads",
+        "JSONDecodeError",
+        "Warning on untrusted JSON size"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Actual U010 learner seam uses plain JSON and explicit field/type validation, not llama.cpp grammar constraints or a new Pydantic validator."
+    },
+    "PY-TIME": {
+      "title": "Python 3.12: time",
+      "url": "https://docs.python.org/3.12/library/time.html#time.perf_counter",
+      "read_only_these_sections": [
+        "time.perf_counter"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Trace elapsed-time measurement; do not claim it interrupts a slow kernel or covers model loading."
+    },
+    "PY-DATACLASS": {
+      "title": "Python 3.12: dataclasses",
+      "url": "https://docs.python.org/3.12/library/dataclasses.html",
+      "read_only_these_sections": [
+        "dataclass decorator",
+        "frozen instances"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Actual supplied Document contract is a frozen dataclass; learner validation is still explicit."
+    },
+    "CODE-RUNTIME": {
+      "title": "Published Sprint1: runtime verification",
+      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/docs/fde-v2/runtime-verification.md",
+      "read_only_these_sections": [
+        "Pinned candidate and runtime shape",
+        "Recorded access blocker"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "github_fetch_file_at_exact_commit",
+      "note": "Source/configuration inspection only. No model weights or real inference verified."
+    },
+    "CODE-MODELS": {
+      "title": "Published Sprint1: local model adapter",
+      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/models.py",
+      "read_only_these_sections": [
+        "LocalModels.load",
+        "LocalGenerator.generate_messages",
+        "GenerationDeadline"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "github_fetch_file_at_exact_commit"
+    },
+    "CODE-LOCK": {
+      "title": "Published Sprint1: model lock",
+      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/model_lock.json",
+      "read_only_these_sections": [
+        "generation repository/revision/license/expected_files",
+        "trust_remote_code"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "github_fetch_file_at_exact_commit"
+    },
+    "CODE-API": {
+      "title": "Published Sprint1: loopback API",
+      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/api.py",
+      "read_only_these_sections": [
+        "GenerateRequest",
+        "POST /generate",
+        "error mapping and request ID"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "github_fetch_file_at_exact_commit"
+    },
+    "CODE-UI": {
+      "title": "Published Sprint1: React question-answer screen",
+      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/frontend/src/fde-v2/QuestionAnswerApp.tsx",
+      "read_only_these_sections": [
+        "ViewState",
+        "submit",
+        "effect cleanup and AbortController"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "github_fetch_file_at_exact_commit"
+    },
+    "CODE-SCOPE": {
+      "title": "Published Sprint1: implementation boundary",
+      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/docs/fde-v2/implementation-scope.md",
+      "read_only_these_sections": [
+        "Ownership",
+        "Evidence and gate state"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "github_fetch_file_at_exact_commit"
+    }
+  },
+  "days": [
+    {
+      "planned_learning_day": 1,
+      "dsa_minutes": 60,
+      "role_interview_minutes": 30,
+      "role_topic": "Target-role and baseline map",
+      "role_output": "Use verified current FE/full-stack strengths and an actual target role; identify gaps and accurate CV evidence. Applications need not wait for AI work.",
+      "ai_total_minutes": 90,
+      "ai_segments": [
+        {
+          "unit_id": "AIFDE-V2-U001",
+          "title": "Baseline, scope and ownership",
+          "kind": "primary",
+          "minutes": 90,
+          "source_refs": [
+            "PY-DATA",
+            "PY-SQL"
+          ],
+          "reading_cap_minutes": 10,
+          "practice_or_implementation_minutes": 80,
+          "focus": "Baseline attempt first; consult only a revealed Python transform/SQL gap, then write scope and ownership evidence.",
+          "gate_contract_ref": "AIFDE-V2-U001"
+        }
+      ],
+      "visibility_minutes": 0,
+      "reestimate": false,
+      "budget_if_dsa75": {
+        "dsa": 75,
+        "role_interview": 30,
+        "ai": 75
+      },
+      "budget_if_dsa90": {
+        "dsa": 90,
+        "role_interview": 30,
+        "ai": 60
+      },
+      "role_bank_category": "job_interview_preparation",
+      "source_contract_status": "not_started",
+      "learner_status": "not_started",
+      "dsa_mapping": "Existing 60-minute DSA bank retained; no replacement or new DSA course assigned by this map.",
+      "role_resource_map": {
+        "kind": "role_interview_practice",
+        "budget_minutes": 30,
+        "source_refs": [],
+        "reading_cap_minutes": 0,
+        "focus": "Use the actual target-role description and genuine CV/work evidence. Build strengths/gaps map; no generic course or invented job link.",
+        "allocation": "20 min evidence map + 10 min accurate gap review",
+        "lookup_rule": "Read only the named subsection relevant to the attempt. References are alternatives/lookup support, not all-page completion requirements."
+      },
+      "visibility_rule": "No separate visibility block today.",
+      "carry_rule": "Stop at the daily budget; unmet prerequisite or unfinished acceptance work carries forward. Do not compress the same scope or mark complete by date."
+    },
+    {
+      "planned_learning_day": 2,
+      "dsa_minutes": 60,
+      "role_interview_minutes": 30,
+      "role_topic": "JavaScript execution and async",
+      "role_output": "Explain closures/event loop/promises with one short runnable example; record a weak point.",
+      "ai_total_minutes": 90,
+      "ai_segments": [
+        {
+          "unit_id": "AIFDE-V2-U001",
+          "title": "Baseline, scope and ownership",
+          "kind": "support",
+          "minutes": 30,
+          "source_refs": [],
+          "reading_cap_minutes": 0,
+          "practice_or_implementation_minutes": 30,
+          "focus": "Finish U001 architecture/own-versus-borrowed note.",
+          "gate_contract_ref": "AIFDE-V2-U001"
+        },
+        {
+          "unit_id": "AIFDE-V2-U002",
+          "title": "Reproducible environment and real-model feasibility",
+          "kind": "primary",
+          "minutes": 60,
+          "source_refs": [
+            "PY-VENV",
+            "CODE-LOCK",
+            "CODE-RUNTIME",
+            "HF-DOWNLOAD"
+          ],
+          "reading_cap_minutes": 15,
+          "practice_or_implementation_minutes": 45,
+          "focus": "Inspect the Python 3.12 environment and supplied pinned configuration. Record hardware/model-license feasibility facts; no retry of the unresolved metadata 403 or download path.",
+          "gate_contract_ref": "AIFDE-V2-U002"
+        }
+      ],
+      "visibility_minutes": 0,
+      "reestimate": false,
+      "budget_if_dsa75": {
+        "dsa": 75,
+        "role_interview": 30,
+        "ai": 75
+      },
+      "budget_if_dsa90": {
+        "dsa": 90,
+        "role_interview": 30,
+        "ai": 60
+      },
+      "role_bank_category": "job_interview_preparation",
+      "source_contract_status": "not_started",
+      "learner_status": "not_started",
+      "dsa_mapping": "Existing 60-minute DSA bank retained; no replacement or new DSA course assigned by this map.",
+      "role_resource_map": {
+        "kind": "role_interview_practice",
+        "budget_minutes": 30,
+        "source_refs": [
+          "MDN-CLOSURES",
+          "MDN-LOOP",
+          "MDN-PROMISES"
+        ],
+        "reading_cap_minutes": 9,
+        "focus": "Predict and then run one short closure/promise ordering example; explain the result.",
+        "allocation": "9 min selected sections + 16 min attempt/explanation + 5 min gap log",
+        "lookup_rule": "Read only the named subsection relevant to the attempt. References are alternatives/lookup support, not all-page completion requirements."
+      },
+      "visibility_rule": "No separate visibility block today.",
+      "carry_rule": "Stop at the daily budget; unmet prerequisite or unfinished acceptance work carries forward. Do not compress the same scope or mark complete by date."
+    },
+    {
+      "planned_learning_day": 3,
+      "dsa_minutes": 60,
+      "role_interview_minutes": 30,
+      "role_topic": "React state and rendering",
+      "role_output": "Diagnose a state/render/key bug and explain the minimal fix.",
+      "ai_total_minutes": 90,
+      "ai_segments": [
+        {
+          "unit_id": "AIFDE-V2-U002",
+          "title": "Reproducible environment and real-model feasibility",
+          "kind": "primary",
+          "minutes": 30,
+          "source_refs": [
+            "PY-VENV"
+          ],
+          "reading_cap_minutes": 5,
+          "practice_or_implementation_minutes": 25,
+          "focus": "Finish reproducible setup and basic request-path/test receipt.",
+          "gate_contract_ref": "AIFDE-V2-U002"
+        },
+        {
+          "unit_id": "AIFDE-V2-U002",
+          "title": "Reproducible environment and real-model feasibility",
+          "kind": "buffer",
+          "minutes": 30,
+          "source_refs": [],
+          "reading_cap_minutes": 0,
+          "practice_or_implementation_minutes": 30,
+          "focus": "Repair setup only; if blocked record it, do not mark U002 passed.",
+          "gate_contract_ref": "AIFDE-V2-U002"
+        },
+        {
+          "unit_id": "AIFDE-V2-U003",
+          "title": "Python data contracts and tests",
+          "kind": "primary",
+          "minutes": 30,
+          "source_refs": [
+            "PY-DATACLASS",
+            "PY-TYPING",
+            "PY-ERRORS"
+          ],
+          "reading_cap_minutes": 8,
+          "practice_or_implementation_minutes": 22,
+          "focus": "Inspect the supplied frozen Document contract; start learner-owned synthetic-record validation and explicit errors.",
+          "gate_contract_ref": "AIFDE-V2-U003"
+        }
+      ],
+      "visibility_minutes": 0,
+      "reestimate": false,
+      "budget_if_dsa75": {
+        "dsa": 75,
+        "role_interview": 30,
+        "ai": 75
+      },
+      "budget_if_dsa90": {
+        "dsa": 90,
+        "role_interview": 30,
+        "ai": 60
+      },
+      "role_bank_category": "job_interview_preparation",
+      "source_contract_status": "not_started",
+      "learner_status": "not_started",
+      "dsa_mapping": "Existing 60-minute DSA bank retained; no replacement or new DSA course assigned by this map.",
+      "role_resource_map": {
+        "kind": "role_interview_practice",
+        "budget_minutes": 30,
+        "source_refs": [
+          "REACT-STATE",
+          "REACT-KEY"
+        ],
+        "reading_cap_minutes": 8,
+        "focus": "Diagnose one stale-state/key preservation bug and explain a minimal fix.",
+        "allocation": "8 min selected sections + 17 min diagnosis/fix + 5 min gap log",
+        "lookup_rule": "Read only the named subsection relevant to the attempt. References are alternatives/lookup support, not all-page completion requirements."
+      },
+      "visibility_rule": "No separate visibility block today.",
+      "carry_rule": "Stop at the daily budget; unmet prerequisite or unfinished acceptance work carries forward. Do not compress the same scope or mark complete by date."
+    },
+    {
+      "planned_learning_day": 4,
+      "dsa_minutes": 60,
+      "role_interview_minutes": 30,
+      "role_topic": "Browser and network behavior",
+      "role_output": "Trace an HTTP request, caching/error behavior and one browser performance issue.",
+      "ai_total_minutes": 90,
+      "ai_segments": [
+        {
+          "unit_id": "AIFDE-V2-U003",
+          "title": "Python data contracts and tests",
+          "kind": "primary",
+          "minutes": 60,
+          "source_refs": [
+            "PY-PATH",
+            "PY-TEST"
+          ],
+          "reading_cap_minutes": 10,
+          "practice_or_implementation_minutes": 50,
+          "focus": "Implement/test fixture-only ingestion, malformed/empty input, and a boundary case.",
+          "gate_contract_ref": "AIFDE-V2-U003"
+        },
+        {
+          "unit_id": "AIFDE-V2-U003",
+          "title": "Python data contracts and tests",
+          "kind": "support",
+          "minutes": 30,
+          "source_refs": [
+            "PY-TYPING",
+            "PY-ERRORS"
+          ],
+          "reading_cap_minutes": 5,
+          "practice_or_implementation_minutes": 25,
+          "focus": "Study only a revealed gap, then make a learner-owned input-format change.",
+          "gate_contract_ref": "AIFDE-V2-U003"
+        }
+      ],
+      "visibility_minutes": 0,
+      "reestimate": false,
+      "budget_if_dsa75": {
+        "dsa": 75,
+        "role_interview": 30,
+        "ai": 75
+      },
+      "budget_if_dsa90": {
+        "dsa": 90,
+        "role_interview": 30,
+        "ai": 60
+      },
+      "role_bank_category": "job_interview_preparation",
+      "source_contract_status": "not_started",
+      "learner_status": "not_started",
+      "dsa_mapping": "Existing 60-minute DSA bank retained; no replacement or new DSA course assigned by this map.",
+      "role_resource_map": {
+        "kind": "role_interview_practice",
+        "budget_minutes": 30,
+        "source_refs": [
+          "MDN-FETCH",
+          "MDN-CACHE",
+          "MDN-CRP"
+        ],
+        "reading_cap_minutes": 10,
+        "focus": "Trace a request and one caching/error/performance issue using a narrow example.",
+        "allocation": "10 min selected sections + 15 min trace + 5 min gap log",
+        "lookup_rule": "Read only the named subsection relevant to the attempt. References are alternatives/lookup support, not all-page completion requirements."
+      },
+      "visibility_rule": "No separate visibility block today.",
+      "carry_rule": "Stop at the daily budget; unmet prerequisite or unfinished acceptance work carries forward. Do not compress the same scope or mark complete by date."
+    },
+    {
+      "planned_learning_day": 5,
+      "dsa_minutes": 60,
+      "role_interview_minutes": 30,
+      "role_topic": "AWS certification: course and syllabus audit",
+      "role_output": "Verify the purchased course exact title/code/update if accessible; map it to the current official SAA-C03 guide. If unknown, record unknown and use the official guide; no purchase or completion claim.",
+      "ai_total_minutes": 90,
+      "ai_segments": [
+        {
+          "unit_id": "AIFDE-V2-U004",
+          "title": "Small API with observable failure paths",
+          "kind": "primary",
+          "minutes": 90,
+          "source_refs": [
+            "FASTAPI-BODY",
+            "FASTAPI-ERRORS",
+            "CODE-API"
+          ],
+          "reading_cap_minutes": 15,
+          "practice_or_implementation_minutes": 75,
+          "focus": "Trace and exercise the supplied health/metadata/API paths and request IDs; explain invalid-input behavior, loopback and fixture-scope boundaries. Do not reimplement supplied infrastructure.",
+          "gate_contract_ref": "AIFDE-V2-U004"
+        }
+      ],
+      "visibility_minutes": 0,
+      "reestimate": false,
+      "budget_if_dsa75": {
+        "dsa": 75,
+        "role_interview": 30,
+        "ai": 75
+      },
+      "budget_if_dsa90": {
+        "dsa": 90,
+        "role_interview": 30,
+        "ai": 60
+      },
+      "role_bank_category": "aws_certification_preparation",
+      "source_contract_status": "not_started",
+      "learner_status": "not_started",
+      "dsa_mapping": "Existing 60-minute DSA bank retained; no replacement or new DSA course assigned by this map.",
+      "role_resource_map": {
+        "kind": "bounded_aws_diagnostic",
+        "budget_minutes": 30,
+        "guide_refs": [
+          "SAA-GUIDE",
+          "CLF-GUIDE"
+        ],
+        "scenario": "Record SAA-C03 as primary. CLF is a foundation refresher, not a required detour. Catalog title year is not proof of an actual last-update timestamp.",
+        "selected_course_items": [
+          {
+            "course_id": "2196488",
+            "course_title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+            "course_url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+            "section_id": "3172782",
+            "section_title": "Introduction - AWS Certified Solutions Architect Associate",
+            "item_id": "13528014",
+            "item_title": "Course Introduction - AWS Certified Solutions Architect Associate",
+            "type": "VIDEO_LECTURE",
+            "duration_seconds": 230,
+            "item_url": null,
+            "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+          }
+        ],
+        "video_seconds": 230,
+        "activities": [
+          {
+            "activity": "Course title/code/access audit; log latest-update timestamp as unknown if absent",
+            "seconds": 300
+          },
+          {
+            "activity": "Course introduction",
+            "seconds": 230
+          },
+          {
+            "activity": "Compare SAA guide content outline with the three owned catalog identities",
+            "seconds": 720
+          },
+          {
+            "activity": "Record gaps and course-versus-certification distinction",
+            "seconds": 550
+          }
+        ],
+        "official_docs_fallback": {
+          "trigger": "No current paid-video access, changed curriculum, or a genuine knowledge gap needing slower practice. Choose this instead of the video path, never in addition.",
+          "activities": [
+            {
+              "activity": "Read the named official sections only",
+              "seconds": 720
+            },
+            {
+              "activity": "Attempt the same diagnostic/design or syllabus audit",
+              "seconds": 780
+            },
+            {
+              "activity": "Record gap/access status and next step",
+              "seconds": 300
+            }
+          ],
+          "source_refs": [
+            "SAA-GUIDE",
+            "CLF-GUIDE"
+          ]
+        },
+        "no_provisioning": true
+      },
+      "visibility_rule": "No separate visibility block today.",
+      "carry_rule": "Stop at the daily budget; unmet prerequisite or unfinished acceptance work carries forward. Do not compress the same scope or mark complete by date."
+    },
+    {
+      "planned_learning_day": 6,
+      "dsa_minutes": 60,
+      "role_interview_minutes": 30,
+      "role_topic": "AWS certification: IAM diagnostic",
+      "role_output": "Explain principals, policies, roles and least privilege through one short design scenario; record actual gaps, without provisioning resources.",
+      "ai_total_minutes": 90,
+      "ai_segments": [
+        {
+          "unit_id": "AIFDE-V2-U004",
+          "title": "Small API with observable failure paths",
+          "kind": "buffer",
+          "minutes": 30,
+          "source_refs": [],
+          "reading_cap_minutes": 0,
+          "practice_or_implementation_minutes": 30,
+          "focus": "Repair API/setup failure only; carry blockers forward.",
+          "gate_contract_ref": "AIFDE-V2-U004"
+        },
+        {
+          "unit_id": "AIFDE-V2-U005",
+          "title": "Understand inference and install a real runtime",
+          "kind": "primary",
+          "minutes": 60,
+          "source_refs": [
+            "HF-CHAT",
+            "HF-AUTO",
+            "CODE-MODELS"
+          ],
+          "reading_cap_minutes": 12,
+          "practice_or_implementation_minutes": 48,
+          "focus": "Trace the supplied in-process Transformers adapter, local_files_only and trust_remote_code=false. Explain tokens/context/output limits; no model HTTP server or cloud key is used.",
+          "gate_contract_ref": "AIFDE-V2-U005"
+        }
+      ],
+      "visibility_minutes": 0,
+      "reestimate": false,
+      "budget_if_dsa75": {
+        "dsa": 75,
+        "role_interview": 30,
+        "ai": 75
+      },
+      "budget_if_dsa90": {
+        "dsa": 90,
+        "role_interview": 30,
+        "ai": 60
+      },
+      "role_bank_category": "aws_certification_preparation",
+      "source_contract_status": "not_started",
+      "learner_status": "not_started",
+      "dsa_mapping": "Existing 60-minute DSA bank retained; no replacement or new DSA course assigned by this map.",
+      "role_resource_map": {
+        "kind": "bounded_aws_diagnostic",
+        "budget_minutes": 30,
+        "guide_refs": [
+          "AWS-IAM",
+          "AWS-IAM-BEST",
+          "SAA-D1"
+        ],
+        "scenario": "An app needs read-only access to one document bucket. Name the principal, role, allowed action/resource and why hard-coded long-lived credentials are unsuitable.",
+        "selected_course_items": [
+          {
+            "course_id": "2196488",
+            "course_title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+            "course_url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+            "section_id": "6258010",
+            "section_title": "IAM & AWS CLI",
+            "item_id": "26097996",
+            "item_title": "IAM Introduction: Users, Groups, Policies",
+            "type": "VIDEO_LECTURE",
+            "duration_seconds": 202,
+            "item_url": null,
+            "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+          },
+          {
+            "course_id": "2196488",
+            "course_title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+            "course_url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+            "section_id": "6258010",
+            "section_title": "IAM & AWS CLI",
+            "item_id": "26623458",
+            "item_title": "IAM Policies",
+            "type": "VIDEO_LECTURE",
+            "duration_seconds": 170,
+            "item_url": null,
+            "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+          },
+          {
+            "course_id": "2196488",
+            "course_title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+            "course_url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+            "section_id": "6258010",
+            "section_title": "IAM & AWS CLI",
+            "item_id": "26098066",
+            "item_title": "IAM Roles for AWS Services",
+            "type": "VIDEO_LECTURE",
+            "duration_seconds": 99,
+            "item_url": null,
+            "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+          },
+          {
+            "course_id": "2196488",
+            "course_title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+            "course_url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+            "section_id": "6258010",
+            "section_title": "IAM & AWS CLI",
+            "item_id": "26098082",
+            "item_title": "IAM Best Practices",
+            "type": "VIDEO_LECTURE",
+            "duration_seconds": 89,
+            "item_url": null,
+            "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+          }
+        ],
+        "video_seconds": 560,
+        "activities": [
+          {
+            "activity": "Selected IAM videos",
+            "seconds": 560
+          },
+          {
+            "activity": "Official IAM identity/temporary-role/least-privilege sections",
+            "seconds": 360
+          },
+          {
+            "activity": "Design one principal → role/policy → permitted resource scenario without provisioning",
+            "seconds": 600
+          },
+          {
+            "activity": "Explain deny/least-privilege choice and record unknowns",
+            "seconds": 280
+          }
+        ],
+        "official_docs_fallback": {
+          "trigger": "No current paid-video access, changed curriculum, or a genuine knowledge gap needing slower practice. Choose this instead of the video path, never in addition.",
+          "activities": [
+            {
+              "activity": "Read the named official sections only",
+              "seconds": 720
+            },
+            {
+              "activity": "Attempt the same diagnostic/design or syllabus audit",
+              "seconds": 780
+            },
+            {
+              "activity": "Record gap/access status and next step",
+              "seconds": 300
+            }
+          ],
+          "source_refs": [
+            "AWS-IAM",
+            "AWS-IAM-BEST",
+            "SAA-D1"
+          ]
+        },
+        "no_provisioning": true,
+        "optional_foundation_swap": {
+          "when": "Only if this lower-depth refresher is needed and currently accessible; replaces SAA video minutes, with remaining time returned to the same diagnostic.",
+          "items": [
+            {
+              "course_id": "3142166",
+              "course_title": "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026",
+              "course_url": "https://www.udemy.com/course/aws-certified-cloud-practitioner-new?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+              "section_id": "4759116",
+              "section_title": "IAM - Identity and Access Management",
+              "item_id": "20054584",
+              "item_title": "IAM Introduction: Users, Groups, Policies",
+              "type": "VIDEO_LECTURE",
+              "duration_seconds": 202,
+              "item_url": null,
+              "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+            },
+            {
+              "course_id": "3142166",
+              "course_title": "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026",
+              "course_url": "https://www.udemy.com/course/aws-certified-cloud-practitioner-new?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+              "section_id": "4759116",
+              "section_title": "IAM - Identity and Access Management",
+              "item_id": "26623452",
+              "item_title": "IAM Policies",
+              "type": "VIDEO_LECTURE",
+              "duration_seconds": 170,
+              "item_url": null,
+              "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+            },
+            {
+              "course_id": "3142166",
+              "course_title": "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026",
+              "course_url": "https://www.udemy.com/course/aws-certified-cloud-practitioner-new?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+              "section_id": "4759116",
+              "section_title": "IAM - Identity and Access Management",
+              "item_id": "20054638",
+              "item_title": "IAM Roles for AWS Services",
+              "type": "VIDEO_LECTURE",
+              "duration_seconds": 99,
+              "item_url": null,
+              "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+            },
+            {
+              "course_id": "3142166",
+              "course_title": "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026",
+              "course_url": "https://www.udemy.com/course/aws-certified-cloud-practitioner-new?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+              "section_id": "4759116",
+              "section_title": "IAM - Identity and Access Management",
+              "item_id": "20260600",
+              "item_title": "IAM Best Practices",
+              "type": "VIDEO_LECTURE",
+              "duration_seconds": 89,
+              "item_url": null,
+              "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+            }
+          ],
+          "video_seconds": 560,
+          "remaining_in_30_minute_bank_seconds": 1240,
+          "scope_warning": "CLF broad recognition is not SAA architecture-design competence. No full CLF course or practice exam is assigned."
+        }
+      },
+      "visibility_rule": "No separate visibility block today.",
+      "carry_rule": "Stop at the daily budget; unmet prerequisite or unfinished acceptance work carries forward. Do not compress the same scope or mark complete by date."
+    },
+    {
+      "planned_learning_day": 7,
+      "dsa_minutes": 60,
+      "role_interview_minutes": 30,
+      "role_topic": "Real-work story + short interview rehearsal",
+      "role_output": "Practice one genuine incident/ownership story plus follow-up questions; distinguish own contribution and actual results. Re-estimate AI scope inside the weekly evidence note.",
+      "ai_total_minutes": 90,
+      "ai_segments": [
+        {
+          "unit_id": "AIFDE-V2-U005",
+          "title": "Understand inference and install a real runtime",
+          "kind": "primary",
+          "minutes": 30,
+          "source_refs": [
+            "CODE-RUNTIME",
+            "CODE-LOCK"
+          ],
+          "reading_cap_minutes": 5,
+          "practice_or_implementation_minutes": 25,
+          "focus": "Check actual pinned adapter configuration and preserve the unresolved download/inference blocker; offline configuration checks do not pass real inference.",
+          "gate_contract_ref": "AIFDE-V2-U005"
+        },
+        {
+          "unit_id": "AIFDE-V2-U005",
+          "title": "Understand inference and install a real runtime",
+          "kind": "support",
+          "minutes": 30,
+          "source_refs": [
+            "QWEN-MODEL",
+            "HF-GENERATE"
+          ],
+          "reading_cap_minutes": 8,
+          "practice_or_implementation_minutes": 22,
+          "focus": "Explain generation versus embeddings/retrieval and record the selected 0.5B model/revision, 2048-token input cap and 160-default/256-max output. No embedding model is assigned in Sprint 1.",
+          "gate_contract_ref": "AIFDE-V2-U005"
+        }
+      ],
+      "visibility_minutes": 30,
+      "reestimate": true,
+      "budget_if_dsa75": {
+        "dsa": 75,
+        "role_interview": 30,
+        "ai": 75
+      },
+      "budget_if_dsa90": {
+        "dsa": 90,
+        "role_interview": 30,
+        "ai": 60
+      },
+      "role_bank_category": "job_interview_preparation",
+      "source_contract_status": "not_started",
+      "learner_status": "not_started",
+      "dsa_mapping": "Existing 60-minute DSA bank retained; no replacement or new DSA course assigned by this map.",
+      "role_resource_map": {
+        "kind": "role_interview_practice",
+        "budget_minutes": 30,
+        "source_refs": [],
+        "reading_cap_minutes": 0,
+        "focus": "Practice one real incident/ownership story. State own contribution and actual results; ask follow-up questions.",
+        "allocation": "20 min rehearsal + 10 min review",
+        "lookup_rule": "Read only the named subsection relevant to the attempt. References are alternatives/lookup support, not all-page completion requirements."
+      },
+      "visibility_rule": "30 minutes already inside the 90-minute AI bank: private evidence note/re-estimate where scheduled; no external posting or extra coursework.",
+      "carry_rule": "Stop at the daily budget; unmet prerequisite or unfinished acceptance work carries forward. Do not compress the same scope or mark complete by date."
+    },
+    {
+      "planned_learning_day": 8,
+      "dsa_minutes": 60,
+      "role_interview_minutes": 30,
+      "role_topic": "React async correctness",
+      "role_output": "Explain effect/dependency/cancellation or stale-state behavior using a small code path.",
+      "ai_total_minutes": 90,
+      "ai_segments": [
+        {
+          "unit_id": "AIFDE-V2-U006",
+          "title": "First real generated response",
+          "kind": "primary",
+          "minutes": 90,
+          "source_refs": [
+            "HF-GENERATE",
+            "CODE-MODELS"
+          ],
+          "reading_cap_minutes": 8,
+          "practice_or_implementation_minutes": 82,
+          "focus": "Implement the learner prompt-forwarding seam against generate_messages(messages,max_new_tokens); real-task execution awaits resolved access and local weights. Capture actual output/timing/failure only, never substitute a mock.",
+          "gate_contract_ref": "AIFDE-V2-U006"
+        }
+      ],
+      "visibility_minutes": 0,
+      "reestimate": false,
+      "budget_if_dsa75": {
+        "dsa": 75,
+        "role_interview": 30,
+        "ai": 75
+      },
+      "budget_if_dsa90": {
+        "dsa": 90,
+        "role_interview": 30,
+        "ai": 60
+      },
+      "role_bank_category": "job_interview_preparation",
+      "source_contract_status": "not_started",
+      "learner_status": "not_started",
+      "dsa_mapping": "Existing 60-minute DSA bank retained; no replacement or new DSA course assigned by this map.",
+      "role_resource_map": {
+        "kind": "role_interview_practice",
+        "budget_minutes": 30,
+        "source_refs": [
+          "REACT-EFFECT",
+          "MDN-FETCH"
+        ],
+        "reading_cap_minutes": 8,
+        "focus": "Explain dependency, stale response and cancellation behavior in one code path.",
+        "allocation": "8 min selected sections + 17 min code explanation/repair + 5 min gap log",
+        "lookup_rule": "Read only the named subsection relevant to the attempt. References are alternatives/lookup support, not all-page completion requirements."
+      },
+      "visibility_rule": "No separate visibility block today.",
+      "carry_rule": "Stop at the daily budget; unmet prerequisite or unfinished acceptance work carries forward. Do not compress the same scope or mark complete by date."
+    },
+    {
+      "planned_learning_day": 9,
+      "dsa_minutes": 60,
+      "role_interview_minutes": 30,
+      "role_topic": "Accessible components and testing",
+      "role_output": "Design/test loading/error/keyboard behavior for one component.",
+      "ai_total_minutes": 90,
+      "ai_segments": [
+        {
+          "unit_id": "AIFDE-V2-U006",
+          "title": "First real generated response",
+          "kind": "buffer",
+          "minutes": 30,
+          "source_refs": [],
+          "reading_cap_minutes": 0,
+          "practice_or_implementation_minutes": 30,
+          "focus": "Repair real-inference failure; never substitute test-double output.",
+          "gate_contract_ref": "AIFDE-V2-U006"
+        },
+        {
+          "unit_id": "AIFDE-V2-U007",
+          "title": "Reality check and first evidence note",
+          "kind": "primary",
+          "minutes": 60,
+          "source_refs": [
+            "QWEN-MODEL"
+          ],
+          "reading_cap_minutes": 5,
+          "practice_or_implementation_minutes": 55,
+          "focus": "Run five actual capability-smoke prompts; inspect plausible versus verified answers and quality/hardware limits.",
+          "gate_contract_ref": "AIFDE-V2-U007"
+        }
+      ],
+      "visibility_minutes": 0,
+      "reestimate": false,
+      "budget_if_dsa75": {
+        "dsa": 75,
+        "role_interview": 30,
+        "ai": 75
+      },
+      "budget_if_dsa90": {
+        "dsa": 90,
+        "role_interview": 30,
+        "ai": 60
+      },
+      "role_bank_category": "job_interview_preparation",
+      "source_contract_status": "not_started",
+      "learner_status": "not_started",
+      "dsa_mapping": "Existing 60-minute DSA bank retained; no replacement or new DSA course assigned by this map.",
+      "role_resource_map": {
+        "kind": "role_interview_practice",
+        "budget_minutes": 30,
+        "source_refs": [
+          "WAI-BUTTON",
+          "WAI-STATUS",
+          "TEST-ROLE"
+        ],
+        "reading_cap_minutes": 10,
+        "focus": "Design/test one loading/error/keyboard path with accessible names and status behavior.",
+        "allocation": "10 min selected sections + 15 min test attempt + 5 min gap log",
+        "lookup_rule": "Read only the named subsection relevant to the attempt. References are alternatives/lookup support, not all-page completion requirements."
+      },
+      "visibility_rule": "No separate visibility block today.",
+      "carry_rule": "Stop at the daily budget; unmet prerequisite or unfinished acceptance work carries forward. Do not compress the same scope or mark complete by date."
+    },
+    {
+      "planned_learning_day": 10,
+      "dsa_minutes": 60,
+      "role_interview_minutes": 30,
+      "role_topic": "Frontend design",
+      "role_output": "Scope a workflow; choose state/data caching boundaries and explain tradeoffs.",
+      "ai_total_minutes": 90,
+      "ai_segments": [
+        {
+          "unit_id": "AIFDE-V2-U007",
+          "title": "Reality check and first evidence note",
+          "kind": "primary",
+          "minutes": 30,
+          "source_refs": [],
+          "reading_cap_minutes": 0,
+          "practice_or_implementation_minutes": 30,
+          "focus": "Complete all five outcomes and viability review.",
+          "gate_contract_ref": "AIFDE-V2-U007"
+        },
+        {
+          "unit_id": "AIFDE-V2-U008",
+          "title": "Real generation behind the API",
+          "kind": "primary",
+          "minutes": 60,
+          "source_refs": [
+            "FASTAPI-ERRORS",
+            "HF-STOP",
+            "CODE-API"
+          ],
+          "reading_cap_minutes": 10,
+          "practice_or_implementation_minutes": 50,
+          "focus": "Trace the supplied same-origin POST /generate to in-process generation and 503/504/502 errors. Examine the 45s step-aware criterion; a slow kernel can overrun and model loading is outside it. Real-HTTP gate stays blocked without actual generation.",
+          "gate_contract_ref": "AIFDE-V2-U008"
+        }
+      ],
+      "visibility_minutes": 0,
+      "reestimate": false,
+      "budget_if_dsa75": {
+        "dsa": 75,
+        "role_interview": 30,
+        "ai": 75
+      },
+      "budget_if_dsa90": {
+        "dsa": 90,
+        "role_interview": 30,
+        "ai": 60
+      },
+      "role_bank_category": "job_interview_preparation",
+      "source_contract_status": "not_started",
+      "learner_status": "not_started",
+      "dsa_mapping": "Existing 60-minute DSA bank retained; no replacement or new DSA course assigned by this map.",
+      "role_resource_map": {
+        "kind": "role_interview_practice",
+        "budget_minutes": 30,
+        "source_refs": [
+          "REACT-STRUCTURE",
+          "REACT-EFFECT",
+          "MDN-CACHE"
+        ],
+        "reading_cap_minutes": 10,
+        "focus": "Draw workflow state and server-data/cache boundaries; explain one tradeoff.",
+        "allocation": "10 min selected sections + 15 min design + 5 min gap log",
+        "lookup_rule": "Read only the named subsection relevant to the attempt. References are alternatives/lookup support, not all-page completion requirements."
+      },
+      "visibility_rule": "No separate visibility block today.",
+      "carry_rule": "Stop at the daily budget; unmet prerequisite or unfinished acceptance work carries forward. Do not compress the same scope or mark complete by date."
+    },
+    {
+      "planned_learning_day": 11,
+      "dsa_minutes": 60,
+      "role_interview_minutes": 30,
+      "role_topic": "Backend API contract",
+      "role_output": "Design validation, status/error contract, auth boundary and idempotency for one endpoint.",
+      "ai_total_minutes": 90,
+      "ai_segments": [
+        {
+          "unit_id": "AIFDE-V2-U008",
+          "title": "Real generation behind the API",
+          "kind": "primary",
+          "minutes": 30,
+          "source_refs": [
+            "FASTAPI-TEST"
+          ],
+          "reading_cap_minutes": 5,
+          "practice_or_implementation_minutes": 25,
+          "focus": "Finish real HTTP output plus invalid-input/timeout/unavailable-provider tests.",
+          "gate_contract_ref": "AIFDE-V2-U008"
+        },
+        {
+          "unit_id": "AIFDE-V2-U008",
+          "title": "Real generation behind the API",
+          "kind": "buffer",
+          "minutes": 30,
+          "source_refs": [],
+          "reading_cap_minutes": 0,
+          "practice_or_implementation_minutes": 30,
+          "focus": "Repair integration only; distinguish mocked unit tests from real integration receipt.",
+          "gate_contract_ref": "AIFDE-V2-U008"
+        },
+        {
+          "unit_id": "AIFDE-V2-U009",
+          "title": "Thin React workflow",
+          "kind": "primary",
+          "minutes": 30,
+          "source_refs": [
+            "REACT-STRUCTURE",
+            "MDN-FETCH",
+            "CODE-UI"
+          ],
+          "reading_cap_minutes": 8,
+          "practice_or_implementation_minutes": 22,
+          "focus": "Trace the supplied thin UI state and same-origin request; explain loading/empty/error/result and cancellation guards. No new React implementation assignment.",
+          "gate_contract_ref": "AIFDE-V2-U009"
+        }
+      ],
+      "visibility_minutes": 0,
+      "reestimate": false,
+      "budget_if_dsa75": {
+        "dsa": 75,
+        "role_interview": 30,
+        "ai": 75
+      },
+      "budget_if_dsa90": {
+        "dsa": 90,
+        "role_interview": 30,
+        "ai": 60
+      },
+      "role_bank_category": "job_interview_preparation",
+      "source_contract_status": "not_started",
+      "learner_status": "not_started",
+      "dsa_mapping": "Existing 60-minute DSA bank retained; no replacement or new DSA course assigned by this map.",
+      "role_resource_map": {
+        "kind": "role_interview_practice",
+        "budget_minutes": 30,
+        "source_refs": [
+          "FASTAPI-BODY",
+          "FASTAPI-ERRORS",
+          "MDN-STATUS",
+          "MDN-IDEMPOTENT"
+        ],
+        "reading_cap_minutes": 10,
+        "focus": "Specify one endpoint validation/status/error/auth-boundary/idempotency contract, not a new framework.",
+        "allocation": "10 min targeted lookup + 15 min contract sketch + 5 min gap log",
+        "lookup_rule": "Read only the named subsection relevant to the attempt. References are alternatives/lookup support, not all-page completion requirements."
+      },
+      "visibility_rule": "No separate visibility block today.",
+      "carry_rule": "Stop at the daily budget; unmet prerequisite or unfinished acceptance work carries forward. Do not compress the same scope or mark complete by date."
+    },
+    {
+      "planned_learning_day": 12,
+      "dsa_minutes": 60,
+      "role_interview_minutes": 30,
+      "role_topic": "AWS certification: networking diagnostic",
+      "role_output": "Explain VPC/subnet/routing/security-group boundaries for the app; classify uncertainty and review the relevant official syllabus.",
+      "ai_total_minutes": 90,
+      "ai_segments": [
+        {
+          "unit_id": "AIFDE-V2-U009",
+          "title": "Thin React workflow",
+          "kind": "primary",
+          "minutes": 60,
+          "source_refs": [
+            "WAI-STATUS",
+            "TEST-ROLE",
+            "CODE-UI"
+          ],
+          "reading_cap_minutes": 10,
+          "practice_or_implementation_minutes": 50,
+          "focus": "Trace and exercise the supplied UI/backend boundary and accessible error behavior. Inspect actual cancel/stale-response handling; do not infer a visible Cancel button or server-side abort from browser abort alone.",
+          "gate_contract_ref": "AIFDE-V2-U009"
+        },
+        {
+          "unit_id": "AIFDE-V2-U009",
+          "title": "Thin React workflow",
+          "kind": "buffer",
+          "minutes": 30,
+          "source_refs": [],
+          "reading_cap_minutes": 0,
+          "practice_or_implementation_minutes": 30,
+          "focus": "Fix integration/accessibility defect; cannot count fake data as a real generated answer.",
+          "gate_contract_ref": "AIFDE-V2-U009"
+        }
+      ],
+      "visibility_minutes": 0,
+      "reestimate": false,
+      "budget_if_dsa75": {
+        "dsa": 75,
+        "role_interview": 30,
+        "ai": 75
+      },
+      "budget_if_dsa90": {
+        "dsa": 90,
+        "role_interview": 30,
+        "ai": 60
+      },
+      "role_bank_category": "aws_certification_preparation",
+      "source_contract_status": "not_started",
+      "learner_status": "not_started",
+      "dsa_mapping": "Existing 60-minute DSA bank retained; no replacement or new DSA course assigned by this map.",
+      "role_resource_map": {
+        "kind": "bounded_aws_diagnostic",
+        "budget_minutes": 30,
+        "guide_refs": [
+          "AWS-VPC",
+          "AWS-SG",
+          "SAA-D1",
+          "SAA-D3"
+        ],
+        "scenario": "Sketch a conceptual public entrypoint and private app/data boundary. Explain route-table reachability separately from allowed traffic; no cloud resource creation.",
+        "selected_course_items": [
+          {
+            "course_id": "2196488",
+            "course_title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+            "course_url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+            "section_id": "3172890",
+            "section_title": "Networking - VPC",
+            "item_id": "13528540",
+            "item_title": "VPC Overview",
+            "type": "VIDEO_LECTURE",
+            "duration_seconds": 70,
+            "item_url": null,
+            "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+          },
+          {
+            "course_id": "2196488",
+            "course_title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+            "course_url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+            "section_id": "3172890",
+            "section_title": "Networking - VPC",
+            "item_id": "13528542",
+            "item_title": "Subnet Overview",
+            "type": "VIDEO_LECTURE",
+            "duration_seconds": 100,
+            "item_url": null,
+            "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+          },
+          {
+            "course_id": "2196488",
+            "course_title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+            "course_url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+            "section_id": "3172890",
+            "section_title": "Networking - VPC",
+            "item_id": "13528544",
+            "item_title": "Internet Gateways & Route Tables",
+            "type": "VIDEO_LECTURE",
+            "duration_seconds": 73,
+            "item_url": null,
+            "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+          },
+          {
+            "course_id": "2196488",
+            "course_title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+            "course_url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+            "section_id": "3172890",
+            "section_title": "Networking - VPC",
+            "item_id": "13528552",
+            "item_title": "NACL & Security Groups",
+            "type": "VIDEO_LECTURE",
+            "duration_seconds": 643,
+            "item_url": null,
+            "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+          }
+        ],
+        "video_seconds": 886,
+        "activities": [
+          {
+            "activity": "Selected networking videos",
+            "seconds": 886
+          },
+          {
+            "activity": "Official VPC features/security-group basics and syllabus task labels",
+            "seconds": 300
+          },
+          {
+            "activity": "Draw one app network boundary and trace one allowed/blocked path",
+            "seconds": 420
+          },
+          {
+            "activity": "Log routing versus security-group uncertainty",
+            "seconds": 194
+          }
+        ],
+        "official_docs_fallback": {
+          "trigger": "No current paid-video access, changed curriculum, or a genuine knowledge gap needing slower practice. Choose this instead of the video path, never in addition.",
+          "activities": [
+            {
+              "activity": "Read the named official sections only",
+              "seconds": 720
+            },
+            {
+              "activity": "Attempt the same diagnostic/design or syllabus audit",
+              "seconds": 780
+            },
+            {
+              "activity": "Record gap/access status and next step",
+              "seconds": 300
+            }
+          ],
+          "source_refs": [
+            "AWS-VPC",
+            "AWS-SG",
+            "SAA-D1",
+            "SAA-D3"
+          ]
+        },
+        "no_provisioning": true,
+        "optional_foundation_swap": {
+          "when": "Only if this lower-depth refresher is needed and currently accessible; replaces SAA video minutes, with remaining time returned to the same diagnostic.",
+          "items": [
+            {
+              "course_id": "3142166",
+              "course_title": "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026",
+              "course_url": "https://www.udemy.com/course/aws-certified-cloud-practitioner-new?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+              "section_id": "4759830",
+              "section_title": "VPC & Networking",
+              "item_id": "20056240",
+              "item_title": "VPC Overview",
+              "type": "VIDEO_LECTURE",
+              "duration_seconds": 80,
+              "item_url": null,
+              "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+            },
+            {
+              "course_id": "3142166",
+              "course_title": "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026",
+              "course_url": "https://www.udemy.com/course/aws-certified-cloud-practitioner-new?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+              "section_id": "4759830",
+              "section_title": "VPC & Networking",
+              "item_id": "20237290",
+              "item_title": "VPC, Subnet, Internet Gateway & NAT Gateways",
+              "type": "VIDEO_LECTURE",
+              "duration_seconds": 214,
+              "item_url": null,
+              "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+            },
+            {
+              "course_id": "3142166",
+              "course_title": "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026",
+              "course_url": "https://www.udemy.com/course/aws-certified-cloud-practitioner-new?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+              "section_id": "4759830",
+              "section_title": "VPC & Networking",
+              "item_id": "20056244",
+              "item_title": "Security Groups & Network Access Control List (NACL)",
+              "type": "VIDEO_LECTURE",
+              "duration_seconds": 255,
+              "item_url": null,
+              "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+            }
+          ],
+          "video_seconds": 549,
+          "remaining_in_30_minute_bank_seconds": 1251,
+          "scope_warning": "CLF broad recognition is not SAA architecture-design competence. No full CLF course or practice exam is assigned."
+        }
+      },
+      "visibility_rule": "No separate visibility block today.",
+      "carry_rule": "Stop at the daily budget; unmet prerequisite or unfinished acceptance work carries forward. Do not compress the same scope or mark complete by date."
+    },
+    {
+      "planned_learning_day": 13,
+      "dsa_minutes": 60,
+      "role_interview_minutes": 30,
+      "role_topic": "AWS certification: storage/data diagnostic",
+      "role_output": "Choose storage, encryption, backup and data-access controls for one scenario; explain alternatives and costs conceptually, not as measured billing.",
+      "ai_total_minutes": 90,
+      "ai_segments": [
+        {
+          "unit_id": "AIFDE-V2-U010",
+          "title": "Structured output without trusting it",
+          "kind": "primary",
+          "minutes": 90,
+          "source_refs": [
+            "PY-JSON",
+            "PY-TYPING"
+          ],
+          "reading_cap_minutes": 15,
+          "practice_or_implementation_minutes": 75,
+          "focus": "Implement the plain-JSON learner parser for exact answer/citations/abstained fields, explicit types and duplicate-citation rejection. This adapter has no schema-constrained generation path. Keep malformed output an explicit failure; real-output gate remains blocked until genuine generation.",
+          "gate_contract_ref": "AIFDE-V2-U010"
+        }
+      ],
+      "visibility_minutes": 0,
+      "reestimate": false,
+      "budget_if_dsa75": {
+        "dsa": 75,
+        "role_interview": 30,
+        "ai": 75
+      },
+      "budget_if_dsa90": {
+        "dsa": 90,
+        "role_interview": 30,
+        "ai": 60
+      },
+      "role_bank_category": "aws_certification_preparation",
+      "source_contract_status": "not_started",
+      "learner_status": "not_started",
+      "dsa_mapping": "Existing 60-minute DSA bank retained; no replacement or new DSA course assigned by this map.",
+      "role_resource_map": {
+        "kind": "bounded_aws_diagnostic",
+        "budget_minutes": 30,
+        "guide_refs": [
+          "AWS-S3",
+          "AWS-S3-ENC",
+          "AWS-S3-VERSION",
+          "SAA-D1",
+          "SAA-D3",
+          "SAA-D4"
+        ],
+        "scenario": "Choose object/file/block storage for source documents versus application metadata. Explain least-privilege access, transit/at-rest encryption, accidental overwrite recovery, and one cost driver. Do not call versioning a complete backup strategy or invent a bill.",
+        "selected_course_items": [
+          {
+            "course_id": "2196488",
+            "course_title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+            "course_url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+            "section_id": "4253465",
+            "section_title": "AWS Storage Extras",
+            "item_id": "18078343",
+            "item_title": "All AWS Storage Options Compared",
+            "type": "VIDEO_LECTURE",
+            "duration_seconds": 214,
+            "item_url": null,
+            "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+          },
+          {
+            "course_id": "2196488",
+            "course_title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+            "course_url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+            "section_id": "3172832",
+            "section_title": "Amazon S3 Introduction",
+            "item_id": "13528320",
+            "item_title": "S3 Security: Bucket Policy",
+            "type": "VIDEO_LECTURE",
+            "duration_seconds": 303,
+            "item_url": null,
+            "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+          },
+          {
+            "course_id": "2196488",
+            "course_title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+            "course_url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+            "section_id": "3172832",
+            "section_title": "Amazon S3 Introduction",
+            "item_id": "13528316",
+            "item_title": "S3 Versioning",
+            "type": "VIDEO_LECTURE",
+            "duration_seconds": 73,
+            "item_url": null,
+            "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+          },
+          {
+            "course_id": "2196488",
+            "course_title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+            "course_url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+            "section_id": "8214798",
+            "section_title": "Amazon S3 Security",
+            "item_id": "13528318",
+            "item_title": "S3 Encryption",
+            "type": "VIDEO_LECTURE",
+            "duration_seconds": 485,
+            "item_url": null,
+            "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+          }
+        ],
+        "video_seconds": 1075,
+        "activities": [
+          {
+            "activity": "Selected storage/data videos",
+            "seconds": 1075
+          },
+          {
+            "activity": "Official encryption/versioning notes; skim only the relevant storage and syllabus labels",
+            "seconds": 240
+          },
+          {
+            "activity": "Choose storage, access, encryption and recoverability for the narrow document workflow",
+            "seconds": 360
+          },
+          {
+            "activity": "Record one alternative, conceptual cost driver and unresolved gap",
+            "seconds": 125
+          }
+        ],
+        "official_docs_fallback": {
+          "trigger": "No current paid-video access, changed curriculum, or a genuine knowledge gap needing slower practice. Choose this instead of the video path, never in addition.",
+          "activities": [
+            {
+              "activity": "Read the named official sections only",
+              "seconds": 720
+            },
+            {
+              "activity": "Attempt the same diagnostic/design or syllabus audit",
+              "seconds": 780
+            },
+            {
+              "activity": "Record gap/access status and next step",
+              "seconds": 300
+            }
+          ],
+          "source_refs": [
+            "AWS-S3",
+            "AWS-S3-ENC",
+            "AWS-S3-VERSION",
+            "SAA-D1",
+            "SAA-D3",
+            "SAA-D4"
+          ]
+        },
+        "no_provisioning": true,
+        "optional_foundation_swap": {
+          "when": "Only if this lower-depth refresher is needed and currently accessible; replaces SAA video minutes, with remaining time returned to the same diagnostic.",
+          "items": [
+            {
+              "course_id": "3142166",
+              "course_title": "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026",
+              "course_url": "https://www.udemy.com/course/aws-certified-cloud-practitioner-new?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+              "section_id": "4759746",
+              "section_title": "Amazon S3",
+              "item_id": "20055904",
+              "item_title": "S3 Overview",
+              "type": "VIDEO_LECTURE",
+              "duration_seconds": 330,
+              "item_url": null,
+              "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+            },
+            {
+              "course_id": "3142166",
+              "course_title": "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026",
+              "course_url": "https://www.udemy.com/course/aws-certified-cloud-practitioner-new?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+              "section_id": "4759746",
+              "section_title": "Amazon S3",
+              "item_id": "20055916",
+              "item_title": "S3 Security: Bucket Policy",
+              "type": "VIDEO_LECTURE",
+              "duration_seconds": 303,
+              "item_url": null,
+              "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+            },
+            {
+              "course_id": "3142166",
+              "course_title": "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026",
+              "course_url": "https://www.udemy.com/course/aws-certified-cloud-practitioner-new?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+              "section_id": "4759746",
+              "section_title": "Amazon S3",
+              "item_id": "20055932",
+              "item_title": "S3 Versioning Overview",
+              "type": "VIDEO_LECTURE",
+              "duration_seconds": 73,
+              "item_url": null,
+              "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+            },
+            {
+              "course_id": "3142166",
+              "course_title": "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026",
+              "course_url": "https://www.udemy.com/course/aws-certified-cloud-practitioner-new?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+              "section_id": "4759746",
+              "section_title": "Amazon S3",
+              "item_id": "29102298",
+              "item_title": "S3 Encryption",
+              "type": "VIDEO_LECTURE",
+              "duration_seconds": 61,
+              "item_url": null,
+              "locator_note": "Open the returned course link and search the exact title inside the named section. Connector returned no item URL; no lecture-number/deep-link inference."
+            }
+          ],
+          "video_seconds": 767,
+          "remaining_in_30_minute_bank_seconds": 1033,
+          "scope_warning": "CLF broad recognition is not SAA architecture-design competence. No full CLF course or practice exam is assigned."
+        }
+      },
+      "visibility_rule": "No separate visibility block today.",
+      "carry_rule": "Stop at the daily budget; unmet prerequisite or unfinished acceptance work carries forward. Do not compress the same scope or mark complete by date."
+    },
+    {
+      "planned_learning_day": 14,
+      "dsa_minutes": 60,
+      "role_interview_minutes": 30,
+      "role_topic": "Short unfamiliar-code rehearsal",
+      "role_output": "Use 20 min diagnosis + 10 min review; log root cause and missing knowledge.",
+      "ai_total_minutes": 90,
+      "ai_segments": [
+        {
+          "unit_id": "AIFDE-V2-U010",
+          "title": "Structured output without trusting it",
+          "kind": "support",
+          "minutes": 30,
+          "source_refs": [
+            "PY-JSON"
+          ],
+          "reading_cap_minutes": 5,
+          "practice_or_implementation_minutes": 25,
+          "focus": "Review explicit JSON/schema failure behavior and schema-versus-truth distinction; no extra validation library or grammar runtime.",
+          "gate_contract_ref": "AIFDE-V2-U010"
+        },
+        {
+          "unit_id": "AIFDE-V2-U011",
+          "title": "Versioned small corpus and SQL metadata",
+          "kind": "primary",
+          "minutes": 30,
+          "source_refs": [
+            "PY-SQL"
+          ],
+          "reading_cap_minutes": 5,
+          "practice_or_implementation_minutes": 25,
+          "focus": "Start versioned fixture manifest and SQL metadata schema; the remaining U011 work carries into Sprint 2.",
+          "gate_contract_ref": "AIFDE-V2-U011"
+        }
+      ],
+      "visibility_minutes": 30,
+      "reestimate": false,
+      "budget_if_dsa75": {
+        "dsa": 75,
+        "role_interview": 30,
+        "ai": 75
+      },
+      "budget_if_dsa90": {
+        "dsa": 90,
+        "role_interview": 30,
+        "ai": 60
+      },
+      "role_bank_category": "job_interview_preparation",
+      "source_contract_status": "not_started",
+      "learner_status": "not_started",
+      "dsa_mapping": "Existing 60-minute DSA bank retained; no replacement or new DSA course assigned by this map.",
+      "role_resource_map": {
+        "kind": "role_interview_practice",
+        "budget_minutes": 30,
+        "source_refs": [
+          "REACT-EFFECT",
+          "PY-ERRORS",
+          "MDN-FETCH"
+        ],
+        "reading_cap_minutes": 0,
+        "focus": "Attempt diagnosis unaided for 20 minutes. During the 10-minute review open only the source that addresses the actual defect.",
+        "allocation": "20 min diagnosis + 10 min evidence-led review; no preliminary coursework",
+        "lookup_rule": "Read only the named subsection relevant to the attempt. References are alternatives/lookup support, not all-page completion requirements."
+      },
+      "visibility_rule": "30 minutes already inside the 90-minute AI bank: private evidence note/re-estimate where scheduled; no external posting or extra coursework.",
+      "carry_rule": "Stop at the daily budget; unmet prerequisite or unfinished acceptance work carries forward. Do not compress the same scope or mark complete by date."
+    }
+  ],
+  "unit_gate_contracts": {
+    "AIFDE-V2-U001": {
+      "id": "AIFDE-V2-U001",
+      "title": "Baseline, scope and ownership",
+      "prerequisites": [],
+      "primary_task": "Inspect the minimal starter; attempt a small Python transform and SQL query if a runtime is available, otherwise record the unavailable environment as a baseline finding; choose the smallest useful public/synthetic-document workflow.",
+      "planned_outputs": [
+        "docs/baseline.md",
+        "docs/problem-brief.md",
+        "baseline attempt/test output"
+      ],
+      "acceptance_criteria": [
+        "Record actual attempts and unknowns without marking prior SWE experience as new curriculum completion.",
+        "Name one user, one workflow, a non-AI baseline, one measurable prototype objective and explicit non-goals.",
+        "Explain the intended starter request path from code; execution and an actual code-change check occur after the environment is available, not falsely before setup."
+      ],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion."
+    },
+    "AIFDE-V2-U002": {
+      "id": "AIFDE-V2-U002",
+      "title": "Reproducible environment and real-model feasibility",
+      "prerequisites": [
+        "AIFDE-V2-U001"
+      ],
+      "primary_task": "Lock the Python project environment; create safe configuration; measure available CPU/RAM/disk; verify a no-service-fee real local generation and embedding route against official distribution/license information.",
+      "planned_outputs": [
+        "environment lockfile",
+        ".env.example",
+        "docs/runtime-feasibility.md",
+        "capability-status.json"
+      ],
+      "acceptance_criteria": [
+        "A clean environment runs a basic test and the starter request path; no key or private data is committed. Record a blocker rather than claiming execution if unavailable.",
+        "Record machine measurements, model/runtime candidates, download size/license and expected limitations; exact versions are resolved at implementation.",
+        "If inference cannot run within available hardware/permissions, record a blocker and the specific approval/access needed; no mock pass."
+      ],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion."
+    },
+    "AIFDE-V2-U003": {
+      "id": "AIFDE-V2-U003",
+      "title": "Python data contracts and tests",
+      "prerequisites": [
+        "AIFDE-V2-U002"
+      ],
+      "primary_task": "Implement typed request/document records, a small plain-text/Markdown ingestion function and meaningful error handling; use tests rather than re-learning all programming basics. From the first read, constrain ingestion to the owned fixture directory; default raw-content logging off.",
+      "planned_outputs": [
+        "ingest module",
+        "data contracts",
+        "ingestion unit tests"
+      ],
+      "acceptance_criteria": [
+        "Parse the permitted small fixture format and reject malformed/empty inputs.",
+        "Demonstrate one exception path and test one boundary case.",
+        "Make one small input-format change without copying a finished solution."
+      ],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion."
+    },
+    "AIFDE-V2-U004": {
+      "id": "AIFDE-V2-U004",
+      "title": "Small API with observable failure paths",
+      "prerequisites": [
+        "AIFDE-V2-U003"
+      ],
+      "primary_task": "Implement /health and a document-metadata endpoint in one Python API stack; connect input validation, request IDs and structured errors. Bind to loopback only by default; enforce fixture-directory scope and keep raw-content logging off from the start.",
+      "planned_outputs": [
+        "API endpoints",
+        "API tests",
+        "request/response contract"
+      ],
+      "acceptance_criteria": [
+        "Success, invalid-input and not-found requests return the documented status/body.",
+        "A request ID connects response to a log entry without secrets.",
+        "Explain the request path and why this stack is sufficient; no framework collection.",
+        "Default API binding is loopback-only; a filename/path cannot escape the owned fixture directory, and raw document/prompt logging is off."
+      ],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion."
+    },
+    "AIFDE-V2-U005": {
+      "id": "AIFDE-V2-U005",
+      "title": "Understand inference and install a real runtime",
+      "prerequisites": [
+        "AIFDE-V2-U002",
+        "AIFDE-V2-U004"
+      ],
+      "primary_task": "Learn token/context/output-limit basics and the difference between generation, embeddings and retrieval; install/configure the selected real local model runtime and a narrow provider adapter.",
+      "planned_outputs": [
+        "docs/inference-contract.md",
+        "real provider adapter configuration"
+      ],
+      "acceptance_criteria": [
+        "Model identifier/revision, license, quantization, context and output limits are recorded where available.",
+        "Adapter accepts a prompt and exposes explicit timeout/error behavior; credentials, if ever authorized, remain outside code.",
+        "Explain why an extractive/template answer and a mocked provider are not generative inference."
+      ],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion."
+    },
+    "AIFDE-V2-U006": {
+      "id": "AIFDE-V2-U006",
+      "title": "First real generated response",
+      "prerequisites": [
+        "AIFDE-V2-U005"
+      ],
+      "primary_task": "Call the actual pretrained generative model through the adapter on three simple tasks; capture real outputs, elapsed time and failures; tune only output/context limits for the machine.",
+      "planned_outputs": [
+        "artifacts/inference-smoke.json",
+        "real-local integration test",
+        "docs/model-limitations.md"
+      ],
+      "acceptance_criteria": [
+        "At least one non-canned generated response is produced by the recorded real model, not a test double.",
+        "Record hardware, request settings, actual timing and actual token counts if exposed; otherwise mark counts unavailable.",
+        "A forced timeout/unavailable runtime is handled honestly; failed inference keeps the capability gate blocked."
+      ],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion."
+    },
+    "AIFDE-V2-U007": {
+      "id": "AIFDE-V2-U007",
+      "title": "Reality check and first evidence note",
+      "prerequisites": [
+        "AIFDE-V2-U006"
+      ],
+      "primary_task": "Run a five-prompt capability smoke set including an impossible/unanswerable request; inspect failures and confirm what the model can and cannot support in this prototype.",
+      "planned_outputs": [
+        "evals/inference-smoke.jsonl",
+        "artifacts/inference-smoke-review.md"
+      ],
+      "acceptance_criteria": [
+        "All five actual outcomes are saved, including failure or uncertainty.",
+        "Distinguish a plausible response from a verified answer.",
+        "Decide whether the local model is viable for the narrow corpus; do not hide a hardware/quality blocker."
+      ],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion."
+    },
+    "AIFDE-V2-U008": {
+      "id": "AIFDE-V2-U008",
+      "title": "Real generation behind the API",
+      "prerequisites": [
+        "AIFDE-V2-U004",
+        "AIFDE-V2-U006"
+      ],
+      "primary_task": "Implement a /generate request path using the real adapter with a bounded request deadline and client cancellation/error behavior.",
+      "planned_outputs": [
+        "/generate implementation",
+        "API integration tests",
+        "one real API trace"
+      ],
+      "acceptance_criteria": [
+        "A real HTTP request returns actual model output.",
+        "Invalid input, timeout and unavailable provider paths are tested.",
+        "Separate deterministic mocked unit tests from the real-model integration receipt."
+      ],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion."
+    },
+    "AIFDE-V2-U009": {
+      "id": "AIFDE-V2-U009",
+      "title": "Thin React workflow",
+      "prerequisites": [
+        "AIFDE-V2-U008"
+      ],
+      "primary_task": "Use existing React/TypeScript skills to build a minimal question/answer screen with loading, empty, cancel/error and result states; avoid visual-polish work unrelated to the workflow.",
+      "planned_outputs": [
+        "CoverStory UI",
+        "frontend state tests",
+        "local screenshot"
+      ],
+      "acceptance_criteria": [
+        "The UI calls the real backend and shows a real generated answer.",
+        "A failed/canceled request cannot leave the UI falsely showing success.",
+        "Explain the frontend/backend contract and one accessible error-state choice."
+      ],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion."
+    },
+    "AIFDE-V2-U010": {
+      "id": "AIFDE-V2-U010",
+      "title": "Structured output without trusting it",
+      "prerequisites": [
+        "AIFDE-V2-U008"
+      ],
+      "primary_task": "Define an answer schema, validate actual model output, and implement one bounded repair/retry or explicit failure path; compare success and malformed output.",
+      "planned_outputs": [
+        "answer schema",
+        "output validator",
+        "malformed-output tests",
+        "real structured-output sample"
+      ],
+      "acceptance_criteria": [
+        "Malformed or missing fields are rejected rather than silently coerced into a valid answer.",
+        "Retries are capped and observable; failure is still possible.",
+        "Explain that schema validity does not establish factual correctness."
+      ],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion."
+    },
+    "AIFDE-V2-U011": {
+      "id": "AIFDE-V2-U011",
+      "title": "Versioned small corpus and SQL metadata",
+      "prerequisites": [
+        "AIFDE-V2-U003",
+        "AIFDE-V2-U004"
+      ],
+      "primary_task": "Create or use ten licensed public/synthetic Markdown/text documents (roughly 150–300 words each); persist IDs, source, content hash and version in SQLite with idempotent ingestion.",
+      "planned_outputs": [
+        "data/corpus manifest",
+        "metadata schema",
+        "ingestion idempotency tests"
+      ],
+      "acceptance_criteria": [
+        "Reingesting unchanged input does not duplicate documents.",
+        "A changed document produces the intended version/update behavior.",
+        "Run and explain a SQL query that joins or aggregates document/ingestion metadata; record licensing/source."
+      ],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion."
+    }
+  },
+  "gate_rule": "All source acceptance criteria and prerequisites preserved verbatim in unit_gate_contracts. Reading, scaffold generation, mocks and elapsed calendar days do not establish learner completion. U011 is only started by Day14; full local release is not due in Sprint 1."
+}

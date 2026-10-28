@@ -1,0 +1,396 @@
+{
+  "date": "2026-10-28",
+  "code_commit": "6b291d95567de5c9f6943931f004e74c5c9d4d3a",
+  "before_hashes": {
+    "sprint1-course-map.json": "76cf539e0fdf66bca117d544f96e22cb6d72ad09a1a9bcbb812c86e336afa8b2",
+    "sprint1-course-map.md": "cd8901506b179fe79d307cb67954d3ee13699dc85895374f9e283514019ea72b",
+    "udemy-curriculum-snapshot.json": "4573772527e26bc10b14c7025376f546ca6d5a6dd7c9eae0f6d8f020673f81c5"
+  },
+  "after_hashes": {
+    "sprint1-course-map.json": "725e9d744b8741679ef9fc7bf1aec8b729a6ff61ae85baea7124d30c540eb355",
+    "sprint1-course-map.md": "8240670b63e1dbd100f7b03bfb74df5f0b1fcc8659d44ed9f232d2118a60e56e",
+    "udemy-curriculum-snapshot.json": "4573772527e26bc10b14c7025376f546ca6d5a6dd7c9eae0f6d8f020673f81c5"
+  },
+  "sources_added": [
+    {
+      "id": "HF-CHAT",
+      "title": "Transformers: Chat templates",
+      "url": "https://huggingface.co/docs/transformers/en/chat_templating",
+      "read_only_these_sections": [
+        "Using apply_chat_template",
+        "add_generation_prompt",
+        "Special-token duplication warning"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Current official docs accessible; exact pinned v5.21.0 documentation URL was not accessible. Match installed API before execution; this is not installation proof."
+    },
+    {
+      "id": "HF-GENERATE",
+      "title": "Transformers: Generation",
+      "url": "https://huggingface.co/docs/transformers/en/main_classes/text_generation",
+      "read_only_these_sections": [
+        "GenerationConfig: max_new_tokens, do_sample, max_time",
+        "GenerationMixin.generate"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "The published adapter calls model.generate in-process. Its custom stopping criterion is step-aware, not a hard process deadline."
+    },
+    {
+      "id": "HF-STOP",
+      "title": "Transformers: Utilities for generation",
+      "url": "https://huggingface.co/docs/transformers/en/internal/generation_utils",
+      "read_only_these_sections": [
+        "StoppingCriteria",
+        "StoppingCriteriaList"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Read only these classes; the supplied adapter checks its own elapsed-time deadline between decoder steps."
+    },
+    {
+      "id": "HF-AUTO",
+      "title": "Transformers: Auto classes",
+      "url": "https://huggingface.co/docs/transformers/en/model_doc/auto",
+      "read_only_these_sections": [
+        "AutoTokenizer.from_pretrained",
+        "AutoModelForCausalLM.from_pretrained: local_files_only, trust_remote_code"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "The published code loads local files only and disables remote code. A successful documentation fetch does not verify model-file availability."
+    },
+    {
+      "id": "HF-DOWNLOAD",
+      "title": "Hugging Face Hub: Download files",
+      "url": "https://huggingface.co/docs/huggingface_hub/guides/download",
+      "read_only_these_sections": [
+        "From specific version",
+        "Filter files to download"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Read-only provenance/configuration lesson. Do not run the download recipe or retry the recorded metadata403 blocker without its resolution."
+    },
+    {
+      "id": "PY-JSON",
+      "title": "Python3.12: json",
+      "url": "https://docs.python.org/3.12/library/json.html#json.loads",
+      "read_only_these_sections": [
+        "json.loads",
+        "JSONDecodeError",
+        "Warning on untrusted JSON size"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Actual U010 learner seam uses plain JSON and explicit field/type validation, not llama.cpp grammar constraints or a new Pydantic validator."
+    },
+    {
+      "id": "PY-TIME",
+      "title": "Python3.12: time",
+      "url": "https://docs.python.org/3.12/library/time.html#time.perf_counter",
+      "read_only_these_sections": [
+        "time.perf_counter"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Trace elapsed-time measurement; do not claim it interrupts a slow kernel or covers model loading."
+    },
+    {
+      "id": "PY-DATACLASS",
+      "title": "Python3.12: dataclasses",
+      "url": "https://docs.python.org/3.12/library/dataclasses.html",
+      "read_only_these_sections": [
+        "dataclass decorator",
+        "frozen instances"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Actual supplied Document contract is a frozen dataclass; learner validation is still explicit."
+    },
+    {
+      "id": "CODE-RUNTIME",
+      "title": "Published Sprint1: runtime verification",
+      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/docs/fde-v2/runtime-verification.md",
+      "read_only_these_sections": [
+        "Pinned candidate and runtime shape",
+        "Recorded access blocker"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "github_fetch_file_at_exact_commit",
+      "note": "Source/configuration inspection only. No model weights or real inference verified."
+    },
+    {
+      "id": "CODE-MODELS",
+      "title": "Published Sprint1: local model adapter",
+      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/models.py",
+      "read_only_these_sections": [
+        "LocalModels.load",
+        "LocalGenerator.generate_messages",
+        "GenerationDeadline"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "github_fetch_file_at_exact_commit"
+    },
+    {
+      "id": "CODE-LOCK",
+      "title": "Published Sprint1: model lock",
+      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/model_lock.json",
+      "read_only_these_sections": [
+        "generation repository/revision/license/expected_files",
+        "trust_remote_code"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "github_fetch_file_at_exact_commit"
+    },
+    {
+      "id": "CODE-API",
+      "title": "Published Sprint1: loopback API",
+      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/api.py",
+      "read_only_these_sections": [
+        "GenerateRequest",
+        "POST /generate",
+        "error mapping and request ID"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "github_fetch_file_at_exact_commit"
+    },
+    {
+      "id": "CODE-UI",
+      "title": "Published Sprint1: React question-answer screen",
+      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/frontend/src/fde-v2/QuestionAnswerApp.tsx",
+      "read_only_these_sections": [
+        "ViewState",
+        "submit",
+        "effect cleanup and AbortController"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "github_fetch_file_at_exact_commit"
+    },
+    {
+      "id": "CODE-SCOPE",
+      "title": "Published Sprint1: implementation boundary",
+      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/docs/fde-v2/implementation-scope.md",
+      "read_only_these_sections": [
+        "Ownership",
+        "Evidence and gate state"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "github_fetch_file_at_exact_commit"
+    }
+  ],
+  "sources_removed": [
+    {
+      "id": "PY-TIMEOUT",
+      "title": "Python asyncio: Coroutines and Tasks",
+      "url": "https://docs.python.org/3.12/library/asyncio-task.html#timeouts",
+      "read_only_these_sections": [
+        "Task Cancellation",
+        "Timeouts"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Versioned 3.12 reference; match the locked interpreter before implementation."
+    },
+    {
+      "id": "PYDANTIC-STRICT",
+      "title": "Pydantic: Strict Mode",
+      "url": "https://pydantic.dev/docs/validation/latest/concepts/strict_mode/",
+      "read_only_these_sections": [
+        "Overview",
+        "As a validation parameter"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Type-specific strictness still needs tests; schema validity is not truth."
+    },
+    {
+      "id": "HTTPX-TIMEOUT",
+      "title": "HTTPX: Timeouts",
+      "url": "https://www.python-httpx.org/advanced/timeouts/",
+      "read_only_these_sections": [
+        "Fine tuning the configuration"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Per-operation timeouts are not by themselves a single total request deadline."
+    },
+    {
+      "id": "LLAMA-SERVER",
+      "title": "llama.cpp: HTTP server README",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md",
+      "read_only_these_sections": [
+        "Server options: --host, --port, context/output bounds",
+        "POST /v1/chat/completions",
+        "response_format"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Provisional local runtime candidate from preflight, not installed or proven. Read only the specific subsection for that day. Master is moving; pin commit/build at the runtime gate."
+    },
+    {
+      "id": "LLAMA-GRAMMAR",
+      "title": "llama.cpp: GBNF guide",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/master/grammars/README.md",
+      "read_only_these_sections": [
+        "JSON Schemas \u2192 GBNF",
+        "Unsupported features"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Constrained generation supports a subset of JSON Schema; retain independent validation."
+    },
+    {
+      "id": "LLAMA-LICENSE",
+      "title": "llama.cpp license",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/master/LICENSE",
+      "read_only_these_sections": [
+        "License identification; retain the selected revision/license record"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully"
+    },
+    {
+      "id": "QWEN-GGUF",
+      "title": "Qwen/Qwen2.5-1.5B-Instruct-GGUF model card",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF",
+      "read_only_these_sections": [
+        "License label",
+        "Introduction",
+        "Quickstart"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Candidate only. Web metadata accessible; parent preflight reports HF403 for download. No downloaded weights or measured feasibility inferred."
+    },
+    {
+      "id": "MINILM-MODEL",
+      "title": "sentence-transformers/all-MiniLM-L6-v2 model card",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+      "read_only_these_sections": [
+        "Model description",
+        "License label",
+        "Usage"
+      ],
+      "checked_date": "2026-10-28",
+      "verification": "opened_successfully",
+      "note": "Embedding feasibility candidate only; not selected runtime, downloaded model, or a Sprint 1 embedding-completion claim."
+    }
+  ],
+  "sources_changed": [
+    {
+      "id": "PY-DATA",
+      "before_url": "https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions",
+      "after_url": "https://docs.python.org/3.12/tutorial/datastructures.html#list-comprehensions",
+      "after_note": null
+    },
+    {
+      "id": "PY-SQL",
+      "before_url": "https://docs.python.org/3/library/sqlite3.html#tutorial",
+      "after_url": "https://docs.python.org/3.12/library/sqlite3.html#tutorial",
+      "after_note": null
+    },
+    {
+      "id": "PY-VENV",
+      "before_url": "https://docs.python.org/3/library/venv.html",
+      "after_url": "https://docs.python.org/3.12/library/venv.html",
+      "after_note": null
+    },
+    {
+      "id": "PY-TYPING",
+      "before_url": "https://docs.python.org/3/library/typing.html#typing.TypedDict",
+      "after_url": "https://docs.python.org/3.12/library/typing.html#typing.TypedDict",
+      "after_note": null
+    },
+    {
+      "id": "PY-ERRORS",
+      "before_url": "https://docs.python.org/3/tutorial/errors.html#handling-exceptions",
+      "after_url": "https://docs.python.org/3.12/tutorial/errors.html#handling-exceptions",
+      "after_note": null
+    },
+    {
+      "id": "PY-PATH",
+      "before_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.resolve",
+      "after_url": "https://docs.python.org/3.12/library/pathlib.html#pathlib.Path.resolve",
+      "after_note": "Path containment needs tests; path helpers alone are not a complete hostile-filesystem security guarantee."
+    },
+    {
+      "id": "PY-TEST",
+      "before_url": "https://docs.python.org/3/library/unittest.html#basic-example",
+      "after_url": "https://docs.python.org/3.12/library/unittest.html#basic-example",
+      "after_note": null
+    },
+    {
+      "id": "QWEN-MODEL",
+      "before_url": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
+      "after_url": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
+      "after_note": "Actual published candidate: revision7ae557604adf67be50417f59c2c2f167def9a775, declared by model_lock.json. Remote pinned-revision metadata and artifact hashes remain unverified because of the recorded403 blocker."
+    }
+  ],
+  "invariants": "All daily minutes, reading caps, owned course IDs/item selections/durations and original11 unit gate contracts unchanged. No repo/board writes.",
+  "runtime": {
+    "status": "source_code_aligned_at_published_commit_not_runtime_verified",
+    "repository": "advait-ravi-marathe/capstone-project",
+    "branch": "review/aws-fde-v24-sprint1",
+    "commit": "6b291d95567de5c9f6943931f004e74c5c9d4d3a",
+    "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+    "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "model_revision_evidence": "Declared in published lock/code; not independently resolved by model metadata API in this task.",
+    "runtime": "In-process Transformers 5.21.0 / PyTorch 2.14.1, CPU-capable; no model-server endpoint",
+    "python": "3.12",
+    "actual_adapter": "LocalGenerator.generate_messages(messages,max_new_tokens=160) -> (answer,elapsed_ms)",
+    "actual_adapter_endpoint_mapping": "React same-origin POST /generate -> FastAPI loopback 127.0.0.1:8765 -> LocalModels.load/generate_messages in the same Python process",
+    "http_contract": {
+      "request": "JSON question string, min1/max2000 characters",
+      "response_fields": [
+        "answer",
+        "elapsed_ms",
+        "provider",
+        "request_id"
+      ],
+      "known_error_statuses": [
+        422,
+        503,
+        504,
+        502
+      ]
+    },
+    "generation_bounds": {
+      "input_token_truncation_max_length": 2048,
+      "max_new_tokens_default": 160,
+      "max_new_tokens_allowed_range": [
+        1,
+        256
+      ],
+      "do_sample": false,
+      "deadline_default_seconds": 45,
+      "deadline_config_range_seconds": [
+        1,
+        300
+      ],
+      "deadline_limitation": "Step-aware between decoder calls; a slow kernel can overrun. Not a hard process deadline and does not cover model loading.",
+      "token_accounting": "not exposed by current adapter; actual token counts unavailable"
+    },
+    "load_policy": {
+      "trust_remote_code": false,
+      "local_files_only": true,
+      "model_dir_default": "~/.cache/fde-v2/models/generation",
+      "required_manifest": "runtime-manifest.json",
+      "files": "Declared pinned source and local SHA256 verification; actual files absent/unverified"
+    },
+    "quantization": "No GGUF/quantized configuration is declared in this adapter; actual dtype/resource profile remains unmeasured.",
+    "embedding_runtime": "None in this Sprint1 release; no embedding candidate assignment.",
+    "not_used": [
+      "Ollama",
+      "llama.cpp server",
+      "OpenAI-compatible model HTTP endpoint",
+      "paid cloud inference",
+      "schema-constrained grammar generation"
+    ],
+    "real_inference_status": "blocked_unverified",
+    "blocker": "Published runtime-verification record reports HTTP403 on official Hub metadata request through configured proxy before transfer; raw request/response/proxy policy reason were not retained. Do not retry without resolution.",
+    "version_docs_note": "Exact v5.21.0 docs URLs were inaccessible; current official Transformers documentation was readable and is labeled as such. Package pins are repository declarations, not installed/runtime proof.",
+    "ownership": "Assistant supplies API/model loading/React/SQLite schema; learner seams are synthetic-record validation, bounded prompt forwarding, strict JSON parsing, and one-record idempotent insert. No extra infrastructure implementation course."
+  }
+}
