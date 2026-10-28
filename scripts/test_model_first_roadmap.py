@@ -194,6 +194,46 @@ class ModelFirstRoadmapTests(unittest.TestCase):
             self.assertTrue((ROOT / f"docs/model-first-roadmap/contracts/day-{number:02d}.md").is_file())
         self.assertFalse(any((ROOT / "docs/model-first-roadmap/contracts").glob("day-3[1-9].md")))
 
+    def test_integration_ownership_is_additive_bounded_and_not_yet_published(self):
+        manifest = json.loads((ROOT / "docs/model-first-roadmap/manifest.json").read_text())
+        amendment = json.loads((ROOT / "docs/model-first-roadmap/integration-ownership-amendment.json").read_text())
+        self.assertEqual(amendment, manifest["integration_ownership_amendment"])
+        self.assertEqual("review_branch_only_not_merged_or_board_published", amendment["status"])
+        self.assertEqual([225, 332, 333, 420, 507], [slot["study_day"] for slot in amendment["targets"]])
+        self.assertEqual(["2027-06-08", "2027-09-23", "2027-09-24", "2027-12-20", "2028-03-16"],
+                         [slot["date"] for slot in amendment["targets"]])
+        phase_ranges = {phase["id"]: phase["days"] for phase in manifest["phases"]}
+        self.assertEqual(["neural-models", "coverstory", "coverstory", "streamforge", "developer-workflow"], [
+            next(phase_id for phase_id, (first, last) in phase_ranges.items() if first <= slot["study_day"] <= last)
+            for slot in amendment["targets"]
+        ])
+        self.assertEqual(["OWN-INT-225", "OWN-INT-332", "OWN-INT-333", "OWN-INT-420", "OWN-INT-507"],
+                         [slot["unit_id"] for slot in amendment["targets"]])
+        self.assertTrue(all(slot["budget"] == {
+            "engineering_minutes": 165, "shared_minutes": 45,
+            "shared_block_policy": "This task replaces equivalent engineering work, and the shared block remains unchanged.",
+        } for slot in amendment["targets"]))
+        self.assertEqual([
+            "starter_and_test_harness_in_this_review_branch; learner_adapter_remains_todo",
+            "starter_and_test_harness_in_this_review_branch; learner_error_handling_remains_todo",
+            "starter_and_test_harness_in_this_review_branch; learner_component_remains_todo",
+            "planning_only_not_yet_published_as_a_daily_assignment",
+            "planning_only_not_yet_published_as_a_daily_assignment",
+        ], [slot["status"] for slot in amendment["targets"]])
+        self.assertTrue(all(slot["acceptance_command"] for slot in amendment["targets"][:3]))
+        self.assertTrue(all(slot["acceptance_command"] is None for slot in amendment["targets"][3:]))
+        self.assertIn("model-serving request/response contract", amendment["targets"][0]["focus"].lower())
+        self.assertIn("passed Day 30", amendment["targets"][0]["prerequisite"])
+        self.assertIn("held-out ranking baseline", amendment["targets"][3]["prerequisite"])
+        self.assertIn("stale-response", amendment["targets"][2]["focus"])
+        self.assertIn("do not add days, engineering minutes, or shared-block work", amendment["policy"])
+        self.assertIn("separate repository", amendment["budget_rule"])
+        self.assertEqual(30, len(manifest["detailed_days"]))
+        self.assertTrue(all(manifest["detailed_days"][number - 1]["evidence_category"] == "manual_read_only_application_comprehension"
+                            for number in (26, 27, 28)))
+        self.assertFalse(any(day["learner_completion"] for day in manifest["detailed_days"]))
+        self.assertIn("not yet published as daily contracts", (ROOT / "docs/model-first-roadmap/integration-ownership-amendment.md").read_text())
+
 
 if __name__ == "__main__":
     unittest.main()

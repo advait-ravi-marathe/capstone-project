@@ -124,6 +124,17 @@ small model-output helpers only; they cannot prove a learner avoided every
 out-of-scope FE/BE edit. Day 30 is a model training/evaluation slice,
 not a production or live-provider claim.
 
+The [bounded integration ownership amendment](integration-ownership-amendment.md)
+does not change those first-30 lessons. It proposes five small later slots in
+the separate 548-day plan: a model-serving contract, API failure diagnosis, a
+stale-response UI/API repair, score presentation in StreamForge, and safe
+interaction states in the Developer Workflow Assistant. The assistant owns
+the server/UI scaffolding; the learner owns the narrow integration behavior,
+tests, error handling and debugging. This review branch supplies a loopback
+model API scaffold and an intentionally unfinished React panel for the first
+CoverStory slice. Those future assignments are not yet published as daily
+contracts, do not add hours, and are not completion evidence.
+
 Days 1–14 use only Python's standard library. The acceptance module imports
 without third-party packages; days 2–14 can run before any scientific package
 is installed. Day 15 introduces NumPy; Day 21 introduces scikit-learn. Create

@@ -125,6 +125,95 @@ SPRINT_WINDOWS = [
     {"sprint": 3, "start_day": 29, "end_day": 42, "start_date": "2026-11-24", "end_date": "2026-12-07", "detailed_card_count": 2},
 ]
 
+# Additive candidate supplied for parent reconciliation with the separate
+# 548-day planning manifest. It intentionally does not become a fourth daily
+# assignment in this first-30 release source.
+INTEGRATION_OWNERSHIP_AMENDMENT = {
+    "schema_version": 1,
+    "status": "review_branch_only_not_merged_or_board_published",
+    "policy": "The assistant supplies application and model-serving scaffolding. The learner owns a few bounded end-to-end AI integration changes, their tests, error handling and debugging. These replace equivalent comprehension/review tasks in the later plan; they do not add days, engineering minutes, or shared-block work.",
+    "reconciliation_required": "The parent maintains a separate 548-day manifest. These target slots are a proposed mapping for that plan, not new published daily contracts or YouTrack IDs. Reconcile against its actual tasks and budgets before board publication.",
+    "targets": [
+        {
+            "study_day": 225, "date": "2027-06-08", "project": "CoverStory AI",
+            "budget": {"engineering_minutes": 165, "shared_minutes": 45, "shared_block_policy": "This task replaces equivalent engineering work, and the shared block remains unchanged."},
+            "unit_id": "OWN-INT-225", "focus": "Model-serving request/response contract",
+            "prerequisite": "The learner has passed Day 30's model artifact and held-out acceptance; an instructor witness or fixed fixture does not satisfy the learner gate.",
+            "learner_ownership": "Implement the model adapter that checks exact feature names/order, finite numeric values and width, calls the Day 30 classifier, and returns only a synthetic document-type label with explicit scope.",
+            "assistant_scaffolding": ["loopback-only Python HTTP route", "model artifact loading and process lifecycle", "independent fixed model and request fixture"],
+            "acceptance": "A real localhost HTTP request produces the independently expected class; missing/extra keys, wrong feature order, wrong width, booleans and non-finite values are denied. Response contains no underwriting decision or diagnostic internals.",
+            "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_001_builds_narrow_response_from_day30_model ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_001_rejects_malformed_and_order_confused_requests",
+            "run_command": "python3 -m ai.model_building.model_api_scaffold --artifact PATH_TO_DAY30_MODEL_JSON --host 127.0.0.1 --port 8765",
+            "negative_control": "Reject an adapter that ignores feature order, coerces booleans, returns a different class, accepts malformed requests, or echoes private exception details.",
+            "status": "starter_and_test_harness_in_this_review_branch; learner_adapter_remains_todo",
+            "sources": [
+                {"title": "http.server — HTTP servers", "section": "BaseHTTPRequestHandler", "url": "https://docs.python.org/3/library/http.server.html"},
+                {"title": "json — JSON encoder and decoder", "section": "json — JSON encoder and decoder", "url": "https://docs.python.org/3/library/json.html"}
+            ]
+        },
+        {
+            "study_day": 332, "date": "2027-09-23", "project": "CoverStory AI",
+            "budget": {"engineering_minutes": 165, "shared_minutes": 45, "shared_block_policy": "This task replaces equivalent engineering work, and the shared block remains unchanged."},
+            "unit_id": "OWN-INT-332", "focus": "API failure handling and debugging",
+            "prerequisite": "OWN-INT-225 valid and malformed request cases pass against the learner-owned adapter.",
+            "learner_ownership": "Trace and repair one supplied model/API failure. Implement explicit invalid-request versus inference-failure handling and test status, safe body, feature order and unchanged synthetic model state.",
+            "assistant_scaffolding": ["local route, process startup and request-size limit", "fault-injection switch and logs with synthetic identifiers"],
+            "acceptance": "Malformed requests return a stable 400 contract; unexpected model failures return a generic 500 contract; valid requests remain usable after a failure.",
+            "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_002_actual_http_path_maps_validation_and_model_failures_safely ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_002_distinguishes_input_errors_from_inference_failures ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_002_internal_failure_is_generic_and_never_leaks_exception_text",
+            "run_command": "python3 -m ai.model_building.model_api_scaffold --artifact PATH_TO_DAY30_MODEL_JSON --host 127.0.0.1 --port 8765",
+            "negative_control": "A mutant that reports 200 for a failed prediction, exposes exception details, or leaves a stale prediction on error is rejected.",
+            "status": "starter_and_test_harness_in_this_review_branch; learner_error_handling_remains_todo",
+            "sources": [{"title": "http.server — HTTP servers", "section": "BaseHTTPRequestHandler", "url": "https://docs.python.org/3/library/http.server.html"}]
+        },
+        {
+            "study_day": 333, "date": "2027-09-24", "project": "CoverStory AI",
+            "budget": {"engineering_minutes": 165, "shared_minutes": 45, "shared_block_policy": "This task replaces equivalent engineering work, and the shared block remains unchanged."},
+            "unit_id": "OWN-INT-333", "focus": "Small UI/API change and stale-response fix",
+            "prerequisite": "OWN-INT-225 and OWN-INT-332 pass; the loopback route is runnable and the UI route proxy is configured.",
+            "learner_ownership": "Complete one bounded React request/result interaction against the supplied same-origin route; show safe pending, success and error states, and prevent an older response overwriting the latest request.",
+            "assistant_scaffolding": ["controlled numeric inputs and route proxy", "local API lifecycle and fixed synthetic model"],
+            "acceptance": "The UI sends the ordered feature contract, renders an allowed label only, handles rejected/malformed responses without details, and keeps the latest result under out-of-order responses.",
+            "acceptance_command": "cd frontend && npm run test:model-integration",
+            "witness_command": "cd frontend && npm run test:model-integration-witness",
+            "run_command": "From frontend/: VITE_MODEL_API_TARGET=http://127.0.0.1:8765 npm run dev",
+            "negative_control": "No-request, any-label, leaked-error, or stale-response mutants fail the same user-visible acceptance assertions.",
+            "status": "starter_and_test_harness_in_this_review_branch; learner_component_remains_todo",
+            "sources": [
+                {"title": "<input> – React", "section": "Providing a label for an input; Controlling an input with a state variable", "url": "https://react.dev/reference/react-dom/components/input"},
+                {"title": "Using the Fetch API", "section": "Checking response status; Reading the response body", "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"}
+            ]
+        },
+        {
+            "study_day": 420, "date": "2027-12-20", "project": "StreamForge",
+            "budget": {"engineering_minutes": 165, "shared_minutes": 45, "shared_block_policy": "This task replaces equivalent engineering work, and the shared block remains unchanged."},
+            "unit_id": "OWN-INT-420", "focus": "Score presentation with model limitations",
+            "prerequisite": "StreamForge's held-out ranking baseline and score semantics have independent evidence; toy CoverStory labels do not qualify.",
+            "learner_ownership": "Make one small result-presentation change that preserves the distinction among ranking score, ordering and calibrated probability; use an unfamiliar score fixture and explain visible behavior through a test, not an architecture essay.",
+            "assistant_scaffolding": ["ranking endpoint and presentation shell", "fixed synthetic ranking fixture"],
+            "acceptance": "Displayed scores/order match the independent fixture and are not labeled as probability or user preference without validation.",
+            "acceptance_command": None,
+            "negative_control": "Reject swapped scores, stale result state, or probability/confidence labels unsupported by calibration evidence.",
+            "status": "planning_only_not_yet_published_as_a_daily_assignment",
+            "sources": [{"title": "3.4. Metrics and scoring: quantifying the quality of predictions", "section": "3.4.1. Which scoring function should I use?", "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"}]
+        },
+        {
+            "study_day": 507, "date": "2028-03-16", "project": "Developer Workflow Assistant",
+            "budget": {"engineering_minutes": 165, "shared_minutes": 45, "shared_block_policy": "This task replaces equivalent engineering work, and the shared block remains unchanged."},
+            "unit_id": "OWN-INT-507", "focus": "User-facing interaction states and approval boundary",
+            "prerequisite": "The Developer Workflow Assistant's read-only path and approval/denial contract have independent tests; no actual write authority is implied.",
+            "learner_ownership": "Implement or debug one small UI/API state transition across idle, pending, success, denial and retry states while keeping the assistant read-only unless a separately authorized approval is explicit.",
+            "assistant_scaffolding": ["tool execution and approval service", "synthetic read-only and denied-action fixtures"],
+            "acceptance": "The UI mirrors independently supplied server state, prevents duplicate or unauthorized writes, and distinguishes retryable transport failure from policy denial.",
+            "acceptance_command": None,
+            "negative_control": "Reject stale state, implicit approval, duplicated action, hidden denial, or a UI that claims a write succeeded when the server rejected it.",
+            "status": "planning_only_not_yet_published_as_a_daily_assignment",
+            "sources": [{"title": "Using the Fetch API", "section": "Checking response status; Reading the response body", "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"}]
+        }
+    ],
+    "budget_rule": "Every target replaces an existing task of the same day's budget in the parent plan. Through Day 171 preserve 120 engineering minutes; later preserve 165 engineering minutes plus one shared 45-minute block. DSA practice remains in its separate repository and interview questions remain in the shared block. Certification/course time stays inside existing caps.",
+    "evidence_limits": ["No task implies learner completion.", "Loopback synthetic tests do not prove production ownership, scale, customer adoption, or certification.", "No external service, paid model, credentials, cloud spend, or deployment is part of this amendment."]
+}
+
 def create_manifest() -> dict:
     detailed = []
     for i, item in enumerate(DAYS, 1):
@@ -230,6 +319,7 @@ def create_manifest() -> dict:
         "sources_last_verified": "2026-10-27",
         "active_role_benchmarks": "docs/model-first-roadmap/role-alignment.md",
         "superseded_candidate": "The earlier API-first candidate is excluded from this first-30 release and remains preserved on the broader review branch.",
+        "integration_ownership_amendment": INTEGRATION_OWNERSHIP_AMENDMENT,
         "legacy_issue_migration": "docs/model-first-roadmap/legacy-issue-migration.json",
         "dsa_source": {"repository":"https://github.com/advait-ravi-marathe/dsa-prep","commit":"c2caee396002bb48b2a34d407545ecd96ecdb1ab","policy":"pointer only; DSA source and actual attempts remain unchanged"},
         "detailed_days": detailed,
@@ -288,9 +378,47 @@ The learner acceptance is expected to remain red while its explicit TODO is unim
 '''
 
 
+def render_integration_ownership() -> str:
+    data = INTEGRATION_OWNERSHIP_AMENDMENT
+    slots = []
+    for target in data["targets"]:
+        sources = "; ".join(f"[{item['title']} — {item['section']}]({item['url']})" for item in target["sources"])
+        slots.append(
+            f"### Study Day {target['study_day']} — {target['focus']}\n\n"
+            f"**Date:** {target['date']} · **Project:** {target['project']} · **Unit:** `{target['unit_id']}`<br>\n"
+            f"**Status:** `{target['status']}`\n\n"
+            f"**Budget:** {target['budget']['engineering_minutes']} engineering minutes + one {target['budget']['shared_minutes']}-minute shared block. {target['budget']['shared_block_policy']}<br>\n"
+            f"**Prerequisite:** {target['prerequisite']}<br>\n"
+            f"{target['learner_ownership']}\n\n"
+            f"**Assistant supplies:** {', '.join(target['assistant_scaffolding'])}.<br>\n"
+            f"**Acceptance:** {target['acceptance']}<br>\n"
+            + (f"**Acceptance command:** `{target['acceptance_command']}`<br>\n" if target.get("acceptance_command") else "**Acceptance command:** not published yet; this outcome remains planning-only.<br>\n")
+            + (f"**Local run command:** `{target['run_command']}`<br>\n" if target.get("run_command") else "")
+            + (f"**Instructor witness command:** `{target['witness_command']}`<br>\n" if target.get("witness_command") else "")
+            + f"**Negative control:** {target['negative_control']}<br>\n"
+            + f"**Sources:** {sources}\n"
+        )
+    return (
+        "# Bounded AI integration ownership amendment\n\n"
+        "This is a review-branch candidate. The published first-30 schedule and its Days 26–28 read-only comprehension lessons remain unchanged. "
+        "The parent owns a separate 548-day planning manifest; target slots below require reconciliation with that manifest before board or calendar publication.\n\n"
+        f"**Status:** `{data['status']}`\n\n"
+        f"{data['policy']}\n\n"
+        f"{data['reconciliation_required']} Future target slots are not yet published as daily contracts.\n\n"
+        "## Bounded replacement slots\n\n" + "\n".join(slots) + "\n"
+        "## Capacity and evidence\n\n"
+        f"{data['budget_rule']}\n\n"
+        + "\n".join(f"- {item}" for item in data["evidence_limits"]) + "\n"
+    )
+
+
 def write(check: bool = False) -> int:
     manifest = create_manifest()
-    expected = {"manifest.json": json.dumps(manifest, indent=2, ensure_ascii=False) + "\n"}
+    expected = {
+        "manifest.json": json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
+        "integration-ownership-amendment.json": json.dumps(INTEGRATION_OWNERSHIP_AMENDMENT, indent=2, ensure_ascii=False) + "\n",
+        "integration-ownership-amendment.md": render_integration_ownership(),
+    }
     for day in manifest["detailed_days"]:
         expected[f"contracts/day-{day['day']:02d}.md"] = render_contract(day)
     errors = []

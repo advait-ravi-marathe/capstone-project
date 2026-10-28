@@ -350,3 +350,35 @@ def load_document_type_model(blob):
 def score_rows(weights, rows):
     if not weights or any(len(row)!=len(weights)-1 for row in rows): raise ValueError("score shape mismatch")
     return [weights[0]+sum(w*x for w,x in zip(weights[1:],row)) for row in rows]
+
+
+def build_prediction_response(model, payload):
+    """Independent test-only oracle for the OWN-INT-001 learner seam."""
+    import math
+
+    if not isinstance(model, dict) or set(model) != {"classes", "feature_names", "training_ids", "centroids"}:
+        raise ValueError("invalid model")
+    if not isinstance(payload, dict) or set(payload) != {"feature_names", "features"}:
+        raise ValueError("invalid request schema")
+    names = payload["feature_names"]
+    values = payload["features"]
+    if type(names) is not list or names != model["feature_names"]:
+        raise ValueError("feature order mismatch")
+    if type(values) is not list or len(values) != len(names):
+        raise ValueError("feature width mismatch")
+    if any(type(value) not in (int, float) or not math.isfinite(value) for value in values):
+        raise ValueError("features must be finite numbers")
+    if not model["classes"] or len(model["classes"]) != len(model["centroids"]):
+        raise ValueError("invalid class centroid matrix")
+    if any(len(row) != len(names) or any(not math.isfinite(value) for value in row) for row in model["centroids"]):
+        raise ValueError("invalid centroid dimensions")
+    distances = [sum((value - center) ** 2 for value, center in zip(values, centroid)) for centroid in model["centroids"]]
+    label = model["classes"][min(range(len(distances)), key=distances.__getitem__)]
+    return {"predicted_label": label, "decision_scope": "synthetic_document_type_only"}
+
+
+def prediction_error_response(error):
+    """Safe instructor-only HTTP error classifier used by the public oracle."""
+    if isinstance(error, ValueError):
+        return 400, {"error": "invalid_request"}
+    return 500, {"error": "prediction_failed"}
