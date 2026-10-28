@@ -30,7 +30,7 @@ function CorrectReferencePanel() {
       setResult('Ready. This synthetic label is not an insurance decision.');
     }
   }
-  return <section>{['schedule_count', 'exclusion_count', 'definition_count'].map((name, index) => <label key={name}>{name}<input aria-label={name} value={features[index]} onChange={event => setFeatures(current => current.map((value, position) => position === index ? Number(event.target.value) : value))} /></label>)}<button onClick={submit}>Classify sample</button>{error && <p role="alert">Prediction unavailable. Check the local model service and try again.</p>}<p role="status">{pending ? 'Waiting for model response…' : result}</p></section>;
+  return <section>{['schedule_count', 'exclusion_count', 'definition_count'].map((name, index) => <label key={name}>{name}<input type="number" aria-label={name} value={features[index]} onChange={event => setFeatures(current => current.map((value, position) => position === index ? Number(event.target.value) : value))} /></label>)}<button onClick={submit}>Classify sample</button>{error && <p role="alert">Prediction unavailable. Check the local model service and try again.</p>}<p role="status">{pending ? 'Waiting for model response…' : result}</p></section>;
 }
 
 function NoRequestMutant() { return <section><button onClick={() => undefined}>Classify sample</button><p role="status">Ready.</p></section>; }
@@ -76,7 +76,7 @@ describe('OWN-INT instructor witnesses use the same UI acceptance assertions', (
         const body = await response.json();
         setResult(`Predicted synthetic document type: ${body.predicted_label}. This is not an insurance decision.`);
       }
-      return <section>{['schedule_count', 'exclusion_count', 'definition_count'].map((name, index) => <label key={name}>{name}<input aria-label={name} value={features[index]} onChange={event => setFeatures(current => current.map((value, position) => position === index ? Number(event.target.value) : value))} /></label>)}<button onClick={submit}>Classify sample</button><p role="status">{result}</p></section>;
+      return <section>{['schedule_count', 'exclusion_count', 'definition_count'].map((name, index) => <label key={name}>{name}<input type="number" aria-label={name} value={features[index]} onChange={event => setFeatures(current => current.map((value, position) => position === index ? Number(event.target.value) : value))} /></label>)}<button onClick={submit}>Classify sample</button><p role="status">{result}</p></section>;
     }
     await expect(assertPanelLatestResponseWins(StaleResponseMutant)).rejects.toThrow();
   });

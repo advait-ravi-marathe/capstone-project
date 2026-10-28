@@ -378,7 +378,7 @@ def build_prediction_response(model, payload):
     return {"predicted_label": label, "decision_scope": "synthetic_document_type_only"}
 
 
-def predict_document_type(model, rows):
+def integration_classifier_witness(model, rows):
     """Test-only classifier witness for exercising the Day 30 learner seam."""
     predictions = []
     for values in rows:

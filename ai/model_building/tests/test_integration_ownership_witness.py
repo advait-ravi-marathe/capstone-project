@@ -2,6 +2,7 @@
 
 import unittest
 from pathlib import Path
+import ast
 from unittest.mock import patch
 
 from ai.model_building import integration_learner, learner
@@ -51,7 +52,7 @@ class IntegrationOwnershipWitnessTests(unittest.TestCase):
             suite = unittest.TestSuite(learner_acceptance.IntegrationOwnershipAcceptance(name) for name in method_names)
             with patch.object(integration_learner, "build_prediction_response", candidate):
                 with patch.object(integration_learner, "prediction_error_response", error_candidate):
-                    with patch.object(learner, "predict_document_type", ref.predict_document_type):
+                    with patch.object(learner, "predict_document_type", ref.integration_classifier_witness):
                         result = unittest.TestResult()
                         suite.run(result)
             return result
@@ -72,7 +73,7 @@ class IntegrationOwnershipWitnessTests(unittest.TestCase):
         self.assertFalse(result.wasSuccessful(), "actual acceptance selectors accepted incorrect error mapping")
 
     def test_same_public_acceptance_contract_passes_reference_and_rejects_mutants(self):
-        with patch.object(learner, "predict_document_type", ref.predict_document_type):
+        with patch.object(learner, "predict_document_type", ref.integration_classifier_witness):
             assert_public_contract(ref.build_prediction_response)
         mutants = {
             "wrong-class": lambda model, payload: {"predicted_label": "exclusion", "decision_scope": "synthetic_document_type_only"},
@@ -87,13 +88,13 @@ class IntegrationOwnershipWitnessTests(unittest.TestCase):
     def test_real_loopback_route_uses_same_reference_oracle_and_rejects_wrong_result_mutant(self):
         with patch.object(integration_learner, "build_prediction_response", ref.build_prediction_response):
             with patch.object(integration_learner, "prediction_error_response", ref.prediction_error_response):
-                with patch.object(learner, "predict_document_type", ref.predict_document_type):
+                with patch.object(learner, "predict_document_type", ref.integration_classifier_witness):
                     with running_model_api(MODEL) as base_url:
                         status, result = post(base_url, "/api/model/predict", VALID)
         self.assertEqual((200, {"predicted_label": "schedule", "decision_scope": "synthetic_document_type_only"}), (status, result))
         with patch.object(integration_learner, "build_prediction_response", ref.build_prediction_response):
             with patch.object(integration_learner, "prediction_error_response", ref.prediction_error_response):
-                with patch.object(learner, "predict_document_type", ref.predict_document_type):
+                with patch.object(learner, "predict_document_type", ref.integration_classifier_witness):
                     with running_model_api(MODEL) as base_url:
                         _, exclusion = post(base_url, "/api/model/predict", {"feature_names": MODEL["feature_names"], "features": [0.1, 1.4, 0.0]})
                         _, definition = post(base_url, "/api/model/predict", {"feature_names": MODEL["feature_names"], "features": [0.0, 0.1, 1.4]})
@@ -105,14 +106,27 @@ class IntegrationOwnershipWitnessTests(unittest.TestCase):
                 with running_model_api(MODEL) as base_url:
                     status, result = post(base_url, "/api/model/predict", VALID)
         with self.assertRaises(AssertionError):
-            with patch.object(learner, "predict_document_type", ref.predict_document_type):
+            with patch.object(learner, "predict_document_type", ref.integration_classifier_witness):
                 self.assertEqual((200, ref.build_prediction_response(MODEL, VALID)), (status, result))
+
+    def test_original_day30_reference_oracle_still_rejects_malformed_rows_and_model(self):
+        source_path = Path(__file__).with_name("reference_witness.py")
+        definitions = [node.name for node in ast.walk(ast.parse(source_path.read_text()))
+                       if isinstance(node, ast.FunctionDef) and node.name == "predict_document_type"]
+        self.assertEqual(["predict_document_type"], definitions)
+        self.assertEqual(["schedule"], ref.predict_document_type(MODEL, [[1.4, 0.1, 0.0]]))
+        for rows in ([[1.0]], [[1.0, 0.0, float("inf")]]):
+            with self.subTest(rows=rows), self.assertRaises(ValueError):
+                ref.predict_document_type(MODEL, rows)
+        malformed_model = {**MODEL, "centroids": MODEL["centroids"][:-1]}
+        with self.assertRaises(ValueError):
+            ref.predict_document_type(malformed_model, [[1.0, 0.0, 0.0]])
 
     def test_loopback_acceptance_checks_invalid_request_and_inference_failure_disclosure(self):
         malformed = {"feature_names": list(reversed(MODEL["feature_names"])), "features": [1.4, 0.1, 0.0]}
         with patch.object(integration_learner, "build_prediction_response", ref.build_prediction_response):
             with patch.object(integration_learner, "prediction_error_response", ref.prediction_error_response):
-                with patch.object(learner, "predict_document_type", ref.predict_document_type):
+                with patch.object(learner, "predict_document_type", ref.integration_classifier_witness):
                     with running_model_api(MODEL) as base_url:
                         status, result = post(base_url, "/api/model/predict", malformed)
         self.assertEqual((400, {"error": "invalid_request"}), (status, result))

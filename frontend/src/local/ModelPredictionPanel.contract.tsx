@@ -75,7 +75,7 @@ export async function assertPanelLatestResponseWins(Panel: React.ComponentType) 
   await user.click(button);
   const changedFeature = screen.getByLabelText('schedule_count');
   fireEvent.change(changedFeature, { target: { value: '0.1' } });
-  await waitFor(() => expect(changedFeature).toHaveValue('0.1'));
+  await waitFor(() => expect(changedFeature).toHaveValue(0.1));
   await user.click(button);
   expect(fetchMock).toHaveBeenCalledTimes(2);
   expect(fetchMock).toHaveBeenNthCalledWith(2, '/api/model/predict', expect.objectContaining({
