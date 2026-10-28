@@ -52,10 +52,17 @@ class Sprint1ContractTests(unittest.TestCase):
         day14 = (DOCS / "days/day-14.md").read_text(encoding="utf-8")
         self.assertIn("first 30 minutes", unit)
         self.assertIn("does not claim U011 completion", unit)
+        self.assertIn("does not exercise changed-version handling", unit)
+        self.assertIn("not required to complete the Day 14 slice", unit)
         self.assertIn("30 minutes only", day14)
         self.assertIn("remaining segments continue", day14)
         self.assertFalse((DOCS / "days/day-15.md").exists())
         self.assertFalse((DOCS / "units/u012.md").exists())
+
+    def test_u009_documents_browser_cancellation_without_claiming_server_abort(self):
+        unit = (DOCS / "units/u009.md").read_text(encoding="utf-8")
+        self.assertIn("explicit cancellation", unit)
+        self.assertIn("does not stop generation already running on the server", unit)
 
     def test_only_sprint1_learner_seams_are_active(self):
         tree = ast.parse((ROOT / "ai/fde_v2/coverstory/learner.py").read_text(encoding="utf-8"))

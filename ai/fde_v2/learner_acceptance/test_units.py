@@ -29,6 +29,7 @@ class First30LearnerAcceptance(unittest.TestCase):
             {**record, "version": True},
             {**record, "version": 0},
             {**record, "title": "  "},
+            {key: value for key, value in record.items() if key != "source"},
             {**record, "text": ""},
         ):
             with self.subTest(invalid=invalid):
@@ -48,7 +49,7 @@ class First30LearnerAcceptance(unittest.TestCase):
         answer, elapsed = candidate.generate_text(generator, "Explain the synthetic workflow", 47)
         self.assertEqual((answer, elapsed), ("an instructor test double response", 8.25))
         self.assertEqual(generator.calls, [([{"role": "user", "content": "Explain the synthetic workflow"}], 47)])
-        for prompt, limit in (("", 8), ("question", 0), ("question", 257), ("question", True),
+        for prompt, limit in (("", 8), (" \t\n ", 8), ("question", 0), ("question", 257), ("question", True),
                               ("x" * 4001, 8)):
             with self.subTest(prompt=prompt, limit=limit):
                 before = len(generator.calls)
@@ -78,6 +79,7 @@ class First30LearnerAcceptance(unittest.TestCase):
             "not json",
             '{"answer":"x","citations":[],"abstained":false,"extra":1}',
             '{"answer":"x","citations":[],"abstained":"false"}',
+            '{"citations":[],"abstained":false}',
             '{"answer":"x","citations":"policy-v1","abstained":false}',
             '{"answer":7,"citations":[],"abstained":false}',
             '{"answer":"x","citations":["policy-v1",7],"abstained":false}',

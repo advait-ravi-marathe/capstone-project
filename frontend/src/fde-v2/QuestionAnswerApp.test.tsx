@@ -41,4 +41,41 @@ describe('assistant-supplied local question UI', () => {
     await waitFor(() => expect(screen.getByRole('alert')).toHaveTextContent('Request failed (503).'));
     expect(screen.queryByTestId('answer')).not.toBeInTheDocument();
   });
+
+  it('cancels the active request, exits loading and ignores its late response', async () => {
+    let finish!: (value: Response) => void;
+    let requestSignal!: AbortSignal;
+    vi.spyOn(globalThis, 'fetch').mockImplementation((_input, init) => {
+      requestSignal = init?.signal as AbortSignal;
+      return new Promise<Response>(resolve => { finish = resolve; });
+    });
+    render(<QuestionAnswerApp />);
+    fireEvent.change(screen.getByLabelText('Question'), { target: { value: 'deductible?' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Ask locally' }));
+    expect(screen.getByRole('status')).toHaveTextContent(/generating/i);
+    fireEvent.click(screen.getByRole('button', { name: 'Cancel request' }));
+
+    expect(requestSignal.aborted).toBe(true);
+    expect(screen.getByRole('status')).toHaveTextContent(/request cancelled/i);
+    expect(screen.getByRole('status')).toHaveTextContent(/no answer is displayed/i);
+    expect(screen.queryByTestId('answer')).not.toBeInTheDocument();
+
+    finish({ ok: true, json: async () => response } as Response);
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent(/request cancelled/i));
+    expect(screen.queryByTestId('answer')).not.toBeInTheDocument();
+  });
+
+  it('aborts the browser request when the component unmounts while loading', () => {
+    let requestSignal!: AbortSignal;
+    vi.spyOn(globalThis, 'fetch').mockImplementation((_input, init) => {
+      requestSignal = init?.signal as AbortSignal;
+      return new Promise<Response>(() => undefined);
+    });
+    const { unmount } = render(<QuestionAnswerApp />);
+    fireEvent.change(screen.getByLabelText('Question'), { target: { value: 'deductible?' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Ask locally' }));
+    expect(requestSignal.aborted).toBe(false);
+    unmount();
+    expect(requestSignal.aborted).toBe(true);
+  });
 });

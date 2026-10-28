@@ -49,18 +49,37 @@ class Sprint1Infrastructure(unittest.TestCase):
                 return ("bounded test response", 1.25)
 
         with tempfile.TemporaryDirectory() as temporary:
-            store = CorpusStore(Path(temporary) / "corpus.sqlite3")
-            with store.connect() as db:
-                db.execute("INSERT INTO documents VALUES(?,?,?,?,?)",
-                           ("fixture-1", 1, "Fixture", "synthetic://one", "a" * 64))
             with patch.dict("os.environ", {"FDE_V2_DATA_DIR": temporary}):
                 client = TestClient(create_app(lambda: TestGenerator(), text_adapter=reference.generate_text))
                 self.assertEqual(client.get("/health").json(),
                                  {"status": "ok", "mode": "local-learning-prototype"})
-                self.assertEqual(client.get("/documents").json()["documents"], [{
+                empty = client.get("/documents", headers={"x-request-id": "u004-empty"})
+                self.assertEqual(empty.status_code, 200)
+                self.assertEqual(empty.json(), {"documents": []})
+                self.assertEqual(empty.headers["x-request-id"], "u004-empty")
+
+                store = CorpusStore(Path(temporary) / "corpus.sqlite3")
+                with store.connect() as db:
+                    db.execute("INSERT INTO documents VALUES(?,?,?,?,?)",
+                               ("fixture-1", 1, "Fixture", "synthetic://one", "a" * 64))
+                with self.assertLogs("fde_v2.coverstory", level="INFO") as success_logs:
+                    populated = client.get("/documents", headers={"x-request-id": "u004-populated"})
+                self.assertEqual(populated.json()["documents"], [{
                     "document_id": "fixture-1", "version": 1, "title": "Fixture",
                     "source": "synthetic://one", "content_sha256": "a" * 64,
                 }])
+                self.assertEqual(populated.headers["x-request-id"], "u004-populated")
+                self.assertIn("request_id=u004-populated", "\n".join(success_logs.output))
+                self.assertNotIn("Fixture", "\n".join(success_logs.output))
+
+                (Path(temporary) / "corpus.sqlite3").write_bytes(b"not a sqlite database")
+                with self.assertLogs("fde_v2.coverstory", level="INFO") as failure_logs:
+                    failed = client.get("/documents", headers={"x-request-id": "u004-failure"})
+                self.assertEqual(failed.status_code, 500)
+                self.assertNotIn("not a sqlite database", failed.text)
+                rendered_logs = "\n".join(failure_logs.output)
+                self.assertIn("request_id=u004-failure", rendered_logs)
+                self.assertNotIn("TRAINING FIXTURE", rendered_logs)
 
     def test_generate_route_contract_and_failures(self):
         class TestGenerator:
