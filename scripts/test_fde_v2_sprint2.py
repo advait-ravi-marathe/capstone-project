@@ -146,7 +146,9 @@ class Sprint2ContractTests(unittest.TestCase):
         self.assertIn("[Day 29", days_index)
         self.assertIn("[Day 30", days_index)
         self.assertIn("| U022 | [U022](u022.md) | 29, 30 |", units_index)
-        self.assertIn("| U023 | [U023](u023.md) | 30 (partial), 31 |", units_index)
+        self.assertIn("| U023 | [U023](u023.md) | 30 (fixture authoring only), 31 (deterministic regression; actual model observation gated) |", units_index)
+        for unit_id in range(24, 31):
+            self.assertIn(f"| U{unit_id:03} | [U{unit_id:03}](u{unit_id:03}.md) |", units_index)
         self.assertIn("U023" , scope)
         self.assertIn("Day30", roadmap)
         self.assertIn("blocked", roadmap.lower())

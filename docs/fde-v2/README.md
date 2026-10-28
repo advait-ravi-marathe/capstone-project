@@ -1,6 +1,6 @@
 # AWS FDE v2.4 learning roadmap
 
-This is the accepted AWS-only, interview-first plan. **No learner days are complete.** A learning-day number advances only when that session is attempted; dates do not automatically change learner status. Sprint 1 covers actual learning Days 1–14. The separate continuation branch adds Days 15–30 and remains unpublished pending review. U011 starts as a partial slice on Day14 and continues on Day15. U021 starts on Day28 and ends its scheduled selector mechanics on Day29; real development evaluation remains blocked while model weights are unavailable. U022 runs on Days29–30. Day30 is only the fixture-authoring portion of U023; its execution/regression work continues Day31 and neither U023 nor P1 is marked complete. U013 real embeddings and U019 generated RAG remain unverified until verified local model artifacts are available.
+This is the accepted AWS-only, interview-first plan. **No learner days are complete.** A learning-day number advances only when that session is attempted; dates do not automatically change learner status. Sprint 1 covers actual learning Days 1–14. The separate continuation branch now has detailed pages through Day41 and remains unpublished pending review. U011 starts as a partial slice on Day14 and continues on Day15. U021 starts on Day28 and ends its scheduled selector mechanics on Day29; real development evaluation remains blocked while model weights are unavailable. U022 runs on Days29–30. Day30 is only the fixture-authoring portion of U023; deterministic execution/regression is scheduled on Day31, but actual generated behavior is still model-gated. U024–U030 have explicit closeout lessons and evidence tooling. No unit or P1 completion is inferred from authored pages or synthetic witnesses. U013 embeddings and U019 generated RAG remain unverified until verified local model artifacts are available.
 
 ## Start with actual learning Day 1
 
@@ -88,6 +88,12 @@ Fixed-vector and injected-pipeline tests verify mechanics only. They never satis
 - [Accepted v2.4 planning inputs](accepted/)
 
 Each day's page assigns DSA60 + role/AWS bank30 + AI90 = 180 minutes. A 75-minute DSA revision reduces AI to75; a90-minute revision reduces AI to60. The actual Day14 allocation spends U010 support30 + the first U011 segment30 + a private evidence note30. U011 remains incomplete. In the separate continuation branch, actual Days 15–30 extend U011 and introduce U012–U023, with Day30 limited to the accepted U023 fixture-authoring slice. The pages and seams remain unpublished pending review. This is not a claim that the full accepted first-30 schedule, U023, or its milestones are complete.
+
+## P1 closeout: actual learning Days 31–41
+
+The accepted schedule assigns Days31–41 to deterministic security regressions, a minimal API container smoke, bounded failure/recovery practice, a real-only local latency attempt, role-play/handoff, independent learner ownership, one frozen held-out evaluation and an honest closeout. See [daily pages](days/), [unit contracts U023–U030](units/) and the [Days31–41 verification report](reports/days31-41-verification.md). No real model run has been produced by this repository update. The held-out and benchmark runners target loopback only, require the pinned model identity, and fail closed; their instructor schema tests use synthetic fixtures and are not performance or quality evidence. Container health is separate from actual RAG.
+
+Days31–41 retain the accepted 60 DSA +30 role/AWS +90 AI budget. Day35 visibility is inside the AI total. Day41's remaining 60 minutes are reserve, not a new unit or feature task. The missing secret-scanner executable and missing pinned weights keep the associated acceptance gates unmet.
 
 ### Select the intended DSA learning position
 

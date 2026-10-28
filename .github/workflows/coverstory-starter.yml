@@ -97,3 +97,7 @@ jobs:
       - name: Verify AWS FDE v2.4 Days 15–30 RAG panel
         working-directory: frontend
         run: RUN_FDE_V2=true npx vitest run
+      - name: Verify AWS FDE v2.4 P1 closeout contracts and API container
+        run: |
+          python3 -m unittest scripts.test_fde_v2_p1_closeout
+          python3 scripts/fde_v2_container_smoke.py

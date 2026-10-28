@@ -1,6 +1,6 @@
 # AWS FDE v2.4 daily pages
 
-Actual learning days are attempt-indexed; dates do not advance status. Sprint 1 contains Days 1–14; this continuation adds Days 15–30. Every page retains the fixed 180-minute schedule. Day30 contains only the explicitly bounded U023 fixture-authoring slice; U023 execution continues on Day31.
+Actual learning days are attempt-indexed; dates do not advance status. Sprint 1 contains Days 1–14; the continuation currently has detailed pages through Day41. Every page retains the fixed 180-minute schedule. Day30 contains only the explicitly bounded U023 fixture-authoring slice; deterministic execution starts on Day31. Days31–41 are P1 closeout tasks, and their real-model, held-out and ownership outcomes remain evidence-gated.
 
 | Day | Page |
 |---:|---|
@@ -34,3 +34,14 @@ Actual learning days are attempt-indexed; dates do not advance status. Sprint 1 
 | 28 | [Day 28: Short FE/full-stack mock segment](day-28.md) |
 | 29 | [Day 29: Targeted gap repair](day-29.md) |
 | 30 | [Day 30: Role-fit review and bounded security authoring](day-30.md) |
+| 31 | [Day 31: Adversarial documents and regression tests](day-31.md) |
+| 32 | [Day 32: Reproducible build and CI boundary](day-32.md) |
+| 33 | [Day 33: CI boundary and failure handling](day-33.md) |
+| 34 | [Day 34: Bounded recovery and performance setup](day-34.md) |
+| 35 | [Day 35: Local latency and resource baseline](day-35.md) |
+| 36 | [Day 36: Performance review and discovery](day-36.md) |
+| 37 | [Day 37: Discovery handoff and ownership start](day-37.md) |
+| 38 | [Day 38: Ownership check and held-out freeze](day-38.md) |
+| 39 | [Day 39: Held-out evaluation and audit](day-39.md) |
+| 40 | [Day 40: Clean-run demo and checkpoint](day-40.md) |
+| 41 | [Day 41: Evidence closeout and carryover](day-41.md) |

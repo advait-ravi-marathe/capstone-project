@@ -26,4 +26,11 @@ A dependency unit can span multiple actual learning days. Only scheduled slices 
 | U020 | [U020](u020.md) | 26, 27 |
 | U021 | [U021](u021.md) | 28, 29 |
 | U022 | [U022](u022.md) | 29, 30 |
-| U023 | [U023](u023.md) | 30 (partial), 31 |
+| U023 | [U023](u023.md) | 30 (fixture authoring only), 31 (deterministic regression; actual model observation gated) |
+| U024 | [U024](u024.md) | 32–33 |
+| U025 | [U025](u025.md) | 33–34 |
+| U026 | [U026](u026.md) | 34–36 |
+| U027 | [U027](u027.md) | 36–37 |
+| U028 | [U028](u028.md) | 37–38 |
+| U029 | [U029](u029.md) | 38–39 |
+| U030 | [U030](u030.md) | 40–41 |
