@@ -1,0 +1,860 @@
+{
+  "overlay_version": "north-star-okrs-overlay-2-sprint14",
+  "status": "planning_overlay_only_not_learning_or_implementation_completion",
+  "base_plan": {
+    "version": "ai-fde-v2.4-interview-first-aws-only",
+    "receipt_filename": "plan-review-receipt.json",
+    "receipt_sha256": "c0244d623a18c7fae6593f12895ebd3790099078f839d7831cf75c76c23746b5",
+    "canonical_files_unchanged": true
+  },
+  "north_star": {
+    "id": "NS1",
+    "statement": "Become a trusted AI engineer who independently builds, evaluates and safely operates useful enterprise AI systems with verified customer outcomes.",
+    "operating_meaning": "Independent ownership plus useful held-out quality, enforced safety, real deployment/operations and honest user-outcome evidence\u2014not one inflated composite score.",
+    "first_major_career_outcome": "A suitable job switch; applications can begin on verified existing strengths.",
+    "long_term_aspiration": "Durable AI/FDE and eventual Staff-level capability where real scope/impact support it; no title or irreplaceability guarantee."
+  },
+  "hierarchy": [
+    "NorthStar",
+    "Objectives",
+    "KeyResults",
+    "ExistingMilestoneContracts",
+    "ExistingSprintsAndDailySlots"
+  ],
+  "objectives": [
+    {
+      "id": "O1",
+      "objective": "Make a well-matched job switch through demonstrable interview readiness.",
+      "priority": "First major career outcome; applications can use verified existing FE/full-stack strengths now.",
+      "key_results": [
+        {
+          "id": "KR-1.1",
+          "name": "Establish an honest target-role and gap baseline",
+          "metric_type": "leading_readiness",
+          "baseline": "not_assessed_or_not_started; no new learning completion inferred",
+          "current_value": null,
+          "target": "Complete the existing target-role/baseline map and identify role-specific gaps using actual attempts; keep prior SWE evidence distinct from new AI evidence.",
+          "conditional_learning_window": {
+            "start_day": 1,
+            "review_days": [
+              7,
+              30
+            ]
+          },
+          "required_evidence": [
+            "Existing baseline/problem brief and role-bank attempt notes; no new reporting stream."
+          ],
+          "existing_v24_sources": [
+            "first-30-days.json: Days1,7,30",
+            "first-30-ai-units.json: U001\u2013U005"
+          ],
+          "limits": [
+            "Zero personal-curriculum completion does not erase4+years prior SWE experience; unknown skills remain unknown."
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "KR-1.2",
+          "name": "Demonstrate independent performance on relevant interview gates",
+          "metric_type": "leading_readiness",
+          "baseline": "not_assessed_or_not_started; no new learning completion inferred",
+          "current_value": null,
+          "target": "For each gate relevant to the actual role, pass two different unseen exercises on separate days at least3/4 in critical dimensions, with no critical correctness/security/integrity failure. Use the accepted six-gate rubric; prefer genuine human review.",
+          "conditional_learning_window": {
+            "starts_day": 1,
+            "formal_evidence_accrues_through_core": true,
+            "consolidation": "M5.1, roughly Days225\u2013271; not the start of practice"
+          },
+          "required_evidence": [
+            "Actual attempt, allowed tools/help, rubric, code/design/story output, feedback and targeted retest."
+          ],
+          "existing_v24_sources": [
+            "first-30-days.json: recurring role bank",
+            "later-milestone-contracts.json: M4.3 and M5.1",
+            "interviews-and-visibility-research.md: six gates"
+          ],
+          "limits": [
+            "These are internal readiness criteria, not employer cutoffs. FE/full-stack interviews need the relevant subset; do not wait for all AI gates. Formal20hours accrue across existing bank windows, not an extra final-phase block."
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "KR-1.3",
+          "name": "Convert readiness and truthful evidence into a suitable offer/job switch",
+          "metric_type": "lagging_career_outcome",
+          "baseline": "not_assessed_or_not_started; no new learning completion inferred",
+          "current_value": null,
+          "target": "Track actual interview invitations, stage outcomes, offers and the user\u2019s accepted suitable role; use feedback to repair the relevant gap. A role accepted by the user is the first major outcome, not a guaranteed date.",
+          "conditional_learning_window": {
+            "applications": "May begin now on verified existing strengths, as authorized",
+            "target_date": null,
+            "review": "At actual recruiting feedback and scheduled reviews"
+          },
+          "required_evidence": [
+            "User-authorized application/interview records and real employer/user decisions."
+          ],
+          "existing_v24_sources": [
+            "repaired-roadmap-architecture.md: Sections2,3,6",
+            "first-30-days.json: role-fit bank"
+          ],
+          "limits": [
+            "No application-count quota, invented offer probability, automatic outreach or guaranteed offer. Geography, work authorization, travel, role level and user preferences remain actual filters."
+          ],
+          "status": "not_started"
+        }
+      ]
+    },
+    {
+      "id": "O2",
+      "objective": "Independently deliver and explain useful, evaluated, secure AI systems.",
+      "priority": "Core engineering evidence; progress in parallel with job switching, without postponing applications.",
+      "key_results": [
+        {
+          "id": "KR-2.1",
+          "name": "Build a genuine local generative-RAG system and pass its prototype release gate",
+          "metric_type": "leading_capability",
+          "baseline": "not_assessed_or_not_started; no new learning completion inferred",
+          "current_value": null,
+          "target": "Produce real-model, real-embedding and persisted-vector-store receipts, source-grounded generation and failure/abstention behavior; pass the existing narrow held-out prototype criterion and independent ownership check before calling P1 complete.",
+          "conditional_learning_window": {
+            "real_generation_estimate_day": 9,
+            "vector_store_estimate_day": 22,
+            "narrow_rag_estimate_day": 26,
+            "evaluated_prototype_estimate_day": 41
+          },
+          "required_evidence": [
+            "Existing real inference/retrieval/RAG traces, dev/held-out evaluation, tests, ownership attempt and reproducible demo."
+          ],
+          "existing_v24_sources": [
+            "first-30-ai-units.json: U006,U013,U016,U019,U028\u2013U030",
+            "first-30-days.json",
+            "first-release-through-day41-schedule.json"
+          ],
+          "limits": [
+            "Day30 is not a full P1 pass; U023 is partial. Mock/template output cannot pass real gates. Local output does not imply cloud, production or customer evidence."
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "KR-2.2",
+          "name": "Release useful CoverStory behavior on authorized AWS infrastructure",
+          "metric_type": "leading_capability",
+          "baseline": "not_assessed_or_not_started; no new learning completion inferred",
+          "current_value": null,
+          "target": "Meet the predeclared workflow quality/abstention/latency criterion on a frozen held-out release; pass server-side access/isolation tests; demonstrate actual AWS-hosted model use and application deploy/redeploy/rollback/teardown.",
+          "conditional_learning_window": {
+            "phase": "P2",
+            "approximate_days": [
+              42,
+              102
+            ]
+          },
+          "required_evidence": [
+            "M2.1 release verdict, M2.2 boundary/CI evidence, M2.3 AWS/provider/operations and usage/cost receipts."
+          ],
+          "existing_v24_sources": [
+            "later-milestone-contracts.json: M2.1\u2013M2.3"
+          ],
+          "limits": [
+            "Required gates remain blocked if hardware/access/budget is unavailable; unrelated work continues. AWS alerts are not guaranteed hard cost caps. No paid resources are authorized by this overlay."
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "KR-2.3",
+          "name": "Make bounded tools and genuine MCP reliable enough for the scoped workflow",
+          "metric_type": "leading_capability",
+          "baseline": "not_assessed_or_not_started; no new learning completion inferred",
+          "current_value": null,
+          "target": "Show actual tool/protocol execution, exact-action approval, denied out-of-scope/unapproved actions, safe failure/handoff and a passed predeclared held-out task-success criterion.",
+          "conditional_learning_window": {
+            "phase": "P3",
+            "approximate_days": [
+              103,
+              163
+            ]
+          },
+          "required_evidence": [
+            "Existing deterministic baseline comparison, MCP client/server trace, approval/boundary tests, held-out task verdict and failure taxonomy."
+          ],
+          "existing_v24_sources": [
+            "later-milestone-contracts.json: M3.1\u2013M3.3"
+          ],
+          "limits": [
+            "A trace or one improvement alone is not a pass. No unrestricted terminal or external-write authority; local MCP is not an enterprise OAuth claim."
+          ],
+          "status": "not_started"
+        }
+      ]
+    },
+    {
+      "id": "O3",
+      "objective": "Build credible AWS expertise and market-visible proof, not a collection of logos.",
+      "priority": "Scheduled AWS credentials and inspectable evidence support interviews; they do not replace coding or delivery.",
+      "key_results": [
+        {
+          "id": "KR-3.1",
+          "name": "Diagnose and close the actual AWS certification/practical gaps",
+          "metric_type": "leading_readiness",
+          "baseline": "not_assessed_or_not_started; no new learning completion inferred",
+          "current_value": null,
+          "target": "Complete C0\u2019s eight30-minute first-month AWS sessions, create the current-syllabus/course gap map, and close relevant gaps with explanation and project-linked practical evidence. Continue two30-minute AWS sessions per7learning days inside the existing bank.",
+          "conditional_learning_window": {
+            "C0_days": [
+              5,
+              6,
+              12,
+              13,
+              19,
+              20,
+              26,
+              27
+            ],
+            "continuation_days": [
+              33,
+              34,
+              40,
+              41
+            ],
+            "practical_gap_closure": "P2 and subsequent existing slots"
+          },
+          "required_evidence": [
+            "Verified exact purchased course title/code if accessible; otherwise unknown. Existing AWS domain attempts, gap map and authorized project/lab receipts."
+          ],
+          "existing_v24_sources": [
+            "first-30-days.json: AWS bank slots",
+            "first-release-through-day41-schedule.json",
+            "repaired-roadmap-architecture.md: Section7 C0\u2013C1"
+          ],
+          "limits": [
+            "Eight attended sessions alone do not prove readiness. C0 is counted once; P2 adds incremental practical work, not a duplicate diagnostic."
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "KR-3.2",
+          "name": "Earn the appropriate AWS credential only after demonstrated readiness",
+          "metric_type": "leading_readiness_then_lagging_external_assessment",
+          "baseline": "not_assessed_or_not_started; no new learning completion inferred",
+          "current_value": null,
+          "target": "For conditional SAA-C03: review all current domains, explain practical tradeoffs, pass two distinct lawful current timed practice assessments against the accepted internal target (proposed80% overall), repair domain gaps and resolve critical security misconceptions; then seek authorized booking. Only an actual pass and issued verification counts as certification.",
+          "conditional_learning_window": {
+            "SAA": "No fixed pass date; after readiness and spend authorization",
+            "AIP": "Later, after real GenAI delivery and target experience/readiness are supported"
+          },
+          "required_evidence": [
+            "C2 independent practice/repair evidence; C3 actual vendor result/verification/expiry if earned; later C4 AIP diagnostic."
+          ],
+          "existing_v24_sources": [
+            "repaired-roadmap-architecture.md: Section7 C2\u2013C4",
+            "vendor-certification-matrix.md: AWS entries only",
+            "later-milestone-contracts.json: M5.3"
+          ],
+          "limits": [
+            "Internal practice targets are not the vendor passing scale or a guarantee. AIF is optional literacy; MLA only a role-driven AWS ML/MLOps branch. No Azure/Google active tracks, exam purchase or booking is authorized."
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "KR-3.3",
+          "name": "Make authentic work easy for a reviewer or employer to inspect",
+          "metric_type": "leading_evidence_with_optional_lagging_feedback",
+          "baseline": "not_assessed_or_not_started; no new learning completion inferred",
+          "current_value": null,
+          "target": "Produce the existing strongest end-to-end case study plus bounded-tools/MCP case with reproducibility, actual results, ownership and limitations; apply substantive reviewer feedback where available. Publish the approved artifact/earned credential only after authorization.",
+          "conditional_learning_window": {
+            "capture": "30minutes every7learning days within AI",
+            "packaging": "At genuine milestones; M4.3/M5.3 consolidate existing notes"
+          },
+          "required_evidence": [
+            "Existing evidence notes, clean-run result, case-study/demo drafts, actual feedback and approved public link only if published."
+          ],
+          "existing_v24_sources": [
+            "repaired-roadmap-architecture.md: Section8",
+            "later-milestone-contracts.json: M4.3,M5.3",
+            "interviews-and-visibility-research.md"
+          ],
+          "limits": [
+            "No daily-post, follower, star, credential-count or outreach quotas. A private draft is valid; a course certificate is not a vendor credential; audience reach is not a skill score."
+          ],
+          "status": "not_started"
+        }
+      ]
+    },
+    {
+      "id": "O4",
+      "objective": "Extend beyond the switch into sustained customer delivery and deep AI/FDE capability.",
+      "priority": "Long-term continuation, not a prerequisite for the first offer or a promised Staff title.",
+      "key_results": [
+        {
+          "id": "KR-4.1",
+          "name": "Close a real discovery-to-feedback-to-handoff loop where authorized",
+          "metric_type": "leading_delivery_then_lagging_customer_outcome",
+          "baseline": "not_assessed_or_not_started; no new learning completion inferred",
+          "current_value": null,
+          "target": "Define one scoped workflow\u2019s baseline, measurable usefulness/quality/risk criteria and observation window before the pilot; implement feedback, demonstrate recovery/handoff and report actual outcome against the agreed baseline.",
+          "conditional_learning_window": {
+            "phase": "P4",
+            "approximate_days": [
+              164,
+              224
+            ],
+            "actual_customer_outcome": "Depends on authorized real-user access and the agreed observation window"
+          },
+          "required_evidence": [
+            "Existing discovery/pilot brief, real or explicitly simulated feedback, change/tests, incident/recovery/handoff and outcome evidence."
+          ],
+          "existing_v24_sources": [
+            "later-milestone-contracts.json: M4.1\u2013M4.3"
+          ],
+          "limits": [
+            "No invented adoption, savings or customers. Role-play, peer review, real-user pilot, production operation and enterprise impact remain distinct; unavailable real-user evidence remains a gap."
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "KR-4.2",
+          "name": "Demonstrate model/data depth rather than only orchestration",
+          "metric_type": "leading_capability",
+          "baseline": "not_assessed_or_not_started; no new learning completion inferred",
+          "current_value": null,
+          "target": "Complete the existing learner-built StreamForge/ranking sample with a leakage-safe split, simple baseline, justified held-out metrics, served output and an explained failure; then choose one deeper role-driven branch based on actual gaps.",
+          "conditional_learning_window": {
+            "core_sample": "M5.2, approximately final core phase",
+            "next_branch": "Next60\u201390learning days after the core, re-estimated at entry"
+          },
+          "required_evidence": [
+            "Existing dataset/model manifest, personal implementation/tests, measured comparison, served prediction and branch gap map."
+          ],
+          "existing_v24_sources": [
+            "later-milestone-contracts.json: M5.2 and later_depth",
+            "repaired-roadmap-architecture.md: Sections3\u20134"
+          ],
+          "limits": [
+            "A third full flagship is not required before applying. Do not take every advanced branch or assume paid GPU access; no invented online uplift."
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "KR-4.3",
+          "name": "Grow sustained ownership and wider technical influence through actual work",
+          "metric_type": "lagging_professional_scope_with_leading_learning_gates",
+          "baseline": "not_assessed_or_not_started; no new learning completion inferred",
+          "current_value": null,
+          "target": "Use real responsibilities to demonstrate reliable operation, stakeholder decisions, reusable engineering improvements and knowledge transfer; select post-training/model-serving/data-platform/distributed-systems depth when the work and evidence justify it.",
+          "conditional_learning_window": {
+            "long_term": "Beyond the core and through/beyond the former18-month horizon as useful",
+            "review": "At role change, completed branch and roughly every90learning days within existing review time"
+          },
+          "required_evidence": [
+            "Actual operating/incident/change evidence, stakeholder feedback, reused implementation/standards or genuine OSS review; progressively deeper independent technical demonstrations."
+          ],
+          "existing_v24_sources": [
+            "repaired-roadmap-architecture.md: longer-term depth and role tiers",
+            "frontier-fde-requirements-20261028.md",
+            "enterprise-fde-role-audit.md"
+          ],
+          "limits": [
+            "Staff/FDE capability is an aspiration; title, tenure, organizational impact and hiring remain real-world outcomes. No absolute mastery, irreplaceability or guaranteed timetable."
+          ],
+          "status": "not_started"
+        }
+      ]
+    }
+  ],
+  "budget": {
+    "daily_default_minutes": {
+      "DSA": 60,
+      "role_or_AWS_bank": 30,
+      "AI_including_visibility_buffer": 90,
+      "total": 180
+    },
+    "weekly_role_bank_minutes": {
+      "target_role_interview": 150,
+      "AWS_certification": 60
+    },
+    "DSA75_day": {
+      "DSA": 75,
+      "bank": 30,
+      "AI": 75
+    },
+    "DSA90_day": {
+      "DSA": 90,
+      "bank": 30,
+      "AI": 60
+    },
+    "no_new_hours_or_outputs_required": true,
+    "existing_first30_hours": {
+      "DSA": 30,
+      "interview": 11,
+      "AWS_certification": 4,
+      "AI": 45,
+      "total": 90
+    },
+    "existing_core_estimate": {
+      "approximately_learning_days": 270,
+      "AI_substantive_hours": 325,
+      "AI_buffer_hours": 60,
+      "AI_visibility_at270_days_hours": 19,
+      "AI_capacity_hours": 405
+    }
+  },
+  "sprint1": {
+    "scope": "Existing learning Days1\u201314, unchanged daily order: U001\u2013U010 plus first30minutes of U011. This is sprint grouping, not a new code/curriculum plan.",
+    "total_hours": 42,
+    "DSA_hours": 14,
+    "target_role_interview_hours": 5.0,
+    "AWS_hours": 2.0,
+    "AI_hours": 21.0,
+    "AI_breakdown_hours": {
+      "primary": 15.5,
+      "support": 2.0,
+      "buffer": 2.5,
+      "visibility": 1.0
+    },
+    "days": [
+      {
+        "learning_day": 1,
+        "dsa_minutes": 60,
+        "role_bank_minutes": 30,
+        "ai_minutes": 90,
+        "existing_role_topic": "Target-role and baseline map",
+        "existing_ai_segments": [
+          {
+            "unit_id": "AIFDE-V2-U001",
+            "title": "Baseline, scope and ownership",
+            "kind": "primary",
+            "minutes": 90
+          }
+        ],
+        "visibility_minutes_within_ai": 0,
+        "objective_links": [
+          "O1",
+          "O2"
+        ],
+        "status": "not_started"
+      },
+      {
+        "learning_day": 2,
+        "dsa_minutes": 60,
+        "role_bank_minutes": 30,
+        "ai_minutes": 90,
+        "existing_role_topic": "JavaScript execution and async",
+        "existing_ai_segments": [
+          {
+            "unit_id": "AIFDE-V2-U001",
+            "title": "Baseline, scope and ownership",
+            "kind": "support",
+            "minutes": 30
+          },
+          {
+            "unit_id": "AIFDE-V2-U002",
+            "title": "Reproducible environment and real-model feasibility",
+            "kind": "primary",
+            "minutes": 60
+          }
+        ],
+        "visibility_minutes_within_ai": 0,
+        "objective_links": [
+          "O1",
+          "O2"
+        ],
+        "status": "not_started"
+      },
+      {
+        "learning_day": 3,
+        "dsa_minutes": 60,
+        "role_bank_minutes": 30,
+        "ai_minutes": 90,
+        "existing_role_topic": "React state and rendering",
+        "existing_ai_segments": [
+          {
+            "unit_id": "AIFDE-V2-U002",
+            "title": "Reproducible environment and real-model feasibility",
+            "kind": "primary",
+            "minutes": 30
+          },
+          {
+            "unit_id": "AIFDE-V2-U002",
+            "title": "Reproducible environment and real-model feasibility",
+            "kind": "buffer",
+            "minutes": 30
+          },
+          {
+            "unit_id": "AIFDE-V2-U003",
+            "title": "Python data contracts and tests",
+            "kind": "primary",
+            "minutes": 30
+          }
+        ],
+        "visibility_minutes_within_ai": 0,
+        "objective_links": [
+          "O1",
+          "O2"
+        ],
+        "status": "not_started"
+      },
+      {
+        "learning_day": 4,
+        "dsa_minutes": 60,
+        "role_bank_minutes": 30,
+        "ai_minutes": 90,
+        "existing_role_topic": "Browser and network behavior",
+        "existing_ai_segments": [
+          {
+            "unit_id": "AIFDE-V2-U003",
+            "title": "Python data contracts and tests",
+            "kind": "primary",
+            "minutes": 60
+          },
+          {
+            "unit_id": "AIFDE-V2-U003",
+            "title": "Python data contracts and tests",
+            "kind": "support",
+            "minutes": 30
+          }
+        ],
+        "visibility_minutes_within_ai": 0,
+        "objective_links": [
+          "O1",
+          "O2"
+        ],
+        "status": "not_started"
+      },
+      {
+        "learning_day": 5,
+        "dsa_minutes": 60,
+        "role_bank_minutes": 30,
+        "ai_minutes": 90,
+        "existing_role_topic": "AWS certification: course and syllabus audit",
+        "existing_ai_segments": [
+          {
+            "unit_id": "AIFDE-V2-U004",
+            "title": "Small API with observable failure paths",
+            "kind": "primary",
+            "minutes": 90
+          }
+        ],
+        "visibility_minutes_within_ai": 0,
+        "objective_links": [
+          "O1",
+          "O2",
+          "O3"
+        ],
+        "status": "not_started"
+      },
+      {
+        "learning_day": 6,
+        "dsa_minutes": 60,
+        "role_bank_minutes": 30,
+        "ai_minutes": 90,
+        "existing_role_topic": "AWS certification: IAM diagnostic",
+        "existing_ai_segments": [
+          {
+            "unit_id": "AIFDE-V2-U004",
+            "title": "Small API with observable failure paths",
+            "kind": "buffer",
+            "minutes": 30
+          },
+          {
+            "unit_id": "AIFDE-V2-U005",
+            "title": "Understand inference and install a real runtime",
+            "kind": "primary",
+            "minutes": 60
+          }
+        ],
+        "visibility_minutes_within_ai": 0,
+        "objective_links": [
+          "O1",
+          "O2",
+          "O3"
+        ],
+        "status": "not_started"
+      },
+      {
+        "learning_day": 7,
+        "dsa_minutes": 60,
+        "role_bank_minutes": 30,
+        "ai_minutes": 90,
+        "existing_role_topic": "Real-work story + short interview rehearsal",
+        "existing_ai_segments": [
+          {
+            "unit_id": "AIFDE-V2-U005",
+            "title": "Understand inference and install a real runtime",
+            "kind": "primary",
+            "minutes": 30
+          },
+          {
+            "unit_id": "AIFDE-V2-U005",
+            "title": "Understand inference and install a real runtime",
+            "kind": "support",
+            "minutes": 30
+          }
+        ],
+        "visibility_minutes_within_ai": 30,
+        "objective_links": [
+          "O1",
+          "O2",
+          "O3"
+        ],
+        "status": "not_started"
+      },
+      {
+        "learning_day": 8,
+        "dsa_minutes": 60,
+        "role_bank_minutes": 30,
+        "ai_minutes": 90,
+        "existing_role_topic": "React async correctness",
+        "existing_ai_segments": [
+          {
+            "unit_id": "AIFDE-V2-U006",
+            "title": "First real generated response",
+            "kind": "primary",
+            "minutes": 90
+          }
+        ],
+        "visibility_minutes_within_ai": 0,
+        "objective_links": [
+          "O1",
+          "O2"
+        ],
+        "status": "not_started"
+      },
+      {
+        "learning_day": 9,
+        "dsa_minutes": 60,
+        "role_bank_minutes": 30,
+        "ai_minutes": 90,
+        "existing_role_topic": "Accessible components and testing",
+        "existing_ai_segments": [
+          {
+            "unit_id": "AIFDE-V2-U006",
+            "title": "First real generated response",
+            "kind": "buffer",
+            "minutes": 30
+          },
+          {
+            "unit_id": "AIFDE-V2-U007",
+            "title": "Reality check and first evidence note",
+            "kind": "primary",
+            "minutes": 60
+          }
+        ],
+        "visibility_minutes_within_ai": 0,
+        "objective_links": [
+          "O1",
+          "O2"
+        ],
+        "status": "not_started"
+      },
+      {
+        "learning_day": 10,
+        "dsa_minutes": 60,
+        "role_bank_minutes": 30,
+        "ai_minutes": 90,
+        "existing_role_topic": "Frontend design",
+        "existing_ai_segments": [
+          {
+            "unit_id": "AIFDE-V2-U007",
+            "title": "Reality check and first evidence note",
+            "kind": "primary",
+            "minutes": 30
+          },
+          {
+            "unit_id": "AIFDE-V2-U008",
+            "title": "Real generation behind the API",
+            "kind": "primary",
+            "minutes": 60
+          }
+        ],
+        "visibility_minutes_within_ai": 0,
+        "objective_links": [
+          "O1",
+          "O2"
+        ],
+        "status": "not_started"
+      },
+      {
+        "learning_day": 11,
+        "dsa_minutes": 60,
+        "role_bank_minutes": 30,
+        "ai_minutes": 90,
+        "existing_role_topic": "Backend API contract",
+        "existing_ai_segments": [
+          {
+            "unit_id": "AIFDE-V2-U008",
+            "title": "Real generation behind the API",
+            "kind": "primary",
+            "minutes": 30
+          },
+          {
+            "unit_id": "AIFDE-V2-U008",
+            "title": "Real generation behind the API",
+            "kind": "buffer",
+            "minutes": 30
+          },
+          {
+            "unit_id": "AIFDE-V2-U009",
+            "title": "Thin React workflow",
+            "kind": "primary",
+            "minutes": 30
+          }
+        ],
+        "visibility_minutes_within_ai": 0,
+        "objective_links": [
+          "O1",
+          "O2"
+        ],
+        "status": "not_started"
+      },
+      {
+        "learning_day": 12,
+        "dsa_minutes": 60,
+        "role_bank_minutes": 30,
+        "ai_minutes": 90,
+        "existing_role_topic": "AWS certification: networking diagnostic",
+        "existing_ai_segments": [
+          {
+            "unit_id": "AIFDE-V2-U009",
+            "title": "Thin React workflow",
+            "kind": "primary",
+            "minutes": 60
+          },
+          {
+            "unit_id": "AIFDE-V2-U009",
+            "title": "Thin React workflow",
+            "kind": "buffer",
+            "minutes": 30
+          }
+        ],
+        "visibility_minutes_within_ai": 0,
+        "objective_links": [
+          "O1",
+          "O2",
+          "O3"
+        ],
+        "status": "not_started"
+      },
+      {
+        "learning_day": 13,
+        "dsa_minutes": 60,
+        "role_bank_minutes": 30,
+        "ai_minutes": 90,
+        "existing_role_topic": "AWS certification: storage/data diagnostic",
+        "existing_ai_segments": [
+          {
+            "unit_id": "AIFDE-V2-U010",
+            "title": "Structured output without trusting it",
+            "kind": "primary",
+            "minutes": 90
+          }
+        ],
+        "visibility_minutes_within_ai": 0,
+        "objective_links": [
+          "O1",
+          "O2",
+          "O3"
+        ],
+        "status": "not_started"
+      },
+      {
+        "learning_day": 14,
+        "dsa_minutes": 60,
+        "role_bank_minutes": 30,
+        "ai_minutes": 90,
+        "existing_role_topic": "Short unfamiliar-code rehearsal",
+        "existing_ai_segments": [
+          {
+            "unit_id": "AIFDE-V2-U010",
+            "title": "Structured output without trusting it",
+            "kind": "support",
+            "minutes": 30
+          },
+          {
+            "unit_id": "AIFDE-V2-U011",
+            "title": "Versioned small corpus and SQL metadata",
+            "kind": "primary",
+            "minutes": 30
+          }
+        ],
+        "visibility_minutes_within_ai": 30,
+        "objective_links": [
+          "O1",
+          "O2",
+          "O3"
+        ],
+        "status": "not_started"
+      }
+    ],
+    "exit_evidence": [
+      "Existing target-role/baseline map, role-bank attempts and small problem brief.",
+      "Existing reproducible environment, fixture-scoped ingestion and loopback-only API/error boundaries with actual receipts.",
+      "Actual local-model inference evidence if the existing U006 gate passes (estimated aroundDay9), followed by existing API/UI and structured-output work through U010. A blocked or failed real-inference gate remains unpassed.",
+      "Initial AWS course/syllabus, IAM, networking and storage diagnostics from Days5,6,12,13.",
+      "Existing Days7and14 evidence notes; Day7remains an early review checkpoint inside Sprint1.",
+      "Day14 U011 partial scope: begin the permitted corpus/provenance manifest and ingestion design; only30of90primary minutes are scheduled. Remaining execution and full U011 acceptance continue onDay15. No U011 pass is required atSprint1 exit."
+    ],
+    "completion_rule": "Existing daily and unit acceptance criteria remain authoritative. Do not mark unfinished U011, vector retrieval, generative RAG or the evaluated P1 release complete atSprint1 exit; scaffold availability is not learner progress.",
+    "existing_cadence": "Existing14-learning-day cadence; only the prior OKR label is corrected. Frozen source allocation/order and read-only14/14/2 crosswalk are unchanged.",
+    "review_time_rule": "Any sprint-boundary review uses the existing Day14 evidence/role-review capacity. No extra meeting, planning or retrospective time is added to42hours."
+  },
+  "review_cadence": [
+    {
+      "when": "Every7learning days",
+      "action": "Update existing evidence note, KR state, one meaningful result/failure and next bottleneck.",
+      "time_source": "Existing30-minute visibility slot; no extra report."
+    },
+    {
+      "when": "LearningDays7and30",
+      "action": "Re-estimate actual remaining work from minutes, carryover, runtime/access, independent ownership and interview feedback.",
+      "time_source": "Existing evidence/buffer/role-review slots."
+    },
+    {
+      "when": "Existing milestone/phase exit",
+      "action": "Review frozen evaluation, safety, ownership and relevant live capability evidence; pass, fail or blocked, never calendar completion.",
+      "time_source": "Existing milestone acceptance work."
+    },
+    {
+      "when": "Roughly every90learning days or role change",
+      "action": "Reassess the long-term branch and role fit; adjust only affected future contracts, preserving the accepted near-term scope unless evidence requires a change.",
+      "time_source": "Replace an existing role-review/evidence slot, not added study time."
+    },
+    {
+      "when": "Interview feedback, changed exam status, runtime/permission blocker, or actual user outcome",
+      "action": "Repair the affected KR/dependency and conditional window; do not restart the whole roadmap.",
+      "time_source": "Existing remediation/buffer and review capacity."
+    }
+  ],
+  "state_model": [
+    "not_started",
+    "in_progress",
+    "blocked",
+    "evidence_ready_for_review",
+    "passed_for_stated_scope"
+  ],
+  "evidence_rules": [
+    "All new learner progress starts not_started/not_assessed; existing SWE experience is acknowledged separately.",
+    "Every pass links to an actual attempt/result and its scope, review date and tool/help allowance.",
+    "Leading readiness is distinguishable from lagging hiring/customer/credential outcomes; null means not established, not an invented zero.",
+    "Reuse v2.4 evidence artifacts; one artifact may support several KRs but its work/time is counted once.",
+    "No external writes, cloud spend, exam booking, outreach or publishing are authorized."
+  ],
+  "source_map": {
+    "sequencing_and_capacity": [
+      "repaired-roadmap-architecture.md",
+      "first-30-days.json",
+      "first-30-ai-units.json",
+      "first-release-through-day41-schedule.json",
+      "later-milestone-contracts.json"
+    ],
+    "role_and_interview_requirements": [
+      "frontier-fde-requirements-20261028.md",
+      "enterprise-fde-role-audit.md",
+      "interviews-and-visibility-research.md"
+    ],
+    "AWS_credential_status": [
+      "vendor-certification-matrix.md: AWS entries; other-cloud research is not active scope"
+    ]
+  },
+  "revision_note": "Revision2 corrects only Sprint1 scope/day mapping/capacity/exit claims from7days to the already-established14days. No grouping override, curriculum redesign or frozen-file edit."
+}
