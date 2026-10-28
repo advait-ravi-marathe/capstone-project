@@ -56,6 +56,11 @@ python scripts/fde_v2_prepare_chunks.py
 python scripts/fde_v2_evaluate_retrieval.py --split dev
 ```
 
+To inspect the current persisted document-version distribution, run
+`python3 scripts/fde_v2_version_counts.py`. This executes the checked-in U011
+query in `scripts/fde_v2_version_counts.sql` and reports observed SQLite rows;
+it does not seed documents or imply learner completion.
+
 U013 and U019 require actual verified local embedding and generation artifacts. The current model gate remains blocked; do not use test doubles, fixed vectors or extracted answers as completion evidence. With real artifacts separately available, the same-origin Vite proxy forwards `/retrieve` and `/ask` to the supplied loopback API. The RAG panel distinguishes client-side cancellation from server work cancellation; canceling the browser request does not stop generation already running on the server.
 
 Run continuation contract and deterministic local witness checks from the repository root:

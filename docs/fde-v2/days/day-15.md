@@ -21,7 +21,7 @@ Sources: [Role interview bank and scoring rubric](../role-bank.md). Record the p
 
 ## AI work (90 minutes)
 
-Complete U011 across all ten synthetic records. First inspect U011; preserve metadata contract and source license. Add a version-2 copy for one record and demonstrate exact repeat, valid next-version update, stale-version rejection, same-version changed-content rejection and skipped-version rejection. Execute the provided SQL aggregate query; do not start chunking until the records and version rules are clear.
+Complete U011 across all ten synthetic records. First inspect U011; preserve metadata contract and source license. Add a version-2 copy for one record and demonstrate exact repeat, valid next-version update, stale-version rejection, same-version changed-content rejection and skipped-version rejection. Run `python3 scripts/fde_v2_version_counts.py` to execute the supplied, checked-in version-count SQL query; expected counts change from ten version-1 rows to nine version-1 and one version-2 row. Do not start chunking until the records and version rules are clear.
 
 | Segment | Unit | Minutes | Contract |
 |---|---|---:|---|

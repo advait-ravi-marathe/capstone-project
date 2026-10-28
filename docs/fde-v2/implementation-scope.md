@@ -4,7 +4,7 @@ Sprint 1 on main implements actual learning Days 1–14. This separate continuat
 
 ## Ownership
 
-The learner-owned AI seams include the existing U001–U010 work and, in this continuation, versioned ingestion (U011), chunking/provenance (U012), actual embedding adapter validation (U013), isolated evaluation cases (U014), BM25 baseline/metrics (U015), vector indexing/search/evaluation (U016–U017), safe prompt/citations (U018), grounded generation (U019), abstention (U020), and failure classification/redacted records (U021). These functions remain explicit TODOs in `ai/fde_v2/coverstory/learner.py`.
+The learner-owned AI seams include the existing U001–U010 work and, in this continuation, versioned ingestion (U011), chunking/provenance (U012), actual embedding adapter validation (U013), isolated evaluation cases (U014), BM25 baseline/metrics (U015), vector indexing/search/evaluation (U016–U017), safe prompt/citations (U018), grounded generation (U019), abstention (U020), and failure classification/redacted records (U021). These functions remain explicit TODOs in `ai/fde_v2/coverstory/learner.py`. Assistant-owned orchestration applies U020 before generation, clears a document's prior Qdrant points before replacing its vector set, honors the requested `/ask` retrieval limit, and initializes retrieval without eagerly loading generation weights.
 
 The assistant supplies loopback API, model/embedding loaders, SQLite/Qdrant persistence, React RAG panel, fixtures, evaluation routes and deterministic test harness. The learner reads/traces the supplied API/UI, explains request/data flow, and performs the assigned role interview practice. No general React, Java/Spring, authentication, generic CRUD or infrastructure implementation is assigned in Days 15–28.
 

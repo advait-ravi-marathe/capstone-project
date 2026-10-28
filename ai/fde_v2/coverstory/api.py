@@ -42,14 +42,14 @@ def _default_generator():
     return LocalModels.load()
 
 
-def _default_rag_pipeline(generator, data_root: Path):
+def _default_rag_pipeline(generator_factory, data_root: Path):
     embedding_dir = Path(os.environ.get("FDE_V2_EMBEDDING_DIR", "~/.cache/fde-v2/embeddings/model")).expanduser()
     embedding_manifest = Path(os.environ.get(
         "FDE_V2_EMBEDDING_MANIFEST", "~/.cache/fde-v2/embeddings/manifest.json")).expanduser()
     embedder = LocalEmbeddings.load(embedding_dir, embedding_manifest)
     corpus = CorpusStore(data_root / "corpus.sqlite3")
     vectors = PersistentVectorStore(data_root / "qdrant", embedder.dimension)
-    return CoverStoryPipeline(generator, embedder, corpus, vectors)
+    return CoverStoryPipeline(generator_factory, embedder, corpus, vectors)
 
 
 def create_app(generator_factory: Callable[[], object] | None = None,
@@ -63,7 +63,7 @@ def create_app(generator_factory: Callable[[], object] | None = None,
     generation_slot = threading.BoundedSemaphore(value=1)
     rag_load_lock = threading.Lock()
     rag_factory = rag_pipeline_factory or (lambda: _default_rag_pipeline(
-        generator(), Path(os.environ.get("FDE_V2_DATA_DIR", ".runtime/fde-v2")).resolve()))
+        generator, Path(os.environ.get("FDE_V2_DATA_DIR", ".runtime/fde-v2")).resolve()))
     app.state.rag_pipeline = None
 
     def generator():
@@ -163,7 +163,7 @@ def create_app(generator_factory: Callable[[], object] | None = None,
             raise HTTPException(status_code=429, detail="local generation is busy")
         try:
             pipeline = rag_pipeline()
-            answer, retrieved, timings = pipeline.answer(body.question)
+            answer, retrieved, timings = pipeline.answer(body.question, limit=body.limit)
         except RuntimeUnavailable as exc:
             raise HTTPException(status_code=503, detail="pinned local RAG runtime is unavailable") from exc
         except TimeoutError as exc:

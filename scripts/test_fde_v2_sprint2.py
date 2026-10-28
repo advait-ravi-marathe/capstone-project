@@ -62,6 +62,11 @@ class Sprint2ContractTests(unittest.TestCase):
         self.assertIn("persist text separately", unit)
         self.assertIn("ten synthetic records", day15)
         self.assertIn("same-version changed-content rejection", day15)
+        self.assertIn("fde_v2_version_counts.py", day15)
+        self.assertIn("fde_v2_version_counts.sql", unit)
+        query = (ROOT / "scripts/fde_v2_version_counts.sql").read_text()
+        self.assertIn("GROUP BY version", query)
+        self.assertIn("ORDER BY version", query)
 
     def test_day28_starts_u021_without_claiming_its_day29_completion(self):
         day28 = (DOCS / "days/day-28.md").read_text()
@@ -125,7 +130,7 @@ class Sprint2ContractTests(unittest.TestCase):
                         self.assertIn(fragment, slugs)
 
     def test_documented_scripts_import_from_repository_root_and_real_smoke_fails_closed(self):
-        scripts = ("fde_v2_seed_corpus.py", "fde_v2_prepare_chunks.py", "fde_v2_index_vectors.py",
+        scripts = ("fde_v2_seed_corpus.py", "fde_v2_version_counts.py", "fde_v2_prepare_chunks.py", "fde_v2_index_vectors.py",
                    "fde_v2_evaluate_retrieval.py", "fde_v2_rag_smoke.py")
         for name in scripts:
             result = subprocess.run([sys.executable, f"scripts/{name}", "--help"], cwd=ROOT,

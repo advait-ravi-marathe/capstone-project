@@ -24,8 +24,8 @@ class FixedPipeline:
             raise RuntimeError("private fixture failure")
         return [self.hit]
 
-    def answer(self, question):
-        self.calls.append(("answer", question))
+    def answer(self, question, limit=3):
+        self.calls.append(("answer", question, limit))
         if self.fail:
             raise RuntimeError("private fixture failure")
         answer = Answer("Synthetic answer", ("d:v1:0",), ("d:v1:0",), False,
@@ -48,6 +48,9 @@ class ContinuationApiTests(unittest.TestCase):
                          ("Synthetic answer", ["d:v1:0"], "d:v1:0"))
         self.assertEqual(payload["model_id"], "test-double-only")
         self.assertEqual(payload["stage_timings_ms"], {"retrieval": 1.0, "generation": 2.0})
+        limited = client.post("/ask", json={"question": "deductible?", "limit": 1})
+        self.assertEqual(limited.status_code, 200)
+        self.assertEqual(pipeline.calls[-1], ("answer", "deductible?", 1))
 
     def test_invalid_and_unavailable_pipeline_requests_fail_closed(self):
         pipeline = FixedPipeline()
@@ -59,6 +62,21 @@ class ContinuationApiTests(unittest.TestCase):
         response = failed.post("/ask", json={"question": "deductible?"})
         self.assertEqual(response.status_code, 502)
         self.assertNotIn("private fixture failure", response.text)
+
+    def test_default_rag_factory_receives_lazy_generator_without_loading_it(self):
+        from ai.fde_v2.coverstory import api
+        model_loads = []
+        captured = []
+        def build(factory, root):
+            captured.append((factory, root))
+            return FixedPipeline()
+        with patch.object(api, "_default_rag_pipeline", side_effect=build):
+            client = TestClient(create_app(lambda: model_loads.append("loaded")))
+            response = client.post("/retrieve", json={"question": "coverage", "limit": 1})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(model_loads, [])
+        self.assertEqual(len(captured), 1)
+        self.assertTrue(callable(captured[0][0]))
 
 
 if __name__ == "__main__":

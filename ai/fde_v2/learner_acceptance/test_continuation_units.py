@@ -9,10 +9,14 @@ import hashlib
 import importlib
 import json
 import os
+import subprocess
+import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
+from ai.fde_v2.coverstory import learner
 from ai.fde_v2.coverstory.contracts import Chunk, Document, RetrievedChunk
 
 
@@ -75,6 +79,46 @@ class ContinuationAcceptance(unittest.TestCase):
             self.assertEqual((current.version, current.text, current.content_sha256),
                              (2, updated["text"], hashlib.sha256(updated["text"].encode()).hexdigest()))
             self.assertEqual(candidate.ingest_versioned_document(updated, store), "unchanged")
+
+        # Independent all-ten acceptance: load fixture rows, run the exact
+        # checked-in aggregate query, then prove the version bucket changes
+        # after one valid update without changing the distinct document count.
+        with tempfile.TemporaryDirectory() as directory:
+            store = CorpusStore(Path(directory) / "all-ten.sqlite3")
+            manifest = json.loads((ROOT / "fixtures/fde_v2/corpus/manifest.json").read_text())
+            fixture_rows = [json.loads((ROOT / "fixtures/fde_v2/corpus" / name).read_text())
+                            for name in manifest["documents"]]
+            self.assertEqual(len(fixture_rows), 10)
+            for row in fixture_rows:
+                candidate.ingest_versioned_document(row, store)
+            query = (ROOT / "scripts/fde_v2_version_counts.sql").read_text()
+            with store.connect() as connection:
+                counts = [tuple(row) for row in connection.execute(query).fetchall()]
+            self.assertEqual(len(store.metadata()), 10)
+            self.assertEqual({row["document_id"] for row in store.metadata()},
+                             {row["document_id"] for row in fixture_rows})
+            expected_metadata = {
+                row["document_id"]: (row["version"], row["title"], row["source"],
+                                     hashlib.sha256(row["text"].encode()).hexdigest())
+                for row in fixture_rows
+            }
+            self.assertEqual({row["document_id"]: (row["version"], row["title"], row["source"],
+                                                    row["content_sha256"])
+                              for row in store.metadata()}, expected_metadata)
+            self.assertEqual(counts, [(1, 10)])
+            updated_row = {**fixture_rows[0], "version": 2,
+                           "text": fixture_rows[0]["text"] + " Version two synthetic addendum."}
+            self.assertEqual(candidate.ingest_versioned_document(updated_row, store), "updated")
+            with store.connect() as connection:
+                updated_counts = [tuple(row) for row in connection.execute(query).fetchall()]
+            self.assertEqual(updated_counts, [(1, 9), (2, 1)])
+            self.assertEqual(len(store.metadata()), 10)
+            report = subprocess.run(
+                [sys.executable, "scripts/fde_v2_version_counts.py", "--database", str(store.path)],
+                cwd=ROOT, capture_output=True, text=True, check=True, timeout=10)
+            self.assertEqual(json.loads(report.stdout)["version_counts"],
+                             [{"version": 1, "document_count": 9},
+                              {"version": 2, "document_count": 1}])
 
     def test_u012_chunk_provenance(self):
         text = "alpha " * 20 + "boundary " + "omega " * 20
@@ -271,6 +315,20 @@ class ContinuationAcceptance(unittest.TestCase):
                 candidate.should_abstain([exact], threshold)
         with self.assertRaises(ValueError):
             candidate.should_abstain([RetrievedChunk(chunk(), float("inf"))], 0.2)
+
+        # Exercise the production orchestration path, not just the helper.
+        # The model factory must remain unused when the retrieval is empty.
+        from ai.fde_v2.coverstory.pipeline import CoverStoryPipeline
+        calls = []
+        pipeline = CoverStoryPipeline(lambda: calls.append("loaded"), None, None, None)
+        pipeline.retrieve = lambda _question, limit=3: []
+        with patch.object(learner, "should_abstain", candidate.should_abstain):
+            result, evidence, timings = pipeline.answer("uncovered question", limit=2)
+        self.assertTrue(result.abstained)
+        self.assertEqual(result.citations, ())
+        self.assertEqual(evidence, [])
+        self.assertEqual(calls, [])
+        self.assertEqual(timings["generation"], 0.0)
 
     def test_u021_failure_taxonomy_and_redaction(self):
         mapping = {
