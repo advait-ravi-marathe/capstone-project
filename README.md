@@ -11,3 +11,12 @@ python -m ai.fde_v2.coverstory.day01_baseline
 This is an instructor-owned keyword baseline, not generated output or an AI/RAG pass. See [runtime status](docs/fde-v2/runtime-verification.md) for the recorded HTTP 403 proxy blocker. Real local generation remains unverified; no fetch retry was made.
 
 The earlier [model-building-first roadmap](docs/model-first-roadmap/README.md) and prior assignment histories are preserved as superseded/deferred records. DSA remains separate; no DSA problems or solutions are copied here. No learner completion, customer adoption, production operation, certification pass or cloud deployment is claimed.
+
+## Existing repository-wide browser tests
+
+The inherited Java CI also runs its existing Playwright browser harnesses. To
+reproduce those full-suite checks locally, install the locked frontend
+dependencies with `npm ci` and install Chromium. If Chromium is available at
+the system path, run the Maven suite with
+`CHROMIUM_BIN=/usr/bin/chromium ./mvnw test`. These commands support existing
+historical instructor tests; they are not new learner tasks.
