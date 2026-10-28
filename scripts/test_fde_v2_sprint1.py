@@ -69,7 +69,11 @@ class Sprint1ContractTests(unittest.TestCase):
     def test_role_aws_source_mapping_is_specific_and_honest(self):
         aws = (DOCS / "aws-bank.md").read_text(encoding="utf-8")
         self.assertIn("course ID **2196488**", aws)
-        self.assertIn("current entitlement and exact lecture titles/numbers are not verified", aws)
+        self.assertIn("Personal paid-video entitlement remains unverified", aws)
+        self.assertIn("course title, ID and mapped curriculum durations are recorded", aws)
+        self.assertIn("Task3.4** (Determine high-performing and/or scalable network architectures)", aws)
+        self.assertIn("Task3.5 concerns data ingestion and transformation", aws)
+        self.assertNotIn("Tasks3.4 and3.5** (cost-optimized and high-performing network architectures)", aws)
         self.assertIn("Tasks 1.1, 1.2 and 1.3", aws)
         self.assertIn("Tasks 3.1–3.5", aws)
         self.assertIn("Tasks 4.1–4.4", aws)
