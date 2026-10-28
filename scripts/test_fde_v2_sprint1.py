@@ -73,6 +73,15 @@ class Sprint1ContractTests(unittest.TestCase):
         self.assertIn("Then spend 30 minutes starting U003", day)
         self.assertNotIn("for 30 minutes, then start the JSON document parser seam", day)
 
+    def test_shared_dsa_guidance_uses_explicit_roadmap_position_and_actual_date(self):
+        guide = (DOCS / "README.md").read_text(encoding="utf-8")
+        self.assertIn("python3 tools/dsa_operations.py plan --day N", guide)
+        self.assertIn("python3 tools/dsa_operations.py queue --on-date ACTUAL_LOCAL_DATE --roadmap-day N", guide)
+        self.assertIn("Always pass `--roadmap-day N`", guide)
+        self.assertIn("The CLI does not persist a position cursor", guide)
+        self.assertIn("Record attempts only on the dates they actually happen", guide)
+        self.assertIn("never backdate attempts or clear review history", guide)
+
     def test_course_map_preserves_history_but_links_current_runtime_and_behavior(self):
         guide = (DOCS / "sources/sprint1-course-map.md").read_text(encoding="utf-8")
         self.assertIn("Historical provenance: the initial implementation snapshot was commit **6b291d9", guide)

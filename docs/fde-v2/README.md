@@ -56,6 +56,17 @@ These commands only start supplied infrastructure. Learner tasks stay in the fou
 
 Each day's page assigns DSA60 + role/AWS bank30 + AI90 = 180 minutes. A 75-minute DSA revision reduces AI to75; a90-minute revision reduces AI to60. The actual Day 14 allocation spends U010 support30 + the first U011 segment30 + a private evidence note30. U011 remains incomplete. The full accepted unit schedule continues beyond this Sprint 1 release; no Day 15+ pages or learner code are included.
 
+### Select the intended DSA learning position
+
+The DSA plan lives in its separate repository. From that repository's root, select the nominal learning position explicitly:
+
+```sh
+python3 tools/dsa_operations.py plan --day N
+python3 tools/dsa_operations.py queue --on-date ACTUAL_LOCAL_DATE --roadmap-day N
+```
+
+Here `N` is the intended nominal learning position; `ACTUAL_LOCAL_DATE` is the real local date on which you are checking the queue, so review-due status uses actual elapsed dates. Always pass `--roadmap-day N`: leaving it out infers a position from the prior October 27 calendar and can select the wrong item after a zero-completion restart. The verified restart check on October 28 selected LC121 with explicit `--roadmap-day 1`, while omission selected LC1. The CLI does not persist a position cursor. Record attempts only on the dates they actually happen; never backdate attempts or clear review history.
+
 The daily role pages are the exact practice sequence. AWS work is inside the same 30-minute bank: Day5 course/syllabus audit; Day6 secure-access diagnostic; Day12 networking; Day13 data/storage protection. Current official SAA-C03 exam guide and its exact content-domain task headings are linked in [AWS bank](aws-bank.md). The connected catalog's Maarek course title, ID and listed curriculum durations are mapped in the [Sprint 1 course map](sources/sprint1-course-map.md); personal paid-video entitlement remains unverified. The connector did not return lesson URLs, so no guessed video number is assigned. Official AWS documentation is the fallback. Nothing here books an exam or claims a certificate.
 
 ## Deterministic checks
