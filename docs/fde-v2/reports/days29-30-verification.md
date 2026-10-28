@@ -1,7 +1,7 @@
 # Days 29–30 continuation verification receipt
 
-**Local review candidate:** `cf08be38e1cba7ce7203286fa722e274ef1b7eb6`  
-**Base:** `4e376536f3b31c5792d5dbefb46c86874166854b` on `work/aws-fde-v24-continuation`  
+**Implementation commit:** `cf08be38e1cba7ce7203286fa722e274ef1b7eb6`
+**Base:** `4e376536f3b31c5792d5dbefb46c86874166854b` on `work/aws-fde-v24-continuation`
 **Publication:** local only; no push, merge, YouTrack/board write, model request or model-weight download.
 
 ## Scope delivered
@@ -21,7 +21,7 @@ Passed on this candidate:
 - `cd frontend && npm run build` — passed.
 - `cd frontend && npm test` — **24 Vitest tests and 1 Node test passed**.
 - `cd frontend && RUN_FDE_V2=true npx vitest run` — **11 tests passed**.
-- `git diff --check` — passed before the implementation commit. The receipt-only follow-up also receives a whitespace check.
+- `git diff --check` — the implementation diff passed, and the receipt addition is checked separately before its commit.
 - Default learner selector for U022 was run separately and failed at the intended `NotImplementedError`; this is the expected unsolved learner seam, not a pass.
 
 The assistant’s deterministic witnesses validate mechanics only. No learner code was filled in and no completion status was credited. The real generation/embedding evaluation remains blocked by the previously observed Hugging Face proxy HTTP403; this task made no repeat request. U021 real evaluation is therefore unmet. No automated secret scanner is configured in this checkout; record that gate as unavailable and do not call manual review or `git diff --check` a scanner pass. U022 cannot be represented as fully evidenced until its required scanner result exists.
