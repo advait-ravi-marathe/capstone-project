@@ -1,8 +1,8 @@
 # Days 15–28 continuation repair verification
 
-**Implementation commit:** `de1341ebc002114fe8799157222c3bac1e0d63e1`  
-**Parent:** `a1031108862c46b76b85040919660e73736631e4`  
-**Branch:** `work/aws-fde-v24-continuation`  
+**Implementation commit:** `de1341ebc002114fe8799157222c3bac1e0d63e1`
+**Parent:** `a1031108862c46b76b85040919660e73736631e4`
+**Branch:** `work/aws-fde-v24-continuation`
 **Publication:** local only; no push, merge, board write, model request, or learner-status change.
 
 ## Review findings and corrections
@@ -14,6 +14,7 @@
 | U011 claimed ten-record/version aggregate acceptance without exercising it | Added a checked-in SQL query and Python runner. The learner selector ingests all ten CC0 fixtures, checks exact IDs/metadata and the independent version counts `(1,10)`, updates one document, then checks `(1,9),(2,1)` using both SQLite and the documented runner. | `ContinuationAcceptance.test_u011_versioned_ingestion`; `scripts.test_fde_v2_sprint2`. |
 | `/ask` ignored its requested retrieval limit | API forwards `RagRequest.limit` to the pipeline, which forwards it to vector retrieval. | API request test plus pipeline retrieval-call assertion in the end-to-end empty-evidence test. |
 | Retrieval construction eagerly loaded generation weights | The default RAG factory now receives the generator factory, and the pipeline invokes it only after evidence clears abstention. | `ContinuationApiTests.test_default_rag_factory_receives_lazy_generator_without_loading_it`; end-to-end API abstention test asserts zero generator loads. |
+| Day 25's U019 task depended on the U020 seam taught later | Day 25 now exercises U019's direct selector only; pipeline `/ask` integration is explicitly after U020. U020's prerequisite is the U019 contract, not the separately gated live model run. | `scripts.test_fde_v2_sprint2.Sprint2ContractTests.test_day25_u019_does_not_depend_on_future_u020_pipeline_seam`. |
 
 The learner TODO module was not changed. Reference implementations and fixed fixtures remain instructor/test-only and are not learner completion evidence.
 
@@ -21,8 +22,8 @@ The learner TODO module was not changed. Reference implementations and fixed fix
 
 - Focused continuation selectors, reference/mutation witnesses, API tests, and SQLite/Qdrant pipeline tests: **21 passed**. Command:
   `PYTHONPATH=/tmp/fde-v2-qdrant FDE_V2_CANDIDATE=ai.fde_v2.coverstory.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_continuation_units ai.fde_v2.tests.test_continuation_witnesses ai.fde_v2.tests.test_continuation_api ai.fde_v2.tests.test_local_pipeline_witness`
-- Continuation contract tests: **8 passed**. Command: `python3 -m unittest scripts.test_fde_v2_sprint2`.
-- Repository script test discovery: **208 passed**. Command: `python3 -m unittest discover -s scripts -p 'test_*.py'`.
+- Continuation contract tests: **9 passed** after the sequence clarification. Command: `python3 -m unittest scripts.test_fde_v2_sprint2`.
+- Repository script test discovery: **209 passed**. Command: `python3 -m unittest discover -s scripts -p 'test_*.py'`.
 - Python compile check passed: `python3 -m compileall -q ai/fde_v2/coverstory ai/fde_v2/learner_acceptance ai/fde_v2/tests scripts/fde_v2_version_counts.py`.
 - `git diff --check` passed before commit.
 

@@ -77,6 +77,16 @@ class Sprint2ContractTests(unittest.TestCase):
         self.assertIn("Day 29 supplies the final 30-minute segment", u021)
         self.assertIn("outside this branch scope", scope)
 
+    def test_day25_u019_does_not_depend_on_future_u020_pipeline_seam(self):
+        day25 = (DOCS / "days/day-25.md").read_text()
+        u019 = (DOCS / "units/u019.md").read_text()
+        u020 = (DOCS / "units/u020.md").read_text()
+        self.assertIn("Do not wire `/ask` into the pipeline yet", day25)
+        self.assertIn("only after U020 is implemented", day25)
+        self.assertIn("must not be required during Day 25's U019-only segment", u019)
+        self.assertIn("U019 `answer_with_evidence` contract", u020)
+        self.assertNotIn("U019 real RAG path", u020)
+
     def test_evaluation_splits_are_exactly_sized_disjoint_and_synthetic(self):
         corpus = json.loads((ROOT / "fixtures/fde_v2/corpus/manifest.json").read_text())
         doc_ids = {json.loads((ROOT / "fixtures/fde_v2/corpus" / name).read_text())["document_id"]

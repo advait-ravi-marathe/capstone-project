@@ -21,7 +21,7 @@ Sources: [Role interview bank and scoring rubric](../role-bank.md). Record the p
 
 ## AI work (90 minutes)
 
-Use 30 minutes to finish U018 citation/source boundary tests. Use 60 minutes to begin U019: connect the learner answer seam to the supplied local pipeline, verify JSON parsing and citation membership with an explicit test double. This deterministic contract check is not a real generative RAG pass; the actual model/artifact gate remains blocked.
+Use 30 minutes to finish U018 citation/source boundary tests. Use 60 minutes to begin U019 by implementing the learner answer seam and verifying JSON parsing and citation membership with the assigned direct selector and an explicit test double. Do not wire `/ask` into the pipeline yet: the pipeline also uses the U020 abstention seam, which is taught on Days 26–27. Attempt the full `/ask` integration only after U020 is implemented. Deterministic contract checks are not a real generative RAG pass; the actual model/artifact gate remains blocked.
 
 | Segment | Unit | Minutes | Contract |
 |---|---|---:|---|
