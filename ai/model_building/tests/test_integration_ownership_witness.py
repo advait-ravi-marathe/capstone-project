@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from ai.model_building import integration_learner
+from ai.model_building import integration_learner, learner
 from ai.model_building.model_api_scaffold import running_model_api
 from ai.model_building.learner_acceptance import test_integration_ownership as learner_acceptance
 from ai.model_building.tests import reference_witness as ref
@@ -37,18 +37,23 @@ class IntegrationOwnershipWitnessTests(unittest.TestCase):
     def test_actual_learner_acceptance_selectors_pass_reference_and_reject_mutants(self):
         method_names = [
             "test_own_001_builds_narrow_response_from_day30_model",
+            "test_own_001_uses_classifier_for_independent_labels_across_models",
+            "test_own_001_calls_day30_classifier",
+            "test_own_001_loopback_success_path_is_available_before_day332",
             "test_own_001_rejects_malformed_and_order_confused_requests",
             "test_own_002_actual_http_path_maps_validation_and_model_failures_safely",
             "test_own_002_distinguishes_input_errors_from_inference_failures",
             "test_own_002_internal_failure_is_generic_and_never_leaks_exception_text",
+            "test_own_002_failure_does_not_mutate_model_and_same_server_recovers",
         ]
 
         def run(candidate, error_candidate=ref.prediction_error_response):
             suite = unittest.TestSuite(learner_acceptance.IntegrationOwnershipAcceptance(name) for name in method_names)
             with patch.object(integration_learner, "build_prediction_response", candidate):
                 with patch.object(integration_learner, "prediction_error_response", error_candidate):
-                    result = unittest.TestResult()
-                    suite.run(result)
+                    with patch.object(learner, "predict_document_type", ref.predict_document_type):
+                        result = unittest.TestResult()
+                        suite.run(result)
             return result
 
         reference = run(ref.build_prediction_response)
@@ -56,6 +61,7 @@ class IntegrationOwnershipWitnessTests(unittest.TestCase):
         mutants = {
             "wrong-label": lambda model, payload: {"predicted_label": "definition", "decision_scope": "synthetic_document_type_only"},
             "accepts-malformed": lambda model, payload: {"predicted_label": "schedule", "decision_scope": "synthetic_document_type_only"},
+            "constant-schedule": lambda model, payload: {"predicted_label": "schedule", "decision_scope": "synthetic_document_type_only"},
         }
         for name, mutant in mutants.items():
             with self.subTest(mutant=name):
@@ -66,7 +72,8 @@ class IntegrationOwnershipWitnessTests(unittest.TestCase):
         self.assertFalse(result.wasSuccessful(), "actual acceptance selectors accepted incorrect error mapping")
 
     def test_same_public_acceptance_contract_passes_reference_and_rejects_mutants(self):
-        assert_public_contract(ref.build_prediction_response)
+        with patch.object(learner, "predict_document_type", ref.predict_document_type):
+            assert_public_contract(ref.build_prediction_response)
         mutants = {
             "wrong-class": lambda model, payload: {"predicted_label": "exclusion", "decision_scope": "synthetic_document_type_only"},
             "wrong-feature-order-accepted": lambda model, payload: ({"predicted_label": "schedule", "decision_scope": "synthetic_document_type_only"} if payload is VALID else {"predicted_label": "schedule", "decision_scope": "synthetic_document_type_only"}),
@@ -80,23 +87,34 @@ class IntegrationOwnershipWitnessTests(unittest.TestCase):
     def test_real_loopback_route_uses_same_reference_oracle_and_rejects_wrong_result_mutant(self):
         with patch.object(integration_learner, "build_prediction_response", ref.build_prediction_response):
             with patch.object(integration_learner, "prediction_error_response", ref.prediction_error_response):
-                with running_model_api(MODEL) as base_url:
-                    status, result = post(base_url, "/api/model/predict", VALID)
+                with patch.object(learner, "predict_document_type", ref.predict_document_type):
+                    with running_model_api(MODEL) as base_url:
+                        status, result = post(base_url, "/api/model/predict", VALID)
         self.assertEqual((200, {"predicted_label": "schedule", "decision_scope": "synthetic_document_type_only"}), (status, result))
+        with patch.object(integration_learner, "build_prediction_response", ref.build_prediction_response):
+            with patch.object(integration_learner, "prediction_error_response", ref.prediction_error_response):
+                with patch.object(learner, "predict_document_type", ref.predict_document_type):
+                    with running_model_api(MODEL) as base_url:
+                        _, exclusion = post(base_url, "/api/model/predict", {"feature_names": MODEL["feature_names"], "features": [0.1, 1.4, 0.0]})
+                        _, definition = post(base_url, "/api/model/predict", {"feature_names": MODEL["feature_names"], "features": [0.0, 0.1, 1.4]})
+        self.assertEqual("exclusion", exclusion["predicted_label"])
+        self.assertEqual("definition", definition["predicted_label"])
         wrong_label = lambda model, payload: {"predicted_label": "definition", "decision_scope": "synthetic_document_type_only"}
         with patch.object(integration_learner, "build_prediction_response", wrong_label):
             with patch.object(integration_learner, "prediction_error_response", ref.prediction_error_response):
                 with running_model_api(MODEL) as base_url:
                     status, result = post(base_url, "/api/model/predict", VALID)
         with self.assertRaises(AssertionError):
-            self.assertEqual((200, ref.build_prediction_response(MODEL, VALID)), (status, result))
+            with patch.object(learner, "predict_document_type", ref.predict_document_type):
+                self.assertEqual((200, ref.build_prediction_response(MODEL, VALID)), (status, result))
 
     def test_loopback_acceptance_checks_invalid_request_and_inference_failure_disclosure(self):
         malformed = {"feature_names": list(reversed(MODEL["feature_names"])), "features": [1.4, 0.1, 0.0]}
         with patch.object(integration_learner, "build_prediction_response", ref.build_prediction_response):
             with patch.object(integration_learner, "prediction_error_response", ref.prediction_error_response):
-                with running_model_api(MODEL) as base_url:
-                    status, result = post(base_url, "/api/model/predict", malformed)
+                with patch.object(learner, "predict_document_type", ref.predict_document_type):
+                    with running_model_api(MODEL) as base_url:
+                        status, result = post(base_url, "/api/model/predict", malformed)
         self.assertEqual((400, {"error": "invalid_request"}), (status, result))
         with patch.object(integration_learner, "build_prediction_response", side_effect=RuntimeError("fixture internal detail")):
             with patch.object(integration_learner, "prediction_error_response", ref.prediction_error_response):
@@ -104,6 +122,13 @@ class IntegrationOwnershipWitnessTests(unittest.TestCase):
                     status, result = post(base_url, "/api/model/predict", VALID)
         self.assertEqual((500, {"error": "prediction_failed"}), (status, result))
         self.assertNotIn("fixture internal detail", str(result))
+
+        # ValueError raised *inside model inference* is not a client error.
+        with patch.object(integration_learner, "build_prediction_response", side_effect=ValueError("private model detail")):
+            with patch.object(integration_learner, "prediction_error_response", ref.prediction_error_response):
+                with running_model_api(MODEL) as base_url:
+                    status, result = post(base_url, "/api/model/predict", VALID)
+        self.assertEqual((500, {"error": "prediction_failed"}), (status, result))
 
 
 if __name__ == "__main__":

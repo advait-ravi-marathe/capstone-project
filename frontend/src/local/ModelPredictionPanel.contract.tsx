@@ -1,5 +1,5 @@
 import { afterEach, expect, vi } from 'vitest';
-import { cleanup, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 afterEach(() => {
@@ -50,12 +50,18 @@ export async function assertPanelDenial(Panel: React.ComponentType) {
 }
 
 export async function assertPanelIgnoresMalformedSuccess(Panel: React.ComponentType) {
-  cleanup(); vi.unstubAllGlobals();
-  vi.stubGlobal('fetch', vi.fn().mockResolvedValue(response({ predicted_label: 'underwriting-approved' })));
-  render(<Panel />);
-  await userEvent.click(screen.getByRole('button', { name: 'Classify sample' }));
-  expect(await screen.findByRole('alert')).toHaveTextContent(/prediction unavailable/i);
-  expect(screen.queryByText(/underwriting-approved/)).toBeNull();
+  for (const body of [
+    { predicted_label: 'underwriting-approved', decision_scope: 'synthetic_document_type_only' },
+    { predicted_label: 'schedule' },
+    { predicted_label: 'schedule', decision_scope: 'underwriting_decision' },
+  ]) {
+    cleanup(); vi.unstubAllGlobals();
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(response(body)));
+    render(<Panel />);
+    await userEvent.click(screen.getByRole('button', { name: 'Classify sample' }));
+    expect(await screen.findByRole('alert')).toHaveTextContent(/prediction unavailable/i);
+    expect(screen.queryByText(/underwriting-approved|predicted synthetic document type: schedule/i)).toBeNull();
+  }
 }
 
 export async function assertPanelLatestResponseWins(Panel: React.ComponentType) {
@@ -67,10 +73,15 @@ export async function assertPanelLatestResponseWins(Panel: React.ComponentType) 
   const user = userEvent.setup();
   const button = screen.getByRole('button', { name: 'Classify sample' });
   await user.click(button);
-  await user.clear(screen.getByLabelText('schedule_count'));
-  await user.type(screen.getByLabelText('schedule_count'), '0.1');
+  const changedFeature = screen.getByLabelText('schedule_count');
+  fireEvent.change(changedFeature, { target: { value: '0.1' } });
+  await waitFor(() => expect(changedFeature).toHaveValue('0.1'));
   await user.click(button);
   expect(fetchMock).toHaveBeenCalledTimes(2);
+  expect(fetchMock).toHaveBeenNthCalledWith(2, '/api/model/predict', expect.objectContaining({
+    method: 'POST', headers: expect.objectContaining({ 'Content-Type': 'application/json' }),
+    body: JSON.stringify({ feature_names: expectedRequest.feature_names, features: [0.1, 0.1, 0] }),
+  }));
   pending[1](response({ predicted_label: 'exclusion', decision_scope: 'synthetic_document_type_only' }));
   await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent(/exclusion/i));
   pending[0](response(schedule));

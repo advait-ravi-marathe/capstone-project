@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "status": "review_branch_only_not_merged_or_board_published",
-  "policy": "The assistant supplies application and model-serving scaffolding. The learner owns a few bounded end-to-end AI integration changes, their tests, error handling and debugging. These replace equivalent comprehension/review tasks in the later plan; they do not add days, engineering minutes, or shared-block work.",
+  "policy": "The assistant supplies application and model-serving scaffolding. The learner owns a few bounded end-to-end AI integration changes, their tests, error handling and debugging. These replace equivalent comprehension/review tasks in the later plan; they do not add days, engineering minutes, or shared-block work. This is a scoped exception to the general read/trace-only FE/BE lane for OWN-INT-225, OWN-INT-332, OWN-INT-333, OWN-INT-420 and OWN-INT-507 only; first-30 contracts remain unchanged.",
   "reconciliation_required": "The parent maintains a separate 548-day manifest. These target slots are a proposed mapping for that plan, not new published daily contracts or YouTrack IDs. Reconcile against its actual tasks and budgets before board publication.",
   "targets": [
     {
@@ -16,14 +16,14 @@
       "unit_id": "OWN-INT-225",
       "focus": "Model-serving request/response contract",
       "prerequisite": "The learner has passed Day 30's model artifact and held-out acceptance; an instructor witness or fixed fixture does not satisfy the learner gate.",
-      "learner_ownership": "Implement the model adapter that checks exact feature names/order, finite numeric values and width, calls the Day 30 classifier, and returns only a synthetic document-type label with explicit scope.",
+      "learner_ownership": "Implement the model adapter that checks exact feature names/order, finite numeric values and width, calls the Day 30 classifier, and returns only a synthetic document-type label with explicit scope. Raise InvalidPredictionRequest for caller-controlled validation failures; allow inference exceptions to reach the separate Day 332 error mapper.",
       "assistant_scaffolding": [
         "loopback-only Python HTTP route",
         "model artifact loading and process lifecycle",
         "independent fixed model and request fixture"
       ],
-      "acceptance": "A real localhost HTTP request produces the independently expected class; missing/extra keys, wrong feature order, wrong width, booleans and non-finite values are denied. Response contains no underwriting decision or diagnostic internals.",
-      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_001_builds_narrow_response_from_day30_model ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_001_rejects_malformed_and_order_confused_requests",
+      "acceptance": "A real localhost HTTP success request and direct adapter cases return independently expected schedule, exclusion and definition labels; changed centroids change the expected label, ruling out a constant result. Direct malformed-input cases reject missing/extra keys, wrong feature order/width, booleans and non-finite values. The Day 225 HTTP selector tests success only; safe HTTP error mapping is taught and selected on Day 332.",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_001_loopback_success_path_is_available_before_day332 ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_001_builds_narrow_response_from_day30_model ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_001_uses_classifier_for_independent_labels_across_models ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_001_rejects_malformed_and_order_confused_requests",
       "run_command": "python3 -m ai.model_building.model_api_scaffold --artifact PATH_TO_DAY30_MODEL_JSON --host 127.0.0.1 --port 8765",
       "negative_control": "Reject an adapter that ignores feature order, coerces booleans, returns a different class, accepts malformed requests, or echoes private exception details.",
       "status": "starter_and_test_harness_in_this_review_branch; learner_adapter_remains_todo",
@@ -55,10 +55,10 @@
       "learner_ownership": "Trace and repair one supplied model/API failure. Implement explicit invalid-request versus inference-failure handling and test status, safe body, feature order and unchanged synthetic model state.",
       "assistant_scaffolding": [
         "local route, process startup and request-size limit",
-        "fault-injection switch and logs with synthetic identifiers"
+        "test-only monkeypatch fault injection with synthetic exception text; the scaffold does not expose an operational fault switch or emit request logs"
       ],
       "acceptance": "Malformed requests return a stable 400 contract; unexpected model failures return a generic 500 contract; valid requests remain usable after a failure.",
-      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_002_actual_http_path_maps_validation_and_model_failures_safely ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_002_distinguishes_input_errors_from_inference_failures ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_002_internal_failure_is_generic_and_never_leaks_exception_text",
+      "acceptance_command": "python3 -m unittest ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_002_actual_http_path_maps_validation_and_model_failures_safely ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_002_distinguishes_input_errors_from_inference_failures ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_002_internal_failure_is_generic_and_never_leaks_exception_text ai.model_building.learner_acceptance.test_integration_ownership.IntegrationOwnershipAcceptance.test_own_002_failure_does_not_mutate_model_and_same_server_recovers",
       "run_command": "python3 -m ai.model_building.model_api_scaffold --artifact PATH_TO_DAY30_MODEL_JSON --host 127.0.0.1 --port 8765",
       "negative_control": "A mutant that reports 200 for a failed prediction, exposes exception details, or leaves a stale prediction on error is rejected.",
       "status": "starter_and_test_harness_in_this_review_branch; learner_error_handling_remains_todo",

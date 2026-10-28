@@ -26,14 +26,20 @@ def handler_for(model: dict):
                 self._write_json(404, {"error": "not_found"})
                 return
             try:
-                length = int(self.headers.get("Content-Length", "-1"))
+                try:
+                    length = int(self.headers.get("Content-Length", "-1"))
+                except ValueError as length_error:
+                    raise integration_learner.InvalidPredictionRequest("invalid request length") from length_error
                 if length < 0 or length > 4096:
-                    raise ValueError("request body length out of range")
+                    raise integration_learner.InvalidPredictionRequest("request body length out of range")
                 body = self.rfile.read(length)
-                payload = json.loads(body.decode("utf-8"), parse_constant=lambda _: (_ for _ in ()).throw(ValueError("non-finite JSON")))
+                try:
+                    payload = json.loads(body.decode("utf-8"), parse_constant=lambda _: (_ for _ in ()).throw(ValueError("non-finite JSON")))
+                except (UnicodeDecodeError, json.JSONDecodeError, ValueError) as parse_error:
+                    raise integration_learner.InvalidPredictionRequest("invalid JSON request") from parse_error
                 result = integration_learner.build_prediction_response(model, payload)
-            except (UnicodeDecodeError, json.JSONDecodeError, ValueError) as error:
-                self._write_error(ValueError(str(error)))
+            except integration_learner.InvalidPredictionRequest as error:
+                self._write_error(error)
             except Exception as error:
                 self._write_error(error)
             else:

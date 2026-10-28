@@ -198,6 +198,15 @@ class ModelFirstRoadmapTests(unittest.TestCase):
         manifest = json.loads((ROOT / "docs/model-first-roadmap/manifest.json").read_text())
         amendment = json.loads((ROOT / "docs/model-first-roadmap/integration-ownership-amendment.json").read_text())
         self.assertEqual(amendment, manifest["integration_ownership_amendment"])
+        self.assertEqual(
+            {
+                "general_rule": "The application_comprehension_and_scalability_lane learner_work remains the default for all other roadmap days.",
+                "exception": "Only the five integration_ownership_amendment targets explicitly assign small learner-owned application-integration edits.",
+                "target_unit_ids": ["OWN-INT-225", "OWN-INT-332", "OWN-INT-333", "OWN-INT-420", "OWN-INT-507"],
+                "first_30_contracts_unchanged": True,
+            },
+            manifest["scoped_ownership_precedence"],
+        )
         self.assertEqual("review_branch_only_not_merged_or_board_published", amendment["status"])
         self.assertEqual([225, 332, 333, 420, 507], [slot["study_day"] for slot in amendment["targets"]])
         self.assertEqual(["2027-06-08", "2027-09-23", "2027-09-24", "2027-12-20", "2028-03-16"],
@@ -226,6 +235,9 @@ class ModelFirstRoadmapTests(unittest.TestCase):
         self.assertIn("passed Day 30", amendment["targets"][0]["prerequisite"])
         self.assertIn("held-out ranking baseline", amendment["targets"][3]["prerequisite"])
         self.assertIn("stale-response", amendment["targets"][2]["focus"])
+        self.assertIn("scoped exception", amendment["policy"])
+        self.assertIn("test-only monkeypatch", amendment["targets"][1]["assistant_scaffolding"][1])
+        self.assertIn("test_own_002_failure_does_not_mutate_model_and_same_server_recovers", amendment["targets"][1]["acceptance_command"])
         self.assertIn("do not add days, engineering minutes, or shared-block work", amendment["policy"])
         self.assertIn("separate repository", amendment["budget_rule"])
         self.assertEqual(30, len(manifest["detailed_days"]))

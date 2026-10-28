@@ -354,31 +354,43 @@ def score_rows(weights, rows):
 
 def build_prediction_response(model, payload):
     """Independent test-only oracle for the OWN-INT-001 learner seam."""
+    from ai.model_building.integration_learner import InvalidPredictionRequest
     import math
 
     if not isinstance(model, dict) or set(model) != {"classes", "feature_names", "training_ids", "centroids"}:
-        raise ValueError("invalid model")
+        raise RuntimeError("invalid model fixture")
     if not isinstance(payload, dict) or set(payload) != {"feature_names", "features"}:
-        raise ValueError("invalid request schema")
+        raise InvalidPredictionRequest("invalid request schema")
     names = payload["feature_names"]
     values = payload["features"]
     if type(names) is not list or names != model["feature_names"]:
-        raise ValueError("feature order mismatch")
+        raise InvalidPredictionRequest("feature order mismatch")
     if type(values) is not list or len(values) != len(names):
-        raise ValueError("feature width mismatch")
+        raise InvalidPredictionRequest("feature width mismatch")
     if any(type(value) not in (int, float) or not math.isfinite(value) for value in values):
-        raise ValueError("features must be finite numbers")
+        raise InvalidPredictionRequest("features must be finite numbers")
     if not model["classes"] or len(model["classes"]) != len(model["centroids"]):
-        raise ValueError("invalid class centroid matrix")
+        raise RuntimeError("invalid class centroid matrix")
     if any(len(row) != len(names) or any(not math.isfinite(value) for value in row) for row in model["centroids"]):
-        raise ValueError("invalid centroid dimensions")
-    distances = [sum((value - center) ** 2 for value, center in zip(values, centroid)) for centroid in model["centroids"]]
-    label = model["classes"][min(range(len(distances)), key=distances.__getitem__)]
+        raise RuntimeError("invalid centroid dimensions")
+    from ai.model_building import learner
+    label = learner.predict_document_type(model, [values])[0]
     return {"predicted_label": label, "decision_scope": "synthetic_document_type_only"}
+
+
+def predict_document_type(model, rows):
+    """Test-only classifier witness for exercising the Day 30 learner seam."""
+    predictions = []
+    for values in rows:
+        distances = [sum((value - center) ** 2 for value, center in zip(values, centroid))
+                     for centroid in model["centroids"]]
+        predictions.append(model["classes"][min(range(len(distances)), key=distances.__getitem__)])
+    return predictions
 
 
 def prediction_error_response(error):
     """Safe instructor-only HTTP error classifier used by the public oracle."""
-    if isinstance(error, ValueError):
+    from ai.model_building.integration_learner import InvalidPredictionRequest
+    if isinstance(error, InvalidPredictionRequest):
         return 400, {"error": "invalid_request"}
     return 500, {"error": "prediction_failed"}

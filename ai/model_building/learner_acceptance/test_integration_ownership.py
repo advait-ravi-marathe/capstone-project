@@ -3,6 +3,7 @@
 import json
 import math
 import unittest
+from copy import deepcopy
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
@@ -36,6 +37,37 @@ class IntegrationOwnershipAcceptance(unittest.TestCase):
             integration_learner.build_prediction_response(MODEL, VALID),
         )
 
+    def test_own_001_uses_classifier_for_independent_labels_across_models(self):
+        # Independent expected classes follow the fixture geometry. Changed
+        # centroids force an adapter to respond to the model, not a fixed label.
+        cases = [
+            (MODEL, {"feature_names": list(MODEL["feature_names"]), "features": [1.4, 0.1, 0.0]}, "schedule"),
+            (MODEL, {"feature_names": list(MODEL["feature_names"]), "features": [0.1, 1.4, 0.0]}, "exclusion"),
+            (MODEL, {"feature_names": list(MODEL["feature_names"]), "features": [0.0, 0.1, 1.4]}, "definition"),
+            ({**MODEL, "centroids": [[8.0, 0.0, 0.0], [0.0, 8.0, 0.0], [0.0, 0.0, 0.2]]},
+             {"feature_names": list(MODEL["feature_names"]), "features": [1.4, 0.1, 0.0]}, "definition"),
+        ]
+        for model, payload, expected_label in cases:
+            with self.subTest(expected=expected_label, centroids=model["centroids"]):
+                self.assertEqual(
+                    {"predicted_label": expected_label, "decision_scope": "synthetic_document_type_only"},
+                    integration_learner.build_prediction_response(model, payload),
+                )
+
+    def test_own_001_calls_day30_classifier(self):
+        from unittest.mock import patch
+        from ai.model_building import learner
+        with patch.object(learner, "predict_document_type", wraps=learner.predict_document_type) as classifier:
+            integration_learner.build_prediction_response(MODEL, VALID)
+        classifier.assert_called_once_with(MODEL, [VALID["features"]])
+
+    def test_own_001_loopback_success_path_is_available_before_day332(self):
+        with running_model_api(MODEL) as base_url:
+            self.assertEqual(
+                (200, {"predicted_label": "schedule", "decision_scope": "synthetic_document_type_only"}),
+                post(base_url, "/api/model/predict", VALID),
+            )
+
     def test_own_001_rejects_malformed_and_order_confused_requests(self):
         malformed = [
             None,
@@ -61,7 +93,8 @@ class IntegrationOwnershipAcceptance(unittest.TestCase):
             self.assertEqual((404, {"error": "not_found"}), (status, result))
 
     def test_own_002_distinguishes_input_errors_from_inference_failures(self):
-        self.assertEqual((400, {"error": "invalid_request"}), integration_learner.prediction_error_response(ValueError("bad input")))
+        self.assertEqual((400, {"error": "invalid_request"}), integration_learner.prediction_error_response(integration_learner.InvalidPredictionRequest("bad input")))
+        self.assertEqual((500, {"error": "prediction_failed"}), integration_learner.prediction_error_response(ValueError("model inference failed")))
         self.assertEqual((500, {"error": "prediction_failed"}), integration_learner.prediction_error_response(RuntimeError("private details")))
 
     def test_own_002_internal_failure_is_generic_and_never_leaks_exception_text(self):
@@ -71,6 +104,17 @@ class IntegrationOwnershipAcceptance(unittest.TestCase):
                 status, result = post(base_url, "/api/model/predict", VALID)
         self.assertEqual((500, {"error": "prediction_failed"}), (status, result))
         self.assertNotIn("private centroid detail", json.dumps(result))
+
+    def test_own_002_failure_does_not_mutate_model_and_same_server_recovers(self):
+        from unittest.mock import patch
+        from ai.model_building import learner
+        model = deepcopy(MODEL)
+        original = deepcopy(model)
+        with patch.object(learner, "predict_document_type", side_effect=[ValueError("private model error"), ["schedule"]]):
+            with running_model_api(model) as base_url:
+                self.assertEqual((500, {"error": "prediction_failed"}), post(base_url, "/api/model/predict", VALID))
+                self.assertEqual((200, {"predicted_label": "schedule", "decision_scope": "synthetic_document_type_only"}), post(base_url, "/api/model/predict", VALID))
+        self.assertEqual(original, model)
 
 
 if __name__ == "__main__":
