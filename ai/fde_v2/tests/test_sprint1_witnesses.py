@@ -13,6 +13,13 @@ from ai.fde_v2.learner_acceptance import test_units
 
 
 class Sprint1MutationControls(unittest.TestCase):
+    def setUp(self):
+        self.previous_candidate = test_units.candidate
+        test_units.candidate = reference
+
+    def tearDown(self):
+        test_units.candidate = self.previous_candidate
+
     def reject_mutant(self, selector: str, name: str, mutant) -> None:
         candidate = test_units.candidate
         original = getattr(candidate, name)
