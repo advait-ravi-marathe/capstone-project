@@ -19,7 +19,7 @@ Score using the [common rubric](../role-bank.md). Do not claim an interview pass
 
 ## AI engineering work (90 minutes)
 
-Continue the environment/feasibility record for 30 minutes, then start the JSON document parser seam. Read the dataclass fields and write one valid record plus one malformed record test; do not implement API or model behavior from a future unit.
+Spend the full 60 minutes on U002: finish the reproducible environment and real-model feasibility record, using the second 30 minutes as its setup-repair buffer if needed. Then spend 30 minutes starting U003: inspect the frozen dataclass fields and write one valid-record and one malformed-record test. Do not implement API or model behavior from a future unit.
 
 ### Scheduled dependency-unit segments
 

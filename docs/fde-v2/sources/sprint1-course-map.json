@@ -73,7 +73,7 @@
     "practice_exams": "The historically owned six-exam product is CLF-C02, not SAA. No full practice exam fits or is assigned in these four 30-minute diagnostics. Do not copy questions or use dumps."
   },
   "runtime_alignment": {
-    "status": "source_code_aligned_at_published_commit_not_runtime_verified",
+    "status": "historical_source_snapshot_with_current_code_pointers",
     "repository": "advait-ravi-marathe/capstone-project",
     "branch": "review/aws-fde-v24-sprint1",
     "commit": "6b291d95567de5c9f6943931f004e74c5c9d4d3a",
@@ -94,9 +94,10 @@
       ],
       "known_error_statuses": [
         422,
+        429,
+        502,
         503,
-        504,
-        502
+        504
       ]
     },
     "generation_bounds": {
@@ -134,7 +135,17 @@
     "real_inference_status": "blocked_unverified",
     "blocker": "Published runtime-verification record reports HTTP403 on official Hub metadata request through configured proxy before transfer; raw request/response/proxy policy reason were not retained. Do not retry without resolution.",
     "version_docs_note": "Exact v5.21.0 docs URLs were inaccessible; current official Transformers documentation was readable and is labeled as such. Package pins are repository declarations, not installed/runtime proof.",
-    "ownership": "Assistant supplies API/model loading/React/SQLite schema; learner seams are synthetic-record validation, bounded prompt forwarding, strict JSON parsing, and one-record idempotent insert. No extra infrastructure implementation course."
+    "ownership": "Assistant supplies API/model loading/React/SQLite schema; learner seams are synthetic-record validation, bounded prompt forwarding, strict JSON parsing, and one-record idempotent insert. No extra infrastructure implementation course.",
+    "provenance_note": "The commit field records the historical source snapshot used for course mapping; current repository paths are listed for teaching references and current behavior is described separately.",
+    "current_http_behavior": {
+      "blank_or_invalid_question": 422,
+      "generation_slot_busy": 429,
+      "local_model_unavailable": 503,
+      "generation_deadline": 504,
+      "generation_failure": 502,
+      "request_id": "returned in response and included in request logs"
+    },
+    "ui_cancellation": "Explicit Cancel aborts the browser fetch, exits loading and ignores late responses; it does not stop server-side generation already running."
   },
   "unknowns_and_errors": [
     {
@@ -635,68 +646,85 @@
       "note": "Actual supplied Document contract is a frozen dataclass; learner validation is still explicit."
     },
     "CODE-RUNTIME": {
-      "title": "Published Sprint1: runtime verification",
-      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/docs/fde-v2/runtime-verification.md",
+      "title": "Current runtime verification",
+      "url": "../runtime-verification.md",
       "read_only_these_sections": [
         "Pinned candidate and runtime shape",
         "Recorded access blocker"
       ],
       "checked_date": "2026-10-28",
-      "verification": "github_fetch_file_at_exact_commit",
-      "note": "Source/configuration inspection only. No model weights or real inference verified."
+      "verification": "historical_snapshot_verified_current_repository_path_linked",
+      "note": "The retained historical_url identifies the original 6b291d9 source snapshot; url/current_path points to the current repository file.",
+      "historical_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/docs/fde-v2/runtime-verification.md",
+      "current_path": "../runtime-verification.md"
     },
     "CODE-MODELS": {
-      "title": "Published Sprint1: local model adapter",
-      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/models.py",
+      "title": "Current local model adapter",
+      "url": "../../../ai/fde_v2/coverstory/models.py",
       "read_only_these_sections": [
         "LocalModels.load",
         "LocalGenerator.generate_messages",
         "GenerationDeadline"
       ],
       "checked_date": "2026-10-28",
-      "verification": "github_fetch_file_at_exact_commit"
+      "verification": "historical_snapshot_verified_current_repository_path_linked",
+      "historical_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/models.py",
+      "current_path": "../../../ai/fde_v2/coverstory/models.py",
+      "note": "The retained historical_url identifies the original 6b291d9 source snapshot; url/current_path points to the current repository file."
     },
     "CODE-LOCK": {
-      "title": "Published Sprint1: model lock",
-      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/model_lock.json",
+      "title": "Current model lock",
+      "url": "../../../ai/fde_v2/coverstory/model_lock.json",
       "read_only_these_sections": [
         "generation repository/revision/license/expected_files",
         "trust_remote_code"
       ],
       "checked_date": "2026-10-28",
-      "verification": "github_fetch_file_at_exact_commit"
+      "verification": "historical_snapshot_verified_current_repository_path_linked",
+      "historical_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/model_lock.json",
+      "current_path": "../../../ai/fde_v2/coverstory/model_lock.json",
+      "note": "The retained historical_url identifies the original 6b291d9 source snapshot; url/current_path points to the current repository file."
     },
     "CODE-API": {
-      "title": "Published Sprint1: loopback API",
-      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/api.py",
+      "title": "Current loopback API",
+      "url": "../../../ai/fde_v2/coverstory/api.py",
       "read_only_these_sections": [
         "GenerateRequest",
         "POST /generate",
         "error mapping and request ID"
       ],
       "checked_date": "2026-10-28",
-      "verification": "github_fetch_file_at_exact_commit"
+      "verification": "historical_snapshot_verified_current_repository_path_linked",
+      "historical_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/api.py",
+      "current_path": "../../../ai/fde_v2/coverstory/api.py",
+      "note": "The retained historical_url identifies the original 6b291d9 source snapshot; url/current_path points to the current repository file."
     },
     "CODE-UI": {
-      "title": "Published Sprint1: React question-answer screen",
-      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/frontend/src/fde-v2/QuestionAnswerApp.tsx",
+      "title": "Current React question-answer screen",
+      "url": "../../../frontend/src/fde-v2/QuestionAnswerApp.tsx",
       "read_only_these_sections": [
         "ViewState",
         "submit",
         "effect cleanup and AbortController"
       ],
       "checked_date": "2026-10-28",
-      "verification": "github_fetch_file_at_exact_commit"
+      "verification": "historical_snapshot_verified_current_repository_path_linked",
+      "historical_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/frontend/src/fde-v2/QuestionAnswerApp.tsx",
+      "current_path": "../../../frontend/src/fde-v2/QuestionAnswerApp.tsx",
+      "note": "The retained historical_url identifies the original 6b291d9 source snapshot; url/current_path points to the current repository file."
     },
     "CODE-SCOPE": {
-      "title": "Published Sprint1: implementation boundary",
-      "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/docs/fde-v2/implementation-scope.md",
+      "title": "Current implementation boundary",
+      "url": "../implementation-scope.md",
       "read_only_these_sections": [
         "Ownership",
         "Evidence and gate state"
       ],
       "checked_date": "2026-10-28",
-      "verification": "github_fetch_file_at_exact_commit"
+      "verification": "historical_snapshot_verified_current_repository_path_linked",
+      "historical_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/docs/fde-v2/implementation-scope.md",
+      "current_path": "../implementation-scope.md",
+      "note": "The retained historical_url identifies the original 6b291d9 source snapshot; url/current_path points to the current repository file."
     }
   },
   "days": [

@@ -63,6 +63,36 @@ class Sprint1ContractTests(unittest.TestCase):
         unit = (DOCS / "units/u009.md").read_text(encoding="utf-8")
         self.assertIn("explicit cancellation", unit)
         self.assertIn("does not stop generation already running on the server", unit)
+        self.assertIn("real-backend gate remains required", unit)
+        self.assertIn("currently **BLOCKED**", unit)
+        self.assertIn("do not waive it", unit)
+
+    def test_day03_prose_matches_scheduled_unit_minutes(self):
+        day = (DOCS / "days/day-03.md").read_text(encoding="utf-8")
+        self.assertIn("Spend the full 60 minutes on U002", day)
+        self.assertIn("Then spend 30 minutes starting U003", day)
+        self.assertNotIn("for 30 minutes, then start the JSON document parser seam", day)
+
+    def test_course_map_preserves_history_but_links_current_runtime_and_behavior(self):
+        guide = (DOCS / "sources/sprint1-course-map.md").read_text(encoding="utf-8")
+        self.assertIn("Historical provenance: the initial implementation snapshot was commit **6b291d9", guide)
+        self.assertIn("[Current loopback API](../../../ai/fde_v2/coverstory/api.py)", guide)
+        self.assertIn("[Current React question-answer screen](../../../frontend/src/fde-v2/QuestionAnswerApp.tsx)", guide)
+        self.assertIn("concurrent overlap 429", guide)
+        self.assertIn("explicit Cancel", guide)
+        self.assertIn("Weights remain absent and real inference blocked/unverified", guide)
+        course_map = json.loads((DOCS / "sources/sprint1-course-map.json").read_text(encoding="utf-8"))
+        runtime = course_map["runtime_alignment"]
+        self.assertEqual(runtime["commit"], "6b291d95567de5c9f6943931f004e74c5c9d4d3a")
+        self.assertEqual(runtime["http_contract"]["known_error_statuses"], [422, 429, 502, 503, 504])
+        self.assertIn("generation_slot_busy", runtime["current_http_behavior"])
+        self.assertIn("Explicit Cancel", runtime["ui_cancellation"])
+        for source_id in ("CODE-RUNTIME", "CODE-MODELS", "CODE-LOCK", "CODE-API", "CODE-UI", "CODE-SCOPE"):
+            source = course_map["sources"][source_id]
+            with self.subTest(source=source_id):
+                current = (DOCS / "sources" / source["current_path"]).resolve()
+                self.assertTrue(current.is_file(), f"missing current source: {source['current_path']}")
+                self.assertIn("blob/6b291d9", source["historical_url"])
 
     def test_only_sprint1_learner_seams_are_active(self):
         tree = ast.parse((ROOT / "ai/fde_v2/coverstory/learner.py").read_text(encoding="utf-8"))
@@ -107,6 +137,7 @@ class Sprint1ContractTests(unittest.TestCase):
     def test_relative_markdown_links_in_active_sprint_docs_resolve(self):
         paths = [DOCS / "README.md", DOCS / "implementation-scope.md", DOCS / "phase-map.md",
                  DOCS / "aws-bank.md", DOCS / "role-bank.md", DOCS / "role-benchmarks.md",
+                 DOCS / "sources/sprint1-course-map.md",
                  *sorted((DOCS / "days").glob("*.md")), *sorted((DOCS / "units").glob("*.md"))]
         link_pattern = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
         for path in paths:

@@ -107,7 +107,7 @@ References: [MDN: Closures](https://developer.mozilla.org/en-US/docs/Web/JavaScr
 - **AIFDE-V2-U001 — Baseline, scope and ownership: 30 min support**. Reading ≤0 min; practice/implementation ≥30 min. Finish U001 architecture/own-versus-borrowed note.
   - No external coursework; use the actual task/evidence.
 - **AIFDE-V2-U002 — Reproducible environment and real-model feasibility: 60 min primary**. Reading ≤15 min; practice/implementation ≥45 min. Inspect the Python 3.12 environment and supplied pinned configuration. Record hardware/model-license feasibility facts; no retry of the unresolved metadata 403 or download path.
-  - [Python venv](https://docs.python.org/3.12/library/venv.html); [Published Sprint1: model lock](https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/model_lock.json); [Published Sprint1: runtime verification](https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/docs/fde-v2/runtime-verification.md); [Hugging Face Hub: Download files](https://huggingface.co/docs/huggingface_hub/guides/download)
+  - [Python venv](https://docs.python.org/3.12/library/venv.html); [Current model lock](../../../ai/fde_v2/coverstory/model_lock.json); [Current runtime verification](../runtime-verification.md); [Hugging Face Hub: Download files](https://huggingface.co/docs/huggingface_hub/guides/download)
 
 ### Day 3
 
@@ -136,7 +136,7 @@ References: [MDN: Using the Fetch API](https://developer.mozilla.org/en-US/docs/
 **Role/AWS (30 min):** use the exact Day 5 selection above.
 
 - **AIFDE-V2-U004 — Small API with observable failure paths: 90 min primary**. Reading ≤15 min; practice/implementation ≥75 min. Trace and exercise the supplied health/metadata/API paths and request IDs; explain invalid-input behavior, loopback and fixture-scope boundaries. Do not reimplement supplied infrastructure.
-  - [FastAPI: Request Body](https://fastapi.tiangolo.com/tutorial/body/); [FastAPI: Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/); [Published Sprint1: loopback API](https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/api.py)
+  - [FastAPI: Request Body](https://fastapi.tiangolo.com/tutorial/body/); [FastAPI: Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/); [Current loopback API](../../../ai/fde_v2/coverstory/api.py)
 
 ### Day 6
 
@@ -145,7 +145,7 @@ References: [MDN: Using the Fetch API](https://developer.mozilla.org/en-US/docs/
 - **AIFDE-V2-U004 — Small API with observable failure paths: 30 min buffer**. Reading ≤0 min; practice/implementation ≥30 min. Repair API/setup failure only; carry blockers forward.
   - No external coursework; use the actual task/evidence.
 - **AIFDE-V2-U005 — Understand inference and install a real runtime: 60 min primary**. Reading ≤12 min; practice/implementation ≥48 min. Trace the supplied in-process Transformers adapter, local_files_only and trust_remote_code=false. Explain tokens/context/output limits; no model HTTP server or cloud key is used.
-  - [Transformers: Chat templates](https://huggingface.co/docs/transformers/en/chat_templating); [Transformers: Auto classes](https://huggingface.co/docs/transformers/en/model_doc/auto); [Published Sprint1: local model adapter](https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/models.py)
+  - [Transformers: Chat templates](https://huggingface.co/docs/transformers/en/chat_templating); [Transformers: Auto classes](https://huggingface.co/docs/transformers/en/model_doc/auto); [Current local model adapter](../../../ai/fde_v2/coverstory/models.py)
 
 ### Day 7
 
@@ -153,7 +153,7 @@ References: [MDN: Using the Fetch API](https://developer.mozilla.org/en-US/docs/
 References: No external coursework; use the actual task/evidence..
 
 - **AIFDE-V2-U005 — Understand inference and install a real runtime: 30 min primary**. Reading ≤5 min; practice/implementation ≥25 min. Check actual pinned adapter configuration and preserve the unresolved download/inference blocker; offline configuration checks do not pass real inference.
-  - [Published Sprint1: runtime verification](https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/docs/fde-v2/runtime-verification.md); [Published Sprint1: model lock](https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/model_lock.json)
+  - [Current runtime verification](../runtime-verification.md); [Current model lock](../../../ai/fde_v2/coverstory/model_lock.json)
 - **AIFDE-V2-U005 — Understand inference and install a real runtime: 30 min support**. Reading ≤8 min; practice/implementation ≥22 min. Explain generation versus embeddings/retrieval and record the selected 0.5B model/revision, 2048-token input cap and 160-default/256-max output. No embedding model is assigned in Sprint 1.
   - [Qwen/Qwen2.5-0.5B-Instruct model card](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct); [Transformers: Generation](https://huggingface.co/docs/transformers/en/main_classes/text_generation)
 - **30 min visibility/evidence inside AI:** private evidence note; on Day7 re-estimate scope from actual minutes, ownership and blockers. No external posting is authorized by this map.
@@ -164,7 +164,7 @@ References: No external coursework; use the actual task/evidence..
 References: [React: useEffect](https://react.dev/reference/react/useEffect#fetching-data-with-effects); [MDN: Using the Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
 
 - **AIFDE-V2-U006 — First real generated response: 90 min primary**. Reading ≤8 min; practice/implementation ≥82 min. Implement the learner prompt-forwarding seam against generate_messages(messages,max_new_tokens); real-task execution awaits resolved access and local weights. Capture actual output/timing/failure only, never substitute a mock.
-  - [Transformers: Generation](https://huggingface.co/docs/transformers/en/main_classes/text_generation); [Published Sprint1: local model adapter](https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/models.py)
+  - [Transformers: Generation](https://huggingface.co/docs/transformers/en/main_classes/text_generation); [Current local model adapter](../../../ai/fde_v2/coverstory/models.py)
 
 ### Day 9
 
@@ -183,8 +183,8 @@ References: [React: Choosing the State Structure](https://react.dev/learn/choosi
 
 - **AIFDE-V2-U007 — Reality check and first evidence note: 30 min primary**. Reading ≤0 min; practice/implementation ≥30 min. Complete all five outcomes and viability review.
   - No external coursework; use the actual task/evidence.
-- **AIFDE-V2-U008 — Real generation behind the API: 60 min primary**. Reading ≤10 min; practice/implementation ≥50 min. Trace the supplied same-origin POST /generate to in-process generation and 503/504/502 errors. Examine the 45s step-aware criterion; a slow kernel can overrun and model loading is outside it. Real-HTTP gate stays blocked without actual generation.
-  - [FastAPI: Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/); [Transformers: Utilities for generation](https://huggingface.co/docs/transformers/en/internal/generation_utils); [Published Sprint1: loopback API](https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/api.py)
+- **AIFDE-V2-U008 — Real generation behind the API: 60 min primary**. Reading ≤10 min; practice/implementation ≥50 min. Trace the supplied same-origin POST /generate to in-process generation and its 422 invalid-input, 429 busy, 503 unavailable, 504 timeout and 502 generation-failure responses. Examine the 45s step-aware criterion; a slow kernel can overrun and model loading is outside it. Real-HTTP actual-generation gate stays blocked without model weights.
+  - [FastAPI: Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/); [Transformers: Utilities for generation](https://huggingface.co/docs/transformers/en/internal/generation_utils); [Current loopback API](../../../ai/fde_v2/coverstory/api.py)
 
 ### Day 11
 
@@ -196,14 +196,14 @@ References: [FastAPI: Request Body](https://fastapi.tiangolo.com/tutorial/body/)
 - **AIFDE-V2-U008 — Real generation behind the API: 30 min buffer**. Reading ≤0 min; practice/implementation ≥30 min. Repair integration only; distinguish mocked unit tests from real integration receipt.
   - No external coursework; use the actual task/evidence.
 - **AIFDE-V2-U009 — Thin React workflow: 30 min primary**. Reading ≤8 min; practice/implementation ≥22 min. Trace the supplied thin UI state and same-origin request; explain loading/empty/error/result and cancellation guards. No new React implementation assignment.
-  - [React: Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure); [MDN: Using the Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch); [Published Sprint1: React question-answer screen](https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/frontend/src/fde-v2/QuestionAnswerApp.tsx)
+  - [React: Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure); [MDN: Using the Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch); [Current React question-answer screen](../../../frontend/src/fde-v2/QuestionAnswerApp.tsx)
 
 ### Day 12
 
 **Role/AWS (30 min):** use the exact Day 12 selection above.
 
 - **AIFDE-V2-U009 — Thin React workflow: 60 min primary**. Reading ≤10 min; practice/implementation ≥50 min. Trace and exercise the supplied UI/backend boundary and accessible error behavior. Inspect actual cancel/stale-response handling; do not infer a visible Cancel button or server-side abort from browser abort alone.
-  - [W3C: Understanding SC 4.1.3 Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html); [Testing Library: ByRole](https://testing-library.com/docs/queries/byrole/); [Published Sprint1: React question-answer screen](https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/frontend/src/fde-v2/QuestionAnswerApp.tsx)
+  - [W3C: Understanding SC 4.1.3 Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html); [Testing Library: ByRole](https://testing-library.com/docs/queries/byrole/); [Current React question-answer screen](../../../frontend/src/fde-v2/QuestionAnswerApp.tsx)
 - **AIFDE-V2-U009 — Thin React workflow: 30 min buffer**. Reading ≤0 min; practice/implementation ≥30 min. Fix integration/accessibility defect; cannot count fake data as a real generated answer.
   - No external coursework; use the actual task/evidence.
 
@@ -275,19 +275,19 @@ These are subsection locators, not whole-page completion assignments.
 - **PY-JSON** — [Python 3.12: json](https://docs.python.org/3.12/library/json.html#json.loads): json.loads; JSONDecodeError; Warning on untrusted JSON size. Actual U010 learner seam uses plain JSON and explicit field/type validation, not llama.cpp grammar constraints or a new Pydantic validator.
 - **PY-TIME** — [Python 3.12: time](https://docs.python.org/3.12/library/time.html#time.perf_counter): time.perf_counter. Trace elapsed-time measurement; do not claim it interrupts a slow kernel or covers model loading.
 - **PY-DATACLASS** — [Python 3.12: dataclasses](https://docs.python.org/3.12/library/dataclasses.html): dataclass decorator; frozen instances. Actual supplied Document contract is a frozen dataclass; learner validation is still explicit.
-- **CODE-RUNTIME** — [Published Sprint1: runtime verification](https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/docs/fde-v2/runtime-verification.md): Pinned candidate and runtime shape; Recorded access blocker. Source/configuration inspection only. No model weights or real inference verified.
-- **CODE-MODELS** — [Published Sprint1: local model adapter](https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/models.py): LocalModels.load; LocalGenerator.generate_messages; GenerationDeadline.
-- **CODE-LOCK** — [Published Sprint1: model lock](https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/model_lock.json): generation repository/revision/license/expected_files; trust_remote_code.
-- **CODE-API** — [Published Sprint1: loopback API](https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/ai/fde_v2/coverstory/api.py): GenerateRequest; POST /generate; error mapping and request ID.
-- **CODE-UI** — [Published Sprint1: React question-answer screen](https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/frontend/src/fde-v2/QuestionAnswerApp.tsx): ViewState; submit; effect cleanup and AbortController.
-- **CODE-SCOPE** — [Published Sprint1: implementation boundary](https://github.com/advait-ravi-marathe/capstone-project/blob/6b291d95567de5c9f6943931f004e74c5c9d4d3a/docs/fde-v2/implementation-scope.md): Ownership; Evidence and gate state.
+- **CODE-RUNTIME** — [Current runtime verification](../runtime-verification.md): Pinned candidate and runtime shape; recorded access blocker. Source/configuration inspection only. No model weights or real inference verified.
+- **CODE-MODELS** — [Current local model adapter](../../../ai/fde_v2/coverstory/models.py): `LocalModels.load`; `LocalGenerator.generate_messages`; `GenerationDeadline`.
+- **CODE-LOCK** — [Current model lock](../../../ai/fde_v2/coverstory/model_lock.json): generation repository/revision/license/expected files; `trust_remote_code`.
+- **CODE-API** — [Current loopback API](../../../ai/fde_v2/coverstory/api.py): learner-owned generation seam and `POST /generate`; blank input returns 422, unavailable model 503, timeout 504, generation failure 502, concurrent overlap 429; request IDs are returned/logged.
+- **CODE-UI** — [Current React question-answer screen](../../../frontend/src/fde-v2/QuestionAnswerApp.tsx): `ViewState`, submit, explicit Cancel, stale-response protection, effect cleanup and `AbortController`. Cancel aborts the browser request and ignores late results; server-side generation may continue.
+- **CODE-SCOPE** — [Current implementation boundary](../implementation-scope.md): ownership, evidence and gate state.
 
 ## Gates and unresolved facts
 
 - Preserve all prerequisites and acceptance criteria: exact copies are in `sprint1-course-map.json → unit_gate_contracts`.
 - Real-model output, real API/UI behavior and learner-owned explanations remain mandatory; a documentation lookup or assistant scaffold cannot pass them.
 - Day14 starts U011 only. Sprint1 is not full RAG, cloud release, production security, certification readiness or a learner-completion claim.
-- Published source is aligned to commit **6b291d95567de5c9f6943931f004e74c5c9d4d3a**: **Transformers 5.21.0 in-process + Qwen2.5-0.5B-Instruct**, revision `7ae557604adf67be50417f59c2c2f167def9a775`. React calls same-origin `POST /generate`; FastAPI listens on loopback `127.0.0.1:8765`. There is no separate model-server endpoint. Weights remain absent and real inference blocked/unverified.
+- Historical provenance: the initial implementation snapshot was commit **6b291d95567de5c9f6943931f004e74c5c9d4d3a**. The current code links above point to the current repository tree. The declared candidate remains **Transformers 5.21.0 in-process + Qwen2.5-0.5B-Instruct**, revision `7ae557604adf67be50417f59c2c2f167def9a775`. React calls same-origin `POST /generate`; FastAPI listens on loopback `127.0.0.1:8765`. There is no separate model-server endpoint. Weights remain absent and real inference blocked/unverified.
 - The model/revision/package pins are verified as source declarations, not downloaded or executed artifacts. Adapter: 2048-token input cap, 160 default/256 maximum output tokens, 45-second step-aware deadline. A slow kernel can overrun; model loading is outside that deadline. The current adapter does not expose token counts. Current course entitlement/update date and measured model size/dtype/hardware behavior remain unknown.
 - Exact Transformers v5.21.0 documentation paths were inaccessible. Current official Transformers pages were accessible and are marked as current/unversioned references, not pinned-version execution proof. Python links now target 3.12.
 - Day1 target-role URL must come from the real target/evidence; no job link was invented.
