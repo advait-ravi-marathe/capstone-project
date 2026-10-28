@@ -1,20 +1,34 @@
-# Sprint 1 daily pages
+# AWS FDE v2.4 daily pages
 
-These are the first 14 actual learning-day pages. Dates are not used to advance completion state.
+Actual learning days are attempt-indexed; dates do not advance status. Sprint 1 contains Days 1–14; this continuation adds only Days 15–28. Every page retains the fixed 180-minute schedule.
 
 | Day | Page |
 |---:|---|
-| 1 | [Baseline and ownership](day-01.md) |
-| 2 | [Environment and model feasibility](day-02.md) |
-| 3 | [Python data contract](day-03.md) |
-| 4 | [Parser completion and API trace](day-04.md) |
-| 5 | [Supplied API behavior](day-05.md) |
-| 6 | [Inference concepts and setup](day-06.md) |
-| 7 | [Runtime evidence note](day-07.md) |
-| 8 | [Real generation attempt](day-08.md) |
-| 9 | [Generation review and smoke set](day-09.md) |
-| 10 | [API adapter seam](day-10.md) |
-| 11 | [Adapter and UI request trace](day-11.md) |
-| 12 | [Supplied UI states](day-12.md) |
-| 13 | [Strict answer JSON](day-13.md) |
-| 14 | [U010 closeout and U011 partial start](day-14.md) |
+| 01 | [Day 01: # Learning day 01](day-01.md) |
+| 02 | [Day 02: # Learning day 02](day-02.md) |
+| 03 | [Day 03: # Learning day 03](day-03.md) |
+| 04 | [Day 04: # Learning day 04](day-04.md) |
+| 05 | [Day 05: # Learning day 05](day-05.md) |
+| 06 | [Day 06: # Learning day 06](day-06.md) |
+| 07 | [Day 07: # Learning day 07](day-07.md) |
+| 08 | [Day 08: # Learning day 08](day-08.md) |
+| 09 | [Day 09: # Learning day 09](day-09.md) |
+| 10 | [Day 10: # Learning day 10](day-10.md) |
+| 11 | [Day 11: # Learning day 11](day-11.md) |
+| 12 | [Day 12: # Learning day 12](day-12.md) |
+| 13 | [Day 13: # Learning day 13](day-13.md) |
+| 14 | [Day 14: # Learning day 14](day-14.md) |
+| 15 | [Day 15: HLD discovery and scale](day-15.md) |
+| 16 | [Day 16: HLD failures and tradeoffs](day-16.md) |
+| 17 | [Day 17: LLD boundaries](day-17.md) |
+| 18 | [Day 18: Concurrency and reliability](day-18.md) |
+| 19 | [Day 19: AWS certification: compute/reliability diagnostic](day-19.md) |
+| 20 | [Day 20: AWS certification: operations/cost diagnostic](day-20.md) |
+| 21 | [Day 21: Short role-specific rehearsal](day-21.md) |
+| 22 | [Day 22: JS/TS implementation interview practice](day-22.md) |
+| 23 | [Day 23: React performance](day-23.md) |
+| 24 | [Day 24: Backend/security integration](day-24.md) |
+| 25 | [Day 25: HLD communication](day-25.md) |
+| 26 | [Day 26: AWS certification: fresh practice baseline](day-26.md) |
+| 27 | [Day 27: AWS certification: readiness gap map](day-27.md) |
+| 28 | [Day 28: Short FE/full-stack mock segment](day-28.md) |

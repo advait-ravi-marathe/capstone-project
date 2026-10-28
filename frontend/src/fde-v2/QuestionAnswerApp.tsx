@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
+import { AskRagPanel } from './AskRagPanel';
 
 type AskResponse = {
   answer: string;
@@ -93,6 +94,7 @@ export function QuestionAnswerApp() {
           </article>
         )}
       </section>
+      <AskRagPanel />
       <p className="fde-v2-notice">Single-user, loopback learning app. Not a real benefits plan or production service.</p>
     </main>
   );

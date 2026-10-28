@@ -1,0 +1,148 @@
+"""Contract checks for the unpublished actual-learning Days 15–28 continuation."""
+from __future__ import annotations
+
+import hashlib
+import json
+import re
+import os
+import subprocess
+import sys
+import tempfile
+import unittest
+from datetime import date, timedelta
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+DOCS = ROOT / "docs/fde-v2"
+ACCEPTED = DOCS / "accepted"
+
+
+class Sprint2ContractTests(unittest.TestCase):
+    def test_frozen_plan_receipt_and_first_30_day_budget_are_unchanged(self):
+        receipt = json.loads((ACCEPTED / "plan-review-receipt.json").read_text())
+        self.assertEqual(hashlib.sha256((ACCEPTED / "plan-review-receipt.json").read_bytes()).hexdigest(),
+                         "c0244d623a18c7fae6593f12895ebd3790099078f839d7831cf75c76c23746b5")
+        self.assertEqual(len(receipt["files"]), 8)
+        for filename, expected in receipt["files"].items():
+            self.assertEqual(hashlib.sha256((ACCEPTED / filename).read_bytes()).hexdigest(), expected)
+        schedule = json.loads((ACCEPTED / "first-30-days.json").read_text())["schedule"]
+        self.assertEqual(len(schedule), 30)
+        for row in schedule:
+            self.assertEqual(row["dsa_minutes"], 60)
+            self.assertEqual(row["role_interview_minutes"], 30)
+            self.assertEqual(row["ai_total_minutes"], 90)
+            self.assertEqual(sum(part["minutes"] for part in row["ai_segments"])
+                             + row["visibility_minutes"], 90)
+
+    def test_days_15_through_28_match_frozen_schedule_date_and_unit_segments(self):
+        schedule = json.loads((ACCEPTED / "first-30-days.json").read_text())["schedule"]
+        for row in schedule[14:28]:
+            number = row["planned_learning_day"]
+            page_path = DOCS / "days" / f"day-{number:02d}.md"
+            page = page_path.read_text(encoding="utf-8")
+            expected_date = date(2026, 10, 27) + timedelta(days=number - 1)
+            self.assertIn(expected_date.isoformat(), page)
+            self.assertIn("Status: Not started", page)
+            self.assertIn("180 minutes", page)
+            self.assertEqual(row["ai_total_minutes"], 90)
+            self.assertEqual(sum(segment["minutes"] for segment in row["ai_segments"])
+                             + row["visibility_minutes"], 90)
+            for segment in row["ai_segments"]:
+                unit = segment["unit_id"].rsplit("-", 1)[1].lower()
+                self.assertTrue((DOCS / "units" / f"{unit}.md").is_file())
+                self.assertIn(f"../units/{unit}.md", page)
+
+    def test_day14_u011_partial_row_becomes_body_complete_on_day15(self):
+        day14 = (DOCS / "days/day-14.md").read_text()
+        day15 = (DOCS / "days/day-15.md").read_text()
+        unit = (DOCS / "units/u011.md").read_text()
+        self.assertIn("30 minutes only", day14)
+        self.assertIn("Do not claim all ten have been ingested or U011 complete", day14)
+        self.assertIn("Day 15: primary 60 min", unit)
+        self.assertIn("persist text separately", unit)
+        self.assertIn("ten synthetic records", day15)
+        self.assertIn("same-version changed-content rejection", day15)
+
+    def test_day28_starts_u021_without_claiming_its_day29_completion(self):
+        day28 = (DOCS / "days/day-28.md").read_text()
+        u021 = (DOCS / "units/u021.md").read_text()
+        scope = (DOCS / "implementation-scope.md").read_text()
+        self.assertIn("Start U021", day28)
+        self.assertIn("do not mark it complete on Day 28", day28)
+        self.assertIn("Day 29 supplies the final 30-minute segment", u021)
+        self.assertIn("outside this branch scope", scope)
+
+    def test_evaluation_splits_are_exactly_sized_disjoint_and_synthetic(self):
+        corpus = json.loads((ROOT / "fixtures/fde_v2/corpus/manifest.json").read_text())
+        doc_ids = {json.loads((ROOT / "fixtures/fde_v2/corpus" / name).read_text())["document_id"]
+                   for name in corpus["documents"]}
+
+        def load(name):
+            path = ROOT / "ai/fde_v2/coverstory/evals" / f"questions-{name}.jsonl"
+            return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+
+        dev, heldout = load("dev"), load("heldout")
+        self.assertEqual(len(dev), 20)
+        self.assertEqual(len(heldout), 10)
+        self.assertTrue({row["case_id"] for row in dev}.isdisjoint(row["case_id"] for row in heldout))
+        for row in dev + heldout:
+            self.assertTrue(row["question"].strip())
+            if row["category"] == "answerable":
+                self.assertTrue(row["expected_document_ids"])
+                self.assertTrue(set(row["expected_document_ids"]) <= doc_ids)
+            else:
+                self.assertEqual(row["expected_document_ids"], [])
+
+    def test_real_model_gates_are_not_substituted_by_fixed_vector_or_test_double(self):
+        u013 = (DOCS / "units/u013.md").read_text()
+        u019 = (DOCS / "units/u019.md").read_text()
+        self.assertIn("real pretrained model", u013)
+        self.assertIn("cannot satisfy it", u013.lower())
+        self.assertIn("model-generated answer", u019.lower())
+        self.assertIn("BLOCKED", u019)
+        self.assertFalse(list((ROOT / "ai/fde_v2/coverstory").glob("**/*.safetensors")))
+        self.assertFalse(list((ROOT / "ai/fde_v2/coverstory").glob("**/pytorch_model.bin")))
+
+    def test_active_continuation_markdown_links_resolve(self):
+        paths = [DOCS / "README.md", DOCS / "implementation-scope.md", DOCS / "phase-map.md",
+                 DOCS / "units/README.md", DOCS / "days/README.md",
+                 *sorted((DOCS / "days").glob("day-*.md")),
+                 *sorted((DOCS / "units").glob("u*.md"))]
+        pattern = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+        for source in paths:
+            text = source.read_text(encoding="utf-8")
+            for target in pattern.findall(text):
+                if target.startswith(("https://", "http://", "mailto:")):
+                    continue
+                relative, _, fragment = target.partition("#")
+                target_path = (source.parent / relative).resolve() if relative else source.resolve()
+                with self.subTest(source=source.relative_to(ROOT), target=target):
+                    self.assertTrue(target_path.exists())
+                    if fragment and target_path.suffix == ".md":
+                        headings = [line.lstrip("#").strip().lower() for line in
+                                    target_path.read_text(encoding="utf-8").splitlines() if line.startswith("#")]
+                        slugs = {re.sub(r"[^a-z0-9 -]", "", h).replace(" ", "-") for h in headings}
+                        self.assertIn(fragment, slugs)
+
+    def test_documented_scripts_import_from_repository_root_and_real_smoke_fails_closed(self):
+        scripts = ("fde_v2_seed_corpus.py", "fde_v2_prepare_chunks.py", "fde_v2_index_vectors.py",
+                   "fde_v2_evaluate_retrieval.py", "fde_v2_rag_smoke.py")
+        for name in scripts:
+            result = subprocess.run([sys.executable, f"scripts/{name}", "--help"], cwd=ROOT,
+                                    capture_output=True, text=True, timeout=10)
+            with self.subTest(script=name):
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertNotIn("ModuleNotFoundError", result.stderr)
+        with tempfile.TemporaryDirectory() as temp:
+            env = {**os.environ, "FDE_V2_RUNTIME_DIR": str(Path(temp) / "generation"),
+                   "FDE_V2_EMBEDDING_DIR": str(Path(temp) / "embedding"),
+                   "FDE_V2_EMBEDDING_MANIFEST": str(Path(temp) / "embedding-manifest.json")}
+            result = subprocess.run([sys.executable, "scripts/fde_v2_rag_smoke.py"], cwd=ROOT,
+                                    env=env, capture_output=True, text=True, timeout=10)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("REAL_RAG_BLOCKED", result.stderr)
+        self.assertNotIn("ModuleNotFoundError", result.stderr)
+
+
+if __name__ == "__main__":
+    unittest.main()

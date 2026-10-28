@@ -47,17 +47,16 @@ class Sprint1ContractTests(unittest.TestCase):
                     self.assertTrue((DOCS / "units" / f"{contract_id}.md").is_file())
                     self.assertIn(f"../units/{contract_id}.md", page)
 
-    def test_u011_is_only_an_explicit_partial_day14_slice(self):
+    def test_day14_u011_slice_remains_partial_while_day15_completes_unit(self):
         unit = (DOCS / "units/u011.md").read_text(encoding="utf-8")
         day14 = (DOCS / "days/day-14.md").read_text(encoding="utf-8")
-        self.assertIn("first 30 minutes", unit)
-        self.assertIn("does not claim U011 completion", unit)
-        self.assertIn("does not exercise changed-version handling", unit)
-        self.assertIn("not required to complete the Day 14 slice", unit)
         self.assertIn("30 minutes only", day14)
-        self.assertIn("remaining segments continue", day14)
-        self.assertFalse((DOCS / "days/day-15.md").exists())
-        self.assertFalse((DOCS / "units/u012.md").exists())
+        self.assertIn("Do not claim all ten have been ingested or U011 complete", day14)
+        self.assertIn("changed record must advance exactly one version", unit)
+        self.assertIn("same-version changed text", unit)
+        self.assertIn("Day 15: primary 60 min", unit)
+        self.assertTrue((DOCS / "days/day-15.md").is_file())
+        self.assertTrue((DOCS / "units/u012.md").is_file())
 
     def test_u009_documents_browser_cancellation_without_claiming_server_abort(self):
         unit = (DOCS / "units/u009.md").read_text(encoding="utf-8")
@@ -103,14 +102,21 @@ class Sprint1ContractTests(unittest.TestCase):
                 self.assertTrue(current.is_file(), f"missing current source: {source['current_path']}")
                 self.assertIn("blob/6b291d9", source["historical_url"])
 
-    def test_only_sprint1_learner_seams_are_active(self):
+    def test_sprint1_seams_remain_first_and_continuation_seams_are_explicit(self):
         tree = ast.parse((ROOT / "ai/fde_v2/coverstory/learner.py").read_text(encoding="utf-8"))
         names = [node.name for node in tree.body if isinstance(node, ast.FunctionDef)]
-        self.assertEqual(names, ["parse_document_record", "generate_text", "parse_answer_json",
-                                 "upsert_document_metadata"])
+        self.assertEqual(names[:4], ["parse_document_record", "generate_text", "parse_answer_json",
+                                     "upsert_document_metadata"])
+        self.assertEqual(names[4:17], ["ingest_versioned_document", "chunk_document", "embed_texts",
+                                      "keyword_search", "index_vectors", "retrieve_vectors",
+                                      "evaluate_retrieval", "compose_chat_messages", "validate_citations",
+                                      "answer_with_evidence", "should_abstain", "classify_failure",
+                                      "build_eval_record"])
+        self.assertEqual(names[17:], ["validate_fixture_path"])
         self.assertNotIn("qdrant-client", (ROOT / "requirements-fde-v2-sprint1.txt").read_text())
-        self.assertFalse((ROOT / "ai/fde_v2/coverstory/vector_store.py").exists())
-        self.assertFalse((ROOT / "ai/fde_v2/coverstory/pipeline.py").exists())
+        self.assertIn("qdrant-client==1.20.0", (ROOT / "requirements-fde-v2-sprint2.txt").read_text())
+        self.assertTrue((ROOT / "ai/fde_v2/coverstory/vector_store.py").is_file())
+        self.assertTrue((ROOT / "ai/fde_v2/coverstory/pipeline.py").is_file())
 
     def test_role_aws_source_mapping_is_specific_and_honest(self):
         aws = (DOCS / "aws-bank.md").read_text(encoding="utf-8")
@@ -132,7 +138,7 @@ class Sprint1ContractTests(unittest.TestCase):
             text=True, capture_output=True, check=False, timeout=10,
         )
         self.assertEqual(help_result.returncode, 0, help_result.stderr)
-        self.assertIn("Day 14 accepts only the first synthetic record", help_result.stdout)
+        self.assertIn("Day 14 partial seed accepts one row", help_result.stdout)
         with tempfile.TemporaryDirectory() as data_dir:
             run_result = subprocess.run(
                 [sys.executable, "scripts/fde_v2_seed_corpus.py"], cwd=ROOT,

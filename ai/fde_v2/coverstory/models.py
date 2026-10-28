@@ -27,6 +27,7 @@ class LocalGenerator:
     def __init__(self, torch, tokenizer, model, stopping_criteria_type, stopping_criteria_list_type,
                  timeout_seconds: float = 45.0):
         self.torch, self.tokenizer, self.model = torch, tokenizer, model
+        self.model_id, self.model_revision = MODEL_ID, MODEL_REVISION
         self.deadline_type = _deadline_type(stopping_criteria_type)
         self.stopping_criteria_list_type = stopping_criteria_list_type
         if type(timeout_seconds) not in (int, float) or not 1 <= timeout_seconds <= 300:
@@ -136,3 +137,103 @@ class LocalModels:
         model.eval()
         timeout = float(os.environ.get("FDE_V2_GENERATION_TIMEOUT_SECONDS", "45"))
         return LocalGenerator(torch, tokenizer, model, StoppingCriteria, StoppingCriteriaList, timeout)
+
+
+class LocalEmbeddings:
+    """Load a user-provided, hash-manifested local SentenceTransformer only.
+
+    This class never accepts a Hub name and sets local_files_only=True. The
+    starter currently has no embedding weights, so the real-embedding gate is
+    intentionally unavailable until an approved, independently verified
+    artifact is supplied outside Git.
+    """
+
+    @staticmethod
+    def _digest(path: Path) -> str:
+        digest = hashlib.sha256()
+        with path.open("rb") as handle:
+            for block in iter(lambda: handle.read(1024 * 1024), b""):
+                digest.update(block)
+        return digest.hexdigest()
+
+    @classmethod
+    def load(cls, model_dir: Path, manifest_path: Path):
+        model_dir = model_dir.expanduser()
+        manifest_path = manifest_path.expanduser()
+        if model_dir.is_symlink() or not model_dir.is_dir() or manifest_path.is_symlink() or not manifest_path.is_file():
+            raise RuntimeUnavailable("verified local embedding model and manifest are not installed")
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise RuntimeUnavailable("embedding runtime manifest is unreadable") from exc
+        record = manifest.get("embedding") if isinstance(manifest, dict) else None
+        if not isinstance(record, dict):
+            raise RuntimeUnavailable("embedding manifest must contain an embedding object")
+        repository = record.get("repository")
+        revision = record.get("revision")
+        license_name = record.get("license")
+        dimension = record.get("dimension")
+        normalize = record.get("normalize_embeddings")
+        files = record.get("files")
+        if (not isinstance(repository, str) or not repository.strip()
+                or not isinstance(revision, str) or len(revision) != 40
+                or any(ch not in "0123456789abcdef" for ch in revision.lower())
+                or not isinstance(license_name, str) or not license_name.strip()
+                or type(dimension) is not int or dimension < 1 or type(normalize) is not bool
+                or not isinstance(files, dict) or not files):
+            raise RuntimeUnavailable("embedding manifest metadata is incomplete")
+        base = model_dir.resolve(strict=True)
+        expected = set()
+        for relative, checksum in files.items():
+            if (not isinstance(relative, str) or not relative or Path(relative).is_absolute()
+                    or ".." in Path(relative).parts or "" in Path(relative).parts):
+                raise RuntimeUnavailable("embedding model file list contains an unsafe path")
+            candidate = model_dir / relative
+            try:
+                resolved = candidate.resolve(strict=True)
+            except (OSError, ValueError, TypeError) as exc:
+                raise RuntimeUnavailable("embedding model file is missing") from exc
+            if (candidate.is_symlink() or base not in resolved.parents
+                    or not resolved.is_file() or not isinstance(checksum, str)
+                    or len(checksum) != 64 or cls._digest(resolved) != checksum):
+                raise RuntimeUnavailable("embedding model file failed path or SHA-256 validation")
+            expected.add(relative)
+        actual = set()
+        for path in model_dir.rglob("*"):
+            if path.is_symlink():
+                raise RuntimeUnavailable("embedding model tree contains a symlink")
+            if path.is_file():
+                actual.add(path.relative_to(model_dir).as_posix())
+        if actual != expected:
+            raise RuntimeUnavailable("embedding model file manifest is incomplete or has extras")
+        try:
+            from sentence_transformers import SentenceTransformer
+        except ImportError as exc:
+            raise RuntimeUnavailable("install the pinned Sprint 2 Python requirements first") from exc
+        try:
+            model = SentenceTransformer(str(base), device="cpu", trust_remote_code=False,
+                                        local_files_only=True, token=False)
+        except Exception as exc:
+            raise RuntimeUnavailable("local embedding model could not be loaded without network access") from exc
+        model.eval()
+        return _LocalEmbeddingEncoder(model, repository, revision, dimension, normalize, license_name)
+
+
+class _LocalEmbeddingEncoder:
+    def __init__(self, model, model_id: str, revision: str, dimension: int,
+                 normalize_embeddings: bool, license_name: str):
+        self.model, self.model_id, self.model_revision = model, model_id, revision
+        self.dimension, self.normalize_embeddings, self.license = dimension, normalize_embeddings, license_name
+
+    def encode(self, texts: list[str]) -> list[list[float]]:
+        if not isinstance(texts, list) or not texts or any(not isinstance(t, str) or not t.strip() for t in texts):
+            raise ValueError("embedding inputs must be a nonempty list of strings")
+        result = self.model.encode(texts, convert_to_numpy=True,
+                                   normalize_embeddings=self.normalize_embeddings,
+                                   show_progress_bar=False, device="cpu")
+        rows = result.tolist() if hasattr(result, "tolist") else result
+        if not isinstance(rows, list) or any(not isinstance(row, list) for row in rows):
+            raise RuntimeError("embedding runtime did not return a matrix")
+        if len(rows) != len(texts) or any(len(row) != self.dimension for row in rows):
+            raise RuntimeError("embedding runtime output shape differs from its verified manifest")
+        return rows

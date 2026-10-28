@@ -15,6 +15,8 @@ export default defineConfig({
         '/health': process.env.VITE_FDE_V2_API_TARGET,
         '/documents': process.env.VITE_FDE_V2_API_TARGET,
         '/generate': process.env.VITE_FDE_V2_API_TARGET,
+        '/retrieve': process.env.VITE_FDE_V2_API_TARGET,
+        '/ask': process.env.VITE_FDE_V2_API_TARGET,
       } : {}),
     },
   },
@@ -26,7 +28,7 @@ export default defineConfig({
     setupFiles: './src/test-setup.ts',
     clearMocks: true,
     include: process.env.RUN_FDE_V2 === 'true'
-      ? ['src/fde-v2/QuestionAnswerApp.test.tsx']
+      ? ['src/fde-v2/QuestionAnswerApp.test.tsx', 'src/fde-v2/AskRagPanel.test.tsx']
       : process.env.RUN_MODEL_INTEGRATION_WITNESS === 'true'
       ? ['src/local/ModelPredictionPanel.witness.test.tsx']
       : process.env.RUN_MODEL_INTEGRATION_ACCEPTANCE === 'true'
