@@ -1,0 +1,41 @@
+{
+  "version": "ai-fde-v2.4-interview-first-aws-only",
+  "status": "review_candidate_not_implemented",
+  "files": {
+    "repaired-roadmap-architecture.md": "68d99d68de68acbd4c6957f2c9deefa601442aa29cbabfc52101711134177649",
+    "first-30-days.md": "c913623b23b432b7024db8a7550bef9685eb8c47aa1565065970893f4d287cfe",
+    "first-30-days.json": "86f96468ce0d966b824cb16d0715a762c45cffa7792adae3f11cbff850eb0596",
+    "first-30-ai-units.md": "a4ce443c3fb4d542d97fef0943e332f5e52649fce13478237df35478cb073737",
+    "first-30-ai-units.json": "c405b92d7b25a34c53660707d2ba45876eab757faeca76f30a522006396f9e41",
+    "first-release-through-day41-schedule.json": "ceb01de4cd4ca9a55ec59d348a6187590fe40f8537423924dde5687f47f00e8b",
+    "later-milestone-contracts.md": "4aa00c20e2ae73e141a95defc56d119737275549ed2533b817e4df03952bf9c2",
+    "later-milestone-contracts.json": "97e5aba0f3ff30c46bcb5de3c654660fa85c8510359752fcf1f7d9c2a6bb7cd0"
+  },
+  "arithmetic": {
+    "daily_default_minutes": 180,
+    "first30_total_hours": 90,
+    "first30_dsa_hours": 30,
+    "first30_interview_hours": 11,
+    "first30_aws_cert_hours": 4,
+    "first30_ai_hours": 45,
+    "first30_visibility_in_ai_hours": 2,
+    "core_ai_work_excluding_visibility": 385,
+    "core_ai_hours_at270_default_days": 405,
+    "core_substantive_ai_hours": 325,
+    "core_buffer_hours": 60
+  },
+  "estimated_checkpoints": {
+    "real_generation_day": 9,
+    "real_vector_store_day": 22,
+    "real_rag_day": 26,
+    "evaluated_local_prototype_day": 41
+  },
+  "no_external_writes": true,
+  "review_fixes": [
+    "Day30U023partial scope explicit; no unit/release pass",
+    "M5.1formal20h bank work accrued across core, not compressed inP5 or double-counted",
+    "C0first30AWS audit counted once; P2only incremental practical work",
+    "AWS slots continue Days33,34,40,41"
+  ],
+  "proofreading": "Learner-facing prose normalized for word/number spacing; protected IDs, URLs and code spans retained."
+}

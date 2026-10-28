@@ -1,0 +1,942 @@
+{
+  "schema_version": "interview-first-proposal-2",
+  "status": "local_review_only",
+  "supersedes": "superseded-delivery-first-first-30-days.json",
+  "scope": "30 AI dependency units, not 30 learning days",
+  "base_ai_work_hours_excluding_weekly_visibility": 58,
+  "unit_primary_hours": 45,
+  "unit_support_hours": 5,
+  "unit_buffer_hours": 8,
+  "units": [
+    {
+      "id": "AIFDE-V2-U001",
+      "title": "Baseline, scope and ownership",
+      "prerequisites": [],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "support",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Inspect the minimal starter; attempt a small Python transform and SQL query if a runtime is available, otherwise record the unavailable environment as a baseline finding; choose the smallest useful public/synthetic-document workflow.",
+      "planned_outputs": [
+        "docs/baseline.md",
+        "docs/problem-brief.md",
+        "baseline attempt/test output"
+      ],
+      "acceptance_criteria": [
+        "Record actual attempts and unknowns without marking prior SWE experience as new curriculum completion.",
+        "Name one user, one workflow, a non-AI baseline, one measurable prototype objective and explicit non-goals.",
+        "Explain the intended starter request path from code; execution and an actual code-change check occur after the environment is available, not falsely before setup."
+      ],
+      "flex_task": "Write the architecture sketch and own-vs-borrowed code note.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 1
+    },
+    {
+      "id": "AIFDE-V2-U002",
+      "title": "Reproducible environment and real-model feasibility",
+      "prerequisites": [
+        "AIFDE-V2-U001"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "buffer",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Lock the Python project environment; create safe configuration; measure available CPU/RAM/disk; verify a no-service-fee real local generation and embedding route against official distribution/license information.",
+      "planned_outputs": [
+        "environment lockfile",
+        ".env.example",
+        "docs/runtime-feasibility.md",
+        "capability-status.json"
+      ],
+      "acceptance_criteria": [
+        "A clean environment runs a basic test and the starter request path; no key or private data is committed. Record a blocker rather than claiming execution if unavailable.",
+        "Record machine measurements, model/runtime candidates, download size/license and expected limitations; exact versions are resolved at implementation.",
+        "If inference cannot run within available hardware/permissions, record a blocker and the specific approval/access needed; no mock pass."
+      ],
+      "flex_task": "Resolve setup or dependency problems; otherwise stop or revisit the baseline.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 2
+    },
+    {
+      "id": "AIFDE-V2-U003",
+      "title": "Python data contracts and tests",
+      "prerequisites": [
+        "AIFDE-V2-U002"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "support",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Implement typed request/document records, a small plain-text/Markdown ingestion function and meaningful error handling; use tests rather than re-learning all programming basics. From the first read, constrain ingestion to the owned fixture directory; default raw-content logging off.",
+      "planned_outputs": [
+        "ingest module",
+        "data contracts",
+        "ingestion unit tests"
+      ],
+      "acceptance_criteria": [
+        "Parse the permitted small fixture format and reject malformed/empty inputs.",
+        "Demonstrate one exception path and test one boundary case.",
+        "Make one small input-format change without copying a finished solution."
+      ],
+      "flex_task": "Study only the Python typing, collection or exception gaps revealed by the task.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 3
+    },
+    {
+      "id": "AIFDE-V2-U004",
+      "title": "Small API with observable failure paths",
+      "prerequisites": [
+        "AIFDE-V2-U003"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "buffer",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Implement /health and a document-metadata endpoint in one Python API stack; connect input validation, request IDs and structured errors. Bind to loopback only by default; enforce fixture-directory scope and keep raw-content logging off from the start.",
+      "planned_outputs": [
+        "API endpoints",
+        "API tests",
+        "request/response contract"
+      ],
+      "acceptance_criteria": [
+        "Success, invalid-input and not-found requests return the documented status/body.",
+        "A request ID connects response to a log entry without secrets.",
+        "Explain the request path and why this stack is sufficient; no framework collection.",
+        "Default API binding is loopback-only; a filename/path cannot escape the owned fixture directory, and raw document/prompt logging is off."
+      ],
+      "flex_task": "Repair API/setup failures; avoid optional architecture expansion.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 4
+    },
+    {
+      "id": "AIFDE-V2-U005",
+      "title": "Understand inference and install a real runtime",
+      "prerequisites": [
+        "AIFDE-V2-U002",
+        "AIFDE-V2-U004"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "support",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Learn token/context/output-limit basics and the difference between generation, embeddings and retrieval; install/configure the selected real local model runtime and a narrow provider adapter.",
+      "planned_outputs": [
+        "docs/inference-contract.md",
+        "real provider adapter configuration"
+      ],
+      "acceptance_criteria": [
+        "Model identifier/revision, license, quantization, context and output limits are recorded where available.",
+        "Adapter accepts a prompt and exposes explicit timeout/error behavior; credentials, if ever authorized, remain outside code.",
+        "Explain why an extractive/template answer and a mocked provider are not generative inference."
+      ],
+      "flex_task": "Use current official runtime/model documentation; do not memorize a stale model list.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 5
+    },
+    {
+      "id": "AIFDE-V2-U006",
+      "title": "First real generated response",
+      "prerequisites": [
+        "AIFDE-V2-U005"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "buffer",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Call the actual pretrained generative model through the adapter on three simple tasks; capture real outputs, elapsed time and failures; tune only output/context limits for the machine.",
+      "planned_outputs": [
+        "artifacts/inference-smoke.json",
+        "real-local integration test",
+        "docs/model-limitations.md"
+      ],
+      "acceptance_criteria": [
+        "At least one non-canned generated response is produced by the recorded real model, not a test double.",
+        "Record hardware, request settings, actual timing and actual token counts if exposed; otherwise mark counts unavailable.",
+        "A forced timeout/unavailable runtime is handled honestly; failed inference keeps the capability gate blocked."
+      ],
+      "flex_task": "Repair runtime or adapter issues; request a bounded alternative only if local capability is insufficient.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 6
+    },
+    {
+      "id": "AIFDE-V2-U007",
+      "title": "Reality check and first evidence note",
+      "prerequisites": [
+        "AIFDE-V2-U006"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 0,
+        "support_or_buffer_type": "none_visibility_scheduled_weekly",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Run a five-prompt capability smoke set including an impossible/unanswerable request; inspect failures and confirm what the model can and cannot support in this prototype.",
+      "planned_outputs": [
+        "evals/inference-smoke.jsonl",
+        "artifacts/inference-smoke-review.md"
+      ],
+      "acceptance_criteria": [
+        "All five actual outcomes are saved, including failure or uncertainty.",
+        "Distinguish a plausible response from a verified answer.",
+        "Decide whether the local model is viable for the narrow corpus; do not hide a hardware/quality blocker."
+      ],
+      "flex_task": "The evidence note is scheduled weekly in the daily schedule, not charged twice to this unit.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 7
+    },
+    {
+      "id": "AIFDE-V2-U008",
+      "title": "Real generation behind the API",
+      "prerequisites": [
+        "AIFDE-V2-U004",
+        "AIFDE-V2-U006"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "buffer",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Implement a /generate request path using the real adapter with a bounded request deadline and client cancellation/error behavior.",
+      "planned_outputs": [
+        "/generate implementation",
+        "API integration tests",
+        "one real API trace"
+      ],
+      "acceptance_criteria": [
+        "A real HTTP request returns actual model output.",
+        "Invalid input, timeout and unavailable provider paths are tested.",
+        "Separate deterministic mocked unit tests from the real-model integration receipt."
+      ],
+      "flex_task": "Debug the integration; defer streaming until the basic path is reliable.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 8
+    },
+    {
+      "id": "AIFDE-V2-U009",
+      "title": "Thin React workflow",
+      "prerequisites": [
+        "AIFDE-V2-U008"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "buffer",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Use existing React/TypeScript skills to build a minimal question/answer screen with loading, empty, cancel/error and result states; avoid visual-polish work unrelated to the workflow.",
+      "planned_outputs": [
+        "CoverStory UI",
+        "frontend state tests",
+        "local screenshot"
+      ],
+      "acceptance_criteria": [
+        "The UI calls the real backend and shows a real generated answer.",
+        "A failed/canceled request cannot leave the UI falsely showing success.",
+        "Explain the frontend/backend contract and one accessible error-state choice."
+      ],
+      "flex_task": "Fix integration or accessibility defects; no extra design system.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 9
+    },
+    {
+      "id": "AIFDE-V2-U010",
+      "title": "Structured output without trusting it",
+      "prerequisites": [
+        "AIFDE-V2-U008"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "support",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Define an answer schema, validate actual model output, and implement one bounded repair/retry or explicit failure path; compare success and malformed output.",
+      "planned_outputs": [
+        "answer schema",
+        "output validator",
+        "malformed-output tests",
+        "real structured-output sample"
+      ],
+      "acceptance_criteria": [
+        "Malformed or missing fields are rejected rather than silently coerced into a valid answer.",
+        "Retries are capped and observable; failure is still possible.",
+        "Explain that schema validity does not establish factual correctness."
+      ],
+      "flex_task": "Review JSON/schema/validation behavior using the actual selected SDK or plain API.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 10
+    },
+    {
+      "id": "AIFDE-V2-U011",
+      "title": "Versioned small corpus and SQL metadata",
+      "prerequisites": [
+        "AIFDE-V2-U003",
+        "AIFDE-V2-U004"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "buffer",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Create or use ten licensed public/synthetic Markdown/text documents (roughly 150\u2013300 words each); persist IDs, source, content hash and version in SQLite with idempotent ingestion.",
+      "planned_outputs": [
+        "data/corpus manifest",
+        "metadata schema",
+        "ingestion idempotency tests"
+      ],
+      "acceptance_criteria": [
+        "Reingesting unchanged input does not duplicate documents.",
+        "A changed document produces the intended version/update behavior.",
+        "Run and explain a SQL query that joins or aggregates document/ingestion metadata; record licensing/source."
+      ],
+      "flex_task": "Repair schema/data bugs; keep PDF/OCR and private uploads out of month one.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 11
+    },
+    {
+      "id": "AIFDE-V2-U012",
+      "title": "Chunking with source provenance",
+      "prerequisites": [
+        "AIFDE-V2-U011"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "support",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Implement a small deterministic chunker that preserves document/version/source offsets or headings; set a measured context-compatible chunk budget and test boundary behavior.",
+      "planned_outputs": [
+        "chunker",
+        "chunk manifest",
+        "chunk/provenance tests"
+      ],
+      "acceptance_criteria": [
+        "Every chunk maps back to one source document/version and actual text.",
+        "Empty, very short and over-limit documents have tested behavior.",
+        "Explain the retrieval/context tradeoff; do not claim one chunk size is universally optimal."
+      ],
+      "flex_task": "Study tokens versus characters and the effect of overlap using one concrete example.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 12
+    },
+    {
+      "id": "AIFDE-V2-U013",
+      "title": "Real embeddings and vector intuition",
+      "prerequisites": [
+        "AIFDE-V2-U012"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "support",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Run an actual pretrained embedding model over chunks; validate dimensions/finite values and examine similarities on a few related/unrelated pairs.",
+      "planned_outputs": [
+        "embedding adapter",
+        "embedding model metadata",
+        "embedding sanity-check output"
+      ],
+      "acceptance_criteria": [
+        "Vectors come from the real recorded model, not random/hash/mock embeddings.",
+        "Dimensions, normalization assumptions and model revision are recorded.",
+        "Explain dot product/cosine similarity and why similarity alone does not prove answerability."
+      ],
+      "flex_task": "Work one small vector/similarity example by hand and check it in code.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 13
+    },
+    {
+      "id": "AIFDE-V2-U014",
+      "title": "Evaluation cases before retrieval tuning",
+      "prerequisites": [
+        "AIFDE-V2-U011",
+        "AIFDE-V2-U012"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 0,
+        "support_or_buffer_type": "none_visibility_scheduled_weekly",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Create/review 30 small question cases with expected evidence and answerability labels; separate 20 development cases and 10 held-out cases before tuning.",
+      "planned_outputs": [
+        "evals/questions-dev.jsonl",
+        "evals/questions-heldout.jsonl",
+        "evals/rubric.md"
+      ],
+      "acceptance_criteria": [
+        "Development: 12 answerable, 4 unanswerable and 4 adversarial/instruction-conflict cases; held-out: 6 answerable, 2 unanswerable and 2 adversarial cases.",
+        "Each answerable case names supporting document/chunk evidence; labels and limitations are reviewed.",
+        "Held-out cases are not used for tuning; an independent reviewer/author is preferable, not claimed if absent."
+      ],
+      "flex_task": "The evidence note is scheduled weekly in the daily schedule, not charged twice to this unit.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 14
+    },
+    {
+      "id": "AIFDE-V2-U015",
+      "title": "Non-neural retrieval baseline",
+      "prerequisites": [
+        "AIFDE-V2-U012",
+        "AIFDE-V2-U014"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "buffer",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Implement SQLite FTS/BM25 or another documented keyword baseline over the same chunks; run retrieval evaluation on development answerable questions.",
+      "planned_outputs": [
+        "keyword retriever",
+        "artifacts/keyword-dev-results.json",
+        "retrieval metric tests"
+      ],
+      "acceptance_criteria": [
+        "Results expose source/chunk IDs and ranking, not fabricated citations.",
+        "Recall@k and/or MRR use the correct answerable-case denominator and declared evidence mapping.",
+        "Save all development results, including misses; no held-out tuning."
+      ],
+      "flex_task": "Repair baseline or labels; do not add hybrid/reranking before measuring the baseline.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 15
+    },
+    {
+      "id": "AIFDE-V2-U016",
+      "title": "A genuine persisted vector database",
+      "prerequisites": [
+        "AIFDE-V2-U013",
+        "AIFDE-V2-U015"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "buffer",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Create a real persisted vector collection using Qdrant local mode or another current supported vector database; upsert chunk vectors/metadata and perform actual nearest-neighbor queries.",
+      "planned_outputs": [
+        "vector-store integration",
+        "persistence/upsert tests",
+        "real query receipt"
+      ],
+      "acceptance_criteria": [
+        "Restarting the process preserves the intended collection/data.",
+        "Upsert/version handling and the configured distance metric match the embedding contract.",
+        "A real vector-store call returns meaningful chunk IDs; an in-memory mock or NumPy-only search does not pass this gate."
+      ],
+      "flex_task": "Resolve actual DB/model integration problems; server/container mode can wait until P2.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 16
+    },
+    {
+      "id": "AIFDE-V2-U017",
+      "title": "Retrieval comparison and inspection",
+      "prerequisites": [
+        "AIFDE-V2-U014",
+        "AIFDE-V2-U015",
+        "AIFDE-V2-U016"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "support",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Expose a /retrieve path; evaluate keyword versus vector retrieval on the same development set; inspect misses and make one evidence-based choice.",
+      "planned_outputs": [
+        "/retrieve endpoint",
+        "artifacts/retrieval-comparison.md",
+        "per-case results"
+      ],
+      "acceptance_criteria": [
+        "Declare k, model/config, metric definitions and actual sample counts.",
+        "Do not compare unlike raw score scales as if calibrated.",
+        "Explain one retrieval miss and one next experiment; an improvement is measured, not guaranteed."
+      ],
+      "flex_task": "Study precision/recall/ranking and small-sample limitations using these actual results.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 17
+    },
+    {
+      "id": "AIFDE-V2-U018",
+      "title": "Grounding prompt and trustworthy source plumbing",
+      "prerequisites": [
+        "AIFDE-V2-U010",
+        "AIFDE-V2-U017"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "buffer",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Build a context envelope that separates instructions from untrusted retrieved text; require answers to cite supplied source IDs, and validate all cited IDs against retrieved evidence.",
+      "planned_outputs": [
+        "grounding prompt",
+        "context builder",
+        "citation-ID validator/tests"
+      ],
+      "acceptance_criteria": [
+        "Only supplied source IDs can appear as valid citations.",
+        "No secret or unrelated private context is placed in the prompt.",
+        "Explain that ID validity alone does not prove that a cited passage supports a claim."
+      ],
+      "flex_task": "Debug prompt/context limits and citation plumbing; do not hide unsupported claims.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 18
+    },
+    {
+      "id": "AIFDE-V2-U019",
+      "title": "First genuine generative RAG path",
+      "prerequisites": [
+        "AIFDE-V2-U009",
+        "AIFDE-V2-U018"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "buffer",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Connect question \u2192 real retrieval \u2192 actual generative model \u2192 validated answer/citations; render source snippets from the original corpus in the UI.",
+      "planned_outputs": [
+        "/ask RAG path",
+        "source-linked UI",
+        "real end-to-end RAG trace"
+      ],
+      "acceptance_criteria": [
+        "A real user query retrieves actual stored vectors and produces a new model-generated answer grounded in returned text.",
+        "Displayed snippets come from corpus storage, not a model-invented URL or quote.",
+        "Save one successful and one failing real trace, including retrieval and generation stages."
+      ],
+      "flex_task": "Repair end-to-end wiring; this gate cannot be replaced by extractive/template output.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 19
+    },
+    {
+      "id": "AIFDE-V2-U020",
+      "title": "Abstention and user-facing limits",
+      "prerequisites": [
+        "AIFDE-V2-U019"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "support",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Implement an explicit insufficient-evidence/clarification path and evaluate it on development unanswerable cases; distinguish retrieval weakness from answer-generation weakness.",
+      "planned_outputs": [
+        "answerability/abstention behavior",
+        "development review",
+        "UI limitation text"
+      ],
+      "acceptance_criteria": [
+        "Missing evidence does not force a confident answer.",
+        "Tests cover empty retrieval and unsupported requested claims.",
+        "Any score threshold is documented as a heuristic, not proof; manually review actual generated claims against evidence."
+      ],
+      "flex_task": "Review calibration/uncertainty and why model confidence is not a truth score.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 20
+    },
+    {
+      "id": "AIFDE-V2-U021",
+      "title": "Failure taxonomy and traces",
+      "prerequisites": [
+        "AIFDE-V2-U019",
+        "AIFDE-V2-U020"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 0,
+        "support_or_buffer_type": "none_visibility_scheduled_weekly",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Run the development evaluation and classify failures as retrieval, unsupported generation, wrong citation, schema, latency or operational failure; connect the stages using trace IDs.",
+      "planned_outputs": [
+        "artifacts/rag-dev-eval.json",
+        "docs/failure-taxonomy.md",
+        "redacted trace example"
+      ],
+      "acceptance_criteria": [
+        "Every scored case has a result and failure/review reason, not only a summary percentage.",
+        "Trace includes model/config and stage timing; sensitive content is not logged by default.",
+        "Select one next repair based on observed failures; do not tune on held-out data."
+      ],
+      "flex_task": "The evidence note is scheduled weekly in the daily schedule, not charged twice to this unit.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 21
+    },
+    {
+      "id": "AIFDE-V2-U022",
+      "title": "Input, data and secret boundaries",
+      "prerequisites": [
+        "AIFDE-V2-U011",
+        "AIFDE-V2-U019"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "support",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Keep the prototype local-only/single-user; enforce allowed file types, size/path bounds and safe rendering; add secret/data-handling checks and a short threat model.",
+      "planned_outputs": [
+        "docs/threat-model.md",
+        "input/path/rendering tests",
+        "secret-scan result"
+      ],
+      "acceptance_criteria": [
+        "Untrusted filenames/path traversal and oversized/invalid inputs are rejected.",
+        "Model output is not executed or rendered as unsafe HTML.",
+        "State that authentication, multi-tenancy and public exposure are not yet established; no production-security claim."
+      ],
+      "flex_task": "Study actual trust boundaries and least privilege for the planned next phase.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 22
+    },
+    {
+      "id": "AIFDE-V2-U023",
+      "title": "Adversarial documents and regression tests",
+      "prerequisites": [
+        "AIFDE-V2-U018",
+        "AIFDE-V2-U020",
+        "AIFDE-V2-U022"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "support",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Add controlled malicious-document instructions and misleading evidence cases; verify deterministic access boundaries, inspect model behavior and turn observed defects into regression tests.",
+      "planned_outputs": [
+        "evals/adversarial-dev.jsonl",
+        "security/regression tests",
+        "observed-behavior notes"
+      ],
+      "acceptance_criteria": [
+        "Retrieved text cannot authorize tools, filesystem access or external actions; this prototype has no such tool permission.",
+        "No credentials or hidden real secrets exist in model context; use synthetic canaries for tests.",
+        "Record any prompt-following/unsupported-answer failures honestly; passing a few cases is not universal injection resistance."
+      ],
+      "flex_task": "Read current official guidance for the chosen runtime/SDK and explain prompt-level versus enforced controls.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 23
+    },
+    {
+      "id": "AIFDE-V2-U024",
+      "title": "Reproducible build and CI boundary",
+      "prerequisites": [
+        "AIFDE-V2-U022",
+        "AIFDE-V2-U023"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "buffer",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Add one clean setup/test command, CI for deterministic tests, and a container build/smoke test for the API; document the host model runtime and persisted local vector data.",
+      "planned_outputs": [
+        "setup/test commands",
+        "CI configuration",
+        "API container smoke receipt",
+        "deployment-prep notes"
+      ],
+      "acceptance_criteria": [
+        "A fresh environment runs offline tests without real-provider credentials.",
+        "The API container starts and passes its stated health smoke test.",
+        "Separate this limited container check from the real local RAG receipt; it is not a cloud or full production deployment."
+      ],
+      "flex_task": "Fix reproducibility defects; full hosted/container orchestration belongs in P2.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 24
+    },
+    {
+      "id": "AIFDE-V2-U025",
+      "title": "Bounded failure and recovery behavior",
+      "prerequisites": [
+        "AIFDE-V2-U008",
+        "AIFDE-V2-U019",
+        "AIFDE-V2-U024"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "buffer",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Test provider unavailable, slow response, malformed response and canceled request paths; cap retries/deadlines and prevent accidental duplicate work where applicable.",
+      "planned_outputs": [
+        "failure-injection tests",
+        "retry/deadline configuration",
+        "recovery notes"
+      ],
+      "acceptance_criteria": [
+        "Every failure terminates within a declared budget or is explicitly reported as a defect.",
+        "No unbounded retry loop; user-visible state and trace show failure/cancellation.",
+        "At least one actual runtime outage/recovery is observed; simulated failures are labeled test injections."
+      ],
+      "flex_task": "Repair the most important reliability failure; do not add a queue solely for architecture appearance.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 25
+    },
+    {
+      "id": "AIFDE-V2-U026",
+      "title": "Honest latency and resource baseline",
+      "prerequisites": [
+        "AIFDE-V2-U021",
+        "AIFDE-V2-U025"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "buffer",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Run a small reproducible local benchmark (for example 12 requests with declared concurrency); record retrieval/generation/end-to-end latency, model settings and machine resource limitations.",
+      "planned_outputs": [
+        "benchmark script",
+        "artifacts/local-performance.json",
+        "docs/performance-baseline.md"
+      ],
+      "acceptance_criteria": [
+        "Report actual sample size, concurrency, warm/cold conditions and latency values.",
+        "Cost/token fields are actual or explicitly unavailable; no invented cloud/API estimate is presented as measured.",
+        "Explain one quality/latency/resource tradeoff and the limits of this small local test."
+      ],
+      "flex_task": "Resolve benchmark defects; optimize only if measured evidence justifies it.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 26
+    },
+    {
+      "id": "AIFDE-V2-U027",
+      "title": "Discovery, scope change and handoff draft",
+      "prerequisites": [
+        "AIFDE-V2-U001",
+        "AIFDE-V2-U021",
+        "AIFDE-V2-U026"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "buffer",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Revisit the problem brief in a short stakeholder role-play or authorized peer review; ask data/access/value questions, identify one useful scoped change and draft a runbook/handoff.",
+      "planned_outputs": [
+        "docs/discovery-notes.md",
+        "docs/change-request.md",
+        "docs/runbook.md"
+      ],
+      "acceptance_criteria": [
+        "Label role-play, peer feedback and actual user feedback accurately.",
+        "State baseline, proposed success measure, non-goals, data restrictions and go/no-go limits.",
+        "No invented business savings/customer adoption; one tradeoff is explained to a nontechnical audience."
+      ],
+      "flex_task": "Repair scope or documentation gaps; external outreach is not automatically authorized.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 27
+    },
+    {
+      "id": "AIFDE-V2-U028",
+      "title": "Independent ownership check",
+      "prerequisites": [
+        "AIFDE-V2-U019",
+        "AIFDE-V2-U023",
+        "AIFDE-V2-U025"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 0,
+        "support_or_buffer_type": "none_visibility_scheduled_weekly",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Without receiving a finished solution, trace a question end-to-end and implement one small reviewer-selected change or diagnose an injected defect; add a regression test.",
+      "planned_outputs": [
+        "ownership-check attempt",
+        "minimal patch/test",
+        "self/reviewer rubric"
+      ],
+      "acceptance_criteria": [
+        "Explain retrieval, context, generation, citation validation and failure handling in your own words.",
+        "The attempt shows learner-owned reasoning/code, not a replay of supplied solution text.",
+        "Record help used and unresolved gaps; a failed check becomes remediation rather than a completion badge."
+      ],
+      "flex_task": "The evidence note is scheduled weekly in the daily schedule, not charged twice to this unit.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 28
+    },
+    {
+      "id": "AIFDE-V2-U029",
+      "title": "Held-out check and acceptance audit",
+      "prerequisites": [
+        "AIFDE-V2-U014",
+        "AIFDE-V2-U021",
+        "AIFDE-V2-U023",
+        "AIFDE-V2-U025",
+        "AIFDE-V2-U028"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "buffer",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Freeze the current configuration, run the ten held-out cases once for this release, score against the rubric and audit mandatory capability/security evidence.",
+      "planned_outputs": [
+        "artifacts/heldout-release-eval.json",
+        "artifacts/p 1-gate-audit.md",
+        "remediation list"
+      ],
+      "acceptance_criteria": [
+        "For this narrow prototype, proposed release target: at least 5/6 answerable cases correct and supported, 2/2 unanswerable cases not fabricated, and no deterministic access-boundary failure; report exact counts and adversarial behavior.",
+        "All citations resolve; unsupported-claim failures are visible. The tiny dataset does not establish enterprise safety/quality.",
+        "A failed gate remains failed; remediate on development cases and use a fresh held-out release set later rather than tuning the same test cases."
+      ],
+      "flex_task": "Fix non-model test/audit defects or schedule failed-quality remediation; do not silently lower thresholds.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 29
+    },
+    {
+      "id": "AIFDE-V2-U030",
+      "title": "Clean-run demo and honest first checkpoint",
+      "prerequisites": [
+        "AIFDE-V2-U024",
+        "AIFDE-V2-U026",
+        "AIFDE-V2-U027",
+        "AIFDE-V2-U029"
+      ],
+      "time_budget": {
+        "primary_minutes": 90,
+        "support_or_buffer_minutes": 30,
+        "support_or_buffer_type": "buffer",
+        "unit_is_not_a_day": true
+      },
+      "primary_task": "Run setup/tests from a clean environment/profile; perform a real RAG smoke request and a five-minute demo with source evidence plus a failure/abstention path; finalize the concise case-study draft.",
+      "planned_outputs": [
+        "README setup/demo",
+        "clean-run receipt",
+        "demo recording/script",
+        "P1 status/evidence map"
+      ],
+      "acceptance_criteria": [
+        "Another person can follow the instructions where available; otherwise label the verification self-run.",
+        "All required real capabilities have receipts, or P1 remains blocked/incomplete with exact gaps.",
+        "Clearly call this a local single-user prototype; cloud deployment, real-customer production and certification are not claimed."
+      ],
+      "flex_task": "Close reproducibility/ownership gaps; do not advance solely because Day 30 arrived.",
+      "learner_status": "not_started",
+      "scaffold_status": "proposed_contract_only",
+      "evidence": [],
+      "completion_rule": "Pass prerequisite and acceptance evidence; elapsed date, generated scaffold, mock-only test, or assistant completion does not establish learner completion.",
+      "learning_unit_number": 30
+    }
+  ]
+}
