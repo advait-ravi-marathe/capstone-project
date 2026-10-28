@@ -86,7 +86,7 @@ jobs:
       - name: Verify AWS FDE v2.4 assistant-supplied React application
         working-directory: frontend
         run: npm run test:fde-v2
-      - name: Verify AWS FDE v2.4 Days 15–28 continuation witnesses
+      - name: Verify AWS FDE v2.4 Days 15–30 continuation witnesses
         run: |
           python3 -m pip install -r requirements-fde-v2-sprint2.txt
           python3 -m unittest scripts.test_fde_v2_sprint2
@@ -94,6 +94,6 @@ jobs:
             ai.fde_v2.learner_acceptance.test_continuation_units \
             ai.fde_v2.tests.test_continuation_witnesses ai.fde_v2.tests.test_continuation_api \
             ai.fde_v2.tests.test_local_pipeline_witness
-      - name: Verify AWS FDE v2.4 Days 15–28 RAG panel
+      - name: Verify AWS FDE v2.4 Days 15–30 RAG panel
         working-directory: frontend
         run: RUN_FDE_V2=true npx vitest run

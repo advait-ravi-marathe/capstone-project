@@ -25,3 +25,5 @@ A dependency unit can span multiple actual learning days. Only scheduled slices 
 | U019 | [U019](u019.md) | 25, 26 |
 | U020 | [U020](u020.md) | 26, 27 |
 | U021 | [U021](u021.md) | 28, 29 |
+| U022 | [U022](u022.md) | 29, 30 |
+| U023 | [U023](u023.md) | 30 (partial), 31 |

@@ -1,6 +1,6 @@
 # AWS FDE v2.4 learning roadmap
 
-This is the accepted AWS-only, interview-first plan. **No learner days are complete.** A learning-day number advances only when that session is attempted; dates do not automatically change learner status. Sprint 1 covers actual learning Days 1–14. The separate continuation worktree adds Days 15–28; it is not yet merged or published. U011 starts as a partial slice on Day 14 and continues on Day 15. Day28 starts U021, which has a final 30-minute segment on Day29 outside this continuation. U013 real embeddings and U019 generated RAG remain unverified until verified local model artifacts are available.
+This is the accepted AWS-only, interview-first plan. **No learner days are complete.** A learning-day number advances only when that session is attempted; dates do not automatically change learner status. Sprint 1 covers actual learning Days 1–14. The separate continuation branch adds Days 15–30 and remains unpublished pending review. U011 starts as a partial slice on Day14 and continues on Day15. U021 starts on Day28 and ends its scheduled selector mechanics on Day29; real development evaluation remains blocked while model weights are unavailable. U022 runs on Days29–30. Day30 is only the fixture-authoring portion of U023; its execution/regression work continues Day31 and neither U023 nor P1 is marked complete. U013 real embeddings and U019 generated RAG remain unverified until verified local model artifacts are available.
 
 ## Start with actual learning Day 1
 
@@ -40,9 +40,9 @@ Open the Vite URL at `/fde-v2.html`. `VITE_FDE_V2_API_TARGET` proxies `/health`,
 
 These commands only start supplied infrastructure. General HTTP, SQLite, Qdrant and React plumbing are supplied; the learner owns bounded Python AI behaviors and evaluation. From Day 15 onward, the RAG panel exercises the supplied `/retrieve` and `/ask` routes. Tests using fixed vectors or a test double validate mechanics only and never count as real embedding or generated-answer evidence.
 
-## Continuation worktree: actual learning Days 15–28
+## Continuation branch: actual learning Days 15–30
 
-Days 15–28 are authored on `work/aws-fde-v24-continuation` and are not merged or published. In that worktree, install the additional local persistence and embedding packages (no model files are downloaded by this command):
+Days 15–30 are authored on `work/aws-fde-v24-continuation` and are not merged or published. In that worktree, install the additional local persistence and embedding packages (no model files are downloaded by this command):
 
 ```sh
 python -m pip install -r requirements-fde-v2-sprint2.txt
@@ -87,7 +87,7 @@ Fixed-vector and injected-pipeline tests verify mechanics only. They never satis
 - [Model runtime verification status](runtime-verification.md)
 - [Accepted v2.4 planning inputs](accepted/)
 
-Each day's page assigns DSA60 + role/AWS bank30 + AI90 = 180 minutes. A 75-minute DSA revision reduces AI to75; a90-minute revision reduces AI to60. The actual Day 14 allocation spends U010 support30 + the first U011 segment30 + a private evidence note30. U011 remains incomplete. In the separate continuation worktree, actual Days 15–28 extend U011 and introduce U012–U021. The pages and seams are authored but remain unpublished pending review. This branch is not a claim that the full accepted first-30 schedule or its milestones are complete.
+Each day's page assigns DSA60 + role/AWS bank30 + AI90 = 180 minutes. A 75-minute DSA revision reduces AI to75; a90-minute revision reduces AI to60. The actual Day14 allocation spends U010 support30 + the first U011 segment30 + a private evidence note30. U011 remains incomplete. In the separate continuation branch, actual Days 15–30 extend U011 and introduce U012–U023, with Day30 limited to the accepted U023 fixture-authoring slice. The pages and seams remain unpublished pending review. This is not a claim that the full accepted first-30 schedule, U023, or its milestones are complete.
 
 ### Select the intended DSA learning position
 

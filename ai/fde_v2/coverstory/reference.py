@@ -366,10 +366,24 @@ def build_eval_record(case_id: str, status: str, failure_stage: str | None, erro
 
 
 def validate_fixture_path(root: Path, filename: str, max_bytes: int = 50_000) -> Path:
-    if not isinstance(filename, str) or not filename or "\x00" in filename:
+    if (not isinstance(root, Path) or not isinstance(filename, str) or not filename
+            or "\x00" in filename or Path(filename).is_absolute()
+            or type(max_bytes) is not int or max_bytes <= 0):
         raise ValueError("fixture path is invalid")
     real_root = root.resolve(strict=True)
-    path = (real_root / filename).resolve(strict=True)
-    if path == real_root or real_root not in path.parents or not path.is_file() or path.stat().st_size > max_bytes:
+    unresolved = real_root / filename
+    try:
+        lexical_relative = unresolved.relative_to(real_root)
+    except ValueError as exc:
+        raise ValueError("fixture must remain under the fixture root") from exc
+    cursor = real_root
+    for part in lexical_relative.parts:
+        cursor = cursor / part
+        if cursor.is_symlink():
+            raise ValueError("fixture paths must not traverse symlinks")
+    path = unresolved.resolve(strict=True)
+    if (path == real_root or real_root not in path.parents or not path.is_file()
+            or path.suffix.lower() not in {".json", ".jsonl", ".md", ".txt"}
+            or path.stat().st_size > max_bytes):
         raise ValueError("fixture must be a bounded regular file under the fixture root")
     return path

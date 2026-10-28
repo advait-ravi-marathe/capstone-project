@@ -1,6 +1,6 @@
 # AWS FDE v2.4 daily pages
 
-Actual learning days are attempt-indexed; dates do not advance status. Sprint 1 contains Days 1–14; this continuation adds only Days 15–28. Every page retains the fixed 180-minute schedule.
+Actual learning days are attempt-indexed; dates do not advance status. Sprint 1 contains Days 1–14; this continuation adds Days 15–30. Every page retains the fixed 180-minute schedule. Day30 contains only the explicitly bounded U023 fixture-authoring slice; U023 execution continues on Day31.
 
 | Day | Page |
 |---:|---|
@@ -32,3 +32,5 @@ Actual learning days are attempt-indexed; dates do not advance status. Sprint 1 
 | 26 | [Day 26: AWS certification: fresh practice baseline](day-26.md) |
 | 27 | [Day 27: AWS certification: readiness gap map](day-27.md) |
 | 28 | [Day 28: Short FE/full-stack mock segment](day-28.md) |
+| 29 | [Day 29: Targeted gap repair](day-29.md) |
+| 30 | [Day 30: Role-fit review and bounded security authoring](day-30.md) |

@@ -35,6 +35,19 @@ describe('supplied grounded RAG panel contract', () => {
     expect(screen.queryByTestId('rag-answer')).not.toBeInTheDocument();
   });
 
+  it('renders model text as text rather than interpreting it as HTML', async () => {
+    const untrusted = '<img src=x onerror="alert(1)"> synthetic text';
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue({ ok: true, json: async () => ({
+      ...answer, answer: untrusted,
+    }) } as Response);
+    const { container } = render(<AskRagPanel />);
+    fireEvent.change(screen.getByLabelText('Question for grounded RAG'), { target: { value: 'fixture?' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Ask with sources' }));
+    const rendered = await screen.findByTestId('rag-answer');
+    expect(rendered.textContent).toBe(untrusted);
+    expect(container.querySelector('img')).not.toBeInTheDocument();
+  });
+
   it('shows service errors and rejects whitespace before sending', async () => {
     const call = vi.spyOn(globalThis, 'fetch').mockResolvedValue({ ok: false, status: 503 } as Response);
     render(<AskRagPanel />);

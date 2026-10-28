@@ -1,4 +1,4 @@
-"""Independent witness, mutation and sequential-unit tests for Days 15–28."""
+"""Independent witness, mutation and sequential-unit tests for Days 15–30."""
 from __future__ import annotations
 
 import importlib
@@ -18,7 +18,7 @@ SEAM_DAY = {
     "compose_chat_messages": 24, "validate_citations": 24,
     "answer_with_evidence": 25, "should_abstain": 26,
     "classify_failure": 28, "build_eval_record": 28,
-    "validate_fixture_path": 30,
+    "validate_fixture_path": 29,
 }
 SELECTOR_DAY = {
     "test_u011_versioned_ingestion": 15,
@@ -32,6 +32,8 @@ SELECTOR_DAY = {
     "test_u019_grounded_generation_contract": 25,
     "test_u020_abstention_boundaries": 27,
     "test_u021_failure_taxonomy_and_redaction": 28,
+    "test_u022_fixture_path_stays_inside_bounded_allowed_fixture_root": 29,
+    "test_u023_day30_fixture_checker_contract_is_only_authoring_readiness": 30,
 }
 
 
@@ -101,6 +103,9 @@ class ContinuationMutationControls(unittest.TestCase):
                            lambda *_args, **_kwargs: False)
         self.reject_mutant("test_u021_failure_taxonomy_and_redaction", "classify_failure",
                            lambda *_args, **_kwargs: "unknown")
+        self.reject_mutant("test_u022_fixture_path_stays_inside_bounded_allowed_fixture_root",
+                           "validate_fixture_path",
+                           lambda root, _filename, _max_bytes=50_000: (root / "policy.json").resolve())
 
 
 if __name__ == "__main__":
