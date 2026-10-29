@@ -29,7 +29,11 @@ def report_receipt(receipt_path: str | Path | None, milestone: str,
 
 def audit_artifact_receipt(receipt_path: str | Path, milestone: str,
                            required_keys: Iterable[str] = ()) -> dict:
-    path = Path(receipt_path).resolve(strict=True)
+    try:
+        path = Path(receipt_path).resolve(strict=True)
+    except (OSError, ValueError, RuntimeError, TypeError) as exc:
+        return {"status": "INVALID", "reason": f"receipt path cannot be resolved: {type(exc).__name__}",
+                "verified_artifacts": [], "missing_keys": sorted(set(required_keys))}
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:

@@ -68,6 +68,16 @@ class M22LocalIntegration(unittest.TestCase):
         self.assertEqual(client.get("/documents/doc-a", headers={
             "Authorization": "Bearer alice-token"}).json()["body"], "current policy passage")
 
+    def test_malformed_truthy_authorization_result_never_discloses_document(self):
+        class MalformedPolicy:
+            verify_identity = staticmethod(reference.verify_identity)
+            authorize_document = staticmethod(lambda *_args: "false")
+            filter_retrieved_hits = staticmethod(reference.filter_retrieved_hits)
+        response = TestClient(self.app(MalformedPolicy)).get(
+            "/documents/doc-a", headers={"Authorization": "Bearer alice-token"})
+        self.assertEqual(response.status_code, 404)
+        self.assertNotIn("current policy passage", response.text)
+
     def test_cached_qdrant_candidates_are_rechecked_after_acl_revocation(self):
         client = TestClient(self.app())
         headers = {"Authorization": "Bearer alice-token"}

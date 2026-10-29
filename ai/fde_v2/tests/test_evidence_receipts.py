@@ -5,6 +5,12 @@ from ai.fde_v2.evidence_receipts import SCHEMA, audit_artifact_receipt
 
 
 class EvidenceReceiptTests(unittest.TestCase):
+    def test_missing_receipt_path_returns_invalid_instead_of_raising(self):
+        with tempfile.TemporaryDirectory() as td:
+            got=audit_artifact_receipt(Path(td)/'missing.json','M',['required'])
+            self.assertEqual(got['status'],'INVALID')
+            self.assertEqual(got['missing_keys'],['required'])
+
     def test_hash_and_key_coverage_require_review_not_pass(self):
         with tempfile.TemporaryDirectory() as td:
             root=Path(td); artifact=root/'trace.json'; artifact.write_text('{"status":"local"}')

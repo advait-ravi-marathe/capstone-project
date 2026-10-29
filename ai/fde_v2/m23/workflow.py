@@ -19,7 +19,9 @@ def prepare_live_operation(record: Mapping[str, Any], now: int, *, adapter=learn
         allowed=adapter.validate_authorization(record,now)
     except NotImplementedError:
         raise
-    if not allowed:
+    # This is a side-effect boundary. Do not coerce malformed truthy policy
+    # results such as "false" into authorization.
+    if allowed is not True:
         return {"status":"BLOCKED","reason":"authorization scope invalid or expired","external_call_made":False}
     if transport is None:
         return {"status":"BLOCKED","reason":"no explicitly authorized provider transport is configured","external_call_made":False}

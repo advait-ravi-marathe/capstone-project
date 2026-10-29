@@ -134,7 +134,9 @@ def create_app(*, store: LocalSqlQdrantStore, verified_claims_provider,
     @app.get("/documents/{document_id}")
     def read_document(document_id: str, context=Depends(identity)):
         doc = store.document(document_id)
-        if doc is None or not adapter.authorize_document(context, doc, "read"):
+        # Policy is an authorization boundary: only the literal boolean True
+        # grants access. A malformed truthy result must never disclose content.
+        if doc is None or adapter.authorize_document(context, doc, "read") is not True:
             raise HTTPException(status_code=404, detail="document unavailable")
         return {"document_id": document_id, "body": doc["body"], "version": doc["active_version"]}
 

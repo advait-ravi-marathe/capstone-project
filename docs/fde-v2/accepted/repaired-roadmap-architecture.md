@@ -38,7 +38,7 @@ The audited roles divide into three routes:
 - **Production GenAI / data-platform FDE.** Add robust RAG/agents, evaluation, cloud operations, data systems and credible real-user delivery. Some roles explicitly require prior industry production GenAI; a personal project cannot silently satisfy that history requirement.
 - **Longer-term specialist or Staff/Principal FDE.** Examples include NVIDIA post-training/multi-GPU depth, Databricks senior Spark/multi-cloud depth, and Staff-level cross-team architecture/mentorship. These are optional specialization/experience goals, not beginner prerequisites or titles earned by finishing a calendar.
 
-The original planning referenced four research notes (`frontier-fde-requirements-20261028.md`, `enterprise-fde-role-audit.md`, `interviews-and-visibility-research.md`, and `vendor-certification-matrix.md`), but those notes are not present in this repository snapshot. Their detailed audit conclusions and URLs are therefore not reproduced here. Recheck roles at application time. Geography, work authorization, travel tolerance and exact target level are application filters, not reasons to postpone learning.
+Research sources: [frontier-company audit](frontier-fde-requirements-20261028.md), [enterprise-company audit](enterprise-fde-role-audit.md), [interview/visibility audit](interviews-and-visibility-research.md), [active vendor certification audit](vendor-certification-matrix.md). Each preserves exact official URLs, location/level restrictions and verification limits. Recheck roles at application time. Geography, work authorization, travel tolerance and exact target level are application filters, not reasons to postpone learning.
 
 ## 3. Interview-first capacity contract and dates
 
@@ -143,7 +143,7 @@ Role preparation and applications remain higher priority than certificate collec
 4. **MLA-C02 is an optional ML/MLOps branch**, not a compulsory step between SAA and AIP. The English exam transition/beta details need a fresh check at booking.
 5. **AWS-only active scope.** Remove Azure/Google certifications and deployments from the active plan. Continue using other top companies only as skill/role benchmarks. Local/vendor-neutral model fundamentals remain useful. If a future job genuinely requires another cloud, reassess then rather than maintain parallel tracks now.
 
-Study materials, practical labs, independent practice assessments and exam fees are different things. Course completion is not certification. Use official issued verification links only after earning the credential. No purchases or bookings are authorized. Any lab/subscription/cloud/inference costs require a specific approval with a bounded budget. The referenced historical vendor-certification matrix is not included in this repository snapshot; verify current status, fees and renewal terms from official sources before making a decision.
+Study materials, practical labs, independent practice assessments and exam fees are different things. Course completion is not certification. Use official issued verification links only after earning the credential. No purchases or bookings are authorized. Any lab/subscription/cloud/inference costs require a specific approval with a bounded budget. The detailed verified status, experience guidance, URLs and renewal distinctions are in `vendor-certification-matrix.md`.
 
 
 ### Visible certification milestones and measurable readiness
