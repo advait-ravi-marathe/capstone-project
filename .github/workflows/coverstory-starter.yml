@@ -43,6 +43,10 @@ jobs:
         run: npm run build:local
       - name: Install pinned CPU model-learning dependencies
         run: python3 -m pip install -r requirements-model-first.txt
+      - name: Install pinned CPU-only AWS FDE v2.4 Sprint 1 dependencies
+        run: |
+          python3 -m pip install --index-url https://download.pytorch.org/whl/cpu 'torch==2.14.1'
+          python3 -m pip install -r requirements-fde-v2-sprint1.txt
       - name: Package isolated Spring Boot app
         run: ./mvnw -B -ntp -Plocal-app -DskipTests clean package
       - name: Package bounded Sprint 6 app with source receipt
@@ -73,10 +77,6 @@ jobs:
       - name: Verify React model-integration witness and failure mutants
         working-directory: frontend
         run: npm run test:model-integration-witness
-      - name: Install pinned CPU-only AWS FDE v2.4 Sprint 1 dependencies
-        run: |
-          python3 -m pip install --index-url https://download.pytorch.org/whl/cpu 'torch==2.14.1'
-          python3 -m pip install -r requirements-fde-v2-sprint1.txt
       - name: Verify AWS FDE v2.4 Sprint 1 contracts and witnesses
         run: |
           python3 -m unittest scripts.test_fde_v2_sprint1
