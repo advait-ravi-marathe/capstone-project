@@ -14,13 +14,17 @@ class M22LearnerAcceptance(unittest.TestCase):
         self.context = {"subject_id": "alice", "tenant_id": "tenant-a"}
         self.docs = {
             "own": {"tenant_id": "tenant-a", "owner_id": "alice", "reader_ids": [],
-                    "writer_ids": [], "deleted": False},
+                    "writer_ids": [], "deleted": False, "active_version": 2,
+                    "active_chunk_ids": ["own-current"]},
             "team-read": {"tenant_id": "tenant-a", "owner_id": "bob", "reader_ids": ["alice"],
-                          "writer_ids": [], "deleted": False},
+                          "writer_ids": [], "deleted": False, "active_version": 1,
+                          "active_chunk_ids": ["team-read-current"]},
             "foreign": {"tenant_id": "tenant-b", "owner_id": "alice", "reader_ids": ["alice"],
-                        "writer_ids": ["alice"], "deleted": False},
+                        "writer_ids": ["alice"], "deleted": False, "active_version": 1,
+                        "active_chunk_ids": ["foreign-current"]},
             "deleted": {"tenant_id": "tenant-a", "owner_id": "alice", "reader_ids": [],
-                        "writer_ids": [], "deleted": True},
+                        "writer_ids": [], "deleted": True, "active_version": 1,
+                        "active_chunk_ids": ["deleted-current"]},
         }
 
     def test_verified_identity_adapter_checks_issuer_audience_expiry_and_subject(self):
@@ -48,17 +52,26 @@ class M22LearnerAcceptance(unittest.TestCase):
         self.assertFalse(CANDIDATE.authorize_document(self.context, self.docs["own"], "unknown"))
 
     def test_vector_hits_are_revalidated_against_authoritative_access_state(self):
-        hits = [{"document_id": key, "chunk_id": key + "-chunk"}
-                for key in ("own", "foreign", "deleted", "unknown", "own")]
+        hits = [
+            {"document_id": "own", "chunk_id": "own-old", "version": 1},
+            {"document_id": "own", "chunk_id": "own-current", "version": 2},
+            {"document_id": "foreign", "chunk_id": "foreign-current", "version": 1},
+            {"document_id": "deleted", "chunk_id": "deleted-current", "version": 1},
+            {"document_id": "unknown", "chunk_id": "unknown-current", "version": 1},
+            {"document_id": "own", "chunk_id": "own-current", "version": 2},
+        ]
         got = CANDIDATE.filter_retrieved_hits(self.context, hits, self.docs)
-        self.assertEqual([row["document_id"] for row in got], ["own"])
+        self.assertEqual(got, [{"document_id": "own", "chunk_id": "own-current", "version": 2}])
 
     def test_audit_record_drops_arbitrary_content_and_secret_fields(self):
-        event = {"subject_pseudonym": "h:abc", "action": "ask", "outcome": "denied",
-                 "trace_id": "trace-1", "timestamp": "fixture-time", "prompt": "private", "secret": "canary"}
+        event = {"subject_pseudonym": "h:" + "a" * 32, "action": "ask", "outcome": "denied",
+                 "trace_id": "b" * 32, "timestamp": "2026-10-29T00:00:00Z", "prompt": "private", "secret": "canary"}
         result = CANDIDATE.safe_audit_event(event)
         self.assertEqual(set(result), {"subject_pseudonym", "action", "outcome", "trace_id", "timestamp"})
         self.assertNotIn("canary", repr(result))
+        for key in ("subject_pseudonym", "action", "outcome", "trace_id", "timestamp"):
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                CANDIDATE.safe_audit_event({**event, key: "SECRET-PROMPT-CANARY"})
 
     def test_retry_uses_one_deadline_and_rejects_permanent_or_unbounded_retries(self):
         self.assertEqual(CANDIDATE.remaining_budget(12, 10), 2)

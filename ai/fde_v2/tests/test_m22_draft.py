@@ -12,13 +12,17 @@ class M22ReferenceMechanics(unittest.TestCase):
         self.context = {"subject_id": "alice", "tenant_id": "tenant-a"}
         self.docs = {
             "owned": {"tenant_id": "tenant-a", "owner_id": "alice", "reader_ids": [],
-                      "writer_ids": [], "deleted": False},
+                      "writer_ids": [], "deleted": False, "active_version": 2,
+                      "active_chunk_ids": ["owned-current"]},
             "shared": {"tenant_id": "tenant-a", "owner_id": "bob", "reader_ids": ["alice"],
-                       "writer_ids": [], "deleted": False},
+                       "writer_ids": [], "deleted": False, "active_version": 1,
+                       "active_chunk_ids": ["shared-current"]},
             "foreign": {"tenant_id": "tenant-b", "owner_id": "alice", "reader_ids": ["alice"],
-                        "writer_ids": ["alice"], "deleted": False},
+                        "writer_ids": ["alice"], "deleted": False, "active_version": 1,
+                        "active_chunk_ids": ["foreign-current"]},
             "revoked": {"tenant_id": "tenant-a", "owner_id": "alice", "reader_ids": [],
-                        "writer_ids": [], "deleted": True},
+                        "writer_ids": [], "deleted": True, "active_version": 1,
+                        "active_chunk_ids": ["revoked-current"]},
         }
 
     def test_draft_schedule_preserves_full_accounting_and_stage_minutes(self):
@@ -89,7 +93,7 @@ class M22ReferenceMechanics(unittest.TestCase):
         with self.assertRaises(AssertionError):
             assert_access_contract(always_allow)
 
-        hits = [{"document_id": key, "chunk_id": key + "-chunk"}
+        hits = [{"document_id": key, "chunk_id": key + "-current", "version": self.docs[key]["active_version"]}
                 for key in ("owned", "foreign", "revoked")]
         expected = ["owned"]
         self.assertEqual([row["document_id"] for row in
@@ -98,29 +102,40 @@ class M22ReferenceMechanics(unittest.TestCase):
             self.assertEqual([row["document_id"] for row in hits], expected)
 
     def test_audit_oracle_detects_raw_event_logging_mutant(self):
-        event = {"subject_pseudonym": "h:abc", "action": "ask", "outcome": "ok",
-                 "trace_id": "t1", "timestamp": "fixture", "prompt": "private"}
+        event = {"subject_pseudonym": "h:" + "a" * 32, "action": "ask", "outcome": "allowed",
+                 "trace_id": "b" * 32, "timestamp": "2026-10-29T00:00:00Z", "prompt": "private"}
         self.assertNotIn("prompt", reference.safe_audit_event(event))
         with self.assertRaises(AssertionError):
             self.assertNotIn("prompt", dict(event))
 
     def test_retrieval_boundary_revalidates_authoritative_acl_and_deduplicates(self):
-        hits = [{"document_id": key, "chunk_id": f"{key}-1"} for key in ("owned", "foreign", "revoked", "missing", "owned")]
+        hits = [
+            {"document_id": "owned", "chunk_id": "owned-old", "version": 1},
+            {"document_id": "owned", "chunk_id": "owned-current", "version": 2},
+            {"document_id": "foreign", "chunk_id": "foreign-current", "version": 1},
+            {"document_id": "revoked", "chunk_id": "revoked-current", "version": 1},
+            {"document_id": "missing", "chunk_id": "missing-current", "version": 1},
+            {"document_id": "owned", "chunk_id": "owned-current", "version": 2},
+        ]
         got = reference.filter_retrieved_hits(self.context, hits, self.docs)
-        self.assertEqual([row["document_id"] for row in got], ["owned"])
+        self.assertEqual(got, [{"document_id": "owned", "chunk_id": "owned-current", "version": 2}])
         # A forged tenant field on a vector hit cannot overrule the SQL authority map.
-        forged = [{"document_id": "foreign", "tenant_id": "tenant-a", "chunk_id": "f-1"}]
+        forged = [{"document_id": "foreign", "tenant_id": "tenant-a",
+                   "chunk_id": "foreign-current", "version": 1}]
         self.assertEqual(reference.filter_retrieved_hits(self.context, forged, self.docs), [])
 
     def test_audit_event_allowlist_omits_content_and_secret_fields(self):
-        event = {"subject_pseudonym": "h:abc", "action": "ask", "outcome": "denied",
-                 "trace_id": "trace-1", "timestamp": "2026-10-29T00:00:00Z",
+        event = {"subject_pseudonym": "h:" + "a" * 32, "action": "ask", "outcome": "denied",
+                 "trace_id": "b" * 32, "timestamp": "2026-10-29T00:00:00Z",
                  "prompt": "private synthetic text", "authorization": "secret-canary"}
         safe = reference.safe_audit_event(event)
         self.assertEqual(set(safe), {"subject_pseudonym", "action", "outcome", "trace_id", "timestamp"})
         self.assertNotIn("secret-canary", repr(safe))
         with self.assertRaises(ValueError):
             reference.safe_audit_event({**event, "trace_id": " "})
+        for key in ("subject_pseudonym", "action", "outcome", "trace_id", "timestamp"):
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                reference.safe_audit_event({**event, key: "SECRET-PROMPT-CANARY"})
 
     def test_deadline_and_retry_policy_are_bounded(self):
         self.assertEqual(reference.remaining_budget(12.5, 10), 2.5)

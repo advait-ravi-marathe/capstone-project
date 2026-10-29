@@ -23,6 +23,8 @@ For a 150-minute stage: 30 study +20 worked example +80 learner implementation/t
 
 Exact relative-day allocation is machine-readable in [`draft_schedule.json`](../../../ai/fde_v2/m22/draft_schedule.json). Days 63/70/77 allocate 60 M2.2 minutes plus 30 visibility minutes. The boundary accounting on Days 62/82 is explicit there.
 
+**Day62 activation condition:** the M2.2 S01 segment can start only if the learner-evidenced M2.1 prerequisite has already cleared before that segment. If M2.1 is still using its Day62 30-minute buffer/readback, do not start S01 concurrently or count a pending prerequisite as cleared. Defer the entire relative M2.2 schedule until the gate passes, then reflow the same 1,500 substantive +240 buffer minutes across the same fixed daily budget. Do not squeeze M2.1, borrow the M2.1 boundary buffer, or treat elapsed dates as progress.
+
 ## Teaching resources and worked concepts
 
 Read only the headings listed. These are source pointers for teaching, not a requirement to finish whole vendor documents or install a tool. Dependency versions remain pinned separately; documentation updates do not silently upgrade packages.

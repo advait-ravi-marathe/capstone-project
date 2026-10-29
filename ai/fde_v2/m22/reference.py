@@ -5,7 +5,9 @@ This reference is not an identity provider, deployment, or learner evidence.
 from __future__ import annotations
 
 import math
+import re
 from collections.abc import Mapping, Sequence
+from datetime import datetime
 from typing import Any
 
 
@@ -63,7 +65,10 @@ def authorize_document(context: Mapping[str, Any], document: Mapping[str, Any], 
 
 def filter_retrieved_hits(context: Mapping[str, Any], hits: Sequence[Mapping[str, Any]],
                           authoritative_documents: Mapping[str, Mapping[str, Any]]) -> list[Mapping[str, Any]]:
-    """Post-filter candidates; callers must also apply a server-built DB filter."""
+    """Post-filter candidates against ACL and authoritative active version/chunks.
+
+    Callers must also apply a server-built storage filter before vector search.
+    """
     if not isinstance(hits, (list, tuple)) or not isinstance(authoritative_documents, Mapping):
         return []
     allowed = []
@@ -72,12 +77,20 @@ def filter_retrieved_hits(context: Mapping[str, Any], hits: Sequence[Mapping[str
         if not isinstance(hit, Mapping):
             continue
         document_id = hit.get("document_id")
-        if not isinstance(document_id, str) or document_id in seen:
+        chunk_id = hit.get("chunk_id")
+        version = hit.get("version")
+        identity = (document_id, version, chunk_id)
+        if (not isinstance(document_id, str) or not isinstance(chunk_id, str)
+                or type(version) is not int or version < 1 or identity in seen):
             continue
         policy = authoritative_documents.get(document_id)
-        if isinstance(policy, Mapping) and authorize_document(context, policy, "read"):
+        if (isinstance(policy, Mapping) and authorize_document(context, policy, "read")
+                and type(policy.get("active_version")) is int
+                and policy.get("active_version") == version
+                and isinstance(policy.get("active_chunk_ids"), (list, tuple, set))
+                and chunk_id in policy["active_chunk_ids"]):
             allowed.append(dict(hit))
-            seen.add(document_id)
+            seen.add(identity)
     return allowed
 
 
@@ -87,7 +100,27 @@ def safe_audit_event(event: Mapping[str, Any]) -> dict[str, str]:
     if not isinstance(event, Mapping) or any(
             not isinstance(event.get(key), str) or not event[key].strip() for key in required):
         raise ValueError("audit event needs nonempty allowlisted metadata")
-    return {key: event[key].strip() for key in required}
+    subject = event["subject_pseudonym"].strip()
+    action = event["action"].strip()
+    outcome = event["outcome"].strip()
+    trace_id = event["trace_id"].strip()
+    timestamp = event["timestamp"].strip()
+    if not re.fullmatch(r"h:[0-9a-f]{32}", subject):
+        raise ValueError("subject_pseudonym must be a server-derived pseudonymous digest")
+    if action not in {"read", "search", "ask", "generate", "create", "update", "delete", "export", "auth"}:
+        raise ValueError("action is outside the audit vocabulary")
+    if outcome not in {"allowed", "denied", "error", "completed", "blocked"}:
+        raise ValueError("outcome is outside the audit vocabulary")
+    if not re.fullmatch(r"[0-9a-f]{32}", trace_id):
+        raise ValueError("trace_id must be a 32-character OpenTelemetry trace ID")
+    try:
+        parsed = datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise ValueError("timestamp must be ISO-8601") from exc
+    if parsed.tzinfo is None:
+        raise ValueError("timestamp must include a timezone")
+    return {"subject_pseudonym": subject, "action": action, "outcome": outcome,
+            "trace_id": trace_id, "timestamp": timestamp}
 
 
 def remaining_budget(deadline: float, now: float) -> float:
