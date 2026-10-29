@@ -10,7 +10,7 @@ python -m ai.fde_v2.coverstory.day01_baseline
 
 This is an instructor-owned synthetic keyword baseline, not generated output or proof of learner capability. See [runtime status](docs/fde-v2/runtime-verification.md) for the recorded model-access blocker. No live cloud, hosted-model, customer, or production result is claimed.
 
-The repository keeps the DSA repository separate; it does not copy DSA problems or solutions here. Historical learner evidence and assignment inputs remain under `evidence/` and the retained assignment fixtures. Superseded Java-first and model-building-first curriculum is removed from the active tree; the accepted contracts, attribution, test receipts, and review records for the current roadmap remain under `docs/fde-v2/`.
+The repository keeps the DSA repository separate; it does not copy DSA problems or solutions here. The two current FDE v2 scaffold-review receipts remain under `evidence/fde-v2/`. Legacy unattempted placeholders, instructor smoke receipts, and standalone CAP assignments were removed from the active tree after the cleanup audit found no completed learner-attempt evidence; their Git history remains available. Superseded Java-first and model-building-first curriculum is removed from the active tree; the accepted contracts, attribution, and review records for the current roadmap remain under `docs/fde-v2/`.
 
 ## Local setup and checks
 

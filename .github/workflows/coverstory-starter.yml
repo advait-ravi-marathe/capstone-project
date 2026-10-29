@@ -35,6 +35,8 @@ jobs:
         run: |
           python3 -m pip install --index-url https://download.pytorch.org/whl/cpu 'torch==2.14.1'
           python3 -m pip install -r requirements-fde-v2-sprint1.txt
+      - name: Install pinned local Qdrant dependencies
+        run: python3 -m pip install -r requirements-fde-v2-sprint2.txt
       - name: Verify active first-month curriculum and API
         run: |
           python3 -m unittest scripts.test_fde_v2_sprint1 scripts.test_fde_v2_sprint2
@@ -48,7 +50,6 @@ jobs:
           python3 scripts/fde_v2_container_smoke.py
       - name: Verify M2.1–M2.2 local security and lifecycle
         run: |
-          python3 -m pip install -r requirements-fde-v2-sprint2.txt
           python3 -m unittest scripts.test_fde_v2_p1_closeout scripts.test_fde_v2_m21_draft scripts.test_fde_v2_m22_draft
           python3 -m unittest ai.fde_v2.tests.test_m21_draft ai.fde_v2.tests.test_m21_feature_integration \
             ai.fde_v2.tests.test_m22_draft ai.fde_v2.tests.test_m22_integration \
