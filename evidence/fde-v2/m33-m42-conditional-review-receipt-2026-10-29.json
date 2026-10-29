@@ -1,0 +1,451 @@
+{
+  "receipt_status": "LOCAL_VERIFICATION_AND_REVIEW_ONLY",
+  "created_utc": "2026-10-29",
+  "branch": "work/aws-fde-v24-continuation",
+  "base_commit": "c945681773569afe5a75e31aeb978901a92a79b1",
+  "review_scope": [
+    "AIFDE-V2-M3.3",
+    "AIFDE-V2-M4.1",
+    "AIFDE-V2-M4.2"
+  ],
+  "implementation_status": "conditional scaffolds and schedules only; no learner completion asserted",
+  "independent_review": {
+    "reviewer": "independent_local_review",
+    "mode": "same-executor read-only worktree review",
+    "result": "no remaining high or medium findings in reviewed scope",
+    "resolved_findings": [
+      "M3.3 full-trace secret leak scoring",
+      "M3.3 group-bound split receipt and exact assignment count",
+      "M4.1 evaluator gate and structured unsupported claims",
+      "M4.2 stage-specific incident outcomes"
+    ]
+  },
+  "checks": [
+    {
+      "name": "milestone schedules, prior M2.3-M3.2 schedule and M3.3/M4.1/M4.2 focused mechanics",
+      "result": "PASS",
+      "count": "23 tests"
+    },
+    {
+      "name": "M3.3 learner candidate mechanics against explicit reference adapter",
+      "result": "PASS",
+      "count": "2 tests"
+    },
+    {
+      "name": "M4.1 learner candidate mechanics against explicit reference adapter",
+      "result": "PASS",
+      "count": "2 tests; rubric/evaluator gate remains BLOCKED"
+    },
+    {
+      "name": "M4.2 learner candidate mechanics against explicit reference adapter",
+      "result": "PASS",
+      "count": "2 tests"
+    },
+    {
+      "name": "AI FDE Python regression discovery, excluding M3.2 stdio due interpreter mismatch",
+      "result": "PASS",
+      "count": "89 tests"
+    },
+    {
+      "name": "official MCP 2.3.0 M3.2 real stdio integration using existing /tmp/fde-mcp-venv",
+      "result": "PASS",
+      "count": "2 tests"
+    },
+    {
+      "name": "script-level aggregate (Sprint 1/2, P1, M2.1-M4.2)",
+      "result": "PASS",
+      "count": "46 tests"
+    },
+    {
+      "name": "learner/reference/witness aggregate",
+      "result": "PASS",
+      "count": "28 tests"
+    },
+    {
+      "name": "conditional M2.2/M2.3/M3.1/M3.2 and M3.3-M4.2 learner acceptance candidates",
+      "result": "PASS",
+      "count": "21 tests"
+    },
+    {
+      "name": "frontend FDE v2.4 tests and production build",
+      "result": "PASS",
+      "count": "11 tests; tsc and vite build"
+    },
+    {
+      "name": "git diff --check and workflow YAML parse",
+      "result": "PASS"
+    }
+  ],
+  "pending": [
+    "push and exact-head GitHub CI for this new candidate; recheck the remote branch head before publication",
+    "real M3.3 planning model and trusted human denial/recovery evidence",
+    "M4.1 trusted actual rubric evaluator integration/receipt; pilot and exercise gate remain BLOCKED",
+    "M4.2 authenticated learner test receipt, live cloud operations and sustained production observations",
+    "real inference remains unverified; no model request/download was made"
+  ],
+  "source_files": [
+    {
+      "path": ".github/workflows/coverstory-starter.yml",
+      "sha256": "79e55d9dfe6e43bfb6adac24957beb90089c111a120c35b7ba8ce91649ee610a"
+    },
+    {
+      "path": "ai/fde_v2/learner_acceptance/test_m33_units.py",
+      "sha256": "b77c3ef2c44e9704559312e4ee904f70f150a7ebf408940dc8718042751ddb4b"
+    },
+    {
+      "path": "ai/fde_v2/learner_acceptance/test_m41_units.py",
+      "sha256": "70da9f0878c6e1a97617b91b978c2761183b0fa897c1a392fcbabe5285f8ac97"
+    },
+    {
+      "path": "ai/fde_v2/learner_acceptance/test_m42_units.py",
+      "sha256": "2b1f3cf4f058119f9e995e6c48aaac9bca2a39793cb8aecfd4bea3dd6c420339"
+    },
+    {
+      "path": "ai/fde_v2/m33/__init__.py",
+      "sha256": "088a571f4899f53e3b3783014004aeb54812674a681a9961c491cd3c5a2aaea0"
+    },
+    {
+      "path": "ai/fde_v2/m33/acceptance.py",
+      "sha256": "bfe5643e188ae359fc70c34130493de625d3995986b4b46ab853a9e96f729e3f"
+    },
+    {
+      "path": "ai/fde_v2/m33/draft_schedule.json",
+      "sha256": "217f1472e31cec87a8b886c239500949fb11742ecf406e55fbcbcae736cc466a"
+    },
+    {
+      "path": "ai/fde_v2/m33/learner.py",
+      "sha256": "3e57c6da02963d0e78caf881e291503290fde69350191f75e7875d986d9fb87c"
+    },
+    {
+      "path": "ai/fde_v2/m33/reference.py",
+      "sha256": "13a2be1ea3f23f18f665e9ebd9308f4fad9c275f27b5155e68ec27db13ee3c70"
+    },
+    {
+      "path": "ai/fde_v2/m33/workflow.py",
+      "sha256": "f85766fbd9dd4edf129995600decf93eca5cdf17b8bc3cb1240a8f67f3075aa3"
+    },
+    {
+      "path": "ai/fde_v2/m41/__init__.py",
+      "sha256": "02cd02a8c21cbb82c3e6dcd53c3185467fc2431d96f86c67323c00629d77bd2d"
+    },
+    {
+      "path": "ai/fde_v2/m41/acceptance.py",
+      "sha256": "02bae1eafa5119d7f132253231870e88656053baf86debe600eba9c9adef78a0"
+    },
+    {
+      "path": "ai/fde_v2/m41/draft_schedule.json",
+      "sha256": "2ac7e4273019e0d4d6043e8e59e4395f41ed89be0fe617618550143b29bbce13"
+    },
+    {
+      "path": "ai/fde_v2/m41/learner.py",
+      "sha256": "ad10d371de5c048188142ea1de32577135c922502495edba153155fbd985ec15"
+    },
+    {
+      "path": "ai/fde_v2/m41/reference.py",
+      "sha256": "6f07c4463215bd8180cac13c417d2eac8def034175f2d4f820dcf228ea1c2cc6"
+    },
+    {
+      "path": "ai/fde_v2/m41/workflow.py",
+      "sha256": "7a8a58752089971fe8cc9c0ab133ad02391e0dc408dc7f01fd91d1c5d57ca323"
+    },
+    {
+      "path": "ai/fde_v2/m42/__init__.py",
+      "sha256": "5a8f02a678e579f33952376037c72cad7259725f08bfa20ea937e56bea6a9aed"
+    },
+    {
+      "path": "ai/fde_v2/m42/acceptance.py",
+      "sha256": "c206e7a1ac91ec353d9b2154222b155b6aa5568cd3ef9d518dc88749cdfdcd2c"
+    },
+    {
+      "path": "ai/fde_v2/m42/draft_schedule.json",
+      "sha256": "708f2a99bbe79d92f501e64bec5c1fbe51f8f80cef2e9519e49ed03993254d75"
+    },
+    {
+      "path": "ai/fde_v2/m42/learner.py",
+      "sha256": "5a6f1511960b4933577d35f3ccd98e736ca7a0e4b13c6efdd61d95019338a8c4"
+    },
+    {
+      "path": "ai/fde_v2/m42/reference.py",
+      "sha256": "496069f5285a97ce191dbdbc87051124e0e7fd5ebbf47fe853499e29c87ae913"
+    },
+    {
+      "path": "ai/fde_v2/m42/workflow.py",
+      "sha256": "0bc6813511dd1a314d60f986cd1d303209bc7d74e38655c73ee33880af03977c"
+    },
+    {
+      "path": "ai/fde_v2/tests/test_m33.py",
+      "sha256": "05831c315277950404cd3292c457583f330ba960bff262c834a26552129592f5"
+    },
+    {
+      "path": "ai/fde_v2/tests/test_m41.py",
+      "sha256": "a36d75ef2226e5e16d51910143d3888756b6a8f2facb87ed7e07df08d1d1cbfe"
+    },
+    {
+      "path": "ai/fde_v2/tests/test_m42.py",
+      "sha256": "919e988e6c5b3cb498ec34aba1500e7d33f998549c95e8c352dfa9032bd817b5"
+    },
+    {
+      "path": "docs/fde-v2/days/day-143.md",
+      "sha256": "aab57e27654d511e8c53ee1629d5641d25d1ab269d578508bf903b0c6590147a"
+    },
+    {
+      "path": "docs/fde-v2/days/day-144.md",
+      "sha256": "7bc72f5fe77f2a2714660afff5511ff76b10e1a094b27a5171aebdc2c3c01d6c"
+    },
+    {
+      "path": "docs/fde-v2/days/day-145.md",
+      "sha256": "5f2120ac3631b88e7fe4d59957fb79884d2e233201750ad50010067ebb103e75"
+    },
+    {
+      "path": "docs/fde-v2/days/day-146.md",
+      "sha256": "7c56ed73cf21235bc9852502752576c8f7bc5147dff2556992a5287b86eaa1b1"
+    },
+    {
+      "path": "docs/fde-v2/days/day-147.md",
+      "sha256": "7443a26aec72863b5f520b01f0e270b7fd58f2c69848f964de8fe9ea3dd8e616"
+    },
+    {
+      "path": "docs/fde-v2/days/day-148.md",
+      "sha256": "18ac7dd32fa480d8dcc4e1f9314627113d896b8758b4600935b01930c079c791"
+    },
+    {
+      "path": "docs/fde-v2/days/day-149.md",
+      "sha256": "bf67e83750b632c4064fd1f99e64cbc765c3e834515d4ce190b39baf672aab40"
+    },
+    {
+      "path": "docs/fde-v2/days/day-150.md",
+      "sha256": "d5beafdf929b3df240ccefa88efd5290041d0c0da1396bce3eca91af5e982a42"
+    },
+    {
+      "path": "docs/fde-v2/days/day-151.md",
+      "sha256": "caaff93978da5543b57f08efbfc5d17915d5bf6e6cacdb83bf96b202eed942d7"
+    },
+    {
+      "path": "docs/fde-v2/days/day-152.md",
+      "sha256": "a84667441541e04f4677877f44b15435695701825a5bf7550ee91bb352c8d8e3"
+    },
+    {
+      "path": "docs/fde-v2/days/day-153.md",
+      "sha256": "80dbb21b4cd78590732245b3305e3fa7a2b5f8c352e559f691de32a5dbf82da5"
+    },
+    {
+      "path": "docs/fde-v2/days/day-154.md",
+      "sha256": "bd619028d2bb06acc347d0d22253d4581da852f38aa49657a41433ffac3b8bb2"
+    },
+    {
+      "path": "docs/fde-v2/days/day-155.md",
+      "sha256": "2fb338163ebeb0a6de73ddf0876a6abf607e76f1eedd3f65601c0f9a79cf2c0b"
+    },
+    {
+      "path": "docs/fde-v2/days/day-156.md",
+      "sha256": "956d96e81f9fd3c66a60fb15b0532c2b6ad8f9481da53e0fabdd5f7ab9cf9c44"
+    },
+    {
+      "path": "docs/fde-v2/days/day-157.md",
+      "sha256": "88a70742e5cba8958ee87929f2a53ec7093bc7260185e0b53ff8a6810d083b97"
+    },
+    {
+      "path": "docs/fde-v2/days/day-158.md",
+      "sha256": "f77d432aba13f0338a24fe4337559dfacac441774904b15f67f1eed405b8b1cd"
+    },
+    {
+      "path": "docs/fde-v2/days/day-159.md",
+      "sha256": "a228e4c2fa301546642b3c3416ba076d4cf32aa30d4526d0c87d5704e9e764af"
+    },
+    {
+      "path": "docs/fde-v2/days/day-160.md",
+      "sha256": "087ef73c58ab49a3cb8d5e861fffa9e912bfc4bb0cf4cf872840c25c0a295dac"
+    },
+    {
+      "path": "docs/fde-v2/days/day-161.md",
+      "sha256": "9454385e717992d04352f6692fc3f83d53cb5054f0b1824bd59dcd59fe54625f"
+    },
+    {
+      "path": "docs/fde-v2/days/day-162.md",
+      "sha256": "6021f23b098a7e4c1837bab3ffa3c9908a82e19d641d0ae5259a104565a68330"
+    },
+    {
+      "path": "docs/fde-v2/days/day-163.md",
+      "sha256": "168bbd63001b299500bc4f01a8ff7bcdf07619fa43dc6ed553ae2edcc0d76fa4"
+    },
+    {
+      "path": "docs/fde-v2/days/day-164.md",
+      "sha256": "37de0b652e95a698e7e54f146c3369a90cb7021e94f9d47206a9a18b2f5d46b2"
+    },
+    {
+      "path": "docs/fde-v2/days/day-165.md",
+      "sha256": "f754cc5aab75cd36680e3ce356ee2a527afdc8cb78c80b4192455e633adfcb65"
+    },
+    {
+      "path": "docs/fde-v2/days/day-166.md",
+      "sha256": "63bc3317bded9c5b5dd3f48e049b90d3df56b05aae79fbe0e3d5b736653ad2d9"
+    },
+    {
+      "path": "docs/fde-v2/days/day-167.md",
+      "sha256": "7c8a3e3285079a3ca6843b94d88cac024e26ce6804566e2946d19fd2f570b7e4"
+    },
+    {
+      "path": "docs/fde-v2/days/day-168.md",
+      "sha256": "e3f04588cb3df891f9998754d0dc6c03c8fed8a188e9b0b08a6eb428e3d230b4"
+    },
+    {
+      "path": "docs/fde-v2/days/day-169.md",
+      "sha256": "b1835bc141756a9da61a87b289ff32fb083a8bfa0bf3de933144baa4ee17f4a5"
+    },
+    {
+      "path": "docs/fde-v2/days/day-170.md",
+      "sha256": "543a7f0f9ce740f453a069416c7106f0a8bf1558357d492211b6296806de1ec8"
+    },
+    {
+      "path": "docs/fde-v2/days/day-171.md",
+      "sha256": "089a11dfc86d9b94e0c038f47fda4c74b1be88f159fae0f82cfb4017a5dd80b8"
+    },
+    {
+      "path": "docs/fde-v2/days/day-172.md",
+      "sha256": "b76779f5941e16e2024467b628687534fb50bd4c39fad6c86bfdd748511042b3"
+    },
+    {
+      "path": "docs/fde-v2/days/day-173.md",
+      "sha256": "3726ccb973f0432da61c92a6a54058812e6a864b2d5e4ecef45b5b9b00bf9985"
+    },
+    {
+      "path": "docs/fde-v2/days/day-174.md",
+      "sha256": "41040b00f7222f65668bb2278b97c77d462919b5d56845cd4ac9c971a38df5d0"
+    },
+    {
+      "path": "docs/fde-v2/days/day-175.md",
+      "sha256": "b625e0aed7d6423deb7f10fa0f0c1eae0e17ec5d5e6c1db55fefca34a8044d39"
+    },
+    {
+      "path": "docs/fde-v2/days/day-176.md",
+      "sha256": "5ec7958f8450023b2e51de60fb4671b5b3295357b999c9244b981c370bf80f14"
+    },
+    {
+      "path": "docs/fde-v2/days/day-177.md",
+      "sha256": "b91061afac48c0f072b74ab5f0dc9f3b049cae4c3fbee755ecbd024a6eb71cf1"
+    },
+    {
+      "path": "docs/fde-v2/days/day-178.md",
+      "sha256": "69f7d9ebd88925a031f13e304e1f67f7aaef9edb465cf3e25c9a4400bb546f55"
+    },
+    {
+      "path": "docs/fde-v2/days/day-179.md",
+      "sha256": "996f854ba0e6d28a4d93c6a6d95156b7e844307dcf8cafb6c7447c3e8d014ef6"
+    },
+    {
+      "path": "docs/fde-v2/days/day-180.md",
+      "sha256": "6699455f7137d5503c3f25861724172a6b491f395ae2ffa5868c515ea8afd489"
+    },
+    {
+      "path": "docs/fde-v2/days/day-181.md",
+      "sha256": "f5316948753e650323338236218bcf5fdd309725fc4045e9f8ce252cd35fdbed"
+    },
+    {
+      "path": "docs/fde-v2/days/day-182.md",
+      "sha256": "188255f71305429e39ba71dba69ce2a1c2e6a1f79906c5d4b282d135c888c361"
+    },
+    {
+      "path": "docs/fde-v2/days/day-183.md",
+      "sha256": "06d741de3f69ef763d6716fbff695a64a7fc261fa839d5f8ce9c0cb00ae56602"
+    },
+    {
+      "path": "docs/fde-v2/days/day-184.md",
+      "sha256": "522955d6ed59bc9e43347e71f5db1cbb901e2925316262ead26ea6463d202176"
+    },
+    {
+      "path": "docs/fde-v2/days/day-185.md",
+      "sha256": "667a2cf95d3811eb7e73c8a5337418b1937a48745f858a82aa02a02b4edfbd5e"
+    },
+    {
+      "path": "docs/fde-v2/days/day-186.md",
+      "sha256": "4bef3a65f52c3f941e2405dc10ac61db651d1bd0b95fbf6fecd70b76baaacc4e"
+    },
+    {
+      "path": "docs/fde-v2/days/day-187.md",
+      "sha256": "44e2f45a2b559224fb7f2bb4fe4f94e3b64c172674d6e3665f978e39ac1198ba"
+    },
+    {
+      "path": "docs/fde-v2/days/day-188.md",
+      "sha256": "d0a52b7f2b4dc62e7d0a32a2ce160f79ba74f3da73720ad4b363ed711bc71485"
+    },
+    {
+      "path": "docs/fde-v2/days/day-189.md",
+      "sha256": "e5af9b3219b44e93c96827ee4c6304e054b390436713ae7715563a48805f44dd"
+    },
+    {
+      "path": "docs/fde-v2/days/day-190.md",
+      "sha256": "6be8d47d8a695039859b0741f10673a9fd60fb228d6cace4d673108650c2ab1b"
+    },
+    {
+      "path": "docs/fde-v2/days/day-191.md",
+      "sha256": "b605527b3b79f794ad8feb2dbc09a9653e27dcf7e22efeee443cc32eb877fb04"
+    },
+    {
+      "path": "docs/fde-v2/days/day-192.md",
+      "sha256": "a9b79d0fce31915a8690371d0f6ecaf753443fe485893056928e34146dc29505"
+    },
+    {
+      "path": "docs/fde-v2/days/day-193.md",
+      "sha256": "1694e6863dc1825e516dd743f3da930bf1f2b2828701539d783ceab83bd314fb"
+    },
+    {
+      "path": "docs/fde-v2/days/day-194.md",
+      "sha256": "3cce5357cfc98e95f27779672aba35c4f5bdc4d4985e05c944cdff3786ebe120"
+    },
+    {
+      "path": "docs/fde-v2/days/day-195.md",
+      "sha256": "11b1f4c439ab6e4328f5439f2c8774d7cf6fbe454f3da90d31b29fc409b3b809"
+    },
+    {
+      "path": "docs/fde-v2/days/day-196.md",
+      "sha256": "07d0851e39c65742f1d837ba2c7bbe09811d51cf2a98f9b17e634eb7a3bfd1b2"
+    },
+    {
+      "path": "docs/fde-v2/days/day-197.md",
+      "sha256": "90034a4f1381920e74960e032891fbdfa6fb5f56bd664205c91d38424e39a270"
+    },
+    {
+      "path": "docs/fde-v2/days/day-198.md",
+      "sha256": "0264d7b749528dc99a22f84e4ddf5d820ca96947a4f47e82f580a41873dd0ec7"
+    },
+    {
+      "path": "docs/fde-v2/days/day-199.md",
+      "sha256": "a0c71c48d7c832f4cd171e6bf3668cdc112c666be217ec3b7dc777a60fbff9dd"
+    },
+    {
+      "path": "docs/fde-v2/days/day-200.md",
+      "sha256": "204cc763eadcf97bf9454dc6e16b96309ce2535fa54087c6267103398ac50fbe"
+    },
+    {
+      "path": "docs/fde-v2/days/day-201.md",
+      "sha256": "b49fa48e90419a0c518ccfd3e37d505362af0b1f7734709ce322bc4df1366d30"
+    },
+    {
+      "path": "docs/fde-v2/days/day-202.md",
+      "sha256": "d891feb6d1b78ebde59ef5cdd72c4a056ca017a65ad291bd5ee2d386555f60d6"
+    },
+    {
+      "path": "docs/fde-v2/days/day-203.md",
+      "sha256": "493c3b07334e445e95bec0602ed6162deb43d0a24acb7844211b9d1d5771633e"
+    },
+    {
+      "path": "docs/fde-v2/days/day-204.md",
+      "sha256": "7ec2274e42148d8faeaa394fa5770e19be57a951d7741f9f9fe70116654ceee6"
+    },
+    {
+      "path": "docs/fde-v2/proposals/m33-m42-conditional-guide.md",
+      "sha256": "338d65baee0c229b1c8e209d0f0860b9bf921823f920b13366079458aa23a55d"
+    },
+    {
+      "path": "scripts/test_fde_v2_m23_m32.py",
+      "sha256": "dd5ad918a64862e22dbef73dcd15f9bea0eff3d9b896b69df4f79922bb275da0"
+    },
+    {
+      "path": "scripts/test_fde_v2_m33_m42.py",
+      "sha256": "c732d4c04f7c5dfde775201826ef976856fedfb653c1d8a263d34ede52399219"
+    }
+  ],
+  "pre_publication_remote_head": "c945681773569afe5a75e31aeb978901a92a79b1",
+  "pre_publication_remote_branch": "work/aws-fde-v24-continuation",
+  "pre_publication_state": "remote and local HEAD matched before commit"
+}

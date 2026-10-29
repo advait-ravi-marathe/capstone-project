@@ -22,7 +22,7 @@ class ConditionalM23M32ManifestTest(unittest.TestCase):
             self.assertTrue(card.is_file(),f'missing {card}')
             text=card.read_text()
             self.assertIn('Status: Not started',text)
-            self.assertIn('180-minute budget',text)
+            self.assertRegex(text,r'180-minute (daily )?budget')
             for seg in row['segments']:
                 if seg['stage']!='buffer': stage_totals[seg['stage']]=stage_totals.get(seg['stage'],0)+seg['minutes']
         return stage_totals
