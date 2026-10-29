@@ -19,7 +19,7 @@ class InterviewDrillRedGreenTests(unittest.TestCase):
         if not (FRONTEND/'node_modules/.bin/vitest').is_file():
             raise RuntimeError('run npm ci in frontend before the bounded frontend drill harness')
 
-    def test_four_java_backend_drills_fail_then_reference_passes(self):
+    def test_java_backend_drills_fail_then_reference_passes(self):
         fixtures=sorted(JAVA.glob('*Drill.java'))
         self.assertEqual(len(fixtures),5)
         for starter in fixtures:
