@@ -1,6 +1,6 @@
 # AWS FDE v2.4 phase map
 
-This is a capacity plan, not a completion calendar. Day 1 is the first actual learning session. Sprint 1 supplies daily guidance for Days 1–14 on main. The published review-only continuation branch authors Days 15–41; this work is not merged to main, and authored content does not advance learner state. The remaining milestone windows are planning contracts until separately detailed and reviewed. A missed date does not advance learner state.
+This is a capacity plan, not a completion calendar. Day 1 is the first actual learning session. The current main branch supplies daily guidance for Days 1–270, with scaffold code and tests for the accepted milestones. Authored content does not advance learner state. A missed date does not advance learner state; conditional milestone prerequisites and external evidence gates remain in force.
 
 ## Capacity
 
@@ -12,18 +12,18 @@ First 30 actual days contain 30 DSA hours, 11 role-interview hours, 4 AWS study 
 
 | Window (approximate learning days) | Planned outcome and evidence gate | Status |
 |---|---|---|
-| P1, approximately Days 1–41 | CoverStory local generative RAG: real pretrained generation, real embeddings, persisted vector store, source provenance, lexical baseline, abstention and dev/held-out evaluation. Day 30 only begins adversarial fixture work. | Main covers Days 1–14; continuation branch is published for review with authored Days 15–41. Real embedding/generation remains blocked/unverified; model-backed results are not evidenced. |
-| P2, roughly Days 42–102 | Ingestion/version/deletion controls; permission-aware retrieval; stronger evaluation/security/traces; then separately authorized AWS deployment, rollback and observed operation. Local or mock work cannot satisfy live cloud/provider gates. | Planning-only. |
-| P3, roughly Days 103–163 | Developer Workflow Assistant: read-only tools first, bounded actions, human approval, genuine MCP client/server when justified, task-success baseline, injection/authorization tests and failure handoff. | Planning-only. |
-| P4, roughly Days 164–224 | Customer discovery and scope; compatibility/release/incident/recovery; real authorized feedback where available; independent ownership and handoff. Role-play, peer review, pilot and production remain distinct. | Planning-only. |
-| P5, roughly Days 225–271 | Evidence-gate remediation, optional AWS readiness decision, StreamForge ranking/recommendation slice with leakage-safe evaluation, truthful role gap/case study review. | Planning-only. |
+| P1, approximately Days 1–41 | CoverStory local generative RAG: real pretrained generation, real embeddings, persisted vector store, source provenance, lexical baseline, abstention and dev/held-out evaluation. | Starter scaffolds cover Days 1–41. Real embedding/generation and learner evaluation remain unverified; authored code and synthetic tests are not completion evidence. |
+| P2, roughly Days 42–102 | Ingestion/version/deletion controls; permission-aware retrieval; stronger evaluation/security/traces; then separately authorized AWS deployment, rollback and observed operation. Local or mock work cannot satisfy live cloud/provider gates. | Local starter scaffolds and checks are present. Cloud/model execution and learner evidence remain gated. |
+| P3, roughly Days 103–163 | Developer Workflow Assistant: read-only tools first, bounded actions, human approval, genuine MCP client/server when justified, task-success baseline, injection/authorization tests and failure handoff. | Local workflow and protocol scaffolds are present. Actual learner attempts, model quality and human approval evidence remain unverified. |
+| P4, roughly Days 164–224 | Customer discovery and scope; compatibility/release/incident/recovery; real authorized feedback where available; independent ownership and handoff. Role-play, peer review, pilot and production remain distinct. | Exercise scaffolds are present. Real customer/reviewer availability and learner performance remain separate gates. |
+| P5, roughly Days 225–270 | Evidence-gate remediation, optional AWS readiness decision, ranking/recommendation slice with leakage-safe evaluation, truthful role gap/case study review. | Local ranker and evidence workflow scaffolds are present. Evaluation results, certification, job readiness and external outcomes are not claimed. |
 | Further depth, optional roughly 60–90 days | Choose one gap from actual role and project evidence: a second integration, data/MLOps depth, owned AWS operations or a meaningful StreamForge extension. No fixed extra daily tickets or guarantee of mastery. | Outcome-based options only. |
 
 Redis, Kafka, containers, CI/CD, IaC and MLOps appear only when a project requirement makes them useful. The assistant supplies general deployment/infra scaffolding with a walkthrough; the learner diagnoses behavior, evaluates tradeoffs and owns the model/evaluation seam. Real deployments need separate cost/permission approval.
 
-## Bounded integration ownership
+## Learner ownership
 
-Interview comprehension remains in the question bank. To address practical FDE ownership, five future checkpoints replace existing comprehension allocations: (1) Day 225 plan to validate a small AI-serving contract; (2) Day 332 diagnose and fix a bounded API failure; (3) Day 333 resolve a stale-response UI defect; (4) Day 420 explain/fix score presentation against evaluation evidence; (5) Day 507 handle interaction states in a supplied screen. Only the first is a near-term planning concept in this release; Days 332, 420 and 507 are not executable starters here. Each eventual checkpoint needs a learner-authored small change, a failing-before/fixed-after test, debugging notes and independent review. Do not expand these into a general full-stack course or add time.
+The runnable paths connect learner-owned TODO adapters to local services and checks. Reference adapters are selected explicitly for mechanics; they do not count as learner implementation. The scaffold includes bounded backend, UI, evaluation, security, MCP, and operational exercises without turning the roadmap into a general full-stack course. The learner must still attempt the work, retain failed attempts, and provide evidence for capability gates.
 
 ## Role checkpoints
 

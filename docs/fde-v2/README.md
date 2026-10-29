@@ -1,6 +1,6 @@
 # AWS FDE v2.4 learning roadmap
 
-This is the accepted AWS-only, interview-first plan. **No learner days are complete.** A learning-day number advances only when that session is attempted; dates do not automatically change learner status. Sprint 1 covers actual learning Days 1–14. The separate continuation branch contains conditional materials through Day270 and is published for review only; it is not merged to main. Daily pages are present for Days1–270. Days42–81 link to conditional M2.1/M2.2 proposal schedules and do not activate those milestones. U011 starts as a partial slice on Day14 and continues on Day15. U021 starts on Day28 and ends its scheduled selector mechanics on Day29; real development evaluation remains blocked while model weights are unavailable. U022 runs on Days29–30. Day30 is only the fixture-authoring portion of U023; deterministic execution/regression is scheduled on Day31, but actual generated behavior is still model-gated. U024–U030 have explicit closeout lessons and evidence tooling. No unit or P1 completion is inferred from authored pages or synthetic witnesses. U013 embeddings and U019 generated RAG remain unverified until verified local model artifacts are available.
+This is the accepted AWS-only, interview-first plan. **No learner days are complete.** A learning-day number advances only when that session is attempted; dates do not automatically change learner status. The repository contains the complete 270-day, 12-milestone scaffold, including conditional materials and daily pages. Days42–81 link to conditional M2.1/M2.2 proposal schedules and do not activate those milestones. U011 starts as a partial slice on Day14 and continues on Day15. U021 starts on Day28 and ends its scheduled selector mechanics on Day29; real development evaluation remains blocked while model weights are unavailable. U022 runs on Days29–30. Day30 is only the fixture-authoring portion of U023; deterministic execution/regression is scheduled on Day31, but actual generated behavior is still model-gated. U024–U030 have explicit closeout lessons and evidence tooling. No unit or P1 completion is inferred from authored pages or synthetic witnesses. U013 embeddings and U019 generated RAG remain unverified until verified local model artifacts are available.
 
 ## Start with actual learning Day 1
 
@@ -40,9 +40,9 @@ Open the Vite URL at `/fde-v2.html`. `VITE_FDE_V2_API_TARGET` proxies `/health`,
 
 These commands only start supplied infrastructure. General HTTP, SQLite, Qdrant and React plumbing are supplied; the learner owns bounded Python AI behaviors and evaluation. From Day 15 onward, the RAG panel exercises the supplied `/retrieve` and `/ask` routes. Tests using fixed vectors or a test double validate mechanics only and never count as real embedding or generated-answer evidence.
 
-## Continuation branch: actual learning Days 15–41
+## Later conditional scaffolds: actual learning Days 15–41
 
-Days 15–41 are authored on `work/aws-fde-v24-continuation` and published for review, not merged to main. In that worktree, install the additional local persistence and embedding packages (no model files are downloaded by this command):
+Days 15–41 and later milestones are present in the current repository as conditional starter scaffolds. Install the additional local persistence and embedding packages (no model files are downloaded by this command):
 
 ```sh
 python -m pip install -r requirements-fde-v2-sprint2.txt
@@ -87,7 +87,7 @@ Fixed-vector and injected-pipeline tests verify mechanics only. They never satis
 - [Model runtime verification status](runtime-verification.md)
 - [Accepted v2.4 planning inputs](accepted/)
 
-Each day's page assigns DSA60 + role/AWS bank30 + AI90 = 180 minutes. A 75-minute DSA revision reduces AI to75; a90-minute revision reduces AI to60. The actual Day14 allocation spends U010 support30 + the first U011 segment30 + a private evidence note30. U011 remains incomplete. The published review branch `work/aws-fde-v24-continuation` contains conditional starter guidance through Day270, while main remains at the Sprint1 release; those later pages do not imply learner completion. Days42–81 are conditional daily cards linked to detailed M2.1/M2.2 proposals; Day62 is a shared boundary. Model/cloud/customer evidence remains independently gated. This does not claim the full accepted first-30 schedule, U023, P1 or later milestones are complete.
+Each day's page assigns DSA60 + role/AWS bank30 + AI90 = 180 minutes. A 75-minute DSA revision reduces AI to75; a90-minute revision reduces AI to60. The actual Day14 allocation spends U010 support30 + the first U011 segment30 + a private evidence note30. U011 remains incomplete. The current repository contains conditional starter guidance through Day270; those materials do not imply learner completion. Days42–81 are conditional daily cards linked to detailed M2.1/M2.2 proposals; Day62 is a shared boundary. Model/cloud/customer evidence remains independently gated.
 
 ## P1 closeout: actual learning Days 31–41
 
@@ -129,7 +129,7 @@ The real-only smoke selectors are documented in [U006/U007](units/u006.md) and [
 
 ## History and evidence
 
-The accepted JSON/Markdown source contracts are retained byte-for-byte under `accepted/`; the receipt lists their SHA-256 values. The earlier 548-day model-building-first roadmap and prior assignment histories remain preserved as superseded/deferred. DSA stays in its separate repository; this checkout contains no DSA problems or solutions. Every new task remains Not started until the learner records actual evidence. No customer adoption, production use, cloud deployment, certification, interview pass or job readiness is asserted by this plan.
+The accepted JSON/Markdown source contracts are retained byte-for-byte under `accepted/`; the receipt lists their SHA-256 values. The superseded model-building-first curriculum is removed from the active tree. Historical evidence and assignment inputs remain preserved separately. DSA stays in its separate repository; this checkout contains no DSA problems or solutions. Every new task remains Not started until the learner records actual evidence. No customer adoption, production use, cloud deployment, certification, interview pass or job readiness is asserted by this plan.
 
 ## Proposed M2.1 detail (not active)
 
@@ -137,7 +137,7 @@ The accepted JSON/Markdown source contracts are retained byte-for-byte under `ac
 
 ## Conditional next milestone: M2.2
 
-[`M2.2 detailed design and deterministic mechanics`](proposals/m22-detailed-days-62-82.md) maps the accepted security/identity/deployment-preparation outcome contract to a proposed Days62–82 sequence. It remains a conditional draft: M2.1's learner-evidenced data/evaluation baseline is a prerequisite, actual identity integration is not implemented, and no cloud/account setup or deployment has occurred. The M2.2 TODOs and synthetic witnesses do not advance learner status. The proposal preserves the accepted 29-hour AI envelope, weekly visibility accounting and all prior learner-day records.
+[`M2.2 detailed design and deterministic mechanics`](proposals/m22-detailed-days-62-82.md) maps the accepted security/identity/deployment-preparation outcome contract to a proposed Days62–82 sequence. It remains conditional on M2.1's learner-evidenced data/evaluation baseline. Local signed-token mechanics do not provide a real external identity-provider integration, and no cloud/account setup or deployment has occurred. The M2.2 TODOs and synthetic witnesses do not advance learner status. The proposal preserves the accepted 29-hour AI envelope, weekly visibility accounting and all prior learner-day records.
 
 ## Conditional M2.3, M3.1 and M3.2 drafts
 
@@ -146,4 +146,4 @@ The accepted JSON/Markdown source contracts are retained byte-for-byte under `ac
 
 ## Conditional M3.3–M5.3 scaffold status
 
-The continuation branch includes proposal guides, reference mechanics, learner TODO adapters, daily pages and deterministic tests for M3.3, M4.1, M4.2, M4.3, M5.1, M5.2 and M5.3. These are scaffolds, not activated learning days or learner results. Readiness gates remain separate: actual model/cloud evidence, trusted evaluator/peer feedback, real user access and current role/certification review are not supplied. The proposal guides identify those gates and do not authorize external actions. See the [daily page index](days/README.md).
+The current roadmap includes proposal guides, reference mechanics, learner TODO adapters, daily pages and deterministic tests for M3.3, M4.1, M4.2, M4.3, M5.1, M5.2 and M5.3. These are scaffolds, not activated learning days or learner results. Readiness gates remain separate: actual model/cloud evidence, trusted evaluator/peer feedback, real user access and current role/certification review are not supplied. The proposal guides identify those gates and do not authorize external actions. See the [daily page index](days/README.md).

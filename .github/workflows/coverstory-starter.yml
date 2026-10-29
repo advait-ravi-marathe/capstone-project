@@ -1,8 +1,8 @@
-name: CoverStory starter checks
+name: AWS FDE v2.4 starter checks
 
 on:
   push:
-    branches: [main, review/integration/fde-main-reconciliation, review/fde-coursework-v2-sprint3, review/fde-coursework-v2-sprint4-repair, review/fde-coursework-v2-sprint4-audit, review/fde-coursework-v2-sprint4-days45-56, review/eai-sprint1-interview-first-2026-10-24, review/eai-sprint1-design-ownership-correction-2026-10-24, work/eai-sprint2-onward, learning/coverstory-day-02-30, learning/coverstory-beyond-30, learning/coverstory-days-31-44, learning/coverstory-days-45-56, learning/coverstory-days-57-70, learning/coverstory-days-71-84, docs/coverstory-days-31-84-course-guidance, learning/coverstory-days-85-98, learning/coverstory-days-99-112, learning/coverstory-days-113-126, learning/coverstory-days-127-140, learning/coverstory-days-141-154, learning/streamforge-days-155-168, learning/streamforge-days-169-182, learning/streamforge-days-183-196, release/model-building-days-01-30, review/model-first-integration-ownership, review/aws-fde-v24-first30, review/aws-fde-v24-sprint1, work/aws-fde-v24-continuation]
+    branches: [main, work/aws-fde-v24-continuation, chore/align-repo-to-fde-v24]
   pull_request:
     branches: [main]
 
@@ -14,106 +14,50 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
-        with:
-          distribution: temurin
-          java-version: '21'
-          cache: maven
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '24'
           cache: npm
           cache-dependency-path: frontend/package-lock.json
-      - name: Install frontend dependencies
+      - name: Install locked React dependencies
         working-directory: frontend
         run: npm ci
-      - name: Install Chromium for the Day 44 and Day 45 transport harnesses
-        working-directory: frontend
-        run: npx playwright install --with-deps chromium
-      - name: Verify PostgreSQL 18.6 backup client tools
-        run: |
-          docker pull postgres:18.6@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336
-          docker run --rm --network host --entrypoint pg_dump postgres:18.6@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336 --version
-          docker run --rm --network host --entrypoint pg_restore postgres:18.6@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336 --version
-      - name: Frontend build
+      - name: Build React application
         working-directory: frontend
         run: npm run build
-      - name: Build isolated local frontend
+      - name: Run active frontend tests
         working-directory: frontend
-        run: npm run build:local
-      - name: Install pinned CPU model-learning dependencies
-        run: python3 -m pip install -r requirements-model-first.txt
-      - name: Install pinned CPU-only AWS FDE v2.4 Sprint 1 dependencies
+        run: npm test
+      - name: Audit frontend dependencies
+        working-directory: frontend
+        run: npm audit --audit-level=low
+      - name: Install pinned CPU-only Sprint 1 dependencies
         run: |
           python3 -m pip install --index-url https://download.pytorch.org/whl/cpu 'torch==2.14.1'
           python3 -m pip install -r requirements-fde-v2-sprint1.txt
-      - name: Package isolated Spring Boot app
-        run: ./mvnw -B -ntp -Plocal-app -DskipTests clean package
-      - name: Package bounded Sprint 6 app with source receipt
-        run: scripts/package-sprint6-demo.sh
-      - name: Package bounded Sprint 8 app with source receipt
-        run: scripts/package-sprint8-demo.sh --no-clean
-      - name: Verify Java infrastructure and instructor harness
-        run: ./mvnw -B -ntp test
-      - name: Verify continuation manifest
-        run: python3 -m unittest scripts/test_continuation_113_126_manifest.py scripts/test_continuation_127_140_manifest.py
-      - name: Verify engineering roadmap manifests and curriculum
-        run: python3 -m unittest discover -s scripts -p 'test_*.py'
-      - name: Verify StreamForge local fixture infrastructure
-        run: python3 -m unittest ai.streamforge.tests.test_infrastructure ai.streamforge.tests.test_evaluation_infrastructure ai.streamforge.tests.test_evaluation_adapter ai.streamforge.tests.test_content_infrastructure ai.streamforge.tests.test_content_cli.ContentManifestPreflightTest scripts.test_streamforge_183_196_manifest
-      - name: Frontend instructor tests
-        working-directory: frontend
-        run: npm test
-      - name: Dependency audit
-        working-directory: frontend
-        run: npm audit --audit-level=low
-      - name: Verify model-first roadmap and Day 1 instructor oracle
+      - name: Verify active first-month curriculum and API
         run: |
-          python3 -m unittest scripts.test_model_first_roadmap
-          python3 -m unittest ai.model_building.tests.test_day01_infrastructure ai.model_building.tests.test_acceptance_witnesses
-          python3 -S -m ai.model_building.tests.stdlib_days_02_14
-      - name: Verify bounded integration-ownership instructor witnesses
-        run: python3 -m unittest ai.model_building.tests.test_integration_ownership_witness
-      - name: Verify React model-integration witness and failure mutants
-        working-directory: frontend
-        run: npm run test:model-integration-witness
-      - name: Verify AWS FDE v2.4 Sprint 1 contracts and witnesses
-        run: |
-          python3 -m unittest scripts.test_fde_v2_sprint1
-          FDE_V2_CANDIDATE=ai.fde_v2.coverstory.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_units
+          python3 -m unittest scripts.test_fde_v2_sprint1 scripts.test_fde_v2_sprint2
+          FDE_V2_CANDIDATE=ai.fde_v2.coverstory.reference python3 -m unittest \
+            ai.fde_v2.learner_acceptance.test_units \
+            ai.fde_v2.learner_acceptance.test_continuation_units
           python3 -m unittest ai.fde_v2.tests.test_sprint1 ai.fde_v2.tests.test_sprint1_witnesses
+          python3 -m unittest ai.fde_v2.tests.test_continuation_witnesses \
+            ai.fde_v2.tests.test_continuation_api ai.fde_v2.tests.test_local_pipeline_witness
           python3 -m ai.fde_v2.coverstory.day01_baseline
-      - name: Verify AWS FDE v2.4 assistant-supplied React application
-        working-directory: frontend
-        run: npm run test:fde-v2
-      - name: Verify AWS FDE v2.4 Days 15–30 continuation witnesses
+          python3 scripts/fde_v2_container_smoke.py
+      - name: Verify M2.1–M2.2 local security and lifecycle
         run: |
           python3 -m pip install -r requirements-fde-v2-sprint2.txt
-          python3 -m unittest scripts.test_fde_v2_sprint2
-          FDE_V2_CANDIDATE=ai.fde_v2.coverstory.reference python3 -m unittest \
-            ai.fde_v2.learner_acceptance.test_continuation_units \
-            ai.fde_v2.tests.test_continuation_witnesses ai.fde_v2.tests.test_continuation_api \
-            ai.fde_v2.tests.test_local_pipeline_witness
-      - name: Verify AWS FDE v2.4 Days 15–30 RAG panel
-        working-directory: frontend
-        run: RUN_FDE_V2=true npx vitest run
-      - name: Verify AWS FDE v2.4 P1 closeout contracts and API container
-        run: |
-          python3 -m unittest scripts.test_fde_v2_p1_closeout
-          python3 scripts/fde_v2_container_smoke.py
-      - name: Verify conditional AWS FDE v2.4 M2.1 draft mechanics
-        run: |
-          python3 -m unittest scripts.test_fde_v2_m21_draft
-          python3 -m unittest ai.fde_v2.tests.test_m21_draft ai.fde_v2.tests.test_m21_feature_integration
-          python3 -m unittest ai.fde_v2.tests.test_evidence_receipts
-      - name: Verify conditional AWS FDE v2.4 M2.2 draft mechanics
-        run: |
-          python3 -m unittest scripts.test_fde_v2_m22_draft ai.fde_v2.tests.test_m22_draft ai.fde_v2.tests.test_m22_integration
+          python3 -m unittest scripts.test_fde_v2_p1_closeout scripts.test_fde_v2_m21_draft scripts.test_fde_v2_m22_draft
+          python3 -m unittest ai.fde_v2.tests.test_m21_draft ai.fde_v2.tests.test_m21_feature_integration \
+            ai.fde_v2.tests.test_m22_draft ai.fde_v2.tests.test_m22_integration \
+            ai.fde_v2.tests.test_evidence_receipts
           python3 -m ai.fde_v2.m22.acceptance --milestone AIFDE-V2-M2.2 --mode integration
           M22_CANDIDATE=ai.fde_v2.m22.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m22_units
-      - name: Install pinned official MCP Python SDK for conditional M3.2
+      - name: Install pinned official MCP SDK
         run: python3 -m pip install -r requirements-fde-v2-mcp.txt
-      - name: Verify conditional AWS FDE v2.4 M2.3–M3.2 mechanics and real local MCP stdio
+      - name: Verify M2.3–M3.2 provider scaffolds and real MCP stdio
         run: |
           python3 -m unittest scripts.test_fde_v2_m23_m32 \
             ai.fde_v2.tests.test_m23_draft ai.fde_v2.tests.test_m31_draft \
@@ -121,14 +65,14 @@ jobs:
           M23_CANDIDATE=ai.fde_v2.m23.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m23_units
           M31_CANDIDATE=ai.fde_v2.m31.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m31_units
           M32_CANDIDATE=ai.fde_v2.m32.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m32_units
-      - name: Verify conditional AWS FDE v2.4 M3.3–M4.2 contracts and mechanics
+      - name: Verify M3.3–M4.2 operational mechanics
         run: |
           python3 -m unittest scripts.test_fde_v2_m33_m42 \
             ai.fde_v2.tests.test_m33 ai.fde_v2.tests.test_m41 ai.fde_v2.tests.test_m42
           M33_CANDIDATE=ai.fde_v2.m33.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m33_units
           M41_CANDIDATE=ai.fde_v2.m41.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m41_units
           M42_CANDIDATE=ai.fde_v2.m42.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m42_units
-      - name: Verify conditional AWS FDE v2.4 M4.3–M5.3 scaffolds and budgets
+      - name: Verify M4.3–M5.3 scaffolds and 270-day inventory
         run: |
           python3 -m unittest scripts.test_fde_v2_m43_m53 \
             ai.fde_v2.tests.test_m43 ai.fde_v2.tests.test_m51 \
@@ -137,3 +81,5 @@ jobs:
           M51_CANDIDATE=ai.fde_v2.m51.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m51_units
           M52_CANDIDATE=ai.fde_v2.m52.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m52_units
           M53_CANDIDATE=ai.fde_v2.m53.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m53_units
+      - name: Verify DSA repository remains separate
+        run: python3 -m unittest scripts.test_external_track_boundary

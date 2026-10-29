@@ -1,6 +1,6 @@
 # Current continuation implementation boundary
 
-Sprint 1 on main implements the first 14 actual learning days. The published review branch `work/aws-fde-v24-continuation` contains conditional draft guidance and starter scaffolds through Day 270 against the immutable accepted contracts under `accepted/`. This branch is not merged to main, and authorship does not advance learner status. P1 Day 41, M2.1 Days 42–62, and M2.2 Days 62–82 remain conditional on their prerequisites and actual evidence. Standalone daily pages for Days 42–81 link the proposal schedules and exact stage guidance; their conditional status is not a passed assignment.
+The current main branch contains the 270-day AWS FDE v2.4 curriculum and starter scaffolds against the immutable accepted contracts under `accepted/`. Authored material does not advance learner status. P1 Day 41, M2.1 Days 42–62, and M2.2 Days 62–82 remain conditional on their prerequisites and actual evidence. Standalone daily pages for Days 42–81 link the proposal schedules and exact stage guidance; their conditional status is not a passed assignment.
 
 ## Ownership
 

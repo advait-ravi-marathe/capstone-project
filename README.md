@@ -1,22 +1,34 @@
 # Capstone roadmap
 
-The active roadmap is the [AWS FDE v2.4 interview-first plan](docs/fde-v2/README.md). It starts at the first actual study session; all learner days remain Not started. Main contains the Sprint 1 daily pages for Days 1–14. The published review branch `work/aws-fde-v24-continuation` contains conditional guidance and starter scaffolds through Day 270, but is not merged to main. Standalone conditional daily pages for Days 42–81 are present on that branch and linked from the [implementation boundary](docs/fde-v2/implementation-scope.md).
+The active curriculum is [AWS FDE v2.4](docs/fde-v2/README.md): 270 learning days across 12 milestones, with separate DSA, role/AWS, and AI project blocks. Learner progress remains **Not started** until supported by actual learner evidence.
 
-Start with the [Day 1 guide](docs/fde-v2/days/day-01.md) and run the CPU-only synthetic lexical baseline:
+Start with the [Day 1 guide](docs/fde-v2/days/day-01.md). The runnable application is a local Python/FastAPI service and React UI. The baseline command is:
 
 ```sh
 python -m ai.fde_v2.coverstory.day01_baseline
 ```
 
-This is an instructor-owned keyword baseline, not generated output or an AI/RAG pass. See [runtime status](docs/fde-v2/runtime-verification.md) for the recorded HTTP 403 proxy blocker. Real local generation remains unverified; no fetch retry was made.
+This is an instructor-owned synthetic keyword baseline, not generated output or proof of learner capability. See [runtime status](docs/fde-v2/runtime-verification.md) for the recorded model-access blocker. No live cloud, hosted-model, customer, or production result is claimed.
 
-The earlier [model-building-first roadmap](docs/model-first-roadmap/README.md) and prior assignment histories are preserved as superseded/deferred records. DSA remains separate; no DSA problems or solutions are copied here. No learner completion, customer adoption, production operation, certification pass or cloud deployment is claimed.
+The repository keeps the DSA repository separate; it does not copy DSA problems or solutions here. Historical learner evidence and assignment inputs remain under `evidence/` and the retained assignment fixtures. Superseded Java-first and model-building-first curriculum is removed from the active tree; the accepted contracts, attribution, test receipts, and review records for the current roadmap remain under `docs/fde-v2/`.
 
-## Existing repository-wide browser tests
+## Local setup and checks
 
-The inherited Java CI also runs its existing Playwright browser harnesses. To
-reproduce those full-suite checks locally, install the locked frontend
-dependencies with `npm ci` and install Chromium. If Chromium is available at
-the system path, run the Maven suite with
-`CHROMIUM_BIN=/usr/bin/chromium ./mvnw test`. These commands support existing
-historical instructor tests; they are not new learner tasks.
+Use Python 3.12 and install the pinned local dependencies in a virtual environment. The PyTorch CPU index avoids a GPU build; these commands do not fetch model weights or contact a model provider.
+
+```sh
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --index-url https://download.pytorch.org/whl/cpu 'torch==2.14.1'
+python -m pip install -r requirements-fde-v2-sprint1.txt -r requirements-fde-v2-sprint2.txt -r requirements-fde-v2-mcp.txt
+npm --prefix frontend ci
+```
+
+```sh
+python3 -m unittest discover -s scripts -p 'test_fde_v2_*.py'
+python3 -m unittest scripts.test_external_track_boundary
+python3 -m unittest discover -s ai/fde_v2/tests -p 'test_*.py'
+cd frontend && npm test && npm run build
+```
+
+Some integration/evidence gates intentionally remain blocked until the learner supplies the required local capability or separately authorized external access. A reference-suite pass does not change learner status.
