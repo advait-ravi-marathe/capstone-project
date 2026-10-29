@@ -10,10 +10,24 @@ import time
 import urllib.error
 import urllib.request
 import uuid
+from collections.abc import Callable
 
 
 def run(command: list[str], *, timeout: int) -> subprocess.CompletedProcess:
     return subprocess.run(command, check=True, text=True, capture_output=True, timeout=timeout)
+
+
+def wait_for_health(base: str, *, opener: Callable = urllib.request.urlopen,
+                    pause: Callable[[float], None] = time.sleep,
+                    attempts: int = 30) -> dict | None:
+    """Retry transient loopback connection resets while the container starts."""
+    for _ in range(attempts):
+        try:
+            with opener(base + "/health", timeout=2) as response:
+                return json.loads(response.read())
+        except (urllib.error.URLError, TimeoutError, ConnectionError, json.JSONDecodeError):
+            pause(1)
+    return None
 
 
 def main() -> int:
@@ -29,14 +43,7 @@ def main() -> int:
              "--publish", f"127.0.0.1:{host_port}:8765", image], timeout=60)
         container_started = True
         base = f"http://127.0.0.1:{host_port}"
-        health = None
-        for _ in range(30):
-            try:
-                with urllib.request.urlopen(base + "/health", timeout=2) as response:
-                    health = json.loads(response.read())
-                break
-            except (urllib.error.URLError, TimeoutError, json.JSONDecodeError):
-                time.sleep(1)
+        health = wait_for_health(base)
         if health != {"status": "ok", "mode": "local-learning-prototype"}:
             raise RuntimeError("container did not return the exact loopback health contract")
         request = urllib.request.Request(base + "/ask", data=b'{"question":"coverage?"}',

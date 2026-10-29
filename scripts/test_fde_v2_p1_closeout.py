@@ -29,6 +29,34 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class CloseoutContractTests(unittest.TestCase):
+    def test_container_health_probe_retries_startup_connection_reset(self):
+        from scripts.fde_v2_container_smoke import wait_for_health
+
+        class Response:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_args):
+                return False
+
+            def read(self):
+                return b'{"status":"ok","mode":"local-learning-prototype"}'
+
+        attempts = []
+        pauses = []
+
+        def opener(_url, timeout):
+            self.assertEqual(timeout, 2)
+            attempts.append(1)
+            if len(attempts) == 1:
+                raise ConnectionResetError("container listener is still starting")
+            return Response()
+
+        result = wait_for_health("http://127.0.0.1:12345", opener=opener, pause=pauses.append)
+        self.assertEqual(result, {"status": "ok", "mode": "local-learning-prototype"})
+        self.assertEqual(len(attempts), 2)
+        self.assertEqual(pauses, [1])
+
     def test_days31_to41_match_accepted_segments_dates_and_fixed_budget(self):
         accepted = json.loads((ROOT / "docs/fde-v2/accepted/first-release-through-day41-schedule.json").read_text())
         units = {row["id"]: row for row in json.loads(
