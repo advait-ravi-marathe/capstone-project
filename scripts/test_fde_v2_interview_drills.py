@@ -46,7 +46,18 @@ class InterviewDrillRedGreenTests(unittest.TestCase):
         self.assertIn('failed',red.stdout.lower()+red.stderr.lower())
         green=self._vitest('reference')
         self.assertEqual(green.returncode,0,green.stdout+green.stderr)
-        self.assertIn('3 passed',green.stdout)
+        self.assertIn('4 passed',green.stdout)
+
+    def test_sql_role_bank_lab_exposes_scope_and_plan_without_performance_claim(self):
+        from scripts.fde_v2_query_plan_lab import run_lab
+        baseline=run_lab('missing-tenant-filter')
+        repaired=run_lab('none')
+        self.assertGreater(baseline['cross_tenant_rows'],0)
+        self.assertFalse(baseline['tenant_filter_enforced'])
+        self.assertTrue(repaired['tenant_filter_enforced'])
+        self.assertTrue(repaired['uses_named_index'])
+        self.assertTrue(repaired['same_results_before_after_index'])
+        self.assertFalse(repaired['elapsed_performance_claim'])
 
 
 if __name__=='__main__': unittest.main()

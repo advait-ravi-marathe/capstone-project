@@ -71,12 +71,26 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
             page=(ROOT/f'docs/fde-v2/days/day-{day}.md').read_text()
             self.assertIn(resource,page)
             self.assertIn(f'`{module}::{functions}`',page)
-            self.assertIn(f'python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.{selector}',page)
+            row=next(value for value in self.schedule['days'] if value['day']==day)
+            self.assertIn(row['acceptance_selector'],page)
+            self.assertIn(row['acceptance_command'],page)
             self.assertIn('python3 -m ai.fde_v2.ml_depth.examples',page)
         schedule=self.schedule['days']
         for block_start in (271,299,327,355):
             first=next(row for row in schedule if row['day']==block_start)
             self.assertEqual(first['minutes'],{'reading':15,'worked_example':10,'learner_build_test':55,'evidence_log':10})
+        focused={row['day']:row for row in schedule if row['day_kind']=='focused'}
+        for day,function,task in ((282,'regression_loss_profile','squared, absolute and Huber'),
+                                  (300,'make_torch_loaders','actual PyTorch Dataset/DataLoader'),
+                                  (374,'reconcile_delayed_labels','event time')):
+            row=focused[day]; page=(ROOT/f'docs/fde-v2/days/day-{day}.md').read_text()
+            self.assertEqual(row['learner_interface']['functions'],function)
+            self.assertIn('learner_acceptance.MLDepthLearnerAcceptance',row['acceptance_selector'])
+            self.assertIn('ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner',row['acceptance_command'])
+            self.assertIn(task.lower(),row['task'].lower())
+            self.assertIn(row['acceptance_command'],page)
+        self.assertIn('Datasets & DataLoaders (`Dataset` and `DataLoader` sections)',focused[300]['reading'])
+        self.assertIn('Feast documentation',focused[374]['reading'])
 
     def test_all_96_focused_sessions_have_complete_validated_matrix(self):
         governance=json.loads((ROOT/'docs/fde-v2/governance/north-star-and-okrs.json').read_text())
@@ -96,12 +110,30 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
                 self.assertTrue(row['learner_interface']['functions'].strip())
                 if row['learner_interface']['path'].endswith('attempt-record.schema.json'):
                     self.assertTrue((ROOT/row['learner_interface']['path']).is_file())
-                self.assertTrue(row['acceptance_selector'].startswith('ai.fde_v2.ml_depth.test_ml_depth.'))
+                self.assertTrue(row['acceptance_selector'].startswith(('ai.fde_v2.ml_depth.test_ml_depth.',
+                                                                       'ai.fde_v2.ml_depth.learner_acceptance.',
+                                                                       'manual-evidence-review/')))
+                rubric=row['evidence_rubric']
+                self.assertEqual(rubric['primary_check'],row['task'])
+                self.assertTrue(rubric['evidence_check'].strip())
+                self.assertTrue(rubric['reasoning_check'].strip())
+                self.assertEqual(rubric['review_type'],'learner self-check with assistant feedback; not independent assessment')
                 for link in row['objective_links']:
                     self.assertIn((link['objective'],link['key_result']),valid)
                 page=(ROOT/f"docs/fde-v2/days/day-{row['day']}.md").read_text()
                 for token in (row['task'],row['prerequisite'],row['learner_artifact'],row['acceptance_selector']):
                     self.assertIn(token,page)
+                self.assertIn(row['evidence_rubric']['primary_check'],page)
+                self.assertIn(row['evidence_rubric']['reasoning_check'],page)
+                if row['acceptance_selector'].startswith('manual-evidence-review/'):
+                    self.assertIn('runs instructor mechanics only',page)
+                    self.assertIn('manual, task-specific evidence rubric',page)
+                    self.assertIn(f"`{row['learner_interface']['path']}::{row['learner_interface']['functions']}`",page)
+                    if row['learner_interface']['path']=='learning-artifact':
+                        self.assertIn(f"day {row['day']} evidence reviewed against its specific rubric",
+                                      row['learner_interface']['functions'])
+                else:
+                    self.assertIn('learner_acceptance.MLDepthLearnerAcceptance',row['acceptance_selector'])
                 if 'M5.2 accepted guide' in row['reading']:
                     self.assertIn('../proposals/m52-conditional-guide.md',page)
                 else:
@@ -208,7 +240,8 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
         from collections import Counter
         counts=Counter(slot['focus'] for slot in slots)
         self.assertEqual(counts,{
-            'backend_coding_debugging':4,'frontend_coding_debugging':3,'aws':3,
+            'backend_coding_debugging':2,'backend_sql_query_plan':1,'backend_concurrency_debugging':1,
+            'frontend_coding_debugging':3,'aws':3,
             'system_design_customer_sa':2,'behavioral_customer_story':1,'integrated_mini_mock':1})
         self.assertEqual(rotation['coding_drill_minutes'],{
             'understand_prompt':3,'solve':17,'run_tests_review':7,'feedback_log':3})
@@ -221,7 +254,7 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
         self.assertTrue(guide.is_file())
         text=guide.read_text()
         self.assertEqual(len(re.findall(r'^\|\s*\d+\s*\|',text,re.M)),14)
-        for artifact in ('SpringServiceBoundaryDrill.java','starter.ts','RequestBudgetDrill.java','TenantScopeDrill.java',
+        for artifact in ('SpringServiceBoundaryDrill.java','starter.ts','RequestBudgetDrill.java',
                          'IdempotencyDrill.java','ai/fde_v2/m22/workflow.py','ai/fde_v2/m42/reference.py',
                          'ai/fde_v2/m23/providers.py','m53'):
             self.assertIn(artifact,text)
@@ -231,6 +264,9 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
             self.assertIn(command,text)
         self.assertIn('0–4 total',text)
         self.assertIn('scratch',text.lower())
+        self.assertIn('SQL/query-plan debugging',text)
+        self.assertIn('concurrency debugging',text)
+        self.assertIn('forces both duplicate requests past the idempotency lookup',text)
 
 
 if __name__=='__main__': unittest.main()

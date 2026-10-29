@@ -17,16 +17,24 @@ def run_block(block: str):
         train=rows[:96]; validation=rows[96:128]
         result=workflow.compare_classical([r["features"] for r in train],[r["label"] for r in train],
              [r["features"] for r in validation],[r["label"] for r in validation],adapter=reference,epochs=250)
+        robust=workflow.compare_regression_losses([0.0,10.0],[0.0,0.0],huber_delta=1.0,adapter=reference)
         return {"block":block,"training_rows":len(train),"validation_rows":len(validation),
                 "logistic_loss_start_end":[result["logistic"]["model"]["loss_history"][0],result["logistic"]["model"]["loss_history"][-1]],
                 "logistic_metrics":result["logistic"]["metrics"],"boosted_tree_metrics":result["boosted_tree"]["metrics"],
+                "one_outlier_regression_losses":robust,
                 "fit_partition":"train","evidence_class":"synthetic_mechanics_only"}
     if block=="PML2":
         try: import torch  # noqa: F401
         except ImportError: return {"block":block,"status":"BLOCKED","reason":"pinned PyTorch is not installed; no network/install attempted"}
-        rows=classification_fixture(80); trained=reference.train_torch_model([r["features"] for r in rows],
-                [r["label"] for r in rows],seed=7,epochs=80)
+        rows=classification_fixture(80)
+        features=[r["features"] for r in rows]; labels=[r["label"] for r in rows]
+        loaders=workflow.prepare_torch_data(features,labels,adapter=reference,validation_fraction=.2,batch_size=8,seed=7)
+        trained=reference.train_torch_model(features,
+                labels,seed=7,epochs=80)
         return {"block":block,"training_rows":len(rows),"loss_start_end":[trained["loss_history"][0],trained["loss_history"][-1]],
+                "dataset_rows":loaders["dataset_rows"],"loader_train_rows":len(loaders["train_indices"]),
+                "loader_validation_rows":len(loaders["validation_indices"]),
+                "actual_torch_dataloaders":True,"disjoint_indices":not bool(set(loaders["train_indices"])&set(loaders["validation_indices"])),
                 "device":"cpu","parameters_changed":trained["parameters_changed"],"pretrained_weights":False,
                 "evidence_class":"synthetic_mechanics_only"}
     if block=="PML3":
@@ -45,7 +53,11 @@ def run_block(block: str):
         design=reference.design_experiment(spec)
         assignments=reference.assign_experiment_units(experiment_fixture(5000),experiment_id="example-only",seed=9)
         counts={arm:sum(value==arm for value in assignments.values()) for arm in ("control","treatment")}
+        labels=workflow.reconcile_delayed_labels([
+            {"event_id":"event-1","user_id":"user-1","item_id":"item-a","event_time":100,"arrival_time":105,"label":0,"label_version":1},
+            {"event_id":"event-1","user_id":"user-1","item_id":"item-a","event_time":100,"arrival_time":130,"label":1,"label_version":2}],adapter=reference)
         return {"block":block,"required_total":design["required_total"],"assigned_counts":counts,
+                "delayed_label_reconciliation":labels,
                 "online_experiment":False,"evidence_class":"design_fixture_only"}
     raise ValueError("block must be PML1, PML2, PML3 or PML4")
 

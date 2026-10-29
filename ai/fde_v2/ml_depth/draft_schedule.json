@@ -36,8 +36,8 @@
       "reading": "OpenIntro Ch.1 Introduction to data",
       "prerequisite": "M5.2 dataset/metric/split and M5.3 core gap-handoff evidence reviewed; otherwise mechanics-only preparation and progression remains blocked.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 271 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-271-problem-unit-estimand.json",
       "objective_links": [
@@ -46,7 +46,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Write a one-page task and label contract for a synthetic conversion prediction problem.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-271",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -73,8 +79,8 @@
       "reading": "OpenIntro Ch.1 Introduction to data; Ch.2 Data summaries",
       "prerequisite": "Day 271 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 272 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-272-sampling-selection-and-missingness.json",
       "objective_links": [
@@ -83,7 +89,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Create a table that distinguishes target population, observed sample and missing outcomes.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-272",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -110,8 +122,8 @@
       "reading": "OpenIntro Ch.3 Probability",
       "prerequisite": "Day 272 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 273 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-273-base-rates-and-bernoulli-outcomes.json",
       "objective_links": [
@@ -120,7 +132,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Compute base rate and compare accuracy to a majority-class baseline.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-273",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -147,8 +165,8 @@
       "reading": "OpenIntro Ch.3 Probability",
       "prerequisite": "Day 273 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 274 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-274-conditional-probability-and-bayes.json",
       "objective_links": [
@@ -157,7 +175,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Calculate conditional event probabilities and identify a base-rate reversal.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-274",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -184,8 +208,8 @@
       "reading": "OpenIntro Ch.4 Distributions of random variables",
       "prerequisite": "Day 274 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 275 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-275-sampling-variation-simulation.json",
       "objective_links": [
@@ -194,7 +218,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Resample the generated fixture and plot/record variability of its positive rate.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-275",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -221,8 +251,8 @@
       "reading": "OpenIntro Ch.5 Foundations for inference",
       "prerequisite": "Day 275 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 276 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-276-intervals-and-bootstrap.json",
       "objective_links": [
@@ -231,7 +261,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Calculate a Wilson interval and a seeded bootstrap interval; state what each interval estimates.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-276",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -258,8 +294,8 @@
       "reading": "OpenIntro Ch.5 Foundations for inference",
       "prerequisite": "Day 276 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 277 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-277-hypotheses-and-decision-errors.json",
       "objective_links": [
@@ -268,7 +304,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Build a type-I/type-II error table for a product metric decision.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-277",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -295,8 +337,8 @@
       "reading": "Microsoft Research experiment design/validity sections",
       "prerequisite": "Day 277 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 278 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-278-power-mde-and-sample-size.json",
       "objective_links": [
@@ -305,7 +347,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Use the reference sample-size formula and inspect how MDE/power change required N.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-278",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -332,8 +380,8 @@
       "reading": "Microsoft Research experiment design/validity sections",
       "prerequisite": "Day 278 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 279 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-279-randomization-unit-and-interference.json",
       "objective_links": [
@@ -342,7 +390,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Choose a user/account/session unit and construct one interference counterexample.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-279",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -369,8 +423,8 @@
       "reading": "OpenIntro Ch.5 Foundations for inference",
       "prerequisite": "Day 279 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 280 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-280-delayed-labels-and-censoring.json",
       "objective_links": [
@@ -379,7 +433,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Mark which synthetic events are not yet observable at the chosen evaluation cutoff.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-280",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -416,9 +476,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Implement squared-error predictions with the supplied feature matrix and compare to the mean baseline.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_linear_regression_baseline",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_linear_regression_baseline",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -444,7 +510,7 @@
       "prerequisite": "Day 281 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
         "path": "ai/fde_v2/ml_depth/learner.py",
-        "functions": "logistic_loss"
+        "functions": "regression_loss_profile"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-282-loss-functions-and-robust-error.json",
       "objective_links": [
@@ -453,9 +519,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Compare squared, absolute and Huber error on a fixture with one large outlier.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_regression_losses_compare_squared_absolute_and_huber_on_outlier",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_regression_losses_compare_squared_absolute_and_huber_on_outlier",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -490,9 +562,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Implement learner logistic gradient descent and compare probabilities to majority baseline.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_regularized_logistic_fit_and_train_only_transform",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_regularized_logistic_fit_and_train_only_transform",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -517,8 +595,8 @@
       "reading": "CS229 gradient descent section",
       "prerequisite": "Day 283 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "logistic_gradient"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-284-finite-difference-gradient-check.json",
       "objective_links": [
@@ -527,9 +605,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Numerically check one learner logistic gradient coordinate against the analytic derivative.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_logistic_gradient_matches_finite_difference_with_l2",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_logistic_gradient_matches_finite_difference_with_l2",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -554,8 +638,8 @@
       "reading": "CS229 gradient descent section",
       "prerequisite": "Day 284 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 285 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-285-gradient-descent-and-convergence.json",
       "objective_links": [
@@ -564,7 +648,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Plot or record objective across learning rates; explain divergence/slow convergence.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-285",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -591,8 +681,8 @@
       "reading": "CS229 regularization section; sklearn linear models",
       "prerequisite": "Day 285 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 286 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-286-l1-l2-regularization.json",
       "objective_links": [
@@ -601,7 +691,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Compare coefficient norms/path under no penalty, L1 and L2 without touching validation.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-286",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -638,9 +734,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Choose a threshold from explicit false-positive/false-negative costs; report precision/recall.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_declared_threshold_cost_rule",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_declared_threshold_cost_rule",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -665,8 +767,8 @@
       "reading": "sklearn Probability calibration",
       "prerequisite": "Day 287 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 288 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-288-calibration-and-reliability.json",
       "objective_links": [
@@ -675,7 +777,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Compute Brier/ECE and make a reliability table; do not equate confidence with correctness.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-288",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -702,8 +810,8 @@
       "reading": "sklearn Cross-validation: evaluating estimator performance",
       "prerequisite": "Day 288 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 289 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-289-temporal-group-leakage-map.json",
       "objective_links": [
@@ -712,7 +820,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Tag each feature by event time and split by group/time before fitting transforms.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-289",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -739,8 +853,8 @@
       "reading": "sklearn HistGradientBoostingClassifier API",
       "prerequisite": "Day 289 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/reference.py",
-        "functions": "fit_boosted_tree (supplied benchmark; learner owns paired interpretation)"
+        "path": "ai/fde_v2/ml_depth/workflow.py",
+        "functions": "compare_classical(adapter=learner); supplied boosted-tree baseline paired on same validation rows"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-290-boosted-tree-baseline.json",
       "objective_links": [
@@ -749,9 +863,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Train the pinned HistGradientBoostingClassifier on train rows only; report validation metrics.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_boosted_comparison_uses_same_validation_rows",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_boosted_comparison_uses_same_validation_rows",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -776,8 +896,8 @@
       "reading": "sklearn Tuning the hyper-parameters of an estimator",
       "prerequisite": "Day 290 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 291 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-291-validation-and-search-budget.json",
       "objective_links": [
@@ -786,7 +906,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Compare candidates while keeping tuning within training/validation; freeze test boundary.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-291",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -813,8 +939,8 @@
       "reading": "sklearn Metrics and scoring",
       "prerequisite": "Day 291 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 292 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-292-slice-errors-and-support.json",
       "objective_links": [
@@ -823,7 +949,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Report errors by two predeclared synthetic slices with sample counts and uncertainty.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-292",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -850,8 +982,8 @@
       "reading": "sklearn Metrics and scoring",
       "prerequisite": "Day 292 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 293 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-293-paired-comparison-and-uncertainty.json",
       "objective_links": [
@@ -860,7 +992,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Compare two models on the same rows; retain all cases and report uncertainty/limits.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-293",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -887,8 +1025,8 @@
       "reading": "sklearn Model selection and evaluation",
       "prerequisite": "Day 293 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 294 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-294-frozen-comparison-and-model-card.json",
       "objective_links": [
@@ -897,7 +1035,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "evidence_rubric": {
+        "primary_check": "Freeze data/config/model hashes, run the held-out once, and document a failure plus limit.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-294",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
       "dsa_minutes": 60,
@@ -1060,8 +1204,8 @@
       "reading": "PyTorch Learn the Basics: Tensors",
       "prerequisite": "PML1 learner-owned classical baseline, split/metric contract and reviewed error analysis passed.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 299 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-299-tensor-shapes-and-dtypes.json",
       "objective_links": [
@@ -1070,7 +1214,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Inspect generated batch shape/dtype/device and add assertions before forward pass.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-299",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1093,12 +1243,12 @@
       "block_day": 2,
       "day_kind": "focused",
       "title": "Dataset and DataLoader",
-      "task": "Build deterministic train/validation partitions and a local Dataset/DataLoader.",
-      "reading": "PyTorch Learn the Basics: Datasets & DataLoaders",
+      "task": "Build deterministic, disjoint train/validation partitions over the supplied training pool and return actual PyTorch Dataset/DataLoader objects; prove the validation loader is stable and no row crosses partitions.",
+      "reading": "PyTorch Tutorials: Datasets & DataLoaders (`Dataset` and `DataLoader` sections)",
       "prerequisite": "Day 299 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "make_torch_loaders"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-300-dataset-and-dataloader.json",
       "objective_links": [
@@ -1107,9 +1257,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Build deterministic, disjoint train/validation partitions over the supplied training pool and return actual PyTorch Dataset/DataLoader objects; prove the validation loader is stable and no row crosses partitions.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_torch_dataset_loaders_partition_the_actual_training_pool",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_torch_dataset_loaders_partition_the_actual_training_pool",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1134,8 +1290,8 @@
       "reading": "PyTorch Learn the Basics: Automatic Differentiation with torch.autograd",
       "prerequisite": "Day 300 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 301 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-301-autograd-scalar-example.json",
       "objective_links": [
@@ -1144,7 +1300,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Differentiate a scalar function and compare the gradient to an analytic value.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-301",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1171,8 +1333,8 @@
       "reading": "PyTorch Learn the Basics: Automatic Differentiation with torch.autograd",
       "prerequisite": "Day 301 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 302 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-302-finite-difference-check.json",
       "objective_links": [
@@ -1181,7 +1343,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Compare autograd and numerical gradient on a scalar and one network parameter.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-302",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1208,8 +1376,8 @@
       "reading": "PyTorch Learn the Basics: Building the Neural Network",
       "prerequisite": "Day 302 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 303 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-303-small-mlp-forward-pass.json",
       "objective_links": [
@@ -1218,7 +1386,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Create a two-layer MLP and verify logits have one row per example.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-303",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1245,8 +1419,8 @@
       "reading": "PyTorch Learn the Basics: Building the Neural Network",
       "prerequisite": "Day 303 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 304 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-304-cross-entropy-shape-semantics.json",
       "objective_links": [
@@ -1255,7 +1429,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Use logits and integer labels correctly; detect a shape/broadcasting mutation.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-304",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1292,9 +1472,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Implement zero_grad, forward, loss, backward and optimizer step; prove parameters change.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_torch_task_runs_actual_training_adapter",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_torch_task_runs_actual_training_adapter",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1319,8 +1505,8 @@
       "reading": "PyTorch Learn the Basics: Optimizing Model Parameters",
       "prerequisite": "Day 305 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 306 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-306-sgd-versus-adam.json",
       "objective_links": [
@@ -1329,7 +1515,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Train the same fixed tiny task with two optimizers and compare traces, not winner claims.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-306",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1356,8 +1548,8 @@
       "reading": "PyTorch Learn the Basics: Datasets & DataLoaders; Optimizing Model Parameters",
       "prerequisite": "Day 306 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 307 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-307-batch-and-epoch-accounting.json",
       "objective_links": [
@@ -1366,7 +1558,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Log examples processed and per-epoch loss with correct weighting by batch size.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-307",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1393,8 +1591,8 @@
       "reading": "PyTorch Learn the Basics: Tensors; Save and Load the Model",
       "prerequisite": "Day 307 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 308 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-308-seed-and-repeatability.json",
       "objective_links": [
@@ -1403,7 +1601,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Run twice with fixed seed and compare CPU outputs; note remaining nondeterminism.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-308",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1430,8 +1634,8 @@
       "reading": "PyTorch Learn the Basics: Building the Neural Network",
       "prerequisite": "Day 308 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 309 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-309-train-eval-mode-and-dropout.json",
       "objective_links": [
@@ -1440,7 +1644,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Show that model mode changes behavior only where a stochastic layer is active.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-309",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1467,8 +1677,8 @@
       "reading": "PyTorch Learn the Basics: Optimizing Model Parameters",
       "prerequisite": "Day 309 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 310 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-310-validation-without-gradients.json",
       "objective_links": [
@@ -1477,7 +1687,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Add validation loop under eval/no_grad and verify optimizer state is unchanged.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-310",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1504,8 +1720,8 @@
       "reading": "PyTorch Learn the Basics: Optimizing Model Parameters",
       "prerequisite": "Day 310 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 311 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-311-underfit-fit-overfit-traces.json",
       "objective_links": [
@@ -1514,7 +1730,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Overfit a tiny batch intentionally and distinguish that from generalization.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-311",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1541,8 +1763,8 @@
       "reading": "PyTorch Learn the Basics: Optimizing Model Parameters",
       "prerequisite": "Day 311 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 312 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-312-weight-decay-and-early-stopping.json",
       "objective_links": [
@@ -1551,7 +1773,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Select epoch from validation-only history and keep held-out rows inaccessible.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-312",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1578,8 +1806,8 @@
       "reading": "PyTorch Learn the Basics: Optimizing Model Parameters",
       "prerequisite": "Day 312 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 313 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-313-class-imbalance.json",
       "objective_links": [
@@ -1588,7 +1816,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Compare unweighted and weighted loss while keeping label semantics explicit.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-313",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1615,8 +1849,8 @@
       "reading": "PyTorch Learn the Basics: Automatic Differentiation; Optimizing Model Parameters",
       "prerequisite": "Day 313 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 314 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-314-broken-run-diagnosis.json",
       "objective_links": [
@@ -1625,7 +1859,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Inject a disconnected loss, non-finite gradient and wrong label shape; classify each error.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-314",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1652,8 +1892,8 @@
       "reading": "PyTorch Learn the Basics: Save and Load the Model",
       "prerequisite": "Day 314 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 315 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-315-checkpoint-manifest.json",
       "objective_links": [
@@ -1662,7 +1902,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Save state_dict, optimizer state, seed, data/split/config hashes and epoch.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-315",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1689,8 +1935,8 @@
       "reading": "PyTorch Learn the Basics: Save and Load the Model",
       "prerequisite": "Day 315 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "ai/fde_v2/ml_depth/workflow.py",
+        "functions": "resume_torch_training(adapter=learner)"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-316-resume-and-reload-parity.json",
       "objective_links": [
@@ -1699,9 +1945,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Resume a split training run and compare against uninterrupted fixed-batch training.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_checkpoint_resume_uses_saved_optimizer_and_weights",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_checkpoint_resume_uses_saved_optimizer_and_weights",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1726,8 +1978,8 @@
       "reading": "PyTorch Learn the Basics: Quickstart",
       "prerequisite": "Day 316 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 317 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-317-cpu-time-and-memory.json",
       "objective_links": [
@@ -1736,7 +1988,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Measure a bounded fixture run; record hardware, rows, epochs and wall-clock time.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-317",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1763,8 +2021,8 @@
       "reading": "sklearn Probability calibration; Metrics and scoring",
       "prerequisite": "Day 317 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 318 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-318-calibration-and-error-slices.json",
       "objective_links": [
@@ -1773,7 +2031,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Evaluate calibrated probabilities and two supported slices after training.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-318",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1800,8 +2064,8 @@
       "reading": "PyTorch Learn the Basics: Optimizing Model Parameters",
       "prerequisite": "Day 318 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 319 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-319-seed-sensitivity.json",
       "objective_links": [
@@ -1810,7 +2074,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Repeat with three declared seeds; report spread rather than selecting the best seed.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-319",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1837,8 +2107,8 @@
       "reading": "PyTorch Learn the Basics: Optimizing Model Parameters",
       "prerequisite": "Day 319 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 320 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-320-mutation-regression.json",
       "objective_links": [
@@ -1847,7 +2117,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Disable optimizer.step or corrupt labels; require the training/evaluation gate to detect it.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-320",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1874,8 +2150,8 @@
       "reading": "PyTorch Learn the Basics: Save and Load the Model",
       "prerequisite": "Day 320 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 321 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-321-clean-process-reproduction.json",
       "objective_links": [
@@ -1884,7 +2160,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Load checkpoint in a fresh process from manifest; reject changed data/config hashes.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-321",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -1911,8 +2193,8 @@
       "reading": "PyTorch Learn the Basics: Save and Load the Model",
       "prerequisite": "Day 321 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 322 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-322-training-mechanics-review.json",
       "objective_links": [
@@ -1921,7 +2203,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "evidence_rubric": {
+        "primary_check": "Explain one failure, the repair and why a synthetic overfit is not generalization proof.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-322",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
       "dsa_minutes": 60,
@@ -2084,8 +2372,8 @@
       "reading": "Google Recommender Systems: overview and terminology",
       "prerequisite": "PML2 actual CPU parameter update, tiny-batch overfit, diagnosed broken run and checkpoint reload passed.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 327 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-327-events-impressions-and-labels.json",
       "objective_links": [
@@ -2094,7 +2382,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Separate positive events from exposures and unobserved items in the synthetic fixture.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-327",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2121,8 +2415,8 @@
       "reading": "M5.2 accepted guide: offline ranking evaluation",
       "prerequisite": "Day 327 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 328 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-328-existing-m5-2-baselines.json",
       "objective_links": [
@@ -2131,7 +2425,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Reproduce popularity and cosine ranking with an identical candidate set.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-328",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2158,8 +2458,8 @@
       "reading": "Google Recommendation Systems: collaborative filtering summary",
       "prerequisite": "Day 328 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 329 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-329-temporal-and-user-split.json",
       "objective_links": [
@@ -2168,7 +2468,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Choose a time/group split and show why random interaction split leaks information.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-329",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2195,8 +2501,8 @@
       "reading": "Google Recommendation Systems: candidate generation overview",
       "prerequisite": "Day 329 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 330 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-330-candidate-availability.json",
       "objective_links": [
@@ -2205,7 +2511,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Define which candidates exist at each prediction timestamp and reject future-only items.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-330",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2242,9 +2554,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Implement the learner sampler over training-eligible items only and assert catalog membership.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_training_catalog_negative_sampling",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_training_catalog_negative_sampling",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2269,8 +2587,8 @@
       "reading": "Google Recommendation Systems: collaborative filtering summary",
       "prerequisite": "Day 331 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 332 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-332-false-negatives-and-exposure.json",
       "objective_links": [
@@ -2279,7 +2597,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Record limits when an unclicked/unseen item is treated as negative.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-332",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2306,8 +2630,8 @@
       "reading": "Google Recommendation Systems: collaborative filtering and matrix factorization",
       "prerequisite": "Day 332 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 333 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-333-preference-triples.json",
       "objective_links": [
@@ -2316,7 +2640,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Represent user, positive item and eligible negative item with stable IDs.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-333",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2353,9 +2683,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Derive and implement the pairwise objective; check monotonic loss on the fixture.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_pairwise_ranker_learns_and_scores_pairs",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_pairwise_ranker_learns_and_scores_pairs",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2380,8 +2716,8 @@
       "reading": "Google Recommendation Systems: matrix factorization",
       "prerequisite": "Day 334 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "pairwise_loss_gradient"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-335-gradient-update.json",
       "objective_links": [
@@ -2390,9 +2726,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Finite-difference check one pairwise parameter and preserve deterministic seed.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_pairwise_vector_gradients_match_finite_difference",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_pairwise_vector_gradients_match_finite_difference",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2417,8 +2759,8 @@
       "reading": "Google Recommendation Systems: candidate generation; scoring",
       "prerequisite": "Day 335 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 336 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-336-same-candidates-for-all-models.json",
       "objective_links": [
@@ -2427,7 +2769,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Bind catalog/split hash and assert learned, popularity and cosine rank the same rows.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-336",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2464,9 +2812,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Calculate NDCG@K, MRR and Recall@K with explicit ties and denominator.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_ndcg_cutoff_and_tie_behavior",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_ndcg_cutoff_and_tie_behavior",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2501,9 +2855,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Compare learned ranker to M5.2 cosine/popularity; no model is required to win.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_learner_pairwise_ranker_is_used_by_comparison_path",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_learner_pairwise_ranker_is_used_by_comparison_path",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2528,8 +2888,8 @@
       "reading": "Google Recommendation Systems: collaborative filtering summary (cold start)",
       "prerequisite": "Day 338 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 339 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-339-cold-user-fallback.json",
       "objective_links": [
@@ -2538,7 +2898,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Implement transparent popularity fallback for an unseen user and test its status.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-339",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2565,8 +2931,8 @@
       "reading": "Google Recommendation Systems: collaborative filtering summary (cold start)",
       "prerequisite": "Day 339 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 340 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-340-cold-item-behavior.json",
       "objective_links": [
@@ -2575,7 +2941,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Reject future-only item leakage and document an explicit metadata/popularity fallback boundary.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-340",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2602,8 +2974,8 @@
       "reading": "Google Recommendation Systems: collaborative filtering summary",
       "prerequisite": "Day 340 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 341 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-341-sparse-user-support.json",
       "objective_links": [
@@ -2612,7 +2984,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Report per-user event support and abstain from unsupported slice conclusions.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-341",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2639,8 +3017,8 @@
       "reading": "Google Recommendation Systems: re-ranking",
       "prerequisite": "Day 341 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 342 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-342-time-drift-and-freshness.json",
       "objective_links": [
@@ -2649,7 +3027,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Measure training-only item age/popularity and test stale-candidate handling.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-342",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2676,8 +3060,8 @@
       "reading": "Google Recommendation Systems: re-ranking",
       "prerequisite": "Day 342 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 343 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-343-quality-coverage-and-exposure-slices.json",
       "objective_links": [
@@ -2686,7 +3070,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Report ranking quality and candidate coverage by predeclared synthetic slices.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-343",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2713,8 +3103,8 @@
       "reading": "Google Recommendation Systems: collaborative filtering summary",
       "prerequisite": "Day 343 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 344 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-344-negative-sample-sensitivity.json",
       "objective_links": [
@@ -2723,7 +3113,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Repeat candidate sampling with declared seeds; report rank/metric variability.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-344",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2750,8 +3146,8 @@
       "reading": "Google Recommendation Systems: scoring",
       "prerequisite": "Day 344 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 345 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-345-development-only-tuning.json",
       "objective_links": [
@@ -2760,7 +3156,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Tune dimensions/learning rate on development split and record selected config hash.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-345",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2787,8 +3189,8 @@
       "reading": "sklearn Metrics and scoring",
       "prerequisite": "Day 345 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 346 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-346-paired-user-uncertainty.json",
       "objective_links": [
@@ -2797,7 +3199,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Aggregate at user level; do not treat repeated events as independent users.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-346",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2824,8 +3232,8 @@
       "reading": "M5.2 accepted guide: held-out runner",
       "prerequisite": "Day 346 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 347 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-347-freeze-held-out-once.json",
       "objective_links": [
@@ -2834,7 +3242,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Freeze candidates/model/split/metric before one held-out run and retain failures.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-347",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2861,8 +3275,8 @@
       "reading": "Google Recommendation Systems: collaborative filtering summary",
       "prerequisite": "Day 347 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 348 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-348-logged-feedback-limits.json",
       "objective_links": [
@@ -2871,7 +3285,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Explain exposure, position, selection and counterfactual limitations in the report.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-348",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2898,8 +3318,8 @@
       "reading": "Google Recommendation Systems: overview/types",
       "prerequisite": "Day 348 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 349 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-349-retrieval-versus-ranking.json",
       "objective_links": [
@@ -2908,7 +3328,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Separate candidate generation from scoring and reranking in the serving sketch.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-349",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -2935,8 +3361,8 @@
       "reading": "Google Recommendation Systems: scoring and re-ranking",
       "prerequisite": "Day 349 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 350 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-350-ranker-error-review.json",
       "objective_links": [
@@ -2945,7 +3371,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "evidence_rubric": {
+        "primary_check": "Choose based on evidence; accept baseline win/no difference and list next useful data.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-350",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
       "dsa_minutes": 60,
@@ -3118,9 +3550,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Write primary metric, unit, estimand, guardrails and decision before outcomes.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_experiment_design_rejects_underpowered_fixed_horizon",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_experiment_design_rejects_underpowered_fixed_horizon",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3155,9 +3593,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Implement deterministic user-level allocation; verify repeated exposure stays in one arm.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_assignment_is_stable_balanced_and_unit_bound",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_assignment_is_stable_balanced_and_unit_bound",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3192,9 +3636,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Calculate MDE/sample size; reject a planned cohort below the stated power target.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_experiment_design_rejects_underpowered_fixed_horizon",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_experiment_design_rejects_underpowered_fixed_horizon",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3229,9 +3679,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Inject missing assignments; stop outcome analysis when SRM boundary is exceeded.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_srm_boundary_blocks_outcome_analysis",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_srm_boundary_blocks_outcome_analysis",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3256,8 +3712,8 @@
       "reading": "Microsoft Research online experiments: validity",
       "prerequisite": "Day 358 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 359 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-359-interference-and-carryover.json",
       "objective_links": [
@@ -3266,7 +3722,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Map spillover/novelty risks and decide whether the proposed unit is plausible.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-359",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
       "dsa_minutes": 60,
@@ -3293,8 +3755,8 @@
       "reading": "Microsoft Research online experiments: guardrail metrics",
       "prerequisite": "Day 359 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 360 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-360-guardrails-and-safety-stop.json",
       "objective_links": [
@@ -3303,7 +3765,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Set adverse-effect thresholds for latency, errors and opt-outs before simulated outcomes.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-360",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
       "dsa_minutes": 60,
@@ -3340,9 +3808,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Analyze a generated randomized assignment and preserve uncertainty; label non-live evidence.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_ab_estimate_uses_unit_level_samples",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_ab_estimate_uses_unit_level_samples",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3364,11 +3838,11 @@
       "day_kind": "focused",
       "title": "No fake online result",
       "task": "Produce a design-only report with live experiment status BLOCKED/NOT_RUN.",
-      "reading": "OpenAI Growth role brief: evaluation/experimentation",
+      "reading": "Microsoft Research online experiments: design, validity and decision criteria",
       "prerequisite": "Day 361 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 362 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-362-no-fake-online-result.json",
       "objective_links": [
@@ -3377,7 +3851,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Produce a design-only report with live experiment status BLOCKED/NOT_RUN.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-362",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
       "dsa_minutes": 60,
@@ -3404,8 +3884,8 @@
       "reading": "MLflow model registry: lineage concepts",
       "prerequisite": "Day 362 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 363 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-363-feature-schema-parity.json",
       "objective_links": [
@@ -3414,7 +3894,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Train and serve with the same named feature schema; reject reordered/missing fields.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-363",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
       "dsa_minutes": 60,
@@ -3441,8 +3927,8 @@
       "reading": "MLflow model registry: model version and lineage",
       "prerequisite": "Day 363 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 364 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-364-lineage-hash-contract.json",
       "objective_links": [
@@ -3451,7 +3937,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Bind data, split, code, features, config, metrics and artifact hashes.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-364",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
       "dsa_minutes": 60,
@@ -3478,8 +3970,8 @@
       "reading": "MLflow model registry: versions and aliases",
       "prerequisite": "Day 364 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 365 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-365-versioned-local-artifact.json",
       "objective_links": [
@@ -3488,7 +3980,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Write a content-hash-bound model version and load only that verified artifact.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-365",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
       "dsa_minutes": 60,
@@ -3525,9 +4023,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Serve predictions from the promoted artifact and compare to train-time transform output.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_model_artifact_is_consumed_by_serving",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_model_artifact_is_consumed_by_serving",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3549,11 +4053,11 @@
       "day_kind": "focused",
       "title": "Latency/cost protocol",
       "task": "Measure local latency; mark unknown costs rather than estimating unobserved provider spend.",
-      "reading": "Stripe ML Engineer, Growth Platform: reliability/latency/cost",
+      "reading": "CloudWatch SLO concepts: latency and availability; AWS Budgets: actual and forecast alerts",
       "prerequisite": "Day 366 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 367 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-367-latency-cost-protocol.json",
       "objective_links": [
@@ -3562,7 +4066,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Measure local latency; mark unknown costs rather than estimating unobserved provider spend.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-367",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
       "dsa_minutes": 60,
@@ -3586,11 +4096,11 @@
       "day_kind": "focused",
       "title": "Input quality/freshness checks",
       "task": "Track missing fields, schema violations and feature age on local test traffic.",
-      "reading": "Stripe ML Engineer, Growth Platform: reliable feature pipelines",
+      "reading": "Feast documentation: point-in-time joins and event-time freshness",
       "prerequisite": "Day 367 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 368 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-368-input-quality-freshness-checks.json",
       "objective_links": [
@@ -3599,7 +4109,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Track missing fields, schema violations and feature age on local test traffic.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-368",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
       "dsa_minutes": 60,
@@ -3626,8 +4142,8 @@
       "reading": "MLflow model monitoring concepts",
       "prerequisite": "Day 368 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 369 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-369-prediction-label-drift.json",
       "objective_links": [
@@ -3636,7 +4152,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Measure drift and quality separately; delayed labels are pending, not negatives.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-369",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
       "dsa_minutes": 60,
@@ -3660,11 +4182,11 @@
       "day_kind": "focused",
       "title": "Drift versus degradation",
       "task": "Prove drift alone pages for review but does not automatically trigger retraining.",
-      "reading": "Stripe ML Engineer, Growth Platform: monitoring and iteration",
+      "reading": "CloudWatch alarms: metric alarms and missing data; sklearn model evaluation: classification metrics",
       "prerequisite": "Day 369 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 370 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-370-drift-versus-degradation.json",
       "objective_links": [
@@ -3673,7 +4195,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Prove drift alone pages for review but does not automatically trigger retraining.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-370",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
       "dsa_minutes": 60,
@@ -3710,9 +4238,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Require both quality degradation and minimum support/recency before recommending retrain.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_retraining_requires_drift_and_quality_degradation",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_retraining_requires_drift_and_quality_degradation",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3737,8 +4271,8 @@
       "reading": "MLflow model registry: version and rollback concepts",
       "prerequisite": "Day 371 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 372 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-372-canary-and-rollback-design.json",
       "objective_links": [
@@ -3747,7 +4281,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Simulate a bounded staged promotion and automatic rollback guard without a live service.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-372",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
       "dsa_minutes": 60,
@@ -3774,8 +4314,8 @@
       "reading": "MLflow model registry: version lineage",
       "prerequisite": "Day 372 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 373 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-373-promotion-history.json",
       "objective_links": [
@@ -3784,7 +4324,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Preserve immutable active/previous versions and test rollback to a known prior artifact.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-373",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
       "dsa_minutes": 60,
@@ -3807,12 +4353,12 @@
       "block_day": 20,
       "day_kind": "focused",
       "title": "Delayed labels and backfill",
-      "task": "Retain arrival time and event time; test backfill idempotency on synthetic records.",
-      "reading": "Stripe ML Engineer, Growth Platform: data/feature pipelines",
+      "task": "Reconcile late labels by event time while retaining arrival-time/version provenance; replay the same synthetic backfill and reject a conflicting duplicate version.",
+      "reading": "Feast documentation: point-in-time joins and late-arriving/backfilled rows",
       "prerequisite": "Day 373 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "reconcile_delayed_labels"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-374-delayed-labels-and-backfill.json",
       "objective_links": [
@@ -3821,9 +4367,15 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Reconcile late labels by event time while retaining arrival-time/version provenance; replay the same synthetic backfill and reject a conflicting duplicate version.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_delayed_label_reconciliation_is_versioned_and_idempotent",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_delayed_label_reconciliation_is_versioned_and_idempotent",
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3845,11 +4397,11 @@
       "day_kind": "focused",
       "title": "Incident drill",
       "task": "Corrupt a feature schema, detect, rollback, restore health, and add a regression test.",
-      "reading": "Stripe ML Engineer, Growth Platform: operating/debugging ML systems",
+      "reading": "AWS Operational Excellence: Prepare and Operate; CloudWatch alarms: missing data and alarm state",
       "prerequisite": "Day 374 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 375 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-375-incident-drill.json",
       "objective_links": [
@@ -3858,7 +4410,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Corrupt a feature schema, detect, rollback, restore health, and add a regression test.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-375",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
       "dsa_minutes": 60,
@@ -3882,11 +4440,11 @@
       "day_kind": "focused",
       "title": "Privacy and data lineage",
       "task": "Document purpose, source, retention, deletion and least-privilege boundary for fixture data.",
-      "reading": "Stripe ML Engineer, Growth Platform: data and feature quality",
+      "reading": "AWS IAM best practices: least privilege; Feast documentation: point-in-time joins and event time",
       "prerequisite": "Day 375 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 376 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-376-privacy-and-data-lineage.json",
       "objective_links": [
@@ -3895,7 +4453,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Document purpose, source, retention, deletion and least-privilege boundary for fixture data.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-376",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
       "dsa_minutes": 60,
@@ -3922,8 +4486,8 @@
       "reading": "MLflow model registry; PyTorch save/load; scikit-learn model selection",
       "prerequisite": "Day 376 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 377 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-377-end-to-end-local-release.json",
       "objective_links": [
@@ -3932,7 +4496,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Run train, validation, package, serve, monitor and rollback from one reproducible command.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-377",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
       "dsa_minutes": 60,
@@ -3959,8 +4529,8 @@
       "reading": "OpenAI and Stripe benchmark briefs; no readiness inference",
       "prerequisite": "Day 377 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "ai/fde_v2/ml_depth/attempt-record.schema.json",
-        "functions": "structured_attempt_record/v1 (no application-code TODO)"
+        "path": "learning-artifact",
+        "functions": "day 378 evidence reviewed against its specific rubric"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-378-capability-and-gap-report.json",
       "objective_links": [
@@ -3969,7 +4539,13 @@
           "key_result": "KR-4.2"
         }
       ],
-      "acceptance_selector": "ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "evidence_rubric": {
+        "primary_check": "Separate local synthetic mechanics from real-data, online, production and experience evidence.",
+        "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+        "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+        "review_type": "learner self-check with assistant feedback; not independent assessment"
+      },
+      "acceptance_selector": "manual-evidence-review/day-378",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
       "dsa_minutes": 60,

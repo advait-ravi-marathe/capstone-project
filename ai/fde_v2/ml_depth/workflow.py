@@ -64,23 +64,89 @@ def analyze_threshold_costs(probabilities, labels, *, false_positive_cost, false
         false_positive_cost=false_positive_cost,false_negative_cost=false_negative_cost)
 
 
+def compare_regression_losses(predictions, targets, *, huber_delta=1.0, adapter=learner):
+    """Run the selected learner's squared/absolute/Huber comparison."""
+    return adapter.regression_loss_profile(predictions,targets,huber_delta=huber_delta)
+
+
+def prepare_torch_data(features, labels, *, validation_fraction=.2, batch_size=8, seed=7, adapter=learner):
+    """Exercise the learner's actual PyTorch Dataset/DataLoader construction."""
+    import torch
+    result=adapter.make_torch_loaders(features,labels,validation_fraction=validation_fraction,
+                                      batch_size=batch_size,seed=seed)
+    train_indices=result.get("train_indices",[]); validation_indices=result.get("validation_indices",[])
+    if set(train_indices)&set(validation_indices) or set(train_indices)|set(validation_indices)!=set(range(len(features))):
+        raise ValueError("train and validation indexes must be a disjoint full partition")
+    train_loader=result.get("train_loader"); validation_loader=result.get("validation_loader")
+    if not isinstance(train_loader,torch.utils.data.DataLoader) or not isinstance(validation_loader,torch.utils.data.DataLoader):
+        raise TypeError("learner must return actual PyTorch DataLoaders")
+    if result["dataset_rows"]!=len(features) or result.get("fit_partition")!="train_only":
+        raise ValueError("dataset provenance does not match supplied training pool")
+    for loader,expected_indices in ((train_loader,train_indices),(validation_loader,validation_indices)):
+        subset=loader.dataset
+        if not isinstance(subset,torch.utils.data.Subset) or list(subset.indices)!=list(expected_indices):
+            raise ValueError("each loader must consume its declared partition indices")
+        base=subset.dataset
+        if not isinstance(base,torch.utils.data.TensorDataset) or len(base.tensors)!=2:
+            raise ValueError("loaders must share a feature/label TensorDataset")
+        actual_x,actual_y=base.tensors
+        supplied_x=torch.tensor(features,dtype=actual_x.dtype)
+        supplied_y=torch.tensor(labels,dtype=actual_y.dtype)
+        if not torch.equal(actual_x.cpu(),supplied_x) or not torch.equal(actual_y.cpu(),supplied_y):
+            raise ValueError("loader tensors must exactly match the supplied training pool")
+    return result
+
+
+def reconcile_delayed_labels(records, *, adapter=learner):
+    """Run learner-owned idempotent event-time label reconciliation."""
+    return adapter.reconcile_delayed_labels(records)
+
+
 def torch_training_witness(features, labels, *, adapter=learner, seed=7, epochs=80, learning_rate=0.03,
                            initial_state=None, optimizer_state=None):
-    """Execute the selected training adapter and prove parameters actually changed."""
+    """Execute the selected adapter and independently inspect its fixed MLP updates/loss."""
+    import torch
+    from torch.nn import functional as torch_functional
+    if not features or len(features)!=len(labels): raise ValueError("aligned nonempty training rows required")
+    if initial_state is None:
+        baseline=reference.build_torch_model(len(features[0]),seed=seed)
+        initial_state={key:value.detach().clone() for key,value in baseline.state_dict().items()}
+    else:
+        initial_state={key:value.detach().clone() for key,value in initial_state.items()}
     trained=adapter.train_torch_model(features,labels,seed=seed,epochs=epochs,learning_rate=learning_rate,
                                       initial_state=initial_state,optimizer_state=optimizer_state)
     model=trained.get("model") if isinstance(trained,dict) else None
-    if model is None or not hasattr(model,"state_dict"):
+    if not isinstance(model,torch.nn.Module):
         raise TypeError("selected adapter must return an actually trained torch module")
     state=model.state_dict()
-    if not state or not any(getattr(value,"numel",lambda:0)() for value in state.values()):
+    if not state or any(not isinstance(value,torch.Tensor) for value in state.values()) or not any(value.numel() for value in state.values()):
         raise ValueError("trained module has no parameter state")
-    if trained.get("parameters_changed") is not True:
+    if set(state)!=set(initial_state) or any(tuple(state[key].shape)!=tuple(initial_state[key].shape) for key in state):
+        raise ValueError("trained model does not match the declared MLP checkpoint architecture")
+    observed_update=any(not torch.equal(state[key].detach().cpu(),initial_state[key].detach().cpu()) for key in state)
+    if not observed_update:
         raise ValueError("adapter did not prove a parameter update")
     history=trained.get("loss_history",[])
     if len(history)<2 or not math.isfinite(float(history[0])) or not math.isfinite(float(history[-1])):
         raise ValueError("training adapter must return finite initial/final loss")
-    return trained
+    baseline=reference.build_torch_model(len(features[0]),seed=seed)
+    baseline.load_state_dict(initial_state,strict=True)
+    baseline.eval(); model.eval()
+    x=torch.tensor(features,dtype=torch.float32,device="cpu")
+    y=torch.tensor(labels,dtype=torch.float32,device="cpu").view(-1,1)
+    with torch.no_grad():
+        initial_loss=float(torch_functional.binary_cross_entropy_with_logits(baseline(x),y))
+        final_loss=float(torch_functional.binary_cross_entropy_with_logits(model.cpu()(x),y))
+    if final_loss >= initial_loss:
+        raise ValueError("observed model objective did not improve from supplied initial weights")
+    if abs(float(history[0])-initial_loss)>1e-4:
+        raise ValueError("reported initial loss does not match independently measured objective")
+    if abs(float(history[-1])-final_loss)>1e-4:
+        raise ValueError("reported final loss does not match independently measured objective")
+    if not torch.isfinite(torch.tensor(final_loss)):
+        raise ValueError("trained model has non-finite objective")
+    return {**trained,"observed_parameters_changed":True,"observed_initial_loss":initial_loss,
+            "observed_final_loss":final_loss,"parameters_changed":True}
 
 
 def save_torch_checkpoint(path, trained, *, manifest: Mapping[str,Any]):
@@ -185,7 +251,12 @@ def analyze_experiment(assignments: Mapping[str,str], outcomes: Mapping[str,floa
                        design: Mapping[str,Any], adapter=learner, guardrails=None):
     if set(assignments)!=set(outcomes) or not assignments: raise ValueError("every randomized unit must have an observed outcome")
     if any(arm not in {"control","treatment"} for arm in assignments.values()): raise ValueError("assignment arm is invalid")
-    if len(assignments)<design["required_total"]: raise ValueError("fixed-horizon sample is incomplete")
+    declared_horizon=design.get("spec",{}).get("fixed_horizon_units",design.get("fixed_horizon_units"))
+    power_minimum=design["required_total"]
+    if type(declared_horizon) is not int or declared_horizon < power_minimum:
+        raise ValueError("validated design must bind a fixed horizon at least as large as its power target")
+    if len(assignments)!=declared_horizon:
+        raise ValueError("observed cohort must exactly match the declared fixed horizon before analysis")
     controls=[outcomes[u] for u,a in assignments.items() if a=="control"]
     treatments=[outcomes[u] for u,a in assignments.items() if a=="treatment"]
     srm=adapter.srm_check(len(controls),len(treatments))
@@ -213,7 +284,8 @@ def analyze_experiment(assignments: Mapping[str,str], outcomes: Mapping[str,floa
     primary_signal=bool(favorable and primary["normal_approx_two_sided_p"]<alpha)
     return {"status":"SYNTHETIC_ANALYSIS_ONLY","srm":srm,"primary":primary,
             "guardrails":guardrail_results,"safety_stop_triggered":stop,
-            "fixed_horizon_complete":True,"online_experiment":False,
+            "fixed_horizon_complete":True,
+            "fixed_horizon_units":declared_horizon,"observed_units":len(assignments),"online_experiment":False,
             "predeclared_alpha":alpha,"predeclared_primary_signal":primary_signal,
             "decision":"stop for guardrail breach" if stop else "primary result is reviewed only at fixed horizon"}
 

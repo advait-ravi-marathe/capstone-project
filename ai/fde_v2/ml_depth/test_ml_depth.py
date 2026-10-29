@@ -34,6 +34,13 @@ class StatisticsAndClassicalMLTests(unittest.TestCase):
         self.assertLess(model['loss_history'][-1],model['loss_history'][0])
         regression=reference.train_linear_regression([[1,*row] for row in self.train_x],[-3,-2,-1,1,2,3],learning_rate=.05,epochs=120,l2=.01)
         self.assertLess(regression['loss_history'][-1],regression['loss_history'][0])
+        # The reported objective is 1/2 mean squared error + L2/2 (excluding intercept).
+        features=[[1.0,-1.0],[1.0,2.0],[1.0,4.0]]; targets=[-1.0,2.0,5.0]
+        weights=[.2,.7]; epsilon=1e-6
+        numeric=(reference.linear_regression_loss([weights[0],weights[1]+epsilon],features,targets,.03)-
+                 reference.linear_regression_loss([weights[0],weights[1]-epsilon],features,targets,.03))/(2*epsilon)
+        prediction_grad=reference.linear_regression_gradient(weights,features,targets,.03)[1]
+        self.assertAlmostEqual(numeric,prediction_grad,places=6)
         calls=[]
         class Spy:
             brier_score=staticmethod(reference.brier_score)
@@ -77,8 +84,27 @@ class StatisticsAndClassicalMLTests(unittest.TestCase):
         class Broken:
             def train_torch_model(self,*args,**kwargs):
                 return {'model':Model(),'loss_history':[.7,.7],'parameters_changed':False}
-        with self.assertRaisesRegex(ValueError,'parameter update'):
+        with self.assertRaisesRegex(TypeError,'actually trained torch module'):
             workflow.torch_training_witness(self.train_x,self.train_y,adapter=Broken())
+        try:
+            import torch
+        except ImportError:
+            self.skipTest("pinned PyTorch is unavailable in this interpreter")
+        class Liar:
+            def train_torch_model(self,features,labels,*,seed,epochs,learning_rate,initial_state=None,optimizer_state=None):
+                model=reference.build_torch_model(len(features[0]),seed=seed)
+                model.load_state_dict(initial_state)
+                return {'model':model,'loss_history':[.69,.01],'parameters_changed':True}
+        with self.assertRaisesRegex(ValueError,'did not prove a parameter update'):
+            workflow.torch_training_witness(self.train_x,self.train_y,adapter=Liar(),seed=5,epochs=3)
+        class FalseLoss:
+            def train_torch_model(self,features,labels,**kwargs):
+                result=reference.train_torch_model(features,labels,**kwargs)
+                result['parameters_changed']=True
+                result['loss_history'][-1]=1e-12
+                return result
+        with self.assertRaisesRegex(ValueError,'reported final loss does not match'):
+            workflow.torch_training_witness(self.train_x,self.train_y,adapter=FalseLoss(),seed=5,epochs=8)
 
 
 class LearnedRankingTests(unittest.TestCase):
@@ -155,7 +181,9 @@ class ExperimentAndLifecycleTests(unittest.TestCase):
     def test_srm_stops_outcome_analysis_and_retraining_separates_drift(self):
         assignments={f'u{i}':('treatment' if i<5 else 'control') for i in range(100)}
         outcomes={u:0.5 for u in assignments}
-        result=workflow.analyze_experiment(assignments,outcomes,design={'required_total':100},adapter=reference)
+        result=workflow.analyze_experiment(assignments,outcomes,
+                design={'required_total':100,'fixed_horizon_units':100},adapter=reference,
+                guardrails={'opt_out_rate':{u:0.0 for u in assignments}})
         self.assertEqual(result['status'],'INVALID_ASSIGNMENT_SRM')
         self.assertFalse(result['outcome_analysis_performed'])
         drift_only=reference.retraining_decision({'drift_score':.5,'quality_metric':.8,'baseline_quality':.8,'sample_count':500},
@@ -164,6 +192,17 @@ class ExperimentAndLifecycleTests(unittest.TestCase):
         degraded=reference.retraining_decision({'drift_score':.5,'quality_metric':.6,'baseline_quality':.8,'sample_count':500},
                                                 {'max_drift':.2,'min_quality_delta':.05})
         self.assertTrue(degraded['retraining_recommended'])
+
+    def test_power_minimum_does_not_override_larger_fixed_horizon(self):
+        assignments={f'u{i}':('control' if i%2==0 else 'treatment') for i in range(100)}
+        outcomes={u:.5 for u in assignments}
+        design={'required_total':100,'fixed_horizon_units':500,
+                'spec':{'fixed_horizon_units':500,'guardrails':['opt_out_rate'],
+                        'guardrail_limits':{'opt_out_rate':{'adverse_direction':'higher','max_adverse_delta':.02}},
+                        'alpha':.05,'metric_direction':'higher_is_better'}}
+        guardrails={'opt_out_rate':{u:0.0 for u in assignments}}
+        with self.assertRaisesRegex(ValueError,'declared fixed horizon'):
+            workflow.analyze_experiment(assignments,outcomes,design=design,adapter=reference,guardrails=guardrails)
 
     def test_versioned_model_is_consumed_by_serving_and_can_roll_back(self):
         x=[[-2.0],[-1.0],[1.0],[2.0]]; y=[0,0,1,1]

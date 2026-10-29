@@ -93,6 +93,22 @@ def train_logistic(features, labels, *, learning_rate: float = 0.1,
             "regularization": {"kind": "elastic-net-subgradient", "l1_strength":l1,"l2_strength":l2}, "trained_on_rows": n}
 
 
+def linear_regression_loss(weights, features, targets, l2: float = 0.0) -> float:
+    if not features or len(features)!=len(targets) or len(weights)!=len(features[0]) or l2<0:
+        raise ValueError("aligned regression data, weights and nonnegative L2 required")
+    errors=[sum(float(w)*float(x) for w,x in zip(weights,row))-float(target) for row,target in zip(features,targets)]
+    return .5*sum(error*error for error in errors)/len(errors)+l2*sum(float(w)*float(w) for w in weights[1:])/2
+
+
+def linear_regression_gradient(weights, features, targets, l2: float = 0.0) -> list[float]:
+    if not features or len(features)!=len(targets) or len(weights)!=len(features[0]) or l2<0:
+        raise ValueError("aligned regression data, weights and nonnegative L2 required")
+    errors=[sum(float(w)*float(x) for w,x in zip(weights,row))-float(target) for row,target in zip(features,targets)]
+    gradient=[sum(error*row[j] for error,row in zip(errors,features))/len(errors) for j in range(len(weights))]
+    for j in range(1,len(weights)): gradient[j]+=l2*weights[j]
+    return gradient
+
+
 def train_linear_regression(features, targets, *, learning_rate: float = 0.01,
                             epochs: int = 100, l2: float = 0.0) -> dict[str, Any]:
     if not features or len(features) != len(targets) or not features[0]:
@@ -104,12 +120,11 @@ def train_linear_regression(features, targets, *, learning_rate: float = 0.01,
     weights = [0.0]*len(features[0])
     history=[]
     for _ in range(epochs+1):
-        predictions=[sum(w*x for w,x in zip(weights,row)) for row in features]
-        errors=[p-y for p,y in zip(predictions,targets)]
-        history.append(sum(e*e for e in errors)/len(errors)+l2*sum(w*w for w in weights[1:])/2)
+        # Objective: half mean squared error + L2/2 on non-intercept weights.
+        # Its derivative is mean((prediction-target)*x), matching the update below.
+        history.append(linear_regression_loss(weights,features,targets,l2))
         if len(history)>epochs: break
-        gradients=[sum(e*row[j] for e,row in zip(errors,features))/len(errors) for j in range(len(weights))]
-        for j in range(1,len(weights)): gradients[j]+=l2*weights[j]
+        gradients=linear_regression_gradient(weights,features,targets,l2)
         weights=[w-learning_rate*g for w,g in zip(weights,gradients)]
     return {"weights":weights,"loss_history":history,"algorithm":"batch-linear-gradient-descent","trained_on_rows":len(targets)}
 
@@ -118,6 +133,19 @@ def predict_linear_regression(model, features):
     weights=model.get("weights")
     if not weights or any(len(row)!=len(weights) for row in features): raise ValueError("model/features differ")
     return [sum(float(w)*float(x) for w,x in zip(weights,row)) for row in features]
+
+
+def regression_loss_profile(predictions, targets, *, huber_delta: float = 1.0):
+    """Mean squared, absolute and Huber losses; Huber is quadratic near zero."""
+    if not predictions or len(predictions)!=len(targets): raise ValueError("aligned nonempty predictions and targets required")
+    if not math.isfinite(huber_delta) or huber_delta<=0: raise ValueError("positive finite Huber delta required")
+    errors=[float(prediction)-float(target) for prediction,target in zip(predictions,targets)]
+    if any(not math.isfinite(error) for error in errors): raise ValueError("finite prediction errors required")
+    absolute=[abs(error) for error in errors]
+    huber=[.5*error*error if error<=huber_delta else huber_delta*(error-.5*huber_delta) for error in absolute]
+    return {"mse":sum(error*error for error in errors)/len(errors),
+            "mae":sum(absolute)/len(absolute),"huber":sum(huber)/len(huber),
+            "huber_delta":huber_delta,"rows":len(errors)}
 
 
 def fit_standardizer(training_features):
@@ -278,6 +306,31 @@ def build_torch_model(input_dim: int, *, seed: int = 7):
     return nn.Sequential(nn.Linear(input_dim, 8), nn.Tanh(), nn.Linear(8, 1))
 
 
+def make_torch_loaders(features, labels, *, validation_fraction: float = .2,
+                       batch_size: int = 8, seed: int = 7):
+    """Create a deterministic random holdout using only the supplied training pool."""
+    import torch
+    from torch.utils.data import DataLoader, TensorDataset, Subset
+    if not features or len(features)!=len(labels) or len(features)<4:
+        raise ValueError("at least four aligned examples are required")
+    if not math.isfinite(validation_fraction) or not 0<validation_fraction<.5:
+        raise ValueError("validation fraction must be in (0, 0.5)")
+    if type(batch_size) is not int or batch_size<1 or type(seed) is not int:
+        raise ValueError("positive batch size and integer seed required")
+    x=torch.tensor(features,dtype=torch.float32); y=torch.tensor(labels,dtype=torch.float32)
+    dataset=TensorDataset(x,y)
+    generator=torch.Generator().manual_seed(seed)
+    indices=torch.randperm(len(dataset),generator=generator).tolist()
+    validation_count=max(1,round(len(indices)*validation_fraction))
+    validation_indices=indices[:validation_count]; train_indices=indices[validation_count:]
+    train=Subset(dataset,train_indices); validation=Subset(dataset,validation_indices)
+    train_loader=DataLoader(train,batch_size=batch_size,shuffle=True,generator=torch.Generator().manual_seed(seed))
+    validation_loader=DataLoader(validation,batch_size=batch_size,shuffle=False)
+    return {"train_loader":train_loader,"validation_loader":validation_loader,
+            "train_indices":train_indices,"validation_indices":validation_indices,
+            "dataset_rows":len(dataset),"seed":seed,"fit_partition":"train_only"}
+
+
 def train_torch_model(features, labels, *, seed: int = 7, epochs: int = 60,
                       learning_rate: float = 0.03, initial_state=None,
                       optimizer_state=None):
@@ -311,6 +364,9 @@ def train_torch_model(features, labels, *, seed: int = 7, epochs: int = 60,
             raise FloatingPointError("non-finite gradient")
         optimizer.step()
         history.append(float(loss.detach()))
+    model.eval()
+    with torch.no_grad():
+        history[-1]=float(criterion(model(x),y))
     if all(torch.equal(initial[key], value.detach()) for key, value in model.state_dict().items()):
         raise RuntimeError("optimizer did not update model parameters")
     model.eval()
@@ -349,6 +405,22 @@ def _dot(left, right):
     return sum(a*b for a, b in zip(left, right))
 
 
+def pairwise_loss_gradient(user_vector, positive_vector, negative_vector, *, l2: float = 1e-4):
+    if (not user_vector or len(user_vector)!=len(positive_vector) or len(user_vector)!=len(negative_vector)
+            or not math.isfinite(l2) or l2<0
+            or any(not math.isfinite(float(value)) for vector in (user_vector,positive_vector,negative_vector) for value in vector)):
+        raise ValueError("finite equal-width vectors and nonnegative L2 are required")
+    margin=_dot(user_vector,positive_vector)-_dot(user_vector,negative_vector)
+    slope=1.0/(1.0+math.exp(max(-60.0,min(60.0,margin))))
+    loss=(math.log1p(math.exp(-max(-60.0,min(60.0,margin))))+
+          l2*sum(value*value for vector in (user_vector,positive_vector,negative_vector) for value in vector)/2)
+    user_gradient=[-slope*(p-n)+l2*u for u,p,n in zip(user_vector,positive_vector,negative_vector)]
+    positive_gradient=[-slope*u+l2*p for u,p in zip(user_vector,positive_vector)]
+    negative_gradient=[slope*u+l2*n for u,n in zip(user_vector,negative_vector)]
+    return {"loss":loss,"margin":margin,"user_gradient":user_gradient,
+            "positive_gradient":positive_gradient,"negative_gradient":negative_gradient}
+
+
 def train_pairwise_ranker(pairs, *, dimensions: int = 8, epochs: int = 100,
                           learning_rate: float = 0.03, seed: int = 17):
     if not pairs or type(dimensions) is not int or dimensions < 1 or type(epochs) is not int or epochs < 1:
@@ -362,24 +434,19 @@ def train_pairwise_ranker(pairs, *, dimensions: int = 8, epochs: int = 100,
     user_vectors = {u: [rng.uniform(-scale, scale) for _ in range(dimensions)] for u in users}
     item_vectors = {i: [rng.uniform(-scale, scale) for _ in range(dimensions)] for i in items}
     def loss():
-        total = 0.0
-        for user, positive, negative in pairs:
-            margin = _dot(user_vectors[user], item_vectors[positive])-_dot(user_vectors[user], item_vectors[negative])
-            total += math.log1p(math.exp(-max(-60.0, min(60.0, margin))))
-        return total/len(pairs)
+        return sum(pairwise_loss_gradient(user_vectors[user],item_vectors[positive],item_vectors[negative])['loss']
+                   for user,positive,negative in pairs)/len(pairs)
     history = [loss()]
     for _ in range(epochs):
         for user, positive, negative in pairs:
             u = user_vectors[user]
             pos = item_vectors[positive]
             neg = item_vectors[negative]
-            margin = _dot(u, pos)-_dot(u, neg)
-            gradient = 1.0/(1.0+math.exp(max(-60.0, min(60.0, margin))))
-            old_u = list(u)
+            gradients=pairwise_loss_gradient(u,pos,neg)
             for k in range(dimensions):
-                u[k] += learning_rate*(gradient*(pos[k]-neg[k])-1e-4*u[k])
-                pos[k] += learning_rate*(gradient*old_u[k]-1e-4*pos[k])
-                neg[k] += learning_rate*(-gradient*old_u[k]-1e-4*neg[k])
+                u[k]-=learning_rate*gradients['user_gradient'][k]
+                pos[k]-=learning_rate*gradients['positive_gradient'][k]
+                neg[k]-=learning_rate*gradients['negative_gradient'][k]
         history.append(loss())
     return {"user_vectors": user_vectors, "item_vectors": item_vectors,
             "loss_history": history, "dimensions": dimensions, "seed": seed,
@@ -441,6 +508,28 @@ def retraining_decision(observations: Mapping[str, Any], thresholds: Mapping[str
             "retraining_recommended": drifted and degraded,
             "reason": "drift and quality degradation observed" if drifted and degraded
                       else "collect/review evidence; drift alone is not a quality failure"}
+
+
+def reconcile_delayed_labels(records):
+    """Idempotently keep the latest consistent version, preserving event and arrival times."""
+    latest={}
+    for source in records:
+        required={"event_id","user_id","item_id","event_time","arrival_time","label","label_version"}
+        if not isinstance(source,Mapping) or not required.issubset(source):
+            raise ValueError("delayed-label record is incomplete")
+        row=dict(source)
+        if (not row["event_id"] or not row["user_id"] or not row["item_id"]
+                or type(row["event_time"]) is not int or type(row["arrival_time"]) is not int
+                or row["arrival_time"]<row["event_time"] or type(row["label"]) is not int
+                or row["label"] not in (0,1) or type(row["label_version"]) is not int
+                or row["label_version"]<1):
+            raise ValueError("invalid delayed-label identity, times, label or version")
+        prior=latest.get(row["event_id"])
+        if prior is None or row["label_version"]>prior["label_version"]:
+            latest[row["event_id"]]=row
+        elif row["label_version"]==prior["label_version"] and row!=prior:
+            raise ValueError("conflicting duplicate label version")
+    return sorted(latest.values(),key=lambda row:(row["event_time"],row["event_id"]))
 
 
 def design_experiment(spec: Mapping[str, Any]) -> dict[str, Any]:

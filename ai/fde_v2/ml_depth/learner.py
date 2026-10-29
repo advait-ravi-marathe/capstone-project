@@ -12,6 +12,11 @@ def logistic_loss(weights: Sequence[float], features: Sequence[Sequence[float]],
     raise NotImplementedError("PML1: implement stable binary log loss and L1/L2 penalties")
 
 
+def logistic_gradient(weights: Sequence[float], features: Sequence[Sequence[float]],
+                      labels: Sequence[int], l2: float = 0.0, l1: float = 0.0) -> list[float]:
+    raise NotImplementedError("PML1: derive the regularized logistic gradient and verify it numerically")
+
+
 def train_logistic(features: Sequence[Sequence[float]], labels: Sequence[int], *,
                    learning_rate: float, epochs: int, l2: float = 0.0,
                    l1: float = 0.0) -> dict[str, Any]:
@@ -25,6 +30,11 @@ def train_linear_regression(features: Sequence[Sequence[float]], targets: Sequen
 
 def predict_linear_regression(model: Mapping[str, Any], features: Sequence[Sequence[float]]) -> list[float]:
     raise NotImplementedError("PML1: predict from learner-owned linear-regression weights")
+
+
+def regression_loss_profile(predictions: Sequence[float], targets: Sequence[float], *,
+                            huber_delta: float = 1.0) -> dict[str, float]:
+    raise NotImplementedError("PML1: compare squared, absolute and Huber regression losses")
 
 
 def threshold_cost_analysis(probabilities: Sequence[float], labels: Sequence[int], *,
@@ -64,6 +74,11 @@ def train_torch_model(features: Sequence[Sequence[float]], labels: Sequence[int]
     raise NotImplementedError("PML2: implement a real local PyTorch training loop")
 
 
+def make_torch_loaders(features: Sequence[Sequence[float]], labels: Sequence[int], *,
+                       validation_fraction: float, batch_size: int, seed: int) -> dict[str, Any]:
+    raise NotImplementedError("PML2: build reproducible disjoint TensorDataset/DataLoader partitions")
+
+
 def sample_negative_pairs(interactions: Sequence[Mapping[str, Any]],
                           training_catalog: Sequence[str], *, per_positive: int,
                           seed: int) -> list[tuple[str, str, str]]:
@@ -74,6 +89,11 @@ def train_pairwise_ranker(pairs: Sequence[tuple[str, str, str]], *,
                           dimensions: int, epochs: int, learning_rate: float,
                           seed: int) -> dict[str, Any]:
     raise NotImplementedError("PML3: implement pairwise preference training and loss history")
+
+
+def pairwise_loss_gradient(user_vector: Sequence[float], positive_vector: Sequence[float],
+                           negative_vector: Sequence[float], *, l2: float = 1e-4) -> dict[str, Any]:
+    raise NotImplementedError("PML3: calculate one pairwise logistic loss and its three vector gradients")
 
 
 def predict_pairwise_score(model: Mapping[str, Any], user_id: str, item_id: str) -> float:
@@ -99,3 +119,7 @@ def analyze_ab(control: Sequence[float], treatment: Sequence[float]) -> dict[str
 
 def retraining_decision(observations: Mapping[str, Any], thresholds: Mapping[str, float]) -> dict[str, Any]:
     raise NotImplementedError("PML4: distinguish drift alerts from evidence that retraining is warranted")
+
+
+def reconcile_delayed_labels(records: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
+    raise NotImplementedError("PML4: reconcile delayed event-time labels idempotently while retaining arrival provenance")

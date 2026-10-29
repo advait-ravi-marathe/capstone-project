@@ -39,7 +39,7 @@ BLOCKS=[
     {"id":"PML2","name":"PyTorch training and debugging","start":299,"buffer_start":323,
      "topics":[
       ("Tensor shapes and dtypes","Inspect generated batch shape/dtype/device and add assertions before forward pass.","PyTorch Learn the Basics: Tensors"),
-      ("Dataset and DataLoader","Build deterministic train/validation partitions and a local Dataset/DataLoader.","PyTorch Learn the Basics: Datasets & DataLoaders"),
+      ("Dataset and DataLoader","Build deterministic, disjoint train/validation partitions over the supplied training pool and return actual PyTorch Dataset/DataLoader objects; prove the validation loader is stable and no row crosses partitions.","PyTorch Tutorials: Datasets & DataLoaders (`Dataset` and `DataLoader` sections)"),
       ("Autograd scalar example","Differentiate a scalar function and compare the gradient to an analytic value.","PyTorch Learn the Basics: Automatic Differentiation with torch.autograd"),
       ("Finite difference check","Compare autograd and numerical gradient on a scalar and one network parameter.","PyTorch Learn the Basics: Automatic Differentiation with torch.autograd"),
       ("Small MLP forward pass","Create a two-layer MLP and verify logits have one row per example.","PyTorch Learn the Basics: Building the Neural Network"),
@@ -97,21 +97,21 @@ BLOCKS=[
       ("Interference and carryover","Map spillover/novelty risks and decide whether the proposed unit is plausible.","Microsoft Research online experiments: validity"),
       ("Guardrails and safety stop","Set adverse-effect thresholds for latency, errors and opt-outs before simulated outcomes.","Microsoft Research online experiments: guardrail metrics"),
       ("Synthetic analysis only","Analyze a generated randomized assignment and preserve uncertainty; label non-live evidence.","Microsoft Research online experiments: analysis"),
-      ("No fake online result","Produce a design-only report with live experiment status BLOCKED/NOT_RUN.","OpenAI Growth role brief: evaluation/experimentation"),
+      ("No fake online result","Produce a design-only report with live experiment status BLOCKED/NOT_RUN.","Microsoft Research online experiments: design, validity and decision criteria"),
       ("Feature schema parity","Train and serve with the same named feature schema; reject reordered/missing fields.","MLflow model registry: lineage concepts"),
       ("Lineage hash contract","Bind data, split, code, features, config, metrics and artifact hashes.","MLflow model registry: model version and lineage"),
       ("Versioned local artifact","Write a content-hash-bound model version and load only that verified artifact.","MLflow model registry: versions and aliases"),
       ("Artifact consumed in serving","Serve predictions from the promoted artifact and compare to train-time transform output.","MLflow model registry: model lifecycle"),
-      ("Latency/cost protocol","Measure local latency; mark unknown costs rather than estimating unobserved provider spend.","Stripe ML Engineer, Growth Platform: reliability/latency/cost"),
-      ("Input quality/freshness checks","Track missing fields, schema violations and feature age on local test traffic.","Stripe ML Engineer, Growth Platform: reliable feature pipelines"),
+      ("Latency/cost protocol","Measure local latency; mark unknown costs rather than estimating unobserved provider spend.","CloudWatch SLO concepts: latency and availability; AWS Budgets: actual and forecast alerts"),
+      ("Input quality/freshness checks","Track missing fields, schema violations and feature age on local test traffic.","Feast documentation: point-in-time joins and event-time freshness"),
       ("Prediction/label drift","Measure drift and quality separately; delayed labels are pending, not negatives.","MLflow model monitoring concepts"),
-      ("Drift versus degradation","Prove drift alone pages for review but does not automatically trigger retraining.","Stripe ML Engineer, Growth Platform: monitoring and iteration"),
+      ("Drift versus degradation","Prove drift alone pages for review but does not automatically trigger retraining.","CloudWatch alarms: metric alarms and missing data; sklearn model evaluation: classification metrics"),
       ("Evidence-based retrain rule","Require both quality degradation and minimum support/recency before recommending retrain.","MLflow model registry: lifecycle"),
       ("Canary and rollback design","Simulate a bounded staged promotion and automatic rollback guard without a live service.","MLflow model registry: version and rollback concepts"),
       ("Promotion history","Preserve immutable active/previous versions and test rollback to a known prior artifact.","MLflow model registry: version lineage"),
-      ("Delayed labels and backfill","Retain arrival time and event time; test backfill idempotency on synthetic records.","Stripe ML Engineer, Growth Platform: data/feature pipelines"),
-      ("Incident drill","Corrupt a feature schema, detect, rollback, restore health, and add a regression test.","Stripe ML Engineer, Growth Platform: operating/debugging ML systems"),
-      ("Privacy and data lineage","Document purpose, source, retention, deletion and least-privilege boundary for fixture data.","Stripe ML Engineer, Growth Platform: data and feature quality"),
+      ("Delayed labels and backfill","Reconcile late labels by event time while retaining arrival-time/version provenance; replay the same synthetic backfill and reject a conflicting duplicate version.","Feast documentation: point-in-time joins and late-arriving/backfilled rows"),
+      ("Incident drill","Corrupt a feature schema, detect, rollback, restore health, and add a regression test.","AWS Operational Excellence: Prepare and Operate; CloudWatch alarms: missing data and alarm state"),
+      ("Privacy and data lineage","Document purpose, source, retention, deletion and least-privilege boundary for fixture data.","AWS IAM best practices: least privilege; Feast documentation: point-in-time joins and event time"),
       ("End-to-end local release","Run train, validation, package, serve, monitor and rollback from one reproducible command.","MLflow model registry; PyTorch save/load; scikit-learn model selection"),
       ("Capability and gap report","Separate local synthetic mechanics from real-data, online, production and experience evidence.","OpenAI and Stripe benchmark briefs; no readiness inference") ]}
 ]
@@ -124,19 +124,30 @@ RESOURCE_URLS={
  "Microsoft Research":"https://www.microsoft.com/en-us/research/publication/online-controlled-experiments-at-scale-lessons-and-challenges/",
  "OpenAI Growth":"https://openai.com/careers/machine-learning-engineer-growth-san-francisco/",
  "Stripe ML Engineer":"https://stripe.com/careers/listing/machine-learning-engineer-growth-platform/8224915",
+ "CloudWatch SLO concepts":"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-ServiceLevelObjectives.html",
+ "AWS Budgets":"https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html",
+ "CloudWatch alarms":"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Alarms.html",
+ "AWS Operational Excellence":"https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/welcome.html",
+ "AWS IAM best practices":"https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+ "Feast":"https://docs.feast.dev/getting-started/concepts/point-in-time-joins",
  "MLflow":"https://mlflow.org/docs/latest/ml/model-registry/"}
 
-# One fully specified learner interface card per block; tests protect that the
-# published daily page names the exact TODO path the workflow calls.
+# Explicit learner seams for implementation-focused days; every other focused
+# day gets its own task-specific artifact and manual evidence rubric.
 LEARNER_INTERFACES={
  281:("ai/fde_v2/ml_depth/learner.py", "train_linear_regression"),
- 282:("ai/fde_v2/ml_depth/learner.py", "logistic_loss"),
+ 282:("ai/fde_v2/ml_depth/learner.py", "regression_loss_profile"),
+ 300:("ai/fde_v2/ml_depth/learner.py", "make_torch_loaders"),
+ 374:("ai/fde_v2/ml_depth/learner.py", "reconcile_delayed_labels"),
  283:("ai/fde_v2/ml_depth/learner.py", "logistic_loss and train_logistic"),
+ 284:("ai/fde_v2/ml_depth/learner.py", "logistic_gradient"),
  287:("ai/fde_v2/ml_depth/learner.py", "threshold_cost_analysis"),
- 290:("ai/fde_v2/ml_depth/reference.py", "fit_boosted_tree (supplied benchmark; learner owns paired interpretation)"),
+ 290:("ai/fde_v2/ml_depth/workflow.py", "compare_classical(adapter=learner); supplied boosted-tree baseline paired on same validation rows"),
  305:("ai/fde_v2/ml_depth/learner.py", "train_torch_model"),
+ 316:("ai/fde_v2/ml_depth/workflow.py", "resume_torch_training(adapter=learner)"),
  331:("ai/fde_v2/ml_depth/learner.py", "sample_negative_pairs"),
  334:("ai/fde_v2/ml_depth/learner.py", "train_pairwise_ranker"),
+ 335:("ai/fde_v2/ml_depth/learner.py", "pairwise_loss_gradient"),
  337:("ai/fde_v2/ml_depth/learner.py", "ndcg_at_k"),
  338:("ai/fde_v2/ml_depth/workflow.py", "compare_rankers(adapter=learner)"),
  355:("ai/fde_v2/ml_depth/learner.py", "design_experiment"),
@@ -163,6 +174,30 @@ def build():
             day=block['start']+index-1
             selector={"PML1":"StatisticsAndClassicalMLTests","PML2":"RealTorchTrainingTests",
                       "PML3":"LearnedRankingTests","PML4":"ExperimentAndLifecycleTests"}[block['id']]
+            learner_acceptance={
+              281:"test_linear_regression_baseline",
+              282:"test_regression_losses_compare_squared_absolute_and_huber_on_outlier",
+              283:"test_regularized_logistic_fit_and_train_only_transform",
+              284:"test_logistic_gradient_matches_finite_difference_with_l2",
+              287:"test_declared_threshold_cost_rule",
+              290:"test_candidate_boosted_comparison_uses_same_validation_rows",
+              300:"test_torch_dataset_loaders_partition_the_actual_training_pool",
+              305:"test_torch_task_runs_actual_training_adapter",
+              316:"test_candidate_checkpoint_resume_uses_saved_optimizer_and_weights",
+              331:"test_training_catalog_negative_sampling",
+              334:"test_pairwise_ranker_learns_and_scores_pairs",
+              335:"test_pairwise_vector_gradients_match_finite_difference",
+              337:"test_ndcg_cutoff_and_tie_behavior",
+              338:"test_learner_pairwise_ranker_is_used_by_comparison_path",
+              355:"test_experiment_design_rejects_underpowered_fixed_horizon",
+              356:"test_assignment_is_stable_balanced_and_unit_bound",
+              357:"test_experiment_design_rejects_underpowered_fixed_horizon",
+              358:"test_srm_boundary_blocks_outcome_analysis",
+              361:"test_ab_estimate_uses_unit_level_samples",
+              366:"test_candidate_model_artifact_is_consumed_by_serving",
+              371:"test_retraining_requires_drift_and_quality_degradation",
+              374:"test_delayed_label_reconciliation_is_versioned_and_idempotent",
+            }.get(day)
             if index == 1:
                 prerequisite = {
                     "PML1":"M5.2 dataset/metric/split and M5.3 core gap-handoff evidence reviewed; otherwise mechanics-only preparation and progression remains blocked.",
@@ -172,16 +207,26 @@ def build():
                 }[block['id']]
             else:
                 prerequisite = f"Day {day-1} artifact and its named selector reviewed; if incomplete, use the protected block and do not advance."
-            interface, functions = LEARNER_INTERFACES.get(day, ("ai/fde_v2/ml_depth/attempt-record.schema.json", "structured_attempt_record/v1 (no application-code TODO)"))
+            interface, functions = LEARNER_INTERFACES.get(day, ("learning-artifact", f"day {day} evidence reviewed against its specific rubric"))
             artifact = f"learning-artifacts/production-ml/day-{day}-{re.sub(r'[^a-z0-9]+','-',title.lower()).strip('-')}.json"
             objectives = [{"objective":"O4","key_result":"KR-4.2"}]
+            acceptance_selector=f"manual-evidence-review/day-{day}"
+            acceptance_command=f"python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.{selector}"
+            if learner_acceptance:
+                acceptance_selector=f"ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.{learner_acceptance}"
+                acceptance_command=("ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest "
+                                   f"ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.{learner_acceptance}")
+            rubric={"primary_check":task,
+                    "evidence_check":"Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
+                    "reasoning_check":"Separate measured observations from assumptions, explain the decision, and state one material limitation.",
+                    "review_type":"learner self-check with assistant feedback; not independent assessment"}
             days.append({"day":day,"block":block['id'],"block_name":block['name'],"block_day":index,
                 "day_kind":"focused","title":title,"task":task,"reading":reading,
                 "prerequisite":prerequisite,"learner_interface":{"path":interface,"functions":functions},
-                "learner_artifact":artifact,"objective_links":objectives,
-                "acceptance_selector":f"ai.fde_v2.ml_depth.test_ml_depth.{selector}",
+                "learner_artifact":artifact,"objective_links":objectives,"evidence_rubric":rubric,
+                "acceptance_selector":acceptance_selector,
                 "worked_example":f"python3 -m ai.fde_v2.ml_depth.examples --block {block['id']}",
-                "acceptance_command":f"python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.{selector}",
+                "acceptance_command":acceptance_command,
                 "dsa_minutes":60,"role_bank_minutes":30,"ai_minutes":90,"substantive_minutes":90,"buffer_minutes":0,
                 "minutes":{"reading":15,"worked_example":10,"learner_build_test":55,"evidence_log":10},
                 "status":"not_started"})
@@ -213,8 +258,14 @@ def build():
             if row['day'] in LEARNER_INTERFACES:
                 module,functions=LEARNER_INTERFACES[row['day']]
                 ai += f"\n\n**Learner-owned interface:** `{module}::{functions}`. The selected workflow calls this interface; the default TODO raises until the learner implements it."
-            acceptance=f"`{row['acceptance_command']}`. This is the stage regression suite; it is not proof that this particular day or learner task passed."
-            session_contract=f"**Prerequisite:** {row['prerequisite']}\n\n**Learner interface:** `{row['learner_interface']['path']}::{row['learner_interface']['functions']}`. **Artifact:** `{row['learner_artifact']}`. **Acceptance selector:** `{row['acceptance_selector']}`. **Objective link:** {row['objective_links'][0]['objective']} / {row['objective_links'][0]['key_result']}."
+            if row['acceptance_selector'].startswith('manual-evidence-review/'):
+                acceptance=(f"`{row['acceptance_command']}` runs instructor mechanics only; a green reference suite does not validate this task. "
+                            f"Complete the artifact and apply the manual, task-specific evidence rubric above.")
+            else:
+                acceptance=(f"`{row['acceptance_command']}` invokes the selected learner implementation and checks this task's behavior; "
+                            "it is not an independent learner assessment.")
+            rubric_text='; '.join(f"{key}: {value}" for key,value in row['evidence_rubric'].items())
+            session_contract=f"**Prerequisite:** {row['prerequisite']}\n\n**Learner interface:** `{row['learner_interface']['path']}::{row['learner_interface']['functions']}`. **Artifact:** `{row['learner_artifact']}`. **Acceptance selector:** `{row['acceptance_selector']}`. **Evidence rubric:** {rubric_text}. **Objective link:** {row['objective_links'][0]['objective']} / {row['objective_links'][0]['key_result']}."
         else:
             ai=f"**AI90 buffer:** {row['task']} Worked-example prompt: {row['worked_example']}"
             acceptance=f"`{row['acceptance_command']}`; rerun the exact failed selector as well."
