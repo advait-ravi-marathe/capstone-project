@@ -2,6 +2,8 @@
 
 Actual learning days are attempt-indexed; dates do not advance status. Sprint 1 contains Days 1–14. Daily pages cover Days01–270. Days42–61 link to the M2.1 conditional proposal and Days62–81 link to the M2.2 conditional proposal; Day62 is an explicit shared boundary. Every page retains the fixed 180-minute daily schedule and conditional gates. Day30 contains only the explicitly bounded U023 fixture-authoring slice; deterministic execution starts on Day31. Days31–41 are P1 closeout tasks, and their real-model, held-out and ownership outcomes remain evidence-gated.
 
+The unchanged 270-day core is the base route. The selected dual AI/FDE + production-ML route continues through Days271–382; see the [ML extension index](../ml-depth/README.md). Those cards preserve the same daily budget and remain Not started. The recommended dual-skill route also follows the [application-code responsibility overlay](../amendments/2026-10-29-application-code-responsibility-overlay.md): assistant supplies capstone FE/BE and service plumbing; learner reviews and diagnoses it, while the separate 30-minute role bank retains short interview drills, and learner-owned ML and separate-repository DSA remain active.
+
 | Day | Page |
 |---:|---|
 | 01 | [Day 01: # Learning day 01](day-01.md) |

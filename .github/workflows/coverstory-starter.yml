@@ -2,7 +2,7 @@ name: AWS FDE v2.4 starter checks
 
 on:
   push:
-    branches: [main, work/aws-fde-v24-continuation, chore/align-repo-to-fde-v24]
+    branches: [main, work/aws-fde-v24-continuation, chore/align-repo-to-fde-v24, feature/production-ml-depth-extension]
   pull_request:
     branches: [main]
 
@@ -84,3 +84,12 @@ jobs:
           M53_CANDIDATE=ai.fde_v2.m53.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m53_units
       - name: Verify DSA repository remains separate
         run: python3 -m unittest scripts.test_external_track_boundary
+      - name: Verify versioned production-ML extension and route overlay
+        run: |
+          python3 -m pip install -r requirements-fde-v2-ml.txt
+          python3 -m unittest scripts.test_fde_v2_ml_depth scripts.test_fde_v2_query_plan_lab ai.fde_v2.ml_depth.test_ml_depth
+          ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.reference python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance
+          python3 -m ai.fde_v2.ml_depth.examples --block PML1
+          python3 -m ai.fde_v2.ml_depth.examples --block PML2
+          python3 -m ai.fde_v2.ml_depth.examples --block PML3
+          python3 -m ai.fde_v2.ml_depth.examples --block PML4

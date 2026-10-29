@@ -1,6 +1,6 @@
 # Role interview bank
 
-The first-30 day pages contain one fresh prompt per actual learning day. Use the 30-minute role/certification allocation; DSA remains a separate 60-minute block in its own repository. Do not copy DSA statements, solutions or review queues here.
+The first-30 day pages contain one fresh prompt per actual learning day. Use the 30-minute role/certification allocation; DSA remains a separate 60-minute block in its own repository. Do not copy DSA statements, solutions or review queues here. On the amended recommended route, the initial eight AWS sessions remain on Days5,6,12,13,19,20,26,27; after Day30 use the versioned [14-day role rotation](role-bank-rotation.json) and recalculate SAA timing from actual gap evidence.
 
 ## Scoring rubric
 
@@ -8,7 +8,7 @@ Score each dimension 0–2: (1) clarified user/workflow and constraints; (2) tec
 
 For design questions, use the separate question-bank session: requirements, assumptions, data/API path, scale estimate, alternatives, failure modes, observability and a concise conclusion. No capstone architecture proposal or post-hoc design essay is assigned. The assistant-selected architecture is explained in the project docs.
 
-FE/backend prompts in the first month are code reading, request/data-flow tracing, diagnosis and verbal/pseudocode reasoning. They do not require learner edits to React, TypeScript, Java, Spring, auth, CRUD or generic backend infrastructure. Later, five bounded integration-ownership checkpoints require a small AI-serving/UI/API change, tests and debugging; see [phase map](phase-map.md). Those checkpoints replace existing comprehension time rather than adding hours.
+Frontend/backend capstone code is assistant-supplied. Short interview coding/debugging drills use provided handler/component snippets or an isolated scratch copy; they do not modify the capstone. The separate DSA repository remains its own coding lane. For role prep, use the existing 30-minute bank to rotate concrete behavioral, system-design, backend, frontend, AWS and applied-AI/ML prompts. See the [application-code responsibility overlay](amendments/2026-10-29-application-code-responsibility-overlay.md) and exact [14-day rotation](role-bank-rotation.json). No role-family coverage implies readiness beyond observed attempts and feedback.
 
 ## Evidence honesty
 

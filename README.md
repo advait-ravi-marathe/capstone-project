@@ -1,6 +1,6 @@
 # Capstone roadmap
 
-The active curriculum is [AWS FDE v2.4](docs/fde-v2/README.md): 270 learning days across 12 milestones, with separate DSA, role/AWS, and AI project blocks. Learner progress remains **Not started** until supported by actual learner evidence.
+The active curriculum is [AWS FDE v2.4](docs/fde-v2/README.md): 270 learning days across 12 milestones, with separate DSA, role/AWS, and AI project blocks. The selected dual AI/FDE + production-ML route extends to nominal Day382 through the [versioned ML-depth amendment](docs/fde-v2/amendments/2026-10-29-production-ml-depth-amendment.md) and [Days271–382 index](docs/fde-v2/ml-depth/README.md). The assistant owns capstone FE/BE application implementation; the existing 30-minute role bank includes bounded interview coding/debugging drills, and learner-owned ML/model training and separate-repository DSA remain in scope. See the [application-code responsibility overlay](docs/fde-v2/amendments/2026-10-29-application-code-responsibility-overlay.md). Learner progress remains **Not started** until supported by actual learner evidence.
 
 Start with the [Day 1 guide](docs/fde-v2/days/day-01.md). The runnable application is a local Python/FastAPI service and React UI. The baseline command is:
 

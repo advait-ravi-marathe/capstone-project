@@ -1,0 +1,8 @@
+--- a/query.sql
++++ b/query.sql
+@@
+-SELECT document_id, updated_at FROM documents
+- WHERE tenant_id = ? AND active = 1
++SELECT document_id, updated_at FROM documents
++ WHERE active = 1
+  ORDER BY updated_at DESC LIMIT 10;

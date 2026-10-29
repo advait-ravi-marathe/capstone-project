@@ -1,0 +1,87 @@
+"""Learner-owned APIs for the selected production-ML extension.
+
+These TODOs deliberately fail. The runtime workflows call these functions; an
+explicit reference adapter is available only for mechanics and examples.
+"""
+from __future__ import annotations
+from typing import Any, Mapping, Sequence
+
+
+def logistic_loss(weights: Sequence[float], features: Sequence[Sequence[float]],
+                  labels: Sequence[int], l2: float = 0.0, l1: float = 0.0) -> float:
+    raise NotImplementedError("PML1: implement stable binary log loss and L1/L2 penalties")
+
+
+def train_logistic(features: Sequence[Sequence[float]], labels: Sequence[int], *,
+                   learning_rate: float, epochs: int, l2: float = 0.0,
+                   l1: float = 0.0) -> dict[str, Any]:
+    raise NotImplementedError("PML1: implement learner-owned logistic gradient descent")
+
+
+def predict_logistic_proba(model: Mapping[str, Any], features: Sequence[Sequence[float]]) -> list[float]:
+    raise NotImplementedError("PML1: implement probabilities from the learned linear weights")
+
+
+def fit_standardizer(training_features: Sequence[Sequence[float]]) -> dict[str, Any]:
+    raise NotImplementedError("PML1: fit feature means/scales on training rows only")
+
+
+def transform_features(features: Sequence[Sequence[float]], scaler: Mapping[str, Any]) -> list[list[float]]:
+    raise NotImplementedError("PML1: apply the frozen training transform without refitting")
+
+
+def expected_calibration_error(probabilities: Sequence[float], labels: Sequence[int],
+                               bins: int = 10) -> float:
+    raise NotImplementedError("PML1: implement binned calibration error with explicit edge rules")
+
+
+def brier_score(probabilities: Sequence[float], labels: Sequence[int]) -> float:
+    raise NotImplementedError("PML1: implement a proper probability scoring rule")
+
+
+def ndcg_at_k(relevance: Sequence[float], k: int) -> float:
+    raise NotImplementedError("PML3: implement declared NDCG@K with tie/cutoff rules")
+
+
+def train_torch_model(features: Sequence[Sequence[float]], labels: Sequence[int], *,
+                      seed: int, epochs: int, learning_rate: float,
+                      initial_state: Mapping[str, Any] | None = None,
+                      optimizer_state: Mapping[str, Any] | None = None) -> Any:
+    raise NotImplementedError("PML2: implement a real local PyTorch training loop")
+
+
+def sample_negative_pairs(interactions: Sequence[Mapping[str, Any]],
+                          training_catalog: Sequence[str], *, per_positive: int,
+                          seed: int) -> list[tuple[str, str, str]]:
+    raise NotImplementedError("PML3: sample negatives only from the training-time eligible catalog")
+
+
+def train_pairwise_ranker(pairs: Sequence[tuple[str, str, str]], *,
+                          dimensions: int, epochs: int, learning_rate: float,
+                          seed: int) -> dict[str, Any]:
+    raise NotImplementedError("PML3: implement pairwise preference training and loss history")
+
+
+def predict_pairwise_score(model: Mapping[str, Any], user_id: str, item_id: str) -> float:
+    raise NotImplementedError("PML3: score a user-item pair with an explicit cold-start rule")
+
+
+def design_experiment(spec: Mapping[str, Any]) -> dict[str, Any]:
+    raise NotImplementedError("PML4: validate metric, randomization unit, power, stopping rule and guardrails")
+
+
+def assign_experiment_units(unit_ids: Sequence[str], *, experiment_id: str, seed: int) -> dict[str, str]:
+    raise NotImplementedError("PML4: assign stable units reproducibly with a fixed allocation")
+
+
+def srm_check(control_count: int, treatment_count: int,
+              expected_treatment_fraction: float = 0.5) -> dict[str, Any]:
+    raise NotImplementedError("PML4: detect sample-ratio mismatch before reading experiment outcomes")
+
+
+def analyze_ab(control: Sequence[float], treatment: Sequence[float]) -> dict[str, Any]:
+    raise NotImplementedError("PML4: analyze the predeclared metric with uncertainty at the randomization unit")
+
+
+def retraining_decision(observations: Mapping[str, Any], thresholds: Mapping[str, float]) -> dict[str, Any]:
+    raise NotImplementedError("PML4: distinguish drift alerts from evidence that retraining is warranted")
