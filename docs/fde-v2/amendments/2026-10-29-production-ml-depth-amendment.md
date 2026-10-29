@@ -11,7 +11,7 @@ Status: proposed versioned route amendment for independent review. This file doe
 
 ## Why add the branch
 
-The 270-day v2.4 base remains applied AI/FDE first: data and retrieval, safe application behavior, real model use when available, cloud gates, bounded tools, customer discovery, operations, and role evidence. The existing M5.2 ranker is a transparent cosine baseline, not model training. For the user's selected dual AI/FDE + production-ML route, this amendment appends the ML preparation sequence after the base core. The prior 270-day FDE-only edition remains available unchanged; the recommended dual-skill route is 382 nominal learning days.
+The 270-day v2.4 base remains applied AI/FDE first: data and retrieval, safe application behavior, real model use when available, cloud gates, bounded tools, customer discovery, operations, and role evidence. The existing M5.2 ranker is a transparent cosine baseline, not model training. For the user's selected dual AI/FDE + production-ML route, this amendment appends the ML preparation sequence after the base core rather than inserting sessions into its accepted milestone calendar: M5.2 supplies the concrete ranking baseline/data/split vocabulary, and M5.3 records the core evidence/gaps needed to choose a responsible model extension. This keeps early end-to-end applied-AI/FDE work runnable and preserves the accepted core's ordering/prerequisite gates. It also means substantive production-ML training begins only after the learner reaches the core handoff; it is not represented as finished by nominal Day270. The prior 270-day FDE-only edition remains available unchanged; the recommended dual-skill route is 382 nominal learning days.
 
 The current user-confirmed North Star for this route is Staff-level Forward Deployed Engineer readiness in applied AI by October 2029, with senior FDE / production-AI ownership and customer-facing scope as the stepping stone. This is a long-term target, not an asserted capability or guaranteed title. This versioned amendment records the updated direction while leaving earlier accepted source bytes intact. Production-ML depth strengthens the ability to diagnose, evaluate and deliver model-based customer solutions; it does not replace customer discovery, end-to-end delivery, live operations or verified customer outcomes. Broad ML Engineer, software/full-stack and Solutions Architect roles are adjacent options supported by the user's existing portfolio and role-bank practice, not competing primary roadmaps or automatic readiness claims.
 
@@ -60,6 +60,19 @@ The new recommended route is one sequence: **Days1–270 existing v2.4 core → 
 | PML4 experiments/lifecycle | O2 / KR-2.2 and O4 / KR-4.1, KR-4.2: make an applied-AI solution observable, testable and recoverable; plan how a customer outcome would be measured safely. | Local artifact-serving parity, rollback/retrain drill, and predeclared experiment protocol/guardrails. | A live A/B result, cloud operations, production reliability tenure or verified customer outcome. |
 
 These KRs are additive preparation in service of the existing applied-AI/FDE North Star. Actual progression still depends on the unchanged core prerequisites and observed evidence; the extension cannot self-complete any core objective.
+
+## Position-level planning targets
+
+These are conditional planning horizons, not promised promotions, title equivalences across companies, curriculum-completion claims, or guarantees of employment. Real usage, repeated delivery and cross-team adoption are evidence gates; where those opportunities are unavailable, record the gap rather than simulate the evidence.
+
+| Horizon | Target evidence to build | Conditions and limits |
+|---|---|---|
+| Now–April 2027 | Independent product-engineer/interview readiness for roles that fit the verified portfolio | Demonstrate independent DSA and bounded role-specific interviews; capstone plumbing remains assistant-owned and is not learner implementation evidence. |
+| May–October 2027 | Applied AI/FDE scope with ownership of one real production AI solution | Requires an actual authorized production context, real usage/operations and customer outcome evidence; synthetic/local mechanics do not satisfy it. |
+| November 2027–October 2028 | Senior AI/FDE scope with customer-outcome ownership and mentorship | Requires repeated delivery and observed customer outcomes plus genuine mentoring evidence; the title is employer-specific. |
+| November 2028–October 2029 | Staff Applied AI FDE scope with cross-team/customer technical leadership | Requires cross-team adoption and sustained technical leadership evidence; reaching the date or completing this curriculum alone does not establish readiness. |
+
+The production-ML blocks support the same applied-AI/FDE objective. They do not displace customer discovery, customer-facing delivery, AWS/live-operation gates or the three-year North Star. See the concrete [14-day role-bank exercise inventory](../interview-drills/README.md) for bounded practice that remains inside the existing30-minute daily role allocation.
 
 Prerequisites control learner progression, not code authoring. A scaffold or reference pass does not satisfy a learner gate.
 

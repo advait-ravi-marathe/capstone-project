@@ -28,6 +28,8 @@ For every Days1–270 card or U001–U030/M2.1–M5.3 task that says to write, i
 
 This table does not change milestone order or actual evidence gates. If an assistant-owned starter is missing or broken, fix the starter as scaffold work before asking the learner to inspect it; do not relabel a missing app task as a learner implementation assignment.
 
+The exact assistant-owned entrypoints, support modules, regression selectors and learner-owned boundaries are listed in the machine-checkable [application-plumbing inventory](../application-plumbing-inventory.json). Its regression requires every workflow, support path and test path to exist. It also explicitly checks that an unsolved historical auth TODO does not prevent an independently selected ML mechanics workflow. This is a starter-availability check, not proof that the learner has completed any application or model work.
+
 An unimplemented historical application-plumbing TODO is converted into an **assistant-owned starter task plus learner concept review** on this route. It is not a learner coding gate. Do not make a required ML workflow depend on the learner filling a React, API, auth, database-migration or deployment TODO. Conversely, an unimplemented model/training/evaluation TODO remains a learner gate where required. The day cards' source code remains unchanged; this rule controls which action is requested from the learner.
 
 ## Backend and frontend concept practice

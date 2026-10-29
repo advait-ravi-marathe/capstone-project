@@ -46,11 +46,32 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
         for _,target in rows: self.assertTrue((index.parent/target).resolve().is_file(),target)
         amendment=(ROOT/'docs/fde-v2/amendments/2026-10-29-production-ml-depth-amendment.md').read_text()
         for required in ('382','PyTorch','boosted-tree','negative sampling','sample-ratio mismatch','hiring readiness',
-                         'OpenAI','Stripe','four focused blocks'):
+                         'OpenAI','Stripe','four focused blocks','October 2029','Now–April 2027',
+                         'May–October 2027','November 2027–October 2028','November 2028–October 2029',
+                         'not promised promotions','rather than inserting sessions into its accepted milestone calendar',
+                         'substantive production-ML training begins only after the learner reaches the core handoff'):
             # The phrase check intentionally ignores case; it protects route coverage and honest gates.
             self.assertIn(required.lower(),amendment.lower())
         self.assertIn('Status: Not started',(ROOT/'docs/fde-v2/days/day-271.md').read_text())
         self.assertIn('not_started',self.schedule['days'][0]['status'])
+
+    def test_representative_cards_bind_resource_task_interface_and_acceptance(self):
+        expected={
+            283:('CS229 logistic regression section','ai/fde_v2/ml_depth/learner.py','logistic_loss and train_logistic','StatisticsAndClassicalMLTests'),
+            305:('PyTorch Learn the Basics: Optimizing Model Parameters','ai/fde_v2/ml_depth/learner.py','train_torch_model','RealTorchTrainingTests'),
+            331:('Google Recommendation Systems: collaborative filtering summary','ai/fde_v2/ml_depth/learner.py','sample_negative_pairs','LearnedRankingTests'),
+            358:('Microsoft Research online experiments: validity checks','ai/fde_v2/ml_depth/learner.py','srm_check','ExperimentAndLifecycleTests'),
+        }
+        for day,(resource,module,functions,selector) in expected.items():
+            page=(ROOT/f'docs/fde-v2/days/day-{day}.md').read_text()
+            self.assertIn(resource,page)
+            self.assertIn(f'`{module}::{functions}`',page)
+            self.assertIn(f'python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.{selector}',page)
+            self.assertIn('python3 -m ai.fde_v2.ml_depth.examples',page)
+        schedule=self.schedule['days']
+        for block_start in (271,299,327,355):
+            first=next(row for row in schedule if row['day']==block_start)
+            self.assertEqual(first['minutes'],{'reading':15,'worked_example':10,'learner_build_test':55,'evidence_log':10})
 
     def test_learner_workflows_fail_at_todos_without_reference_fallback(self):
         from ai.fde_v2.ml_depth import learner,workflow
@@ -101,6 +122,22 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
         self.assertEqual(result['fit_partition'],'train')
         self.assertEqual(result['adapter_module'],'ai.fde_v2.ml_depth.reference')
 
+    def test_assistant_plumbing_inventory_covers_every_active_workflow(self):
+        inventory=json.loads((ROOT/'docs/fde-v2/application-plumbing-inventory.json').read_text())
+        entries=inventory['entries']
+        self.assertEqual(len(entries),14)
+        self.assertEqual(len({entry['scope'] for entry in entries}),14)
+        for entry in entries:
+            self.assertTrue((ROOT/entry['workflow']).is_file(),entry['workflow'])
+            self.assertTrue((ROOT/entry['support']).is_file(),entry['support'])
+            for test in entry['tests']:
+                test_path=test if '/' in test else test.replace('.', '/')+'.py'
+                self.assertTrue((ROOT/test_path).is_file(),test)
+            self.assertIn('learner_owned',entry)
+        self.assertIn('No required ML task depends',inventory['invariant'])
+        policy=(ROOT/'docs/fde-v2/amendments/2026-10-29-application-code-responsibility-overlay.md').read_text()
+        self.assertIn('application-plumbing-inventory.json',policy)
+
     def test_role_rotation_fits_existing_bank_and_targets_fde_north_star(self):
         rotation=json.loads((ROOT/'docs/fde-v2/role-bank-rotation.json').read_text())
         self.assertEqual(rotation['cycle_days'],14)
@@ -118,6 +155,21 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
         self.assertFalse(rotation['capstone_code_edit_allowed'])
         self.assertEqual(sum(rotation['coding_drill_minutes'].values()),30)
         self.assertEqual(rotation['baseline_aws_days_1_30'],[5,6,12,13,19,20,26,27])
+
+    def test_role_bank_has_concrete_artifacts_tests_and_honest_rubric(self):
+        guide=ROOT/'docs/fde-v2/interview-drills/README.md'
+        self.assertTrue(guide.is_file())
+        text=guide.read_text()
+        self.assertEqual(len(re.findall(r'^\|\s*\d+\s*\|',text,re.M)),14)
+        for artifact in ('tenant-filter.diff','AskRagPanel.tsx','QuestionAnswerApp.tsx','m33/workflow.py',
+                         'm22/workflow.py','m42/reference.py','m23/providers.py','m53'):
+            self.assertIn(artifact,text)
+        for command in ('scripts.test_fde_v2_query_plan_lab','ai.fde_v2.tests.test_m22_integration',
+                        'ai.fde_v2.tests.test_m33','ai.fde_v2.tests.test_m42','ai.fde_v2.tests.test_m23_draft',
+                        'ai.fde_v2.tests.test_m53','RUN_FDE_V2=true npx vitest run'):
+            self.assertIn(command,text)
+        self.assertIn('0–4 total',text)
+        self.assertIn('scratch',text.lower())
 
 
 if __name__=='__main__': unittest.main()

@@ -125,6 +125,15 @@ RESOURCE_URLS={
  "Stripe ML Engineer":"https://stripe.com/careers/listing/machine-learning-engineer-growth-platform/8224915",
  "MLflow":"https://mlflow.org/docs/latest/ml/model-registry/"}
 
+# One fully specified learner interface card per block; tests protect that the
+# published daily page names the exact TODO path the workflow calls.
+LEARNER_INTERFACES={
+ 283:("ai/fde_v2/ml_depth/learner.py", "logistic_loss and train_logistic"),
+ 305:("ai/fde_v2/ml_depth/learner.py", "train_torch_model"),
+ 331:("ai/fde_v2/ml_depth/learner.py", "sample_negative_pairs"),
+ 358:("ai/fde_v2/ml_depth/learner.py", "srm_check"),
+}
+
 
 def _resource_link(anchor):
     for key,url in RESOURCE_URLS.items():
@@ -167,6 +176,9 @@ def build():
         resources=', '.join(_resource_link(part.strip()) for part in row['reading'].split(';'))
         if row['day_kind']=='focused':
             ai=f"**AI90:** Read for15min: {resources}. Work the example for10min: `{row['worked_example']}` (reference mechanics only). Build/test for55min: {row['task']} Record for10min: the exact command, result, data/config hash, actual learner contribution, and any failure."
+            if row['day'] in LEARNER_INTERFACES:
+                module,functions=LEARNER_INTERFACES[row['day']]
+                ai += f"\n\n**Learner-owned interface:** `{module}::{functions}`. The selected workflow calls this interface; the default TODO raises until the learner implements it."
             acceptance=f"`{row['acceptance_command']}`. This is the stage regression suite; it is not proof that this particular day or learner task passed."
         else:
             ai=f"**AI90 buffer:** {row['task']} Worked-example prompt: {row['worked_example']}"

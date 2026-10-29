@@ -153,3 +153,6 @@ The accepted JSON/Markdown source contracts are retained byte-for-byte under `ac
 ## Conditional M3.3–M5.3 scaffold status
 
 The current roadmap includes proposal guides, reference mechanics, learner TODO adapters, daily pages and deterministic tests for M3.3, M4.1, M4.2, M4.3, M5.1, M5.2 and M5.3. These are scaffolds, not activated learning days or learner results. Readiness gates remain separate: actual model/cloud evidence, trusted evaluator/peer feedback, real user access and current role/certification review are not supplied. The proposal guides identify those gates and do not authorize external actions. See the [daily page index](days/README.md).
+# Recommended route amendments
+
+The production-ML extension and application-code ownership overlay are linked from the [versioned ML-depth guide](ml-depth/README.md). The bounded role-bank drills have a concrete [14-day artifact/test/rubric inventory](interview-drills/README.md).
