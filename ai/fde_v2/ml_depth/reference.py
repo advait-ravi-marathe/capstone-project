@@ -460,6 +460,14 @@ def predict_pairwise_score(model: Mapping[str, Any], user_id: str, item_id: str)
     return _dot(users[user_id], items[item_id])
 
 
+def cold_start_fallback(candidate_items: Sequence[str], popularity_scores: Mapping[str,float]) -> list[str]:
+    if (not candidate_items or len(set(candidate_items))!=len(candidate_items)
+            or set(candidate_items)!=set(popularity_scores)
+            or any(not math.isfinite(float(score)) for score in popularity_scores.values())):
+        raise ValueError("unique candidate items and their finite training-only popularity scores are required")
+    return sorted(candidate_items,key=lambda item:(-float(popularity_scores[item]),item))
+
+
 def srm_check(control_count: int, treatment_count: int, expected_treatment_fraction: float = 0.5,
               chi_square_threshold: float = 3.841458820694124) -> dict[str, Any]:
     if type(control_count) is not int or type(treatment_count) is not int or min(control_count, treatment_count) < 0:

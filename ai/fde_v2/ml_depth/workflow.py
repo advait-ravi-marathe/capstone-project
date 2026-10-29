@@ -215,8 +215,12 @@ def compare_rankers(train_interactions: Sequence[Mapping[str,Any]],
             common.append({"user_id":user,"status":"not_scored_cold_or_unavailable_target","candidate_count":len(candidates)})
             continue
         cold_user=user not in train_by_user
-        learned=sorted(candidates,key=lambda item:(-popularity_score[item],item) if cold_user
-                       else (-adapter.predict_pairwise_score(model,user,item),item))
+        if cold_user:
+            learned=adapter.cold_start_fallback(candidates,popularity_score)
+            if len(learned)!=len(candidates) or set(learned)!=set(candidates):
+                raise ValueError("learner cold-start fallback must return each eligible candidate exactly once")
+        else:
+            learned=sorted(candidates,key=lambda item:(-adapter.predict_pairwise_score(model,user,item),item))
         pop=sorted(candidates,key=lambda item:(-popularity_score[item],item))
         cosine=[row["item_id"] for row in m52_reference.rank_items(train_interactions,user,candidates)]
         if set(learned)!=set(pop) or set(pop)!=set(cosine): raise AssertionError("ranker candidate sets differ")

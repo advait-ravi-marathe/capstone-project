@@ -65,6 +65,18 @@ class MLDepthLearnerAcceptance(unittest.TestCase):
               'stopping_rule':'fixed_horizon_with_safety_stop'}
         with self.assertRaises(ValueError): candidate.design_experiment(spec)
 
+    def test_candidate_fixed_horizon_covers_power_minimum(self):
+        small={'experiment_id':'power','unit':'user','primary_metric':'rate','metric_direction':'higher_is_better',
+               'baseline_rate':.5,'mde':.3,'alpha':.05,'power':.8,'allocation':{'control':.5,'treatment':.5},
+               'fixed_horizon_units':500,'guardrails':['error_rate'],
+               'guardrail_limits':{'error_rate':{'adverse_direction':'higher','max_adverse_delta':.02}},
+               'stopping_rule':'fixed_horizon_with_safety_stop'}
+        stricter={**small,'power':.9}
+        ordinary=candidate.design_experiment(small); high_power=candidate.design_experiment(stricter)
+        self.assertLessEqual(ordinary['required_total'],ordinary['spec']['fixed_horizon_units'])
+        self.assertLessEqual(high_power['required_total'],high_power['spec']['fixed_horizon_units'])
+        self.assertGreaterEqual(high_power['required_total'],ordinary['required_total'])
+
     def test_assignment_is_stable_balanced_and_unit_bound(self):
         units=[f'user-{i}' for i in range(500)]
         first=candidate.assign_experiment_units(units,experiment_id='stable',seed=29)
@@ -129,6 +141,7 @@ class MLDepthLearnerAcceptance(unittest.TestCase):
         with self.assertRaises(NotImplementedError): learner.reconcile_delayed_labels([])
         with self.assertRaises(NotImplementedError): learner.logistic_gradient([0,1],[[1,0],[1,1]],[0,1])
         with self.assertRaises(NotImplementedError): learner.pairwise_loss_gradient([0.1],[0.2],[0.3])
+        with self.assertRaises(NotImplementedError): learner.cold_start_fallback(['a'],{'a':1})
         self.assertIn('make_torch_loaders',learner.make_torch_loaders.__doc__ or learner.make_torch_loaders.__name__)
 
     def test_loss_threshold_calibration_and_ranking_metrics_have_hand_cases(self):
@@ -244,6 +257,16 @@ class MLDepthLearnerAcceptance(unittest.TestCase):
         self.assertLess(model['loss_history'][-1],model['loss_history'][0])
         self.assertNotEqual(candidate.predict_pairwise_score(model,'u1','a'),
                             candidate.predict_pairwise_score(model,'u1','d'))
+
+    def test_cold_start_fallback_is_learner_owned_and_training_catalog_bounded(self):
+        result=workflow.compare_rankers(EVENTS,[{'user_id':'new-user','item_id':'a','timestamp':9}],
+                                        ['a','b','c','d'],adapter=candidate,k=3)
+        row=result['rows'][0]
+        training_counts={'a':2,'b':2,'c':2,'d':0}
+        expected=candidate.cold_start_fallback(result['candidate_items'],training_counts)
+        self.assertEqual(row['cold_start_fallback'],'global_popularity')
+        self.assertEqual(row['learned_top_k'],expected[:3])
+        with self.assertRaises(ValueError): candidate.cold_start_fallback(['a','b'],{'a':1})
 
     def test_learner_experiment_design_and_assignment_are_integrated(self):
         spec={"experiment_id":"learner-test","unit":"user","primary_metric":"conversion",

@@ -82,6 +82,7 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
         focused={row['day']:row for row in schedule if row['day_kind']=='focused'}
         for day,function,task in ((282,'regression_loss_profile','squared, absolute and Huber'),
                                   (300,'make_torch_loaders','actual PyTorch Dataset/DataLoader'),
+                                  (339,'cold_start_fallback','popularity fallback'),
                                   (374,'reconcile_delayed_labels','event time')):
             row=focused[day]; page=(ROOT/f'docs/fde-v2/days/day-{day}.md').read_text()
             self.assertEqual(row['learner_interface']['functions'],function)

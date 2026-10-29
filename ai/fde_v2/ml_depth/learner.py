@@ -100,6 +100,10 @@ def predict_pairwise_score(model: Mapping[str, Any], user_id: str, item_id: str)
     raise NotImplementedError("PML3: score a user-item pair with an explicit cold-start rule")
 
 
+def cold_start_fallback(candidate_items: Sequence[str], popularity_scores: Mapping[str, float]) -> list[str]:
+    raise NotImplementedError("PML3: rank unseen-user candidates by a deterministic training-only popularity fallback")
+
+
 def design_experiment(spec: Mapping[str, Any]) -> dict[str, Any]:
     raise NotImplementedError("PML4: validate metric, randomization unit, power, stopping rule and guardrails")
 
