@@ -225,6 +225,46 @@ class M21DraftMechanics(unittest.TestCase):
         self.assertEqual(reference.evaluate_release_gate([], [], [], criterion, "P1_BLOCKED")["status"],
                          "BLOCKED")
 
+    def test_complete_gate_mechanics_can_only_become_review_eligible_never_m21_pass(self):
+        # Every row below is synthetic test data. The evidence_kind labels are
+        # schema fixtures only; this test does not assert that P1 or any real
+        # local model was run. It validates the final decision control flow.
+        cases = [f"case-{i:02d}" for i in range(40)]
+        answerable, unanswerable = cases[:24], cases[24:]
+        criterion = {"expected_case_ids": cases, "answerable_case_ids": answerable,
+                     "unanswerable_case_ids": unanswerable, "min_answerable_successes": 22,
+                     "min_unanswerable_successes": 15, "max_severe_errors": 0,
+                     "min_net_gain": 4, "max_p95_seconds": 30, "timeout_seconds": 60,
+                     "frozen_before_heldout": True, "heldout_key_separated": True}
+        baseline_judgments = []
+        candidate_judgments = []
+        baseline_runs = []
+        candidate_runs = []
+        for i, case_id in enumerate(cases):
+            baseline_success = i < 18
+            candidate_success = i < 22 or 24 <= i < 39
+            shared_judgment = {"case_id": case_id, "reviewer": "fixture reviewer",
+                               "source_reviewed": True, "severe_error": False}
+            baseline_judgments.append(dict(shared_judgment, success=baseline_success))
+            candidate_judgments.append(dict(shared_judgment, success=candidate_success))
+            baseline_runs.append({"case_id": case_id, "success": baseline_success, "ok": True,
+                                 "evidence_kind": "actual_p1_keyword_baseline"})
+            candidate_runs.append({"case_id": case_id, "success": candidate_success, "ok": True,
+                                   "elapsed_seconds": 2.0,
+                                   "evidence_kind": "actual_pinned_local_rag_run"})
+        result = reference.evaluate_release_gate(
+            baseline_runs, candidate_runs,
+            {"baseline": baseline_judgments, "candidate": candidate_judgments}, criterion,
+            "P1_ACTUAL_EVIDENCE_INDEPENDENTLY_CLEARED")
+        self.assertEqual(result["status"], "ELIGIBLE_FOR_INDEPENDENT_REVIEW")
+        self.assertFalse(result["m21_pass"])
+        # A failed request cannot be made a successful outcome by its judgment.
+        candidate_runs[0]["ok"] = False
+        self.assertEqual(reference.evaluate_release_gate(
+            baseline_runs, candidate_runs,
+            {"baseline": baseline_judgments, "candidate": candidate_judgments}, criterion,
+            "P1_ACTUAL_EVIDENCE_INDEPENDENTLY_CLEARED")["status"], "INVALID")
+
     def test_comparison_requires_exact_case_set_and_gate_fails_closed(self):
         baseline = [{"case_id": "a", "success": False}, {"case_id": "b", "success": True}]
         candidate = [{"case_id": "a", "success": True}, {"case_id": "b", "success": True}]
