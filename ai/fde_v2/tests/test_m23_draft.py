@@ -243,6 +243,23 @@ class M23Mechanics(unittest.TestCase):
         # Fake injected SDK client only. This test performs no credential lookup or network call.
         task_action=build_authorized_action("register_task_definition","aws-ecs-fargate","ecs",AUTH_SCOPE,
                                              plan["task_definition_request"])
+        wrong_region_client=FakeEcs(); wrong_region_client.meta.region_name="us-east-1"
+        wrong_region_sts=FakeSts()
+        wrong_region_vault,_=vault_with_clock()
+        wrong_region_token=wrong_region_vault.issue("register_task_definition",task_action)
+        wrong_region_result=EcsDeploymentAdapter(wrong_region_client,wrong_region_vault,wrong_region_sts,
+                                                  execution_enabled=True).register_revision(DEPLOYMENT,wrong_region_token)
+        self.assertEqual(wrong_region_result["status"],"BLOCKED_CLIENT_SCOPE_MISMATCH")
+        self.assertFalse(wrong_region_result["external_call_made"])
+        self.assertEqual(wrong_region_sts.calls,0); self.assertEqual(wrong_region_client.calls,[])
+        wrong_account_client=FakeEcs(); wrong_account_sts=FakeSts("999")
+        wrong_account_vault,_=vault_with_clock()
+        wrong_account_token=wrong_account_vault.issue("register_task_definition",task_action)
+        wrong_account_result=EcsDeploymentAdapter(wrong_account_client,wrong_account_vault,wrong_account_sts,
+                                                  execution_enabled=True).register_revision(DEPLOYMENT,wrong_account_token)
+        self.assertEqual(wrong_account_result["status"],"BLOCKED_CLIENT_SCOPE_MISMATCH")
+        self.assertTrue(wrong_account_result["external_call_made"])
+        self.assertEqual(wrong_account_sts.calls,1); self.assertEqual(wrong_account_client.calls,[])
         task_token=vault.issue("register_task_definition",task_action)
         registered=reviewed.register_revision(DEPLOYMENT,task_token)
         self.assertEqual(registered["status"],"TASK_REVISION_REGISTERED_REQUIRES_REVIEW")

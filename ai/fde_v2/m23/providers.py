@@ -350,10 +350,9 @@ class EcsDeploymentAdapter:
         return (self._enabled is True and self._client is not None and self._approval_vault is not None
                 and self._approval_vault.consume(approval_token,operation,request_sha256(action)) is True)
 
-    def _client_matches(self, manifest: Mapping[str, Any]) -> bool:
+    def _client_matches(self, manifest: Mapping[str, Any]) -> tuple[bool,bool]:
         scope=manifest.get("authorization_scope",manifest)
-        matches,_identity_call=verify_injected_client_scope(self._client,self._identity_client,scope,"ecs")
-        return matches
+        return verify_injected_client_scope(self._client,self._identity_client,scope,"ecs")
 
     def register_revision(self, manifest: Mapping[str, Any],
                           approval_token: str | None = None) -> dict[str, Any]:
@@ -365,9 +364,10 @@ class EcsDeploymentAdapter:
         if not self._ready("register_task_definition",action,approval_token):
             return {"status":"BLOCKED","reason":"exact task-definition request is not separately authorized",
                     "request":request,"request_sha256":digest,"external_call_made":False}
-        if not self._client_matches(manifest):
+        matches,identity_call=self._client_matches(manifest)
+        if not matches:
             return {"status":"BLOCKED_CLIENT_SCOPE_MISMATCH","request_sha256":digest,
-                    "external_call_made":self._client is not None and self._identity_client is not None,
+                    "external_call_made":identity_call,"identity_request_made":identity_call,
                     "milestone_pass":False}
         response=self._client.register_task_definition(**request)
         task_def=(response.get("taskDefinition") or {}).get("taskDefinitionArn") if isinstance(response,Mapping) else None
@@ -388,9 +388,10 @@ class EcsDeploymentAdapter:
         if not self._ready("activate_service_revision",action,approval_token):
             return {"status":"BLOCKED","reason":"exact service activation request is not separately authorized",
                     "request":request,"request_sha256":digest,"external_call_made":False}
-        if not self._client_matches(manifest):
+        matches,identity_call=self._client_matches(manifest)
+        if not matches:
             return {"status":"BLOCKED_CLIENT_SCOPE_MISMATCH","request_sha256":digest,
-                    "external_call_made":self._client is not None and self._identity_client is not None,
+                    "external_call_made":identity_call,"identity_request_made":identity_call,
                     "milestone_pass":False}
         existing=self._client.describe_services(cluster=manifest["cluster"],services=[manifest["service_name"]])
         services=existing.get("services",[]) if isinstance(existing,Mapping) else []
@@ -418,9 +419,10 @@ class EcsDeploymentAdapter:
         if not self._ready("rollback",action,approval_token):
             return {"status":"BLOCKED","reason":"exact rollback plan is not separately authorized",
                     "request":request,"request_sha256":digest,"external_call_made":False}
-        if not self._client_matches(manifest):
+        matches,identity_call=self._client_matches(manifest)
+        if not matches:
             return {"status":"BLOCKED_CLIENT_SCOPE_MISMATCH","request_sha256":digest,
-                    "external_call_made":self._client is not None and self._identity_client is not None,
+                    "external_call_made":identity_call,"identity_request_made":identity_call,
                     "milestone_pass":False}
         observed=self._client.describe_task_definition(taskDefinition=previous_task_definition)
         observed_task=(observed.get("taskDefinition") or {}).get("taskDefinitionArn") if isinstance(observed,Mapping) else None
