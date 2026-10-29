@@ -69,9 +69,48 @@ def ndcg_at_k(relevance: Sequence[float], k: int) -> float:
 
 def train_torch_model(features: Sequence[Sequence[float]], labels: Sequence[int], *,
                       seed: int, epochs: int, learning_rate: float,
+                      optimizer_kind: str = "adam", batch_size: int | None = None,
+                      positive_weight: float = 1.0,
                       initial_state: Mapping[str, Any] | None = None,
-                      optimizer_state: Mapping[str, Any] | None = None) -> Any:
+                      optimizer_state: Mapping[str, Any] | None = None) -> dict[str, Any]:
+    """Train locally and return real model/optimizer state plus every epoch snapshot.
+
+    `loss_history` must contain the full-training weighted objective at initialization
+    and after each epoch. `epoch_state_dicts` must contain the matching state for each
+    entry, and `epoch_loss_semantics` must be
+    `full_training_objective_after_epoch`; the workflow independently recomputes each
+    value from these snapshots. Report examples/updates per epoch and the exact
+    optimizer, batch size and positive weight used.
+    """
     raise NotImplementedError("PML2: implement a real local PyTorch training loop")
+
+
+def validate_torch_batch(features: Sequence[Sequence[float]], labels: Sequence[int]) -> dict[str, Any]:
+    raise NotImplementedError("PML2: validate batch row counts, finite float32 features and binary target shape")
+
+
+def autograd_scalar_gradient(x: float) -> dict[str, float]:
+    raise NotImplementedError("PML2: use torch autograd for the supplied scalar objective and return its observed value/gradient")
+
+
+def finite_difference_gradient(function: Any, x: float, *, epsilon: float = 1e-6) -> float:
+    raise NotImplementedError("PML2: estimate a scalar derivative with a validated central finite difference")
+
+
+def dropout_mode_probe(model: Any, batch: Any, *, repeats: int = 4) -> dict[str, Any]:
+    raise NotImplementedError("PML2: compare repeated train-mode and eval-mode outputs without changing parameters or mode")
+
+
+def build_torch_model(input_dim: int, *, seed: int = 7) -> Any:
+    raise NotImplementedError("PML2: build the learner-owned two-layer CPU MLP that the training workflow executes")
+
+
+def evaluate_torch_model(model: Any, validation_loader: Any, optimizer: Any) -> dict[str, Any]:
+    raise NotImplementedError("PML2: evaluate in eval/no_grad mode without changing weights, gradients or optimizer state")
+
+
+def select_torch_epoch(validation_losses: Sequence[float], *, patience: int) -> dict[str, int]:
+    raise NotImplementedError("PML2: select the earliest minimum validation-loss epoch with declared patience")
 
 
 def make_torch_loaders(features: Sequence[Sequence[float]], labels: Sequence[int], *,

@@ -28,3 +28,16 @@ export function SearchPanel({ search }: { search: (query: string) => Promise<{ r
     createElement('button',{...iconButtonProps('Clear search'),onClick:()=>setResult('')},'×'),
     createElement('output',{'aria-live':'polite'},result));
 }
+
+type RenderListProps = { items: string[]; selected: string; onRowRender: (item: string) => void };
+function Row({ item, selected, onRowRender }: { item: string; selected: boolean; onRowRender: (item: string) => void }) {
+  onRowRender(item);
+  return createElement('li', { 'aria-selected': selected }, item);
+}
+// Seeded performance defect: every row executes when selection changes.
+const ListRow = Row;
+export function RenderList({ items, selected, onRowRender }: RenderListProps) {
+  return createElement('ul', null, ...items.map(item => createElement(ListRow, {
+    key: item, item, selected: item === selected, onRowRender,
+  })));
+}

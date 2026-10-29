@@ -306,6 +306,49 @@ def build_torch_model(input_dim: int, *, seed: int = 7):
     return nn.Sequential(nn.Linear(input_dim, 8), nn.Tanh(), nn.Linear(8, 1))
 
 
+def validate_torch_batch(features, labels):
+    import torch
+    if not features or len(features)!=len(labels): raise ValueError("nonempty aligned batch is required")
+    x=torch.as_tensor(features,dtype=torch.float32,device="cpu")
+    y=torch.as_tensor(labels,dtype=torch.float32,device="cpu").reshape(-1,1)
+    if x.ndim!=2 or x.shape[0]!=y.shape[0] or x.shape[1]<1: raise ValueError("batch feature/target shapes differ")
+    if not torch.isfinite(x).all() or not torch.isfinite(y).all(): raise ValueError("batch must be finite")
+    if not torch.all((y==0)|(y==1)): raise ValueError("binary targets must be zero or one")
+    return {"features":x,"targets":y,"rows":int(x.shape[0]),"feature_dim":int(x.shape[1]),
+            "feature_dtype":str(x.dtype),"target_dtype":str(y.dtype),"device":str(x.device)}
+
+
+def autograd_scalar_gradient(x):
+    import torch
+    value=torch.tensor(float(x),dtype=torch.float64,requires_grad=True)
+    objective=3.0*value.square()+2.0*value+1.0
+    gradient,=torch.autograd.grad(objective,value)
+    return {"value":float(objective.detach()),"gradient":float(gradient.detach())}
+
+
+def finite_difference_gradient(function,x,*,epsilon=1e-6):
+    if not math.isfinite(float(x)) or not math.isfinite(float(epsilon)) or epsilon<=0:
+        raise ValueError("finite x and positive epsilon required")
+    return (float(function(x+epsilon))-float(function(x-epsilon)))/(2*epsilon)
+
+
+def dropout_mode_probe(model,batch,*,repeats=4):
+    import torch
+    if not isinstance(model,torch.nn.Module) or repeats<2: raise ValueError("model and at least two repeats required")
+    prior=model.training
+    before={key:value.detach().clone() for key,value in model.state_dict().items()}
+    model.train(); train_outputs=[]
+    with torch.no_grad():
+        for _ in range(repeats): train_outputs.append(model(batch).detach().cpu())
+    model.eval(); eval_outputs=[]
+    with torch.no_grad():
+        for _ in range(repeats): eval_outputs.append(model(batch).detach().cpu())
+    model.train(prior)
+    if any(not torch.equal(before[key],value.detach()) for key,value in model.state_dict().items()):
+        raise ValueError("mode probe must not mutate parameters or buffers")
+    return {"train_outputs":train_outputs,"eval_outputs":eval_outputs,"prior_mode":prior}
+
+
 def make_torch_loaders(features, labels, *, validation_fraction: float = .2,
                        batch_size: int = 8, seed: int = 7):
     """Create a deterministic random holdout using only the supplied training pool."""
@@ -333,40 +376,51 @@ def make_torch_loaders(features, labels, *, validation_fraction: float = .2,
 
 def train_torch_model(features, labels, *, seed: int = 7, epochs: int = 60,
                       learning_rate: float = 0.03, initial_state=None,
-                      optimizer_state=None):
+                      optimizer_state=None, optimizer_kind: str = "adam",
+                      batch_size: int | None = None, positive_weight: float = 1.0):
     """Train a real tiny CPU PyTorch MLP; uses generated in-memory data only."""
     import torch
     from torch import nn
     _validate_xy(features, labels)
     if type(seed) is not int or type(epochs) is not int or epochs < 1 or learning_rate <= 0:
         raise ValueError("invalid torch training controls")
+    if optimizer_kind not in {"adam","sgd"} or (batch_size is not None and (type(batch_size) is not int or batch_size<1)):
+        raise ValueError("optimizer must be adam/sgd and optional batch size must be positive")
+    if not math.isfinite(positive_weight) or positive_weight<=0: raise ValueError("positive class weight must be finite and positive")
+    batch=validate_torch_batch(features,labels)
     torch.manual_seed(seed)
     torch.use_deterministic_algorithms(True)
-    x = torch.tensor(features, dtype=torch.float32, device="cpu")
-    y = torch.tensor(labels, dtype=torch.float32, device="cpu").view(-1, 1)
+    x = batch["features"]
+    y = batch["targets"]
     model = build_torch_model(x.shape[1],seed=seed)
     if initial_state is not None: model.load_state_dict(initial_state,strict=True)
-    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=1e-4)
+    optimizer = (torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=1e-4)
+                if optimizer_kind=="adam" else torch.optim.SGD(model.parameters(),lr=learning_rate,weight_decay=1e-4))
     if optimizer_state is not None: optimizer.load_state_dict(optimizer_state)
-    criterion = nn.BCEWithLogitsLoss()
+    criterion = nn.BCEWithLogitsLoss(pos_weight=torch.tensor([positive_weight],dtype=torch.float32))
+    from torch.utils.data import DataLoader, TensorDataset
+    data_loader=DataLoader(TensorDataset(x,y),batch_size=batch_size or len(x),shuffle=False)
     history = []
     initial = {key: value.detach().clone() for key, value in model.state_dict().items()}
+    epoch_states=[{key:value.detach().clone() for key,value in initial.items()}]
     model.eval()
     with torch.no_grad(): history.append(float(criterion(model(x),y)))
+    examples_per_epoch=[]; updates_per_epoch=[]
     for _ in range(epochs):
         model.train()
-        optimizer.zero_grad(set_to_none=True)
-        logits = model(x)
-        loss = criterion(logits, y)
-        loss.backward()
-        if any(parameter.grad is not None and not torch.isfinite(parameter.grad).all()
-               for parameter in model.parameters()):
-            raise FloatingPointError("non-finite gradient")
-        optimizer.step()
-        history.append(float(loss.detach()))
-    model.eval()
-    with torch.no_grad():
-        history[-1]=float(criterion(model(x),y))
+        seen=0; updates=0
+        for batch_x,batch_y in data_loader:
+            optimizer.zero_grad(set_to_none=True)
+            loss=criterion(model(batch_x),batch_y)
+            loss.backward()
+            if any(parameter.grad is not None and not torch.isfinite(parameter.grad).all()
+                   for parameter in model.parameters()):
+                raise FloatingPointError("non-finite gradient")
+            optimizer.step(); count=int(batch_y.shape[0]); seen+=count; updates+=1
+        examples_per_epoch.append(seen); updates_per_epoch.append(updates)
+        model.eval()
+        with torch.no_grad(): history.append(float(criterion(model(x),y)))
+        epoch_states.append({key:value.detach().clone() for key,value in model.state_dict().items()})
     if all(torch.equal(initial[key], value.detach()) for key, value in model.state_dict().items()):
         raise RuntimeError("optimizer did not update model parameters")
     model.eval()
@@ -376,7 +430,39 @@ def train_torch_model(features, labels, *, seed: int = 7, epochs: int = 60,
             "optimizer_state_dict": optimizer.state_dict(),
             "parameters_changed": any(not torch.equal(initial[key], value.detach()) for key,value in model.state_dict().items()),
             "device": "cpu", "training_rows": len(labels), "seed": seed,
-            "pretrained_weights": False, "network_access": False}
+            "pretrained_weights": False, "network_access": False,"optimizer_kind":optimizer_kind,
+            "batch_size":batch_size or len(x),"examples_per_epoch":examples_per_epoch,
+            "updates_per_epoch":updates_per_epoch,"positive_weight":positive_weight,
+            "epoch_state_dicts":epoch_states,"epoch_loss_semantics":"full_training_objective_after_epoch"}
+
+
+def evaluate_torch_model(model, validation_loader, optimizer):
+    import torch
+    from torch.nn import functional as torch_functional
+    was_training=model.training
+    model.eval()
+    all_logits=[]; losses=[]; rows=0
+    with torch.no_grad():
+        for features,targets in validation_loader:
+            logits=model(features)
+            targets=targets.float().reshape(-1,1)
+            loss=torch_functional.binary_cross_entropy_with_logits(logits,targets,reduction="sum")
+            all_logits.append(logits.detach().cpu())
+            losses.append(float(loss)); rows+=int(targets.shape[0])
+    model.train(was_training)
+    logits=torch.cat(all_logits,dim=0) if all_logits else torch.empty((0,1))
+    return {"logits":logits,"loss":sum(losses)/rows if rows else float("nan"),"rows":rows,
+            "evaluation_mode":"eval/no_grad","optimizer_state_read_only":True}
+
+
+def select_torch_epoch(validation_losses, *, patience: int):
+    if (not validation_losses or type(patience) is not int or patience<1
+            or any(not math.isfinite(float(loss)) for loss in validation_losses)):
+        raise ValueError("finite validation losses and positive integer patience are required")
+    best_index=min(range(len(validation_losses)),key=lambda index:(float(validation_losses[index]),index))
+    stop_index=min(len(validation_losses)-1,best_index+patience)
+    return {"best_epoch":best_index,"stop_epoch":stop_index,"patience":patience,
+            "selection_partition":"validation_only"}
 
 
 def sample_negative_pairs(interactions, training_catalog, *, per_positive: int = 1, seed: int = 17):

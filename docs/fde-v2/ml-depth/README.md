@@ -39,7 +39,7 @@ The daily budget remains DSA60 in the separate repository + role/AWS30 + AI90. T
 | 301 | PML2 focused: Autograd scalar example | [Day 301](../days/day-301.md) |
 | 302 | PML2 focused: Finite difference check | [Day 302](../days/day-302.md) |
 | 303 | PML2 focused: Small MLP forward pass | [Day 303](../days/day-303.md) |
-| 304 | PML2 focused: Cross-entropy shape/semantics | [Day 304](../days/day-304.md) |
+| 304 | PML2 focused: Binary logit/target shape semantics | [Day 304](../days/day-304.md) |
 | 305 | PML2 focused: The training loop | [Day 305](../days/day-305.md) |
 | 306 | PML2 focused: SGD versus Adam | [Day 306](../days/day-306.md) |
 | 307 | PML2 focused: Batch and epoch accounting | [Day 307](../days/day-307.md) |

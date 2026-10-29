@@ -18,6 +18,8 @@ class InterviewDrillRedGreenTests(unittest.TestCase):
             raise RuntimeError('Java source launcher (JDK compiler module) is required by the bounded drill harness')
         if not (FRONTEND/'node_modules/.bin/vitest').is_file():
             raise RuntimeError('run npm ci in frontend before the bounded frontend drill harness')
+        if not shutil.which('curl') or not shutil.which('unzip') or not shutil.which('sha512sum'):
+            raise RuntimeError('curl, unzip, and sha512sum are needed by the workspace-local Spring Maven wrapper')
 
     def test_java_backend_drills_fail_then_reference_passes(self):
         fixtures=sorted(JAVA.glob('*Drill.java'))
@@ -33,6 +35,17 @@ class InterviewDrillRedGreenTests(unittest.TestCase):
                 self.assertEqual(green.returncode,0,green.stderr)
                 self.assertIn('PASS',green.stdout)
 
+    def test_actual_spring_mvc_validation_drill_is_red_then_reference_green(self):
+        project=ROOT/'fixtures/fde_v2/interview_drills/spring-mvc'
+        run=subprocess.run(['bash','verify.sh'],cwd=project,capture_output=True,text=True,timeout=900)
+        output=run.stdout+'\n'+run.stderr
+        if run.returncode and ('Temporary failure in name resolution' in output or 'Unknown host repo.maven.apache.org' in output):
+            self.skipTest('BLOCKED: Maven Central hostname could not resolve in this execution environment')
+        self.assertEqual(run.returncode,0,output)
+        self.assertIn('BUILD SUCCESS',run.stdout)
+        guide=(ROOT/'docs/fde-v2/interview-drills/README.md').read_text()
+        self.assertIn('spring-mvc/verify.sh',guide)
+
     def _vitest(self, implementation):
         env=os.environ.copy()
         env['VITE_DRILL_IMPLEMENTATION']=implementation
@@ -46,7 +59,7 @@ class InterviewDrillRedGreenTests(unittest.TestCase):
         self.assertIn('failed',red.stdout.lower()+red.stderr.lower())
         green=self._vitest('reference')
         self.assertEqual(green.returncode,0,green.stdout+green.stderr)
-        self.assertIn('4 passed',green.stdout)
+        self.assertIn('5 passed',green.stdout)
 
     def test_sql_role_bank_lab_exposes_scope_and_plan_without_performance_claim(self):
         from scripts.fde_v2_query_plan_lab import run_lab

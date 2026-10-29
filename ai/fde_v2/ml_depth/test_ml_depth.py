@@ -82,6 +82,8 @@ class StatisticsAndClassicalMLTests(unittest.TestCase):
         class Model:
             def state_dict(self): return {'weight':Weight()}
         class Broken:
+            validate_torch_batch=staticmethod(reference.validate_torch_batch)
+            build_torch_model=staticmethod(reference.build_torch_model)
             def train_torch_model(self,*args,**kwargs):
                 return {'model':Model(),'loss_history':[.7,.7],'parameters_changed':False}
         with self.assertRaisesRegex(TypeError,'actually trained torch module'):
@@ -91,19 +93,24 @@ class StatisticsAndClassicalMLTests(unittest.TestCase):
         except ImportError:
             self.skipTest("pinned PyTorch is unavailable in this interpreter")
         class Liar:
-            def train_torch_model(self,features,labels,*,seed,epochs,learning_rate,initial_state=None,optimizer_state=None):
+            validate_torch_batch=staticmethod(reference.validate_torch_batch)
+            build_torch_model=staticmethod(reference.build_torch_model)
+            def train_torch_model(self,features,labels,**kwargs):
+                seed=kwargs['seed']; initial_state=kwargs['initial_state']
                 model=reference.build_torch_model(len(features[0]),seed=seed)
                 model.load_state_dict(initial_state)
                 return {'model':model,'loss_history':[.69,.01],'parameters_changed':True}
         with self.assertRaisesRegex(ValueError,'did not prove a parameter update'):
             workflow.torch_training_witness(self.train_x,self.train_y,adapter=Liar(),seed=5,epochs=3)
         class FalseLoss:
+            validate_torch_batch=staticmethod(reference.validate_torch_batch)
+            build_torch_model=staticmethod(reference.build_torch_model)
             def train_torch_model(self,features,labels,**kwargs):
                 result=reference.train_torch_model(features,labels,**kwargs)
                 result['parameters_changed']=True
                 result['loss_history'][-1]=1e-12
                 return result
-        with self.assertRaisesRegex(ValueError,'reported final loss does not match'):
+        with self.assertRaisesRegex(ValueError,'per-epoch history'):
             workflow.torch_training_witness(self.train_x,self.train_y,adapter=FalseLoss(),seed=5,epochs=8)
 
 
@@ -239,6 +246,21 @@ except ImportError:
 
 @unittest.skipUnless(TORCH_AVAILABLE,"pinned PyTorch is not installed in this local interpreter")
 class RealTorchTrainingTests(unittest.TestCase):
+    def test_reference_batch_mlp_validation_and_mode_probes_observe_real_modules(self):
+        import torch
+        batch=workflow.validate_torch_batch([[1.,2.],[-1.,0.]],[1,0],adapter=reference)
+        self.assertEqual(tuple(batch['features'].shape),(2,2))
+        forward=workflow.torch_forward_witness([[1.,2.],[-1.,0.]],[1,0],adapter=reference)
+        self.assertEqual(tuple(forward['logits'].shape),(2,1))
+        dropout=torch.nn.Sequential(torch.nn.Dropout(.5),torch.nn.Linear(16,1))
+        dropout.train()
+        observed=workflow.dropout_mode_witness(dropout,torch.ones((2,16)),adapter=reference)
+        self.assertTrue(observed['train_varies']); self.assertTrue(observed['eval_stable'])
+        value=workflow.autograd_scalar_witness(1.25,adapter=reference)
+        self.assertAlmostEqual(value['gradient'],9.5)
+        numeric=workflow.finite_difference_witness(lambda x:x*x,3.0,adapter=reference)
+        self.assertAlmostEqual(numeric['gradient'],6.0,places=8)
+
     def test_real_cpu_parameter_updates_checkpoint_reload_and_resume(self):
         x=[[-2,-1],[-1,-2],[-1,-1],[1,1],[1,2],[2,1]]
         y=[0,0,0,1,1,1]

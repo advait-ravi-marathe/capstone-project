@@ -55,6 +55,7 @@
       "acceptance_selector": "manual-evidence-review/day-271",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -98,6 +99,7 @@
       "acceptance_selector": "manual-evidence-review/day-272",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -141,6 +143,7 @@
       "acceptance_selector": "manual-evidence-review/day-273",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -184,6 +187,7 @@
       "acceptance_selector": "manual-evidence-review/day-274",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -227,6 +231,7 @@
       "acceptance_selector": "manual-evidence-review/day-275",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -270,6 +275,7 @@
       "acceptance_selector": "manual-evidence-review/day-276",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -313,6 +319,7 @@
       "acceptance_selector": "manual-evidence-review/day-277",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -356,6 +363,7 @@
       "acceptance_selector": "manual-evidence-review/day-278",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -399,6 +407,7 @@
       "acceptance_selector": "manual-evidence-review/day-279",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -442,6 +451,7 @@
       "acceptance_selector": "manual-evidence-review/day-280",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -477,7 +487,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Implement squared-error predictions with the supplied feature matrix and compare to the mean baseline.",
+        "primary_check": "Run `test_linear_regression_baseline`; record initial/final MSE and mean-baseline MSE. Pass only when held-out-from-training fixture predictions beat the mean baseline and every coefficient is finite.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -485,6 +495,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_linear_regression_baseline",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_linear_regression_baseline",
+      "code_session_detail": [
+        "learner.py::train_linear_regression",
+        "Run `test_linear_regression_baseline`; record initial/final MSE and mean-baseline MSE. Pass only when held-out-from-training fixture predictions beat the mean baseline and every coefficient is finite."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -520,7 +534,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Compare squared, absolute and Huber error on a fixture with one large outlier.",
+        "primary_check": "Run `test_regression_losses_compare_squared_absolute_and_huber_on_outlier`; record all three values for the single outlier and verify Huber is below squared error while MAE remains linear in the residual.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -528,6 +542,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_regression_losses_compare_squared_absolute_and_huber_on_outlier",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_regression_losses_compare_squared_absolute_and_huber_on_outlier",
+      "code_session_detail": [
+        "learner.py::regression_loss_profile",
+        "Run `test_regression_losses_compare_squared_absolute_and_huber_on_outlier`; record all three values for the single outlier and verify Huber is below squared error while MAE remains linear in the residual."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -553,7 +571,7 @@
       "prerequisite": "Day 282 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
         "path": "ai/fde_v2/ml_depth/learner.py",
-        "functions": "logistic_loss and train_logistic"
+        "functions": "train_logistic` and `logistic_loss"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-283-logistic-model-and-log-loss.json",
       "objective_links": [
@@ -563,7 +581,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Implement learner logistic gradient descent and compare probabilities to majority baseline.",
+        "primary_check": "Run `test_regularized_logistic_fit_and_train_only_transform`; record loss before/after and probabilities on the fixed fixture. Fail if probabilities leave [0,1], loss is non-finite, or the majority baseline is not reported.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -571,6 +589,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_regularized_logistic_fit_and_train_only_transform",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_regularized_logistic_fit_and_train_only_transform",
+      "code_session_detail": [
+        "learner.py::train_logistic` and `logistic_loss",
+        "Run `test_regularized_logistic_fit_and_train_only_transform`; record loss before/after and probabilities on the fixed fixture. Fail if probabilities leave [0,1], loss is non-finite, or the majority baseline is not reported."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -606,7 +628,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Numerically check one learner logistic gradient coordinate against the analytic derivative.",
+        "primary_check": "Run `test_logistic_gradient_matches_finite_difference_with_l2`; compare every coordinate to central differences at epsilon 1e-6, including the intercept exclusion rule. Maximum absolute discrepancy must be <=1e-5.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -614,6 +636,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_logistic_gradient_matches_finite_difference_with_l2",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_logistic_gradient_matches_finite_difference_with_l2",
+      "code_session_detail": [
+        "learner.py::logistic_gradient",
+        "Run `test_logistic_gradient_matches_finite_difference_with_l2`; compare every coordinate to central differences at epsilon 1e-6, including the intercept exclusion rule. Maximum absolute discrepancy must be <=1e-5."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -638,8 +664,8 @@
       "reading": "CS229 gradient descent section",
       "prerequisite": "Day 284 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 285 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "train_logistic"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-285-gradient-descent-and-convergence.json",
       "objective_links": [
@@ -649,14 +675,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Plot or record objective across learning rates; explain divergence/slow convergence.",
+        "primary_check": "Run the regularized logistic candidate selector at learning rates0.01,0.1,1.0 for the same row order; record objective per epoch and coefficient norm. Mark diverging/nonfinite runs as failures, not omitted trials.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-285",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_learning_rate_comparison_records_divergence_not_dropped_trials",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_learning_rate_comparison_records_divergence_not_dropped_trials",
+      "code_session_detail": [
+        "learner.py::train_logistic",
+        "Run the regularized logistic candidate selector at learning rates0.01,0.1,1.0 for the same row order; record objective per epoch and coefficient norm. Mark diverging/nonfinite runs as failures, not omitted trials."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -681,8 +711,8 @@
       "reading": "CS229 regularization section; sklearn linear models",
       "prerequisite": "Day 285 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 286 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "train_logistic(logistic_loss, l1, l2)"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-286-l1-l2-regularization.json",
       "objective_links": [
@@ -692,14 +722,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Compare coefficient norms/path under no penalty, L1 and L2 without touching validation.",
+        "primary_check": "Run `test_regularized_logistic_fit_and_train_only_transform` with no penalty, L1 and L2; record coefficient norms and train/validation scores while fitting only training rows. Do not select penalty on heldout.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-286",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_l1_and_l2_regularization_change_learned_coefficients",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_l1_and_l2_regularization_change_learned_coefficients",
+      "code_session_detail": [
+        "learner.py::train_logistic(logistic_loss, l1, l2)",
+        "Run `test_regularized_logistic_fit_and_train_only_transform` with no penalty, L1 and L2; record coefficient norms and train/validation scores while fitting only training rows. Do not select penalty on heldout."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -735,7 +769,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Choose a threshold from explicit false-positive/false-negative costs; report precision/recall.",
+        "primary_check": "Run `test_declared_threshold_cost_rule`; preserve the declared FP/FN costs, enumerate candidate thresholds, and show the selected confusion counts and total cost. A threshold chosen from accuracy alone fails.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -743,6 +777,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_declared_threshold_cost_rule",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_declared_threshold_cost_rule",
+      "code_session_detail": [
+        "learner.py::threshold_cost_analysis",
+        "Run `test_declared_threshold_cost_rule`; preserve the declared FP/FN costs, enumerate candidate thresholds, and show the selected confusion counts and total cost. A threshold chosen from accuracy alone fails."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -767,8 +805,8 @@
       "reading": "sklearn Probability calibration",
       "prerequisite": "Day 287 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 288 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "brier_score; expected_calibration_error"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-288-calibration-and-reliability.json",
       "objective_links": [
@@ -778,14 +816,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Compute Brier/ECE and make a reliability table; do not equate confidence with correctness.",
+        "primary_check": "Run `test_loss_threshold_calibration_and_ranking_metrics_have_hand_cases`; record Brier and fixed-bin ECE on the same probabilities and labels, including empty-bin handling.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-288",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_loss_threshold_calibration_and_ranking_metrics_have_hand_cases",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_loss_threshold_calibration_and_ranking_metrics_have_hand_cases",
+      "code_session_detail": [
+        "learner.py::brier_score; expected_calibration_error",
+        "Run `test_loss_threshold_calibration_and_ranking_metrics_have_hand_cases`; record Brier and fixed-bin ECE on the same probabilities and labels, including empty-bin handling."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -829,6 +871,7 @@
       "acceptance_selector": "manual-evidence-review/day-289",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -854,7 +897,7 @@
       "prerequisite": "Day 289 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
         "path": "ai/fde_v2/ml_depth/workflow.py",
-        "functions": "compare_classical(adapter=learner); supplied boosted-tree baseline paired on same validation rows"
+        "functions": "compare_classical(adapter=learner)"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-290-boosted-tree-baseline.json",
       "objective_links": [
@@ -864,7 +907,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Train the pinned HistGradientBoostingClassifier on train rows only; report validation metrics.",
+        "primary_check": "Run `test_candidate_boosted_comparison_uses_same_validation_rows`; record train-only transform hash, row IDs and validation metrics for logistic and HistGradientBoosting. Validation IDs must not appear in any fit call.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -872,6 +915,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_boosted_comparison_uses_same_validation_rows",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_boosted_comparison_uses_same_validation_rows",
+      "code_session_detail": [
+        "workflow.py::compare_classical(adapter=learner)",
+        "Run `test_candidate_boosted_comparison_uses_same_validation_rows`; record train-only transform hash, row IDs and validation metrics for logistic and HistGradientBoosting. Validation IDs must not appear in any fit call."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -896,8 +943,8 @@
       "reading": "sklearn Tuning the hyper-parameters of an estimator",
       "prerequisite": "Day 290 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 291 evidence reviewed against its specific rubric"
+        "path": "learning-artifacts/production-ml/day-291-search-budget.json",
+        "functions": "edit and run the named bounded learning artifact"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-291-validation-and-search-budget.json",
       "objective_links": [
@@ -907,7 +954,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Compare candidates while keeping tuning within training/validation; freeze test boundary.",
+        "primary_check": "Run three declared candidate configurations on the same train/validation IDs; log every attempted configuration and score, then show the untouched held-out split was never loaded during selection.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -915,6 +962,10 @@
       "acceptance_selector": "manual-evidence-review/day-291",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "code_session_detail": [
+        "learning-artifacts/production-ml/day-291-search-budget.json",
+        "Run three declared candidate configurations on the same train/validation IDs; log every attempted configuration and score, then show the untouched held-out split was never loaded during selection."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -958,6 +1009,7 @@
       "acceptance_selector": "manual-evidence-review/day-292",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -982,8 +1034,8 @@
       "reading": "sklearn Metrics and scoring",
       "prerequisite": "Day 292 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 293 evidence reviewed against its specific rubric"
+        "path": "learning-artifacts/production-ml/day-293-paired-comparison.json",
+        "functions": "edit and run the named bounded learning artifact"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-293-paired-comparison-and-uncertainty.json",
       "objective_links": [
@@ -993,7 +1045,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Compare two models on the same rows; retain all cases and report uncertainty/limits.",
+        "primary_check": "Join candidate predictions by stable row ID; verify both models cover the exact same rows and compute paired delta/interval. Removing one hard row must make the row-set assertion fail.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -1001,6 +1053,10 @@
       "acceptance_selector": "manual-evidence-review/day-293",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "code_session_detail": [
+        "learning-artifacts/production-ml/day-293-paired-comparison.json",
+        "Join candidate predictions by stable row ID; verify both models cover the exact same rows and compute paired delta/interval. Removing one hard row must make the row-set assertion fail."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1025,8 +1081,8 @@
       "reading": "sklearn Model selection and evaluation",
       "prerequisite": "Day 293 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 294 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/m52/workflow.py",
+        "functions": "freeze_heldout and run_heldout_once"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-294-frozen-comparison-and-model-card.json",
       "objective_links": [
@@ -1036,7 +1092,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Freeze data/config/model hashes, run the held-out once, and document a failure plus limit.",
+        "primary_check": "Freeze canonical data/config/model/split/metric hashes before one held-out run; persist every result including errors/timeouts and reject a second run under the same consumed split ID.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -1044,6 +1100,10 @@
       "acceptance_selector": "manual-evidence-review/day-294",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML1",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.StatisticsAndClassicalMLTests",
+      "code_session_detail": [
+        "ai/fde_v2/m52/workflow.py::freeze_heldout and run_heldout_once",
+        "Freeze canonical data/config/model/split/metric hashes before one held-out run; persist every result including errors/timeouts and reject a second run under the same consumed split ID."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1204,8 +1264,8 @@
       "reading": "PyTorch Learn the Basics: Tensors",
       "prerequisite": "PML1 learner-owned classical baseline, split/metric contract and reviewed error analysis passed.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 299 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "validate_torch_batch"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-299-tensor-shapes-and-dtypes.json",
       "objective_links": [
@@ -1215,14 +1275,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Inspect generated batch shape/dtype/device and add assertions before forward pass.",
+        "primary_check": "Run `test_candidate_batch_validator_returns_checked_cpu_float32_tensors`; inspect actual tensors and record shapes, dtype/device. The NaN mutation and mismatched-row mutation must be rejected.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-299",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_batch_validator_returns_checked_cpu_float32_tensors",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_batch_validator_returns_checked_cpu_float32_tensors",
+      "code_session_detail": [
+        "learner.py::validate_torch_batch",
+        "Run `test_candidate_batch_validator_returns_checked_cpu_float32_tensors`; inspect actual tensors and record shapes, dtype/device. The NaN mutation and mismatched-row mutation must be rejected."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1258,7 +1322,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Build deterministic, disjoint train/validation partitions over the supplied training pool and return actual PyTorch Dataset/DataLoader objects; prove the validation loader is stable and no row crosses partitions.",
+        "primary_check": "Run `test_torch_dataset_loaders_partition_the_actual_training_pool`; record train/validation row IDs, disjointness, full-union count and a second-run validation order. Both must be real DataLoaders over the exact supplied tensors.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -1266,6 +1330,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_torch_dataset_loaders_partition_the_actual_training_pool",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_torch_dataset_loaders_partition_the_actual_training_pool",
+      "code_session_detail": [
+        "learner.py::make_torch_loaders",
+        "Run `test_torch_dataset_loaders_partition_the_actual_training_pool`; record train/validation row IDs, disjointness, full-union count and a second-run validation order. Both must be real DataLoaders over the exact supplied tensors."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1286,12 +1354,12 @@
       "block_day": 3,
       "day_kind": "focused",
       "title": "Autograd scalar example",
-      "task": "Differentiate a scalar function and compare the gradient to an analytic value.",
+      "task": "Evaluate the supplied scalar objective at two inputs and compare autograd values with the analytic derivative at both points.",
       "reading": "PyTorch Learn the Basics: Automatic Differentiation with torch.autograd",
       "prerequisite": "Day 300 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 301 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "autograd_scalar_gradient"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-301-autograd-scalar-example.json",
       "objective_links": [
@@ -1301,14 +1369,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Differentiate a scalar function and compare the gradient to an analytic value.",
+        "primary_check": "Execute the scalar autograd cell and compare the observed derivative with the hand derivative; then perturb the scalar formula and show the expected derivative changes. Record tensor, scalar loss and gradient.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-301",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_autograd_and_central_difference_match_supplied_math",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_autograd_and_central_difference_match_supplied_math",
+      "code_session_detail": [
+        "learner.py::autograd_scalar_gradient",
+        "Execute the scalar autograd cell and compare the observed derivative with the hand derivative; then perturb the scalar formula and show the expected derivative changes. Record tensor, scalar loss and gradient."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1333,8 +1405,8 @@
       "reading": "PyTorch Learn the Basics: Automatic Differentiation with torch.autograd",
       "prerequisite": "Day 301 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 302 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "finite_difference_gradient"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-302-finite-difference-check.json",
       "objective_links": [
@@ -1344,14 +1416,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Compare autograd and numerical gradient on a scalar and one network parameter.",
+        "primary_check": "Run central finite differences for one scalar and one named network parameter; record epsilon, analytic value, numeric value and relative error. Repeat at epsilon/10 and explain round-off change.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-302",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_autograd_and_central_difference_match_supplied_math",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_autograd_and_central_difference_match_supplied_math",
+      "code_session_detail": [
+        "learner.py::finite_difference_gradient",
+        "Run central finite differences for one scalar and one named network parameter; record epsilon, analytic value, numeric value and relative error. Repeat at epsilon/10 and explain round-off change."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1376,8 +1452,8 @@
       "reading": "PyTorch Learn the Basics: Building the Neural Network",
       "prerequisite": "Day 302 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 303 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "build_torch_model"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-303-small-mlp-forward-pass.json",
       "objective_links": [
@@ -1387,14 +1463,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Create a two-layer MLP and verify logits have one row per example.",
+        "primary_check": "Run `test_candidate_mlp_forward_has_one_finite_logit_per_row`; inspect the actual module and run it on batch sizes1 and3. Require a two-layer trainable CPU module and finite logits shaped (N,1), not a canned tensor.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-303",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_mlp_forward_has_one_finite_logit_per_row",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_mlp_forward_has_one_finite_logit_per_row",
+      "code_session_detail": [
+        "learner.py::build_torch_model",
+        "Run `test_candidate_mlp_forward_has_one_finite_logit_per_row`; inspect the actual module and run it on batch sizes1 and3. Require a two-layer trainable CPU module and finite logits shaped (N,1), not a canned tensor."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1414,15 +1494,15 @@
       "block_name": "PyTorch training and debugging",
       "block_day": 6,
       "day_kind": "focused",
-      "title": "Cross-entropy shape/semantics",
-      "task": "Use logits and integer labels correctly; detect a shape/broadcasting mutation.",
+      "title": "Binary logit/target shape semantics",
+      "task": "Use the learner batch validator to enforce binary float targets shaped (N,1) with logits shaped (N,1); reject a broadcastable but wrong target shape.",
       "reading": "PyTorch Learn the Basics: Building the Neural Network",
       "prerequisite": "Day 303 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 304 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "train_torch_model"
       },
-      "learner_artifact": "learning-artifacts/production-ml/day-304-cross-entropy-shape-semantics.json",
+      "learner_artifact": "learning-artifacts/production-ml/day-304-binary-logit-target-shape-semantics.json",
       "objective_links": [
         {
           "objective": "O4",
@@ -1430,14 +1510,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Use logits and integer labels correctly; detect a shape/broadcasting mutation.",
+        "primary_check": "Run `test_torch_task_runs_actual_training_adapter`; record parameter hashes before/after and independently measured initial/final BCE. Fail if optimizer.step is removed or the reported loss is fabricated.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-304",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_torch_task_runs_actual_training_adapter",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_torch_task_runs_actual_training_adapter",
+      "code_session_detail": [
+        "learner.py::train_torch_model",
+        "Run `test_torch_task_runs_actual_training_adapter`; record parameter hashes before/after and independently measured initial/final BCE. Fail if optimizer.step is removed or the reported loss is fabricated."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1473,7 +1557,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Implement zero_grad, forward, loss, backward and optimizer step; prove parameters change.",
+        "primary_check": "Run `test_torch_task_runs_actual_training_adapter`; inspect one epoch's zero_grad→forward→loss→backward→step trace and confirm at least one parameter changes and independently recomputed objective decreases.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -1481,6 +1565,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_torch_task_runs_actual_training_adapter",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_torch_task_runs_actual_training_adapter",
+      "code_session_detail": [
+        "learner.py::train_torch_model",
+        "Run `test_torch_task_runs_actual_training_adapter`; inspect one epoch's zero_grad→forward→loss→backward→step trace and confirm at least one parameter changes and independently recomputed objective decreases."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1505,8 +1593,8 @@
       "reading": "PyTorch Learn the Basics: Optimizing Model Parameters",
       "prerequisite": "Day 305 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 306 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "train_torch_model(optimizer_kind=...)"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-306-sgd-versus-adam.json",
       "objective_links": [
@@ -1516,14 +1604,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Train the same fixed tiny task with two optimizers and compare traces, not winner claims.",
+        "primary_check": "Run `test_candidate_optimizer_comparison_and_minibatch_accounting`; use identical seed/data/steps for Adam and SGD, save both loss traces and update counts, and explain observed differences without declaring a universal winner.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-306",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_optimizer_comparison_and_minibatch_accounting",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_optimizer_comparison_and_minibatch_accounting",
+      "code_session_detail": [
+        "learner.py::train_torch_model(optimizer_kind=...)",
+        "Run `test_candidate_optimizer_comparison_and_minibatch_accounting`; use identical seed/data/steps for Adam and SGD, save both loss traces and update counts, and explain observed differences without declaring a universal winner."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1548,8 +1640,8 @@
       "reading": "PyTorch Learn the Basics: Datasets & DataLoaders; Optimizing Model Parameters",
       "prerequisite": "Day 306 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 307 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "train_torch_model(batch_size=...)"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-307-batch-and-epoch-accounting.json",
       "objective_links": [
@@ -1559,14 +1651,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Log examples processed and per-epoch loss with correct weighting by batch size.",
+        "primary_check": "Run `test_candidate_optimizer_comparison_and_minibatch_accounting` and `test_training_witness_rejects_tampered_intermediate_epoch_loss`; for6 rows,batch2,epochs6 require [6]*6 examples and [3]*6 updates, then verify every full-training weighted objective against its corresponding epoch state snapshot.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-307",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_training_witness_rejects_tampered_intermediate_epoch_loss",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_training_witness_rejects_tampered_intermediate_epoch_loss",
+      "code_session_detail": [
+        "learner.py::train_torch_model(batch_size=...)",
+        "Run `test_candidate_optimizer_comparison_and_minibatch_accounting` and `test_training_witness_rejects_tampered_intermediate_epoch_loss`; for6 rows,batch2,epochs6 require [6]*6 examples and [3]*6 updates, then verify every full-training weighted objective against its corresponding epoch state snapshot."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1591,8 +1687,8 @@
       "reading": "PyTorch Learn the Basics: Tensors; Save and Load the Model",
       "prerequisite": "Day 307 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 308 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "train_torch_model(seed=...)"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-308-seed-and-repeatability.json",
       "objective_links": [
@@ -1602,14 +1698,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Run twice with fixed seed and compare CPU outputs; note remaining nondeterminism.",
+        "primary_check": "Run `test_candidate_torch_training_is_repeatable_with_fixed_seed`; compare every state_dict tensor and probability exactly across two CPU runs, then record one deliberate seed change and its changed state hash.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-308",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_torch_training_is_repeatable_with_fixed_seed",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_torch_training_is_repeatable_with_fixed_seed",
+      "code_session_detail": [
+        "learner.py::train_torch_model(seed=...)",
+        "Run `test_candidate_torch_training_is_repeatable_with_fixed_seed`; compare every state_dict tensor and probability exactly across two CPU runs, then record one deliberate seed change and its changed state hash."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1634,8 +1734,8 @@
       "reading": "PyTorch Learn the Basics: Building the Neural Network",
       "prerequisite": "Day 308 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 309 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "dropout_mode_probe"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-309-train-eval-mode-and-dropout.json",
       "objective_links": [
@@ -1645,14 +1745,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Show that model mode changes behavior only where a stochastic layer is active.",
+        "primary_check": "Run `test_candidate_dropout_probe_observes_train_variance_eval_stability_and_restores_mode`; use the supplied active Dropout module, compare five train outputs and five eval outputs, require train variance/eval equality and unchanged parameters/prior mode.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-309",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_dropout_probe_observes_train_variance_eval_stability_and_restores_mode",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_dropout_probe_observes_train_variance_eval_stability_and_restores_mode",
+      "code_session_detail": [
+        "learner.py::dropout_mode_probe",
+        "Run `test_candidate_dropout_probe_observes_train_variance_eval_stability_and_restores_mode`; use the supplied active Dropout module, compare five train outputs and five eval outputs, require train variance/eval equality and unchanged parameters/prior mode."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1677,8 +1781,8 @@
       "reading": "PyTorch Learn the Basics: Optimizing Model Parameters",
       "prerequisite": "Day 309 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 310 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "evaluate_torch_model"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-310-validation-without-gradients.json",
       "objective_links": [
@@ -1688,14 +1792,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Add validation loop under eval/no_grad and verify optimizer state is unchanged.",
+        "primary_check": "Run `test_candidate_validation_loop_is_eval_no_grad_and_state_read_only` plus `test_validation_oracle_rejects_candidate_claiming_a_wrong_logit`; record validation row count, eval mode, no-grad logits, unchanged parameters/grads/optimizer state, and independently recomputed BCE.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-310",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_validation_loop_is_eval_no_grad_and_state_read_only",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_validation_loop_is_eval_no_grad_and_state_read_only",
+      "code_session_detail": [
+        "learner.py::evaluate_torch_model",
+        "Run `test_candidate_validation_loop_is_eval_no_grad_and_state_read_only` plus `test_validation_oracle_rejects_candidate_claiming_a_wrong_logit`; record validation row count, eval mode, no-grad logits, unchanged parameters/grads/optimizer state, and independently recomputed BCE."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1720,8 +1828,8 @@
       "reading": "PyTorch Learn the Basics: Optimizing Model Parameters",
       "prerequisite": "Day 310 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 311 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "train_torch_model"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-311-underfit-fit-overfit-traces.json",
       "objective_links": [
@@ -1731,14 +1839,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Overfit a tiny batch intentionally and distinguish that from generalization.",
+        "primary_check": "Run learner selector `test_candidate_tiny_batch_can_overfit_but_is_only_a_mechanics_claim`; record tiny-batch loss ratio and predictions, then explicitly label this as memorization mechanics rather than generalization evidence.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-311",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_tiny_batch_can_overfit_but_is_only_a_mechanics_claim",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_tiny_batch_can_overfit_but_is_only_a_mechanics_claim",
+      "code_session_detail": [
+        "learner.py::train_torch_model",
+        "Run learner selector `test_candidate_tiny_batch_can_overfit_but_is_only_a_mechanics_claim`; record tiny-batch loss ratio and predictions, then explicitly label this as memorization mechanics rather than generalization evidence."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1763,8 +1875,8 @@
       "reading": "PyTorch Learn the Basics: Optimizing Model Parameters",
       "prerequisite": "Day 311 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 312 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "select_torch_epoch"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-312-weight-decay-and-early-stopping.json",
       "objective_links": [
@@ -1774,14 +1886,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Select epoch from validation-only history and keep held-out rows inaccessible.",
+        "primary_check": "Run candidate early-stopping selector with losses [.8,.6,.4,.45,.5], patience2; require earliest best epoch2 and stop epoch4. Inject NaN and a later equal minimum; non-finite must fail and ties choose the earliest epoch.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-312",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_early_stopping_selects_validation_minimum_and_patience",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_early_stopping_selects_validation_minimum_and_patience",
+      "code_session_detail": [
+        "learner.py::select_torch_epoch",
+        "Run candidate early-stopping selector with losses [.8,.6,.4,.45,.5], patience2; require earliest best epoch2 and stop epoch4. Inject NaN and a later equal minimum; non-finite must fail and ties choose the earliest epoch."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1806,8 +1922,8 @@
       "reading": "PyTorch Learn the Basics: Optimizing Model Parameters",
       "prerequisite": "Day 312 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 313 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "train_torch_model(positive_weight=...)"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-313-class-imbalance.json",
       "objective_links": [
@@ -1817,14 +1933,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Compare unweighted and weighted loss while keeping label semantics explicit.",
+        "primary_check": "Run `test_candidate_weighted_loss_changes_actual_trained_parameters`; compare identical-seed weighted/unweighted models, logits and observed BCE; do not report class weighting as calibration.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-313",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_weighted_loss_changes_actual_trained_parameters",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_weighted_loss_changes_actual_trained_parameters",
+      "code_session_detail": [
+        "learner.py::train_torch_model(positive_weight=...)",
+        "Run `test_candidate_weighted_loss_changes_actual_trained_parameters`; compare identical-seed weighted/unweighted models, logits and observed BCE; do not report class weighting as calibration."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1849,8 +1969,8 @@
       "reading": "PyTorch Learn the Basics: Automatic Differentiation; Optimizing Model Parameters",
       "prerequisite": "Day 313 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 314 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "train_torch_model` and `validate_torch_batch"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-314-broken-run-diagnosis.json",
       "objective_links": [
@@ -1860,14 +1980,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Inject a disconnected loss, non-finite gradient and wrong label shape; classify each error.",
+        "primary_check": "Run `test_candidate_training_rejects_nonfinite_gradients_and_detached_loss`; it covers invalid labels, injected non-finite gradients and detached loss. Capture each exception and verify failure occurs before a trained result can be accepted.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-314",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_training_rejects_nonfinite_gradients_and_detached_loss",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_training_rejects_nonfinite_gradients_and_detached_loss",
+      "code_session_detail": [
+        "learner.py::train_torch_model` and `validate_torch_batch",
+        "Run `test_candidate_training_rejects_nonfinite_gradients_and_detached_loss`; it covers invalid labels, injected non-finite gradients and detached loss. Capture each exception and verify failure occurs before a trained result can be accepted."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1892,8 +2016,8 @@
       "reading": "PyTorch Learn the Basics: Save and Load the Model",
       "prerequisite": "Day 314 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 315 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/workflow.py",
+        "functions": "save_torch_checkpoint"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-315-checkpoint-manifest.json",
       "objective_links": [
@@ -1903,7 +2027,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Save state_dict, optimizer state, seed, data/split/config hashes and epoch.",
+        "primary_check": "Save a checkpoint with model/optimizer/data/split/config hashes; reopen the JSON manifest and binary artifact, compare each hash, then mutate one config field and require load rejection.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -1911,6 +2035,10 @@
       "acceptance_selector": "manual-evidence-review/day-315",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "code_session_detail": [
+        "ai/fde_v2/ml_depth/workflow.py::save_torch_checkpoint",
+        "Save a checkpoint with model/optimizer/data/split/config hashes; reopen the JSON manifest and binary artifact, compare each hash, then mutate one config field and require load rejection."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1946,7 +2074,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Resume a split training run and compare against uninterrupted fixed-batch training.",
+        "primary_check": "Run `test_candidate_checkpoint_resume_uses_saved_optimizer_and_weights`; compare resumed versus uninterrupted state_dict and predictions after equal total updates, and verify the workflow rejects a learner that ignores the exact supplied initial checkpoint.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -1954,6 +2082,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_checkpoint_resume_uses_saved_optimizer_and_weights",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_checkpoint_resume_uses_saved_optimizer_and_weights",
+      "code_session_detail": [
+        "workflow.py::resume_torch_training(adapter=learner)",
+        "Run `test_candidate_checkpoint_resume_uses_saved_optimizer_and_weights`; compare resumed versus uninterrupted state_dict and predictions after equal total updates, and verify the workflow rejects a learner that ignores the exact supplied initial checkpoint."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -1978,8 +2110,8 @@
       "reading": "PyTorch Learn the Basics: Quickstart",
       "prerequisite": "Day 316 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 317 evidence reviewed against its specific rubric"
+        "path": "learning-artifacts/production-ml/day-317-bounded-profile.py",
+        "functions": "edit and run the named bounded learning artifact"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-317-cpu-time-and-memory.json",
       "objective_links": [
@@ -1989,7 +2121,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Measure a bounded fixture run; record hardware, rows, epochs and wall-clock time.",
+        "primary_check": "Run the supplied 6-row,10-epoch CPU profile3 times; record Python/PyTorch versions, wall-clock, batch/update counts and peak memory if available. Report median and range only; no production scaling inference.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -1997,6 +2129,10 @@
       "acceptance_selector": "manual-evidence-review/day-317",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "code_session_detail": [
+        "learning-artifacts/production-ml/day-317-bounded-profile.py",
+        "Run the supplied 6-row,10-epoch CPU profile3 times; record Python/PyTorch versions, wall-clock, batch/update counts and peak memory if available. Report median and range only; no production scaling inference."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2021,8 +2157,8 @@
       "reading": "sklearn Probability calibration; Metrics and scoring",
       "prerequisite": "Day 317 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 318 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/workflow.py",
+        "functions": "torch_training_witness` plus learner probability metrics"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-318-calibration-and-error-slices.json",
       "objective_links": [
@@ -2032,7 +2168,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Evaluate calibrated probabilities and two supported slices after training.",
+        "primary_check": "Run the calibration/slice worksheet on saved predictions; show per-slice n, positive count, Brier and calibration bins. A slice with fewer than5 rows is labeled descriptive only.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -2040,6 +2176,10 @@
       "acceptance_selector": "manual-evidence-review/day-318",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "code_session_detail": [
+        "workflow.py::torch_training_witness` plus learner probability metrics",
+        "Run the calibration/slice worksheet on saved predictions; show per-slice n, positive count, Brier and calibration bins. A slice with fewer than5 rows is labeled descriptive only."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2064,8 +2204,8 @@
       "reading": "PyTorch Learn the Basics: Optimizing Model Parameters",
       "prerequisite": "Day 318 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 319 evidence reviewed against its specific rubric"
+        "path": "learning-artifacts/production-ml/day-319-seed-sensitivity.json",
+        "functions": "edit and run the named bounded learning artifact"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-319-seed-sensitivity.json",
       "objective_links": [
@@ -2075,7 +2215,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Repeat with three declared seeds; report spread rather than selecting the best seed.",
+        "primary_check": "Run the same train/validation manifest with seeds11,23,47; record each model hash and metric, then summarize range and mean. Never select the best seed as the sole result.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -2083,6 +2223,10 @@
       "acceptance_selector": "manual-evidence-review/day-319",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "code_session_detail": [
+        "learning-artifacts/production-ml/day-319-seed-sensitivity.json",
+        "Run the same train/validation manifest with seeds11,23,47; record each model hash and metric, then summarize range and mean. Never select the best seed as the sole result."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2107,8 +2251,8 @@
       "reading": "PyTorch Learn the Basics: Optimizing Model Parameters",
       "prerequisite": "Day 319 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 320 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/workflow.py",
+        "functions": "torch_training_witness"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-320-mutation-regression.json",
       "objective_links": [
@@ -2118,14 +2262,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Disable optimizer.step or corrupt labels; require the training/evaluation gate to detect it.",
+        "primary_check": "Run `test_training_witness_rejects_noop_optimizer_and_corrupted_labels`; disable optimizer.step and separately corrupt labels; both must fail before an artifact is accepted.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-320",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_training_witness_rejects_noop_optimizer_and_corrupted_labels",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_training_witness_rejects_noop_optimizer_and_corrupted_labels",
+      "code_session_detail": [
+        "workflow.py::torch_training_witness",
+        "Run `test_training_witness_rejects_noop_optimizer_and_corrupted_labels`; disable optimizer.step and separately corrupt labels; both must fail before an artifact is accepted."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2150,8 +2298,8 @@
       "reading": "PyTorch Learn the Basics: Save and Load the Model",
       "prerequisite": "Day 320 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 321 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/workflow.py",
+        "functions": "load_torch_checkpoint"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-321-clean-process-reproduction.json",
       "objective_links": [
@@ -2161,7 +2309,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Load checkpoint in a fresh process from manifest; reject changed data/config hashes.",
+        "primary_check": "Start a fresh subprocess from the documented command, load the saved artifact against its manifest, compare predictions to the originating process, then change one data hash and require rejection.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -2169,6 +2317,10 @@
       "acceptance_selector": "manual-evidence-review/day-321",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "code_session_detail": [
+        "ai/fde_v2/ml_depth/workflow.py::load_torch_checkpoint",
+        "Start a fresh subprocess from the documented command, load the saved artifact against its manifest, compare predictions to the originating process, then change one data hash and require rejection."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2193,8 +2345,8 @@
       "reading": "PyTorch Learn the Basics: Save and Load the Model",
       "prerequisite": "Day 321 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 322 evidence reviewed against its specific rubric"
+        "path": "learning-artifacts/production-ml/day-322-training-review.md",
+        "functions": "edit and run the named bounded learning artifact"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-322-training-mechanics-review.json",
       "objective_links": [
@@ -2204,7 +2356,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Explain one failure, the repair and why a synthetic overfit is not generalization proof.",
+        "primary_check": "Trace one captured failure from symptom through tensor/gradient evidence to repair; reproduce the failure and repaired run. State explicitly why tiny-fixture overfit is not generalization evidence.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -2212,6 +2364,10 @@
       "acceptance_selector": "manual-evidence-review/day-322",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML2",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.RealTorchTrainingTests",
+      "code_session_detail": [
+        "learning-artifacts/production-ml/day-322-training-review.md",
+        "Trace one captured failure from symptom through tensor/gradient evidence to repair; reproduce the failure and repaired run. State explicitly why tiny-fixture overfit is not generalization evidence."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2391,6 +2547,7 @@
       "acceptance_selector": "manual-evidence-review/day-327",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2415,8 +2572,8 @@
       "reading": "M5.2 accepted guide: offline ranking evaluation",
       "prerequisite": "Day 327 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 328 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/workflow.py",
+        "functions": "compare_rankers(adapter=reference)"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-328-existing-m5-2-baselines.json",
       "objective_links": [
@@ -2426,7 +2583,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Reproduce popularity and cosine ranking with an identical candidate set.",
+        "primary_check": "Run the baseline ranking fixture with one frozen candidate set; persist each model's ordered item IDs and candidate hash. Popularity and cosine must see identical IDs and all results retain source labels.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -2434,6 +2591,10 @@
       "acceptance_selector": "manual-evidence-review/day-328",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": [
+        "workflow.py::compare_rankers(adapter=reference)",
+        "Run the baseline ranking fixture with one frozen candidate set; persist each model's ordered item IDs and candidate hash. Popularity and cosine must see identical IDs and all results retain source labels."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2477,6 +2638,7 @@
       "acceptance_selector": "manual-evidence-review/day-329",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2501,8 +2663,8 @@
       "reading": "Google Recommendation Systems: candidate generation overview",
       "prerequisite": "Day 329 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 330 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/workflow.py",
+        "functions": "compare_rankers(training_catalog=...) and timestamped catalog artifact"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-330-candidate-availability.json",
       "objective_links": [
@@ -2512,7 +2674,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Define which candidates exist at each prediction timestamp and reject future-only items.",
+        "primary_check": "For each prediction timestamp, materialize the eligible catalog from events with availability_time<=cutoff; append a future-only item and verify it is excluded from candidate IDs and catalog digest.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -2520,6 +2682,10 @@
       "acceptance_selector": "manual-evidence-review/day-330",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": [
+        "ai/fde_v2/ml_depth/workflow.py::compare_rankers(training_catalog=...) and timestamped catalog artifact",
+        "For each prediction timestamp, materialize the eligible catalog from events with availability_time<=cutoff; append a future-only item and verify it is excluded from candidate IDs and catalog digest."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2555,7 +2721,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Implement the learner sampler over training-eligible items only and assert catalog membership.",
+        "primary_check": "Run `test_training_catalog_negative_sampling`; print the training catalog hash and every positive/negative triple; reject user-seen negatives and an item added only after cutoff.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -2563,6 +2729,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_training_catalog_negative_sampling",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_training_catalog_negative_sampling",
+      "code_session_detail": [
+        "learner.py::sample_negative_pairs",
+        "Run `test_training_catalog_negative_sampling`; print the training catalog hash and every positive/negative triple; reject user-seen negatives and an item added only after cutoff."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2606,6 +2776,7 @@
       "acceptance_selector": "manual-evidence-review/day-332",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2649,6 +2820,7 @@
       "acceptance_selector": "manual-evidence-review/day-333",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2684,7 +2856,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Derive and implement the pairwise objective; check monotonic loss on the fixture.",
+        "primary_check": "Run `test_pairwise_ranker_learns_and_scores_pairs`; record initial/final pairwise loss and score margin for fixed positive/negative pairs, then test a held-back user/item pair.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -2692,6 +2864,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_pairwise_ranker_learns_and_scores_pairs",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_pairwise_ranker_learns_and_scores_pairs",
+      "code_session_detail": [
+        "learner.py::train_pairwise_ranker",
+        "Run `test_pairwise_ranker_learns_and_scores_pairs`; record initial/final pairwise loss and score margin for fixed positive/negative pairs, then test a held-back user/item pair."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2727,7 +2903,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Finite-difference check one pairwise parameter and preserve deterministic seed.",
+        "primary_check": "Run `test_pairwise_vector_gradients_match_finite_difference`; compare user/positive/negative vector coordinates against central differences at epsilon1e-6; maximum absolute discrepancy <=1e-5.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -2735,6 +2911,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_pairwise_vector_gradients_match_finite_difference",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_pairwise_vector_gradients_match_finite_difference",
+      "code_session_detail": [
+        "learner.py::pairwise_loss_gradient",
+        "Run `test_pairwise_vector_gradients_match_finite_difference`; compare user/positive/negative vector coordinates against central differences at epsilon1e-6; maximum absolute discrepancy <=1e-5."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2759,8 +2939,8 @@
       "reading": "Google Recommendation Systems: candidate generation; scoring",
       "prerequisite": "Day 335 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 336 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/workflow.py",
+        "functions": "compare_rankers"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-336-same-candidates-for-all-models.json",
       "objective_links": [
@@ -2770,7 +2950,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Bind catalog/split hash and assert learned, popularity and cosine rank the same rows.",
+        "primary_check": "Run the comparison and assert exact candidate-list equality for popularity, cosine and learned ranker for every user; mutate one candidate list and require comparison to fail.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -2778,6 +2958,10 @@
       "acceptance_selector": "manual-evidence-review/day-336",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": [
+        "workflow.py::compare_rankers",
+        "Run the comparison and assert exact candidate-list equality for popularity, cosine and learned ranker for every user; mutate one candidate list and require comparison to fail."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2813,7 +2997,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Calculate NDCG@K, MRR and Recall@K with explicit ties and denominator.",
+        "primary_check": "Run `test_ndcg_cutoff_and_tie_behavior`; hand-calculate DCG/IDCG for tied relevance and K boundary, report zero-IDCG convention, NDCG and denominator.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -2821,6 +3005,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_ndcg_cutoff_and_tie_behavior",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_ndcg_cutoff_and_tie_behavior",
+      "code_session_detail": [
+        "learner.py::ndcg_at_k",
+        "Run `test_ndcg_cutoff_and_tie_behavior`; hand-calculate DCG/IDCG for tied relevance and K boundary, report zero-IDCG convention, NDCG and denominator."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2856,7 +3044,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Compare learned ranker to M5.2 cosine/popularity; no model is required to win.",
+        "primary_check": "Run `test_learner_pairwise_ranker_is_used_by_comparison_path`; preserve identical candidate IDs for popularity/cosine/learned rankers and report per-user metric/support. No winner is required.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -2864,6 +3052,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_learner_pairwise_ranker_is_used_by_comparison_path",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_learner_pairwise_ranker_is_used_by_comparison_path",
+      "code_session_detail": [
+        "workflow.py::compare_rankers(adapter=learner)",
+        "Run `test_learner_pairwise_ranker_is_used_by_comparison_path`; preserve identical candidate IDs for popularity/cosine/learned rankers and report per-user metric/support. No winner is required."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2899,7 +3091,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Implement transparent popularity fallback for an unseen user and test its status.",
+        "primary_check": "Run `test_cold_start_fallback_is_learner_owned_and_training_catalog_bounded`; score an unseen user from training-only popularity and show every result is a complete, duplicate-free permutation of the frozen catalog.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -2907,6 +3099,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_cold_start_fallback_is_learner_owned_and_training_catalog_bounded",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_cold_start_fallback_is_learner_owned_and_training_catalog_bounded",
+      "code_session_detail": [
+        "learner.py::cold_start_fallback",
+        "Run `test_cold_start_fallback_is_learner_owned_and_training_catalog_bounded`; score an unseen user from training-only popularity and show every result is a complete, duplicate-free permutation of the frozen catalog."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2950,6 +3146,7 @@
       "acceptance_selector": "manual-evidence-review/day-340",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -2993,6 +3190,7 @@
       "acceptance_selector": "manual-evidence-review/day-341",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3017,8 +3215,8 @@
       "reading": "Google Recommendation Systems: re-ranking",
       "prerequisite": "Day 341 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 342 evidence reviewed against its specific rubric"
+        "path": "learning-artifacts/production-ml/day-342-freshness.json",
+        "functions": "edit and run the named bounded learning artifact"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-342-time-drift-and-freshness.json",
       "objective_links": [
@@ -3028,7 +3226,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Measure training-only item age/popularity and test stale-candidate handling.",
+        "primary_check": "Group items by training cutoff and compute event age from training rows only; append a later event and verify it cannot change the frozen historical freshness report.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -3036,6 +3234,10 @@
       "acceptance_selector": "manual-evidence-review/day-342",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": [
+        "learning-artifacts/production-ml/day-342-freshness.json",
+        "Group items by training cutoff and compute event age from training rows only; append a later event and verify it cannot change the frozen historical freshness report."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3060,8 +3262,8 @@
       "reading": "Google Recommendation Systems: re-ranking",
       "prerequisite": "Day 342 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 343 evidence reviewed against its specific rubric"
+        "path": "learning-artifacts/production-ml/day-343-ranking-slices.json",
+        "functions": "edit and run the named bounded learning artifact"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-343-quality-coverage-and-exposure-slices.json",
       "objective_links": [
@@ -3071,7 +3273,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Report ranking quality and candidate coverage by predeclared synthetic slices.",
+        "primary_check": "For each predeclared synthetic slice, record users, support, candidate coverage and ranking metric with denominator; reject a slice absent from the manifest or below minimum support.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -3079,6 +3281,10 @@
       "acceptance_selector": "manual-evidence-review/day-343",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": [
+        "learning-artifacts/production-ml/day-343-ranking-slices.json",
+        "For each predeclared synthetic slice, record users, support, candidate coverage and ranking metric with denominator; reject a slice absent from the manifest or below minimum support."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3103,8 +3309,8 @@
       "reading": "Google Recommendation Systems: collaborative filtering summary",
       "prerequisite": "Day 343 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 344 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "sample_negative_pairs"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-344-negative-sample-sensitivity.json",
       "objective_links": [
@@ -3114,7 +3320,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Repeat candidate sampling with declared seeds; report rank/metric variability.",
+        "primary_check": "Run the negative sampler with seeds11,23,47 over the same training catalog; record negative-pair hashes and metric spread, and never select the best seed as the only result.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -3122,6 +3328,10 @@
       "acceptance_selector": "manual-evidence-review/day-344",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": [
+        "learner.py::sample_negative_pairs",
+        "Run the negative sampler with seeds11,23,47 over the same training catalog; record negative-pair hashes and metric spread, and never select the best seed as the only result."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3146,8 +3356,8 @@
       "reading": "Google Recommendation Systems: scoring",
       "prerequisite": "Day 344 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 345 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "train_pairwise_ranker"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-345-development-only-tuning.json",
       "objective_links": [
@@ -3157,7 +3367,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Tune dimensions/learning rate on development split and record selected config hash.",
+        "primary_check": "Compare exactly three predeclared dimensions/learning-rate pairs using development users only; save all configs, scores and selected-config hash. Heldout IDs must not be read by the tuning loop.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -3165,6 +3375,10 @@
       "acceptance_selector": "manual-evidence-review/day-345",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": [
+        "learner.py::train_pairwise_ranker",
+        "Compare exactly three predeclared dimensions/learning-rate pairs using development users only; save all configs, scores and selected-config hash. Heldout IDs must not be read by the tuning loop."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3208,6 +3422,7 @@
       "acceptance_selector": "manual-evidence-review/day-346",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3232,8 +3447,8 @@
       "reading": "M5.2 accepted guide: held-out runner",
       "prerequisite": "Day 346 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 347 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/m52/workflow.py",
+        "functions": "freeze_heldout and run_heldout_once"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-347-freeze-held-out-once.json",
       "objective_links": [
@@ -3243,7 +3458,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Freeze candidates/model/split/metric before one held-out run and retain failures.",
+        "primary_check": "Freeze candidate, split, model and metric hashes before one heldout call; retain every user outcome and prevent a second evaluation using the consumed split ID.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -3251,6 +3466,10 @@
       "acceptance_selector": "manual-evidence-review/day-347",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": [
+        "ai/fde_v2/m52/workflow.py::freeze_heldout and run_heldout_once",
+        "Freeze candidate, split, model and metric hashes before one heldout call; retain every user outcome and prevent a second evaluation using the consumed split ID."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3294,6 +3513,7 @@
       "acceptance_selector": "manual-evidence-review/day-348",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3337,6 +3557,7 @@
       "acceptance_selector": "manual-evidence-review/day-349",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3380,6 +3601,7 @@
       "acceptance_selector": "manual-evidence-review/day-350",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML3",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.LearnedRankingTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3551,7 +3773,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Write primary metric, unit, estimand, guardrails and decision before outcomes.",
+        "primary_check": "Run `test_experiment_design_rejects_underpowered_fixed_horizon`; record MDE, alpha, power, computed required N, fixed horizon and guardrails. Reject horizon below power requirement.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -3559,6 +3781,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_experiment_design_rejects_underpowered_fixed_horizon",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_experiment_design_rejects_underpowered_fixed_horizon",
+      "code_session_detail": [
+        "learner.py::design_experiment",
+        "Run `test_experiment_design_rejects_underpowered_fixed_horizon`; record MDE, alpha, power, computed required N, fixed horizon and guardrails. Reject horizon below power requirement."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3594,7 +3820,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Implement deterministic user-level allocation; verify repeated exposure stays in one arm.",
+        "primary_check": "Run `test_assignment_is_stable_balanced_and_unit_bound`; hash 500 stable user IDs and show same ID never changes arms across repeat calls; report allocation counts.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -3602,6 +3828,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_assignment_is_stable_balanced_and_unit_bound",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_assignment_is_stable_balanced_and_unit_bound",
+      "code_session_detail": [
+        "learner.py::assign_experiment_units",
+        "Run `test_assignment_is_stable_balanced_and_unit_bound`; hash 500 stable user IDs and show same ID never changes arms across repeat calls; report allocation counts."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3627,7 +3857,7 @@
       "prerequisite": "Day 356 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
         "path": "ai/fde_v2/ml_depth/learner.py",
-        "functions": "design_experiment"
+        "functions": "design_experiment` and `workflow.py::analyze_experiment"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-357-power-and-fixed-horizon.json",
       "objective_links": [
@@ -3637,7 +3867,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Calculate MDE/sample size; reject a planned cohort below the stated power target.",
+        "primary_check": "Run `test_candidate_fixed_horizon_covers_power_minimum` and the early-analysis mutation; a sample meeting power minimum but below declared fixed horizon must remain incomplete.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -3645,6 +3875,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_fixed_horizon_covers_power_minimum",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_fixed_horizon_covers_power_minimum",
+      "code_session_detail": [
+        "learner.py::design_experiment` and `workflow.py::analyze_experiment",
+        "Run `test_candidate_fixed_horizon_covers_power_minimum` and the early-analysis mutation; a sample meeting power minimum but below declared fixed horizon must remain incomplete."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3680,7 +3914,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Inject missing assignments; stop outcome analysis when SRM boundary is exceeded.",
+        "primary_check": "Run `test_srm_boundary_blocks_outcome_analysis`; compare balanced and90/10 assignments at declared alpha, record expected/observed counts and confirm outcome analysis is blocked on SRM.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -3688,6 +3922,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_srm_boundary_blocks_outcome_analysis",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_srm_boundary_blocks_outcome_analysis",
+      "code_session_detail": [
+        "learner.py::srm_check",
+        "Run `test_srm_boundary_blocks_outcome_analysis`; compare balanced and90/10 assignments at declared alpha, record expected/observed counts and confirm outcome analysis is blocked on SRM."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3731,6 +3969,7 @@
       "acceptance_selector": "manual-evidence-review/day-359",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3774,6 +4013,7 @@
       "acceptance_selector": "manual-evidence-review/day-360",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3809,7 +4049,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Analyze a generated randomized assignment and preserve uncertainty; label non-live evidence.",
+        "primary_check": "Run `test_ab_estimate_uses_unit_level_samples`; aggregate repeated events by randomized user first, show unit counts/means/SE, and reject empty or singleton invalid arms.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -3817,6 +4057,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_ab_estimate_uses_unit_level_samples",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_ab_estimate_uses_unit_level_samples",
+      "code_session_detail": [
+        "learner.py::analyze_ab",
+        "Run `test_ab_estimate_uses_unit_level_samples`; aggregate repeated events by randomized user first, show unit counts/means/SE, and reject empty or singleton invalid arms."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3860,6 +4104,7 @@
       "acceptance_selector": "manual-evidence-review/day-362",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3884,8 +4129,8 @@
       "reading": "MLflow model registry: lineage concepts",
       "prerequisite": "Day 362 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 363 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "fit_standardizer and transform_features"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-363-feature-schema-parity.json",
       "objective_links": [
@@ -3895,14 +4140,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Train and serve with the same named feature schema; reject reordered/missing fields.",
+        "primary_check": "Run a supplied feature row through training and serving transforms; preserve ordered feature names and values, then reorder/remove one field and verify fail-closed schema validation.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-363",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_regularized_logistic_fit_and_train_only_transform",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_regularized_logistic_fit_and_train_only_transform",
+      "code_session_detail": [
+        "learner.py::fit_standardizer and transform_features",
+        "Run a supplied feature row through training and serving transforms; preserve ordered feature names and values, then reorder/remove one field and verify fail-closed schema validation."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3927,8 +4176,8 @@
       "reading": "MLflow model registry: model version and lineage",
       "prerequisite": "Day 363 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 364 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/workflow.py",
+        "functions": "_canonical_sha and model bundle manifest"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-364-lineage-hash-contract.json",
       "objective_links": [
@@ -3938,7 +4187,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Bind data, split, code, features, config, metrics and artifact hashes.",
+        "primary_check": "Compute lineage digest from data/split/code/features/config/metric/artifact inputs; change each input independently and verify the resulting digest changes.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -3946,6 +4195,10 @@
       "acceptance_selector": "manual-evidence-review/day-364",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "code_session_detail": [
+        "workflow.py::_canonical_sha and model bundle manifest",
+        "Compute lineage digest from data/split/code/features/config/metric/artifact inputs; change each input independently and verify the resulting digest changes."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -3970,8 +4223,8 @@
       "reading": "MLflow model registry: versions and aliases",
       "prerequisite": "Day 364 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 365 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/workflow.py",
+        "functions": "write_linear_bundle; promote_model"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-365-versioned-local-artifact.json",
       "objective_links": [
@@ -3981,7 +4234,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Write a content-hash-bound model version and load only that verified artifact.",
+        "primary_check": "Write two content-bound local versions and promote one; verify active pointer matches artifact digest and prior version remains immutable after the next promotion.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -3989,6 +4242,10 @@
       "acceptance_selector": "manual-evidence-review/day-365",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "code_session_detail": [
+        "workflow.py::write_linear_bundle; promote_model",
+        "Write two content-bound local versions and promote one; verify active pointer matches artifact digest and prior version remains immutable after the next promotion."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -4024,7 +4281,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Serve predictions from the promoted artifact and compare to train-time transform output.",
+        "primary_check": "Run `test_candidate_model_artifact_is_consumed_by_serving`; promote the content-bound artifact, serve known rows, compare to train-time transform and predictions, then tamper with the artifact and require rejection.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -4032,6 +4289,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_model_artifact_is_consumed_by_serving",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_candidate_model_artifact_is_consumed_by_serving",
+      "code_session_detail": [
+        "workflow.py::serve_logistic(adapter=learner)",
+        "Run `test_candidate_model_artifact_is_consumed_by_serving`; promote the content-bound artifact, serve known rows, compare to train-time transform and predictions, then tamper with the artifact and require rejection."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -4056,8 +4317,8 @@
       "reading": "CloudWatch SLO concepts: latency and availability; AWS Budgets: actual and forecast alerts",
       "prerequisite": "Day 366 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 367 evidence reviewed against its specific rubric"
+        "path": "learning-artifacts/production-ml/day-367-local-latency.py",
+        "functions": "edit and run the named bounded learning artifact"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-367-latency-cost-protocol.json",
       "objective_links": [
@@ -4067,7 +4328,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Measure local latency; mark unknown costs rather than estimating unobserved provider spend.",
+        "primary_check": "Run the same bounded local request set10 times after one warmup; record all durations, errors and sample count. Cost is `unknown` absent observed provider billing; do not extrapolate production SLO.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -4075,6 +4336,10 @@
       "acceptance_selector": "manual-evidence-review/day-367",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "code_session_detail": [
+        "learning-artifacts/production-ml/day-367-local-latency.py",
+        "Run the same bounded local request set10 times after one warmup; record all durations, errors and sample count. Cost is `unknown` absent observed provider billing; do not extrapolate production SLO."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -4099,8 +4364,8 @@
       "reading": "Feast documentation: point-in-time joins and event-time freshness",
       "prerequisite": "Day 367 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 368 evidence reviewed against its specific rubric"
+        "path": "learning-artifacts/production-ml/day-368-input-quality.json",
+        "functions": "edit and run the named bounded learning artifact"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-368-input-quality-freshness-checks.json",
       "objective_links": [
@@ -4110,7 +4375,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Track missing fields, schema violations and feature age on local test traffic.",
+        "primary_check": "Feed valid, missing, wrong-type and stale-feature rows through supplied validation; record per-rule counts and confirm malformed rows are rejected before model scoring.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -4118,6 +4383,10 @@
       "acceptance_selector": "manual-evidence-review/day-368",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "code_session_detail": [
+        "learning-artifacts/production-ml/day-368-input-quality.json",
+        "Feed valid, missing, wrong-type and stale-feature rows through supplied validation; record per-rule counts and confirm malformed rows are rejected before model scoring."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -4142,8 +4411,8 @@
       "reading": "MLflow model monitoring concepts",
       "prerequisite": "Day 368 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 369 evidence reviewed against its specific rubric"
+        "path": "learning-artifacts/production-ml/day-369-drift-vs-quality.json",
+        "functions": "edit and run the named bounded learning artifact"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-369-prediction-label-drift.json",
       "objective_links": [
@@ -4153,7 +4422,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Measure drift and quality separately; delayed labels are pending, not negatives.",
+        "primary_check": "Compute a declared distribution-drift statistic and supervised quality only for labels observed by cutoff; mark later labels pending and keep their records out of quality denominator.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -4161,6 +4430,10 @@
       "acceptance_selector": "manual-evidence-review/day-369",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "code_session_detail": [
+        "learning-artifacts/production-ml/day-369-drift-vs-quality.json",
+        "Compute a declared distribution-drift statistic and supervised quality only for labels observed by cutoff; mark later labels pending and keep their records out of quality denominator."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -4185,8 +4458,8 @@
       "reading": "CloudWatch alarms: metric alarms and missing data; sklearn model evaluation: classification metrics",
       "prerequisite": "Day 369 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 370 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/learner.py",
+        "functions": "retraining_decision"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-370-drift-versus-degradation.json",
       "objective_links": [
@@ -4196,14 +4469,18 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Prove drift alone pages for review but does not automatically trigger retraining.",
+        "primary_check": "Run drift-only and stable-quality observations through the decision function; drift may open review but must not independently recommend retraining. Record both inputs and output fields.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
       },
-      "acceptance_selector": "manual-evidence-review/day-370",
+      "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_retraining_requires_drift_and_quality_degradation",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
-      "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_retraining_requires_drift_and_quality_degradation",
+      "code_session_detail": [
+        "learner.py::retraining_decision",
+        "Run drift-only and stable-quality observations through the decision function; drift may open review but must not independently recommend retraining. Record both inputs and output fields."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -4239,7 +4516,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Require both quality degradation and minimum support/recency before recommending retrain.",
+        "primary_check": "Run `test_retraining_requires_drift_and_quality_degradation`; contrast drift-only, degradation-only, sufficient-evidence and insufficient-support cases; only conjunction with recency/support may recommend retraining.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -4247,6 +4524,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_retraining_requires_drift_and_quality_degradation",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_retraining_requires_drift_and_quality_degradation",
+      "code_session_detail": [
+        "learner.py::retraining_decision",
+        "Run `test_retraining_requires_drift_and_quality_degradation`; contrast drift-only, degradation-only, sufficient-evidence and insufficient-support cases; only conjunction with recency/support may recommend retraining."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -4271,8 +4552,8 @@
       "reading": "MLflow model registry: version and rollback concepts",
       "prerequisite": "Day 371 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 372 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/workflow.py",
+        "functions": "promote_model; rollback_model"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-372-canary-and-rollback-design.json",
       "objective_links": [
@@ -4282,7 +4563,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Simulate a bounded staged promotion and automatic rollback guard without a live service.",
+        "primary_check": "Simulate promotion to candidate version, inject the declared guardrail breach, then call rollback and read back the active version/digest; preserve both artifacts and the failed promotion receipt.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -4290,6 +4571,10 @@
       "acceptance_selector": "manual-evidence-review/day-372",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "code_session_detail": [
+        "workflow.py::promote_model; rollback_model",
+        "Simulate promotion to candidate version, inject the declared guardrail breach, then call rollback and read back the active version/digest; preserve both artifacts and the failed promotion receipt."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -4314,8 +4599,8 @@
       "reading": "MLflow model registry: version lineage",
       "prerequisite": "Day 372 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 373 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/workflow.py",
+        "functions": "promote_model; rollback_model"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-373-promotion-history.json",
       "objective_links": [
@@ -4325,7 +4610,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Preserve immutable active/previous versions and test rollback to a known prior artifact.",
+        "primary_check": "Promote v1 then v2, rollback once, and verify active pointer returns to v1 while v2 remains on disk and history records the transition.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -4333,6 +4618,10 @@
       "acceptance_selector": "manual-evidence-review/day-373",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "code_session_detail": [
+        "workflow.py::promote_model; rollback_model",
+        "Promote v1 then v2, rollback once, and verify active pointer returns to v1 while v2 remains on disk and history records the transition."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -4368,7 +4657,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Reconcile late labels by event time while retaining arrival-time/version provenance; replay the same synthetic backfill and reject a conflicting duplicate version.",
+        "primary_check": "Run `test_delayed_label_reconciliation_is_versioned_and_idempotent`; replay same late-label batch twice, require stable result, and reject conflicting duplicate event versions while preserving event/arrival times.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -4376,6 +4665,10 @@
       "acceptance_selector": "ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_delayed_label_reconciliation_is_versioned_and_idempotent",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.test_delayed_label_reconciliation_is_versioned_and_idempotent",
+      "code_session_detail": [
+        "learner.py::reconcile_delayed_labels",
+        "Run `test_delayed_label_reconciliation_is_versioned_and_idempotent`; replay same late-label batch twice, require stable result, and reject conflicting duplicate event versions while preserving event/arrival times."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -4400,8 +4693,8 @@
       "reading": "AWS Operational Excellence: Prepare and Operate; CloudWatch alarms: missing data and alarm state",
       "prerequisite": "Day 374 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 375 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/workflow.py",
+        "functions": "serve_logistic; rollback_model"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-375-incident-drill.json",
       "objective_links": [
@@ -4411,7 +4704,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Corrupt a feature schema, detect, rollback, restore health, and add a regression test.",
+        "primary_check": "Change one named feature at serving, require schema rejection, rollback to prior artifact, re-run health predictions and add a regression case that replays the incompatible schema.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -4419,6 +4712,10 @@
       "acceptance_selector": "manual-evidence-review/day-375",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "code_session_detail": [
+        "ai/fde_v2/ml_depth/workflow.py::serve_logistic; rollback_model",
+        "Change one named feature at serving, require schema rejection, rollback to prior artifact, re-run health predictions and add a regression case that replays the incompatible schema."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -4443,8 +4740,8 @@
       "reading": "AWS IAM best practices: least privilege; Feast documentation: point-in-time joins and event time",
       "prerequisite": "Day 375 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 376 evidence reviewed against its specific rubric"
+        "path": "learning-artifacts/production-ml/day-376-data-lineage.json",
+        "functions": "edit and run the named bounded learning artifact"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-376-privacy-and-data-lineage.json",
       "objective_links": [
@@ -4454,7 +4751,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Document purpose, source, retention, deletion and least-privilege boundary for fixture data.",
+        "primary_check": "Trace each synthetic field to source, purpose, retention and deletion owner; run the local delete fixture and verify no row remains searchable while tombstone state is preserved.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -4462,6 +4759,10 @@
       "acceptance_selector": "manual-evidence-review/day-376",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "code_session_detail": [
+        "learning-artifacts/production-ml/day-376-data-lineage.json",
+        "Trace each synthetic field to source, purpose, retention and deletion owner; run the local delete fixture and verify no row remains searchable while tombstone state is preserved."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -4486,8 +4787,8 @@
       "reading": "MLflow model registry; PyTorch save/load; scikit-learn model selection",
       "prerequisite": "Day 376 artifact and its named selector reviewed; if incomplete, use the protected block and do not advance.",
       "learner_interface": {
-        "path": "learning-artifact",
-        "functions": "day 377 evidence reviewed against its specific rubric"
+        "path": "ai/fde_v2/ml_depth/workflow.py",
+        "functions": "torch_training_witness; write_linear_bundle; promote_model; serve_logistic; rollback_model"
       },
       "learner_artifact": "learning-artifacts/production-ml/day-377-end-to-end-local-release.json",
       "objective_links": [
@@ -4497,7 +4798,7 @@
         }
       ],
       "evidence_rubric": {
-        "primary_check": "Run train, validation, package, serve, monitor and rollback from one reproducible command.",
+        "primary_check": "Run one local synthetic release command and save return code, model/data/config hashes, served prediction, monitoring summary and rollback readback; list unavailable live gates separately.",
         "evidence_check": "Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
         "reasoning_check": "Separate measured observations from assumptions, explain the decision, and state one material limitation.",
         "review_type": "learner self-check with assistant feedback; not independent assessment"
@@ -4505,6 +4806,10 @@
       "acceptance_selector": "manual-evidence-review/day-377",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "code_session_detail": [
+        "ai/fde_v2/ml_depth/workflow.py::torch_training_witness; write_linear_bundle; promote_model; serve_logistic; rollback_model",
+        "Run one local synthetic release command and save return code, model/data/config hashes, served prediction, monitoring summary and rollback readback; list unavailable live gates separately."
+      ],
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,
@@ -4548,6 +4853,7 @@
       "acceptance_selector": "manual-evidence-review/day-378",
       "worked_example": "python3 -m ai.fde_v2.ml_depth.examples --block PML4",
       "acceptance_command": "python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.ExperimentAndLifecycleTests",
+      "code_session_detail": null,
       "dsa_minutes": 60,
       "role_bank_minutes": 30,
       "ai_minutes": 90,

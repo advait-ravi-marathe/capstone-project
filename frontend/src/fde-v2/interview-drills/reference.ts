@@ -1,5 +1,5 @@
 /** Instructor reference fixes for isolated role-bank exercises. */
-import { createElement, useRef, useState } from 'react';
+import { createElement, memo, useRef, useState } from 'react';
 
 export function acceptsResponse(currentRequestId: number, responseRequestId: number): boolean {
   return currentRequestId === responseRequestId;
@@ -28,4 +28,17 @@ export function SearchPanel({ search }: { search: (query: string) => Promise<{ r
     createElement('button',{onClick:submit},'Search'),
     createElement('button',{...iconButtonProps('Clear search'),onClick:()=>setResult('')},'×'),
     createElement('output',{'aria-live':'polite'},result));
+}
+
+type RenderListProps = { items: string[]; selected: string; onRowRender: (item: string) => void };
+function Row({ item, selected, onRowRender }: { item: string; selected: boolean; onRowRender: (item: string) => void }) {
+  onRowRender(item);
+  return createElement('li', { 'aria-selected': selected }, item);
+}
+// Stable item/callback props let unaffected rows skip work after selection changes.
+const ListRow = memo(Row);
+export function RenderList({ items, selected, onRowRender }: RenderListProps) {
+  return createElement('ul', null, ...items.map(item => createElement(ListRow, {
+    key: item, item, selected: item === selected, onRowRender,
+  })));
 }

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+WRAPPER_HOME="$SCRIPT_DIR/.mvn/wrapper"
+MAVEN_VERSION=3.9.9
+MAVEN_HOME="$WRAPPER_HOME/apache-maven-$MAVEN_VERSION"
+if [[ ! -x "$MAVEN_HOME/bin/mvn" ]]; then
+  mkdir -p "$WRAPPER_HOME/dists"
+  archive="$WRAPPER_HOME/dists/apache-maven-$MAVEN_VERSION-bin.zip"
+  expected="8beac8d11ef208f1e2a8df0682b9448a9a363d2ad13ca74af43705549e72e74c9378823bf689287801cbbfc2f6ea9596201d19ccacfdfb682ee8a2ff4c4418ba"
+  base="https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/$MAVEN_VERSION"
+  curl --fail --silent --show-error --location "$base/apache-maven-$MAVEN_VERSION-bin.zip" -o "$archive"
+  actual="$(sha512sum "$archive" | cut -d ' ' -f 1)"
+  [[ "$actual" == "$expected" ]] || { echo "Maven distribution checksum mismatch" >&2; exit 1; }
+  unzip -q "$archive" -d "$WRAPPER_HOME/dists"
+  mv "$WRAPPER_HOME/dists/apache-maven-$MAVEN_VERSION" "$MAVEN_HOME"
+fi
+exec "$MAVEN_HOME/bin/mvn" "$@"

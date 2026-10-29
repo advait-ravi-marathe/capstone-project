@@ -8,7 +8,7 @@
   "aws_slots_per_cycle": 3,
   "saa_timing": "recalculate from actual gap evidence; no date or readiness claim is inherited from the previous twice-weekly cadence",
   "slots": [
-    {"day_in_cycle": 1, "focus": "backend_coding_debugging", "objective": "O1 / KR-1.2; current backend portfolio interview gap", "exercise": "Supplied Java/Spring handler or SQL query; bounded scratch change, run tests, explain."},
+    {"day_in_cycle": 1, "focus": "backend_coding_debugging", "objective": "O1 / KR-1.2; current backend portfolio interview gap", "exercise": "Actual Spring MVC drill: repair seeded @Valid request error mapping using the isolated Boot 3.5.6 project and MockMvc red/green tests; scratch-only."},
     {"day_in_cycle": 2, "focus": "frontend_coding_debugging", "objective": "O1 / KR-1.2; current React portfolio interview gap", "exercise": "Supplied React/TypeScript component; state/async/accessibility/performance defect."},
     {"day_in_cycle": 3, "focus": "aws", "objective": "O3 / KR-3.1 AWS gap closure", "exercise": "One current syllabus/domain task from the verified gap map."},
     {"day_in_cycle": 4, "focus": "backend_coding_debugging", "objective": "O1 / KR-1.2; current backend portfolio interview gap", "exercise": "SQL EXPLAIN, transaction, API validation or concurrency debugging with supplied code."},
@@ -16,7 +16,7 @@
     {"day_in_cycle": 6, "focus": "frontend_coding_debugging", "objective": "O1 / KR-1.2; current React portfolio interview gap", "exercise": "Small isolated UI state/async/accessibility task with supplied code and tests."},
     {"day_in_cycle": 7, "focus": "backend_sql_query_plan", "objective": "O1 / KR-1.2; current backend portfolio interview gap", "exercise": "Run the seeded SQLite query-plan lab, identify the missing tenant predicate, inspect EXPLAIN QUERY PLAN before/after the composite index, and explain correctness separately from observed plan shape."},
     {"day_in_cycle": 8, "focus": "aws", "objective": "O3 / KR-3.1 AWS gap closure", "exercise": "One current syllabus/domain task from the verified gap map."},
-    {"day_in_cycle": 9, "focus": "frontend_coding_debugging", "objective": "O1 / KR-1.2; current React portfolio interview gap", "exercise": "React render/performance or stale-response defect using a supplied component."},
+    {"day_in_cycle": 9, "focus": "frontend_render_performance", "objective": "O1 / KR-1.2; current React portfolio interview gap", "exercise": "Seeded 40-row React list: measure row render counts on selection change, then memoize only stable rows; pass when unaffected rows do not rerender. Count renders, not wall-clock speed."},
     {"day_in_cycle": 10, "focus": "system_design_customer_sa", "objective": "O1 / KR-1.2 and O2 / KR-2.2 customer-facing architecture", "exercise": "Explain a data/API/identity tradeoff against a supplied customer workflow and concrete constraints."},
     {"day_in_cycle": 11, "focus": "backend_concurrency_debugging", "objective": "O1 / KR-1.2; current backend portfolio interview gap", "exercise": "Use the forced simultaneous duplicate-request race in IdempotencyDrill.java; inspect the side-effect count and serialized reference, then make a scratch-only repair."},
     {"day_in_cycle": 12, "focus": "behavioral_customer_story", "objective": "O1 / KR-1.2 customer-facing ownership", "exercise": "Use a verified prior React migration, Spring onboarding, Ktor or Sentry example only where actual evidence supports it; invent no metrics."},

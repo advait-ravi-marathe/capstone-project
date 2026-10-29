@@ -34,4 +34,19 @@ describe('bounded frontend interview drills', () => {
     expect(screen.getByText('new result')).toBeInTheDocument();
     expect(screen.queryByText('stale result')).not.toBeInTheDocument();
   });
+
+  it('measures row work for a selection change and skips unaffected rows', () => {
+    const items = Array.from({ length: 40 }, (_, index) => `item-${index}`);
+    const rendered: string[] = [];
+    const onRowRender = (item: string) => rendered.push(item);
+    const view = render(<candidate.RenderList items={items} selected="item-0" onRowRender={onRowRender} />);
+    const afterMount = rendered.length;
+    view.rerender(<candidate.RenderList items={items} selected="item-1" onRowRender={onRowRender} />);
+    const updateRenders = rendered.length - afterMount;
+    // 40 initial rows are expected; a single selection move should update only
+    // the old and new selected rows. This is a render-count exercise, not a
+    // wall-clock performance claim.
+    expect(afterMount).toBe(40);
+    expect(updateRenders).toBeLessThanOrEqual(2);
+  });
 });

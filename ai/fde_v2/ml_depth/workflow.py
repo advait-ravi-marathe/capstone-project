@@ -6,6 +6,7 @@ mechanics must be explicitly selected in exercises/tests.
 from __future__ import annotations
 
 from pathlib import Path
+import copy
 import hashlib
 import json
 import math
@@ -104,23 +105,201 @@ def prepare_torch_data(features, labels, *, validation_fraction=.2, batch_size=8
     return result
 
 
+def validate_torch_batch(features, labels, *, adapter=learner):
+    """Call the learner's actual batch validator and check its observable contract."""
+    import torch
+    result=adapter.validate_torch_batch(features,labels)
+    x=result.get("features"); y=result.get("targets")
+    if not isinstance(x,torch.Tensor) or not isinstance(y,torch.Tensor):
+        raise TypeError("learner batch validator must return actual tensors")
+    expected_x=torch.tensor(features,dtype=torch.float32,device="cpu")
+    expected_y=torch.tensor(labels,dtype=torch.float32,device="cpu").reshape(-1,1)
+    if (x.device.type!="cpu" or y.device.type!="cpu" or x.dtype!=torch.float32 or y.dtype!=torch.float32
+            or not torch.equal(x,expected_x) or not torch.equal(y,expected_y)
+            or result.get("rows")!=len(features) or result.get("feature_dim")!=len(features[0])):
+        raise ValueError("learner batch tensors/metadata differ from the supplied CPU float32 batch")
+    return result
+
+
+def torch_forward_witness(features, labels, *, adapter=learner, seed=7):
+    """Exercise the selected learner's real model builder and observed forward shape."""
+    import torch
+    batch=validate_torch_batch(features,labels,adapter=adapter)
+    model=adapter.build_torch_model(batch["feature_dim"],seed=seed)
+    if not isinstance(model,torch.nn.Module): raise TypeError("learner model builder must return a torch module")
+    modules=list(model.modules())[1:]
+    if (sum(isinstance(layer,torch.nn.Linear) for layer in modules)!=2
+            or not any(isinstance(layer,(torch.nn.ReLU,torch.nn.Tanh,torch.nn.GELU)) for layer in modules)):
+        raise ValueError("learner must build a two-layer MLP with an explicit hidden nonlinearity")
+    with torch.no_grad(): logits=model(batch["features"])
+    if (not isinstance(logits,torch.Tensor) or tuple(logits.shape)!=(len(features),1)
+            or logits.device.type!="cpu" or not torch.isfinite(logits).all()):
+        raise ValueError("learner forward pass must produce one finite CPU logit per row")
+    return {"model":model,"logits":logits.detach(),"rows":len(features),"feature_dim":batch["feature_dim"]}
+
+
+def autograd_scalar_witness(x, *, adapter=learner):
+    """Compare candidate autograd outputs with the closed-form supplied objective."""
+    result=adapter.autograd_scalar_gradient(x)
+    expected_value=3.0*x*x+2.0*x+1.0
+    expected_gradient=6.0*x+2.0
+    if (not isinstance(result,dict) or abs(float(result.get("value",float("nan")))-expected_value)>1e-10
+            or abs(float(result.get("gradient",float("nan")))-expected_gradient)>1e-10):
+        raise ValueError("autograd candidate differs from the supplied scalar objective")
+    return result
+
+
+def finite_difference_witness(function, x, *, epsilon=1e-6, adapter=learner):
+    observed=float(adapter.finite_difference_gradient(function,x,epsilon=epsilon))
+    expected=(float(function(x+epsilon))-float(function(x-epsilon)))/(2*epsilon)
+    if not math.isfinite(observed) or abs(observed-expected)>1e-12:
+        raise ValueError("candidate finite difference differs from central-difference oracle")
+    return {"gradient":observed,"epsilon":epsilon}
+
+
+def dropout_mode_witness(model,batch,*,repeats=4,adapter=learner):
+    import torch
+    if not isinstance(model,torch.nn.Module) or not isinstance(batch,torch.Tensor) or repeats<2:
+        raise TypeError("dropout probe requires a torch module, tensor batch and at least two repeats")
+    dropout_layers=[module for module in model.modules()
+                    if isinstance(module,(torch.nn.Dropout,torch.nn.Dropout1d,torch.nn.Dropout2d,torch.nn.Dropout3d))
+                    and module.p>0]
+    if not dropout_layers: raise ValueError("model must contain an active dropout layer")
+    before={key:value.detach().clone() for key,value in model.state_dict().items()}
+    prior=model.training
+    devices=sorted({parameter.device.index for parameter in model.parameters()
+                    if parameter.device.type=="cuda" and parameter.device.index is not None})
+    with torch.random.fork_rng(devices=devices):
+        torch.manual_seed(1847)
+        result=adapter.dropout_mode_probe(model,batch,repeats=repeats)
+    if not isinstance(result,dict): raise TypeError("learner dropout probe must return train/eval output arrays")
+    candidate_train=result.get("train_outputs",[]); candidate_eval=result.get("eval_outputs",[])
+    if len(candidate_train)!=repeats or len(candidate_eval)!=repeats or model.training!=prior:
+        raise ValueError("mode probe must return requested repeats and restore prior mode")
+    if any(not torch.is_tensor(output) for output in candidate_train+candidate_eval):
+        raise TypeError("mode probe outputs must be actual tensors")
+    if any(not torch.equal(before[key],value.detach()) for key,value in model.state_dict().items()):
+        raise ValueError("mode probe changed model parameters or buffers")
+    oracle_train_mode=model.training
+    with torch.random.fork_rng(devices=devices):
+        torch.manual_seed(1847)
+        model.train(); train=[]
+        with torch.no_grad():
+            for _ in range(repeats): train.append(model(batch).detach().cpu())
+        model.eval(); evaluation=[]
+        with torch.no_grad():
+            for _ in range(repeats): evaluation.append(model(batch).detach().cpu())
+        model.train(oracle_train_mode)
+    if (any(not torch.equal(expected.cpu(),observed.detach().cpu())
+            for expected,observed in zip(train,candidate_train))
+            or any(not torch.equal(expected.cpu(),observed.detach().cpu())
+                   for expected,observed in zip(evaluation,candidate_eval))):
+        raise ValueError("candidate dropout outputs differ from independent seeded model execution")
+    train_varies=any(not torch.equal(train[0],value) for value in train[1:])
+    eval_stable=all(torch.equal(evaluation[0],value) for value in evaluation[1:])
+    if not train_varies or not eval_stable:
+        raise ValueError("dropout should vary in train mode and be deterministic in eval mode")
+    return {**result,"train_varies":train_varies,"eval_stable":eval_stable}
+
+
+def _nested_equal(left,right,torch):
+    if isinstance(left,torch.Tensor) and isinstance(right,torch.Tensor): return torch.equal(left,right)
+    if isinstance(left,dict) and isinstance(right,dict):
+        return left.keys()==right.keys() and all(_nested_equal(left[key],right[key],torch) for key in left)
+    if isinstance(left,(list,tuple)) and isinstance(right,type(left)):
+        return len(left)==len(right) and all(_nested_equal(a,b,torch) for a,b in zip(left,right))
+    return left==right
+
+
+def evaluate_torch_model(model, validation_loader, optimizer, *, adapter=learner):
+    """Check learner evaluation outputs against real eval/no_grad execution and immutable state."""
+    import torch
+    from torch.nn import functional as torch_functional
+    from torch.utils.data import DataLoader, SequentialSampler
+    if not isinstance(model,torch.nn.Module) or not isinstance(validation_loader,DataLoader):
+        raise TypeError("actual model and DataLoader are required")
+    if not isinstance(validation_loader.sampler,SequentialSampler):
+        raise ValueError("validation loader must preserve deterministic row order")
+    batches=list(validation_loader)
+    if not batches: raise ValueError("nonempty validation loader is required")
+    inputs=torch.cat([batch[0] for batch in batches],dim=0)
+    targets=torch.cat([batch[1] for batch in batches],dim=0).float().reshape(-1,1)
+    before={key:value.detach().clone() for key,value in model.state_dict().items()}
+    prior_grads={name:(None if parameter.grad is None else parameter.grad.detach().clone())
+                 for name,parameter in model.named_parameters()}
+    optimizer_before=copy.deepcopy(optimizer.state_dict()) if optimizer is not None else None
+    prior_mode=model.training
+    observed=adapter.evaluate_torch_model(model,validation_loader,optimizer)
+    if (not isinstance(observed,dict) or observed.get("evaluation_mode")!="eval/no_grad"
+            or observed.get("optimizer_state_read_only") is not True):
+        raise ValueError("evaluation must report its eval/no_grad and read-only-state contract")
+    if model.training!=prior_mode: raise ValueError("evaluation must restore the model's prior train/eval mode")
+    if any(not torch.equal(before[key],value.detach()) for key,value in model.state_dict().items()):
+        raise ValueError("evaluation must not modify model parameters or buffers")
+    if optimizer is not None and not _nested_equal(optimizer_before,optimizer.state_dict(),torch):
+        raise ValueError("evaluation must not modify optimizer state")
+    for name,parameter in model.named_parameters():
+        prior=prior_grads[name]
+        if (prior is None)!=(parameter.grad is None) or (prior is not None and not torch.equal(prior,parameter.grad)):
+            raise ValueError("evaluation must not create or change parameter gradients")
+    logits=observed.get("logits") if isinstance(observed,dict) else None
+    if not isinstance(logits,torch.Tensor) or logits.requires_grad:
+        raise ValueError("evaluation must return detached logits computed without gradients")
+    if tuple(logits.shape)!=(len(targets),1) or observed.get("rows")!=len(targets):
+        raise ValueError("evaluation output must account for every validation row exactly once")
+    if not torch.isfinite(logits).all() or not math.isfinite(float(observed.get("loss",float("nan")))):
+        raise ValueError("evaluation logits and loss must be finite")
+    model.eval()
+    with torch.no_grad(): expected_logits=model(inputs).detach().cpu()
+    expected_loss=float(torch_functional.binary_cross_entropy_with_logits(expected_logits,targets.cpu()))
+    model.train(prior_mode)
+    if not torch.allclose(logits.detach().cpu(),expected_logits,rtol=1e-5,atol=1e-6):
+        raise ValueError("reported validation logits differ from the actual selected model")
+    if abs(float(observed["loss"])-expected_loss)>1e-6:
+        raise ValueError("reported validation loss differs from the actual selected model")
+    return {**observed,"observed_loss":expected_loss,"observed_rows":len(targets),"parameters_unchanged":True}
+
+
+def select_torch_epoch(validation_losses, *, patience, adapter=learner):
+    """Run the learner's validation-only early-stopping decision."""
+    result=adapter.select_torch_epoch(validation_losses,patience=patience)
+    if not isinstance(result,dict) or result.get("selection_partition")!="validation_only":
+        raise ValueError("epoch choice must declare validation-only selection")
+    best=result.get("best_epoch"); stop=result.get("stop_epoch")
+    if (type(best) is not int or type(stop) is not int or not 0<=best<len(validation_losses)
+            or not best<=stop<len(validation_losses) or float(validation_losses[best])!=min(map(float,validation_losses))):
+        raise ValueError("learner epoch choice must identify the earliest validation minimum and bounded patience stop")
+    return result
+
+
 def reconcile_delayed_labels(records, *, adapter=learner):
     """Run learner-owned idempotent event-time label reconciliation."""
     return adapter.reconcile_delayed_labels(records)
 
 
 def torch_training_witness(features, labels, *, adapter=learner, seed=7, epochs=80, learning_rate=0.03,
-                           initial_state=None, optimizer_state=None):
+                           initial_state=None, optimizer_state=None, optimizer_kind="adam",
+                           batch_size=None, positive_weight=1.0):
     """Execute the selected adapter and independently inspect its fixed MLP updates/loss."""
     import torch
     from torch.nn import functional as torch_functional
     if not features or len(features)!=len(labels): raise ValueError("aligned nonempty training rows required")
+    batch=validate_torch_batch(features,labels,adapter=adapter)
+    builder=getattr(adapter,"build_torch_model",None)
+    if builder is None: raise TypeError("selected learner adapter must supply build_torch_model")
     if initial_state is None:
-        baseline=reference.build_torch_model(len(features[0]),seed=seed)
+        baseline=builder(len(features[0]),seed=seed)
+        if not isinstance(baseline,torch.nn.Module): raise TypeError("selected model builder must return a torch module")
+        modules=list(baseline.modules())[1:]
+        if (sum(isinstance(layer,torch.nn.Linear) for layer in modules)!=2
+                or not any(isinstance(layer,(torch.nn.ReLU,torch.nn.Tanh,torch.nn.GELU)) for layer in modules)):
+            raise ValueError("selected model builder must provide the declared two-layer MLP")
         initial_state={key:value.detach().clone() for key,value in baseline.state_dict().items()}
     else:
         initial_state={key:value.detach().clone() for key,value in initial_state.items()}
     trained=adapter.train_torch_model(features,labels,seed=seed,epochs=epochs,learning_rate=learning_rate,
+                                      optimizer_kind=optimizer_kind,batch_size=batch_size,
+                                      positive_weight=positive_weight,
                                       initial_state=initial_state,optimizer_state=optimizer_state)
     model=trained.get("model") if isinstance(trained,dict) else None
     if not isinstance(model,torch.nn.Module):
@@ -134,22 +313,65 @@ def torch_training_witness(features, labels, *, adapter=learner, seed=7, epochs=
     if not observed_update:
         raise ValueError("adapter did not prove a parameter update")
     history=trained.get("loss_history",[])
-    if len(history)<2 or not math.isfinite(float(history[0])) or not math.isfinite(float(history[-1])):
-        raise ValueError("training adapter must return finite initial/final loss")
-    baseline=reference.build_torch_model(len(features[0]),seed=seed)
-    baseline.load_state_dict(initial_state,strict=True)
+    if len(history)!=epochs+1 or any(not math.isfinite(float(loss)) for loss in history):
+        raise ValueError("training adapter must return a finite loss for initialization and every epoch")
+    epoch_states=trained.get("epoch_state_dicts")
+    if (trained.get("epoch_loss_semantics")!="full_training_objective_after_epoch"
+            or not isinstance(epoch_states,(list,tuple)) or len(epoch_states)!=epochs+1):
+        raise ValueError("training must provide each epoch's state snapshot and objective semantics")
+    actual_batch_size=batch_size or len(features)
+    expected_updates=math.ceil(len(features)/actual_batch_size)
+    if (trained.get("optimizer_kind")!=optimizer_kind or trained.get("batch_size")!=actual_batch_size
+            or trained.get("positive_weight")!=positive_weight
+            or trained.get("examples_per_epoch")!=[len(features)]*epochs
+            or trained.get("updates_per_epoch")!=[expected_updates]*epochs):
+        raise ValueError("training metadata must match requested optimizer, rows, batches and positive weight")
+    baseline=builder(len(features[0]),seed=seed)
+    if not isinstance(baseline,torch.nn.Module): raise TypeError("selected model builder must return a torch module")
+    modules=list(baseline.modules())[1:]
+    if (sum(isinstance(layer,torch.nn.Linear) for layer in modules)!=2
+            or not any(isinstance(layer,(torch.nn.ReLU,torch.nn.Tanh,torch.nn.GELU)) for layer in modules)):
+        raise ValueError("selected model builder must provide the declared two-layer MLP")
     baseline.eval(); model.eval()
     x=torch.tensor(features,dtype=torch.float32,device="cpu")
     y=torch.tensor(labels,dtype=torch.float32,device="cpu").view(-1,1)
+    objective=torch_functional.binary_cross_entropy_with_logits
+    weight=torch.tensor([positive_weight],dtype=torch.float32)
+    independently_observed=[]
+    for epoch,state in enumerate(epoch_states):
+        if not isinstance(state,dict) or set(state)!=set(initial_state):
+            raise ValueError(f"epoch {epoch} state snapshot does not match the declared architecture")
+        if any(not isinstance(value,torch.Tensor) or tuple(value.shape)!=tuple(initial_state[key].shape)
+               or not torch.isfinite(value).all() for key,value in state.items()):
+            raise ValueError(f"epoch {epoch} state snapshot must contain finite tensors of the expected shapes")
+        if epoch==0 and any(not torch.equal(state[key].detach().cpu(),initial_state[key].detach().cpu())
+                            for key in initial_state):
+            raise ValueError("epoch zero snapshot differs from the requested initial checkpoint")
+        baseline.load_state_dict(state,strict=True)
+        baseline.eval()
+        with torch.no_grad():
+            independently_observed.append(float(objective(baseline(x),y,pos_weight=weight)))
+    if any(abs(float(history[index])-loss)>1e-5 for index,loss in enumerate(independently_observed)):
+        raise ValueError("per-epoch history differs from independently recomputed weighted training objective")
+    if any(not torch.equal(epoch_states[-1][key].detach().cpu(),model.state_dict()[key].detach().cpu())
+           for key in model.state_dict()):
+        raise ValueError("final epoch snapshot differs from the actually trained model")
     with torch.no_grad():
-        initial_loss=float(torch_functional.binary_cross_entropy_with_logits(baseline(x),y))
-        final_loss=float(torch_functional.binary_cross_entropy_with_logits(model.cpu()(x),y))
+        initial_loss=independently_observed[0]
+        final_loss=float(objective(model.cpu()(x),y,pos_weight=weight))
+        actual_probabilities=torch.sigmoid(model(x)).flatten().tolist()
     if final_loss >= initial_loss:
         raise ValueError("observed model objective did not improve from supplied initial weights")
     if abs(float(history[0])-initial_loss)>1e-4:
         raise ValueError("reported initial loss does not match independently measured objective")
     if abs(float(history[-1])-final_loss)>1e-4:
         raise ValueError("reported final loss does not match independently measured objective")
+    probabilities=trained.get("probabilities")
+    if (not isinstance(probabilities,(list,tuple)) or len(probabilities)!=len(labels)
+            or any(not math.isfinite(float(value)) for value in probabilities)
+            or any(abs(float(actual)-float(reported))>1e-6
+                   for actual,reported in zip(actual_probabilities,probabilities))):
+        raise ValueError("reported probabilities must match actual model predictions for every supplied row")
     if not torch.isfinite(torch.tensor(final_loss)):
         raise ValueError("trained model has non-finite objective")
     return {**trained,"observed_parameters_changed":True,"observed_initial_loss":initial_loss,

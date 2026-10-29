@@ -40,10 +40,10 @@ BLOCKS=[
      "topics":[
       ("Tensor shapes and dtypes","Inspect generated batch shape/dtype/device and add assertions before forward pass.","PyTorch Learn the Basics: Tensors"),
       ("Dataset and DataLoader","Build deterministic, disjoint train/validation partitions over the supplied training pool and return actual PyTorch Dataset/DataLoader objects; prove the validation loader is stable and no row crosses partitions.","PyTorch Tutorials: Datasets & DataLoaders (`Dataset` and `DataLoader` sections)"),
-      ("Autograd scalar example","Differentiate a scalar function and compare the gradient to an analytic value.","PyTorch Learn the Basics: Automatic Differentiation with torch.autograd"),
+      ("Autograd scalar example","Evaluate the supplied scalar objective at two inputs and compare autograd values with the analytic derivative at both points.","PyTorch Learn the Basics: Automatic Differentiation with torch.autograd"),
       ("Finite difference check","Compare autograd and numerical gradient on a scalar and one network parameter.","PyTorch Learn the Basics: Automatic Differentiation with torch.autograd"),
       ("Small MLP forward pass","Create a two-layer MLP and verify logits have one row per example.","PyTorch Learn the Basics: Building the Neural Network"),
-      ("Cross-entropy shape/semantics","Use logits and integer labels correctly; detect a shape/broadcasting mutation.","PyTorch Learn the Basics: Building the Neural Network"),
+      ("Binary logit/target shape semantics","Use the learner batch validator to enforce binary float targets shaped (N,1) with logits shaped (N,1); reject a broadcastable but wrong target shape.","PyTorch Learn the Basics: Building the Neural Network"),
       ("The training loop","Implement zero_grad, forward, loss, backward and optimizer step; prove parameters change.","PyTorch Learn the Basics: Optimizing Model Parameters"),
       ("SGD versus Adam","Train the same fixed tiny task with two optimizers and compare traces, not winner claims.","PyTorch Learn the Basics: Optimizing Model Parameters"),
       ("Batch and epoch accounting","Log examples processed and per-epoch loss with correct weighting by batch size.","PyTorch Learn the Basics: Datasets & DataLoaders; Optimizing Model Parameters"),
@@ -158,6 +158,133 @@ LEARNER_INTERFACES={
  361:("ai/fde_v2/ml_depth/learner.py", "analyze_ab"),
  366:("ai/fde_v2/ml_depth/workflow.py", "serve_logistic(adapter=learner)"),
  371:("ai/fde_v2/ml_depth/learner.py", "retraining_decision"),
+ 299:("ai/fde_v2/ml_depth/learner.py", "validate_torch_batch"),
+ 301:("ai/fde_v2/ml_depth/learner.py", "autograd_scalar_gradient"),
+ 302:("ai/fde_v2/ml_depth/learner.py", "finite_difference_gradient"),
+ 303:("ai/fde_v2/ml_depth/learner.py", "build_torch_model"),
+ 304:("ai/fde_v2/ml_depth/learner.py", "validate_torch_batch; train_torch_model"),
+ 306:("ai/fde_v2/ml_depth/learner.py", "train_torch_model(optimizer_kind=...)"),
+ 307:("ai/fde_v2/ml_depth/learner.py", "train_torch_model(batch_size=...)"),
+ 308:("ai/fde_v2/ml_depth/learner.py", "train_torch_model(seed=...)"),
+ 309:("ai/fde_v2/ml_depth/learner.py", "dropout_mode_probe"),
+ 310:("ai/fde_v2/ml_depth/learner.py", "evaluate_torch_model"),
+ 311:("ai/fde_v2/ml_depth/learner.py", "train_torch_model"),
+ 312:("ai/fde_v2/ml_depth/learner.py", "select_torch_epoch"),
+ 313:("ai/fde_v2/ml_depth/learner.py", "train_torch_model(positive_weight=...)"),
+ 314:("ai/fde_v2/ml_depth/learner.py", "train_torch_model; validate_torch_batch"),
+ 315:("ai/fde_v2/ml_depth/workflow.py", "save_torch_checkpoint/load_torch_checkpoint"),
+ 317:("ai/fde_v2/ml_depth/workflow.py", "torch_training_witness; bounded profile script"),
+ 318:("ai/fde_v2/ml_depth/learner.py", "brier_score; expected_calibration_error"),
+ 319:("ai/fde_v2/ml_depth/learner.py", "train_torch_model(seed=...)"),
+ 320:("ai/fde_v2/ml_depth/workflow.py", "torch_training_witness"),
+ 321:("ai/fde_v2/ml_depth/workflow.py", "load_torch_checkpoint in a fresh Python process"),
+ 322:("ai/fde_v2/ml_depth/learner.py", "explain the observed training/evaluation failure and repair"),
+}
+
+# Concrete code-session contracts. These name an editable learner surface and
+# a repeatable observation; the general evidence rubric below is not sufficient
+# for a session whose task asks for code.
+CODE_DAY_DETAILS={
+ 281:("learner.py::train_linear_regression", "Run `test_linear_regression_baseline`; record initial/final MSE and mean-baseline MSE. Pass only when held-out-from-training fixture predictions beat the mean baseline and every coefficient is finite."),
+ 282:("learner.py::regression_loss_profile", "Run `test_regression_losses_compare_squared_absolute_and_huber_on_outlier`; record all three values for the single outlier and verify Huber is below squared error while MAE remains linear in the residual."),
+ 283:("learner.py::train_logistic` and `logistic_loss", "Run `test_regularized_logistic_fit_and_train_only_transform`; record loss before/after and probabilities on the fixed fixture. Fail if probabilities leave [0,1], loss is non-finite, or the majority baseline is not reported."),
+ 284:("learner.py::logistic_gradient", "Run `test_logistic_gradient_matches_finite_difference_with_l2`; compare every coordinate to central differences at epsilon 1e-6, including the intercept exclusion rule. Maximum absolute discrepancy must be <=1e-5."),
+ 287:("learner.py::threshold_cost_analysis", "Run `test_declared_threshold_cost_rule`; preserve the declared FP/FN costs, enumerate candidate thresholds, and show the selected confusion counts and total cost. A threshold chosen from accuracy alone fails."),
+ 290:("workflow.py::compare_classical(adapter=learner)", "Run `test_candidate_boosted_comparison_uses_same_validation_rows`; record train-only transform hash, row IDs and validation metrics for logistic and HistGradientBoosting. Validation IDs must not appear in any fit call."),
+ 291:("learning-artifacts/production-ml/day-291-search-budget.json", "Run three declared candidate configurations on the same train/validation IDs; log every attempted configuration and score, then show the untouched held-out split was never loaded during selection."),
+ 293:("learning-artifacts/production-ml/day-293-paired-comparison.json", "Join candidate predictions by stable row ID; verify both models cover the exact same rows and compute paired delta/interval. Removing one hard row must make the row-set assertion fail."),
+ 294:("ai/fde_v2/m52/workflow.py::freeze_heldout and run_heldout_once", "Freeze canonical data/config/model/split/metric hashes before one held-out run; persist every result including errors/timeouts and reject a second run under the same consumed split ID."),
+ 299:("learner.py::validate_torch_batch", "Run `test_candidate_batch_validator_returns_checked_cpu_float32_tensors`; inspect actual tensors and record shapes, dtype/device. The NaN mutation and mismatched-row mutation must be rejected."),
+ 300:("learner.py::make_torch_loaders", "Run `test_torch_dataset_loaders_partition_the_actual_training_pool`; record train/validation row IDs, disjointness, full-union count and a second-run validation order. Both must be real DataLoaders over the exact supplied tensors."),
+ 301:("learner.py::autograd_scalar_gradient", "Execute the scalar autograd cell and compare the observed derivative with the hand derivative; then perturb the scalar formula and show the expected derivative changes. Record tensor, scalar loss and gradient."),
+ 302:("learner.py::finite_difference_gradient", "Run central finite differences for one scalar and one named network parameter; record epsilon, analytic value, numeric value and relative error. Repeat at epsilon/10 and explain round-off change."),
+ 303:("learner.py::build_torch_model", "Run `test_candidate_mlp_forward_has_one_finite_logit_per_row`; inspect the actual module and run it on batch sizes1 and3. Require a two-layer trainable CPU module and finite logits shaped (N,1), not a canned tensor."),
+ 304:("learner.py::train_torch_model", "Run `test_torch_task_runs_actual_training_adapter`; record parameter hashes before/after and independently measured initial/final BCE. Fail if optimizer.step is removed or the reported loss is fabricated."),
+ 305:("learner.py::train_torch_model", "Run `test_torch_task_runs_actual_training_adapter`; inspect one epoch's zero_grad→forward→loss→backward→step trace and confirm at least one parameter changes and independently recomputed objective decreases."),
+ 306:("learner.py::train_torch_model(optimizer_kind=...)", "Run `test_candidate_optimizer_comparison_and_minibatch_accounting`; use identical seed/data/steps for Adam and SGD, save both loss traces and update counts, and explain observed differences without declaring a universal winner."),
+307:("learner.py::train_torch_model(batch_size=...)", "Run `test_candidate_optimizer_comparison_and_minibatch_accounting` and `test_training_witness_rejects_tampered_intermediate_epoch_loss`; for6 rows,batch2,epochs6 require [6]*6 examples and [3]*6 updates, then verify every full-training weighted objective against its corresponding epoch state snapshot."),
+ 308:("learner.py::train_torch_model(seed=...)", "Run `test_candidate_torch_training_is_repeatable_with_fixed_seed`; compare every state_dict tensor and probability exactly across two CPU runs, then record one deliberate seed change and its changed state hash."),
+ 309:("learner.py::dropout_mode_probe", "Run `test_candidate_dropout_probe_observes_train_variance_eval_stability_and_restores_mode`; use the supplied active Dropout module, compare five train outputs and five eval outputs, require train variance/eval equality and unchanged parameters/prior mode."),
+ 310:("learner.py::evaluate_torch_model", "Run `test_candidate_validation_loop_is_eval_no_grad_and_state_read_only` plus `test_validation_oracle_rejects_candidate_claiming_a_wrong_logit`; record validation row count, eval mode, no-grad logits, unchanged parameters/grads/optimizer state, and independently recomputed BCE."),
+311:("learner.py::train_torch_model", "Run learner selector `test_candidate_tiny_batch_can_overfit_but_is_only_a_mechanics_claim`; record tiny-batch loss ratio and predictions, then explicitly label this as memorization mechanics rather than generalization evidence."),
+ 312:("learner.py::select_torch_epoch", "Run candidate early-stopping selector with losses [.8,.6,.4,.45,.5], patience2; require earliest best epoch2 and stop epoch4. Inject NaN and a later equal minimum; non-finite must fail and ties choose the earliest epoch."),
+ 313:("learner.py::train_torch_model(positive_weight=...)", "Run `test_candidate_weighted_loss_changes_actual_trained_parameters`; compare identical-seed weighted/unweighted models, logits and observed BCE; do not report class weighting as calibration."),
+314:("learner.py::train_torch_model` and `validate_torch_batch", "Run `test_candidate_training_rejects_nonfinite_gradients_and_detached_loss`; it covers invalid labels, injected non-finite gradients and detached loss. Capture each exception and verify failure occurs before a trained result can be accepted."),
+ 315:("ai/fde_v2/ml_depth/workflow.py::save_torch_checkpoint", "Save a checkpoint with model/optimizer/data/split/config hashes; reopen the JSON manifest and binary artifact, compare each hash, then mutate one config field and require load rejection."),
+ 317:("learner.py::train_torch_model plus bounded profile receipt", "Run the supplied bounded 6-row,10-epoch CPU profile3 times; record Python/PyTorch versions, wall-clock, batch/update counts and peak memory if available. Report median/range only; no production scaling inference."),
+ 318:("learning-artifacts/production-ml/day-318-calibration-slices.json", "Use saved validation probabilities only; record per-slice n, positive count, Brier and calibration bins. A slice with fewer than5 rows is descriptive only; do not tune on heldout."),
+ 319:("learning-artifacts/production-ml/day-319-seed-sensitivity.json", "Run the same train/validation manifest with seeds11,23,47; record each model hash and metric, then summarize range and mean. Never select the best seed as the sole result."),
+ 321:("ai/fde_v2/ml_depth/workflow.py::load_torch_checkpoint", "Start a fresh subprocess from the documented command, load the saved artifact against its manifest, compare predictions to the originating process, then change one data hash and require rejection."),
+ 322:("learning-artifacts/production-ml/day-322-training-review.md", "Trace one captured failure from symptom through tensor/gradient evidence to repair; reproduce the failure and repaired run. State explicitly why tiny-fixture overfit is not generalization evidence."),
+316:("workflow.py::resume_torch_training(adapter=learner)", "Run `test_candidate_checkpoint_resume_uses_saved_optimizer_and_weights`; compare resumed versus uninterrupted state_dict and predictions after equal total updates, and verify the workflow rejects a learner that ignores the exact supplied initial checkpoint."),
+ 317:("learning-artifacts/production-ml/day-317-bounded-profile.py", "Run the supplied 6-row,10-epoch CPU profile3 times; record Python/PyTorch versions, wall-clock, batch/update counts and peak memory if available. Report median and range only; no production scaling inference."),
+ 318:("workflow.py::torch_training_witness` plus learner probability metrics", "Run the calibration/slice worksheet on saved predictions; show per-slice n, positive count, Brier and calibration bins. A slice with fewer than5 rows is labeled descriptive only."),
+320:("workflow.py::torch_training_witness", "Run `test_training_witness_rejects_noop_optimizer_and_corrupted_labels`; disable optimizer.step and separately corrupt labels; both must fail before an artifact is accepted."),
+ 331:("learner.py::sample_negative_pairs", "Run `test_training_catalog_negative_sampling`; print the training catalog hash and every positive/negative triple; reject user-seen negatives and an item added only after cutoff."),
+ 334:("learner.py::train_pairwise_ranker", "Run `test_pairwise_ranker_learns_and_scores_pairs`; record initial/final pairwise loss and score margin for fixed positive/negative pairs, then test a held-back user/item pair."),
+ 335:("learner.py::pairwise_loss_gradient", "Run `test_pairwise_vector_gradients_match_finite_difference`; compare user/positive/negative vector coordinates against central differences at epsilon1e-6; maximum absolute discrepancy <=1e-5."),
+ 337:("learner.py::ndcg_at_k", "Run `test_ndcg_cutoff_and_tie_behavior`; hand-calculate DCG/IDCG for tied relevance and K boundary, report zero-IDCG convention, NDCG and denominator."),
+ 338:("workflow.py::compare_rankers(adapter=learner)", "Run `test_learner_pairwise_ranker_is_used_by_comparison_path`; preserve identical candidate IDs for popularity/cosine/learned rankers and report per-user metric/support. No winner is required."),
+ 339:("learner.py::cold_start_fallback", "Run `test_cold_start_fallback_is_learner_owned_and_training_catalog_bounded`; score an unseen user from training-only popularity and show every result is a complete, duplicate-free permutation of the frozen catalog."),
+ 355:("learner.py::design_experiment", "Run `test_experiment_design_rejects_underpowered_fixed_horizon`; record MDE, alpha, power, computed required N, fixed horizon and guardrails. Reject horizon below power requirement."),
+ 356:("learner.py::assign_experiment_units", "Run `test_assignment_is_stable_balanced_and_unit_bound`; hash 500 stable user IDs and show same ID never changes arms across repeat calls; report allocation counts."),
+ 357:("learner.py::design_experiment` and `workflow.py::analyze_experiment", "Run `test_candidate_fixed_horizon_covers_power_minimum` and the early-analysis mutation; a sample meeting power minimum but below declared fixed horizon must remain incomplete."),
+ 358:("learner.py::srm_check", "Run `test_srm_boundary_blocks_outcome_analysis`; compare balanced and90/10 assignments at declared alpha, record expected/observed counts and confirm outcome analysis is blocked on SRM."),
+ 361:("learner.py::analyze_ab", "Run `test_ab_estimate_uses_unit_level_samples`; aggregate repeated events by randomized user first, show unit counts/means/SE, and reject empty or singleton invalid arms."),
+ 366:("workflow.py::serve_logistic(adapter=learner)", "Run `test_candidate_model_artifact_is_consumed_by_serving`; promote the content-bound artifact, serve known rows, compare to train-time transform and predictions, then tamper with the artifact and require rejection."),
+ 371:("learner.py::retraining_decision", "Run `test_retraining_requires_drift_and_quality_degradation`; contrast drift-only, degradation-only, sufficient-evidence and insufficient-support cases; only conjunction with recency/support may recommend retraining."),
+ 374:("learner.py::reconcile_delayed_labels", "Run `test_delayed_label_reconciliation_is_versioned_and_idempotent`; replay same late-label batch twice, require stable result, and reject conflicting duplicate event versions while preserving event/arrival times."),
+}
+
+
+CODE_DAY_DETAILS.update({
+ 285:("learner.py::train_logistic", "Run the regularized logistic candidate selector at learning rates0.01,0.1,1.0 for the same row order; record objective per epoch and coefficient norm. Mark diverging/nonfinite runs as failures, not omitted trials."),
+ 286:("learner.py::train_logistic(logistic_loss, l1, l2)", "Run `test_regularized_logistic_fit_and_train_only_transform` with no penalty, L1 and L2; record coefficient norms and train/validation scores while fitting only training rows. Do not select penalty on heldout."),
+ 288:("learner.py::brier_score; expected_calibration_error", "Run `test_loss_threshold_calibration_and_ranking_metrics_have_hand_cases`; record Brier and fixed-bin ECE on the same probabilities and labels, including empty-bin handling."),
+ 328:("workflow.py::compare_rankers(adapter=reference)", "Run the baseline ranking fixture with one frozen candidate set; persist each model's ordered item IDs and candidate hash. Popularity and cosine must see identical IDs and all results retain source labels."),
+ 330:("ai/fde_v2/ml_depth/workflow.py::compare_rankers(training_catalog=...) and timestamped catalog artifact", "For each prediction timestamp, materialize the eligible catalog from events with availability_time<=cutoff; append a future-only item and verify it is excluded from candidate IDs and catalog digest."),
+ 336:("workflow.py::compare_rankers", "Run the comparison and assert exact candidate-list equality for popularity, cosine and learned ranker for every user; mutate one candidate list and require comparison to fail."),
+ 342:("learning-artifacts/production-ml/day-342-freshness.json", "Group items by training cutoff and compute event age from training rows only; append a later event and verify it cannot change the frozen historical freshness report."),
+ 343:("learning-artifacts/production-ml/day-343-ranking-slices.json", "For each predeclared synthetic slice, record users, support, candidate coverage and ranking metric with denominator; reject a slice absent from the manifest or below minimum support."),
+ 344:("learner.py::sample_negative_pairs", "Run the negative sampler with seeds11,23,47 over the same training catalog; record negative-pair hashes and metric spread, and never select the best seed as the only result."),
+ 345:("learner.py::train_pairwise_ranker", "Compare exactly three predeclared dimensions/learning-rate pairs using development users only; save all configs, scores and selected-config hash. Heldout IDs must not be read by the tuning loop."),
+ 347:("ai/fde_v2/m52/workflow.py::freeze_heldout and run_heldout_once", "Freeze candidate, split, model and metric hashes before one heldout call; retain every user outcome and prevent a second evaluation using the consumed split ID."),
+ 363:("learner.py::fit_standardizer and transform_features", "Run a supplied feature row through training and serving transforms; preserve ordered feature names and values, then reorder/remove one field and verify fail-closed schema validation."),
+ 364:("workflow.py::_canonical_sha and model bundle manifest", "Compute lineage digest from data/split/code/features/config/metric/artifact inputs; change each input independently and verify the resulting digest changes."),
+ 365:("workflow.py::write_linear_bundle; promote_model", "Write two content-bound local versions and promote one; verify active pointer matches artifact digest and prior version remains immutable after the next promotion."),
+ 367:("learning-artifacts/production-ml/day-367-local-latency.py", "Run the same bounded local request set10 times after one warmup; record all durations, errors and sample count. Cost is `unknown` absent observed provider billing; do not extrapolate production SLO."),
+ 368:("learning-artifacts/production-ml/day-368-input-quality.json", "Feed valid, missing, wrong-type and stale-feature rows through supplied validation; record per-rule counts and confirm malformed rows are rejected before model scoring."),
+ 369:("learning-artifacts/production-ml/day-369-drift-vs-quality.json", "Compute a declared distribution-drift statistic and supervised quality only for labels observed by cutoff; mark later labels pending and keep their records out of quality denominator."),
+ 370:("learner.py::retraining_decision", "Run drift-only and stable-quality observations through the decision function; drift may open review but must not independently recommend retraining. Record both inputs and output fields."),
+ 372:("workflow.py::promote_model; rollback_model", "Simulate promotion to candidate version, inject the declared guardrail breach, then call rollback and read back the active version/digest; preserve both artifacts and the failed promotion receipt."),
+ 373:("workflow.py::promote_model; rollback_model", "Promote v1 then v2, rollback once, and verify active pointer returns to v1 while v2 remains on disk and history records the transition."),
+ 375:("ai/fde_v2/ml_depth/workflow.py::serve_logistic; rollback_model", "Change one named feature at serving, require schema rejection, rollback to prior artifact, re-run health predictions and add a regression case that replays the incompatible schema."),
+ 376:("learning-artifacts/production-ml/day-376-data-lineage.json", "Trace each synthetic field to source, purpose, retention and deletion owner; run the local delete fixture and verify no row remains searchable while tombstone state is preserved."),
+ 377:("ai/fde_v2/ml_depth/workflow.py::torch_training_witness; write_linear_bundle; promote_model; serve_logistic; rollback_model", "Run one local synthetic release command and save return code, model/data/config hashes, served prediction, monitoring summary and rollback readback; list unavailable live gates separately."),
+})
+
+LEARNER_ACCEPTANCE_BY_DAY={
+ 288:"test_loss_threshold_calibration_and_ranking_metrics_have_hand_cases",
+ 285:"test_candidate_learning_rate_comparison_records_divergence_not_dropped_trials",
+ 286:"test_candidate_l1_and_l2_regularization_change_learned_coefficients",
+ 299:"test_candidate_batch_validator_returns_checked_cpu_float32_tensors",
+ 300:"test_torch_dataset_loaders_partition_the_actual_training_pool",
+ 301:"test_candidate_autograd_and_central_difference_match_supplied_math",
+ 302:"test_candidate_autograd_and_central_difference_match_supplied_math",
+ 303:"test_candidate_mlp_forward_has_one_finite_logit_per_row",
+ 304:"test_torch_task_runs_actual_training_adapter",
+ 305:"test_torch_task_runs_actual_training_adapter",
+ 306:"test_candidate_optimizer_comparison_and_minibatch_accounting",
+307:"test_training_witness_rejects_tampered_intermediate_epoch_loss",
+ 308:"test_candidate_torch_training_is_repeatable_with_fixed_seed",
+ 309:"test_candidate_dropout_probe_observes_train_variance_eval_stability_and_restores_mode",
+ 310:"test_candidate_validation_loop_is_eval_no_grad_and_state_read_only",
+ 311:"test_candidate_tiny_batch_can_overfit_but_is_only_a_mechanics_claim",
+ 312:"test_candidate_early_stopping_selects_validation_minimum_and_patience",
+ 313:"test_candidate_weighted_loss_changes_actual_trained_parameters",
+314:"test_candidate_training_rejects_nonfinite_gradients_and_detached_loss",
+320:"test_training_witness_rejects_noop_optimizer_and_corrupted_labels",
+ 316:"test_candidate_checkpoint_resume_uses_saved_optimizer_and_weights",
 }
 
 
@@ -195,11 +322,14 @@ def build():
               356:"test_assignment_is_stable_balanced_and_unit_bound",
               357:"test_candidate_fixed_horizon_covers_power_minimum",
               358:"test_srm_boundary_blocks_outcome_analysis",
+ 363:"test_regularized_logistic_fit_and_train_only_transform",
               361:"test_ab_estimate_uses_unit_level_samples",
               366:"test_candidate_model_artifact_is_consumed_by_serving",
+ 370:"test_retraining_requires_drift_and_quality_degradation",
               371:"test_retraining_requires_drift_and_quality_degradation",
               374:"test_delayed_label_reconciliation_is_versioned_and_idempotent",
             }.get(day)
+            learner_acceptance=LEARNER_ACCEPTANCE_BY_DAY.get(day,learner_acceptance)
             if index == 1:
                 prerequisite = {
                     "PML1":"M5.2 dataset/metric/split and M5.3 core gap-handoff evidence reviewed; otherwise mechanics-only preparation and progression remains blocked.",
@@ -210,6 +340,18 @@ def build():
             else:
                 prerequisite = f"Day {day-1} artifact and its named selector reviewed; if incomplete, use the protected block and do not advance."
             interface, functions = LEARNER_INTERFACES.get(day, ("learning-artifact", f"day {day} evidence reviewed against its specific rubric"))
+            if day in CODE_DAY_DETAILS:
+                target=CODE_DAY_DETAILS[day][0]
+                if (target.startswith("ai/") and "::" in target) or target.startswith("learner.py::"):
+                    interface,functions=target.split("::",1)
+                    if interface.startswith("learner.py"):
+                        interface="ai/fde_v2/ml_depth/learner.py"
+                elif target.startswith("ai/"):
+                    interface=target; functions="use the supplied runtime path and record its observed result"
+                elif target.startswith("workflow.py::"):
+                    interface="ai/fde_v2/ml_depth/workflow.py"; functions=target.split("::",1)[1]
+                else:
+                    interface=target; functions="edit and run the named bounded learning artifact"
             artifact = f"learning-artifacts/production-ml/day-{day}-{re.sub(r'[^a-z0-9]+','-',title.lower()).strip('-')}.json"
             objectives = [{"objective":"O4","key_result":"KR-4.2"}]
             acceptance_selector=f"manual-evidence-review/day-{day}"
@@ -218,7 +360,7 @@ def build():
                 acceptance_selector=f"ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.{learner_acceptance}"
                 acceptance_command=("ML_DEPTH_CANDIDATE=ai.fde_v2.ml_depth.learner python3 -m unittest "
                                    f"ai.fde_v2.ml_depth.learner_acceptance.MLDepthLearnerAcceptance.{learner_acceptance}")
-            rubric={"primary_check":task,
+            rubric={"primary_check":CODE_DAY_DETAILS[day][1] if day in CODE_DAY_DETAILS else task,
                     "evidence_check":"Attach the requested learner-produced calculation, table, trace, code/result diff or diagram; cite fixture rows or runtime receipts where applicable.",
                     "reasoning_check":"Separate measured observations from assumptions, explain the decision, and state one material limitation.",
                     "review_type":"learner self-check with assistant feedback; not independent assessment"}
@@ -229,6 +371,7 @@ def build():
                 "acceptance_selector":acceptance_selector,
                 "worked_example":f"python3 -m ai.fde_v2.ml_depth.examples --block {block['id']}",
                 "acceptance_command":acceptance_command,
+                "code_session_detail":CODE_DAY_DETAILS.get(day),
                 "dsa_minutes":60,"role_bank_minutes":30,"ai_minutes":90,"substantive_minutes":90,"buffer_minutes":0,
                 "minutes":{"reading":15,"worked_example":10,"learner_build_test":55,"evidence_log":10},
                 "status":"not_started"})
@@ -268,6 +411,8 @@ def build():
                             "it is not an independent learner assessment.")
             rubric_text='; '.join(f"{key}: {value}" for key,value in row['evidence_rubric'].items())
             session_contract=f"**Prerequisite:** {row['prerequisite']}\n\n**Learner interface:** `{row['learner_interface']['path']}::{row['learner_interface']['functions']}`. **Artifact:** `{row['learner_artifact']}`. **Acceptance selector:** `{row['acceptance_selector']}`. **Evidence rubric:** {rubric_text}. **Objective link:** {row['objective_links'][0]['objective']} / {row['objective_links'][0]['key_result']}."
+            if row.get('code_session_detail'):
+                session_contract += f"\n\n**Code check:** {row['code_session_detail'][1]}"
         else:
             ai=f"**AI90 buffer:** {row['task']} Worked-example prompt: {row['worked_example']}"
             acceptance=f"`{row['acceptance_command']}`; rerun the exact failed selector as well."

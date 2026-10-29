@@ -5,6 +5,7 @@ import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from . import workflow
 
@@ -150,6 +151,272 @@ class MLDepthLearnerAcceptance(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'exactly match'):
             workflow.prepare_torch_data([[float(i)] for i in range(10)],[i%2 for i in range(10)],adapter=Liar())
 
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_candidate_batch_validator_returns_checked_cpu_float32_tensors(self):
+        features=[[.1,.2],[-.3,.4]]; labels=[0,1]
+        batch=workflow.validate_torch_batch(features,labels,adapter=candidate)
+        self.assertEqual(tuple(batch['features'].shape),(2,2))
+        self.assertEqual(tuple(batch['targets'].shape),(2,1))
+        self.assertEqual(batch['feature_dtype'],'torch.float32')
+        self.assertEqual(batch['device'],'cpu')
+        with self.assertRaises(ValueError): workflow.validate_torch_batch([[float('nan')],[0.0]],[0,1],adapter=candidate)
+        with self.assertRaises(ValueError): workflow.validate_torch_batch([[1.0],[2.0]],[0,1,0],adapter=candidate)
+        with self.assertRaises(ValueError): workflow.validate_torch_batch([[1.0],[2.0]],[0,2],adapter=candidate)
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_candidate_mlp_forward_has_one_finite_logit_per_row(self):
+        witness=workflow.torch_forward_witness([[-1.,0.],[1.,0.],[0.,1.]],[0,1,1],adapter=candidate,seed=11)
+        self.assertEqual(tuple(witness['logits'].shape),(3,1))
+        self.assertTrue(__import__('torch').isfinite(witness['logits']).all())
+        self.assertEqual(witness['feature_dim'],2)
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_candidate_builder_is_the_model_executed_by_the_training_workflow(self):
+        import torch
+        class AlternateBuilder:
+            validate_torch_batch=staticmethod(candidate.validate_torch_batch)
+            @staticmethod
+            def build_torch_model(input_dim,*,seed=7):
+                torch.manual_seed(seed)
+                return torch.nn.Sequential(torch.nn.Linear(input_dim,2),torch.nn.Tanh(),torch.nn.Linear(2,1))
+        witness=workflow.torch_forward_witness([[-1.],[1.]],[0,1],adapter=AlternateBuilder(),seed=5)
+        self.assertEqual(tuple(witness['logits'].shape),(2,1))
+        self.assertEqual(sum(parameter.numel() for parameter in witness['model'].parameters()),7)
+        class LinearOnly(AlternateBuilder):
+            @staticmethod
+            def build_torch_model(input_dim,*,seed=7): return torch.nn.Linear(input_dim,1)
+        with self.assertRaisesRegex(ValueError,'two-layer MLP'):
+            workflow.torch_forward_witness([[-1.],[1.]],[0,1],adapter=LinearOnly())
+
+    def test_candidate_autograd_and_central_difference_match_supplied_math(self):
+        for x in (1.25,-.5):
+            observed=workflow.autograd_scalar_witness(x,adapter=candidate)
+            self.assertAlmostEqual(observed['value'],3*x*x+2*x+1,places=10)
+            self.assertAlmostEqual(observed['gradient'],6*x+2,places=10)
+        difference=workflow.finite_difference_witness(lambda value:value**3-2*value,1.3,epsilon=1e-6,adapter=candidate)
+        self.assertAlmostEqual(difference['gradient'],3*1.3**2-2,places=8)
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_candidate_dropout_probe_observes_train_variance_eval_stability_and_restores_mode(self):
+        import torch
+        model=torch.nn.Sequential(torch.nn.Dropout(p=.7),torch.nn.Linear(32,4))
+        batch=torch.ones((2,32))
+        model.train()
+        result=workflow.dropout_mode_witness(model,batch,repeats=5,adapter=candidate)
+        self.assertTrue(result['train_varies']); self.assertTrue(result['eval_stable'])
+        self.assertTrue(model.training)
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_dropout_oracle_rejects_candidate_fabricated_mode_outputs(self):
+        import torch
+        class Fabricator:
+            @staticmethod
+            def dropout_mode_probe(model,batch,*,repeats):
+                return {"train_outputs":[torch.zeros((2,4)) for _ in range(repeats)],
+                        "eval_outputs":[torch.ones((2,4)) for _ in range(repeats)]}
+        model=torch.nn.Sequential(torch.nn.Dropout(p=.7),torch.nn.Linear(32,4))
+        with self.assertRaisesRegex(ValueError,"independent seeded model execution"):
+            workflow.dropout_mode_witness(model,torch.ones((2,32)),repeats=5,adapter=Fabricator())
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_candidate_validation_loop_is_eval_no_grad_and_state_read_only(self):
+        import torch
+        features=[[-2.,-1.],[-1.,-2.],[-1.,-1.],[1.,1.],[1.,2.],[2.,1.]]; labels=[0,0,0,1,1,1]
+        trained=workflow.torch_training_witness(features,labels,adapter=candidate,seed=41,epochs=20)
+        loaders=workflow.prepare_torch_data(features,labels,validation_fraction=.33,batch_size=2,seed=12,adapter=candidate)
+        optimizer=torch.optim.Adam(trained['model'].parameters(),lr=.03)
+        optimizer.load_state_dict(trained['optimizer_state_dict'])
+        result=workflow.evaluate_torch_model(trained['model'],loaders['validation_loader'],optimizer,adapter=candidate)
+        self.assertEqual(result['observed_rows'],len(loaders['validation_indices']))
+        self.assertEqual(result['evaluation_mode'],'eval/no_grad')
+        self.assertTrue(result['parameters_unchanged'])
+        self.assertFalse(result['logits'].requires_grad)
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_validation_oracle_rejects_candidate_claiming_a_wrong_logit(self):
+        class Liar:
+            @staticmethod
+            def evaluate_torch_model(model,loader,optimizer):
+                result=candidate.evaluate_torch_model(model,loader,optimizer)
+                result['logits']=result['logits']+100
+                return result
+        import torch
+        features=[[-2.,-1.],[-1.,-2.],[-1.,-1.],[1.,1.],[1.,2.],[2.,1.]]; labels=[0,0,0,1,1,1]
+        trained=workflow.torch_training_witness(features,labels,adapter=candidate,seed=41,epochs=20)
+        loaders=workflow.prepare_torch_data(features,labels,validation_fraction=.33,batch_size=2,seed=12,adapter=candidate)
+        optimizer=torch.optim.Adam(trained['model'].parameters(),lr=.03)
+        optimizer.load_state_dict(trained['optimizer_state_dict'])
+        with self.assertRaisesRegex(ValueError,'logits differ'):
+            workflow.evaluate_torch_model(trained['model'],loaders['validation_loader'],optimizer,adapter=Liar())
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_candidate_optimizer_comparison_and_minibatch_accounting(self):
+        features=[[-2.,-1.],[-1.,-2.],[-1.,-1.],[1.,1.],[1.,2.],[2.,1.]]; labels=[0,0,0,1,1,1]
+        outputs={kind:candidate.train_torch_model(features,labels,seed=14,epochs=6,learning_rate=.02,
+                    optimizer_kind=kind,batch_size=2) for kind in ('adam','sgd')}
+        for kind,result in outputs.items():
+            self.assertEqual(result['optimizer_kind'],kind)
+            self.assertEqual(result['examples_per_epoch'],[len(features)]*6)
+            self.assertEqual(result['updates_per_epoch'],[3]*6)
+            self.assertEqual(result['batch_size'],2)
+        partial=candidate.train_torch_model(features+[[3.,2.]],[*labels,1],seed=14,epochs=2,
+                                             optimizer_kind='sgd',batch_size=2)
+        self.assertEqual(partial['examples_per_epoch'],[7,7])
+        self.assertEqual(partial['updates_per_epoch'],[4,4])
+        self.assertNotEqual(outputs['adam']['loss_history'],outputs['sgd']['loss_history'])
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_weighted_training_witness_uses_the_declared_positive_weight(self):
+        features=[[-2.],[-1.],[1.],[2.]]; labels=[0,0,1,1]
+        result=workflow.torch_training_witness(features,labels,adapter=candidate,seed=19,epochs=30,
+                                                positive_weight=2.5)
+        self.assertEqual(result["positive_weight"],2.5)
+        self.assertLess(result["observed_final_loss"],result["observed_initial_loss"])
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_training_witness_rejects_tampered_intermediate_epoch_loss(self):
+        class Liar:
+            validate_torch_batch=staticmethod(candidate.validate_torch_batch)
+            build_torch_model=staticmethod(candidate.build_torch_model)
+            @staticmethod
+            def train_torch_model(features,labels,**kwargs):
+                result=candidate.train_torch_model(features,labels,**kwargs)
+                result['loss_history'][1]+=0.25
+                return result
+        with self.assertRaisesRegex(ValueError,"per-epoch history"):
+            workflow.torch_training_witness([[-2.],[-1.],[1.],[2.]],[0,0,1,1],adapter=Liar(),epochs=4)
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_training_witness_rejects_adapter_ignoring_initial_checkpoint(self):
+        class IgnoresInitialState:
+            validate_torch_batch=staticmethod(candidate.validate_torch_batch)
+            build_torch_model=staticmethod(candidate.build_torch_model)
+            @staticmethod
+            def train_torch_model(features,labels,**kwargs):
+                kwargs.pop("initial_state",None)
+                kwargs.pop("optimizer_state",None)
+                kwargs["seed"]+=1
+                return candidate.train_torch_model(features,labels,**kwargs)
+        with self.assertRaisesRegex(ValueError,"epoch zero snapshot differs"):
+            workflow.torch_training_witness([[-2.],[-1.],[1.],[2.]],[0,0,1,1],
+                                             adapter=IgnoresInitialState(),seed=15,epochs=4)
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_candidate_training_rejects_invalid_label_values(self):
+        with self.assertRaises(ValueError):
+            candidate.train_torch_model([[-1.],[1.]],[0,2],epochs=2)
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_candidate_training_rejects_nonfinite_gradients_and_detached_loss(self):
+        import torch
+        from torch.nn import functional as torch_functional
+        with self.assertRaises(ValueError):
+            candidate.train_torch_model([[-1.],[1.]],[0,2],epochs=1)
+        class NonfiniteBackward(torch.autograd.Function):
+            @staticmethod
+            def forward(ctx,value): return value
+            @staticmethod
+            def backward(ctx,gradient): return torch.full_like(gradient,float('nan'))
+        class NanGradientLinear(torch.nn.Linear):
+            def forward(self,value): return NonfiniteBackward.apply(super().forward(value))
+        def exploding_builder(input_dim,*,seed=7):
+            torch.manual_seed(seed)
+            return torch.nn.Sequential(torch.nn.Linear(input_dim,8),torch.nn.Tanh(),NanGradientLinear(8,1))
+        with mock.patch.object(candidate,"build_torch_model",exploding_builder):
+            with self.assertRaisesRegex(FloatingPointError,"non-finite gradient"):
+                workflow.torch_training_witness([[-1.],[-.5],[.5],[1.]],[0,0,1,1],adapter=candidate,epochs=1)
+        class DetachedLoss(torch.nn.Module):
+            def __init__(self,**kwargs): super().__init__()
+            def forward(self,logits,targets):
+                return torch_functional.binary_cross_entropy_with_logits(logits,targets).detach()
+        with mock.patch.object(torch.nn,"BCEWithLogitsLoss",DetachedLoss):
+            with self.assertRaisesRegex(RuntimeError,"does not require grad|no grad_fn"):
+                candidate.train_torch_model([[-1.],[-.5],[.5],[1.]],[0,0,1,1],epochs=1)
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_training_witness_rejects_noop_optimizer_and_corrupted_labels(self):
+        import torch
+        features=[[-2.],[-1.],[1.],[2.]]; labels=[0,0,1,1]
+        class NoStep:
+            validate_torch_batch=staticmethod(candidate.validate_torch_batch)
+            build_torch_model=staticmethod(candidate.build_torch_model)
+            train_torch_model=staticmethod(candidate.train_torch_model)
+        with mock.patch.object(torch.optim.Adam,"step",lambda self,*a,**k:None), \
+             mock.patch.object(torch.optim.SGD,"step",lambda self,*a,**k:None):
+            with self.assertRaises((ValueError,RuntimeError)):
+                workflow.torch_training_witness(features,labels,adapter=NoStep(),epochs=4)
+        class CorruptLabels:
+            validate_torch_batch=staticmethod(candidate.validate_torch_batch)
+            build_torch_model=staticmethod(candidate.build_torch_model)
+            @staticmethod
+            def train_torch_model(x,y,**kwargs):
+                return candidate.train_torch_model(x,[1-int(value) for value in y],**kwargs)
+        with self.assertRaises(ValueError):
+            workflow.torch_training_witness(features,labels,adapter=CorruptLabels(),epochs=50)
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_candidate_tiny_batch_can_overfit_but_is_only_a_mechanics_claim(self):
+        features=[[-2.,-1.],[-1.,-2.],[1.,1.],[2.,1.]]; labels=[0,0,1,1]
+        trained=workflow.torch_training_witness(features,labels,adapter=candidate,seed=13,epochs=200,learning_rate=.03)
+        self.assertLess(trained['observed_final_loss'],trained['observed_initial_loss']*.1)
+        self.assertEqual([int(value>=.5) for value in trained['probabilities']],labels)
+        self.assertFalse(trained.get('generalization_claim',False))
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_training_witness_rejects_matching_but_fabricated_update_claim(self):
+        class Liar:
+            validate_torch_batch=staticmethod(candidate.validate_torch_batch)
+            build_torch_model=staticmethod(candidate.build_torch_model)
+            @staticmethod
+            def train_torch_model(features,labels,**kwargs):
+                result=candidate.train_torch_model(features,labels,**kwargs)
+                result['model'].load_state_dict(kwargs['initial_state'])
+                # Lie consistently about both the update flag and history.
+                result['parameters_changed']=True
+                result['loss_history']=[result['loss_history'][0]]*len(result['loss_history'])
+                return result
+        with self.assertRaisesRegex(ValueError,'did not prove a parameter update|did not improve'):
+            workflow.torch_training_witness([[-2.],[-1.],[1.],[2.]],[0,0,1,1],adapter=Liar(),epochs=5)
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_candidate_torch_training_is_repeatable_with_fixed_seed(self):
+        import torch
+        features=[[-2.,-1.],[-1.,-2.],[-1.,-1.],[1.,1.],[1.,2.],[2.,1.]]; labels=[0,0,0,1,1,1]
+        first=candidate.train_torch_model(features,labels,seed=22,epochs=8,batch_size=2)
+        second=candidate.train_torch_model(features,labels,seed=22,epochs=8,batch_size=2)
+        for name,value in first['model'].state_dict().items(): torch.testing.assert_close(value,second['model'].state_dict()[name],rtol=0,atol=0)
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_candidate_learning_rate_comparison_records_divergence_not_dropped_trials(self):
+        traces={rate:candidate.train_logistic([[1.,-2.],[1.,-1.],[1.,1.],[1.,2.]],[0,0,1,1],
+                learning_rate=rate,epochs=20,l2=.01)['loss_history'] for rate in (.01,.1,1.0)}
+        self.assertEqual(set(traces),{.01,.1,1.0})
+        self.assertTrue(all(len(values)>=2 and all(__import__('math').isfinite(x) for x in values) for values in traces.values()))
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_candidate_l1_and_l2_regularization_change_learned_coefficients(self):
+        rows=[[1.,-3.],[1.,-2.],[1.,-1.],[1.,1.],[1.,2.],[1.,3.]]; labels=[0,0,0,1,1,1]
+        fits={penalty:candidate.train_logistic(rows,labels,learning_rate=.1,epochs=120,l1=l1,l2=l2)
+              for penalty,l1,l2 in [('none',0,0),('l1',.08,0),('l2',0,.08)]}
+        norms={key:sum(float(value)**2 for value in fit['weights'][1:])**.5 for key,fit in fits.items()}
+        self.assertTrue(all(__import__('math').isfinite(norm) for norm in norms.values()))
+        self.assertGreater(len({round(norm,7) for norm in norms.values()}),1)
+
+    def test_candidate_early_stopping_selects_validation_minimum_and_patience(self):
+        choice=workflow.select_torch_epoch([.8,.6,.4,.45,.5],patience=2,adapter=candidate)
+        self.assertEqual((choice['best_epoch'],choice['stop_epoch'],choice['selection_partition']),(2,4,'validation_only'))
+        with self.assertRaises(ValueError): candidate.select_torch_epoch([.8,float('nan')],patience=1)
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_candidate_weighted_loss_changes_actual_trained_parameters(self):
+        import torch
+        features=[[-1.],[-.5],[.1],[.3],[.5],[.7],[.9],[1.1]]; labels=[0,0,0,0,0,0,0,1]
+        ordinary=candidate.train_torch_model(features,labels,seed=8,epochs=20,batch_size=4,positive_weight=1)
+        weighted=candidate.train_torch_model(features,labels,seed=8,epochs=20,batch_size=4,positive_weight=6)
+        self.assertNotEqual(ordinary['loss_history'],weighted['loss_history'])
+        self.assertTrue(any(not torch.equal(ordinary['model'].state_dict()[key],weighted['model'].state_dict()[key])
+                            for key in ordinary['model'].state_dict()))
+
     def test_default_regression_dataloader_and_backfill_tasks_remain_todos(self):
         from . import learner
         with self.assertRaises(NotImplementedError): workflow.compare_regression_losses([0,1],[0,1])
@@ -157,6 +424,12 @@ class MLDepthLearnerAcceptance(unittest.TestCase):
         with self.assertRaises(NotImplementedError): learner.logistic_gradient([0,1],[[1,0],[1,1]],[0,1])
         with self.assertRaises(NotImplementedError): learner.pairwise_loss_gradient([0.1],[0.2],[0.3])
         with self.assertRaises(NotImplementedError): learner.cold_start_fallback(['a'],{'a':1})
+        with self.assertRaises(NotImplementedError): learner.autograd_scalar_gradient(1.0)
+        with self.assertRaises(NotImplementedError): learner.finite_difference_gradient(lambda x:x*x,1.0)
+        with self.assertRaises(NotImplementedError): learner.dropout_mode_probe(None,None)
+        with self.assertRaises(NotImplementedError): learner.validate_torch_batch([[1.0]],[1])
+        with self.assertRaises(NotImplementedError): learner.build_torch_model(1)
+        with self.assertRaises(NotImplementedError): learner.evaluate_torch_model(None,None,None)
         self.assertIn('make_torch_loaders',learner.make_torch_loaders.__doc__ or learner.make_torch_loaders.__name__)
 
     def test_loss_threshold_calibration_and_ranking_metrics_have_hand_cases(self):
@@ -352,6 +625,7 @@ class MLDepthLearnerAcceptance(unittest.TestCase):
             torch.testing.assert_close(value,uninterrupted['model'].state_dict()[name],rtol=1e-5,atol=1e-6)
         self.assertTrue(restored['observed_parameters_changed'])
         self.assertLess(restored['observed_final_loss'],restored['observed_initial_loss'])
+        self.test_training_witness_rejects_adapter_ignoring_initial_checkpoint()
 
     def test_delayed_label_reconciliation_is_versioned_and_idempotent(self):
         records=[{'event_id':'e1','user_id':'u1','item_id':'a','event_time':10,'arrival_time':12,'label':0,'label_version':1},

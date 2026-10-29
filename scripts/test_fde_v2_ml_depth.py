@@ -115,7 +115,8 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
                                                                        'ai.fde_v2.ml_depth.learner_acceptance.',
                                                                        'manual-evidence-review/')))
                 rubric=row['evidence_rubric']
-                self.assertEqual(rubric['primary_check'],row['task'])
+                expected_primary=(row['code_session_detail'][1] if row.get('code_session_detail') else row['task'])
+                self.assertEqual(rubric['primary_check'],expected_primary)
                 self.assertTrue(rubric['evidence_check'].strip())
                 self.assertTrue(rubric['reasoning_check'].strip())
                 self.assertEqual(rubric['review_type'],'learner self-check with assistant feedback; not independent assessment')
@@ -126,6 +127,15 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
                     self.assertIn(token,page)
                 self.assertIn(row['evidence_rubric']['primary_check'],page)
                 self.assertIn(row['evidence_rubric']['reasoning_check'],page)
+                if row.get('code_session_detail'):
+                    self.assertIn('**Code check:**',page)
+                    self.assertIn(row['code_session_detail'][1],page)
+                    self.assertNotEqual(rubric['primary_check'],row['task'])
+                    if row['learner_interface']['path'].startswith('ai/'):
+                        self.assertTrue((ROOT/row['learner_interface']['path']).is_file(),row['learner_interface']['path'])
+                    for selector in re.findall(r'`(test_[A-Za-z0-9_]+)`',row['code_session_detail'][1]):
+                        self.assertIn(f'def {selector}(',
+                                      (ROOT/'ai/fde_v2/ml_depth/learner_acceptance.py').read_text())
                 if row['acceptance_selector'].startswith('manual-evidence-review/'):
                     self.assertIn('runs instructor mechanics only',page)
                     self.assertIn('manual, task-specific evidence rubric',page)
@@ -242,11 +252,12 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
         counts=Counter(slot['focus'] for slot in slots)
         self.assertEqual(counts,{
             'backend_coding_debugging':2,'backend_sql_query_plan':1,'backend_concurrency_debugging':1,
-            'frontend_coding_debugging':3,'aws':3,
+            'frontend_coding_debugging':2,'frontend_render_performance':1,'aws':3,
             'system_design_customer_sa':2,'behavioral_customer_story':1,'integrated_mini_mock':1})
         self.assertEqual(rotation['coding_drill_minutes'],{
             'understand_prompt':3,'solve':17,'run_tests_review':7,'feedback_log':3})
         self.assertFalse(rotation['capstone_code_edit_allowed'])
+        self.assertIn('40-row React list',slots[8]['exercise'])
         self.assertEqual(sum(rotation['coding_drill_minutes'].values()),30)
         self.assertEqual(rotation['baseline_aws_days_1_30'],[5,6,12,13,19,20,26,27])
 
