@@ -126,3 +126,12 @@ jobs:
           M33_CANDIDATE=ai.fde_v2.m33.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m33_units
           M41_CANDIDATE=ai.fde_v2.m41.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m41_units
           M42_CANDIDATE=ai.fde_v2.m42.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m42_units
+      - name: Verify conditional AWS FDE v2.4 M4.3–M5.3 scaffolds and budgets
+        run: |
+          python3 -m unittest scripts.test_fde_v2_m43_m53 \
+            ai.fde_v2.tests.test_m43 ai.fde_v2.tests.test_m51 \
+            ai.fde_v2.tests.test_m52 ai.fde_v2.tests.test_m53
+          M43_CANDIDATE=ai.fde_v2.m43.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m43_units
+          M51_CANDIDATE=ai.fde_v2.m51.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m51_units
+          M52_CANDIDATE=ai.fde_v2.m52.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m52_units
+          M53_CANDIDATE=ai.fde_v2.m53.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m53_units
