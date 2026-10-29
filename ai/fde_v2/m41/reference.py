@@ -74,15 +74,29 @@ def build_pilot_contract(discovery: Mapping[str, Any], assessment: Mapping[str, 
     d=validate_discovery(discovery)
     if not d["valid"]: return {"status":"BLOCKED","reason":"discovery questions are incomplete"}
     decision=discovery["decision"]
-    # The scaffold has no trusted evaluator channel. Caller-supplied JSON, including a
-    # "verified" flag, is not evidence that a real person assessed the rubric.
-    return {"status":"BLOCKED","reason":"no trusted actual rubric evaluator integration is available",
+    # Role-play is an actionable local exercise even without a customer. Its
+    # status never implies customer evidence or trusted evaluator verification.
+    if discovery["evidence_class"] == "role_play":
+        return {"status":"ROLEPLAY_EXERCISE_AVAILABLE",
+            "reason":"local practice only; evaluator and customer evidence remain unverified",
             "decision":decision,"scope":discovery.get("pilot_scope") if decision=="pilot" else None,
             "non_goals":discovery.get("non_goals",[]),"responsibilities":discovery.get("responsibilities") if decision=="pilot" else None,
             "acceptance_criteria":discovery.get("acceptance_criteria") if decision=="pilot" else None,
             "rollback_criteria":discovery.get("rollback_criteria") if decision=="pilot" else None,
             "customer_explanation":discovery.get("customer_explanation") if decision=="pilot" else None,
             "evidence_class":discovery["evidence_class"],
-            "real_user_gate":"BLOCKED" if discovery["evidence_class"]!="real_user" else "REQUIRES_AUTHORIZED_REVIEW",
+            "real_user_gate":"BLOCKED",
+            "rubric_status":assessment.get("status","NOT_ASSESSED") if isinstance(assessment,Mapping) else "NOT_ASSESSED",
+            "evaluator_verification":"BLOCKED",
             "decision_rationale":discovery.get("decision_rationale") if decision!="pilot" else None,
             "claims_permitted":False}
+    # Non-role-play evidence still requires a trusted evaluation path. A caller's
+    # JSON fields or self-asserted verified flag are not verification.
+    return {"status":"BLOCKED","reason":"no trusted actual rubric evaluator integration is available",
+            "decision":decision,"scope":discovery.get("pilot_scope") if decision=="pilot" else None,
+            "non_goals":discovery.get("non_goals",[]),"responsibilities":discovery.get("responsibilities") if decision=="pilot" else None,
+            "acceptance_criteria":discovery.get("acceptance_criteria") if decision=="pilot" else None,
+            "rollback_criteria":discovery.get("rollback_criteria") if decision=="pilot" else None,
+            "customer_explanation":discovery.get("customer_explanation") if decision=="pilot" else None,
+            "evidence_class":discovery["evidence_class"],"real_user_gate":"REVIEW_REQUIRED" if discovery["evidence_class"]=="real_user" else "BLOCKED",
+            "decision_rationale":discovery.get("decision_rationale") if decision!="pilot" else None,"claims_permitted":False}

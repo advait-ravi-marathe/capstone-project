@@ -15,7 +15,7 @@ class M41Mechanics(unittest.TestCase):
     def test_question_first_non_ai_decision_and_evaluator_provenance(self):
         out=workflow.review_discovery(DISCOVERY,RUBRIC,adapter=reference)
         self.assertEqual(out["pilot_contract"]["decision"],"non_ai")
-        self.assertEqual(out["pilot_contract"]["status"],"BLOCKED")
+        self.assertEqual(out["pilot_contract"]["status"],"ROLEPLAY_EXERCISE_AVAILABLE")
         self.assertEqual(out["real_user_gate"],"BLOCKED")
         self.assertEqual(out["rubric"]["evaluator_kind"],"peer")
         self.assertEqual(out["rubric"]["status"],"UNVERIFIED_SCORE")
@@ -51,12 +51,13 @@ class M41Mechanics(unittest.TestCase):
                "responsibilities":"learner operates local demo; reviewer observes","acceptance_criteria":"predeclared rubric and rollback trigger",
                "rollback_criteria":"return to keyword baseline on any severe error","customer_explanation":"local prototype; no customer data or production claims"}
         built=reference.build_pilot_contract(pilot,reference.assess_rubric(RUBRIC))
-        self.assertEqual(built["status"],"BLOCKED")
+        self.assertEqual(built["status"],"ROLEPLAY_EXERCISE_AVAILABLE")
         built=reference.build_pilot_contract(pilot,{"status":"VERIFIED_ASSESSMENT","exercise_result":"MEETS_EXERCISE_RUBRIC"})
-        self.assertEqual(built["status"],"BLOCKED")
+        self.assertEqual(built["status"],"ROLEPLAY_EXERCISE_AVAILABLE")
+        self.assertEqual(built["evaluator_verification"],"BLOCKED")
         for key in ("responsibilities","acceptance_criteria","rollback_criteria","customer_explanation"):
             self.assertTrue(built[key])
-        self.assertIn("trusted actual rubric evaluator",built["reason"])
+        self.assertIn("local practice only",built["reason"])
         with self.assertRaises(ValueError): reference.validate_discovery({**pilot,"rollback_criteria":""})
 
 if __name__=='__main__': unittest.main()

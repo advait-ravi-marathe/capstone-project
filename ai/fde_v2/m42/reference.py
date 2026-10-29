@@ -1,6 +1,13 @@
 """Reference mechanics for local change/incident evidence; no production claims."""
 from __future__ import annotations
 import math
+import hashlib
+import json
+import sqlite3
+import subprocess
+import sys
+import time
+from pathlib import Path
 from typing import Any, Mapping, Sequence
 
 REQUIRED_CHANGE={"requirement","old_behavior","new_behavior","risk","rollback_target","compatibility"}
@@ -85,3 +92,105 @@ def evaluate_change_gate(change: Mapping[str, Any], observation: Mapping[str, An
             "incident_classification":i["classification"],"production_reliability_claim":False,
             "live_cloud_status":"BLOCKED" if i["classification"]=="local_drill" else "REVIEW_REQUIRED",
             "cost_observed":False}
+
+
+def prepare_local_fixture(root: str) -> str:
+    """Create a disposable service with a real failing regression test."""
+    path=Path(root).resolve(); path.mkdir(parents=True,exist_ok=True)
+    source=path/"service.py"; source.write_text("def answer():\n    return 'old'\n",encoding="utf-8")
+    (path/"test_service.py").write_text("import unittest\nfrom service import answer\nclass T(unittest.TestCase):\n    def test_requested_behavior(self): self.assertEqual(answer(), 'new')\n",encoding="utf-8")
+    return hashlib.sha256(source.read_bytes()).hexdigest()
+
+def apply_minimal_fixture_patch(root: str, source_sha256: str) -> dict[str, Any]:
+    source=Path(root).resolve(strict=True)/"service.py"; raw=source.read_bytes()
+    if hashlib.sha256(raw).hexdigest()!=source_sha256 or raw!=b"def answer():\n    return 'old'\n":
+        raise ValueError("fixture source changed; patch is stale or broader than expected")
+    source.write_text("def answer():\n    return 'new'\n",encoding="utf-8")
+    return {"path":"service.py","before_sha256":source_sha256,
+            "after_sha256":hashlib.sha256(source.read_bytes()).hexdigest(),"scope":"one_function"}
+
+def run_regression(root: str) -> dict[str, Any]:
+    path=Path(root).resolve(strict=True)
+    result=subprocess.run([sys.executable,"-m","unittest","-v","test_service"],cwd=path,
+        capture_output=True,text=True,timeout=20,env={**__import__("os").environ,"PYTHONDONTWRITEBYTECODE":"1"})
+    return {"returncode":result.returncode,"status":"PASS" if result.returncode==0 else "FAIL",
+            "test_run_id":hashlib.sha256((str(path)+result.stdout+result.stderr).encode()).hexdigest(),
+            "source_hash":hashlib.sha256((path/"service.py").read_bytes()).hexdigest(),
+            "output":(result.stdout+result.stderr)[-4000:]}
+
+def migrate_fixture_database(path: str) -> dict[str, Any]:
+    db=sqlite3.connect(path)
+    try:
+        with db:
+            db.execute("CREATE TABLE IF NOT EXISTS docs(doc_id TEXT PRIMARY KEY, body TEXT NOT NULL)")
+            db.execute("INSERT OR IGNORE INTO docs VALUES('fixture-doc','synthetic')")
+        backup=sqlite3.connect(path+".pre-migration")
+        try: db.backup(backup)
+        finally: backup.close()
+        with db:
+            columns={row[1] for row in db.execute("PRAGMA table_info(docs)")}
+            if "retention_state" not in columns:
+                db.execute("ALTER TABLE docs ADD COLUMN retention_state TEXT NOT NULL DEFAULT 'active'")
+        row=db.execute("SELECT body,retention_state FROM docs WHERE doc_id='fixture-doc'").fetchone()
+        if row!=("synthetic","active"): raise RuntimeError("migration roundtrip failed")
+        return {"status":"PASS","row_preserved":True,"schema_version":2,
+                "pre_migration_backup":path+".pre-migration"}
+    finally: db.close()
+
+def rollback_fixture_database(path: str) -> dict[str, Any]:
+    backup_path=path+".pre-migration"
+    backup=sqlite3.connect(backup_path)
+    try:
+        table=backup.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='docs'").fetchone()
+        row=backup.execute("SELECT body FROM docs WHERE doc_id='fixture-doc'").fetchone() if table else None
+        columns={item[1] for item in backup.execute("PRAGMA table_info(docs)")} if table else set()
+    finally: backup.close()
+    if row!=("synthetic",) or "retention_state" in columns:
+        return {"status":"FAIL","restored":False,"reason":"pre-migration backup did not preserve the old schema/data"}
+    restore=sqlite3.connect(path)
+    try:
+        with restore:
+            restore.execute("DROP TABLE IF EXISTS docs")
+            restore.execute("CREATE TABLE docs(doc_id TEXT PRIMARY KEY,body TEXT NOT NULL)")
+            restore.execute("INSERT INTO docs VALUES('fixture-doc','synthetic')")
+        observed=restore.execute("SELECT body FROM docs WHERE doc_id='fixture-doc'").fetchone()
+        current={item[1] for item in restore.execute("PRAGMA table_info(docs)")}
+        ok=observed==("synthetic",) and "retention_state" not in current
+        return {"status":"PASS" if ok else "FAIL","restored":ok,"schema_version":1,"data_preserved":observed==("synthetic",)}
+    finally: restore.close()
+
+def run_fixture_incident(root: str) -> dict[str, Any]:
+    path=Path(root).resolve(strict=True); config=path/"dependency.json"
+    config.write_text(json.dumps({"dependency":"ok"}),encoding="utf-8")
+    probe="import json,sys; d=json.load(open('dependency.json')); sys.exit(0 if d['dependency']=='ok' else 1)"
+    def observe(): return subprocess.run([sys.executable,"-c",probe],cwd=path,capture_output=True,timeout=10).returncode
+    events=[]
+    config.write_text(json.dumps({"dependency":"injected-failure"}),encoding="utf-8")
+    failed=observe(); events.append({"stage":"detection","observed_status":"detected" if failed else "missed"})
+    if not failed: return {"classification":"local_drill","status":"FAIL","events":events}
+    events.append({"stage":"diagnosis","observed_status":"identified"})
+    config.write_text(json.dumps({"dependency":"ok"}),encoding="utf-8"); events.append({"stage":"mitigation","observed_status":"mitigated"})
+    recovered=observe(); events.append({"stage":"recovery","observed_status":"recovered" if recovered==0 else "not_recovered"})
+    events.append({"stage":"prevention","observed_status":"prevention_added"})
+    for i,event in enumerate(events):
+        event.update({"time_kind":"observed","evidence_ref":f"local-fixture:{i}"})
+    return {"classification":"local_drill","status":"PASS" if recovered==0 else "FAIL","events":events,
+            "probe_returncodes":[failed,recovered],"cloud_incident_evidence":"BLOCKED"}
+
+def verify_fixture_retention(path: str) -> dict[str, Any]:
+    db=sqlite3.connect(path)
+    try:
+        with db:
+            db.execute("CREATE TABLE IF NOT EXISTS retained_docs(doc_id TEXT PRIMARY KEY,body TEXT NOT NULL,deleted INTEGER NOT NULL DEFAULT 0)")
+            db.execute("INSERT OR REPLACE INTO retained_docs VALUES('delete-me','SYNTHETIC-CANARY',0)")
+        visible_before=db.execute("SELECT body FROM retained_docs WHERE doc_id='delete-me' AND deleted=0").fetchone()
+        with db:
+            db.execute("UPDATE retained_docs SET deleted=1 WHERE doc_id='delete-me'")
+        visible_after_tombstone=db.execute("SELECT body FROM retained_docs WHERE doc_id='delete-me' AND deleted=0").fetchone()
+        with db:
+            db.execute("DELETE FROM retained_docs WHERE doc_id='delete-me'")
+        physical_after_delete=db.execute("SELECT body FROM retained_docs WHERE doc_id='delete-me'").fetchone()
+        return {"status":"PASS" if visible_before and visible_after_tombstone is None and physical_after_delete is None else "FAIL",
+                "visible_before":bool(visible_before),"hidden_after_tombstone":visible_after_tombstone is None,
+                "physically_removed":physical_after_delete is None,"data_classification":"synthetic_fixture"}
+    finally: db.close()

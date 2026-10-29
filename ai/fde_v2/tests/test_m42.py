@@ -1,5 +1,5 @@
 """M4.2 mechanics use complete local receipts and keep live cloud blocked."""
-import unittest
+import unittest, tempfile
 from ai.fde_v2.m42 import learner, reference, workflow
 
 CHANGE={"requirement":"add stable source version","old_behavior":"source omitted","new_behavior":"source_version returned",
@@ -55,5 +55,24 @@ class M42Mechanics(unittest.TestCase):
         workflow.review_change(CHANGE,[{"request_id":"q","status":"success","elapsed_ms":4}],INCIDENT,
             {"status":"PASS","source_hash":"e"*64,"test_run_id":"local-run"},adapter=Tracking())
         self.assertEqual(calls,["validate_change_contract","summarize_observations","validate_incident","evaluate_change_gate"])
+
+    def test_local_exercise_runs_red_green_migration_incident_and_retention(self):
+        with tempfile.TemporaryDirectory() as td:
+            out=workflow.run_local_exercise(td,adapter=reference)
+            self.assertEqual(out["change"]["before"]["returncode"],1)
+            self.assertEqual(out["change"]["after"]["returncode"],0)
+            self.assertEqual(out["migration"]["status"],"PASS")
+            self.assertEqual(out["rollback"]["status"],"PASS")
+            self.assertEqual(out["incident"]["probe_returncodes"],[1,0])
+            self.assertEqual([e["stage"] for e in out["incident"]["events"]],
+                             ["detection","diagnosis","mitigation","recovery","prevention"])
+            self.assertTrue(out["retention"]["physically_removed"])
+            self.assertTrue(out["local_mechanics_pass"])
+            self.assertEqual(out["live_cloud_status"],"BLOCKED")
+            self.assertFalse(out["learner_completion"])
+
+    def test_local_exercise_does_not_replace_unimplemented_learner_patch(self):
+        with tempfile.TemporaryDirectory() as td:
+            with self.assertRaises(NotImplementedError): workflow.run_local_exercise(td)
 
 if __name__=='__main__': unittest.main()

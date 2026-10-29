@@ -13,7 +13,11 @@ class M41Acceptance(unittest.TestCase):
         assessment=C.assess_rubric({"evaluator_kind":"peer","evaluator_ref":"peer-ref","evidence_ref":"actual-review",
            "scores":{k:3 for k in ("questions_first","baseline","data_access","risks","success_criteria","non_ai_or_no_go")}})
         self.assertEqual(assessment["status"],"UNVERIFIED_SCORE")
-        self.assertEqual(C.build_pilot_contract(RECORD,assessment)["status"],"BLOCKED")
+        contract=C.build_pilot_contract(RECORD,assessment)
+        self.assertEqual(contract["status"],"ROLEPLAY_EXERCISE_AVAILABLE")
+        self.assertEqual(contract["real_user_gate"],"BLOCKED")
+        self.assertEqual(contract["evaluator_verification"],"BLOCKED")
+        self.assertFalse(contract["claims_permitted"])
     def test_missing_topics_or_claimed_real_user_without_authority_is_rejected(self):
         with self.assertRaises((ValueError,AssertionError)): C.validate_discovery({**RECORD,"questions":[]})
         with self.assertRaises((ValueError,AssertionError)): C.validate_discovery({**RECORD,"evidence_class":"real_user"})

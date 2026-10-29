@@ -5,7 +5,7 @@ from typing import Any, Mapping
 
 MAX_FILE_BYTES = 256_000
 MAX_PLAN_STEPS = 4
-ALLOWED_TOOLS = {"read_file", "read_test_log"}
+ALLOWED_TOOLS = {"read_file", "read_test_log", "propose_patch"}
 
 
 def resolve_allowed_path(root: str, relative_path: str) -> str:
@@ -36,6 +36,10 @@ def validate_plan(plan: Mapping[str, Any], allowed_tools: set[str] = ALLOWED_TOO
             raise PermissionError("unapproved tool or malformed arguments")
         if tool in {"read_file", "read_test_log"}:
             if set(args) != {"path"} or not isinstance(args["path"], str): raise ValueError("invalid read args")
+        elif tool == "propose_patch":
+            if (set(args) != {"path", "original", "proposed"}
+                    or any(not isinstance(args[k], str) for k in args)):
+                raise ValueError("invalid patch proposal args")
         checked.append({"tool":tool,"arguments":dict(args)})
     return {"steps":checked}
 
@@ -53,6 +57,11 @@ def execute_tool(root: str, tool: str, arguments: Mapping[str, Any], *, cancel=N
         path=resolve_allowed_path(root, arguments.get("path", ""))
         text=pathlib.Path(path).read_text(encoding="utf-8")
         return {"status":"ok","tool":tool,"text":text,"sha256":hashlib.sha256(text.encode()).hexdigest(),
+                "trace_id":trace,"elapsed_seconds":time.monotonic()-started}
+    if tool == "propose_patch":
+        proposal = render_patch_proposal(root, arguments.get("path"),
+                                         arguments.get("original"), arguments.get("proposed"))
+        return {"status":"proposal_ready", "tool":tool, "proposal":proposal,
                 "trace_id":trace,"elapsed_seconds":time.monotonic()-started}
     raise PermissionError("tool is not allowlisted")
 

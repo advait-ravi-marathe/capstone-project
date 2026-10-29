@@ -64,6 +64,8 @@ Daily slices and role-bank labels are listed per actual Day 62–82 in the JSON 
 
 The proposed final receipt matrix requires all of: passed M2.1 prerequisite; actual identity flow; actual server access tests; actual retrieval-boundary isolation; reviewed threat model; actual secret/log scan; retention/deletion evidence; clean reproducible build; redacted actual trace; reviewed cost/performance budget; and reviewed learner explanation. The helper never declares M2.2 passed: only an external independent review can turn complete actual evidence into a learner outcome. Test doubles never count as identity/authentication or real deployment.
 
+The local route scaffold is runnable at `ai/fde_v2/m22/workflow.py`: actual in-memory SQLite and embedded Qdrant back the FastAPI document/search routes. Its integration suite uses synthetic verified-claims callbacks and an explicit instructor reference adapter, including cross-tenant denial and same-tenant ACL revocation after cached retrieval. This proves local route/storage wiring and mechanics only; it is not a cryptographic identity exchange, actual P1/M2.1 learner run, or M2.2 completion. The default application adapter remains the learner TODO and fails closed.
+
 Deterministic layer: policy table, stale/revoked result filtering, audit allowlist, deadline/retry logic and fail-closed receipt handling. Actual local integration layer: established identity exchange plus real protected route/service and persisted retrieval boundary, then clean container/build and captured redacted trace. AWS/cloud evidence remains separate, unavailable without later explicit authority. No credentials, model requests, cloud setup, deployment, account activity or spending were performed by this scaffold.
 
 ## Commands and readiness state
@@ -75,8 +77,10 @@ python -m ai.fde_v2.m22.acceptance --milestone AIFDE-V2-M2.2 --mode mechanics
 M22_CANDIDATE=ai.fde_v2.m22.reference python -m ai.fde_v2.m22.acceptance --milestone AIFDE-V2-M2.2 --mode learner
 python -m ai.fde_v2.m22.acceptance --milestone AIFDE-V2-M2.2 --mode learner
 python -m ai.fde_v2.m22.acceptance --milestone AIFDE-V2-M2.2 --mode integration
-python -m ai.fde_v2.m22.acceptance --milestone AIFDE-V2-M2.2 --mode evidence
+python -m ai.fde_v2.m22.acceptance --milestone AIFDE-V2-M2.2 --mode evidence --receipt PATH
 ```
+
+If actual artifacts are later collected, supply a hash-verified manifest using the documented [later-milestone receipt format](../evidence-receipts.md). The command can verify file hashes and required artifact categories only; it never authenticates identity, learner authorship, or cloud/provider claims, and it cannot mark M2.2 passed.
 
 The first two commands are deterministic instructor mechanics/acceptance witnesses. The third is expected to fail at unsolved learner TODOs. Integration and evidence commands exit blocked until real prerequisites/receipts exist; they are not production-readiness claims. Exact test output and mutations are recorded in [`m22-draft-verification.md`](../reports/m22-draft-verification.md).
 

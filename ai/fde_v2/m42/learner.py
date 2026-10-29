@@ -13,3 +13,23 @@ def validate_incident(record: Mapping[str, Any]) -> dict[str, Any]:
 
 def evaluate_change_gate(change: Mapping[str, Any], observation: Mapping[str, Any], incident: Mapping[str, Any]) -> dict[str, Any]:
     raise NotImplementedError("M4.2: gate tested change/recovery without production claims")
+
+def apply_minimal_fixture_patch(root: str, source_sha256: str) -> dict[str, Any]:
+    """Apply the learner's reviewed minimal change to the disposable fixture only."""
+    raise NotImplementedError("M4.2: implement minimal regression-first fixture patch")
+
+def migrate_fixture_database(path: str) -> dict[str, Any]:
+    """Apply a reversible schema migration to the copied SQLite fixture."""
+    raise NotImplementedError("M4.2: implement migration and rollback guard")
+
+def rollback_fixture_database(path: str) -> dict[str, Any]:
+    """Restore the verified pre-migration fixture snapshot and read it back."""
+    raise NotImplementedError("M4.2: implement fixture rollback and compatibility verification")
+
+def run_fixture_incident(root: str) -> dict[str, Any]:
+    """Inject, detect, mitigate and recover one local-only fault."""
+    raise NotImplementedError("M4.2: implement observed local incident drill")
+
+def verify_fixture_retention(path: str) -> dict[str, Any]:
+    """Tombstone and physically remove a synthetic document, then requery."""
+    raise NotImplementedError("M4.2: implement retention/deletion verification")

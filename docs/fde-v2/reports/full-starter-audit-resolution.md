@@ -1,0 +1,43 @@
+# Full starter audit resolution — continuation branch
+
+Status: local implementation and deterministic verification checkpoint; not a learner assessment, release approval, or main-branch merge. Candidate base: `1d030e52333c4897ec2774f37a1ddb37dfb726a1`. This report is updated before publication and must be matched to the resulting commit.
+
+## Audit findings
+
+| Finding | Starter-delivery correction | Remaining evidence gate |
+|---|---|---|
+| H1 — M2.1 lifecycle was disconnected | Added `m21.VersionedWorkflow` and a local FastAPI publish/search/delete API backed by the persisted SQLite version ledger and Qdrant. The workflow routes publish, delete and active-version filtering through selected learner adapters. Tests exercise update failure, database/vector-store reopen, tombstone suppression and deletion. It is an explicit M2.1 service path, separate from the original P1 `/ask` endpoint. | The M2.1 prerequisite (real P1 generation/embeddings and learner ownership) remains blocked. Fixed embeddings are fixture mechanics only. |
+| H2 — M2.2 had no executable protected service | Added local FastAPI, SQLite and embedded-Qdrant routes with an explicit synthetic claims callback. Tests cover tenant isolation, missing/expired credentials, ACL revocation against retrieved candidates, request bounds and adapter selection. Default learner adapters fail closed. | Synthetic claims are not cryptographic identity. Real identity, P1 prerequisites and learner work remain blocked. |
+| H3 — M3.1 never generated a proposal | Connected bounded file reads to an explicit planner callback and learner plan validation; the selected renderer produces a hash-bound review-only patch proposal. No patch is applied. Tests show changed file contents affect the proposal path and invalid/stale scope is rejected. | No planning-capable model was called; model quality and learner implementation remain unverified. |
+| H4 — M3.3 had no side-effect/recovery path | Added a scratch-only controlled patch proposal path with exact-action digest, explicit test-only approval fixture, SQLite action journal and lost-response reconciliation. Tests cover denial, changed action, one effect, replay and recovery without blind retry. | Test callbacks are not human approval. The workflow does not imply exactly-once delivery or guaranteed completion. |
+| H5 — M4.2 only accepted caller-supplied receipts | Added a disposable local instructor fixture: red/green regression, copied SQLite migration/rollback, injected dependency-failure recovery and retention deletion. Learner adapters own each operation; the default remains TODO. | Synthetic local drills do not establish cloud deployment or sustained production reliability. |
+| H6 — evidence CLIs were constant BLOCKED | Added a common path-contained, SHA-256 artifact manifest verifier and `--receipt` input to M2.2 through M5.3 evidence CLIs. Missing, malformed, escaped, symlinked or altered artifacts remain BLOCKED/INVALID; complete artifact coverage produces only `ARTIFACTS_PRESENT_REQUIRES_INDEPENDENT_REVIEW`, never milestone PASS. | Human identity, authorship, provider state and claim truth require independent review; the receipt checker cannot establish them. |
+| H7 — M2.3 had no provider integration seam | Added optional explicit transport injection after authorization validation. Without a supplied transport it makes no call and remains BLOCKED; a fixture transport tests routing only. | No AWS/Bedrock SDK adapter or live service request is claimed. Provider-specific implementation and authorized account/region/model/budget remain outstanding. |
+| M1 — command and status text were stale | Corrected the documented M2.2 command to its real module, refreshed active scope/status text, and updated M2.1/M2.2/M3.1/M3.3/M4.1/M4.2 proposal links and limitations. | Later milestones are still conditional and not merged to main. |
+| M2 — Days 42–81 lacked standalone navigation | Added conditional per-day pages for all 40 days, including their proposal schedule links, budgets, entry gates and teaching/test references; Day 62 is an explicit shared boundary. Index validation covers Days 1–270. | Pages document conditional work; no learner days are marked complete. |
+
+## Coverage inventory
+
+| Learning span | Accepted milestone | Starter/scaffold coverage in the continuation | Status that must remain separate |
+|---|---|---|---|
+| Days 1–14 | Sprint 1 opening | Active guide, supplied application, learner seams, reference tests and UI harness | Learner progress is not inferred from code or tests. |
+| Days 15–30 | Sprint 2 | RAG path, learner-owned retrieval/generation seams, UI and tests | Real inference remains blocked. |
+| Days 31–41 | P1 closeout | Closeout teaching, U023 fixture scope and validation | P1 actual capability/evidence remains gated. |
+| Days 42–62 | M2.1 | Detailed sequence, standalone cards, version ledger, selected-adapter workflow and local service API | Real generation/embeddings and learner evaluation remain blocked. |
+| Days 62–82 | M2.2 | Security/identity preparation, local access-control harness, conditional cards and tests | Local claims fixture is not live identity; learner and P1 gates remain. |
+| Days 82–102 | M2.3 | Conditional deployment/hosted-model workflow, validated authorization and inert transport interface | Provider adapter, spend authority, cloud deployment and hosted inference are not implemented/evidenced. |
+| Days 103–123 | M3.1 | Bounded repository reader/planner callback, review-only proposal workflow and tests | Real planner execution and learner attempts remain unverified. |
+| Days 123–143 | M3.2 | Pinned SDK client/server stdio exchange, scoped tools and exact-action approval harness | Test approval is not human approval; no external write is authorized. |
+| Days 143–163 | M3.3 | Frozen task mechanics, controlled scratch proposal, replay journal and recovery tests | Real model/human-review evidence remains blocked. |
+| Days 163–183 | M4.1 | Question-first discovery, role-play practice, pilot contract and evaluator provenance checks | Role-play is available as exercise only; trusted evaluator and real-user gates remain blocked. |
+| Days 184–204 | M4.2 | Local change, migration, fault/recovery and retention exercise with learner seams | Cloud/pilot and production evidence remain absent. |
+| Days 204–224 | M4.3 | Conditional integration/debugging/handoff/demo curriculum and scaffold checks | Actual unfamiliar learner attempts, peer review and handoff are not claimed. |
+| Days 225–229 | M5.1 | Six-gate assessment planning, attempt/evidence structures and repair assignment mechanics | Twenty hours of formal non-DSA assessment and actual unseen attempts are not supplied by scaffolding. |
+| Days 229–250 | M5.2 | Local ranking/evaluation learner functions, split and metric mechanics, serving scaffold | Actual sourced dataset, learner fit, frozen held-out results and real recommendation evidence remain required. |
+| Days 251–270 | M5.3 | Evidence map, case-study, role-fit and conditional certification decision templates/checks | Current job research, learner evidence, exam readiness and any public/external action are not asserted. |
+
+## Verification checkpoint
+
+Latest local checks before this report was added: `python3 -m unittest discover -s scripts -p 'test_*.py'` (239 passed); AI mechanics suite excluding the dedicated MCP module (121 passed), then MCP stdio tests in the pinned MCP environment (2 passed); reference-adapter learner acceptance selectors for M2.2–M5.3 (27 passed after updating M4.1 role-play semantics); frontend `npm test` (24 Vitest + 1 Node passed) and `npm run build`; compileall; CLI help checks; day-card coverage and Markdown local-link checks. The primary interpreter needs the existing `/tmp/capstone-qdrant-libs:/tmp/capstone-v2-test-deps` path for Qdrant tests; MCP stdio uses `/tmp/fde-mcp-venv`.
+
+These are deterministic local checks. Exact-head GitHub CI, independent review of the complete updated candidate, real inference, provider/cloud operation and learner evidence are not yet established by this report.

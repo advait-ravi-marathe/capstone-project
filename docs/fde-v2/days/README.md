@@ -1,6 +1,6 @@
 # AWS FDE v2.4 daily pages
 
-Actual learning days are attempt-indexed; dates do not advance status. Sprint 1 contains Days 1–14. Detailed pages exist for Days15–41 and82–270; Days42–81 currently have only M2.1/M2.2 proposal guides, with no per-day cards. Every authored page retains the fixed 180-minute schedule. Day30 contains only the explicitly bounded U023 fixture-authoring slice; deterministic execution starts on Day31. Days31–41 are P1 closeout tasks, and their real-model, held-out and ownership outcomes remain evidence-gated.
+Actual learning days are attempt-indexed; dates do not advance status. Sprint 1 contains Days 1–14. Daily pages cover Days01–270. Days42–61 link to the M2.1 conditional proposal and Days62–81 link to the M2.2 conditional proposal; Day62 is an explicit shared boundary. Every page retains the fixed 180-minute daily schedule and conditional gates. Day30 contains only the explicitly bounded U023 fixture-authoring slice; deterministic execution starts on Day31. Days31–41 are P1 closeout tasks, and their real-model, held-out and ownership outcomes remain evidence-gated.
 
 | Day | Page |
 |---:|---|
@@ -45,46 +45,46 @@ Actual learning days are attempt-indexed; dates do not advance status. Sprint 1 
 | 39 | [Day 39: Held-out evaluation and audit](day-39.md) |
 | 40 | [Day 40: Clean-run demo and checkpoint](day-40.md) |
 | 41 | [Day 41: Evidence closeout and carryover](day-41.md) |
-| 42 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 43 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 44 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 45 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 46 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 47 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 48 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 49 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 50 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 51 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 52 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 53 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 54 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 55 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 56 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 57 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 58 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 59 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 60 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 61 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 62 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 63 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 64 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 65 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 66 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 67 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 68 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 69 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 70 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 71 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 72 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 73 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 74 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 75 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 76 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 77 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 78 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 79 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 80 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
-| 81 | No per-day page; only conditional M2.1/M2.2 design proposals exist |
+| 42 | [Conditional Day 42: M2.1/M2.2 proposal](day-42.md) |
+| 43 | [Conditional Day 43: M2.1/M2.2 proposal](day-43.md) |
+| 44 | [Conditional Day 44: M2.1/M2.2 proposal](day-44.md) |
+| 45 | [Conditional Day 45: M2.1/M2.2 proposal](day-45.md) |
+| 46 | [Conditional Day 46: M2.1/M2.2 proposal](day-46.md) |
+| 47 | [Conditional Day 47: M2.1/M2.2 proposal](day-47.md) |
+| 48 | [Conditional Day 48: M2.1/M2.2 proposal](day-48.md) |
+| 49 | [Conditional Day 49: M2.1/M2.2 proposal](day-49.md) |
+| 50 | [Conditional Day 50: M2.1/M2.2 proposal](day-50.md) |
+| 51 | [Conditional Day 51: M2.1/M2.2 proposal](day-51.md) |
+| 52 | [Conditional Day 52: M2.1/M2.2 proposal](day-52.md) |
+| 53 | [Conditional Day 53: M2.1/M2.2 proposal](day-53.md) |
+| 54 | [Conditional Day 54: M2.1/M2.2 proposal](day-54.md) |
+| 55 | [Conditional Day 55: M2.1/M2.2 proposal](day-55.md) |
+| 56 | [Conditional Day 56: M2.1/M2.2 proposal](day-56.md) |
+| 57 | [Conditional Day 57: M2.1/M2.2 proposal](day-57.md) |
+| 58 | [Conditional Day 58: M2.1/M2.2 proposal](day-58.md) |
+| 59 | [Conditional Day 59: M2.1/M2.2 proposal](day-59.md) |
+| 60 | [Conditional Day 60: M2.1/M2.2 proposal](day-60.md) |
+| 61 | [Conditional Day 61: M2.1/M2.2 proposal](day-61.md) |
+| 62 | [Conditional Day 62: M2.1/M2.2 proposal](day-62.md) |
+| 63 | [Conditional Day 63: M2.1/M2.2 proposal](day-63.md) |
+| 64 | [Conditional Day 64: M2.1/M2.2 proposal](day-64.md) |
+| 65 | [Conditional Day 65: M2.1/M2.2 proposal](day-65.md) |
+| 66 | [Conditional Day 66: M2.1/M2.2 proposal](day-66.md) |
+| 67 | [Conditional Day 67: M2.1/M2.2 proposal](day-67.md) |
+| 68 | [Conditional Day 68: M2.1/M2.2 proposal](day-68.md) |
+| 69 | [Conditional Day 69: M2.1/M2.2 proposal](day-69.md) |
+| 70 | [Conditional Day 70: M2.1/M2.2 proposal](day-70.md) |
+| 71 | [Conditional Day 71: M2.1/M2.2 proposal](day-71.md) |
+| 72 | [Conditional Day 72: M2.1/M2.2 proposal](day-72.md) |
+| 73 | [Conditional Day 73: M2.1/M2.2 proposal](day-73.md) |
+| 74 | [Conditional Day 74: M2.1/M2.2 proposal](day-74.md) |
+| 75 | [Conditional Day 75: M2.1/M2.2 proposal](day-75.md) |
+| 76 | [Conditional Day 76: M2.1/M2.2 proposal](day-76.md) |
+| 77 | [Conditional Day 77: M2.1/M2.2 proposal](day-77.md) |
+| 78 | [Conditional Day 78: M2.1/M2.2 proposal](day-78.md) |
+| 79 | [Conditional Day 79: M2.1/M2.2 proposal](day-79.md) |
+| 80 | [Conditional Day 80: M2.1/M2.2 proposal](day-80.md) |
+| 81 | [Conditional Day 81: M2.1/M2.2 proposal](day-81.md) |
 | 82 | [Conditional learning Day 82: M23 draft](day-82.md) |
 | 83 | [Conditional learning Day 83: M23 draft](day-83.md) |
 | 84 | [Conditional learning Day 84: M23 draft](day-84.md) |

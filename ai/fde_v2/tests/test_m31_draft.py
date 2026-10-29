@@ -50,6 +50,33 @@ class M31Mechanics(unittest.TestCase):
             self.assertEqual(got['trace'][0]['failure_class'],'learner-seen:ok')
         with self.assertRaises(AssertionError): self.assertEqual(got['trace'][0]['failure_class'],'success')
 
+    def test_workflow_returns_real_review_only_patch_proposal(self):
+        with tempfile.TemporaryDirectory() as td:
+            source=Path(td)/'main.py'; source.write_text('answer = 1\n')
+            plan={'steps':[{'tool':'propose_patch','arguments':{
+                'path':'main.py','original':'answer = 1\n','proposed':'answer = 2\n'}}]}
+            got=workflow.run_workflow(td,plan,adapter=reference)
+            self.assertIn('-answer = 1',got['patch']['diff'])
+            self.assertFalse(got['patch']['applied']); self.assertFalse(got['write_applied'])
+            self.assertEqual(source.read_text(),'answer = 1\n')
+
+    def test_explicit_planner_receives_real_scoped_observations_and_proposes_patch(self):
+        with tempfile.TemporaryDirectory() as td:
+            source=Path(td)/'app.py'; source.write_text('answer = 1\n')
+            seen=[]
+            def deterministic_planner(context):
+                seen.extend(context['observations'])
+                actual=context['observations'][0]['text']
+                return {'steps':[{'tool':'propose_patch','arguments':{
+                    'path':'app.py','original':actual,'proposed':actual.replace('1','2')}}]}
+            out=workflow.run_workflow(td,planner=deterministic_planner,planning_inputs=['app.py'],adapter=reference)
+            self.assertEqual(seen[0]['text'],'answer = 1\n')
+            self.assertIn('-answer = 1',out['patch']['diff'])
+            self.assertFalse(out['write_applied']); self.assertEqual(source.read_text(),'answer = 1\n')
+            with self.assertRaises(PermissionError):
+                workflow.run_workflow(td,planner=lambda _ctx:{'steps':[{'tool':'shell','arguments':{'command':'id'}}]},
+                                      planning_inputs=['app.py'],adapter=reference)
+
     def test_feature_entrypoint_fails_on_unfinished_learner_instead_of_reference_fallback(self):
         with self.assertRaises(NotImplementedError):
             workflow.run_workflow('.',{'steps':[{'tool':'read_file','arguments':{'path':'README.md'}}]})

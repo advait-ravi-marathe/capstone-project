@@ -104,10 +104,12 @@ jobs:
       - name: Verify conditional AWS FDE v2.4 M2.1 draft mechanics
         run: |
           python3 -m unittest scripts.test_fde_v2_m21_draft
-          python3 -m unittest ai.fde_v2.tests.test_m21_draft
+          python3 -m unittest ai.fde_v2.tests.test_m21_draft ai.fde_v2.tests.test_m21_feature_integration
+          python3 -m unittest ai.fde_v2.tests.test_evidence_receipts
       - name: Verify conditional AWS FDE v2.4 M2.2 draft mechanics
         run: |
-          python3 -m unittest scripts.test_fde_v2_m22_draft ai.fde_v2.tests.test_m22_draft
+          python3 -m unittest scripts.test_fde_v2_m22_draft ai.fde_v2.tests.test_m22_draft ai.fde_v2.tests.test_m22_integration
+          python3 -m ai.fde_v2.m22.acceptance --milestone AIFDE-V2-M2.2 --mode integration
           M22_CANDIDATE=ai.fde_v2.m22.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m22_units
       - name: Install pinned official MCP Python SDK for conditional M3.2
         run: python3 -m pip install -r requirements-fde-v2-mcp.txt

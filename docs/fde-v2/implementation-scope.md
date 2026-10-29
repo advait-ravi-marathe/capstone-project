@@ -1,6 +1,6 @@
-# Sprint 1 implementation boundary
+# Current continuation implementation boundary
 
-Sprint 1 on main implements actual learning Days 1–14. This separate continuation branch adds Days 15–30 against the same immutable accepted contracts under `accepted/`; it remains unpublished and requires review. Day14 is only the first 30-minute U011 slice. Day30 includes only U023 fixture authoring and expected deterministic-boundary notes; U023 execution continues on Day31. This continuation does not complete the accepted first-30 schedule.
+Sprint 1 on main implements the first 14 actual learning days. The published review branch `work/aws-fde-v24-continuation` contains conditional draft guidance and starter scaffolds through Day 270 against the immutable accepted contracts under `accepted/`. This branch is not merged to main, and authorship does not advance learner status. P1 Day 41, M2.1 Days 42–62, and M2.2 Days 62–82 remain conditional on their prerequisites and actual evidence. Standalone daily pages for Days 42–81 link the proposal schedules and exact stage guidance; their conditional status is not a passed assignment.
 
 ## Ownership
 
@@ -18,4 +18,4 @@ The assistant supplies loopback API, model/embedding loaders, SQLite/Qdrant pers
 
 ## Accepted full-plan milestones versus this release
 
-The accepted planning source places generation near Day9, persisted vector retrieval near Day22, generative RAG near Day26 and the full local evaluated prototype around Day41. These are estimates and gates, not completion claims. Daily guidance is authored through Day30 in this unpublished continuation. Day29 supplies U021's final 30-minute deterministic-mechanics segment and begins U022. Day30 finishes its scheduled U022 work and authors only the U023 fixture/expected-boundary slice. U023 execution/regression evidence continues Day31. The real-model evaluation remains blocked and neither U023 nor P1 is claimed complete.
+The accepted planning source places generation near Day 9, persisted vector retrieval near Day 22, generative RAG near Day 26 and the full local evaluated prototype around Day 41. These are estimates and gates, not completion claims. Authored daily pages exist for Days 1–270. Days 42–81 are conditional cards linked to M2.1/M2.2 detailed proposals, and Day 62 identifies the shared budget boundary. Their presence does not clear prerequisite/evidence gates. The model-backed P1 and cloud/customer/human-review evidence gates remain unresolved; no learner completion is claimed.

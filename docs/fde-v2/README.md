@@ -87,7 +87,7 @@ Fixed-vector and injected-pipeline tests verify mechanics only. They never satis
 - [Model runtime verification status](runtime-verification.md)
 - [Accepted v2.4 planning inputs](accepted/)
 
-Each day's page assigns DSA60 + role/AWS bank30 + AI90 = 180 minutes. A 75-minute DSA revision reduces AI to75; a90-minute revision reduces AI to60. The actual Day14 allocation spends U010 support30 + the first U011 segment30 + a private evidence note30. U011 remains incomplete. In the separate continuation branch, actual Days 15–30 extend U011 and introduce U012–U023, with Day30 limited to the accepted U023 fixture-authoring slice. The pages and seams remain unpublished pending review. This is not a claim that the full accepted first-30 schedule, U023, or its milestones are complete.
+Each day's page assigns DSA60 + role/AWS bank30 + AI90 = 180 minutes. A 75-minute DSA revision reduces AI to75; a90-minute revision reduces AI to60. The actual Day14 allocation spends U010 support30 + the first U011 segment30 + a private evidence note30. U011 remains incomplete. The published review branch `work/aws-fde-v24-continuation` contains conditional starter guidance through Day270, while main remains at the Sprint1 release; those later pages do not imply learner completion. Days42–81 are conditional daily cards linked to detailed M2.1/M2.2 proposals; Day62 is a shared boundary. Model/cloud/customer evidence remains independently gated. This does not claim the full accepted first-30 schedule, U023, P1 or later milestones are complete.
 
 ## P1 closeout: actual learning Days 31–41
 

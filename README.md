@@ -1,6 +1,6 @@
 # Capstone roadmap
 
-The active roadmap is the [AWS FDE v2.4 interview-first plan](docs/fde-v2/README.md). It starts at the first actual study session; all learner days remain Not started. Main contains Sprint 1 daily pages for Days 1–14. The separate unpublished `work/aws-fde-v24-continuation` worktree adds authored guidance through Day 28; those pages are not yet part of main or a released starter.
+The active roadmap is the [AWS FDE v2.4 interview-first plan](docs/fde-v2/README.md). It starts at the first actual study session; all learner days remain Not started. Main contains the Sprint 1 daily pages for Days 1–14. The published review branch `work/aws-fde-v24-continuation` contains conditional guidance and starter scaffolds through Day 270, but is not merged to main. Standalone daily pages for Days 42–81 remain missing; that gap is recorded in the [implementation boundary](docs/fde-v2/implementation-scope.md).
 
 Start with the [Day 1 guide](docs/fde-v2/days/day-01.md) and run the CPU-only synthetic lexical baseline:
 

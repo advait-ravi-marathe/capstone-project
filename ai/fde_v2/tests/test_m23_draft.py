@@ -57,4 +57,16 @@ class M23Mechanics(unittest.TestCase):
         self.assertFalse(denied['external_call_made']); self.assertEqual(denied['status'],'BLOCKED')
         with self.assertRaises(AssertionError): self.assertEqual(denied['status'],'PASS')
 
+    def test_transport_is_never_constructed_implicitly_and_injected_fixture_is_review_only(self):
+        good={'account_id':'123','region':'us-west-2','services':['ecs'],'model_id':'m','spend_ceiling':5,
+              'currency':'USD','expires_at':20,'teardown_owner':'owner','residual_cost_acknowledged':True}
+        calls=[]
+        class FixtureTransport:
+            def execute(self,scope): calls.append(scope); return {'fixture':'synthetic'}
+        blocked=workflow.prepare_live_operation(good,10,adapter=reference)
+        self.assertFalse(blocked['external_call_made']); self.assertEqual(calls,[])
+        result=workflow.prepare_live_operation(good,10,adapter=reference,transport=FixtureTransport())
+        self.assertEqual(result['status'],'PROVIDER_RESPONSE_REQUIRES_REVIEW')
+        self.assertFalse(result['milestone_pass']); self.assertEqual(len(calls),1)
+
 if __name__=='__main__': unittest.main()

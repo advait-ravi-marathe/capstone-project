@@ -1,7 +1,9 @@
 """M3.3 mechanics execute real local M3.1 tools; no model-quality claim."""
 import tempfile, unittest
+import hashlib
 from pathlib import Path
 from ai.fde_v2.m31 import reference as m31_reference
+from ai.fde_v2.m32 import reference as m32_reference
 from ai.fde_v2.m33 import learner, reference, workflow
 
 class M33Mechanics(unittest.TestCase):
@@ -95,5 +97,41 @@ class M33Mechanics(unittest.TestCase):
         self.assertFalse(reference.reconcile_action({"observed_status":"uncertain"})["retry"])
         with self.assertRaises(AssertionError): self.assertTrue(reference.reconcile_action({"observed_status":"uncertain"})["retry"])
         with self.assertRaises(NotImplementedError): learner.score_case({}, {})
+
+    def test_feature_workflow_executes_exact_patch_once_and_reconciles_lost_response(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td); source=root/'source.py'; source.write_text('actual source')
+            action={'action_id':'a-1','source_path':'source.py','target_name':'fix.patch',
+                    'content':'review-only proposal','source_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),
+                    'scope_sha256':'a'*64,'session_binding':'test-session'}
+            raw=action['content'].encode()
+            digest=m32_reference.canonical_action_digest('write_patch_proposal',action['target_name'],raw,
+                action['source_sha256'],action['scope_sha256'],action['source_path'],action['session_binding'])
+            case={'case_id':'patch-recover','kind':'controlled_patch','action':action,
+                  'simulate_lost_response':True,'expected_status':'RECONCILED_EXISTING_EFFECT',
+                  'expected_effect_count':1}
+            rows=workflow.run_task_suite(td,[case],tool_adapter=m31_reference,evaluator=reference,
+                approval_fixture_provider=lambda _action:{'approved':True,'action_digest':digest})
+            self.assertTrue(rows[0]['success']); self.assertTrue(rows[0]['authorization_safe'])
+            written=root/'patch-proposals'/'fix.patch'
+            self.assertEqual(written.read_text(),'review-only proposal')
+            replay=workflow.run_controlled_patch(td,action,adapter=reference,
+                approval_fixture={'approved':True,'action_digest':digest})
+            self.assertEqual(replay['status'],'REPLAY_RECONCILED')
+            self.assertEqual(written.read_text(),'review-only proposal')
+
+    def test_changed_action_or_missing_exact_approval_cannot_write(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td); source=root/'source.py'; source.write_text('actual source')
+            action={'action_id':'a-2','source_path':'source.py','target_name':'fix.patch',
+                    'content':'proposal','source_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),
+                    'scope_sha256':'b'*64,'session_binding':'test-session'}
+            denied=workflow.run_controlled_patch(td,action,adapter=reference,approval_fixture=None)
+            self.assertEqual(denied['status'],'DENIED')
+            self.assertFalse((root/'patch-proposals'/'fix.patch').exists())
+            approval={'approved':True,'action_digest':'c'*64}
+            denied=workflow.run_controlled_patch(td,action,adapter=reference,approval_fixture=approval)
+            self.assertEqual(denied['status'],'DENIED')
+            self.assertFalse((root/'patch-proposals'/'fix.patch').exists())
 
 if __name__=='__main__': unittest.main()
