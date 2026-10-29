@@ -6,6 +6,7 @@ wiring, but they do not represent AWS or hosted-model evidence.
 from __future__ import annotations
 from typing import Any, Mapping
 from . import learner
+from .providers import BedrockConverseAdapter
 
 def prepare_live_operation(record: Mapping[str, Any], now: int, *, adapter=learner,
                            transport=None) -> dict[str, Any]:
@@ -25,10 +26,14 @@ def prepare_live_operation(record: Mapping[str, Any], now: int, *, adapter=learn
         return {"status":"BLOCKED","reason":"authorization scope invalid or expired","external_call_made":False}
     if transport is None:
         return {"status":"BLOCKED","reason":"no explicitly authorized provider transport is configured","external_call_made":False}
-    if not callable(getattr(transport,"execute",None)):
-        return {"status":"BLOCKED","reason":"provider transport must expose execute(scope)","external_call_made":False}
+    if not isinstance(transport,BedrockConverseAdapter):
+        return {"status":"BLOCKED","reason":"only the approval-bound Bedrock adapter is supported",
+                "external_call_made":False}
     result=transport.execute(dict(record))
     if not isinstance(result,Mapping):
-        return {"status":"INVALID_PROVIDER_RESPONSE","external_call_made":True}
+        return {"status":"INVALID_PROVIDER_RESPONSE","external_call_made":False}
+    if result.get("external_call_made") is not True:
+        return {"status":"BLOCKED","reason":result.get("reason","provider adapter did not confirm a bounded request"),
+                "external_call_made":False}
     return {"status":"PROVIDER_RESPONSE_REQUIRES_REVIEW","external_call_made":True,
             "provider_result":dict(result),"milestone_pass":False}

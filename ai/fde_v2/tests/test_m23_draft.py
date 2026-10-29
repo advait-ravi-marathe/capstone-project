@@ -3,7 +3,7 @@ import json, unittest
 from pathlib import Path
 from ai.fde_v2.m23 import learner, reference, workflow
 from ai.fde_v2.m23.providers import (BedrockConverseAdapter, EcsDeploymentAdapter,
-    build_converse_request, build_ecs_service_request, build_ecs_task_definition_request)
+    ApprovalVault, build_converse_request, build_ecs_service_request, build_ecs_task_definition_request)
 
 
 class FakeBedrockRuntime:
@@ -95,16 +95,24 @@ class M23Mechanics(unittest.TestCase):
         with self.assertRaises(AssertionError): self.assertEqual(denied['status'],'PASS')
 
     def test_transport_is_never_constructed_implicitly_and_injected_fixture_is_review_only(self):
-        good={'account_id':'123','region':'us-west-2','services':['ecs'],'model_id':'m','spend_ceiling':5,
+        good={'account_id':'123','region':'us-west-2','services':['bedrock'],'model_id':'m','spend_ceiling':5,
               'currency':'USD','expires_at':20,'teardown_owner':'owner','residual_cost_acknowledged':True}
         calls=[]
         class FixtureTransport:
             def execute(self,scope): calls.append(scope); return {'fixture':'synthetic'}
         blocked=workflow.prepare_live_operation(good,10,adapter=reference)
         self.assertFalse(blocked['external_call_made']); self.assertEqual(calls,[])
-        result=workflow.prepare_live_operation(good,10,adapter=reference,transport=FixtureTransport())
+        unsupported=workflow.prepare_live_operation(good,10,adapter=reference,transport=FixtureTransport())
+        self.assertEqual(unsupported['status'],'BLOCKED'); self.assertEqual(calls,[])
+        request=build_converse_request('m','x',2)
+        digest=__import__('hashlib').sha256(json.dumps(request,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+        vault=ApprovalVault(lambda *_args:True)
+        token=vault.issue('bedrock_converse',digest,{'model':'m'},now=10)
+        scope={**good,'provider':'aws-bedrock-converse','prompt':'x','max_tokens':2,'approval_token':token}
+        provider=BedrockConverseAdapter(FakeBedrockRuntime(),vault,execution_enabled=True,clock=lambda:11)
+        result=workflow.prepare_live_operation(scope,10,adapter=reference,transport=provider)
         self.assertEqual(result['status'],'PROVIDER_RESPONSE_REQUIRES_REVIEW')
-        self.assertFalse(result['milestone_pass']); self.assertEqual(len(calls),1)
+        self.assertFalse(result['milestone_pass']); self.assertTrue(result['external_call_made'])
 
     def test_malformed_truthy_authorization_never_invokes_transport(self):
         calls=[]
@@ -125,19 +133,26 @@ class M23Mechanics(unittest.TestCase):
         for args in (("","hello",32),("m"," ",32),("m","x",0),("m","x",True),("m","x",4097)):
             with self.subTest(args=args),self.assertRaises(ValueError): build_converse_request(*args)
         client=FakeBedrockRuntime()
-        blocked=BedrockConverseAdapter(client,lambda _scope:True).execute(
-            {"provider":"aws-bedrock-converse","model_id":"m","prompt":"x","max_tokens":2})
+        request_hash=__import__('hashlib').sha256(json.dumps(expected,sort_keys=True,separators=(",",":")).encode()).hexdigest()
+        vault=ApprovalVault(lambda *_args:True)
+        token=vault.issue("bedrock_converse",request_hash,{"model":"approved-model"},now=100)
+        scope={"provider":"aws-bedrock-converse","model_id":"approved-model","prompt":"hello","max_tokens":32,
+               "approval_token":token}
+        blocked=BedrockConverseAdapter(client,vault).execute(scope)
         self.assertEqual(blocked["status"],"BLOCKED"); self.assertEqual(client.calls,[])
-        live_test_only=BedrockConverseAdapter(client,lambda _scope:True,execution_enabled=True).execute(
-            {"provider":"aws-bedrock-converse","model_id":"approved-model","prompt":"hello","max_tokens":32})
+        live_test_only=BedrockConverseAdapter(client,vault,execution_enabled=True,clock=lambda:101).execute(scope)
         self.assertEqual(live_test_only["status"],"PROVIDER_RESPONSE_REQUIRES_REVIEW")
         self.assertEqual(client.calls,[expected])
         parsed=live_test_only["provider_result"]
         self.assertEqual(parsed["usage"],{"inputTokens":7,"outputTokens":3,"totalTokens":10})
         self.assertFalse(live_test_only["milestone_pass"])
-        malformed=BedrockConverseAdapter(client,lambda _scope:"true",execution_enabled=True).execute(
-            {"provider":"aws-bedrock-converse","model_id":"m","prompt":"x","max_tokens":2})
+        malformed_vault=ApprovalVault(lambda *_args:"true")
+        self.assertIsNone(malformed_vault.issue("bedrock_converse",request_hash,{},now=100))
+        malformed=BedrockConverseAdapter(client,malformed_vault,execution_enabled=True,clock=lambda:101).execute(
+            {**scope,"approval_token":"fabricated"})
         self.assertEqual(malformed["status"],"BLOCKED"); self.assertEqual(len(client.calls),1)
+        replay=BedrockConverseAdapter(client,vault,execution_enabled=True,clock=lambda:101).execute(scope)
+        self.assertEqual(replay["status"],"BLOCKED"); self.assertEqual(len(client.calls),1)
 
     def test_ecs_deployment_plan_is_private_pinned_and_never_calls_implicitly(self):
         task=build_ecs_task_definition_request(DEPLOYMENT)
@@ -151,17 +166,20 @@ class M23Mechanics(unittest.TestCase):
                     {**DEPLOYMENT,"environment":[{"name":"API_TOKEN","value":"plaintext"}]}):
             with self.subTest(bad=bad),self.assertRaises(ValueError): build_ecs_task_definition_request(bad)
         with self.assertRaises(ValueError): build_ecs_service_request({**DEPLOYMENT,"security_groups":["*"]},"task:1")
-        client=FakeEcs(); adapter=EcsDeploymentAdapter(client,lambda *_args:True)
+        client=FakeEcs(); vault=ApprovalVault(lambda *_args:True)
+        adapter=EcsDeploymentAdapter(client,vault)
         plan=adapter.plan(DEPLOYMENT)
         self.assertEqual(plan["status"],"DRY_RUN"); self.assertEqual(client.calls,[])
-        denied=adapter.register_revision(DEPLOYMENT,plan["task_definition_sha256"])
+        denied=adapter.register_revision(DEPLOYMENT)
         self.assertEqual(denied["status"],"BLOCKED"); self.assertEqual(client.calls,[])
+        digest_alone=adapter.register_revision(DEPLOYMENT,plan["task_definition_sha256"])
+        self.assertEqual(digest_alone["status"],"BLOCKED")
+        self.assertEqual(client.calls,[])
         task_hash=plan["task_definition_sha256"]
-        approved={"register_task_definition":task_hash}
-        reviewed=EcsDeploymentAdapter(client,lambda op,_manifest,digest:approved.get(op)==digest,
-                                      execution_enabled=True)
+        reviewed=EcsDeploymentAdapter(client,vault,execution_enabled=True,clock=lambda:101)
         # Fake injected SDK client only. This test performs no credential lookup or network call.
-        registered=reviewed.register_revision(DEPLOYMENT,task_hash)
+        task_token=vault.issue("register_task_definition",task_hash,{"family":"coverstory"},now=100)
+        registered=reviewed.register_revision(DEPLOYMENT,task_token)
         self.assertEqual(registered["status"],"TASK_REVISION_REGISTERED_REQUIRES_REVIEW")
         task_arn=registered["task_definition"]
         service_request=build_ecs_service_request(DEPLOYMENT,task_arn)
@@ -169,8 +187,8 @@ class M23Mechanics(unittest.TestCase):
         import json
         service_hash=hashlib.sha256(json.dumps(service_request,sort_keys=True,separators=(",",":")).encode()).hexdigest()
         # The exact returned task ARN is bound in a fresh approval before activation.
-        approved["activate_service_revision"]=service_hash
-        deployed=reviewed.activate_revision(DEPLOYMENT,task_arn,service_hash)
+        service_token=vault.issue("activate_service_revision",service_hash,{"service":"coverstory"},now=100)
+        deployed=reviewed.activate_revision(DEPLOYMENT,task_arn,service_token)
         self.assertEqual(deployed["status"],"DEPLOYMENT_RESPONSE_REQUIRES_READBACK")
         self.assertEqual([name for name,_ in client.calls],
                          ["register_task_definition","describe_services","create_service",
@@ -179,10 +197,20 @@ class M23Mechanics(unittest.TestCase):
         client.calls.clear()
         rollback_request=build_ecs_service_request(DEPLOYMENT,"task:previous")
         rollback_hash=hashlib.sha256(json.dumps(rollback_request,sort_keys=True,separators=(",",":")).encode()).hexdigest()
-        approved["rollback"]=rollback_hash
-        rollback=reviewed.rollback(DEPLOYMENT,"task:previous",rollback_hash)
+        rollback_token=vault.issue("rollback",rollback_hash,{"service":"coverstory"},now=100)
+        rollback=reviewed.rollback(DEPLOYMENT,"task:previous",rollback_token)
         self.assertEqual(rollback["status"],"ROLLBACK_RESPONSE_REQUIRES_READBACK")
         self.assertEqual([name for name,_ in client.calls],
                          ["describe_task_definition","update_service","describe_services"])
+
+    def test_approval_vault_is_exact_expiring_and_one_use(self):
+        vault=ApprovalVault(lambda *_args:True)
+        token=vault.issue("deploy",'a'*64,{"target":"service-a"},now=10,ttl_seconds=5)
+        self.assertTrue(vault.consume(token,"deploy",'a'*64,now=11))
+        self.assertFalse(vault.consume(token,"deploy",'a'*64,now=11))
+        wrong=vault.issue("deploy",'b'*64,{"target":"service-a"},now=10,ttl_seconds=5)
+        self.assertFalse(vault.consume(wrong,"deploy",'a'*64,now=11))
+        expired=vault.issue("deploy",'c'*64,{"target":"service-a"},now=10,ttl_seconds=2)
+        self.assertFalse(vault.consume(expired,"deploy",'c'*64,now=12))
 
 if __name__=='__main__': unittest.main()
