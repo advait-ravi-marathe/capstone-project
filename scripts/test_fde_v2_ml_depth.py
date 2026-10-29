@@ -187,6 +187,16 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
         self.assertIn('No required ML task depends',inventory['invariant'])
         policy=(ROOT/'docs/fde-v2/amendments/2026-10-29-application-code-responsibility-overlay.md').read_text()
         self.assertIn('application-plumbing-inventory.json',policy)
+        active_guides=(ROOT/'docs/fde-v2/proposals/m21-detailed-days-42-62.md',
+                       ROOT/'docs/fde-v2/proposals/m22-detailed-days-62-82.md',
+                       ROOT/'docs/fde-v2/proposals/m23-m32-conditional-guide.md',
+                       ROOT/'docs/fde-v2/proposals/m33-m42-conditional-guide.md')
+        for guide in active_guides:
+            text=guide.read_text().lower()
+            self.assertNotIn('default application adapter remains the learner todo',text)
+            self.assertNotIn('ordinary server defaults to the unsolved learner adapters',text)
+        self.assertIn('default application workflow is runnable without learner fe/be code',
+                      (ROOT/'docs/fde-v2/proposals/m23-m32-conditional-guide.md').read_text().lower())
 
     def test_role_rotation_fits_existing_bank_and_targets_fde_north_star(self):
         rotation=json.loads((ROOT/'docs/fde-v2/role-bank-rotation.json').read_text())

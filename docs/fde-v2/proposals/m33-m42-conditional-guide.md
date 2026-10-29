@@ -1,6 +1,6 @@
 # Conditional M3.3–M4.2 build guide
 
-**Status: proposed conditional study/build detail, not activated days or learner completion.** The accepted outcome contracts are unchanged. These lessons preserve existing daily minutes, use synthetic/local fixtures, and do not contact users, provision AWS, call a model, or grant external-write authority. The learner files contain intentional TODOs; reference code is selected only by explicit test configuration.
+**Status: proposed conditional study/build detail, not activated days or learner completion.** The accepted outcome contracts are unchanged. These lessons preserve existing daily minutes, use synthetic/local fixtures, and do not contact users, provision AWS, call a model, or grant external-write authority. The app/workflow entrypoints use assistant-supplied local adapters by default so the bounded drills run without learner application coding. Learner-owned decision/evaluation TODOs remain separately selectable by their acceptance commands; they are not silently counted as implemented or as learner progress.
 
 ## Shared budget and evidence rules
 
