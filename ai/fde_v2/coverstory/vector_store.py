@@ -75,6 +75,35 @@ class PersistentVectorStore:
                                    key="document_id", match=models.MatchValue(value=document_id))])),
                            wait=True)
 
+    def delete_document_version(self, document_id: str, version: int) -> None:
+        """Assistant-supplied lifecycle primitive; delete one exact revision."""
+        from qdrant_client import models
+
+        if not isinstance(document_id, str) or not document_id or type(version) is not int or version < 1:
+            raise ValueError("document_id and positive version are required")
+        self.client.delete(collection_name=COLLECTION_NAME,
+                           points_selector=models.FilterSelector(
+                               filter=models.Filter(must=[
+                                   models.FieldCondition(key="document_id", match=models.MatchValue(value=document_id)),
+                                   models.FieldCondition(key="version", match=models.MatchValue(value=version)),
+                               ])), wait=True)
+
+    def list_document_versions(self) -> list[dict[str, object]]:
+        """Return stored point identity fields for local reconciliation only."""
+        offset = None
+        records: list[dict[str, object]] = []
+        while True:
+            points, offset = self.client.scroll(collection_name=COLLECTION_NAME, offset=offset,
+                                                 limit=256, with_payload=True, with_vectors=False)
+            for point in points:
+                payload = point.payload or {}
+                records.append({"chunk_id": payload.get("chunk_id"),
+                                "document_id": payload.get("document_id"),
+                                "version": payload.get("version")})
+            if offset is None:
+                break
+        return records
+
     def search(self, vector: Sequence[float], limit: int = 3) -> list[RetrievedChunk]:
         if len(vector) != self.vector_size or type(limit) is not int or not 1 <= limit <= 10:
             raise ValueError("vector dimension and limit 1..10 must match the collection")

@@ -1,6 +1,6 @@
 # AWS FDE v2.4 phase map
 
-This is a capacity plan, not a completion calendar. Day 1 is the first actual learning session. Sprint 1 supplies daily guidance for Days 1–14 on main. A separate unpublished continuation branch authors Days 15–28; the remaining first-30 units and later windows remain planning contracts until implemented and reviewed. A missed date does not advance learner state.
+This is a capacity plan, not a completion calendar. Day 1 is the first actual learning session. Sprint 1 supplies daily guidance for Days 1–14 on main. The published review-only continuation branch authors Days 15–41; this work is not merged to main, and authored content does not advance learner state. The remaining milestone windows are planning contracts until separately detailed and reviewed. A missed date does not advance learner state.
 
 ## Capacity
 
@@ -12,7 +12,7 @@ First 30 actual days contain 30 DSA hours, 11 role-interview hours, 4 AWS study 
 
 | Window (approximate learning days) | Planned outcome and evidence gate | Status |
 |---|---|---|
-| P1, approximately Days 1–41 | CoverStory local generative RAG: real pretrained generation, real embeddings, persisted vector store, source provenance, lexical baseline, abstention and dev/held-out evaluation. Day 30 only begins adversarial fixture work. | Main covers Days 1–14; continuation branch has authored Days 15–28, not yet published. Real embedding/generation remains blocked/unverified; Day 30 onward stays planning-only. |
+| P1, approximately Days 1–41 | CoverStory local generative RAG: real pretrained generation, real embeddings, persisted vector store, source provenance, lexical baseline, abstention and dev/held-out evaluation. Day 30 only begins adversarial fixture work. | Main covers Days 1–14; continuation branch is published for review with authored Days 15–41. Real embedding/generation remains blocked/unverified; model-backed results are not evidenced. |
 | P2, roughly Days 42–102 | Ingestion/version/deletion controls; permission-aware retrieval; stronger evaluation/security/traces; then separately authorized AWS deployment, rollback and observed operation. Local or mock work cannot satisfy live cloud/provider gates. | Planning-only. |
 | P3, roughly Days 103–163 | Developer Workflow Assistant: read-only tools first, bounded actions, human approval, genuine MCP client/server when justified, task-success baseline, injection/authorization tests and failure handoff. | Planning-only. |
 | P4, roughly Days 164–224 | Customer discovery and scope; compatibility/release/incident/recovery; real authorized feedback where available; independent ownership and handoff. Role-play, peer review, pilot and production remain distinct. | Planning-only. |

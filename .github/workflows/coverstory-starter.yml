@@ -101,3 +101,7 @@ jobs:
         run: |
           python3 -m unittest scripts.test_fde_v2_p1_closeout
           python3 scripts/fde_v2_container_smoke.py
+      - name: Verify conditional AWS FDE v2.4 M2.1 draft mechanics
+        run: |
+          python3 -m unittest scripts.test_fde_v2_m21_draft
+          python3 -m unittest ai.fde_v2.tests.test_m21_draft

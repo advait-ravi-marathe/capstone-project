@@ -1,6 +1,6 @@
 # AWS FDE v2.4 learning roadmap
 
-This is the accepted AWS-only, interview-first plan. **No learner days are complete.** A learning-day number advances only when that session is attempted; dates do not automatically change learner status. Sprint 1 covers actual learning Days 1–14. The separate continuation branch now has detailed pages through Day41 and remains unpublished pending review. U011 starts as a partial slice on Day14 and continues on Day15. U021 starts on Day28 and ends its scheduled selector mechanics on Day29; real development evaluation remains blocked while model weights are unavailable. U022 runs on Days29–30. Day30 is only the fixture-authoring portion of U023; deterministic execution/regression is scheduled on Day31, but actual generated behavior is still model-gated. U024–U030 have explicit closeout lessons and evidence tooling. No unit or P1 completion is inferred from authored pages or synthetic witnesses. U013 embeddings and U019 generated RAG remain unverified until verified local model artifacts are available.
+This is the accepted AWS-only, interview-first plan. **No learner days are complete.** A learning-day number advances only when that session is attempted; dates do not automatically change learner status. Sprint 1 covers actual learning Days 1–14. The separate continuation branch has authored Days 15–41 and is published for review only; it is not merged to main. U011 starts as a partial slice on Day14 and continues on Day15. U021 starts on Day28 and ends its scheduled selector mechanics on Day29; real development evaluation remains blocked while model weights are unavailable. U022 runs on Days29–30. Day30 is only the fixture-authoring portion of U023; deterministic execution/regression is scheduled on Day31, but actual generated behavior is still model-gated. U024–U030 have explicit closeout lessons and evidence tooling. No unit or P1 completion is inferred from authored pages or synthetic witnesses. U013 embeddings and U019 generated RAG remain unverified until verified local model artifacts are available.
 
 ## Start with actual learning Day 1
 
@@ -40,9 +40,9 @@ Open the Vite URL at `/fde-v2.html`. `VITE_FDE_V2_API_TARGET` proxies `/health`,
 
 These commands only start supplied infrastructure. General HTTP, SQLite, Qdrant and React plumbing are supplied; the learner owns bounded Python AI behaviors and evaluation. From Day 15 onward, the RAG panel exercises the supplied `/retrieve` and `/ask` routes. Tests using fixed vectors or a test double validate mechanics only and never count as real embedding or generated-answer evidence.
 
-## Continuation branch: actual learning Days 15–30
+## Continuation branch: actual learning Days 15–41
 
-Days 15–30 are authored on `work/aws-fde-v24-continuation` and are not merged or published. In that worktree, install the additional local persistence and embedding packages (no model files are downloaded by this command):
+Days 15–41 are authored on `work/aws-fde-v24-continuation` and published for review, not merged to main. In that worktree, install the additional local persistence and embedding packages (no model files are downloaded by this command):
 
 ```sh
 python -m pip install -r requirements-fde-v2-sprint2.txt
@@ -130,3 +130,7 @@ The real-only smoke selectors are documented in [U006/U007](units/u006.md) and [
 ## History and evidence
 
 The accepted JSON/Markdown source contracts are retained byte-for-byte under `accepted/`; the receipt lists their SHA-256 values. The earlier 548-day model-building-first roadmap and prior assignment histories remain preserved as superseded/deferred. DSA stays in its separate repository; this checkout contains no DSA problems or solutions. Every new task remains Not started until the learner records actual evidence. No customer adoption, production use, cloud deployment, certification, interview pass or job readiness is asserted by this plan.
+
+## Proposed M2.1 detail (not active)
+
+[Draft Days 42–62 design](proposals/m21-detailed-days-42-62.md) maps a possible detailed sequence to accepted milestone AIFDE-V2-M2.1. It is a proposal only, does not advance the active calendar, and remains blocked until P1 actual generation, embeddings, persistent vector retrieval and learner ownership are independently cleared. Its mechanics tests use synthetic records and vectors; they are not actual model, labeling, or learner evidence.
