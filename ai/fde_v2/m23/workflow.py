@@ -5,10 +5,10 @@ wiring, but they do not represent AWS or hosted-model evidence.
 """
 from __future__ import annotations
 from typing import Any, Mapping
-from . import learner
+from . import reference as application_adapter
 from .providers import BedrockConverseAdapter
 
-def prepare_live_operation(record: Mapping[str, Any], now: int, *, adapter=learner,
+def prepare_live_operation(record: Mapping[str, Any], now: int, *, adapter=application_adapter,
                            transport=None) -> dict[str, Any]:
     """Validate exact authorization before optionally invoking an injected transport.
 

@@ -1,10 +1,10 @@
-"""Feature path for bounded M3.1 scratch tools; defaults to learner TODOs."""
+"""Feature path for bounded M3.1 scratch tools with assistant plumbing by default."""
 from __future__ import annotations
 import threading
 from typing import Any, Mapping
-from . import learner
+from . import reference as application_adapter
 
-def run_workflow(root: str, plan: Mapping[str, Any] | None = None, *, adapter=learner,
+def run_workflow(root: str, plan: Mapping[str, Any] | None = None, *, adapter=application_adapter,
                  cancel=None, planner=None, planning_inputs=None) -> dict[str, Any]:
     if (plan is None) == (planner is None):
         raise ValueError("supply exactly one bounded plan or explicit planner adapter")

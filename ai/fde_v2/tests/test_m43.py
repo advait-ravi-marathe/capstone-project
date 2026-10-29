@@ -3,7 +3,7 @@ import tempfile
 from pathlib import Path
 from ai.fde_v2.m43 import reference,workflow,learner
 def row(which):
- return {"exercise_id":which,"source_license":"MIT fixture","initial_hash":"a"*64,"attempt_date":"2026-10-2"+("9" if which=="A" else "8"),"failure_receipt":"fail-log","root_cause":"adapter mismatch","patch_hash":"b"*64,"regression_receipt":"red-green","blast_radius":"one endpoint","assistance":"docs only","solution_seen_before_attempt":False,"assistant_authored_patch":False,"scores":{k:3 for k in reference.DIMENSIONS},"reviewer_type":"self","critical_failure":False}
+ return {"exercise_id":which,"source_license":"MIT fixture","initial_hash":("a" if which=="A" else "c")*64,"attempt_date":"2026-10-2"+("9" if which=="A" else "8"),"failure_receipt":"fail-log","root_cause":("adapter mismatch" if which=="A" else "incorrect boundary condition"),"patch_hash":("b" if which=="A" else "d")*64,"regression_receipt":"red-green","blast_radius":"one endpoint","assistance":"docs only","solution_seen_before_attempt":False,"assistant_authored_patch":False,"scores":{k:3 for k in reference.DIMENSIONS},"reviewer_type":"self","critical_failure":False}
 class M43Test(unittest.TestCase):
  def test_real_fixture_factory_supplies_distinct_red_green_and_clean_copy_exercises(self):
   with tempfile.TemporaryDirectory() as td:
@@ -52,7 +52,10 @@ class M43Test(unittest.TestCase):
       "patch_hash":row("A")["patch_hash"],"root_cause":row("A")["root_cause"]}],{},adapter=reference)
   with self.assertRaises(ValueError): reference.evaluate_handoff({'clean_clone':'peer_verified','run_receipt':{'command':'test','empty_workspace_ref':'w','environment_hash':'d'*64,'output_ref':'o'}})
   with self.assertRaises(NotImplementedError): learner.validate_attempt(row("A"))
- def test_feature_assessment_default_keeps_learner_attempt_todo_unimplemented(self):
+ def test_default_assessment_plumbing_runs_without_app_code_while_attempts_stay_unverified(self):
+  out=workflow.assess_two_attempts([row("A"),row("B")],{"clean_clone":"not_run"})
+  self.assertEqual(out["status"],"EXERCISE_ONLY")
+  self.assertFalse(out["independent_reproduction_claim"])
   with self.assertRaises(NotImplementedError):
-   workflow.assess_two_attempts([row("A"),row("B")],{"clean_clone":"not_run"})
+   workflow.assess_two_attempts([row("A"),row("B")],{"clean_clone":"not_run"},adapter=learner)
 if __name__=='__main__': unittest.main()

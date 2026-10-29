@@ -114,6 +114,12 @@ def train_linear_regression(features, targets, *, learning_rate: float = 0.01,
     return {"weights":weights,"loss_history":history,"algorithm":"batch-linear-gradient-descent","trained_on_rows":len(targets)}
 
 
+def predict_linear_regression(model, features):
+    weights=model.get("weights")
+    if not weights or any(len(row)!=len(weights) for row in features): raise ValueError("model/features differ")
+    return [sum(float(w)*float(x) for w,x in zip(weights,row)) for row in features]
+
+
 def fit_standardizer(training_features):
     if not training_features or not training_features[0]: raise ValueError("training features are required")
     width=len(training_features[0])
@@ -132,6 +138,20 @@ def transform_features(features, scaler):
         raise ValueError("scaler and feature dimensions differ")
     if any(not math.isfinite(float(s)) or s<=0 for s in scales): raise ValueError("invalid feature scale")
     return [[(float(value)-float(mean))/float(scale) for value,mean,scale in zip(row,means,scales)] for row in features]
+
+
+def threshold_cost_analysis(probabilities, labels, *, false_positive_cost, false_negative_cost):
+    if len(probabilities)!=len(labels) or not labels or false_positive_cost<0 or false_negative_cost<0:
+        raise ValueError("aligned labels and nonnegative explicit costs required")
+    candidates=sorted({0.0,1.0,*[float(p) for p in probabilities]})
+    best=None
+    for threshold in candidates:
+        fp=sum(p>=threshold and y==0 for p,y in zip(probabilities,labels))
+        fn=sum(p<threshold and y==1 for p,y in zip(probabilities,labels))
+        cost=fp*false_positive_cost+fn*false_negative_cost
+        row={"threshold":threshold,"false_positives":fp,"false_negatives":fn,"total_cost":cost}
+        if best is None or (cost,threshold)<(best["total_cost"],best["threshold"]): best=row
+    return best
 
 
 def brier_score(probabilities: Sequence[float], labels: Sequence[int]) -> float:

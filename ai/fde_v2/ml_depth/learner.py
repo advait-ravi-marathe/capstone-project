@@ -18,6 +18,20 @@ def train_logistic(features: Sequence[Sequence[float]], labels: Sequence[int], *
     raise NotImplementedError("PML1: implement learner-owned logistic gradient descent")
 
 
+def train_linear_regression(features: Sequence[Sequence[float]], targets: Sequence[float], *,
+                           learning_rate: float, epochs: int) -> dict[str, Any]:
+    raise NotImplementedError("PML1: implement learner-owned squared-error linear regression")
+
+
+def predict_linear_regression(model: Mapping[str, Any], features: Sequence[Sequence[float]]) -> list[float]:
+    raise NotImplementedError("PML1: predict from learner-owned linear-regression weights")
+
+
+def threshold_cost_analysis(probabilities: Sequence[float], labels: Sequence[int], *,
+                            false_positive_cost: float, false_negative_cost: float) -> dict[str, Any]:
+    raise NotImplementedError("PML1: choose a classification threshold from declared error costs")
+
+
 def predict_logistic_proba(model: Mapping[str, Any], features: Sequence[Sequence[float]]) -> list[float]:
     raise NotImplementedError("PML1: implement probabilities from the learned linear weights")
 

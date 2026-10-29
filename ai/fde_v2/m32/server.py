@@ -10,7 +10,7 @@ from ai.fde_v2.m32 import learner, reference
 class HumanApproval(BaseModel):
     approve: bool
 
-def build_server(root: str, adapter=learner, *, enable_test_approval=False):
+def build_server(root: str, adapter=reference, *, enable_test_approval=False):
     base=pathlib.Path(root).resolve(strict=True)
     app=MCPServer('fde-v2-scratch-tools',instructions='Reads are confined to the owned scratch root. No network tools.')
     ledger=reference.ApprovalLedger(); scope_hash=hashlib.sha256(str(base).encode()).hexdigest()
@@ -68,11 +68,12 @@ def build_server(root: str, adapter=learner, *, enable_test_approval=False):
 def main(argv=None):
     p=argparse.ArgumentParser(); p.add_argument('--root',required=True); p.add_argument('--test-approval',action='store_true')
     p.add_argument('--reference-fixture',action='store_true')
+    p.add_argument('--learner-adapter',action='store_true',help='explicitly run unfinished learner adapter for review')
     a=p.parse_args(argv)
     # The explicit reference/test switches are denied unless called by the offline test harness.
     if (a.test_approval or a.reference_fixture) and os.environ.get('FDE_M32_TEST_ONLY')!='1':
         raise SystemExit('reference/test mode requires FDE_M32_TEST_ONLY=1')
-    adapter=reference if a.reference_fixture else learner
+    adapter=learner if a.learner_adapter else reference
     app=build_server(a.root,adapter,enable_test_approval=bool(a.test_approval))
     asyncio.run(app.run_stdio_async())
 if __name__=='__main__': main()

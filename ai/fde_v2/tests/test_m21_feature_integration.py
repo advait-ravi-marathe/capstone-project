@@ -97,15 +97,16 @@ class M21FeatureIntegration(unittest.TestCase):
             self.assertEqual([hit.chunk.version for hit in service.search("query")], [1])
             vectors.close()
 
-    def test_default_feature_entrypoint_does_not_fall_back_to_reference(self):
-        self.assertIs(VersionedWorkflow.__init__.__kwdefaults__["adapter"], learner)
+    def test_default_application_path_uses_assistant_supplied_lifecycle(self):
+        self.assertIs(VersionedWorkflow.__init__.__kwdefaults__["adapter"], reference)
         with tempfile.TemporaryDirectory() as td:
             ledger = VersionLedger(Path(td) / "versions.sqlite3")
             vectors = PersistentVectorStore(Path(td) / "qdrant", 2)
             service = VersionedWorkflow(ledger, vectors, FixtureEmbedder())
             doc, chunks = make_doc(1, "current content")
-            with self.assertRaises(NotImplementedError):
-                service.publish(doc, chunks)
+            receipt=service.publish(doc, chunks)
+            self.assertEqual(receipt["status"],"activated")
+            self.assertEqual([hit.chunk.version for hit in service.search("query")],[1])
             vectors.close()
 
 

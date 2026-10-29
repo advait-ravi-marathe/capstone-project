@@ -129,7 +129,9 @@ class M23Mechanics(unittest.TestCase):
         with self.assertRaises(NotImplementedError): learner.evaluate_live_gate({})
 
     def test_runtime_preparation_routes_through_learner_and_never_calls_cloud(self):
-        with self.assertRaises(NotImplementedError): workflow.prepare_live_operation({},0)
+        default=workflow.prepare_live_operation({},0)
+        self.assertEqual(default['status'],'BLOCKED')
+        self.assertFalse(default['external_call_made'])
         class Reject:
             @staticmethod
             def validate_authorization(_record,_now): return False

@@ -61,14 +61,17 @@ class M22LocalIntegration(unittest.TestCase):
     def tearDown(self):
         self.store.close()
 
-    def app(self, adapter=reference):
-        return create_app(
+    def app(self, adapter=None):
+        args=dict(
             store=self.store,
             verified_claims_provider=self.verifier,
             subject_lookup=self.lookup,
             expected_issuer="issuer", expected_audience="app",
-            adapter=adapter, clock=lambda: self.now,
+            clock=lambda: self.now,
         )
+        if adapter is not None:
+            args["adapter"]=adapter
+        return create_app(**args)
 
     def test_real_local_sqlite_qdrant_route_filters_tenant_and_current_acl(self):
         client = TestClient(self.app())
@@ -116,7 +119,15 @@ class M22LocalIntegration(unittest.TestCase):
         self.assertEqual(second.json()["results"], [])
         self.assertEqual(len(self.store._hit_cache), cache_size_before)
 
-    def test_application_calls_injected_learner_policy_and_never_falls_back(self):
+    def test_default_application_authenticates_signed_fixture_and_no_learner_code_is_required(self):
+        client=TestClient(self.app())
+        response=client.post("/search",headers={"Authorization":f"Bearer {self.tokens['alice-token']}"},
+                             json={"vector":[1.0,0.0]})
+        self.assertEqual(response.status_code,200,response.text)
+        self.assertEqual([row["document_id"] for row in response.json()["results"]],["doc-a"])
+        self.assertEqual(create_app.__kwdefaults__["adapter"],reference)
+
+    def test_application_calls_explicit_adapter_and_learner_failure_is_never_hidden(self):
         adapter = Mock(wraps=reference)
         response = TestClient(self.app(adapter)).post(
             "/search", headers={"Authorization": f"Bearer {self.tokens['alice-token']}"},
@@ -126,13 +137,13 @@ class M22LocalIntegration(unittest.TestCase):
         adapter.verify_identity.assert_called_once()
         adapter.filter_retrieved_hits.assert_called_once()
 
-        # The default route is wired to learner TODOs; a missing implementation
-        # is denied by the request path and is never replaced by reference code.
-        default_response = TestClient(self.app(learner)).post(
+        # A caller explicitly selecting the unfinished learner policy receives
+        # denial; the application never catches it and silently swaps adapters.
+        learner_response = TestClient(self.app(learner)).post(
             "/search", headers={"Authorization": f"Bearer {self.tokens['alice-token']}"},
             json={"vector": [1.0, 0.0]},
         )
-        self.assertEqual(default_response.status_code, 401)
+        self.assertEqual(learner_response.status_code, 401)
 
     def test_search_request_bounds_and_extra_fields(self):
         client = TestClient(self.app())

@@ -72,9 +72,13 @@ class M42Mechanics(unittest.TestCase):
             self.assertEqual(out["live_cloud_status"],"BLOCKED")
             self.assertFalse(out["learner_completion"])
 
-    def test_local_exercise_does_not_replace_unimplemented_learner_patch(self):
+    def test_default_local_application_exercise_runs_without_learner_backend_code(self):
         with tempfile.TemporaryDirectory() as td:
-            with self.assertRaises(NotImplementedError): workflow.run_local_exercise(td)
+            out=workflow.run_local_exercise(td)
+            self.assertTrue(out["local_mechanics_pass"])
+            self.assertFalse(out["learner_completion"])
+            with tempfile.TemporaryDirectory() as learner_td:
+                with self.assertRaises(NotImplementedError): workflow.run_local_exercise(learner_td,adapter=learner)
 
     def test_rollback_restores_all_varied_rows_and_schema_from_snapshot(self):
         with tempfile.TemporaryDirectory() as td:

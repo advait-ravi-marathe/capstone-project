@@ -1,18 +1,19 @@
-"""Versioned ingestion/search path that routes lifecycle decisions via M2.1 seams.
+"""Versioned ingestion/search path with assistant-supplied lifecycle code by default.
 
 The existing P1 lexical/RAG app does not silently adopt this sidecar. Callers
 must explicitly construct this workflow; fixed encoders in tests are fixtures.
+The learner adapters remain available for scoped AI/data evaluation practice.
 """
 from __future__ import annotations
 
 from collections.abc import Sequence
 from typing import Any
 
-from . import learner
+from . import reference as application_adapter
 
 
 class VersionedWorkflow:
-    def __init__(self, ledger, vector_store, embedder, *, adapter=learner):
+    def __init__(self, ledger, vector_store, embedder, *, adapter=application_adapter):
         self.ledger = ledger
         self.vector_store = vector_store
         self.embedder = embedder

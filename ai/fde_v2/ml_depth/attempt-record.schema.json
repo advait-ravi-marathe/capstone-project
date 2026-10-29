@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Production ML focused-session attempt record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["day", "task", "resource_sections", "prerequisite_evidence", "command_or_method", "result", "artifact_sha256", "learner_contribution", "limits", "status"],
+  "properties": {
+    "day": {"type": "integer", "minimum": 271, "maximum": 382},
+    "task": {"type": "string", "minLength": 1},
+    "resource_sections": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "prerequisite_evidence": {"type": "string", "minLength": 1},
+    "command_or_method": {"type": "string", "minLength": 1},
+    "result": {"type": "string", "minLength": 1},
+    "artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "learner_contribution": {"type": "string", "minLength": 1},
+    "limits": {"type": "array", "items": {"type": "string"}},
+    "status": {"enum": ["not_started", "in_progress", "blocked", "evidence_ready_for_review", "passed_for_stated_scope"]}
+  }
+}

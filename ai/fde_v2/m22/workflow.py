@@ -1,7 +1,8 @@
 """Local SQL/Qdrant boundary integration; no hosted identity or cloud path.
 
-The application defaults to learner-owned identity/policy functions. Tests may
-select the explicit reference adapter, but that never satisfies M2.2 evidence.
+The runnable application defaults to assistant-supplied local security plumbing.
+Learner policy TODOs remain opt-in assessment seams; signed local fixtures do
+not satisfy actual identity/provider evidence.
 """
 from __future__ import annotations
 
@@ -17,7 +18,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pydantic import BaseModel, ConfigDict, Field
 from qdrant_client import QdrantClient, models
 
-from . import learner
+from . import reference as application_adapter
 
 
 class SearchRequest(BaseModel):
@@ -150,7 +151,7 @@ class LocalSqlQdrantStore:
 
 def create_app(*, store: LocalSqlQdrantStore, verified_claims_provider,
                subject_lookup, expected_issuer: str, expected_audience: str,
-               adapter=learner, clock=time.time) -> FastAPI:
+               adapter=application_adapter, clock=time.time) -> FastAPI:
     app = FastAPI(title="M2.2 local identity/access integration", version="conditional")
     bearer = HTTPBearer(auto_error=False)
 

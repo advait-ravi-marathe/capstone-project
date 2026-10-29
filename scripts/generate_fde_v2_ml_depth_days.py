@@ -1,6 +1,7 @@
 """Regenerate the 112 conditional daily cards from their canonical schedule."""
 from __future__ import annotations
 import json
+import re
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -128,10 +129,23 @@ RESOURCE_URLS={
 # One fully specified learner interface card per block; tests protect that the
 # published daily page names the exact TODO path the workflow calls.
 LEARNER_INTERFACES={
+ 281:("ai/fde_v2/ml_depth/learner.py", "train_linear_regression"),
+ 282:("ai/fde_v2/ml_depth/learner.py", "logistic_loss"),
  283:("ai/fde_v2/ml_depth/learner.py", "logistic_loss and train_logistic"),
+ 287:("ai/fde_v2/ml_depth/learner.py", "threshold_cost_analysis"),
+ 290:("ai/fde_v2/ml_depth/reference.py", "fit_boosted_tree (supplied benchmark; learner owns paired interpretation)"),
  305:("ai/fde_v2/ml_depth/learner.py", "train_torch_model"),
  331:("ai/fde_v2/ml_depth/learner.py", "sample_negative_pairs"),
+ 334:("ai/fde_v2/ml_depth/learner.py", "train_pairwise_ranker"),
+ 337:("ai/fde_v2/ml_depth/learner.py", "ndcg_at_k"),
+ 338:("ai/fde_v2/ml_depth/workflow.py", "compare_rankers(adapter=learner)"),
+ 355:("ai/fde_v2/ml_depth/learner.py", "design_experiment"),
+ 356:("ai/fde_v2/ml_depth/learner.py", "assign_experiment_units"),
+ 357:("ai/fde_v2/ml_depth/learner.py", "design_experiment"),
  358:("ai/fde_v2/ml_depth/learner.py", "srm_check"),
+ 361:("ai/fde_v2/ml_depth/learner.py", "analyze_ab"),
+ 366:("ai/fde_v2/ml_depth/workflow.py", "serve_logistic(adapter=learner)"),
+ 371:("ai/fde_v2/ml_depth/learner.py", "retraining_decision"),
 }
 
 
@@ -149,8 +163,23 @@ def build():
             day=block['start']+index-1
             selector={"PML1":"StatisticsAndClassicalMLTests","PML2":"RealTorchTrainingTests",
                       "PML3":"LearnedRankingTests","PML4":"ExperimentAndLifecycleTests"}[block['id']]
+            if index == 1:
+                prerequisite = {
+                    "PML1":"M5.2 dataset/metric/split and M5.3 core gap-handoff evidence reviewed; otherwise mechanics-only preparation and progression remains blocked.",
+                    "PML2":"PML1 learner-owned classical baseline, split/metric contract and reviewed error analysis passed.",
+                    "PML3":"PML2 actual CPU parameter update, tiny-batch overfit, diagnosed broken run and checkpoint reload passed.",
+                    "PML4":"PML3 learner-trained ranking comparison, identical candidates, cold-start and slice report with frozen holdout passed.",
+                }[block['id']]
+            else:
+                prerequisite = f"Day {day-1} artifact and its named selector reviewed; if incomplete, use the protected block and do not advance."
+            interface, functions = LEARNER_INTERFACES.get(day, ("ai/fde_v2/ml_depth/attempt-record.schema.json", "structured_attempt_record/v1 (no application-code TODO)"))
+            artifact = f"learning-artifacts/production-ml/day-{day}-{re.sub(r'[^a-z0-9]+','-',title.lower()).strip('-')}.json"
+            objectives = [{"objective":"O4","key_result":"KR-4.2"}]
             days.append({"day":day,"block":block['id'],"block_name":block['name'],"block_day":index,
                 "day_kind":"focused","title":title,"task":task,"reading":reading,
+                "prerequisite":prerequisite,"learner_interface":{"path":interface,"functions":functions},
+                "learner_artifact":artifact,"objective_links":objectives,
+                "acceptance_selector":f"ai.fde_v2.ml_depth.test_ml_depth.{selector}",
                 "worked_example":f"python3 -m ai.fde_v2.ml_depth.examples --block {block['id']}",
                 "acceptance_command":f"python3 -m unittest ai.fde_v2.ml_depth.test_ml_depth.{selector}",
                 "dsa_minutes":60,"role_bank_minutes":30,"ai_minutes":90,"substantive_minutes":90,"buffer_minutes":0,
@@ -161,6 +190,11 @@ def build():
             days.append({"day":day,"block":block['id'],"block_name":block['name'],"block_day":25+offset,
                 "day_kind":"buffer","title":f"{block['id']} repair/retest buffer {offset+1}",
                 "task":"Use this scheduled block only for measured repair/retest from the preceding focused sessions; run the named failing selector, record before/after artifacts, and preserve remaining failures. If no repair is needed, leave the block unused and record why.",
+                "prerequisite":"A focused-session failure or documented carryover from this block; otherwise leave unused.",
+                "learner_interface":{"path":"learning-artifact","functions":"preserve_failure_and_retest_receipt"},
+                "learner_artifact":f"learning-artifacts/production-ml/day-{day}-buffer-retest.json",
+                "objective_links":[{"objective":"O4","key_result":"KR-4.2"}],
+                "acceptance_selector":"named selector from the carried focused-session failure",
                 "reading":"None scheduled; buffer is not new curriculum.","worked_example":"Reproduce the exact failing test or training run from its recorded manifest.",
                 "acceptance_command":"python3 -m ai.fde_v2.ml_depth.acceptance --mode mechanics",
                 "dsa_minutes":60,"role_bank_minutes":30,"ai_minutes":90,"substantive_minutes":0,"buffer_minutes":90,
@@ -180,9 +214,11 @@ def build():
                 module,functions=LEARNER_INTERFACES[row['day']]
                 ai += f"\n\n**Learner-owned interface:** `{module}::{functions}`. The selected workflow calls this interface; the default TODO raises until the learner implements it."
             acceptance=f"`{row['acceptance_command']}`. This is the stage regression suite; it is not proof that this particular day or learner task passed."
+            session_contract=f"**Prerequisite:** {row['prerequisite']}\n\n**Learner interface:** `{row['learner_interface']['path']}::{row['learner_interface']['functions']}`. **Artifact:** `{row['learner_artifact']}`. **Acceptance selector:** `{row['acceptance_selector']}`. **Objective link:** {row['objective_links'][0]['objective']} / {row['objective_links'][0]['key_result']}."
         else:
             ai=f"**AI90 buffer:** {row['task']} Worked-example prompt: {row['worked_example']}"
             acceptance=f"`{row['acceptance_command']}`; rerun the exact failed selector as well."
+            session_contract=f"**Prerequisite:** {row['prerequisite']} **Artifact:** `{row['learner_artifact']}`. Buffers do not advance a gate or add curriculum."
         page=f"""# Conditional learning Day {row['day']}: {row['block']} — {row['title']}
 
 Status: Not started. This page is in the versioned production-ML extension; page existence is not evidence of an attempt.
@@ -196,6 +232,10 @@ Status: Not started. This page is in the versioned production-ML extension; page
 ## Today's work
 
 {ai}
+
+## Session contract
+
+{session_contract}
 
 ## Acceptance and evidence limits
 

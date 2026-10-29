@@ -1,9 +1,9 @@
 """Discovery feature path: learner-owned validation and evaluator-attributed rubric."""
 from __future__ import annotations
 from typing import Any, Mapping
-from . import learner
+from . import reference as application_adapter
 
-def review_discovery(record: Mapping[str, Any], evaluation: Mapping[str, Any] | None, *, adapter=learner) -> dict[str, Any]:
+def review_discovery(record: Mapping[str, Any], evaluation: Mapping[str, Any] | None, *, adapter=application_adapter) -> dict[str, Any]:
     discovery=adapter.validate_discovery(record)
     rubric=adapter.assess_rubric(evaluation or {})
     contract=adapter.build_pilot_contract(record,rubric)

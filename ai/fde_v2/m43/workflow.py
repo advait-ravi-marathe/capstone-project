@@ -1,5 +1,5 @@
-"""Feature assessment routes through the learner adapter, never a reference fallback."""
-from . import learner
+"""Assistant-supplied assessment plumbing; learner evidence/attempts remain unverified."""
+from . import reference as application_adapter
 from . import exercises
 
 
@@ -19,7 +19,7 @@ def run_attempt_tests(root, exercise_id, *, expected_initial_sha256):
     """Run actual current source tests, routed through the selected learner seam."""
     return exercises.run_attempt_tests(root,exercise_id,
         expected_initial_sha256=expected_initial_sha256)
-def assess_two_attempts(attempts, handoff, *, adapter=learner):
+def assess_two_attempts(attempts, handoff, *, adapter=application_adapter):
     if not isinstance(attempts,list) or len(attempts)!=2: raise ValueError("exactly two distinct attempts are required")
     checked=[adapter.validate_attempt(a) for a in attempts]
     if {a["exercise_id"] for a in attempts}!={"A","B"}: raise ValueError("attempts must use separate exercises A and B")

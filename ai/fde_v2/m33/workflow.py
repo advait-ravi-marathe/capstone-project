@@ -7,7 +7,7 @@ import sqlite3
 import stat
 from pathlib import Path
 from typing import Any, Mapping, Sequence
-from ai.fde_v2.m31 import learner as m31_learner, workflow as m31_workflow
+from ai.fde_v2.m31 import reference as m31_application, workflow as m31_workflow
 from ai.fde_v2.m32 import reference as m32_reference
 from . import learner, reference
 
@@ -76,7 +76,7 @@ def _read_safe_proposal(root: Path, target_name: str) -> bytes | None:
         os.close(fd)
 
 
-def run_controlled_patch(root: str, action: Mapping[str, Any], *, adapter=learner,
+def run_controlled_patch(root: str, action: Mapping[str, Any], *, adapter=reference,
                          approval_fixture=None, crash_after_effect=False) -> dict[str, Any]:
     """Execute one test-authorized scratch proposal and reconcile replay/uncertainty.
 
@@ -152,7 +152,7 @@ def time_now():
 
 
 def run_task_suite(root: str, cases: Sequence[Mapping[str, Any]], *,
-                   tool_adapter=m31_learner, evaluator=learner,
+                   tool_adapter=m31_application, evaluator=reference,
                    approval_fixture_provider=None) -> list[dict[str, Any]]:
     rows=[]
     for case in cases:

@@ -1,12 +1,12 @@
-"""Interview rehearsal path delegates scoring to the learner-owned adapter."""
+"""Interview rehearsal plumbing; only actual attempts/reviewer evidence can score a gate."""
 from __future__ import annotations
 import re
 from collections.abc import Mapping
-from . import learner
+from . import reference as application_adapter
 from .reference import GATES
 
 
-def assess(attempts_by_gate, formal_ledger=None, *, adapter=learner):
+def assess(attempts_by_gate, formal_ledger=None, *, adapter=application_adapter):
     if not isinstance(attempts_by_gate, Mapping):
         raise ValueError("attempt mapping required")
     reports = []

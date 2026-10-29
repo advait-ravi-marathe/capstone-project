@@ -77,9 +77,14 @@ class M31Mechanics(unittest.TestCase):
                 workflow.run_workflow(td,planner=lambda _ctx:{'steps':[{'tool':'shell','arguments':{'command':'id'}}]},
                                       planning_inputs=['app.py'],adapter=reference)
 
-    def test_feature_entrypoint_fails_on_unfinished_learner_instead_of_reference_fallback(self):
-        with self.assertRaises(NotImplementedError):
-            workflow.run_workflow('.',{'steps':[{'tool':'read_file','arguments':{'path':'README.md'}}]})
+    def test_default_application_tool_path_runs_without_learner_fe_be_implementation(self):
+        with tempfile.TemporaryDirectory() as td:
+            source=Path(td)/'actual.txt'; source.write_text('assistant-supplied tool fixture')
+            result=workflow.run_workflow(td,{'steps':[{'tool':'read_file','arguments':{'path':'actual.txt'}}]})
+            self.assertEqual(result['trace'][0]['result']['text'],'assistant-supplied tool fixture')
+            self.assertEqual(result['patch'],None)
+            with self.assertRaises(NotImplementedError):
+                workflow.run_workflow(td,{'steps':[{'tool':'read_file','arguments':{'path':'actual.txt'}}]},adapter=learner)
 
     def test_patch_is_review_only_and_stale_or_escape_is_rejected(self):
         with tempfile.TemporaryDirectory() as td, tempfile.TemporaryDirectory() as outside:

@@ -48,7 +48,7 @@ class M32ActualStdioIntegration(unittest.TestCase):
      self.assertEqual(stale['status'],'DENIED')
   asyncio.run(run())
 
- def test_default_server_does_not_silently_replace_learner_or_enable_patch_writes(self):
+ def test_default_application_server_reads_scratch_without_learner_code_and_blocks_writes(self):
   async def run():
    with tempfile.TemporaryDirectory() as td:
     root=Path(td); (root/'src.py').write_text('source')
@@ -57,6 +57,8 @@ class M32ActualStdioIntegration(unittest.TestCase):
     server=StdioServerParameters(command=sys.executable,args=['-m','ai.fde_v2.m32.server','--root',td],
                                   cwd=str(ROOT),env=env)
     async with Client(server) as session:
+     read=result_object(await session.call_tool('read_allowed_file',{'path':'src.py'}))
+     self.assertEqual(read['text'],'source')
      sha=hashlib.sha256((root/'src.py').read_bytes()).hexdigest()
      result=await session.call_tool('write_patch_proposal',{'source_path':'src.py','target_name':'blocked.patch',
        'content':'must not write','source_sha256':sha})

@@ -3,17 +3,18 @@ from __future__ import annotations
 import tempfile
 from pathlib import Path
 from typing import Any, Mapping, Sequence
-from . import learner, reference
+from . import reference as application_adapter
+from . import reference
 
 def review_change(change: Mapping[str, Any], observations: Sequence[Mapping[str, Any]], incident: Mapping[str, Any],
-                  test_receipt: Mapping[str, Any], *, adapter=learner) -> dict[str, Any]:
+                  test_receipt: Mapping[str, Any], *, adapter=application_adapter) -> dict[str, Any]:
     c=adapter.validate_change_contract(change)
     o=adapter.summarize_observations(observations)
     i=adapter.validate_incident(incident)
     gate=adapter.evaluate_change_gate(change,{**test_receipt,"status":test_receipt.get("status")},incident)
     return {"change":c,"observations":o,"incident":i,"gate":gate}
 
-def run_local_exercise(root: str | None = None, *, adapter=learner) -> dict[str, Any]:
+def run_local_exercise(root: str | None = None, *, adapter=application_adapter) -> dict[str, Any]:
     """Run the instructor-owned disposable regression/migration/recovery lab.
 
     The selected adapter supplies every learner-owned operation. A temporary

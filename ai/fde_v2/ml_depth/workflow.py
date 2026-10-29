@@ -43,16 +43,25 @@ def compare_classical(train_x, train_y, validation_x, validation_y, *, adapter=l
     # First column is a fixed intercept and is excluded from L2 in the reference.
     train_design=[[1.0,*row] for row in train_scaled]
     validation_design=[[1.0,*row] for row in validation_scaled]
+    linear=adapter.train_linear_regression(train_design,train_y,learning_rate=learning_rate,epochs=epochs)
     logistic=adapter.train_logistic(train_design,train_y,learning_rate=learning_rate,epochs=epochs,l2=l2)
     logistic_prob=adapter.predict_logistic_proba(logistic,validation_design)
     tree=reference.fit_boosted_tree(train_x,train_y)
     tree_prob=[float(row[1]) for row in tree.predict_proba(validation_x)]
-    return {"logistic":{"model":logistic,"metrics":_binary_metrics(logistic_prob,validation_y,adapter=adapter),
+    linear_prediction=adapter.predict_linear_regression(linear,validation_design)
+    return {"linear_regression":{"model":linear,"predictions":linear_prediction,"fit_partition":"train"},
+            "logistic":{"model":logistic,"metrics":_binary_metrics(logistic_prob,validation_y,adapter=adapter),
                         "probabilities":logistic_prob},
             "boosted_tree":{"estimator":tree,"metrics":_binary_metrics(tree_prob,validation_y,adapter=adapter),
                             "probabilities":tree_prob},
             "transform":scaler,"fit_partition":"train","validation_used_for_fit":False,
             "model_winner_claim":False,"adapter_module":getattr(adapter,"__name__",adapter.__class__.__name__)}
+
+
+def analyze_threshold_costs(probabilities, labels, *, false_positive_cost, false_negative_cost, adapter=learner):
+    """Run the selected learner threshold rule against declared costs."""
+    return adapter.threshold_cost_analysis(probabilities,labels,
+        false_positive_cost=false_positive_cost,false_negative_cost=false_negative_cost)
 
 
 def torch_training_witness(features, labels, *, adapter=learner, seed=7, epochs=80, learning_rate=0.03,

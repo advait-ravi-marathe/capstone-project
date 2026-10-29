@@ -52,6 +52,11 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
                          'substantive production-ML training begins only after the learner reaches the core handoff'):
             # The phrase check intentionally ignores case; it protects route coverage and honest gates.
             self.assertIn(required.lower(),amendment.lower())
+        # All four extension blocks contribute only to the accepted model/data-depth KR.
+        for block in ('PML1','PML2','PML3','PML4'):
+            self.assertIn(f"| {block} ",amendment)
+        for row in self.schedule['days']:
+            self.assertEqual(row['objective_links'],[{'objective':'O4','key_result':'KR-4.2'}])
         self.assertIn('Status: Not started',(ROOT/'docs/fde-v2/days/day-271.md').read_text())
         self.assertIn('not_started',self.schedule['days'][0]['status'])
 
@@ -72,6 +77,49 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
         for block_start in (271,299,327,355):
             first=next(row for row in schedule if row['day']==block_start)
             self.assertEqual(first['minutes'],{'reading':15,'worked_example':10,'learner_build_test':55,'evidence_log':10})
+
+    def test_all_96_focused_sessions_have_complete_validated_matrix(self):
+        governance=json.loads((ROOT/'docs/fde-v2/governance/north-star-and-okrs.json').read_text())
+        valid={(objective['id'],kr['id']) for objective in governance['objectives']
+               for kr in objective['key_results']}
+        focused=[row for row in self.schedule['days'] if row['day_kind']=='focused']
+        self.assertEqual(len(focused),96)
+        self.assertEqual(len({row['title'] for row in focused}),96)
+        self.assertEqual(len({row['task'] for row in focused}),96)
+        self.assertEqual(len({row['learner_artifact'] for row in focused}),96)
+        for row in focused:
+            with self.subTest(day=row['day']):
+                self.assertTrue(row['reading'].strip())
+                self.assertTrue(row['task'].strip())
+                self.assertTrue(row['prerequisite'].strip())
+                self.assertTrue(row['learner_artifact'].startswith('learning-artifacts/production-ml/'))
+                self.assertTrue(row['learner_interface']['functions'].strip())
+                if row['learner_interface']['path'].endswith('attempt-record.schema.json'):
+                    self.assertTrue((ROOT/row['learner_interface']['path']).is_file())
+                self.assertTrue(row['acceptance_selector'].startswith('ai.fde_v2.ml_depth.test_ml_depth.'))
+                for link in row['objective_links']:
+                    self.assertIn((link['objective'],link['key_result']),valid)
+                page=(ROOT/f"docs/fde-v2/days/day-{row['day']}.md").read_text()
+                for token in (row['task'],row['prerequisite'],row['learner_artifact'],row['acceptance_selector']):
+                    self.assertIn(token,page)
+                if 'M5.2 accepted guide' in row['reading']:
+                    self.assertIn('../proposals/m52-conditional-guide.md',page)
+                else:
+                    for resource in row['reading'].split('; '):
+                        self.assertIn(resource,page)
+        for row in self.schedule['days']:
+            for link in row['objective_links']:
+                self.assertIn((link['objective'],link['key_result']),valid)
+
+    def test_core_protected_retrieval_works_with_supplied_plumbing_without_learner_code(self):
+        from ai.fde_v2.tests.test_m22_integration import M22LocalIntegration
+        case=M22LocalIntegration(methodName='test_default_application_authenticates_signed_fixture_and_no_learner_code_is_required')
+        case.setUp()
+        try:
+            case.test_default_application_authenticates_signed_fixture_and_no_learner_code_is_required()
+            case.test_failed_physical_purge_keeps_tombstone_and_denies_stale_qdrant_hits()
+        finally:
+            case.tearDown()
 
     def test_learner_workflows_fail_at_todos_without_reference_fallback(self):
         from ai.fde_v2.ml_depth import learner,workflow
@@ -113,14 +161,16 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
 
     def test_historical_application_todo_does_not_block_ml_reference_workflow(self):
         from ai.fde_v2.m22 import learner as application_auth_learner
-        from ai.fde_v2.ml_depth import reference,workflow
+        from ai.fde_v2.tests.test_m22_integration import M22LocalIntegration
         with self.assertRaises(NotImplementedError):
             application_auth_learner.verify_identity('token',None,None,
                 expected_issuer='issuer',expected_audience='audience',now=0)
-        result=workflow.compare_classical([[-2.0],[-1.0],[1.0],[2.0]],[0,0,1,1],
-            [[-1.5],[1.5]],[0,1],adapter=reference,epochs=20)
-        self.assertEqual(result['fit_partition'],'train')
-        self.assertEqual(result['adapter_module'],'ai.fde_v2.ml_depth.reference')
+        case=M22LocalIntegration(methodName='test_default_application_authenticates_signed_fixture_and_no_learner_code_is_required')
+        case.setUp()
+        try:
+            case.test_default_application_authenticates_signed_fixture_and_no_learner_code_is_required()
+        finally:
+            case.tearDown()
 
     def test_assistant_plumbing_inventory_covers_every_active_workflow(self):
         inventory=json.loads((ROOT/'docs/fde-v2/application-plumbing-inventory.json').read_text())
@@ -161,12 +211,13 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
         self.assertTrue(guide.is_file())
         text=guide.read_text()
         self.assertEqual(len(re.findall(r'^\|\s*\d+\s*\|',text,re.M)),14)
-        for artifact in ('tenant-filter.diff','AskRagPanel.tsx','QuestionAnswerApp.tsx','m33/workflow.py',
-                         'm22/workflow.py','m42/reference.py','m23/providers.py','m53'):
+        for artifact in ('SpringServiceBoundaryDrill.java','starter.ts','RequestBudgetDrill.java','TenantScopeDrill.java',
+                         'IdempotencyDrill.java','ai/fde_v2/m22/workflow.py','ai/fde_v2/m42/reference.py',
+                         'ai/fde_v2/m23/providers.py','m53'):
             self.assertIn(artifact,text)
-        for command in ('scripts.test_fde_v2_query_plan_lab','ai.fde_v2.tests.test_m22_integration',
-                        'ai.fde_v2.tests.test_m33','ai.fde_v2.tests.test_m42','ai.fde_v2.tests.test_m23_draft',
-                        'ai.fde_v2.tests.test_m53','RUN_FDE_V2=true npx vitest run'):
+        for command in ('ai.fde_v2.tests.test_m22_integration',
+                        'ai.fde_v2.tests.test_m42','ai.fde_v2.tests.test_m23_draft',
+                        'ai.fde_v2.tests.test_m53','VITE_DRILL_IMPLEMENTATION=starter npx vitest run'):
             self.assertIn(command,text)
         self.assertIn('0–4 total',text)
         self.assertIn('scratch',text.lower())
