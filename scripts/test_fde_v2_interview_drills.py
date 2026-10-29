@@ -44,7 +44,8 @@ class InterviewDrillRedGreenTests(unittest.TestCase):
         self.assertEqual(run.returncode,0,output)
         self.assertIn('BUILD SUCCESS',run.stdout)
         guide=(ROOT/'docs/fde-v2/interview-drills/README.md').read_text()
-        self.assertIn('spring-mvc/verify.sh',guide)
+        self.assertIn('fixtures/fde_v2/interview_drills/spring-mvc',guide)
+        self.assertIn('./verify.sh',guide)
 
     def _vitest(self, implementation):
         env=os.environ.copy()
