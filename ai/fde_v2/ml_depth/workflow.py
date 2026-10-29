@@ -75,7 +75,14 @@ def prepare_torch_data(features, labels, *, validation_fraction=.2, batch_size=8
     result=adapter.make_torch_loaders(features,labels,validation_fraction=validation_fraction,
                                       batch_size=batch_size,seed=seed)
     train_indices=result.get("train_indices",[]); validation_indices=result.get("validation_indices",[])
-    if set(train_indices)&set(validation_indices) or set(train_indices)|set(validation_indices)!=set(range(len(features))):
+    if (not isinstance(train_indices,(list,tuple)) or not isinstance(validation_indices,(list,tuple))
+            or any(type(index) is not int or index<0 or index>=len(features)
+            for index in (*train_indices,*validation_indices))
+            or len(set(train_indices))!=len(train_indices)
+            or len(set(validation_indices))!=len(validation_indices)
+            or set(train_indices)&set(validation_indices)
+            or set(train_indices)|set(validation_indices)!=set(range(len(features)))
+            or len(train_indices)+len(validation_indices)!=len(features)):
         raise ValueError("train and validation indexes must be a disjoint full partition")
     train_loader=result.get("train_loader"); validation_loader=result.get("validation_loader")
     if not isinstance(train_loader,torch.utils.data.DataLoader) or not isinstance(validation_loader,torch.utils.data.DataLoader):

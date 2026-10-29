@@ -122,6 +122,21 @@ class MLDepthLearnerAcceptance(unittest.TestCase):
             workflow.prepare_torch_data([[float(i)] for i in range(10)],[i%2 for i in range(10)],adapter=Broken())
 
     @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
+    def test_dataset_loader_workflow_rejects_duplicate_partition_indices(self):
+        from torch.utils.data import DataLoader, Subset
+        class Duplicate:
+            @staticmethod
+            def make_torch_loaders(features,labels,**kwargs):
+                good=candidate.make_torch_loaders(features,labels,**kwargs)
+                indexes=list(good['train_indices'])
+                duplicated=indexes+[indexes[0]]
+                base=good['train_loader'].dataset.dataset
+                return good | {'train_indices':duplicated,
+                               'train_loader':DataLoader(Subset(base,duplicated),batch_size=4)}
+        with self.assertRaisesRegex(ValueError,'disjoint full partition'):
+            workflow.prepare_torch_data([[float(i)] for i in range(10)],[i%2 for i in range(10)],adapter=Duplicate())
+
+    @unittest.skipUnless(importlib.util.find_spec("torch"),"pinned PyTorch is unavailable in this interpreter")
     def test_dataset_loader_workflow_rejects_claimed_indices_over_different_tensors(self):
         import torch
         from torch.utils.data import DataLoader, TensorDataset, Subset
