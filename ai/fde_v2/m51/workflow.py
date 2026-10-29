@@ -12,6 +12,7 @@ def assess(attempts_by_gate, formal_ledger=None, *, adapter=learner):
     reports = []
     seen_ids: set[str] = set()
     seen_hashes: set[str] = set()
+    seen_content_hashes: set[str] = set()
     for gate, attempts in attempts_by_gate.items():
         if gate not in GATES:
             raise ValueError("unknown gate")
@@ -20,6 +21,7 @@ def assess(attempts_by_gate, formal_ledger=None, *, adapter=learner):
         dates: set[str] = set()
         gate_ids: set[str] = set()
         gate_hashes: set[str] = set()
+        gate_content_hashes: set[str] = set()
         for attempt in attempts:
             if not isinstance(attempt, Mapping):
                 raise ValueError("attempt must be a mapping")
@@ -39,14 +41,18 @@ def assess(attempts_by_gate, formal_ledger=None, *, adapter=learner):
                 raise ValueError("task hash is not bound to this gate and task content")
             if not isinstance(actual_date, str) or not actual_date:
                 raise ValueError("actual attempt date is required")
-            if attempt_id in seen_ids or task_hash in seen_hashes:
+            if (attempt_id in seen_ids or task_hash in seen_hashes
+                    or content_hash in seen_content_hashes):
                 raise ValueError("attempt or original task was reused across gates")
             seen_ids.add(attempt_id)
             seen_hashes.add(task_hash)
+            seen_content_hashes.add(content_hash)
             gate_ids.add(attempt_id)
             gate_hashes.add(task_hash)
+            gate_content_hashes.add(content_hash)
             dates.add(actual_date)
-        if len(gate_ids) != 2 or len(gate_hashes) != 2 or len(dates) != 2:
+        if (len(gate_ids) != 2 or len(gate_hashes) != 2
+                or len(gate_content_hashes) != 2 or len(dates) != 2):
             raise ValueError("each gate requires two distinct original tasks on separate actual dates")
         report = adapter.score_gate(attempts)
         if not isinstance(report, Mapping) or report.get("gate") != gate:

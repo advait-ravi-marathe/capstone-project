@@ -4,12 +4,36 @@ from .reference import popularity,dataset_sha256
 from typing import Mapping
 from pathlib import Path
 import hashlib,json,inspect,os
+from types import ModuleType
 
 
 def _code_sha256(function):
     try: source=inspect.getsource(function)
     except (OSError,TypeError) as exc: raise ValueError("selected learner implementation source is unavailable") from exc
     return hashlib.sha256(source.encode()).hexdigest()
+
+
+def _adapter_package_sha256(adapter):
+    """Hash the selected adapter's complete local package source, including helpers."""
+    if isinstance(adapter, ModuleType):
+        module = adapter
+    else:
+        module_name = getattr(adapter, "__module__", None) or adapter.__class__.__module__
+        module = __import__(module_name, fromlist=["*"])
+    module_file = getattr(module, "__file__", None)
+    if not module_file:
+        raise ValueError("selected adapter module source is unavailable")
+    package_root = Path(module_file).resolve().parent
+    files = sorted(path for path in package_root.rglob("*.py") if path.is_file())
+    if not files or Path(module_file).resolve() not in {path.resolve() for path in files}:
+        raise ValueError("selected adapter package source is unavailable")
+    manifest = []
+    for path in files:
+        if path.is_symlink():
+            raise PermissionError("adapter package source cannot include symlinks")
+        relative = path.relative_to(package_root).as_posix()
+        manifest.append({"path": relative, "sha256": hashlib.sha256(path.read_bytes()).hexdigest()})
+    return _canonical_hash(manifest)
 
 
 def _canonical_hash(value):
@@ -41,7 +65,8 @@ def save_model_bundle(root,events,source_manifest,model_config,*,adapter=learner
         raise ValueError("explicit model configuration is required")
     model={"model_kind":"explicit-cosine-sample","config":dict(model_config),
            "ranker_code_sha256":_code_sha256(adapter.rank_items),
-           "metric_code_sha256":_code_sha256(adapter.ndcg_at_k)}
+           "metric_code_sha256":_code_sha256(adapter.ndcg_at_k),
+           "adapter_package_sha256":_adapter_package_sha256(adapter)}
     model["model_sha256"]=_canonical_hash(model)
     data_path=base/"training-events.json"
     manifest_path=base/"model-manifest.json"
@@ -68,6 +93,7 @@ def load_model_bundle(root,*,adapter=learner):
     adapter.validate_dataset_manifest(source,events)
     if (model.get("ranker_code_sha256")!=_code_sha256(adapter.rank_items)
             or model.get("metric_code_sha256")!=_code_sha256(adapter.ndcg_at_k)
+            or model.get("adapter_package_sha256")!=_adapter_package_sha256(adapter)
             or model.get("model_sha256")!=_canonical_hash({k:v for k,v in model.items() if k!="model_sha256"})):
         raise ValueError("model code/config hash mismatch")
     return {"events":events,"source_manifest":source,"model":model,"data_sha256":actual_hash,
@@ -84,9 +110,11 @@ def freeze_heldout(root,events,source_manifest,model_config,*,candidate_items=No
     if split.get("test_frozen") is not False or split.get("holdout_manifest_required") is not True:
         raise ValueError("splitter must not claim freeze before an immutable artifact exists")
     partitions={name:[dict(row) for row in split[name]] for name in ("train","validation","heldout")}
-    catalog=sorted({row["item_id"] for row in events}) if candidate_items is None else list(candidate_items)
+    train_catalog={row["item_id"] for row in partitions["train"]}
+    catalog=sorted(train_catalog) if candidate_items is None else list(candidate_items)
     if (not catalog or any(not isinstance(item,str) or not item for item in catalog)
-            or len(set(catalog))!=len(catalog) or type(k) is not int or k<1):
+            or len(set(catalog))!=len(catalog) or not set(catalog).issubset(train_catalog)
+            or type(k) is not int or k<1):
         raise ValueError("frozen candidate catalog and metric cutoff are invalid")
     training_manifest={**dict(source_manifest),"sha256":dataset_sha256(partitions["train"]),
                        "source_dataset_sha256":dataset_sha256(events)}
@@ -97,7 +125,9 @@ def freeze_heldout(root,events,source_manifest,model_config,*,candidate_items=No
         "model_sha256":bundle["model_sha256"],"model_manifest_sha256":bundle["model_manifest_sha256"],
         "partition_sha256":hashes,"partition_counts":{key:len(value) for key,value in partitions.items()},
         "heldout_event_ids":[row["event_id"] for row in partitions["heldout"]],
-        "candidate_items":catalog,"candidate_items_sha256":_canonical_hash(catalog),"ndcg_k":k,
+        "candidate_items":catalog,"candidate_items_sha256":_canonical_hash(catalog),
+        "candidate_items_source":"training_partition",
+        "candidate_items_source_sha256":dataset_sha256(partitions["train"]),"ndcg_k":k,
         "frozen":True,"freeze_sha256":None,"classification":"local_frozen_evaluation_plan"}
     manifest["freeze_sha256"]=_canonical_hash({k:v for k,v in manifest.items() if k!="freeze_sha256"})
     for name,rows in partitions.items():

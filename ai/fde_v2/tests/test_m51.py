@@ -40,6 +40,19 @@ class M51Test(unittest.TestCase):
   malformed=[attempt("system_design",1,"2026-10-28"),attempt("system_design",2,"2026-10-29")]
   malformed[0]["task_hash"]="c"*63
   with self.assertRaises(ValueError): workflow.assess({"system_design":malformed},adapter=reference)
+  # Relabeling identical source tasks and recomputing gate-bound digests must not
+  # make one underlying exercise look like six unseen gate-specific tasks.
+  relabeled={}
+  for gate_index,gate in enumerate(sorted(reference.GATES)):
+   rows=[]
+   for n in (1,2):
+    content_hash=hashlib.sha256(f"shared-original-exercise-{n}".encode()).hexdigest()
+    row=attempt(gate,n,f"2026-11-{gate_index*2+n:02d}")
+    row["task_content_sha256"]=content_hash
+    row["task_hash"]=hashlib.sha256(f"{gate}:{content_hash}".encode()).hexdigest()
+    rows.append(row)
+   relabeled[gate]=rows
+  with self.assertRaises(ValueError): workflow.assess(relabeled,adapter=reference)
  def test_workflow_rejects_adapter_that_inflates_scores_or_discards_attempt_outcomes(self):
   pair=[attempt("system_design",1,"2026-10-28",2),attempt("system_design",2,"2026-10-29",2)]
   class Inflated:

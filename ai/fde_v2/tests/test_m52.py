@@ -1,5 +1,5 @@
 import unittest
-import tempfile,json
+import tempfile,json,importlib.util
 from pathlib import Path
 from fastapi.testclient import TestClient
 from ai.fde_v2.m52 import learner,reference,workflow,acceptance,api
@@ -93,6 +93,36 @@ class M52Test(unittest.TestCase):
    self.assertEqual(response.status_code,200)
    self.assertEqual(response.json()['dataset_hash'],bundle['data_sha256'])
    self.assertEqual(response.json()['model_code_sha256'],loaded['model']['ranker_code_sha256'])
+   self.assertEqual(response.json()['adapter_package_sha256'],loaded['model']['adapter_package_sha256'])
    path=Path(td)/'training-events.json'; events=json.loads(path.read_text()); events[0]['item_id']='mutated'; path.write_text(json.dumps(events))
    with self.assertRaises(ValueError): workflow.load_model_bundle(td,adapter=reference)
+ def test_bundle_hash_covers_helper_only_scoring_changes(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td); bundle_root=root/'bundle'; source=Path(reference.__file__).read_text(encoding='utf-8')
+   manifest={'source_kind':'synthetic','source':'local fixture','license':'CC0',
+             'sha256':reference.dataset_sha256(EVENTS)}
+   workflow.save_model_bundle(bundle_root,EVENTS,manifest,{'algorithm':'explicit-cosine-sample','version':1},adapter=reference)
+   changed=source.replace('dot/(nl*nr)','dot/(nl*nr)*0.5')
+   self.assertNotEqual(source,changed)
+   helper_path=root/'changed_reference.py'; helper_path.write_text(changed,encoding='utf-8')
+   spec=importlib.util.spec_from_file_location('changed_m52_reference',helper_path)
+   changed_module=importlib.util.module_from_spec(spec); spec.loader.exec_module(changed_module)
+   with self.assertRaisesRegex(ValueError,'code/config hash mismatch'):
+    workflow.load_model_bundle(bundle_root,adapter=changed_module)
+ def test_default_candidate_catalog_excludes_heldout_only_items(self):
+  with tempfile.TemporaryDirectory() as td:
+   events=EVENTS+[{'event_id':'late-only','user_id':'u0','item_id':'heldout-only-item','timestamp':1000}]
+   manifest={'source_kind':'synthetic','source':'local fixture','license':'CC0',
+             'sha256':reference.dataset_sha256(events)}
+   frozen=workflow.freeze_heldout(td,events,manifest,{'algorithm':'explicit-cosine-sample','version':1},adapter=reference)
+   self.assertNotIn('heldout-only-item',frozen['candidate_items'])
+   self.assertEqual(frozen['candidate_items_source'],'training_partition')
+   self.assertEqual(frozen['candidate_items_source_sha256'],frozen['training_sha256'])
+   self.assertNotIn('heldout-only-item',sorted({row['item_id'] for row in events[:6]}))
+  with tempfile.TemporaryDirectory() as td:
+   manifest={'source_kind':'synthetic','source':'local fixture','license':'CC0',
+             'sha256':reference.dataset_sha256(EVENTS)}
+   with self.assertRaises(ValueError):
+    workflow.freeze_heldout(td,EVENTS,manifest,{'algorithm':'explicit-cosine-sample','version':1},
+                            candidate_items=['heldout-only-item'],adapter=reference)
 if __name__=='__main__': unittest.main()
