@@ -109,3 +109,13 @@ jobs:
         run: |
           python3 -m unittest scripts.test_fde_v2_m22_draft ai.fde_v2.tests.test_m22_draft
           M22_CANDIDATE=ai.fde_v2.m22.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m22_units
+      - name: Install pinned official MCP Python SDK for conditional M3.2
+        run: python3 -m pip install -r requirements-fde-v2-mcp.txt
+      - name: Verify conditional AWS FDE v2.4 M2.3–M3.2 mechanics and real local MCP stdio
+        run: |
+          python3 -m unittest scripts.test_fde_v2_m23_m32 \
+            ai.fde_v2.tests.test_m23_draft ai.fde_v2.tests.test_m31_draft \
+            ai.fde_v2.tests.test_m32_draft ai.fde_v2.tests.test_m32_stdio
+          M23_CANDIDATE=ai.fde_v2.m23.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m23_units
+          M31_CANDIDATE=ai.fde_v2.m31.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m31_units
+          M32_CANDIDATE=ai.fde_v2.m32.reference python3 -m unittest ai.fde_v2.learner_acceptance.test_m32_units

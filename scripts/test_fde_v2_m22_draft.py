@@ -39,8 +39,13 @@ class M22DraftContract(unittest.TestCase):
                 self.assertTrue((proposal.parent / filepart).resolve().exists(), target)
 
     def test_no_m22_daily_pages_are_active(self):
-        active_days = sorted((ROOT / "docs/fde-v2/days").glob("day-*.md"))
-        self.assertFalse(any(path.name in {"day-62.md", "day-82.md"} for path in active_days))
+        days = ROOT / "docs/fde-v2/days"
+        self.assertFalse((days / "day-62.md").exists())
+        day82 = days / "day-82.md"  # conditional M2.3 planning card, not M2.2 activation
+        if day82.exists():
+            text = day82.read_text()
+            self.assertIn("Conditional draft only", text)
+            self.assertNotIn("M2.2-S", text)
         self.assertIn("NotImplementedError", (ROOT / "ai/fde_v2/m22/learner.py").read_text())
 
 

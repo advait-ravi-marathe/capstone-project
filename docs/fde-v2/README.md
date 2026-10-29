@@ -138,3 +138,7 @@ The accepted JSON/Markdown source contracts are retained byte-for-byte under `ac
 ## Conditional next milestone: M2.2
 
 [`M2.2 detailed design and deterministic mechanics`](proposals/m22-detailed-days-62-82.md) maps the accepted security/identity/deployment-preparation outcome contract to a proposed Days62–82 sequence. It remains a conditional draft: M2.1's learner-evidenced data/evaluation baseline is a prerequisite, actual identity integration is not implemented, and no cloud/account setup or deployment has occurred. The M2.2 TODOs and synthetic witnesses do not advance learner status. The proposal preserves the accepted 29-hour AI envelope, weekly visibility accounting and all prior learner-day records.
+
+## Conditional M2.3, M3.1 and M3.2 drafts
+
+[The conditional guides, daily cards and reference mechanics](proposals/m23-m32-conditional-guide.md) cover accepted M2.3 real AWS/hosted-model delivery, M3.1 bounded local developer workflow, and M3.2 genuine MCP stdio plus exact-action approval. They are not activated learner days. M2.3 remains blocked pending scoped AWS/model authorization; M3.1 retains P1/M2.1/M2.2 learner prerequisites; M3.2 retains M3.1 and a trusted human-approval UI gate. Current official MCP SDK2.3.0 stdio mechanics run in a temporary workspace, but test-fixture elicitation is not human approval evidence. Daily cards label the AI minutes left unallocated and do not convert them into extra work.
