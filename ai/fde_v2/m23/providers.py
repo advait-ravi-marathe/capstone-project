@@ -9,7 +9,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import secrets
+import threading
 import time
 from collections.abc import Callable, Mapping
 from typing import Any, Protocol
@@ -27,6 +29,10 @@ class EcsClient(Protocol):
     def update_service(self, **kwargs: Any) -> Mapping[str, Any]: ...
 
 
+class StsIdentityClient(Protocol):
+    def get_caller_identity(self) -> Mapping[str, Any]: ...
+
+
 class ApprovalVault:
     """In-memory, one-use approval records issued only by a trusted event hook.
 
@@ -34,30 +40,116 @@ class ApprovalVault:
     actual human-controlled UI by an integrating application. A boolean or
     request digest from the model/caller is never sufficient by itself.
     """
-    def __init__(self, approval_event: Callable[[str, str, Mapping[str, Any]], bool]):
+    def __init__(self, approval_event: Callable[[str, str, Mapping[str, Any]], bool],
+                 *, monotonic_clock: Callable[[], float] = time.monotonic,
+                 wall_clock: Callable[[], float] = time.time):
         self._approval_event = approval_event
+        self._monotonic_clock = monotonic_clock
+        self._wall_clock = wall_clock
         self._records: dict[str, tuple[str, str, float]] = {}
+        self._lock = threading.Lock()
 
-    def issue(self, operation: str, request_sha256: str, summary: Mapping[str, Any],
-              *, now: float, ttl_seconds: int = 120) -> str | None:
+    def issue(self, operation: str, request: Mapping[str, Any],
+              *, ttl_seconds: int = 120) -> str | None:
         if (not isinstance(operation,str) or not operation.strip()
-                or not isinstance(request_sha256,str) or len(request_sha256)!=64
-                or any(c not in "0123456789abcdef" for c in request_sha256)
-                or not isinstance(summary,Mapping) or type(now) not in (int,float)
+                or not isinstance(request,Mapping)
                 or type(ttl_seconds) is not int or not 1<=ttl_seconds<=300):
             return None
-        if self._approval_event(operation,request_sha256,dict(summary)) is not True:
+        try:
+            digest=request_sha256(request)
+            exact_request=json.loads(json.dumps(request,sort_keys=True,separators=(",",":"),allow_nan=False))
+        except (TypeError,ValueError):
+            return None
+        wall_now=self._wall_clock()
+        if type(wall_now) not in (int,float) or not math.isfinite(float(wall_now)):
+            return None
+        scope=exact_request.get("authorization_scope")
+        if not isinstance(scope,Mapping):
+            return None
+        expires_at=scope.get("expires_at")
+        if type(expires_at) not in (int,float) or not math.isfinite(float(expires_at)) or expires_at<=wall_now:
+            return None
+        ttl_seconds=min(ttl_seconds,int(expires_at-wall_now))
+        if ttl_seconds<1:
+            return None
+        monotonic_now=self._monotonic_clock()
+        if type(monotonic_now) not in (int,float) or not math.isfinite(float(monotonic_now)):
+            return None
+        try:
+            if self._approval_event(operation,digest,exact_request) is not True:
+                return None
+        except Exception:
             return None
         token=secrets.token_urlsafe(32)
-        self._records[token]=(operation,request_sha256,float(now)+ttl_seconds)
+        with self._lock:
+            self._records[token]=(operation,digest,float(monotonic_now)+ttl_seconds)
         return token
 
-    def consume(self, token: str | None, operation: str, request_sha256: str,
-                *, now: float) -> bool:
+    def consume(self, token: str | None, operation: str, request_sha256: str) -> bool:
         # Pop before validating so a malformed attempt cannot reuse a token.
-        record=self._records.pop(token,None) if isinstance(token,str) else None
+        with self._lock:
+            record=self._records.pop(token,None) if isinstance(token,str) else None
+        now=self._monotonic_clock()
         return (record is not None and record[0]==operation and record[1]==request_sha256
-                and type(now) in (int,float) and now < record[2])
+                and type(now) in (int,float) and math.isfinite(float(now)) and now < record[2])
+
+
+def request_sha256(request: Mapping[str, Any]) -> str:
+    """Canonical hash for the exact structured SDK call arguments."""
+    encoded=json.dumps(request,sort_keys=True,separators=(",",":"),ensure_ascii=False,allow_nan=False).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+AUTHORIZATION_FIELDS=("account_id","region","services","model_id","spend_ceiling","currency",
+                      "expires_at","teardown_owner","residual_cost_acknowledged")
+
+
+def build_authorized_action(operation: str, provider: str, sdk_service: str,
+                            scope: Mapping[str, Any], sdk_request: Mapping[str, Any]) -> dict[str, Any]:
+    """Bind the exact SDK call to provider, account, region and spend authority."""
+    if not isinstance(scope,Mapping) or not isinstance(sdk_request,Mapping):
+        raise ValueError("scope and SDK request must be mappings")
+    auth={key:scope.get(key) for key in AUTHORIZATION_FIELDS}
+    services=auth["services"]
+    if isinstance(services,(list,tuple,set,frozenset)) and all(isinstance(item,str) for item in services):
+        services=sorted(set(services))
+        auth["services"]=services
+    if (not isinstance(operation,str) or not operation or not isinstance(provider,str) or not provider
+            or not isinstance(sdk_service,str) or not sdk_service
+            or not isinstance(auth["account_id"],str) or not auth["account_id"].strip()
+            or not isinstance(auth["region"],str) or not auth["region"].strip()
+            or not isinstance(services,(list,tuple,set,frozenset)) or sdk_service not in services
+            or not services or any(not isinstance(item,str) or not item.strip() for item in services)
+            or not isinstance(auth["model_id"],str) or not auth["model_id"].strip()
+            or type(auth["spend_ceiling"]) not in (int,float) or not math.isfinite(float(auth["spend_ceiling"]))
+            or auth["spend_ceiling"]<=0 or auth["currency"] not in {"USD","CAD","EUR","GBP"}
+            or type(auth["expires_at"]) not in (int,float) or not isinstance(auth["teardown_owner"],str)
+            or not auth["teardown_owner"].strip() or auth["residual_cost_acknowledged"] is not True):
+        raise ValueError("complete provider/account/region/spend authorization scope is required")
+    if sdk_service == "bedrock-runtime" and sdk_request.get("modelId") != auth["model_id"]:
+        raise ValueError("Bedrock request model must match the approved model scope")
+    return {"operation":operation,"provider":provider,"sdk_service":sdk_service,
+            "authorization_scope":auth,"sdk_request":dict(sdk_request)}
+
+
+def verify_injected_client_scope(client: Any, identity_client: StsIdentityClient | None,
+                                scope: Mapping[str, Any], sdk_service: str) -> tuple[bool,bool]:
+    """Check client service/region and read back caller account through injected STS.
+
+    Returns (matches, identity_request_made). The caller must first consume the
+    exact approval token before invoking this verifier.
+    """
+    meta=getattr(client,"meta",None)
+    service_model=getattr(meta,"service_model",None)
+    if (meta is None or getattr(meta,"region_name",None)!=scope.get("region")
+            or getattr(service_model,"service_name",None)!=sdk_service or identity_client is None):
+        return False,False
+    try:
+        identity=identity_client.get_caller_identity()
+    except Exception:
+        return False,True
+    account=identity.get("Account") if isinstance(identity,Mapping) else None
+    return account==scope.get("account_id"),True
 
 
 def build_converse_request(model_id: str, prompt: str, max_tokens: int) -> dict[str, Any]:
@@ -118,26 +210,35 @@ class BedrockConverseAdapter:
     """Optional live adapter. Default construction cannot execute a request."""
     def __init__(self, client: BedrockRuntimeClient | None = None,
                  approval_vault: ApprovalVault | None = None,
-                 *, execution_enabled: bool = False, clock: Callable[[], float] = time.time):
+                 identity_client: StsIdentityClient | None = None,
+                 *, execution_enabled: bool = False):
         self._client = client
         self._approval_vault = approval_vault
+        self._identity_client = identity_client
         self._execution_enabled = execution_enabled
-        self._clock=clock
 
     def execute(self, scope: Mapping[str, Any]) -> dict[str, Any]:
-        if self._execution_enabled is not True or self._client is None or self._approval_vault is None:
-            return {"status": "BLOCKED", "reason": "Bedrock client and separately authorized live gate are required",
+        if (self._execution_enabled is not True or self._client is None or self._approval_vault is None
+                or self._identity_client is None):
+            return {"status": "BLOCKED", "reason": "Bedrock/STS clients and separately authorized live gate are required",
                     "external_call_made": False}
         if scope.get("provider") != "aws-bedrock-converse":
             return {"status": "BLOCKED", "reason": "provider scope mismatch", "external_call_made": False}
         request = build_converse_request(scope.get("model_id"), scope.get("prompt"), scope.get("max_tokens"))
-        digest=hashlib.sha256(json.dumps(request,sort_keys=True,separators=(",",":")).encode()).hexdigest()
-        if not self._approval_vault.consume(scope.get("approval_token"),"bedrock_converse",digest,now=self._clock()):
+        action=build_authorized_action("bedrock_converse","aws-bedrock-converse","bedrock-runtime",scope,request)
+        digest=request_sha256(action)
+        if not self._approval_vault.consume(scope.get("approval_token"),"bedrock_converse",digest):
             return {"status":"BLOCKED","reason":"missing, mismatched, expired, or replayed approval",
                     "external_call_made":False}
+        matches,identity_call=verify_injected_client_scope(self._client,self._identity_client,scope,"bedrock-runtime")
+        if not matches:
+            return {"status":"BLOCKED_CLIENT_SCOPE_MISMATCH","reason":"client service/region/account did not match approved scope",
+                    "identity_request_made":identity_call,"external_call_made":identity_call,
+                    "provider_invocation_made":False,"milestone_pass":False}
         response = self._client.converse(**request)
         parsed = parse_converse_response(response, request["modelId"])
         return {"status": "PROVIDER_RESPONSE_REQUIRES_REVIEW", "external_call_made": True,
+                "identity_request_made":True,"provider_invocation_made":True,
                 "provider_result": parsed, "milestone_pass": False}
 
 
@@ -230,32 +331,44 @@ class EcsDeploymentAdapter:
     """
     def __init__(self, client: EcsClient | None = None,
                  approval_vault: ApprovalVault | None = None,
-                 *, execution_enabled: bool = False, clock: Callable[[], float] = time.time):
-        self._client, self._approval_vault, self._enabled, self._clock = client, approval_vault, execution_enabled, clock
+                 identity_client: StsIdentityClient | None = None,
+                 *, execution_enabled: bool = False):
+        self._client, self._approval_vault = client, approval_vault
+        self._identity_client, self._enabled = identity_client, execution_enabled
 
     def plan(self, manifest: Mapping[str, Any]) -> dict[str, Any]:
         task = build_ecs_task_definition_request(manifest)
         service = build_ecs_service_request(manifest, manifest.get("task_definition_revision", "PLANNED_REVISION"))
-        task_digest=hashlib.sha256(json.dumps(task,sort_keys=True,separators=(",",":")).encode()).hexdigest()
-        service_digest=hashlib.sha256(json.dumps(service,sort_keys=True,separators=(",",":")).encode()).hexdigest()
+        task_digest=request_sha256(task)
+        service_digest=request_sha256(service)
         return {"status": "DRY_RUN", "task_definition_request": task, "service_request": service,
                 "task_definition_sha256":task_digest,"service_preview_sha256":service_digest,
                 "request_sha256": hashlib.sha256(json.dumps([task,service],sort_keys=True,separators=(",",":")).encode()).hexdigest(),
                 "external_call_made": False}
 
-    def _ready(self, operation: str, digest: str, approval_token: str | None) -> bool:
+    def _ready(self, operation: str, action: Mapping[str, Any], approval_token: str | None) -> bool:
         return (self._enabled is True and self._client is not None and self._approval_vault is not None
-                and isinstance(digest,str) and len(digest)==64
-                and self._approval_vault.consume(approval_token,operation,digest,now=self._clock()) is True)
+                and self._approval_vault.consume(approval_token,operation,request_sha256(action)) is True)
+
+    def _client_matches(self, manifest: Mapping[str, Any]) -> bool:
+        scope=manifest.get("authorization_scope",manifest)
+        matches,_identity_call=verify_injected_client_scope(self._client,self._identity_client,scope,"ecs")
+        return matches
 
     def register_revision(self, manifest: Mapping[str, Any],
                           approval_token: str | None = None) -> dict[str, Any]:
         """Register one task revision only; activation needs a second exact approval."""
         request=build_ecs_task_definition_request(manifest)
-        digest=hashlib.sha256(json.dumps(request,sort_keys=True,separators=(",",":")).encode()).hexdigest()
-        if not self._ready("register_task_definition",digest,approval_token):
+        action=build_authorized_action("register_task_definition","aws-ecs-fargate","ecs",
+                                       manifest.get("authorization_scope",manifest),request)
+        digest=request_sha256(action)
+        if not self._ready("register_task_definition",action,approval_token):
             return {"status":"BLOCKED","reason":"exact task-definition request is not separately authorized",
                     "request":request,"request_sha256":digest,"external_call_made":False}
+        if not self._client_matches(manifest):
+            return {"status":"BLOCKED_CLIENT_SCOPE_MISMATCH","request_sha256":digest,
+                    "external_call_made":self._client is not None and self._identity_client is not None,
+                    "milestone_pass":False}
         response=self._client.register_task_definition(**request)
         task_def=(response.get("taskDefinition") or {}).get("taskDefinitionArn") if isinstance(response,Mapping) else None
         if not isinstance(task_def,str) or not task_def:
@@ -269,10 +382,16 @@ class EcsDeploymentAdapter:
                           approval_token: str | None = None) -> dict[str, Any]:
         """Activate a registered, exact task revision under a second approval."""
         request=build_ecs_service_request(manifest,task_definition)
-        digest=hashlib.sha256(json.dumps(request,sort_keys=True,separators=(",",":")).encode()).hexdigest()
-        if not self._ready("activate_service_revision",digest,approval_token):
+        action=build_authorized_action("activate_service_revision","aws-ecs-fargate","ecs",
+                                       manifest.get("authorization_scope",manifest),request)
+        digest=request_sha256(action)
+        if not self._ready("activate_service_revision",action,approval_token):
             return {"status":"BLOCKED","reason":"exact service activation request is not separately authorized",
                     "request":request,"request_sha256":digest,"external_call_made":False}
+        if not self._client_matches(manifest):
+            return {"status":"BLOCKED_CLIENT_SCOPE_MISMATCH","request_sha256":digest,
+                    "external_call_made":self._client is not None and self._identity_client is not None,
+                    "milestone_pass":False}
         existing=self._client.describe_services(cluster=manifest["cluster"],services=[manifest["service_name"]])
         services=existing.get("services",[]) if isinstance(existing,Mapping) else []
         if not isinstance(services,list):
@@ -293,10 +412,16 @@ class EcsDeploymentAdapter:
         if not isinstance(previous_task_definition,str) or not previous_task_definition.strip():
             raise ValueError("observed previous task definition revision is required")
         request=build_ecs_service_request(manifest,previous_task_definition)
-        digest=hashlib.sha256(json.dumps(request,sort_keys=True,separators=(",",":")).encode()).hexdigest()
-        if not self._ready("rollback",digest,approval_token):
+        action=build_authorized_action("rollback","aws-ecs-fargate","ecs",
+                                       manifest.get("authorization_scope",manifest),request)
+        digest=request_sha256(action)
+        if not self._ready("rollback",action,approval_token):
             return {"status":"BLOCKED","reason":"exact rollback plan is not separately authorized",
                     "request":request,"request_sha256":digest,"external_call_made":False}
+        if not self._client_matches(manifest):
+            return {"status":"BLOCKED_CLIENT_SCOPE_MISMATCH","request_sha256":digest,
+                    "external_call_made":self._client is not None and self._identity_client is not None,
+                    "milestone_pass":False}
         observed=self._client.describe_task_definition(taskDefinition=previous_task_definition)
         observed_task=(observed.get("taskDefinition") or {}).get("taskDefinitionArn") if isinstance(observed,Mapping) else None
         if observed_task != previous_task_definition:
