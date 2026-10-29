@@ -22,7 +22,11 @@ def run_local_exercise(root: str | None = None, *, adapter=learner) -> dict[str,
     """
     if root is None:
         root=tempfile.mkdtemp(prefix="fde-v2-m42-")
-    base=Path(root).resolve(); base.mkdir(parents=True,exist_ok=True)
+    supplied=Path(root)
+    if supplied.is_symlink(): raise PermissionError("M4.2 lab root cannot be a symlink")
+    supplied.mkdir(parents=True,exist_ok=True)
+    base=supplied.resolve(strict=True)
+    if any(base.iterdir()): raise PermissionError("M4.2 lab requires a new empty disposable scratch directory")
     code_root=base/"code"; code_root.mkdir(exist_ok=True)
     source_hash=reference.prepare_local_fixture(str(code_root))
     before=reference.run_regression(str(code_root))

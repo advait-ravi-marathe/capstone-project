@@ -25,7 +25,11 @@ class M42Acceptance(unittest.TestCase):
             self.assertEqual(out["change"]["after"]["returncode"],0)
             self.assertEqual(out["migration"]["status"],"PASS")
             self.assertEqual(out["rollback"]["status"],"PASS")
-            self.assertEqual(out["incident"]["probe_returncodes"],[1,0])
+            self.assertEqual(out["incident"]["probe_returncodes"],[2,0])
+            self.assertTrue(out["incident"]["diagnosis_observed"])
+            self.assertTrue(out["incident"]["prevention_regression_executed"])
+            self.assertEqual(out["incident"]["prevention_test_returncode"],0)
+            self.assertTrue(out["incident"]["all_stages_observed"])
             self.assertTrue(out["retention"]["physically_removed"])
             self.assertFalse(out["learner_completion"])
 

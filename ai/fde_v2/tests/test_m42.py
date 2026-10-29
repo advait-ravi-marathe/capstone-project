@@ -1,5 +1,6 @@
 """M4.2 mechanics use complete local receipts and keep live cloud blocked."""
 import unittest, tempfile
+import sqlite3
 from ai.fde_v2.m42 import learner, reference, workflow
 
 CHANGE={"requirement":"add stable source version","old_behavior":"source omitted","new_behavior":"source_version returned",
@@ -63,7 +64,7 @@ class M42Mechanics(unittest.TestCase):
             self.assertEqual(out["change"]["after"]["returncode"],0)
             self.assertEqual(out["migration"]["status"],"PASS")
             self.assertEqual(out["rollback"]["status"],"PASS")
-            self.assertEqual(out["incident"]["probe_returncodes"],[1,0])
+            self.assertEqual(out["incident"]["probe_returncodes"],[2,0])
             self.assertEqual([e["stage"] for e in out["incident"]["events"]],
                              ["detection","diagnosis","mitigation","recovery","prevention"])
             self.assertTrue(out["retention"]["physically_removed"])
@@ -74,5 +75,48 @@ class M42Mechanics(unittest.TestCase):
     def test_local_exercise_does_not_replace_unimplemented_learner_patch(self):
         with tempfile.TemporaryDirectory() as td:
             with self.assertRaises(NotImplementedError): workflow.run_local_exercise(td)
+
+    def test_rollback_restores_all_varied_rows_and_schema_from_snapshot(self):
+        with tempfile.TemporaryDirectory() as td:
+            db_path=td+"/varied.sqlite3"
+            db=sqlite3.connect(db_path)
+            db.execute("CREATE TABLE docs(doc_id TEXT PRIMARY KEY, body TEXT NOT NULL)")
+            db.executemany("INSERT INTO docs VALUES(?,?)",[("alpha","one"),("beta","two"),("fixture-doc","synthetic")])
+            db.execute("CREATE INDEX docs_body_idx ON docs(body)")
+            db.commit()
+            db.close()
+            migrated=reference.migrate_fixture_database(db_path)
+            self.assertEqual(migrated["row_count"],3)
+            db=sqlite3.connect(db_path)
+            db.execute("INSERT INTO docs(doc_id,body) VALUES('post-migration','discard-on-rollback')")
+            db.commit(); db.close()
+            restored=reference.rollback_fixture_database(db_path)
+            self.assertTrue(restored["data_preserved"])
+            db=sqlite3.connect(db_path)
+            self.assertEqual(db.execute("SELECT doc_id,body FROM docs ORDER BY doc_id").fetchall(),
+                             [("alpha","one"),("beta","two"),("fixture-doc","synthetic")])
+            self.assertIsNone(db.execute("SELECT 1 FROM sqlite_master WHERE name='retention_state'").fetchone())
+            self.assertIsNotNone(db.execute("SELECT 1 FROM sqlite_master WHERE name='docs_body_idx'").fetchone())
+            db.close()
+
+    def test_incident_prevention_is_an_executed_guard_regression(self):
+        with tempfile.TemporaryDirectory() as td:
+            incident=reference.run_fixture_incident(td)
+            self.assertEqual(incident["status"],"PASS")
+            self.assertTrue(incident["diagnosis_observed"])
+            self.assertTrue(incident["prevention_regression_executed"])
+            self.assertTrue(incident["all_stages_observed"])
+            self.assertEqual(incident["prevention_test_returncode"],0)
+            self.assertTrue(all(len(event["evidence_ref"])==64 for event in incident["events"]))
+            with self.assertRaises(PermissionError): reference.run_fixture_incident(td)
+
+    def test_local_lab_rejects_nonempty_or_symlink_scope(self):
+        with tempfile.TemporaryDirectory() as td, tempfile.TemporaryDirectory() as other:
+            from pathlib import Path
+            Path(td,"keep.txt").write_text("safe")
+            with self.assertRaises(PermissionError): workflow.run_local_exercise(td,adapter=reference)
+            link=Path(other,"alias")
+            link.symlink_to(td,target_is_directory=True)
+            with self.assertRaises(PermissionError): workflow.run_local_exercise(str(link),adapter=reference)
 
 if __name__=='__main__': unittest.main()

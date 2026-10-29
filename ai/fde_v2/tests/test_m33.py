@@ -1,12 +1,19 @@
 """M3.3 mechanics execute real local M3.1 tools; no model-quality claim."""
 import tempfile, unittest
 import hashlib
+import sqlite3
 from pathlib import Path
 from ai.fde_v2.m31 import reference as m31_reference
 from ai.fde_v2.m32 import reference as m32_reference
 from ai.fde_v2.m33 import learner, reference, workflow
 
 class M33Mechanics(unittest.TestCase):
+    def _patch_action(self, root, action_id="safe-a"):
+        source=root/'source.py'; source.write_text('actual source')
+        return {'action_id':action_id,'source_path':'source.py','target_name':'fix.patch',
+                'content':'review-only proposal','source_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),
+                'scope_sha256':'a'*64,'session_binding':'test-session'}
+
     def _split_receipt(self):
         cases=[{"case_id":f"d{i}","root_group":f"dev-{i}"} for i in range(12)]
         cases += [{"case_id":f"h{i}","root_group":f"held-{i}"} for i in range(12)]
@@ -129,9 +136,56 @@ class M33Mechanics(unittest.TestCase):
             denied=workflow.run_controlled_patch(td,action,adapter=reference,approval_fixture=None)
             self.assertEqual(denied['status'],'DENIED')
             self.assertFalse((root/'patch-proposals'/'fix.patch').exists())
+            self.assertFalse((root/'.m33-action-journal.sqlite3').exists())
             approval={'approved':True,'action_digest':'c'*64}
             denied=workflow.run_controlled_patch(td,action,adapter=reference,approval_fixture=approval)
             self.assertEqual(denied['status'],'DENIED')
             self.assertFalse((root/'patch-proposals'/'fix.patch').exists())
+
+    def test_journal_and_sqlite_sidecar_symlinks_are_rejected_before_outside_mutation(self):
+        with tempfile.TemporaryDirectory() as td, tempfile.TemporaryDirectory() as outside:
+            root=Path(td); ext=Path(outside)/"canary.sqlite3"
+            db=sqlite3.connect(ext); db.execute("CREATE TABLE canary(value TEXT)"); db.execute("INSERT INTO canary VALUES('unchanged')"); db.commit(); db.close()
+            before=sqlite3.connect(ext); original=before.execute("SELECT value FROM canary").fetchall(); before.close()
+            action=self._patch_action(root)
+            (root/'.m33-action-journal.sqlite3').symlink_to(ext)
+            with self.assertRaises(PermissionError):
+                workflow.run_controlled_patch(td,action,adapter=reference,
+                    approval_fixture={"approved":True,"action_digest":"b"*64})
+            check=sqlite3.connect(ext); self.assertEqual(check.execute("SELECT value FROM canary").fetchall(),original); check.close()
+
+        with tempfile.TemporaryDirectory() as td, tempfile.TemporaryDirectory() as outside:
+            root=Path(td); ext=Path(outside)/"sidecar"; ext.write_text("canary")
+            action=self._patch_action(root)
+            (root/'.m33-action-journal.sqlite3-journal').symlink_to(ext)
+            with self.assertRaises(PermissionError):
+                workflow.run_controlled_patch(td,action,adapter=reference)
+            self.assertEqual(ext.read_text(),"canary")
+
+    def test_recovery_rejects_symlink_proposal_without_reading_target(self):
+        with tempfile.TemporaryDirectory() as td, tempfile.TemporaryDirectory() as outside:
+            root=Path(td); external=Path(outside)/"canary.patch"; external.write_text("do-not-read")
+            action=self._patch_action(root,"lost")
+            raw=action["content"].encode()
+            digest=m32_reference.canonical_action_digest("write_patch_proposal",action["target_name"],raw,
+                action["source_sha256"],action["scope_sha256"],action["source_path"],action["session_binding"])
+            first=workflow.run_controlled_patch(td,action,adapter=reference,
+                approval_fixture={"approved":True,"action_digest":digest},crash_after_effect=True)
+            self.assertEqual(first["status"],"OUTCOME_UNKNOWN")
+            proposal=root/"patch-proposals"/"fix.patch"
+            proposal.unlink(); proposal.symlink_to(external)
+            with self.assertRaises(PermissionError):
+                workflow.run_controlled_patch(td,action,adapter=reference)
+            self.assertEqual(external.read_text(),"do-not-read")
+
+    def test_selected_scratch_root_symlink_is_rejected(self):
+        with tempfile.TemporaryDirectory() as td, tempfile.TemporaryDirectory() as outside:
+            actual=Path(outside)
+            action=self._patch_action(actual)
+            link=Path(td)/"scratch-link"
+            link.symlink_to(actual,target_is_directory=True)
+            with self.assertRaises(PermissionError):
+                workflow.run_controlled_patch(str(link),action,adapter=reference)
+            self.assertFalse((actual/".m33-action-journal.sqlite3").exists())
 
 if __name__=='__main__': unittest.main()

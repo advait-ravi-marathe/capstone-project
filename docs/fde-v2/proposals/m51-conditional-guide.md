@@ -55,6 +55,14 @@ Record actual date, minutes, command and output. A reference fixture, review rec
 - [Amazon SDE II interview preparation](https://www.amazon.jobs/content/en/how-we-hire/sde-ii-interview-prep)
 - [Python unittest](https://docs.python.org/3.12/library/unittest.html)
 
+## Stage reading anchors and attempt binding
+
+| Stages | Exact section or API heading |
+|---|---|
+| S01–S06 | [Amazon SDE II interview preparation](https://www.amazon.jobs/content/en/how-we-hire/sde-ii-interview-prep): Interview preparation; technical and behavioral dimensions, used as rehearsal only |
+| S02, S03, S04, S05, S06 | [Python unittest](https://docs.python.org/3.12/library/unittest.html): Test fixtures; Test cases; Assertions; Test discovery |
+
+Each attempt record binds gate and task_type to the report key, and supplies task_content_sha256 plus task_hash = SHA256(gate + ":" + task_content_sha256). The workflow rejects malformed hashes, repeated attempt IDs, reused task hashes, same-day pairs, cross-gate relabeling and adapter reports that do not name the expected gate and attempts. These checks validate artifact consistency; they do not verify learner authorship or unseen status.
 
 The 20 hours of non-DSA formal assessment accrue across recurring role-bank windows during the core, excluding AWS sessions. They are tracked across those windows and are not added to or compressed into this final five-hour substantive AI scope. Long mock sessions rebalance adjacent blocks or carry forward.
 

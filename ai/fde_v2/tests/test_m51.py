@@ -1,8 +1,10 @@
 import unittest
+import hashlib
 from datetime import date,timedelta
 from ai.fde_v2.m51 import learner,reference,workflow
 def attempt(gate,n,date,score=3):
- return {"gate":gate,"attempt_id":f"{gate}-{n}","actual_date":date,"task_hash":str(n)*64,"unseen_confirmation":True,"tool_allowance":"docs only","help_used":"none","artifact_ref":f"local-{n}","reviewer_type":"self","critical_failure":False,"scores":{k:score for k in ("correctness","reasoning","communication","safety_integrity")}}
+ content_hash=hashlib.sha256(f"exercise-content:{gate}:{n}".encode()).hexdigest()
+ return {"gate":gate,"task_type":gate,"attempt_id":f"{gate}-{n}","actual_date":date,"task_content_sha256":content_hash,"task_hash":hashlib.sha256(f"{gate}:{content_hash}".encode()).hexdigest(),"unseen_confirmation":True,"tool_allowance":"docs only","help_used":"none","artifact_ref":f"local-{gate}-{n}","reviewer_type":"self","critical_failure":False,"scores":{k:score for k in ("correctness","reasoning","communication","safety_integrity")}}
 class M51Test(unittest.TestCase):
  def test_two_separate_attempts_and_bounded_remediation(self):
   r=reference.score_gate([attempt("system_design",1,"2026-10-29"),attempt("system_design",2,"2026-10-30")])
@@ -26,4 +28,27 @@ class M51Test(unittest.TestCase):
    def validate_formal_assessment_ledger(self,e): calls.append("ledger"); return reference.validate_formal_assessment_ledger(e)
   workflow.assess({"system_design":[attempt("system_design",1,"2026-10-28"),attempt("system_design",2,"2026-10-29")]},adapter=Spy())
   self.assertEqual(calls,["score_gate","remediation","ledger"])
+ def test_workflow_rejects_cross_gate_replay_relabel_and_duplicate_task(self):
+  pair=[attempt("coding_dsa",1,"2026-10-28"),attempt("coding_dsa",2,"2026-10-29")]
+  reused={gate:pair for gate in reference.GATES}
+  with self.assertRaises(ValueError): workflow.assess(reused,adapter=reference)
+  relabeled={"system_design":[{**a,"gate":"system_design","task_type":"system_design"} for a in pair]}
+  with self.assertRaises(ValueError): workflow.assess(relabeled,adapter=reference)
+  duplicate=[attempt("system_design",1,"2026-10-28"),attempt("system_design",2,"2026-10-29")]
+  duplicate[1]["task_hash"]=duplicate[0]["task_hash"]
+  with self.assertRaises(ValueError): workflow.assess({"system_design":duplicate},adapter=reference)
+  malformed=[attempt("system_design",1,"2026-10-28"),attempt("system_design",2,"2026-10-29")]
+  malformed[0]["task_hash"]="c"*63
+  with self.assertRaises(ValueError): workflow.assess({"system_design":malformed},adapter=reference)
+ def test_workflow_rejects_adapter_that_inflates_scores_or_discards_attempt_outcomes(self):
+  pair=[attempt("system_design",1,"2026-10-28",2),attempt("system_design",2,"2026-10-29",2)]
+  class Inflated:
+   @staticmethod
+   def score_gate(rows):
+    return {"gate":"system_design","attempts":[{"attempt_id":x["attempt_id"],"scores":x["scores"],
+      "reviewer_type":x["reviewer_type"],"passed":True} for x in rows],
+      "status":"REHEARSAL_THRESHOLD_MET"}
+   remediation=staticmethod(reference.remediation)
+   validate_formal_assessment_ledger=staticmethod(reference.validate_formal_assessment_ledger)
+  with self.assertRaises(ValueError): workflow.assess({"system_design":pair},adapter=Inflated)
 if __name__=='__main__': unittest.main()

@@ -18,11 +18,11 @@ Record actual date, minutes, command and output. A reference fixture, review rec
 
 **Worked example and learner task:** Select lawful public or explicitly synthetic interaction data. Document source/license, schema, unit of prediction, candidates, relevance labels, metric and intended use.
 
-**Acceptance/evidence:** Synthetic fixtures exercise code only; they are not held-out evidence.
+**Acceptance/evidence:** Canned instructor fixtures test mechanics only. A learner-owned documented synthetic dataset may be used for the scoped offline exercise, but does not establish user or production quality.
 
 ### M52-S02 — Chronological split and baseline
 
-**Worked example and learner task:** Sort by event time before splitting. Freeze train/validation/held-out boundaries; prevent future interactions leaking into training. Implement a popularity baseline from train only.
+**Worked example and learner task:** Sort by event time before splitting. The splitter returns boundaries but does not itself freeze them. Write a content-bound freeze artifact before evaluating; prevent future interactions leaking into training. Implement a popularity baseline from train only.
 
 **Acceptance/evidence:** Assert max(train time) < min(validation time) < min(held-out time); record hashes.
 
@@ -54,7 +54,7 @@ Record actual date, minutes, command and output. A reference fixture, review rec
 
 **Worked example and learner task:** Freeze code/config/data and split hashes before opening held-out labels. Score once, retain per-unit outputs and analyze failures without tuning test.
 
-**Acceptance/evidence:** Chronological hold-out and frozen manifest required; synthetic run is not a learner result.
+**Acceptance/evidence:** Chronological hold-out, write-once model/data/split/config manifest and single-consumption run record required. Every held-out event has an output row including errors. Canned mechanics are not a learner result.
 
 ### M52-S08 — Local prediction API
 
@@ -75,6 +75,19 @@ Record actual date, minutes, command and output. A reference fixture, review rec
 **Acceptance/evidence:** No GPU or paid compute needed; actual dataset/evaluation evidence may remain BLOCKED.
 
 ## Official short readings
+
+### Stage reading anchors and runnable workflow
+
+| Stages | Exact section or API heading |
+|---|---|
+| S01, S03 | [scikit-learn TimeSeriesSplit](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html): class reference; Parameters; Examples |
+| S02, S06, S07 | [TimeSeriesSplit](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html): split method; test_size and gap parameters |
+| S03, S04 | [scikit-learn cosine_similarity](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.cosine_similarity.html): Parameters; Examples |
+| S05, S06, S07, S10 | [scikit-learn ndcg_score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.ndcg_score.html): Parameters; tie handling; Examples |
+| S06, S09 | [scikit-learn model evaluation](https://scikit-learn.org/stable/modules/model_evaluation.html): Ranking metrics; NDCG scoring conventions |
+| S08, S09 | [FastAPI request body and validation](https://fastapi.tiangolo.com/tutorial/body/): Request body; Path parameters and numeric validations |
+
+The [write-once model bundle and held-out runner](../../../ai/fde_v2/m52/workflow.py) hash exact training rows, learner-code/config, chronological partitions, candidate catalog and metric cutoff. It records every held-out event once, including errors, and rejects changed inputs or replay. The command python -m unittest ai.fde_v2.tests.test_m52 includes partition tamper, candidate/metric drift and persisted bundle reload checks. The local split helper explicitly reports test_frozen false; only a valid freeze artifact establishes a frozen run. A local manifest is not a security boundary against its owner reading the held-out file.
 
 - [scikit-learn cosine_similarity](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.cosine_similarity.html), and [TimeSeriesSplit](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html)
 - [scikit-learn ndcg_score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.ndcg_score.html)

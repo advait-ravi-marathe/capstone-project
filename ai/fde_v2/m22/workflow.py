@@ -79,6 +79,39 @@ class LocalSqlQdrantStore:
                          (json.dumps(readers), document_id))
         self.sql.commit()
 
+    def tombstone_document(self, document_id: str) -> None:
+        """Deny access immediately and clear retained SQL body before cleanup."""
+        cursor = self.sql.execute(
+            "UPDATE documents SET deleted=1, reader_ids='[]', writer_ids='[]', active_chunk_ids='[]', body='' "
+            "WHERE document_id=?", (document_id,))
+        if cursor.rowcount != 1:
+            raise KeyError(document_id)
+        self.sql.commit()
+        self._hit_cache.clear()
+        self._vector_epoch += 1
+
+    def purge_document(self, document_id: str) -> dict[str, Any]:
+        """Tombstone first, then remove all matching vectors; retries are safe."""
+        if self.document(document_id) is None:
+            raise KeyError(document_id)
+        self.tombstone_document(document_id)
+        try:
+            self.client.delete(
+                collection_name=self.collection,
+                points_selector=models.FilterSelector(filter=models.Filter(must=[
+                    models.FieldCondition(key="document_id", match=models.MatchValue(value=document_id))
+                ])),
+                wait=True,
+            )
+        except Exception as exc:
+            return {"status": "CLEANUP_PENDING", "document_id": document_id,
+                    "physical_vectors_removed": False, "error_type": type(exc).__name__}
+        self._hit_cache.clear()
+        self._vector_epoch += 1
+        return {"status": "PURGED", "document_id": document_id,
+                "logical_access_revoked": True, "physical_vectors_removed": True,
+                "backup_retention": "not_verified"}
+
     def authoritative_documents(self) -> dict[str, dict[str, Any]]:
         rows = self.sql.execute("SELECT * FROM documents").fetchall()
         return {row["document_id"]: {
@@ -145,5 +178,13 @@ def create_app(*, store: LocalSqlQdrantStore, verified_claims_provider,
         hits = store.raw_hits(context["tenant_id"], body.vector, body.limit)
         allowed = adapter.filter_retrieved_hits(context, hits, store.authoritative_documents())
         return {"results": [{**hit, "text": store.chunk_text(hit)} for hit in allowed]}
+
+    @app.delete("/documents/{document_id}")
+    def purge_document(document_id: str, context=Depends(identity)):
+        doc = store.document(document_id)
+        if doc is None or adapter.authorize_document(context, doc, "delete") is not True:
+            raise HTTPException(status_code=404, detail="document unavailable")
+        result = store.purge_document(document_id)
+        return result
 
     return app

@@ -27,6 +27,7 @@ class EcsClient(Protocol):
     def describe_task_definition(self, **kwargs: Any) -> Mapping[str, Any]: ...
     def create_service(self, **kwargs: Any) -> Mapping[str, Any]: ...
     def update_service(self, **kwargs: Any) -> Mapping[str, Any]: ...
+    def delete_service(self, **kwargs: Any) -> Mapping[str, Any]: ...
 
 
 class StsIdentityClient(Protocol):
@@ -105,7 +106,8 @@ AUTHORIZATION_FIELDS=("account_id","region","services","model_id","spend_ceiling
 
 
 def build_authorized_action(operation: str, provider: str, sdk_service: str,
-                            scope: Mapping[str, Any], sdk_request: Mapping[str, Any]) -> dict[str, Any]:
+                            scope: Mapping[str, Any], sdk_request: Mapping[str, Any],
+                            sdk_method: str) -> dict[str, Any]:
     """Bind the exact SDK call to provider, account, region and spend authority."""
     if not isinstance(scope,Mapping) or not isinstance(sdk_request,Mapping):
         raise ValueError("scope and SDK request must be mappings")
@@ -116,6 +118,7 @@ def build_authorized_action(operation: str, provider: str, sdk_service: str,
         auth["services"]=services
     if (not isinstance(operation,str) or not operation or not isinstance(provider,str) or not provider
             or not isinstance(sdk_service,str) or not sdk_service
+            or not isinstance(sdk_method,str) or not sdk_method
             or not isinstance(auth["account_id"],str) or not auth["account_id"].strip()
             or not isinstance(auth["region"],str) or not auth["region"].strip()
             or not isinstance(services,(list,tuple,set,frozenset)) or sdk_service not in services
@@ -128,7 +131,7 @@ def build_authorized_action(operation: str, provider: str, sdk_service: str,
         raise ValueError("complete provider/account/region/spend authorization scope is required")
     if sdk_service == "bedrock-runtime" and sdk_request.get("modelId") != auth["model_id"]:
         raise ValueError("Bedrock request model must match the approved model scope")
-    return {"operation":operation,"provider":provider,"sdk_service":sdk_service,
+    return {"operation":operation,"provider":provider,"sdk_service":sdk_service,"sdk_method":sdk_method,
             "authorization_scope":auth,"sdk_request":dict(sdk_request)}
 
 
@@ -143,6 +146,11 @@ def verify_injected_client_scope(client: Any, identity_client: StsIdentityClient
     service_model=getattr(meta,"service_model",None)
     if (meta is None or getattr(meta,"region_name",None)!=scope.get("region")
             or getattr(service_model,"service_name",None)!=sdk_service or identity_client is None):
+        return False,False
+    provider_credentials=getattr(getattr(client,"_request_signer",None),"_credentials",None)
+    sts_credentials=getattr(getattr(identity_client,"_request_signer",None),"_credentials",None)
+    # STS is relevant only when it uses the identical SDK credential object.
+    if provider_credentials is None or sts_credentials is None or provider_credentials is not sts_credentials:
         return False,False
     try:
         identity=identity_client.get_caller_identity()
@@ -225,7 +233,7 @@ class BedrockConverseAdapter:
         if scope.get("provider") != "aws-bedrock-converse":
             return {"status": "BLOCKED", "reason": "provider scope mismatch", "external_call_made": False}
         request = build_converse_request(scope.get("model_id"), scope.get("prompt"), scope.get("max_tokens"))
-        action=build_authorized_action("bedrock_converse","aws-bedrock-converse","bedrock-runtime",scope,request)
+        action=build_authorized_action("bedrock_converse","aws-bedrock-converse","bedrock-runtime",scope,request,"converse")
         digest=request_sha256(action)
         if not self._approval_vault.consume(scope.get("approval_token"),"bedrock_converse",digest):
             return {"status":"BLOCKED","reason":"missing, mismatched, expired, or replayed approval",
@@ -300,8 +308,7 @@ def build_ecs_task_definition_request(manifest: Mapping[str, Any]) -> dict[str, 
             "cpu": str(cpu), "memory": str(memory), "containerDefinitions": [container]}
 
 
-def build_ecs_service_request(manifest: Mapping[str, Any], task_definition: str) -> dict[str, Any]:
-    """Build a private one-task service request; caller must dry-run/approve it."""
+def _validate_ecs_service_manifest(manifest: Mapping[str, Any], task_definition: str) -> tuple[list[str],list[str]]:
     if not isinstance(manifest, Mapping): raise ValueError("deployment manifest must be a mapping")
     required = ("cluster", "service_name", "subnets", "security_groups", "container_name", "container_port")
     if any(not isinstance(manifest.get(key),str) or not manifest[key].strip()
@@ -315,11 +322,35 @@ def build_ecs_service_request(manifest: Mapping[str, Any], task_definition: str)
         raise ValueError("explicit private subnet IDs are required")
     if not isinstance(groups, list) or not groups or any(not isinstance(x,str) or not x.startswith("sg-") for x in groups):
         raise ValueError("explicit security group IDs are required")
+    return subnets,groups
+
+
+def _ecs_network_configuration(subnets: list[str], groups: list[str]) -> dict[str, Any]:
+    return {"awsvpcConfiguration": {"subnets": list(subnets),
+            "securityGroups": list(groups), "assignPublicIp": "DISABLED"}}
+
+
+def build_ecs_create_service_request(manifest: Mapping[str, Any], task_definition: str) -> dict[str, Any]:
+    """Build exact ECS create_service kwargs."""
+    subnets,groups=_validate_ecs_service_manifest(manifest,task_definition)
     return {"cluster": manifest["cluster"], "serviceName": manifest["service_name"],
             "taskDefinition": task_definition, "desiredCount": 1, "launchType": "FARGATE",
-            "networkConfiguration": {"awsvpcConfiguration": {"subnets": list(subnets),
-                "securityGroups": list(groups), "assignPublicIp": "DISABLED"}},
+            "networkConfiguration": _ecs_network_configuration(subnets,groups),
             "deploymentConfiguration": {"minimumHealthyPercent": 0, "maximumPercent": 100}}
+
+
+def build_ecs_update_service_request(manifest: Mapping[str, Any], task_definition: str) -> dict[str, Any]:
+    """Build exact ECS update_service kwargs (different names from create)."""
+    subnets,groups=_validate_ecs_service_manifest(manifest,task_definition)
+    return {"cluster": manifest["cluster"], "service": manifest["service_name"],
+            "taskDefinition": task_definition, "desiredCount": 1,
+            "networkConfiguration": _ecs_network_configuration(subnets,groups),
+            "deploymentConfiguration": {"minimumHealthyPercent": 0, "maximumPercent": 100}}
+
+
+def build_ecs_service_request(manifest: Mapping[str, Any], task_definition: str) -> dict[str, Any]:
+    """Compatibility alias for the initial create dry-run request."""
+    return build_ecs_create_service_request(manifest,task_definition)
 
 
 class EcsDeploymentAdapter:
@@ -338,7 +369,10 @@ class EcsDeploymentAdapter:
 
     def plan(self, manifest: Mapping[str, Any]) -> dict[str, Any]:
         task = build_ecs_task_definition_request(manifest)
-        service = build_ecs_service_request(manifest, manifest.get("task_definition_revision", "PLANNED_REVISION"))
+        service_op=manifest.get("service_operation","create")
+        if service_op not in {"create","update"}: raise ValueError("service_operation must be create or update")
+        service = (build_ecs_create_service_request if service_op=="create" else build_ecs_update_service_request)(
+            manifest, manifest.get("task_definition_revision", "PLANNED_REVISION"))
         task_digest=request_sha256(task)
         service_digest=request_sha256(service)
         return {"status": "DRY_RUN", "task_definition_request": task, "service_request": service,
@@ -359,7 +393,7 @@ class EcsDeploymentAdapter:
         """Register one task revision only; activation needs a second exact approval."""
         request=build_ecs_task_definition_request(manifest)
         action=build_authorized_action("register_task_definition","aws-ecs-fargate","ecs",
-                                       manifest.get("authorization_scope",manifest),request)
+                                       manifest.get("authorization_scope",manifest),request,"register_task_definition")
         digest=request_sha256(action)
         if not self._ready("register_task_definition",action,approval_token):
             return {"status":"BLOCKED","reason":"exact task-definition request is not separately authorized",
@@ -381,11 +415,15 @@ class EcsDeploymentAdapter:
     def activate_revision(self, manifest: Mapping[str, Any], task_definition: str,
                           approval_token: str | None = None) -> dict[str, Any]:
         """Activate a registered, exact task revision under a second approval."""
-        request=build_ecs_service_request(manifest,task_definition)
-        action=build_authorized_action("activate_service_revision","aws-ecs-fargate","ecs",
-                                       manifest.get("authorization_scope",manifest),request)
+        service_op=manifest.get("service_operation","create")
+        if service_op not in {"create","update"}: return {"status":"BLOCKED_INVALID_SERVICE_OPERATION","external_call_made":False}
+        method="create_service" if service_op=="create" else "update_service"
+        operation=method
+        request=(build_ecs_create_service_request if service_op=="create" else build_ecs_update_service_request)(manifest,task_definition)
+        action=build_authorized_action(operation,"aws-ecs-fargate","ecs",
+                                       manifest.get("authorization_scope",manifest),request,method)
         digest=request_sha256(action)
-        if not self._ready("activate_service_revision",action,approval_token):
+        if not self._ready(operation,action,approval_token):
             return {"status":"BLOCKED","reason":"exact service activation request is not separately authorized",
                     "request":request,"request_sha256":digest,"external_call_made":False}
         matches,identity_call=self._client_matches(manifest)
@@ -395,9 +433,12 @@ class EcsDeploymentAdapter:
                     "milestone_pass":False}
         existing=self._client.describe_services(cluster=manifest["cluster"],services=[manifest["service_name"]])
         services=existing.get("services",[]) if isinstance(existing,Mapping) else []
-        if not isinstance(services,list):
+        if not isinstance(services,list) or len(services)>1:
             return {"status":"INVALID_PROVIDER_READBACK","external_call_made":True,"milestone_pass":False}
-        if services:
+        exists=bool(services)
+        if (service_op=="create" and exists) or (service_op=="update" and not exists):
+            return {"status":"BLOCKED_SERVICE_STATE_CHANGED","external_call_made":True,"milestone_pass":False}
+        if method=="update_service":
             response=self._client.update_service(**request); operation="updated"
         else:
             response=self._client.create_service(**request); operation="created"
@@ -412,9 +453,9 @@ class EcsDeploymentAdapter:
                  approval_token: str | None = None) -> dict[str, Any]:
         if not isinstance(previous_task_definition,str) or not previous_task_definition.strip():
             raise ValueError("observed previous task definition revision is required")
-        request=build_ecs_service_request(manifest,previous_task_definition)
+        request=build_ecs_update_service_request(manifest,previous_task_definition)
         action=build_authorized_action("rollback","aws-ecs-fargate","ecs",
-                                       manifest.get("authorization_scope",manifest),request)
+                                       manifest.get("authorization_scope",manifest),request,"update_service")
         digest=request_sha256(action)
         if not self._ready("rollback",action,approval_token):
             return {"status":"BLOCKED","reason":"exact rollback plan is not separately authorized",
@@ -434,3 +475,75 @@ class EcsDeploymentAdapter:
         return {"status":"ROLLBACK_RESPONSE_REQUIRES_READBACK","provider_response":response,
                 "service_readback":readback,"request_sha256":digest,
                 "external_call_made":True,"milestone_pass":False}
+
+    def drain_service(self, manifest: Mapping[str, Any],
+                      approval_token: str | None = None) -> dict[str, Any]:
+        """Request desiredCount=0 under one approval; report observed drain state."""
+        request={"cluster":manifest.get("cluster"),"service":manifest.get("service_name"),"desiredCount":0}
+        if any(not isinstance(request[key],str) or not request[key].strip() for key in ("cluster","service")):
+            return {"status":"BLOCKED_INVALID_SERVICE_SCOPE","external_call_made":False}
+        action=build_authorized_action("drain_service","aws-ecs-fargate","ecs",
+            manifest.get("authorization_scope",manifest),request,"update_service")
+        digest=request_sha256(action)
+        if not self._ready("drain_service",action,approval_token):
+            return {"status":"BLOCKED","request_sha256":digest,"external_call_made":False}
+        matches,identity_call=self._client_matches(manifest)
+        if not matches:
+            return {"status":"BLOCKED_CLIENT_SCOPE_MISMATCH","request_sha256":digest,
+                    "identity_request_made":identity_call,"external_call_made":identity_call}
+        observed=self._client.describe_services(cluster=request["cluster"],services=[request["service"]])
+        services=observed.get("services") if isinstance(observed,Mapping) else None
+        if not isinstance(services,list):
+            return {"status":"INVALID_SERVICE_READBACK","service_readback":observed,
+                    "external_call_made":True,"milestone_pass":False}
+        if not services:
+            return {"status":"SERVICE_ALREADY_ABSENT","external_call_made":True,"milestone_pass":False}
+        if len(services)!=1 or not isinstance(services[0],Mapping):
+            return {"status":"INVALID_SERVICE_READBACK","service_readback":observed,
+                    "external_call_made":True,"milestone_pass":False}
+        response=self._client.update_service(**request)
+        readback=self._client.describe_services(cluster=request["cluster"],services=[request["service"]])
+        rows=readback.get("services",[]) if isinstance(readback,Mapping) else []
+        service=rows[0] if isinstance(rows,list) and rows and isinstance(rows[0],Mapping) else {}
+        drained=service.get("desiredCount")==0 and service.get("runningCount")==0
+        return {"status":"DRAINED_REQUIRES_REVIEW" if drained else "DRAIN_PENDING",
+                "provider_response":response,"service_readback":readback,
+                "request_sha256":digest,"external_call_made":True,"drained_observed":drained,
+                "milestone_pass":False}
+
+    def delete_drained_service(self, manifest: Mapping[str, Any],
+                               approval_token: str | None = None) -> dict[str, Any]:
+        """Delete only after a readback shows both desired and running count zero."""
+        request={"cluster":manifest.get("cluster"),"service":manifest.get("service_name"),"force":False}
+        if any(not isinstance(request[key],str) or not request[key].strip() for key in ("cluster","service")):
+            return {"status":"BLOCKED_INVALID_SERVICE_SCOPE","external_call_made":False}
+        action=build_authorized_action("delete_service","aws-ecs-fargate","ecs",
+            manifest.get("authorization_scope",manifest),request,"delete_service")
+        digest=request_sha256(action)
+        if not self._ready("delete_service",action,approval_token):
+            return {"status":"BLOCKED","request_sha256":digest,"external_call_made":False}
+        matches,identity_call=self._client_matches(manifest)
+        if not matches:
+            return {"status":"BLOCKED_CLIENT_SCOPE_MISMATCH","request_sha256":digest,
+                    "identity_request_made":identity_call,"external_call_made":identity_call}
+        observed=self._client.describe_services(cluster=request["cluster"],services=[request["service"]])
+        services=observed.get("services") if isinstance(observed,Mapping) else None
+        if not isinstance(services,list):
+            return {"status":"INVALID_SERVICE_READBACK","service_readback":observed,
+                    "external_call_made":True,"milestone_pass":False}
+        if not services:
+            return {"status":"SERVICE_ALREADY_ABSENT","external_call_made":True,"milestone_pass":False}
+        if len(services)!=1 or not isinstance(services[0],Mapping):
+            return {"status":"INVALID_SERVICE_READBACK","service_readback":observed,
+                    "external_call_made":True,"milestone_pass":False}
+        service=services[0] if isinstance(services[0],Mapping) else {}
+        if service.get("desiredCount")!=0 or service.get("runningCount")!=0:
+            return {"status":"BLOCKED_SERVICE_NOT_DRAINED","service_readback":observed,
+                    "external_call_made":True,"milestone_pass":False}
+        response=self._client.delete_service(**request)
+        readback=self._client.describe_services(cluster=request["cluster"],services=[request["service"]])
+        rows=readback.get("services",[]) if isinstance(readback,Mapping) else []
+        absent=isinstance(rows,list) and not rows
+        return {"status":"SERVICE_REMOVAL_REQUIRES_REVIEW" if absent else "SERVICE_REMOVAL_UNVERIFIED",
+                "provider_response":response,"service_readback":readback,"request_sha256":digest,
+                "external_call_made":True,"service_absent_observed":absent,"milestone_pass":False}

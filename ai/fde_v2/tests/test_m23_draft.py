@@ -4,7 +4,8 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from ai.fde_v2.m23 import learner, reference, workflow
 from ai.fde_v2.m23.providers import (BedrockConverseAdapter, EcsDeploymentAdapter,
-    ApprovalVault, build_converse_request, build_ecs_service_request, build_ecs_task_definition_request,
+    ApprovalVault, build_converse_request, build_ecs_service_request, build_ecs_create_service_request,
+    build_ecs_update_service_request, build_ecs_task_definition_request,
     request_sha256, build_authorized_action)
 
 FUTURE = 4_102_444_800
@@ -18,13 +19,17 @@ def vault_with_clock(start=100.0, wall=1_800_000_000.0):
                          wall_clock=lambda:clock["wall"]),clock
 
 class FakeSts:
-    def __init__(self,account="123"): self.account=account; self.calls=0
+    def __init__(self,account="123",credentials=None):
+        self.account=account; self.calls=0
+        self._request_signer=type("Signer",(),{"_credentials":credentials if credentials is not None else SHARED_CREDENTIALS})()
     def get_caller_identity(self): self.calls+=1; return {"Account":self.account}
 
+SHARED_CREDENTIALS=object()
 
 class FakeBedrockRuntime:
-    def __init__(self):
+    def __init__(self,credentials=None):
         self.calls=[]
+        self._request_signer=type("Signer",(),{"_credentials":credentials if credentials is not None else SHARED_CREDENTIALS})()
         self.meta=type("Meta",(),{"region_name":"us-west-2",
             "service_model":type("Service",(),{"service_name":"bedrock-runtime"})()})()
     def converse(self,**kwargs):
@@ -35,8 +40,12 @@ class FakeBedrockRuntime:
 
 
 class FakeEcs:
-    def __init__(self):
+    def __init__(self,credentials=None):
         self.calls=[]
+        self._request_signer=type("Signer",(),{"_credentials":credentials if credentials is not None else SHARED_CREDENTIALS})()
+        self.has_service=False
+        self.desired_count=1
+        self.running_count=1
         self.meta=type("Meta",(),{"region_name":"us-west-2",
             "service_model":type("Service",(),{"service_name":"ecs"})()})()
     def register_task_definition(self,**kwargs):
@@ -44,14 +53,27 @@ class FakeEcs:
         return {"taskDefinition":{"taskDefinitionArn":"arn:aws:ecs:region:account:task-definition/demo:1"}}
     def describe_services(self,**kwargs):
         self.calls.append(("describe_services",kwargs))
-        return {"services":[]}
+        return {"services":[{"status":"ACTIVE","desiredCount":self.desired_count,
+                            "runningCount":self.running_count}] if self.has_service else []}
     def describe_task_definition(self,**kwargs):
         self.calls.append(("describe_task_definition",kwargs))
         return {"taskDefinition":{"taskDefinitionArn":kwargs["taskDefinition"]}}
-    def create_service(self,**kwargs):
-        self.calls.append(("create_service",kwargs)); return {"service":{"status":"ACTIVE"}}
-    def update_service(self,**kwargs):
-        self.calls.append(("update_service",kwargs)); return {"service":{"status":"ACTIVE"}}
+    def create_service(self,*,cluster,serviceName,taskDefinition,desiredCount,launchType,networkConfiguration,deploymentConfiguration):
+        kwargs=locals().copy(); kwargs.pop("self")
+        self.calls.append(("create_service",kwargs)); self.has_service=True
+        self.desired_count=desiredCount; self.running_count=desiredCount
+        return {"service":{"status":"ACTIVE"}}
+    def update_service(self,*,cluster,service,taskDefinition=None,desiredCount=None,networkConfiguration=None,deploymentConfiguration=None):
+        kwargs=locals().copy(); kwargs.pop("self")
+        self.calls.append(("update_service",kwargs)); self.has_service=True
+        if "desiredCount" in kwargs:
+            self.desired_count=desiredCount
+            self.running_count=0 if desiredCount==0 else desiredCount
+        return {"service":{"status":"ACTIVE"}}
+    def delete_service(self,*,cluster,service,force):
+        kwargs=locals().copy(); kwargs.pop("self")
+        self.calls.append(("delete_service",kwargs)); self.has_service=False
+        return {"service":{"status":"INACTIVE"}}
 
 
 DEPLOYMENT={"family":"coverstory","task_role_arn":"arn:aws:iam::123:role/task",
@@ -126,7 +148,7 @@ class M23Mechanics(unittest.TestCase):
         self.assertEqual(unsupported['status'],'BLOCKED'); self.assertEqual(calls,[])
         request=build_converse_request('m','x',2)
         vault,_=vault_with_clock()
-        action=build_authorized_action("bedrock_converse","aws-bedrock-converse","bedrock-runtime",good,request)
+        action=build_authorized_action("bedrock_converse","aws-bedrock-converse","bedrock-runtime",good,request,"converse")
         token=vault.issue('bedrock_converse',action)
         scope={**good,'provider':'aws-bedrock-converse','prompt':'x','max_tokens':2,'approval_token':token}
         provider=BedrockConverseAdapter(FakeBedrockRuntime(),vault,FakeSts(),execution_enabled=True)
@@ -156,7 +178,7 @@ class M23Mechanics(unittest.TestCase):
         vault,_=vault_with_clock()
         scope={**AUTH_SCOPE,"services":["bedrock-runtime"],"provider":"aws-bedrock-converse",
                "model_id":"approved-model","prompt":"hello","max_tokens":32}
-        action=build_authorized_action("bedrock_converse","aws-bedrock-converse","bedrock-runtime",scope,expected)
+        action=build_authorized_action("bedrock_converse","aws-bedrock-converse","bedrock-runtime",scope,expected,"converse")
         token=vault.issue("bedrock_converse",action)
         scope["approval_token"]=token
         blocked=BedrockConverseAdapter(client,vault,FakeSts()).execute(scope)
@@ -177,10 +199,20 @@ class M23Mechanics(unittest.TestCase):
         replay=BedrockConverseAdapter(client,vault,FakeSts(),execution_enabled=True).execute(scope)
         self.assertEqual(replay["status"],"BLOCKED"); self.assertEqual(len(client.calls),1)
 
+    def test_provider_client_must_share_exact_sdk_credentials_with_sts(self):
+        provider_creds=object()
+        client=FakeBedrockRuntime(provider_creds)
+        sts=FakeSts("123",credentials=object())
+        matches,called=__import__("ai.fde_v2.m23.providers",fromlist=["verify_injected_client_scope"]).verify_injected_client_scope(
+            client,sts,AUTH_SCOPE,"bedrock-runtime")
+        self.assertFalse(matches)
+        self.assertFalse(called)
+        self.assertEqual(sts.calls,0)
+
     def test_approval_binds_account_region_model_and_vault_owned_expiry(self):
         request=build_converse_request("approved-model","hello",32)
         scope={**AUTH_SCOPE,"services":["bedrock-runtime"]}
-        action=build_authorized_action("bedrock_converse","aws-bedrock-converse","bedrock-runtime",scope,request)
+        action=build_authorized_action("bedrock_converse","aws-bedrock-converse","bedrock-runtime",scope,request,"converse")
         vault,clock=vault_with_clock()
         token=vault.issue("bedrock_converse",action,ttl_seconds=30)
         self.assertIsNotNone(token)
@@ -215,7 +247,7 @@ class M23Mechanics(unittest.TestCase):
         self.assertEqual(client.calls,[]); self.assertEqual(sts.calls,1)
         with self.assertRaises(ValueError):
             build_authorized_action("bedrock_converse","aws-bedrock-converse","bedrock-runtime",
-                                    {**scope,"model_id":"different-model"},request)
+                                    {**scope,"model_id":"different-model"},request,"converse")
 
     def test_ecs_deployment_plan_is_private_pinned_and_never_calls_implicitly(self):
         task=build_ecs_task_definition_request(DEPLOYMENT)
@@ -242,7 +274,7 @@ class M23Mechanics(unittest.TestCase):
         reviewed=EcsDeploymentAdapter(client,vault,FakeSts(),execution_enabled=True)
         # Fake injected SDK client only. This test performs no credential lookup or network call.
         task_action=build_authorized_action("register_task_definition","aws-ecs-fargate","ecs",AUTH_SCOPE,
-                                             plan["task_definition_request"])
+                                             plan["task_definition_request"],"register_task_definition")
         wrong_region_client=FakeEcs(); wrong_region_client.meta.region_name="us-east-1"
         wrong_region_sts=FakeSts()
         wrong_region_vault,_=vault_with_clock()
@@ -264,14 +296,11 @@ class M23Mechanics(unittest.TestCase):
         registered=reviewed.register_revision(DEPLOYMENT,task_token)
         self.assertEqual(registered["status"],"TASK_REVISION_REGISTERED_REQUIRES_REVIEW")
         task_arn=registered["task_definition"]
-        service_request=build_ecs_service_request(DEPLOYMENT,task_arn)
-        import hashlib
-        import json
-        service_hash=request_sha256(service_request)
+        service_request=build_ecs_create_service_request(DEPLOYMENT,task_arn)
         # The exact returned task ARN is bound in a fresh approval before activation.
-        service_action=build_authorized_action("activate_service_revision","aws-ecs-fargate","ecs",AUTH_SCOPE,
-                                                service_request)
-        service_token=vault.issue("activate_service_revision",service_action)
+        service_action=build_authorized_action("create_service","aws-ecs-fargate","ecs",AUTH_SCOPE,
+                                                service_request,"create_service")
+        service_token=vault.issue("create_service",service_action)
         deployed=reviewed.activate_revision(DEPLOYMENT,task_arn,service_token)
         self.assertEqual(deployed["status"],"DEPLOYMENT_RESPONSE_REQUIRES_READBACK")
         self.assertEqual([name for name,_ in client.calls],
@@ -279,14 +308,60 @@ class M23Mechanics(unittest.TestCase):
                           "describe_services","describe_task_definition"])
         self.assertFalse(deployed["milestone_pass"])
         client.calls.clear()
-        rollback_request=build_ecs_service_request(DEPLOYMENT,"task:previous")
-        rollback_hash=request_sha256(rollback_request)
-        rollback_action=build_authorized_action("rollback","aws-ecs-fargate","ecs",AUTH_SCOPE,rollback_request)
+        rollback_request=build_ecs_update_service_request(DEPLOYMENT,"task:previous")
+        rollback_action=build_authorized_action("rollback","aws-ecs-fargate","ecs",AUTH_SCOPE,rollback_request,"update_service")
         rollback_token=vault.issue("rollback",rollback_action)
         rollback=reviewed.rollback(DEPLOYMENT,"task:previous",rollback_token)
         self.assertEqual(rollback["status"],"ROLLBACK_RESPONSE_REQUIRES_READBACK")
         self.assertEqual([name for name,_ in client.calls],
                          ["describe_task_definition","update_service","describe_services"])
+
+    def test_ecs_create_and_update_requests_are_distinct_sdk_shapes_and_bound(self):
+        created=build_ecs_create_service_request(DEPLOYMENT,"task:2")
+        updated=build_ecs_update_service_request(DEPLOYMENT,"task:2")
+        self.assertIn("serviceName",created); self.assertIn("launchType",created)
+        self.assertNotIn("service",created)
+        self.assertIn("service",updated); self.assertNotIn("serviceName",updated)
+        self.assertNotIn("launchType",updated)
+        client=FakeEcs(); client.has_service=True
+        vault,_=vault_with_clock()
+        action=build_authorized_action("update_service","aws-ecs-fargate","ecs",AUTH_SCOPE,
+                                       updated,"update_service")
+        token=vault.issue("update_service",action)
+        adapter=EcsDeploymentAdapter(client,vault,FakeSts(),execution_enabled=True)
+        result=adapter.activate_revision({**DEPLOYMENT,"service_operation":"update"},"task:2",token)
+        self.assertEqual(result["operation"],"updated")
+        update_call=[kwargs for name,kwargs in client.calls if name=="update_service"]
+        self.assertEqual(update_call,[updated])
+        self.assertNotIn("launchType",update_call[0])
+
+    def test_ecs_teardown_requires_two_exact_approvals_and_readback(self):
+        client=FakeEcs(); client.has_service=True
+        vault,_=vault_with_clock()
+        adapter=EcsDeploymentAdapter(client,vault,FakeSts(),execution_enabled=True)
+        drain_request={"cluster":DEPLOYMENT["cluster"],"service":DEPLOYMENT["service_name"],"desiredCount":0}
+        drain_action=build_authorized_action("drain_service","aws-ecs-fargate","ecs",AUTH_SCOPE,
+                                             drain_request,"update_service")
+        drain_token=vault.issue("drain_service",drain_action)
+        drained=adapter.drain_service(DEPLOYMENT,drain_token)
+        self.assertEqual(drained["status"],"DRAINED_REQUIRES_REVIEW")
+        delete_request={"cluster":DEPLOYMENT["cluster"],"service":DEPLOYMENT["service_name"],"force":False}
+        delete_action=build_authorized_action("delete_service","aws-ecs-fargate","ecs",AUTH_SCOPE,
+                                               delete_request,"delete_service")
+        delete_token=vault.issue("delete_service",delete_action)
+        deleted=adapter.delete_drained_service(DEPLOYMENT,delete_token)
+        self.assertEqual(deleted["status"],"SERVICE_REMOVAL_REQUIRES_REVIEW")
+        self.assertFalse(deleted["milestone_pass"])
+        self.assertEqual([name for name,_ in client.calls],
+                         ["describe_services","update_service","describe_services",
+                          "describe_services","delete_service","describe_services"])
+        not_drained=FakeEcs(); not_drained.has_service=True
+        vault,_=vault_with_clock()
+        token=vault.issue("delete_service",delete_action)
+        blocked=EcsDeploymentAdapter(not_drained,vault,FakeSts(),execution_enabled=True).delete_drained_service(
+            DEPLOYMENT,token)
+        self.assertEqual(blocked["status"],"BLOCKED_SERVICE_NOT_DRAINED")
+        self.assertFalse(any(name=="delete_service" for name,_ in not_drained.calls))
 
     def test_approval_vault_is_exact_expiring_and_one_use(self):
         vault,clock=vault_with_clock()

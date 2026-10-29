@@ -2,11 +2,78 @@
 from __future__ import annotations
 import hashlib
 import json
+import os
 import sqlite3
+import stat
+from pathlib import Path
 from typing import Any, Mapping, Sequence
 from ai.fde_v2.m31 import learner as m31_learner, workflow as m31_workflow
 from ai.fde_v2.m32 import reference as m32_reference
 from . import learner, reference
+
+
+def _assert_leaf_beneath(root: Path, leaf: Path, *, allow_missing: bool = True) -> None:
+    """Reject symlinks, hard-linked files, non-files and escaped scratch paths."""
+    if leaf.parent.resolve(strict=True) != root:
+        raise PermissionError("scratch artifact parent escaped the selected root")
+    try:
+        info=leaf.lstat()
+    except FileNotFoundError:
+        if allow_missing:
+            return
+        raise PermissionError("scratch artifact is missing")
+    if stat.S_ISLNK(info.st_mode) or not stat.S_ISREG(info.st_mode) or info.st_nlink != 1:
+        raise PermissionError("scratch artifact must be a single-link regular file, not a symlink")
+    if not leaf.resolve(strict=True).is_relative_to(root):
+        raise PermissionError("scratch artifact escaped the selected root")
+
+
+def _safe_journal(root: Path, *, create: bool) -> Path:
+    journal=root/".m33-action-journal.sqlite3"
+    # SQLite may create these siblings depending on journal mode. Reject an
+    # attacker-planted symlink before sqlite3 can open or mutate any of them.
+    for path in (journal,Path(str(journal)+"-journal"),Path(str(journal)+"-wal"),Path(str(journal)+"-shm")):
+        _assert_leaf_beneath(root,path)
+    if not create:
+        return journal
+    flags=os.O_RDWR|os.O_CREAT|getattr(os,"O_NOFOLLOW",0)|getattr(os,"O_CLOEXEC",0)
+    fd=os.open(journal,flags,0o600)
+    try:
+        info=os.fstat(fd)
+        if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1:
+            raise PermissionError("journal must be a single-link regular file")
+    finally:
+        os.close(fd)
+    _assert_leaf_beneath(root,journal,allow_missing=False)
+    return journal
+
+
+def _read_safe_proposal(root: Path, target_name: str) -> bytes | None:
+    if (not isinstance(target_name,str) or not target_name.endswith(".patch")
+            or Path(target_name).name!=target_name or target_name in {".",".."}):
+        raise PermissionError("journal target is not a proposal basename")
+    proposal_dir=root/"patch-proposals"
+    if not proposal_dir.exists():
+        return None
+    if proposal_dir.is_symlink() or not proposal_dir.resolve(strict=True).is_relative_to(root):
+        raise PermissionError("proposal directory escaped scratch root")
+    target=proposal_dir/target_name
+    try:
+        _assert_leaf_beneath(proposal_dir,target,allow_missing=False)
+    except PermissionError:
+        raise
+    except OSError as exc:
+        raise PermissionError("proposal target is unavailable") from exc
+    flags=os.O_RDONLY|getattr(os,"O_NOFOLLOW",0)|getattr(os,"O_CLOEXEC",0)
+    fd=os.open(target,flags)
+    try:
+        info=os.fstat(fd)
+        if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1:
+            raise PermissionError("proposal target is not a safe regular file")
+        with os.fdopen(fd,"rb",closefd=False) as stream:
+            return stream.read(32_001)
+    finally:
+        os.close(fd)
 
 
 def run_controlled_patch(root: str, action: Mapping[str, Any], *, adapter=learner,
@@ -26,27 +93,43 @@ def run_controlled_patch(root: str, action: Mapping[str, Any], *, adapter=learne
     raw=content.encode("utf-8")
     digest=m32_reference.canonical_action_digest("write_patch_proposal", action["target_name"], raw,
         action["source_sha256"], action["scope_sha256"], action["source_path"], action["session_binding"])
-    path=__import__("pathlib").Path(root).resolve(strict=True)
-    journal=path/".m33-action-journal.sqlite3"
+    supplied=Path(root)
+    if supplied.is_symlink():
+        raise PermissionError("scratch root cannot be a symlink")
+    path=supplied.resolve(strict=True)
+    if not path.is_dir(): raise PermissionError("scratch root must be a directory")
+    journal=_safe_journal(path,create=False)
+    previous=None
+    if journal.exists():
+        db_read=sqlite3.connect(f"file:{journal}?mode=ro",uri=True)
+        try:
+            table=db_read.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='actions'").fetchone()
+            if table:
+                previous=db_read.execute("SELECT digest,status,target,content_sha256 FROM actions WHERE action_id=?",(action_id,)).fetchone()
+        finally:
+            db_read.close()
+    if previous:
+        if previous[0]!=digest: return {"status":"DENIED_CHANGED_ACTION","effect_count":0,"human_approval_evidenced":False}
+        if previous[1]=="completed": return {"status":"REPLAY_RECONCILED","effect_count":0,"target":previous[2],"human_approval_evidenced":False}
+        proposal=_read_safe_proposal(path,previous[2])
+        observed="effect_present" if proposal is not None and hashlib.sha256(proposal).hexdigest()==previous[3] else "uncertain"
+        outcome=adapter.reconcile_action({"observed_status":observed})
+        if observed=="effect_present":
+            db_write=sqlite3.connect(journal)
+            try:
+                db_write.execute("UPDATE actions SET status='completed' WHERE action_id=?",(action_id,)); db_write.commit()
+            finally: db_write.close()
+            return {"status":"RECONCILED_EXISTING_EFFECT","effect_count":0,"target":previous[2],"reconcile":outcome,"human_approval_evidenced":False}
+        return {"status":"RECONCILIATION_REQUIRED","effect_count":0,"reconcile":outcome,"human_approval_evidenced":False}
+    if not isinstance(approval_fixture,Mapping) or approval_fixture.get("approved") is not True or approval_fixture.get("action_digest")!=digest:
+        return {"status":"DENIED","effect_count":0,"human_approval_evidenced":False}
+    journal=_safe_journal(path,create=True)
     db=sqlite3.connect(journal)
     try:
         db.execute("CREATE TABLE IF NOT EXISTS actions(action_id TEXT PRIMARY KEY,digest TEXT NOT NULL,status TEXT NOT NULL,target TEXT NOT NULL,content_sha256 TEXT NOT NULL)")
-        previous=db.execute("SELECT digest,status,target,content_sha256 FROM actions WHERE action_id=?",(action_id,)).fetchone()
-        if previous:
-            if previous[0]!=digest: return {"status":"DENIED_CHANGED_ACTION","effect_count":0,"human_approval_evidenced":False}
-            if previous[1]=="completed": return {"status":"REPLAY_RECONCILED","effect_count":0,"target":previous[2],"human_approval_evidenced":False}
-            output=path/"patch-proposals"/previous[2]
-            observed="effect_present" if output.is_file() and hashlib.sha256(output.read_bytes()).hexdigest()==previous[3] else "uncertain"
-            outcome=adapter.reconcile_action({"observed_status":observed})
-            if observed=="effect_present":
-                db.execute("UPDATE actions SET status='completed' WHERE action_id=?",(action_id,)); db.commit()
-                return {"status":"RECONCILED_EXISTING_EFFECT","effect_count":0,"target":previous[2],"reconcile":outcome,"human_approval_evidenced":False}
-            return {"status":"RECONCILIATION_REQUIRED","effect_count":0,"reconcile":outcome,"human_approval_evidenced":False}
-        if not isinstance(approval_fixture,Mapping) or approval_fixture.get("approved") is not True or approval_fixture.get("action_digest")!=digest:
-            return {"status":"DENIED","effect_count":0,"human_approval_evidenced":False}
+        db.execute("INSERT INTO actions VALUES(?,?, 'pending',?,?)",(action_id,digest,action["target_name"],hashlib.sha256(raw).hexdigest())); db.commit()
         ledger=m32_reference.ApprovalLedger()
         token=ledger.issue(digest,time_now()+30,time_now())
-        db.execute("INSERT INTO actions VALUES(?,?, 'pending',?,?)",(action_id,digest,action["target_name"],hashlib.sha256(raw).hexdigest())); db.commit()
         try:
             out=m32_reference.write_patch_proposal(root,ledger,token,action["target_name"],raw,
                 action["source_sha256"],action["scope_sha256"],action["source_path"],action["session_binding"],time_now())

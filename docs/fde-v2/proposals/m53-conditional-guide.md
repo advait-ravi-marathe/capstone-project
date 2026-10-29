@@ -76,6 +76,22 @@ Record actual date, minutes, command and output. A reference fixture, review rec
 
 ## Official short readings
 
+### Stage reading anchors and private evidence workflow
+
+| Stages | Exact section or API heading |
+|---|---|
+| S01, S02, S03, S05, S09 | [Amazon SDE II interview preparation](https://www.amazon.jobs/content/en/how-we-hire/sde-ii-interview-prep): Interview preparation; technical and behavioral dimensions, used only as rehearsal |
+| S01, S09 | [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html): Introduction; selected pillar overview |
+| S03 | [MCP build a client](https://modelcontextprotocol.io/docs/2026-07-28/develop/build-client): System Requirements; connection/session initialization; tool invocation |
+| S03 | [MCP build a server](https://modelcontextprotocol.io/docs/2026-07-28/develop/build-server): Core MCP Concepts; Python server implementation; testing |
+| S04 | Current official target-role descriptions: job responsibilities; required qualifications; location/work authorization; source and retrieval date. These requirements must be checked when the learner performs role research. |
+| S06, S07 | [AWS Solutions Architect Associate](https://aws.amazon.com/certification/certified-solutions-architect-associate/): Exam overview; official preparation and current exam guide links |
+| S07 | [AWS Budgets](https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html): Cost and usage tracking; actual and forecast alerts |
+| S08 | [Docker build best practices](https://docs.docker.com/build/building/best-practices/): Multi-stage builds; .dockerignore; Pin base image versions; USER |
+| S10 | [GOV.UK research consent](https://www.gov.uk/service-manual/user-research/getting-users-consent-for-research): What participants need to know; recording consent; withdrawal |
+
+The [private evidence workflow](../../../ai/fde_v2/m53/workflow.py) organizes source-linked claims and keeps external-action permissions separate. The command python -m unittest ai.fde_v2.tests.test_m53 exercises the schema and gap handling. These are private draft mechanics; they do not establish a role fit, certification readiness, experience or permission to share.
+
 - [Amazon SDE II interview preparation](https://www.amazon.jobs/content/en/how-we-hire/sde-ii-interview-prep)
 - [AWS Solutions Architect Associate](https://aws.amazon.com/certification/certified-solutions-architect-associate/)
 - [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html)

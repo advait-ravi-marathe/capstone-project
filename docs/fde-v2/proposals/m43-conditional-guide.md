@@ -83,6 +83,21 @@ Record actual date, minutes, command and output. A reference fixture, review rec
 - [GOV.UK interview guidance](https://www.gov.uk/service-manual/user-research/using-in-depth-interviews)
 - [Amazon SDE II interview preparation](https://www.amazon.jobs/content/en/how-we-hire/sde-ii-interview-prep)
 
+## Stage reading anchors and runnable examples
+
+Read only these named sections during the assigned study minutes:
+
+| Stages | Exact section or API heading |
+|---|---|
+| S01, S02, S03, S04, S10 | [Python unittest](https://docs.python.org/3.12/library/unittest.html): Test fixtures; Test cases; Assertions; Test discovery |
+| S02, S03, S04, S05 | [pytest monkeypatch](https://docs.pytest.org/en/stable/how-to/monkeypatch.html): Monkeypatching functions; Environment variables; Global patches |
+| S06, S09 | [Python pathlib](https://docs.python.org/3.12/library/pathlib.html): Path.resolve; Path.is_relative_to; Path.open |
+| S06 | [Docker build best practices](https://docs.docker.com/build/building/best-practices/): Multi-stage builds; .dockerignore; Pin base image versions; USER |
+| S07, S10 | [GOV.UK in-depth interviews](https://www.gov.uk/service-manual/user-research/using-in-depth-interviews): When to use in-depth interviews; Steps to follow |
+| S01, S05, S08, S09 | [Amazon SDE II interview preparation](https://www.amazon.jobs/content/en/how-we-hire/sde-ii-interview-prep): Interview preparation; technical and behavioral dimensions, used only as rehearsal |
+
+The supplied [A/B exercise factory and reference controls](../../../ai/fde_v2/m43/exercises.py) create two distinct failing scratch repositories, an unrelated worked example, executable red/green reference copies and clean-copy runs. The command python -m unittest ai.fde_v2.tests.test_m43 exercises these mechanics. Reference copies never modify the learner's A/B sources and never create learner-attempt evidence. The default attempt adapter remains intentionally unimplemented.
+
 A test pass, artifact authored by an assistant, or elapsed day is not inferred learner skill; the independent-integration gate requires actual learner attempts and their retained evidence.
 
 A passing scaffold check does not imply learner mastery, certification or professional experience; none is inferred from these artifacts.

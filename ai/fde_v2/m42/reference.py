@@ -7,6 +7,7 @@ import sqlite3
 import subprocess
 import sys
 import time
+import os
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
@@ -119,6 +120,10 @@ def run_regression(root: str) -> dict[str, Any]:
             "output":(result.stdout+result.stderr)[-4000:]}
 
 def migrate_fixture_database(path: str) -> dict[str, Any]:
+    db_path=Path(path)
+    backup_path=Path(path+".pre-migration")
+    if db_path.is_symlink() or backup_path.is_symlink() or backup_path.exists():
+        raise PermissionError("migration requires a fresh disposable database and absent backup path")
     db=sqlite3.connect(path)
     try:
         with db:
@@ -131,51 +136,118 @@ def migrate_fixture_database(path: str) -> dict[str, Any]:
             columns={row[1] for row in db.execute("PRAGMA table_info(docs)")}
             if "retention_state" not in columns:
                 db.execute("ALTER TABLE docs ADD COLUMN retention_state TEXT NOT NULL DEFAULT 'active'")
-        row=db.execute("SELECT body,retention_state FROM docs WHERE doc_id='fixture-doc'").fetchone()
-        if row!=("synthetic","active"): raise RuntimeError("migration roundtrip failed")
-        return {"status":"PASS","row_preserved":True,"schema_version":2,
+        before=sqlite3.connect(path+".pre-migration")
+        try:
+            old_rows=before.execute("SELECT doc_id,body FROM docs ORDER BY doc_id").fetchall()
+        finally: before.close()
+        new_rows=db.execute("SELECT doc_id,body,retention_state FROM docs ORDER BY doc_id").fetchall()
+        if ([(r[0],r[1]) for r in new_rows]!=old_rows
+                or any(r[2]!="active" for r in new_rows)):
+            raise RuntimeError("migration did not preserve every original row")
+        return {"status":"PASS","row_count":len(old_rows),"schema_version":2,
                 "pre_migration_backup":path+".pre-migration"}
     finally: db.close()
 
 def rollback_fixture_database(path: str) -> dict[str, Any]:
     backup_path=path+".pre-migration"
+    if Path(path).is_symlink() or Path(backup_path).is_symlink() or not Path(backup_path).is_file():
+        return {"status":"FAIL","restored":False,"reason":"database or backup path is unsafe or absent"}
     backup=sqlite3.connect(backup_path)
     try:
-        table=backup.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='docs'").fetchone()
-        row=backup.execute("SELECT body FROM docs WHERE doc_id='fixture-doc'").fetchone() if table else None
-        columns={item[1] for item in backup.execute("PRAGMA table_info(docs)")} if table else set()
+        schema=_sqlite_schema(backup)
+        if not schema or not any(row[1]=="docs" and row[0]=="table" for row in schema):
+            return {"status":"FAIL","restored":False,"reason":"backup schema is incomplete"}
     finally: backup.close()
-    if row!=("synthetic",) or "retention_state" in columns:
-        return {"status":"FAIL","restored":False,"reason":"pre-migration backup did not preserve the old schema/data"}
+    expected=_snapshot_database(backup_path)
     restore=sqlite3.connect(path)
     try:
-        with restore:
-            restore.execute("DROP TABLE IF EXISTS docs")
-            restore.execute("CREATE TABLE docs(doc_id TEXT PRIMARY KEY,body TEXT NOT NULL)")
-            restore.execute("INSERT INTO docs VALUES('fixture-doc','synthetic')")
-        observed=restore.execute("SELECT body FROM docs WHERE doc_id='fixture-doc'").fetchone()
-        current={item[1] for item in restore.execute("PRAGMA table_info(docs)")}
-        ok=observed==("synthetic",) and "retention_state" not in current
-        return {"status":"PASS" if ok else "FAIL","restored":ok,"schema_version":1,"data_preserved":observed==("synthetic",)}
+        source=sqlite3.connect(backup_path)
+        try: source.backup(restore)
+        finally: source.close()
+        observed=_snapshot_connection(restore)
+        ok=observed==expected
+        return {"status":"PASS" if ok else "FAIL","restored":ok,"schema_version":1,
+                "data_preserved":ok,"restored_schema_objects":len(observed[0]),
+                "restored_table_rows":sum(len(rows) for _name,rows in observed[1])}
     finally: restore.close()
+
+
+def _sqlite_schema(db):
+    return db.execute("SELECT type,name,tbl_name,sql FROM sqlite_master WHERE name NOT LIKE 'sqlite_%' ORDER BY type,name").fetchall()
+
+
+def _snapshot_connection(db):
+    schema=[tuple(row) for row in _sqlite_schema(db)]
+    tables=[]
+    for kind,name,_table,_sql in schema:
+        if kind!="table": continue
+        quoted='"'+name.replace('"','""')+'"'
+        rows=[tuple(row) for row in db.execute(f"SELECT * FROM {quoted}")]
+        tables.append((name,sorted(rows,key=repr)))
+    return schema,tables
+
+
+def _snapshot_database(path):
+    db=sqlite3.connect(path)
+    try: return _snapshot_connection(db)
+    finally: db.close()
 
 def run_fixture_incident(root: str) -> dict[str, Any]:
     path=Path(root).resolve(strict=True); config=path/"dependency.json"
+    if config.is_symlink() or config.exists(): raise PermissionError("incident lab requires an unused scratch root")
     config.write_text(json.dumps({"dependency":"ok"}),encoding="utf-8")
-    probe="import json,sys; d=json.load(open('dependency.json')); sys.exit(0 if d['dependency']=='ok' else 1)"
-    def observe(): return subprocess.run([sys.executable,"-c",probe],cwd=path,capture_output=True,timeout=10).returncode
+    probe_path=path/"probe.py"
+    probe_path.write_text(
+        "import json,sys\n"
+        "d=json.load(open(sys.argv[1],encoding='utf-8'))\n"
+        "if d.get('dependency')!='ok':\n"
+        " print('dependency_guard=reject')\n"
+        " sys.exit(2)\n"
+        "print('dependency_guard=ready')\n",encoding="utf-8")
+    def observe(target=config):
+        completed=subprocess.run([sys.executable,str(probe_path),str(target)],cwd=path,capture_output=True,text=True,timeout=10)
+        return {"returncode":completed.returncode,"stdout":completed.stdout,"stderr":completed.stderr,
+                "run_sha256":hashlib.sha256((completed.stdout+completed.stderr+str(completed.returncode)).encode()).hexdigest()}
+    def event(stage,outcome,evidence):
+        return {"stage":stage,"observed_status":outcome,"time_kind":"observed",
+                "evidence_ref":evidence}
     events=[]
     config.write_text(json.dumps({"dependency":"injected-failure"}),encoding="utf-8")
-    failed=observe(); events.append({"stage":"detection","observed_status":"detected" if failed else "missed"})
-    if not failed: return {"classification":"local_drill","status":"FAIL","events":events}
-    events.append({"stage":"diagnosis","observed_status":"identified"})
-    config.write_text(json.dumps({"dependency":"ok"}),encoding="utf-8"); events.append({"stage":"mitigation","observed_status":"mitigated"})
-    recovered=observe(); events.append({"stage":"recovery","observed_status":"recovered" if recovered==0 else "not_recovered"})
-    events.append({"stage":"prevention","observed_status":"prevention_added"})
-    for i,event in enumerate(events):
-        event.update({"time_kind":"observed","evidence_ref":f"local-fixture:{i}"})
-    return {"classification":"local_drill","status":"PASS" if recovered==0 else "FAIL","events":events,
-            "probe_returncodes":[failed,recovered],"cloud_incident_evidence":"BLOCKED"}
+    failed=observe()
+    events.append(event("detection","detected" if failed["returncode"]!=0 else "missed",failed["run_sha256"]))
+    if failed["returncode"]==0: return {"classification":"local_drill","status":"FAIL","events":events}
+    diagnosed=(failed["returncode"]==2 and "dependency_guard=reject" in failed["stdout"])
+    events.append(event("diagnosis","identified" if diagnosed else "unknown",failed["run_sha256"]))
+    config.write_text(json.dumps({"dependency":"ok"}),encoding="utf-8")
+    mitigated=json.loads(config.read_text(encoding="utf-8")).get("dependency")=="ok"
+    events.append(event("mitigation","mitigated" if mitigated else "not_mitigated",
+                        hashlib.sha256(config.read_bytes()).hexdigest()))
+    recovered=observe()
+    events.append(event("recovery","recovered" if recovered["returncode"]==0 else "not_recovered",
+                        recovered["run_sha256"]))
+    # The regression test injects a bad config copy and passes only if the
+    # runtime guard rejects it. This is an executed prevention witness.
+    bad_copy=path/"dependency-bad-case.json"
+    bad_copy.write_text(json.dumps({"dependency":"injected-failure"}),encoding="utf-8")
+    guard_test=path/"test_guard.py"
+    guard_test.write_text(
+        "import subprocess,sys\n"
+        "result=subprocess.run([sys.executable,'probe.py',sys.argv[1]],capture_output=True,text=True)\n"
+        "assert result.returncode==2 and 'dependency_guard=reject' in result.stdout\n"
+        "print('guard regression passed')\n",encoding="utf-8")
+    regression=subprocess.run([sys.executable,str(guard_test),str(bad_copy)],cwd=path,
+        capture_output=True,text=True,timeout=10)
+    guard_test_passed=(regression.returncode==0 and "guard regression passed" in regression.stdout)
+    events.append(event("prevention","prevention_added" if guard_test_passed else "not_added",
+                        hashlib.sha256((regression.stdout+regression.stderr+str(regression.returncode)).encode()).hexdigest()))
+    bad_copy.unlink(missing_ok=True)
+    all_observed=[e["observed_status"] for e in events]
+    passed=all_observed==[SUCCESS_OUTCOMES[stage] for stage in INCIDENT_STAGES]
+    return {"classification":"local_drill","status":"PASS" if passed else "FAIL","events":events,
+            "probe_returncodes":[failed["returncode"],recovered["returncode"]],
+            "prevention_test_returncode":regression.returncode,
+            "cloud_incident_evidence":"BLOCKED","diagnosis_observed":diagnosed,
+            "prevention_regression_executed":True,"all_stages_observed":passed}
 
 def verify_fixture_retention(path: str) -> dict[str, Any]:
     db=sqlite3.connect(path)
