@@ -28,6 +28,13 @@ jobs:
       - name: Run active frontend tests
         working-directory: frontend
         run: npm test
+      - name: Set up Java 21 for Spring MVC role drill
+        uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: fixtures/fde_v2/interview_drills/spring-mvc/pom.xml
       - name: Verify seeded Java and React role-bank drills
         run: |
           java --version
