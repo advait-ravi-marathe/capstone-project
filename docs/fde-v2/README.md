@@ -134,3 +134,7 @@ The accepted JSON/Markdown source contracts are retained byte-for-byte under `ac
 ## Proposed M2.1 detail (not active)
 
 [Draft Days 42–62 design](proposals/m21-detailed-days-42-62.md) maps a possible detailed sequence to accepted milestone AIFDE-V2-M2.1. It is a proposal only, does not advance the active calendar, and remains blocked until P1 actual generation, embeddings, persistent vector retrieval and learner ownership are independently cleared. Its mechanics tests use synthetic records and vectors; they are not actual model, labeling, or learner evidence.
+
+## Conditional next milestone: M2.2
+
+[`M2.2 detailed design and deterministic mechanics`](proposals/m22-detailed-days-62-82.md) maps the accepted security/identity/deployment-preparation outcome contract to a proposed Days62–82 sequence. It remains a conditional draft: M2.1's learner-evidenced data/evaluation baseline is a prerequisite, actual identity integration is not implemented, and no cloud/account setup or deployment has occurred. The M2.2 TODOs and synthetic witnesses do not advance learner status. The proposal preserves the accepted 29-hour AI envelope, weekly visibility accounting and all prior learner-day records.
