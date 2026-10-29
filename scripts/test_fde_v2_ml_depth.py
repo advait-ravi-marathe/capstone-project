@@ -63,7 +63,7 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
     def test_representative_cards_bind_resource_task_interface_and_acceptance(self):
         expected={
             283:('CS229 logistic regression section','ai/fde_v2/ml_depth/learner.py','logistic_loss and train_logistic','StatisticsAndClassicalMLTests'),
-            305:('PyTorch Learn the Basics: Optimizing Model Parameters','ai/fde_v2/ml_depth/learner.py','train_torch_model','RealTorchTrainingTests'),
+            305:('Optimizing Model Parameters','ai/fde_v2/ml_depth/learner.py','train_torch_model','RealTorchTrainingTests'),
             331:('Google Recommendation Systems: collaborative filtering summary','ai/fde_v2/ml_depth/learner.py','sample_negative_pairs','LearnedRankingTests'),
             358:('Microsoft Research online experiments: validity checks','ai/fde_v2/ml_depth/learner.py','srm_check','ExperimentAndLifecycleTests'),
         }
@@ -149,7 +149,10 @@ class ProductionMLDepthScheduleTest(unittest.TestCase):
                     self.assertIn('../proposals/m52-conditional-guide.md',page)
                 else:
                     for resource in row['reading'].split('; '):
-                        self.assertIn(resource,page)
+                        visible=resource
+                        if resource.startswith('PyTorch'):
+                            visible=resource.removeprefix('PyTorch ').split(':',1)[-1].strip().split(' with ',1)[0].split(' (`',1)[0]
+                        self.assertIn(visible,page)
         for row in self.schedule['days']:
             for link in row['objective_links']:
                 self.assertIn((link['objective'],link['key_result']),valid)

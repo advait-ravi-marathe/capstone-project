@@ -112,13 +112,13 @@ BLOCKS=[
       ("Delayed labels and backfill","Reconcile late labels by event time while retaining arrival-time/version provenance; replay the same synthetic backfill and reject a conflicting duplicate version.","Feast documentation: point-in-time joins and late-arriving/backfilled rows"),
       ("Incident drill","Corrupt a feature schema, detect, rollback, restore health, and add a regression test.","AWS Operational Excellence: Prepare and Operate; CloudWatch alarms: missing data and alarm state"),
       ("Privacy and data lineage","Document purpose, source, retention, deletion and least-privilege boundary for fixture data.","AWS IAM best practices: least privilege; Feast documentation: point-in-time joins and event time"),
-      ("End-to-end local release","Run train, validation, package, serve, monitor and rollback from one reproducible command.","MLflow model registry; PyTorch save/load; scikit-learn model selection"),
+      ("End-to-end local release","Run train, validation, package, serve, monitor and rollback from one reproducible command.","MLflow model registry; PyTorch Save and Load the Model; scikit-learn model selection"),
       ("Capability and gap report","Separate local synthetic mechanics from real-data, online, production and experience evidence.","OpenAI and Stripe benchmark briefs; no readiness inference") ]}
 ]
 
 RESOURCE_URLS={
  "OpenIntro":"https://www.openintro.org/book/os/","CS229":"https://cs229.stanford.edu/main_notes.pdf",
- "sklearn":"https://scikit-learn.org/stable/user_guide.html","PyTorch":"https://docs.pytorch.org/tutorials/beginner/basics/",
+ "sklearn":"https://scikit-learn.org/stable/user_guide.html",
  "Google Recommendation":"https://developers.google.com/machine-learning/recommendation/overview/types",
  "Google Recommender":"https://developers.google.com/machine-learning/recommendation/overview/types",
  "Microsoft Research":"https://www.microsoft.com/en-us/research/publication/online-controlled-experiments-at-scale-lessons-and-challenges/",
@@ -179,6 +179,16 @@ LEARNER_INTERFACES={
  320:("ai/fde_v2/ml_depth/workflow.py", "torch_training_witness"),
  321:("ai/fde_v2/ml_depth/workflow.py", "load_torch_checkpoint in a fresh Python process"),
  322:("ai/fde_v2/ml_depth/learner.py", "explain the observed training/evaluation failure and repair"),
+}
+
+PYTORCH_LESSON_URLS={
+ "Tensors":"https://docs.pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html",
+ "Datasets & DataLoaders":"https://docs.pytorch.org/tutorials/beginner/basics/data_tutorial.html",
+ "Building the Neural Network":"https://docs.pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html",
+ "Automatic Differentiation":"https://docs.pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html",
+ "Optimizing Model Parameters":"https://docs.pytorch.org/tutorials/beginner/basics/optimization_tutorial.html",
+ "Save and Load the Model":"https://docs.pytorch.org/tutorials/beginner/basics/saveloadrun_tutorial.html",
+ "Quickstart":"https://docs.pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html",
 }
 
 # Concrete code-session contracts. These name an editable learner surface and
@@ -289,6 +299,9 @@ LEARNER_ACCEPTANCE_BY_DAY={
 
 
 def _resource_link(anchor):
+    lessons=[title for title in PYTORCH_LESSON_URLS if title in anchor]
+    if lessons:
+        return ", ".join(f"[{title}]({PYTORCH_LESSON_URLS[title]})" for title in lessons)
     for key,url in RESOURCE_URLS.items():
         if key in anchor: return f"[{anchor}]({url})"
     if anchor.startswith("M5.2") or anchor.startswith("M5.2 accepted"): return "[accepted M5.2 guide](../proposals/m52-conditional-guide.md)"

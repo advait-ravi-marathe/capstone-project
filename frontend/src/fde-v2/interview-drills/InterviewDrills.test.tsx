@@ -40,8 +40,14 @@ describe('bounded frontend interview drills', () => {
     const rendered: string[] = [];
     const onRowRender = (item: string) => rendered.push(item);
     const view = render(<candidate.RenderList items={items} selected="item-0" onRowRender={onRowRender} />);
+    const rowsBefore = screen.getAllByRole('listitem');
+    expect(rowsBefore[0]).toHaveAttribute('aria-selected', 'true');
+    expect(rowsBefore[1]).toHaveAttribute('aria-selected', 'false');
     const afterMount = rendered.length;
     view.rerender(<candidate.RenderList items={items} selected="item-1" onRowRender={onRowRender} />);
+    const rowsAfter = screen.getAllByRole('listitem');
+    expect(rowsAfter[0]).toHaveAttribute('aria-selected', 'false');
+    expect(rowsAfter[1]).toHaveAttribute('aria-selected', 'true');
     const updateRenders = rendered.length - afterMount;
     // 40 initial rows are expected; a single selection move should update only
     // the old and new selected rows. This is a render-count exercise, not a
