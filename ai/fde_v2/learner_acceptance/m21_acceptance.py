@@ -89,6 +89,10 @@ class M21LearnerAcceptance(unittest.TestCase):
         bad = dict(manifest, heldout=manifest["heldout"] + [manifest["development"][0]])
         with self.assertRaises(ValueError):
             candidate.assign_group_splits(rows, bad)
+        mislabeled = [dict(row) for row in rows]
+        mislabeled[0]["split"] = "heldout"
+        with self.assertRaises(ValueError):
+            candidate.audit_dataset(mislabeled, manifest)
 
     def test_u_m21_version_diff(self):
         old = _chunks(1, [("a", "old A"), ("b", "old B")])
@@ -149,6 +153,11 @@ class M21LearnerAcceptance(unittest.TestCase):
         self.assertTrue(candidate.score_workflow(case, result, judgment)["success"])
         with self.assertRaises(ValueError):
             candidate.score_workflow(case, result, dict(judgment, case_id="wrong"))
+        malformed_case = dict(case, answerability="typo")
+        abstention = {"case_id": "c1", "status": "completed", "citation_chunk_ids": [], "abstained": True}
+        with self.assertRaises(ValueError):
+            candidate.score_workflow(malformed_case, abstention,
+                                     dict(judgment, fabricated_material_claim=False))
 
     def test_u_m21_freeze_is_immutable_and_blocked_gate_stays_blocked(self):
         bundle = {"baseline_run_sha256": "a" * 64, "candidate_config_sha256": "b" * 64,

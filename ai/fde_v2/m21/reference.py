@@ -97,6 +97,8 @@ def audit_dataset(records, split_manifest):
     assignment = assign_group_splits(validated, split_manifest)
     if any(len({assignment[row["case_id"]] for row in rows}) != 1 for rows in families.values()):
         raise ValueError("scenario-family leakage across development/heldout")
+    if any(row["split"] != assignment[row["case_id"]] for row in validated):
+        raise ValueError("each case split label must match the frozen family manifest")
     counts = Counter(assignment.values())
     if counts != Counter({"development": 60, "heldout": 40}):
         raise ValueError("split must contain 60 development and 40 heldout cases")
@@ -236,6 +238,8 @@ def summarize_latency(samples, timeout_seconds):
 def score_workflow(case, result, human_judgment):
     if case.get("case_id") != result.get("case_id") or case.get("case_id") != human_judgment.get("case_id"):
         raise ValueError("case, result and judgment IDs must match exactly")
+    if case.get("answerability") not in {"answerable", "unanswerable"}:
+        raise ValueError("case answerability label is invalid")
     if human_judgment.get("reviewer") in (None, "") or human_judgment.get("source_reviewed") is not True:
         raise ValueError("semantic support must come from a recorded human source review")
     if result.get("status") != "completed":
@@ -339,9 +343,16 @@ def evaluate_release_gate(baseline, candidate, judgments, frozen_criterion, entr
     if required - set(frozen_criterion):
         return {"status": "INVALID", "m21_pass": False, "reason": "frozen criterion is incomplete"}
     try:
-        comparison = compare_runs(baseline, candidate)
-    except (ValueError, TypeError) as exc:
-        return {"status": "INVALID", "m21_pass": False, "reason": str(exc)}
+        expected_ids = set(frozen_criterion["expected_case_ids"])
+        for name, rows, evidence_kind in (("baseline", baseline, "actual_p1_keyword_baseline"),
+                                          ("candidate", candidate, "actual_pinned_local_rag_run")):
+            if not isinstance(rows, list) or len(rows) != 40:
+                return {"status": "INVALID", "m21_pass": False, "reason": f"complete {name} run is required"}
+            ids = [row.get("case_id") for row in rows if isinstance(row, dict)]
+            if len(ids) != 40 or len(set(ids)) != 40 or set(ids) != expected_ids:
+                return {"status": "INVALID", "m21_pass": False, "reason": f"{name} must cover the frozen case roster exactly"}
+    except (KeyError, TypeError) as exc:
+        return {"status": "INVALID", "m21_pass": False, "reason": f"invalid frozen case roster: {exc}"}
     if (not isinstance(judgments, dict) or set(judgments) != {"baseline", "candidate"}
             or not all(isinstance(judgments[key], list) for key in judgments)):
         return {"status": "INVALID", "m21_pass": False, "reason": "separate baseline and candidate source judgments are required"}
@@ -353,13 +364,18 @@ def evaluate_release_gate(baseline, candidate, judgments, frozen_criterion, entr
         if any(row.get("source_reviewed") is not True or not _nonempty(row.get("reviewer"))
                or type(row.get("success")) is not bool or type(row.get("severe_error")) is not bool for row in rows):
             return {"status": "INVALID", "m21_pass": False, "reason": f"reviewed {name} outcomes are malformed"}
-    if (len(baseline) != 40 or len(candidate) != 40
-            or any(row.get("evidence_kind") != "actual_p1_keyword_baseline" for row in baseline)
+    if (any(row.get("evidence_kind") != "actual_p1_keyword_baseline" for row in baseline)
             or any(row.get("evidence_kind") != "actual_pinned_local_rag_run" for row in candidate)):
         return {"status": "BLOCKED", "m21_pass": False, "reason": "complete actual baseline and pinned model runs are required"}
-    if any(row.get("case_id") not in expected for row in (*baseline, *candidate)):
-        return {"status": "INVALID", "m21_pass": False, "reason": "run contains a case outside the frozen roster"}
     try:
+        if any(type(row.get("ok")) is not bool for row in (*baseline, *candidate)):
+            raise ValueError("each run row needs an explicit success/failure execution status")
+        judgments_by_system = {name: {row["case_id"]: row for row in judgments[name]}
+                               for name in ("baseline", "candidate")}
+        for name, run_rows in (("baseline", baseline), ("candidate", candidate)):
+            if any(not row["ok"] and judgments_by_system[name][row["case_id"]]["success"]
+                   for row in run_rows):
+                raise ValueError(f"a failed {name} request cannot receive a successful task judgment")
         latency = summarize_latency(candidate, frozen_criterion["timeout_seconds"])
         metrics = _heldout_metrics(judgments["baseline"], judgments["candidate"], frozen_criterion, latency)
     except (ValueError, TypeError, KeyError) as exc:
@@ -368,5 +384,5 @@ def evaluate_release_gate(baseline, candidate, judgments, frozen_criterion, entr
         return {"status": "FAIL", "m21_pass": False, "metrics": metrics,
                 "reason": "the frozen usefulness or quality criterion did not pass"}
     return {"status": "ELIGIBLE_FOR_INDEPENDENT_REVIEW", "m21_pass": False,
-            "metrics": metrics, "comparison": comparison,
+            "metrics": metrics, "comparison": metrics["baseline_comparison"],
             "reason": "independent evidence review remains required; this is not a learner pass"}
