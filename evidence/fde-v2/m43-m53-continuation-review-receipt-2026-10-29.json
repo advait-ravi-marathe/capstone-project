@@ -1,6 +1,6 @@
 {
   "schema": "fde-v2-conditional-continuation-review-receipt-v1",
-  "status": "locally_verified_published_review_candidate_ci_pending",
+  "status": "followup_fix_locally_verified_ci_rerun_pending",
   "branch": "work/aws-fde-v24-continuation",
   "base_commit": "0f0099099b427aac44bc7e40c504a36b9c294e0a",
   "implementation_commit": "eff7d55041aade7c62147d439b8a6eecc1417123",
@@ -38,6 +38,16 @@
     {"command": "python -m compileall for ai/fde_v2/m43,m51,m52,m53; JSON parsing of four schedules; git diff --check", "result": "PASS"},
     {"command": "Day-index validation", "result": "PASS", "indexed": 270, "working_links": true, "missing_daily_pages": [42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81]}
   ],
+  "ci_followup": {
+    "first_published_head": "97f83afdeffdacdec606cbf0e2ee6e8a2cf49b6a",
+    "first_run_id": 40819498565,
+    "first_run_result": "FAIL",
+    "failure": "Broad scripts discovery found one compatibility assertion: test_navigation_and_scope_reach_day30_and_keep_model_gate_honest expected the legacy day index substring [Day 29; the expanded index had changed this label to [Actual learning Day 29.",
+    "repair": "Restored original Day1–41 labels while preserving the 270-row index and explicitly identified missing Day42–81 pages.",
+    "local_recheck": "python3 -m unittest discover -s scripts -p 'test_*.py' passed 239 tests after the label repair.",
+    "followup_commit": "PENDING",
+    "followup_exact_head_ci": "PENDING"
+  },
   "learner_and_external_gates": {
     "learner_progress": "none asserted; milestone records remain not_started",
     "real_model_inference": "BLOCKED_UNVERIFIED; no model request/download performed in this work",
