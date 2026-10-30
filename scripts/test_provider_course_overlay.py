@@ -149,6 +149,10 @@ class ProviderCourseOverlayTests(unittest.TestCase):
         self.assertIn("Qdrant", course["required_reading_precedence"])
         self.assertTrue(all("otherwise defer" in slot["part"] for slot in course["study_slots"]))
         self.assertEqual(self.overlay["conditional_deferred_minutes_total"], 120)
+        self.assertEqual(
+            self.overlay["planned_overlay_minutes_total"] - self.overlay["conditional_deferred_minutes_total"],
+            self.overlay["scheduled_overlay_minutes_total_excluding_conditional_m21"],
+        )
         self.assertEqual(self.overlay["scheduled_overlay_minutes_total_excluding_conditional_m21"], 320)
         self.assertIn("120 M2.1 minutes on Days 43–48 are conditional and deferred by default", self.overlay["conditional_slot_policy"])
 
