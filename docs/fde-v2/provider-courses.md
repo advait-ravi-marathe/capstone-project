@@ -29,6 +29,7 @@ OpenAI says course badges require course completion and an assessment score of a
 The starting status in [`provider-courses.json`](provider-courses.json) is `not_started` for every course and `not_verified` for every badge. Keep course completion and badge verification separate:
 
 - `not_started`: no course completion evidence recorded;
+- `in_progress`: a course has been started but is paused; `resume_section` records the next unfinished section;
 - `completed`: the learner has completion evidence, but no badge has been checked;
 - `badge_verified`: the actual platform badge and its requirements have been checked and recorded.
 
