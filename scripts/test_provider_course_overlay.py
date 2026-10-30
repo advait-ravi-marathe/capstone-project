@@ -195,6 +195,9 @@ class ProviderCourseOverlayTests(unittest.TestCase):
         self.assertIn("No existing task or required technical reference is deleted", guide)
         self.assertIn("`in_progress`: a course has been started but is paused", guide)
         self.assertNotIn("Anthropic Academy", guide + readme)
+        self.assertIn("completion, assessment, or badge is never a prerequisite for an original roadmap stage", guide)
+        self.assertIn("an unfinished course or badge never blocks S06", guide)
+        self.assertIn("an unfinished course or badge never blocks that stage", guide)
         self.assertIn("The **M2.1 Days 43–48 course chunks are deferred by default**", guide)
         self.assertIn("resume only in a later already-scheduled compatible", guide)
 
