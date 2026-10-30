@@ -1,0 +1,122 @@
+{
+  "status": "planning-only",
+  "base_route_days": 270,
+  "production_ml_extension_days": 112,
+  "recommended_route_days": 382,
+  "daily_budget_minutes": {
+    "dsa": 60,
+    "role_aws": 30,
+    "ai": 90
+  },
+  "assessment_allocation_assumption_minutes_per_course": 20,
+  "planned_course_content_minutes_total": 340,
+  "planned_assessment_minutes_total": 100,
+  "planned_overlay_minutes_total": 440,
+  "progress_state_options": {
+    "course_status": ["not_started", "completed"],
+    "badge_status": ["not_verified", "badge_verified"]
+  },
+  "openai_academy_badge_rule": "course completion plus assessment score >= 80%; verify the badge from actual platform evidence",
+  "openai_api_pathway_certificate_rule": "all five API-pathway courses completed and every assessment passed at >= 80%; this overlay maps all five but does not claim the pathway certificate",
+  "course_substitutions": [
+    {
+      "id": "openai_scope_ai_solutions",
+      "title": "Scope AI Solutions",
+      "catalog_url": "https://academy.openai.com/pages/courses",
+      "estimated_course_content_minutes": 30,
+      "assessment_minutes": 20,
+      "planned_substitution_minutes": 50,
+      "prerequisite": "Complete the question-first discovery and baseline work in M4.1 before shaping a scoped AI solution.",
+      "study_slots": [
+        {"day": 167, "stage": "M4.1-S03", "minutes": 20, "part": "course content"},
+        {"day": 168, "stage": "M4.1-S03", "minutes": 10, "part": "course content"},
+        {"day": 169, "stage": "M4.1-S04", "minutes": 20, "part": "assessment; planned allowance, not provider-published duration"}
+      ],
+      "course_status": "not_started",
+      "badge_status": "not_verified"
+    },
+    {
+      "id": "openai_evaluate_ai_applications",
+      "title": "Evaluate AI Applications",
+      "catalog_url": "https://academy.openai.com/pages/courses",
+      "estimated_course_content_minutes": 70,
+      "assessment_minutes": 20,
+      "planned_substitution_minutes": 90,
+      "prerequisite": "M5.2-S01 dataset/metric contract and no-leakage split preparation precede the course; complete it before development comparison and held-out scoring.",
+      "study_slots": [
+        {"day": 230, "stage": "M5.2-S01", "minutes": 20, "part": "course content"},
+        {"day": 231, "stage": "M5.2-S01", "minutes": 10, "part": "course content"},
+        {"day": 232, "stage": "M5.2-S02", "minutes": 20, "part": "course content"},
+        {"day": 233, "stage": "M5.2-S02", "minutes": 10, "part": "course content"},
+        {"day": 234, "stage": "M5.2-S03", "minutes": 10, "part": "course content"},
+        {"day": 235, "stage": "M5.2-S03", "minutes": 20, "part": "assessment; planned allowance, not provider-published duration"}
+      ],
+      "course_status": "not_started",
+      "badge_status": "not_verified"
+    },
+    {
+      "id": "openai_build_with_rag",
+      "title": "Build with Retrieval-Augmented Generation",
+      "catalog_url": "https://academy.openai.com/pages/courses",
+      "estimated_course_content_minutes": 100,
+      "assessment_minutes": 20,
+      "planned_substitution_minutes": 120,
+      "prerequisite": "P1 actual RAG and learner-ownership gate passed before M2.1 progression; this study overlay does not pass that gate.",
+      "provider_api_labs": "Do not configure credentials or make provider calls. If a key is required, leave that lab and any dependent badge blocked; use the existing local/offline M2.1 exercises.",
+      "study_slots": [
+        {"day": 43, "stage": "M2.1", "minutes": 20, "part": "course content"},
+        {"day": 44, "stage": "M2.1", "minutes": 20, "part": "course content"},
+        {"day": 45, "stage": "M2.1", "minutes": 20, "part": "course content"},
+        {"day": 46, "stage": "M2.1", "minutes": 20, "part": "course content"},
+        {"day": 47, "stage": "M2.1", "minutes": 20, "part": "course content"},
+        {"day": 48, "stage": "M2.1", "minutes": 20, "part": "assessment; planned allowance, not provider-published duration"}
+      ],
+      "course_status": "not_started",
+      "badge_status": "not_verified"
+    },
+    {
+      "id": "openai_design_and_build_agentic_systems",
+      "title": "Design and Build Agentic Systems",
+      "catalog_url": "https://academy.openai.com/pages/courses",
+      "estimated_course_content_minutes": 110,
+      "assessment_minutes": 20,
+      "planned_substitution_minutes": 130,
+      "prerequisite": "M3.1 bounded workflow and M3.2 MCP/approval learner prerequisites evidenced before M3.3 progression; finish this course before the held-out evaluation stage.",
+      "provider_api_labs": "Do not configure credentials or make provider calls. If a key is required, leave that lab and any dependent badge blocked; use the existing local agent-safety workflow and fixtures.",
+      "study_slots": [
+        {"day": 146, "stage": "M3.3-S03", "minutes": 20, "part": "course content"},
+        {"day": 147, "stage": "M3.3-S03", "minutes": 10, "part": "course content"},
+        {"day": 148, "stage": "M3.3-S04", "minutes": 20, "part": "course content"},
+        {"day": 149, "stage": "M3.3-S04", "minutes": 10, "part": "course content"},
+        {"day": 150, "stage": "M3.3-S05", "minutes": 20, "part": "course content"},
+        {"day": 151, "stage": "M3.3-S05", "minutes": 10, "part": "course content"},
+        {"day": 152, "stage": "M3.3-S06", "minutes": 20, "part": "course content"},
+        {"day": 153, "stage": "M3.3-S06", "minutes": 10, "part": "assessment; planned allowance, not provider-published duration"},
+        {"day": 154, "stage": "M3.3-S07", "minutes": 10, "part": "assessment; planned allowance, not provider-published duration"}
+      ],
+      "course_status": "not_started",
+      "badge_status": "not_verified"
+    },
+    {
+      "id": "openai_optimize_ai_application_performance",
+      "title": "Optimize AI Application Performance",
+      "catalog_url": "https://academy.openai.com/pages/courses",
+      "estimated_course_content_minutes": 30,
+      "assessment_minutes": 20,
+      "planned_substitution_minutes": 50,
+      "prerequisite": "M5.2 local prediction API and initial model/data manifest are available; use observed local evidence, not production claims.",
+      "study_slots": [
+        {"day": 244, "stage": "M5.2-S09", "minutes": 20, "part": "course content"},
+        {"day": 245, "stage": "M5.2-S09", "minutes": 10, "part": "course content"},
+        {"day": 247, "stage": "M5.2-S10", "minutes": 20, "part": "assessment; planned allowance, not provider-published duration"}
+      ],
+      "course_status": "not_started",
+      "badge_status": "not_verified"
+    }
+  ],
+  "credential_status": {
+    "openai_api_pathway_certificate": "not_verified",
+    "openai_professional_certification_access": "unverified; OpenAI Certified app is currently invite-only for Enterprise/Edu workspaces",
+    "aws_saa_selected_exam": "unchanged; existing separate authorization and readiness gates apply"
+  }
+}
