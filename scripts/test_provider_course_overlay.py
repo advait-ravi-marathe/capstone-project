@@ -47,13 +47,13 @@ class ProviderCourseOverlayTests(unittest.TestCase):
                 course = self.courses[course_id]
                 self.assertEqual(course["planned_substitution_minutes"], minutes)
                 self.assertEqual(
-                    course["estimated_course_content_minutes"] + course["assessment_minutes"],
+                    course["catalog_estimate_minutes"] + course["assessment_minutes"],
                     minutes,
                 )
                 self.assertEqual(sum(slot["minutes"] for slot in course["study_slots"]), minutes)
                 self.assertEqual(
-                    sum(slot["minutes"] for slot in course["study_slots"] if slot["part"].startswith("course content")),
-                    course["estimated_course_content_minutes"],
+                    sum(slot["minutes"] for slot in course["study_slots"] if slot["part"].startswith("course study")),
+                    course["catalog_estimate_minutes"],
                 )
                 self.assertEqual(
                     sum(slot["minutes"] for slot in course["study_slots"] if slot["part"].startswith("assessment")),
@@ -72,15 +72,15 @@ class ProviderCourseOverlayTests(unittest.TestCase):
                         self.assertIn(slot["stage"], {segment["stage"] for segment in row["segments"]})
 
         self.assertEqual(
-            sum(course["estimated_course_content_minutes"] for course in self.courses.values()),
-            self.overlay["planned_course_content_minutes_total"],
+            sum(course["catalog_estimate_minutes"] for course in self.courses.values()),
+            self.overlay["catalog_estimate_minutes_total"],
         )
         self.assertEqual(
             sum(course["assessment_minutes"] for course in self.courses.values()),
             self.overlay["planned_assessment_minutes_total"],
         )
         self.assertEqual(
-            self.overlay["planned_course_content_minutes_total"]
+            self.overlay["catalog_estimate_minutes_total"]
             + self.overlay["planned_assessment_minutes_total"],
             self.overlay["planned_overlay_minutes_total"],
         )
