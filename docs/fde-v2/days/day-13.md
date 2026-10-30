@@ -1,47 +1,54 @@
-# Learning day 13
+# Day 13: Combine the search steps
 
-**Status: Not started.** A planned learning-day number advances only when this session is attempted; missed dates do not silently complete a day.
+**Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-## Fixed daily budget
+**Planned date:** 2026-11-08 (calendar target only; it does not mark the day complete).
 
-- DSA: 60 minutes — use the corresponding current item in the separate DSA plan; no problem statements or solutions are copied here.
-- Role / certification bank: 30 minutes — AWS certification: storage/data diagnostic.
-- AI engineering: 90 minutes total, including any listed visibility work.
-- Total: 180 minutes. If DSA takes 75/90 minutes, AI reduces to 75/60 minutes; carry unfinished AI work forward rather than compressing it.
+## Today: 180 minutes total
 
-## Role interview prompt (30 minutes)
+- **60 min DSA:** Use the current item in the separate DSA repository. DSA problems and answers are not copied here.
+- **30 min AWS:** Learn the short topic below. No AWS account or console is needed.
+- **90 min AI/Python:** Learn one idea, follow the example, make one small code change, then run its check. If DSA review runs long, reduce AI time to stay within 180 minutes and carry the unfinished work forward.
 
-Choose storage for synthetic source documents and derived vectors. Explain encryption, backup, retention and deletion consequences; state which details cannot be inferred without a recovery objective.
+## AWS learning — 30 minutes
 
-Output: Choose storage, encryption, backup and data-access controls for one scenario; explain alternatives and costs conceptually, not as measured billing.
+**Topic:** Design cost-aware database choices
 
-Score using the [common rubric](../role-bank.md). Do not claim an interview pass, real customer feedback, or a result that did not occur.
+**Read this exact section:** SAA-C03 Content Domain 4, Task 4.3: Design cost-optimized database solutions
 
-## AWS study (this is today's 30-minute bank, not additional time)
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Find Task 4.3 and name one cost-related database choice. This is learning, not a readiness score.
 
-**Focus:** Data security and storage choices
-**Current source:** [AWS Certified Solutions Architect – Associate (SAA-C03) official exam guide](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain1.html)
-**Exact section:** Content Domain 1; Task 1.3: Determine appropriate data security controls
-**Verified course titles and timebox:** See the [Sprint 1 course map](../sources/sprint1-course-map.md); use the listed free official fallback if paid-video access is unavailable.
-Use the official domain/task statement and one original synthetic scenario. No account setup, AWS deployment, course purchase or exam booking is authorized. If an already-owned course cannot be identified/accessed, record that unknown and use the official guide.
+Source: [Design cost-aware database choices](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain4.html)
 
-## AI engineering work (90 minutes)
+## AI/Python learning — 90 minutes
 
-Define the exact answer JSON schema (answer string, citations array, abstained boolean). Implement strict parsing: reject malformed JSON, missing/extra keys, wrong types and duplicate citations. Validate against actual generation output when available; a valid schema is not evidence of factual correctness.
+**Python reference:** [Defining Functions](https://docs.python.org/3/tutorial/controlflow.html#defining-functions). Read only this section.
+- Optional Udemy supplement: **Modules and Packages - Standard Library (4:24), if accessible**. Course access is unverified; skip it if it is not already available. Do not buy or enroll for this plan.
 
-### Scheduled dependency-unit segments
+### Worked example (20 minutes)
 
-| Unit | Segment | Minutes | Contract |
-|---|---|---:|---|
-| AIFDE-V2-U010 — Structured output without trusting it | primary | 90 | [unit contract](../units/u010.md) |
+Worked example: question `family plan` over two supplied records returns only the record whose title/text shares those words. This shows the combination; your assigned query below is different.
 
-### Learning references
+### Your small coding task (40 minutes)
 
-- [Python json module](https://docs.python.org/3/library/json.html)
-- [Python unittest](https://docs.python.org/3/library/unittest.html)
+**File:** [`ai/fde_v2/beginner_first15/learner.py`](../../../ai/fde_v2/beginner_first15/learner.py)
+**Function:** `search_records`
 
-### Acceptance and evidence
+Use the earlier match and ranking functions together. A blank question returns an empty list.
 
-Run only the acceptance selector named in this day's unit contract after its assigned segment is complete. Tests for future units are deliberately kept out of the daily command. Keep actual model/runtime traces separate from deterministic mocked tests.
+Assigned input: `{"question": "individual deductible", "corpus": "the ten checked-in fictional records"}`
+**Expected result:** northstar-deductible is the first result; an empty question returns [].
 
-Record: command, exit status, changed learner-owned files, relevant output, model/runtime identity where applicable, and unresolved blockers. A mock-only result, reference witness, scaffold output or model-generated artifact is not learner completion.
+The app plumbing, fixtures, command-line runner and database setup are supplied. You are learning a small function, not building the full application. Reference output teaches the behavior but does not count as your implementation.
+
+### Check your work (15 minutes)
+
+```sh
+python -m ai.fde_v2.beginner_first15.acceptance --day 13
+```
+
+This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.
+
+## Next step
+
+The next page adds one small step. Keep the supplied application and demo unchanged.

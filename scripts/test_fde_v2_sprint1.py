@@ -28,33 +28,45 @@ class Sprint1ContractTests(unittest.TestCase):
             with self.subTest(source=name):
                 self.assertEqual(hashlib.sha256((ACCEPTED / name).read_bytes()).hexdigest(), expected)
 
-    def test_exact_first_14_schedule_segments_and_budget(self):
+    def test_accepted_schedule_is_preserved_and_beginner_overlay_sets_active_first_15_budget(self):
         schedule = json.loads((ACCEPTED / "first-30-days.json").read_text(encoding="utf-8"))["schedule"]
         self.assertEqual(len(schedule), 30)
+        # This accepted input remains historical and byte-preserved; the active overlay is explicit.
         for day in schedule[:14]:
-            number = day["planned_learning_day"]
+            self.assertEqual(day["dsa_minutes"], 60)
+            self.assertEqual(day["role_interview_minutes"], 30)
+            self.assertEqual(day["ai_total_minutes"], 90)
+            self.assertEqual(sum(item["minutes"] for item in day["ai_segments"])
+                             + day["visibility_minutes"], 90)
+        overlay = json.loads((DOCS / "amendments/2026-10-30-beginner-first-15.json").read_text())
+        self.assertEqual(len(overlay["days"]), 15)
+        for day in overlay["days"]:
+            number = day["day"]
             page = (DOCS / "days" / f"day-{number:02d}.md").read_text(encoding="utf-8")
             with self.subTest(day=number):
-                self.assertEqual(day["dsa_minutes"], 60)
-                self.assertEqual(day["role_interview_minutes"], 30)
-                self.assertEqual(day["ai_total_minutes"], 90)
-                self.assertEqual(sum(item["minutes"] for item in day["ai_segments"])
-                                 + day["visibility_minutes"], 90)
+                self.assertEqual(day["ai_minutes"]["lesson"] + day["ai_minutes"]["worked_example"]
+                                 + day["ai_minutes"]["practice"] + day["ai_minutes"]["check"], 90)
                 self.assertIn("Status: Not started", page)
                 self.assertIn("180 minutes", page)
-                for segment in day["ai_segments"]:
-                    contract_id = segment["unit_id"].rsplit("-", 1)[1].lower()
-                    self.assertTrue((DOCS / "units" / f"{contract_id}.md").is_file())
-                    self.assertIn(f"../units/{contract_id}.md", page)
+                self.assertIn(day["task"]["function"], page)
+                self.assertIn(day["task"]["command"], page)
+                self.assertIn("30 min AWS", page)
+                self.assertIn("60 min DSA", page)
 
-    def test_day14_u011_slice_remains_partial_while_day15_completes_unit(self):
+    def test_historical_u011_schedule_is_preserved_but_beginner_days_do_not_claim_it(self):
         unit = (DOCS / "units/u011.md").read_text(encoding="utf-8")
         day14 = (DOCS / "days/day-14.md").read_text(encoding="utf-8")
-        self.assertIn("30 minutes only", day14)
-        self.assertIn("Do not claim all ten have been ingested or U011 complete", day14)
+        day15 = (DOCS / "days/day-15.md").read_text(encoding="utf-8")
+        handoff = (DOCS / "amendments/day16-prerequisite-handoff.md").read_text(encoding="utf-8")
+        self.assertIn("Day 14: primary 30 min", unit)
+        self.assertIn("Day 15: primary 60 min", unit)
+        self.assertIn("does not implement or complete U011", day14)
+        self.assertIn("does **not** satisfy the accepted U011 contract", day15)
+        self.assertIn("does not complete U011", handoff)
+        self.assertNotIn("upsert_document_metadata", day14)
+        self.assertNotIn("ingest_versioned_document", day15)
         self.assertIn("changed record must advance exactly one version", unit)
         self.assertIn("same-version changed text", unit)
-        self.assertIn("Day 15: primary 60 min", unit)
         self.assertTrue((DOCS / "days/day-15.md").is_file())
         self.assertTrue((DOCS / "units/u012.md").is_file())
 
@@ -68,9 +80,9 @@ class Sprint1ContractTests(unittest.TestCase):
 
     def test_day03_prose_matches_scheduled_unit_minutes(self):
         day = (DOCS / "days/day-03.md").read_text(encoding="utf-8")
-        self.assertIn("Spend the full 60 minutes on U002", day)
-        self.assertIn("Then spend 30 minutes starting U003", day)
-        self.assertNotIn("for 30 minutes, then start the JSON document parser seam", day)
+        self.assertIn("Function:** `question_words`", day)
+        self.assertIn("python -m ai.fde_v2.beginner_first15.acceptance --day 3", day)
+        self.assertIn("split a normalized question", (ROOT / "ai/fde_v2/beginner_first15/learner.py").read_text())
 
     def test_shared_dsa_guidance_uses_explicit_roadmap_position_and_actual_date(self):
         guide = (DOCS / "README.md").read_text(encoding="utf-8")
@@ -156,7 +168,8 @@ class Sprint1ContractTests(unittest.TestCase):
                 text=True, capture_output=True, check=False, timeout=10,
             )
         self.assertNotEqual(run_result.returncode, 0, "the unimplemented learner seam must stay red")
-        self.assertIn("NotImplementedError: Day 3: implement parse_document_record", run_result.stderr)
+        self.assertIn("NotImplementedError: Day 12 active entry (historical U003): implement parse_document_record",
+                      run_result.stderr)
         self.assertNotIn("ModuleNotFoundError", run_result.stderr)
 
     def test_relative_markdown_links_in_active_sprint_docs_resolve(self):

@@ -1,39 +1,54 @@
-# Learning day 08
+# Day 8: Count shared words
 
-**Status: Not started.** A planned learning-day number advances only when this session is attempted; missed dates do not silently complete a day.
+**Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-## Fixed daily budget
+**Planned date:** 2026-11-03 (calendar target only; it does not mark the day complete).
 
-- DSA: 60 minutes — use the corresponding current item in the separate DSA plan; no problem statements or solutions are copied here.
-- Role / certification bank: 30 minutes — React async correctness.
-- AI engineering: 90 minutes total, including any listed visibility work.
-- Total: 180 minutes. If DSA takes 75/90 minutes, AI reduces to 75/60 minutes; carry unfinished AI work forward rather than compressing it.
+## Today: 180 minutes total
 
-## Role interview prompt (30 minutes)
+- **60 min DSA:** Use the current item in the separate DSA repository. DSA problems and answers are not copied here.
+- **30 min AWS:** Learn the short topic below. No AWS account or console is needed.
+- **90 min AI/Python:** Learn one idea, follow the example, make one small code change, then run its check. If DSA review runs long, reduce AI time to stay within 180 minutes and carry the unfinished work forward.
 
-An older React effect response overwrites a newer result. Explain the race and give two safe remedies; identify what the supplied test actually proves.
+## AWS learning — 30 minutes
 
-Output: Explain effect/dependency/cancellation or stale-state behavior using a small code path.
+**Topic:** Understand scalable network design
 
-Score using the [common rubric](../role-bank.md). Do not claim an interview pass, real customer feedback, or a result that did not occur.
+**Read this exact section:** SAA-C03 Content Domain 3, Task 3.4: Determine high-performing and/or scalable network architectures
 
-## AI engineering work (90 minutes)
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Find Task 3.4 and name one network design concept in the task. This is learning, not a readiness score.
 
-Load the pinned real model runtime and attempt a non-canned response to three simple tasks (plain explanation, JSON-shaped request, impossible request). Capture actual output, elapsed time and any failure. If weights cannot be obtained, stop at the exact blocker and keep this evidence gate blocked.
+Source: [Understand scalable network design](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html)
 
-### Scheduled dependency-unit segments
+## AI/Python learning — 90 minutes
 
-| Unit | Segment | Minutes | Contract |
-|---|---|---:|---|
-| AIFDE-V2-U006 — First real generated response | primary | 90 | [unit contract](../units/u006.md) |
+**Python reference:** [Set operations](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset). Read only this section.
+- Optional Udemy supplement: **For Loops (2:56), revisit only if accessible**. Course access is unverified; skip it if it is not already available. Do not buy or enroll for this plan.
 
-### Learning references
+### Worked example (20 minutes)
 
-- [FastAPI Tutorial](https://fastapi.tiangolo.com/tutorial/)
-- [FastAPI Testing](https://fastapi.tiangolo.com/tutorial/testing/)
+Input `` gives `1`. This demonstrates the idea with a different input from your exercise.
 
-### Acceptance and evidence
+### Your small coding task (40 minutes)
 
-Run only the acceptance selector named in this day's unit contract after its assigned segment is complete. Tests for future units are deliberately kept out of the daily command. Keep actual model/runtime traces separate from deterministic mocked tests.
+**File:** [`ai/fde_v2/beginner_first15/learner.py`](../../../ai/fde_v2/beginner_first15/learner.py)
+**Function:** `overlap_score`
 
-Record: command, exit status, changed learner-owned files, relevant output, model/runtime identity where applicable, and unresolved blockers. A mock-only result, reference witness, scaffold output or model-generated artifact is not learner completion.
+Count distinct words shared by the question and one record.
+
+Assigned input: `{"question": "deductible deductible individual", "record": "individual deductible is 500"}`
+**Expected result:** 2
+
+The app plumbing, fixtures, command-line runner and database setup are supplied. You are learning a small function, not building the full application. Reference output teaches the behavior but does not count as your implementation.
+
+### Check your work (15 minutes)
+
+```sh
+python -m ai.fde_v2.beginner_first15.acceptance --day 8
+```
+
+This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.
+
+## Next step
+
+The next page adds one small step. Keep the supplied application and demo unchanged.

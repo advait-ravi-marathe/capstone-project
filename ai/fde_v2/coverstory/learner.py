@@ -14,8 +14,8 @@ from .contracts import Answer, Chunk, Document, RetrievedChunk
 
 
 def parse_document_record(raw: Mapping[str, Any]) -> Document:
-    """Day 3: validate the supplied synthetic document record."""
-    raise NotImplementedError("Day 3: implement parse_document_record")
+    """Active beginner-first Day 12 (historical U003): validate a synthetic record."""
+    raise NotImplementedError("Day 12 active entry (historical U003): implement parse_document_record")
 
 
 def generate_text(generator, prompt: str, max_new_tokens: int = 160) -> tuple[str, float]:

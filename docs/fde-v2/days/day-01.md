@@ -1,39 +1,62 @@
-# Learning day 01
+# Day 1: Read one supplied result
 
-**Status: Not started.** A planned learning-day number advances only when this session is attempted; missed dates do not silently complete a day.
+**Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-## Fixed daily budget
+**Planned date:** 2026-10-27 (calendar target only; it does not mark the day complete).
 
-- DSA: 60 minutes — use the corresponding current item in the separate DSA plan; no problem statements or solutions are copied here.
-- Role / certification bank: 30 minutes — Target-role and baseline map.
-- AI engineering: 90 minutes total, including any listed visibility work.
-- Total: 180 minutes. If DSA takes 75/90 minutes, AI reduces to 75/60 minutes; carry unfinished AI work forward rather than compressing it.
+## Today: 180 minutes total
 
-## Role interview prompt (30 minutes)
+- **60 min DSA:** Use the current item in the separate DSA repository. DSA problems and answers are not copied here.
+- **30 min AWS:** Learn the short topic below. No AWS account or console is needed.
+- **90 min AI/Python:** Learn one idea, follow the example, make one small code change, then run its check. If DSA review runs long, reduce AI time to stay within 180 minutes and carry the unfinished work forward.
 
-Review one target FDE / applied-AI SWE role. Which three requirements have concrete evidence in your existing work, which three remain gaps, and what can you apply for now without waiting for this roadmap?
+## AWS learning — 30 minutes
 
-Output: Use verified current FE/full-stack strengths and an actual target role; identify gaps and accurate CV evidence. Applications need not wait for AI work.
+**Topic:** What AWS is and how its global infrastructure is named
 
-Score using the [common rubric](../role-bank.md). Do not claim an interview pass, real customer feedback, or a result that did not occur.
+**Read this exact section:** AWS Overview: Global Infrastructure
 
-## AI engineering work (90 minutes)
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Name one AWS Region and one Availability Zone from the reading; no account or console required. This is learning, not a readiness score.
 
-Read the starter boundary and inspect the provided request/data path. Write a one-page problem brief: one synthetic user, one question workflow, a non-AI baseline (find matching text), one measurable objective and explicit non-goals. Make a small standard-library JSON/SQLite attempt with the worked example; label all outputs as instructor scaffold.
+Source: [What AWS is and how its global infrastructure is named](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/global-infrastructure.html)
 
-### Scheduled dependency-unit segments
+## AI/Python learning — 90 minutes
 
-| Unit | Segment | Minutes | Contract |
-|---|---|---:|---|
-| AIFDE-V2-U001 — Baseline, scope and ownership | primary | 90 | [unit contract](../units/u001.md) |
+First run the supplied example. It is the working application behavior, not your implementation:
 
-### Learning references
+```sh
+python -m ai.fde_v2.coverstory.day01_baseline
+```
 
-- [Python Tutorial](https://docs.python.org/3/tutorial/)
-- [Python json module](https://docs.python.org/3/library/json.html)
+Expected first line: `rank=1 document=northstar-deductible title=Northstar synthetic plan: deductible`. Then use the task below to practice reading one Python value.
 
-### Acceptance and evidence
+**Python reference:** [Using Python as a Calculator; Strings](https://docs.python.org/3/tutorial/introduction.html). Read only this section.
+- Optional Udemy supplement: **Python Variables (3:37), if present in the learner's course catalog**. Course access is unverified; skip it if it is not already available. Do not buy or enroll for this plan.
 
-Run only the acceptance selector named in this day's unit contract after its assigned segment is complete. Tests for future units are deliberately kept out of the daily command. Keep actual model/runtime traces separate from deterministic mocked tests.
+### Worked example (20 minutes)
 
-Record: command, exit status, changed learner-owned files, relevant output, model/runtime identity where applicable, and unresolved blockers. A mock-only result, reference witness, scaffold output or model-generated artifact is not learner completion.
+Input `{'title': 'Appeals'}` gives `Appeals`. This demonstrates the idea with a different input from your exercise.
+
+### Your small coding task (40 minutes)
+
+**File:** [`ai/fde_v2/beginner_first15/learner.py`](../../../ai/fde_v2/beginner_first15/learner.py)
+**Function:** `document_title`
+
+Return the title from a supplied dictionary; return an empty string if it is missing.
+
+Assigned input: `{"document_id": "deductible", "title": "Deductible"}`
+**Expected result:** Deductible
+
+The app plumbing, fixtures, command-line runner and database setup are supplied. You are learning a small function, not building the full application. Reference output teaches the behavior but does not count as your implementation.
+
+### Check your work (15 minutes)
+
+```sh
+python -m ai.fde_v2.beginner_first15.acceptance --day 1
+```
+
+This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.
+
+## Next step
+
+The next page adds one small step. Keep the supplied application and demo unchanged.

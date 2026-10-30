@@ -1,27 +1,27 @@
 # AWS FDE v2.4 daily pages
 
-Actual learning days are attempt-indexed; dates do not advance status. Sprint 1 contains Days 1–14. Daily pages cover Days01–270. Days42–61 link to the M2.1 conditional proposal and Days62–81 link to the M2.2 conditional proposal; Day62 is an explicit shared boundary. Every page retains the fixed 180-minute daily schedule and conditional gates. Day30 contains only the explicitly bounded U023 fixture-authoring slice; deterministic execution starts on Day31. Days31–41 are P1 closeout tasks, and their real-model, held-out and ownership outcomes remain evidence-gated.
+Actual learning days are attempt-indexed; dates do not advance status. The active beginner-first Days1–15 instructions use 60 minutes DSA + 30 minutes AWS + 90 minutes AI/Python; see the [versioned teaching overlay](../amendments/2026-10-30-beginner-first-15.md). Accepted unit contracts and the older role-based schedule remain historical inputs. Daily pages cover Days01–270. Days42–61 link to the M2.1 conditional proposal and Days62–81 link to the M2.2 conditional proposal; Day62 is an explicit shared boundary. Day30 contains only the explicitly bounded U023 fixture-authoring slice; deterministic execution starts on Day31. Days31–41 are P1 closeout tasks, and their real-model, held-out and ownership outcomes remain evidence-gated.
 
 The unchanged 270-day core is the base route. The selected dual AI/FDE + production-ML route continues through Days271–382; see the [ML extension index](../ml-depth/README.md). Those cards preserve the same daily budget and remain Not started. The recommended dual-skill route also follows the [application-code responsibility overlay](../amendments/2026-10-29-application-code-responsibility-overlay.md): assistant supplies capstone FE/BE and service plumbing; learner reviews and diagnoses it, while the separate 30-minute role bank retains short interview drills, and learner-owned ML and separate-repository DSA remain active.
 
 | Day | Page |
 |---:|---|
-| 01 | [Day 01: # Learning day 01](day-01.md) |
-| 02 | [Day 02: # Learning day 02](day-02.md) |
-| 03 | [Day 03: # Learning day 03](day-03.md) |
-| 04 | [Day 04: # Learning day 04](day-04.md) |
-| 05 | [Day 05: # Learning day 05](day-05.md) |
-| 06 | [Day 06: # Learning day 06](day-06.md) |
-| 07 | [Day 07: # Learning day 07](day-07.md) |
-| 08 | [Day 08: # Learning day 08](day-08.md) |
-| 09 | [Day 09: # Learning day 09](day-09.md) |
-| 10 | [Day 10: # Learning day 10](day-10.md) |
-| 11 | [Day 11: # Learning day 11](day-11.md) |
-| 12 | [Day 12: # Learning day 12](day-12.md) |
-| 13 | [Day 13: # Learning day 13](day-13.md) |
-| 14 | [Day 14: # Learning day 14](day-14.md) |
-| 15 | [Day 15: HLD discovery and scale](day-15.md) |
-| 16 | [Day 16: HLD failures and tradeoffs](day-16.md) |
+| 01 | [Day 1: Read one supplied result](day-01.md) |
+| 02 | [Day 2: Clean up a question](day-02.md) |
+| 03 | [Day 3: Split a question into words](day-03.md) |
+| 04 | [Day 4: Read fields from a document](day-04.md) |
+| 05 | [Day 5: Handle an empty question](day-05.md) |
+| 06 | [Day 6: Find records with a matching word](day-06.md) |
+| 07 | [Day 7: Keep one copy of each word](day-07.md) |
+| 08 | [Day 8: Count shared words](day-08.md) |
+| 09 | [Day 9: Sort the best matches first](day-09.md) |
+| 10 | [Day 10: Return no match honestly](day-10.md) |
+| 11 | [Day 11: Show where a result came from](day-11.md) |
+| 12 | [Day 12: Check a document record](day-12.md) |
+| 13 | [Day 13: Combine the search steps](day-13.md) |
+| 14 | [Day 14: Show sources and handle no matches](day-14.md) |
+| 15 | [Day 15: Search the sample collection end to end](day-15.md) |
+| 16 | [Day 16: HLD failures and tradeoffs (not ready)](day-16.md) |
 | 17 | [Day 17: LLD boundaries](day-17.md) |
 | 18 | [Day 18: Concurrency and reliability](day-18.md) |
 | 19 | [Day 19: AWS certification: compute/reliability diagnostic](day-19.md) |

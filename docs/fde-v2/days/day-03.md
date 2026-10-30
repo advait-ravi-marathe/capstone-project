@@ -1,43 +1,54 @@
-# Learning day 03
+# Day 3: Split a question into words
 
-**Status: Not started.** A planned learning-day number advances only when this session is attempted; missed dates do not silently complete a day.
+**Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-## Fixed daily budget
+**Planned date:** 2026-10-29 (calendar target only; it does not mark the day complete).
 
-- DSA: 60 minutes — use the corresponding current item in the separate DSA plan; no problem statements or solutions are copied here.
-- Role / certification bank: 30 minutes — React state and rendering.
-- AI engineering: 90 minutes total, including any listed visibility work.
-- Total: 180 minutes. If DSA takes 75/90 minutes, AI reduces to 75/60 minutes; carry unfinished AI work forward rather than compressing it.
+## Today: 180 minutes total
 
-## Role interview prompt (30 minutes)
+- **60 min DSA:** Use the current item in the separate DSA repository. DSA problems and answers are not copied here.
+- **30 min AWS:** Learn the short topic below. No AWS account or console is needed.
+- **90 min AI/Python:** Learn one idea, follow the example, make one small code change, then run its check. If DSA review runs long, reduce AI time to stay within 180 minutes and carry the unfinished work forward.
 
-A repeated list renders the wrong item after removing row two. Trace state identity and React keys; name one minimal fix and one test that would expose the defect.
+## AWS learning — 30 minutes
 
-Output: Diagnose a state/render/key bug and explain the minimal fix.
+**Topic:** Protect data with encryption and controlled access
 
-Score using the [common rubric](../role-bank.md). Do not claim an interview pass, real customer feedback, or a result that did not occur.
+**Read this exact section:** SAA-C03 Content Domain 1, Task 1.3: Determine appropriate data security controls
 
-## AI engineering work (90 minutes)
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Point to the task heading about data security controls. This is learning, not a readiness score.
 
-Spend the full 60 minutes on U002: finish the reproducible environment and real-model feasibility record, using the second 30 minutes as its setup-repair buffer if needed. Then spend 30 minutes starting U003: inspect the frozen dataclass fields and write one valid-record and one malformed-record test. Do not implement API or model behavior from a future unit.
+Source: [Protect data with encryption and controlled access](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain1.html)
 
-### Scheduled dependency-unit segments
+## AI/Python learning — 90 minutes
 
-| Unit | Segment | Minutes | Contract |
-|---|---|---:|---|
-| AIFDE-V2-U002 — Reproducible environment and real-model feasibility | primary | 30 | [unit contract](../units/u002.md) |
-| AIFDE-V2-U002 — Reproducible environment and real-model feasibility | buffer | 30 | [unit contract](../units/u002.md) |
-| AIFDE-V2-U003 — Python data contracts and tests | primary | 30 | [unit contract](../units/u003.md) |
+**Python reference:** [Finding all matches](https://docs.python.org/3/library/re.html#re.findall). Read only this section.
+- Optional Udemy supplement: **For Loops (2:56), if accessible**. Course access is unverified; skip it if it is not already available. Do not buy or enroll for this plan.
 
-### Learning references
+### Worked example (20 minutes)
 
-- [Python Tutorial](https://docs.python.org/3/tutorial/)
-- [Python json module](https://docs.python.org/3/library/json.html)
-- [Python typing module](https://docs.python.org/3/library/typing.html)
-- [Python unittest](https://docs.python.org/3/library/unittest.html)
+Input `one two` gives `['one', 'two']`. This demonstrates the idea with a different input from your exercise.
 
-### Acceptance and evidence
+### Your small coding task (40 minutes)
 
-Run only the acceptance selector named in this day's unit contract after its assigned segment is complete. Tests for future units are deliberately kept out of the daily command. Keep actual model/runtime traces separate from deterministic mocked tests.
+**File:** [`ai/fde_v2/beginner_first15/learner.py`](../../../ai/fde_v2/beginner_first15/learner.py)
+**Function:** `question_words`
 
-Record: command, exit status, changed learner-owned files, relevant output, model/runtime identity where applicable, and unresolved blockers. A mock-only result, reference witness, scaffold output or model-generated artifact is not learner completion.
+Use the supplied word-matching helper to return the words in a question as a list.
+
+Assigned input: `The deductible is 500`
+**Expected result:** ['the', 'deductible', 'is', '500']
+
+The app plumbing, fixtures, command-line runner and database setup are supplied. You are learning a small function, not building the full application. Reference output teaches the behavior but does not count as your implementation.
+
+### Check your work (15 minutes)
+
+```sh
+python -m ai.fde_v2.beginner_first15.acceptance --day 3
+```
+
+This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.
+
+## Next step
+
+The next page adds one small step. Keep the supplied application and demo unchanged.

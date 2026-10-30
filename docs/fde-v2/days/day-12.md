@@ -1,49 +1,54 @@
-# Learning day 12
+# Day 12: Check a document record
 
-**Status: Not started.** A planned learning-day number advances only when this session is attempted; missed dates do not silently complete a day.
+**Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-## Fixed daily budget
+**Planned date:** 2026-11-07 (calendar target only; it does not mark the day complete).
 
-- DSA: 60 minutes — use the corresponding current item in the separate DSA plan; no problem statements or solutions are copied here.
-- Role / certification bank: 30 minutes — AWS certification: networking diagnostic.
-- AI engineering: 90 minutes total, including any listed visibility work.
-- Total: 180 minutes. If DSA takes 75/90 minutes, AI reduces to 75/60 minutes; carry unfinished AI work forward rather than compressing it.
+## Today: 180 minutes total
 
-## Role interview prompt (30 minutes)
+- **60 min DSA:** Use the current item in the separate DSA repository. DSA problems and answers are not copied here.
+- **30 min AWS:** Learn the short topic below. No AWS account or console is needed.
+- **90 min AI/Python:** Learn one idea, follow the example, make one small code change, then run its check. If DSA review runs long, reduce AI time to stay within 180 minutes and carry the unfinished work forward.
 
-A private service needs access to a data store in one VPC. Trace subnet, route table and security-group boundaries; identify a misconfiguration that blocks egress without exposing the database publicly.
+## AWS learning — 30 minutes
 
-Output: Explain VPC/subnet/routing/security-group boundaries for the app; classify uncertainty and review the relevant official syllabus.
+**Topic:** Control compute costs
 
-Score using the [common rubric](../role-bank.md). Do not claim an interview pass, real customer feedback, or a result that did not occur.
+**Read this exact section:** SAA-C03 Content Domain 4, Task 4.2: Design cost-optimized compute solutions
 
-## AWS study (this is today's 30-minute bank, not additional time)
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Find Task 4.2 and name one scaling or purchasing option. This is learning, not a readiness score.
 
-**Focus:** Networking and scalable architecture
-**Current source:** [AWS Certified Solutions Architect – Associate (SAA-C03) official exam guide](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain1.html)
-**Exact section:** Content Domain 1; Task 1.2: Design secure workloads and applications; Domain 2, Task 2.1: Design scalable and loosely coupled architectures
-**Verified course titles and timebox:** See the [Sprint 1 course map](../sources/sprint1-course-map.md); use the listed free official fallback if paid-video access is unavailable.
-Use the official domain/task statement and one original synthetic scenario. No account setup, AWS deployment, course purchase or exam booking is authorized. If an already-owned course cannot be identified/accessed, record that unknown and use the official guide.
+Source: [Control compute costs](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain4.html)
 
-**Also review:** [Content Domain 2: Design Resilient Architectures — Task 2.1: Design scalable and loosely coupled architectures](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain2.html)
-## AI engineering work (90 minutes)
+## AI/Python learning — 90 minutes
 
-Inspect the supplied UI's keyboard-accessible states and run its existing focused tests. Explain one pending→result and one pending→error transition. UI implementation and UI test scaffolding are supplied; do not build a design system or add frontend code.
+**Python reference:** [Basic Usage; Decoding JSON](https://docs.python.org/3/library/json.html). Read only this section.
+- Optional Udemy supplement: **Python Variables (3:37), revisit if accessible**. Course access is unverified; skip it if it is not already available. Do not buy or enroll for this plan.
 
-### Scheduled dependency-unit segments
+### Worked example (20 minutes)
 
-| Unit | Segment | Minutes | Contract |
-|---|---|---:|---|
-| AIFDE-V2-U009 — Thin React workflow | primary | 60 | [unit contract](../units/u009.md) |
-| AIFDE-V2-U009 — Thin React workflow | buffer | 30 | [unit contract](../units/u009.md) |
+Worked example: `{'document_id':'toy','version':1,'title':'Guide','source':'fixture/guide','text':'hello'}` becomes a `Document`; its `content_sha256` is the SHA-256 of `hello`. A blank title is rejected. Your assigned sample is different.
 
-### Learning references
+### Your small coding task (40 minutes)
 
-- [React: Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)
-- [Vitest Guide](https://vitest.dev/guide/)
+**File:** [`ai/fde_v2/coverstory/learner.py`](../../../ai/fde_v2/coverstory/learner.py)
+**Function:** `parse_document_record`
 
-### Acceptance and evidence
+Implement the existing small record-validation seam: valid ID, positive integer version, nonempty title/source/text, and content hash.
 
-Run only the acceptance selector named in this day's unit contract after its assigned segment is complete. Tests for future units are deliberately kept out of the daily command. Keep actual model/runtime traces separate from deterministic mocked tests.
+Assigned input: `{"document_id": "sample", "version": 1, "title": "Sample", "source": "fixture/sample", "text": "short text"}`
+**Expected result:** A Document with the supplied values and SHA-256 of its text; malformed version or blank text raises ValueError.
 
-Record: command, exit status, changed learner-owned files, relevant output, model/runtime identity where applicable, and unresolved blockers. A mock-only result, reference witness, scaffold output or model-generated artifact is not learner completion.
+The app plumbing, fixtures, command-line runner and database setup are supplied. You are learning a small function, not building the full application. Reference output teaches the behavior but does not count as your implementation.
+
+### Check your work (15 minutes)
+
+```sh
+python -m ai.fde_v2.beginner_first15.acceptance --day 12
+```
+
+This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.
+
+## Next step
+
+The next page adds one small step. Keep the supplied application and demo unchanged.

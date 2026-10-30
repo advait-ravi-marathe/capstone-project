@@ -1,0 +1,597 @@
+{
+  "schema_version": "beginner-first-15-v1",
+  "status": "proposed_local_review",
+  "supersedes_active_instructions_only": "docs/fde-v2/days/day-01.md through day-15.md",
+  "historical_contracts": "Immutable accepted contracts and prior schedule receipts remain unchanged. This is the active first-15-day teaching overlay, not learner progress.",
+  "daily_budget_minutes": {
+    "dsa": 60,
+    "aws_learning": 30,
+    "ai_learning": 90,
+    "total": 180
+  },
+  "ai_block_minutes": {
+    "lesson": 15,
+    "worked_example": 20,
+    "learner_practice": 40,
+    "check": 15
+  },
+  "setup": "Python 3.12; standard library for Days 1-13; no model, API key, cloud account, frontend, or third-party package is needed for these tasks.",
+  "course_note": "Python documentation is the primary pinpointed reference. Optional Udemy supplement: 365 Careers, The AI Engineer Course 2026 (catalog ID 6112535), access unverified; use only if already accessible and the exact named lesson appears in the learner's catalog. No purchase or enrollment is required.",
+  "days": [
+    {
+      "day": 1,
+      "title": "Read one supplied result",
+      "python": "https://docs.python.org/3/tutorial/introduction.html",
+      "python_section": "Using Python as a Calculator; Strings",
+      "optional_udemy_lesson": "Python Variables (3:37), if present in the learner's course catalog",
+      "ai_minutes": {
+        "lesson": 15,
+        "worked_example": 20,
+        "practice": 40,
+        "check": 15
+      },
+      "task": {
+        "file": "ai/fde_v2/beginner_first15/learner.py",
+        "function": "document_title",
+        "work": "Return the title from a supplied dictionary; return an empty string if it is missing.",
+        "worked_example": {
+          "input": {
+            "title": "Appeals"
+          },
+          "output": "Appeals"
+        },
+        "assigned_input": {
+          "document_id": "deductible",
+          "title": "Deductible"
+        },
+        "expected_output": "Deductible",
+        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 1",
+        "setup_command": "python -m ai.fde_v2.coverstory.day01_baseline",
+        "setup_expected": "The supplied example lists northstar-deductible as rank 1; this is instructor code, not your pass."
+      },
+      "aws": {
+        "topic": "What AWS is and how its global infrastructure is named",
+        "source": "https://docs.aws.amazon.com/whitepapers/latest/aws-overview/global-infrastructure.html",
+        "check": "Name one AWS Region and one Availability Zone from the reading; no account or console required."
+      },
+      "planned_date": "2026-10-27",
+      "aws_section": "AWS Overview: Global Infrastructure"
+    },
+    {
+      "day": 2,
+      "title": "Clean up a question",
+      "python": "https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str",
+      "python_section": "String methods: strip and lower",
+      "optional_udemy_lesson": "Types of Data - Strings (5:40), if accessible",
+      "ai_minutes": {
+        "lesson": 15,
+        "worked_example": 20,
+        "practice": 40,
+        "check": 15
+      },
+      "task": {
+        "file": "ai/fde_v2/beginner_first15/learner.py",
+        "function": "normalize_question",
+        "work": "Remove spaces at the two ends and make the remaining question lowercase.",
+        "worked_example": {
+          "input": "  HELLO  ",
+          "output": "hello"
+        },
+        "assigned_input": "  What is the deductible?  ",
+        "expected_output": "what is the deductible?",
+        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 2"
+      },
+      "aws": {
+        "topic": "Secure access: users, roles, and least privilege",
+        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain1.html",
+        "check": "Explain in one spoken sentence why an application should receive only the permissions it needs."
+      },
+      "planned_date": "2026-10-28",
+      "aws_section": "SAA-C03 Content Domain 1, Task 1.1: Design secure access to AWS resources"
+    },
+    {
+      "day": 3,
+      "title": "Split a question into words",
+      "python": "https://docs.python.org/3/library/re.html#re.findall",
+      "python_section": "Finding all matches",
+      "optional_udemy_lesson": "For Loops (2:56), if accessible",
+      "ai_minutes": {
+        "lesson": 15,
+        "worked_example": 20,
+        "practice": 40,
+        "check": 15
+      },
+      "task": {
+        "file": "ai/fde_v2/beginner_first15/learner.py",
+        "function": "question_words",
+        "work": "Use the supplied word-matching helper to return the words in a question as a list.",
+        "worked_example": {
+          "input": "one two",
+          "output": [
+            "one",
+            "two"
+          ]
+        },
+        "assigned_input": "The deductible is 500",
+        "expected_output": [
+          "the",
+          "deductible",
+          "is",
+          "500"
+        ],
+        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 3"
+      },
+      "aws": {
+        "topic": "Protect data with encryption and controlled access",
+        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain1.html",
+        "check": "Point to the task heading about data security controls."
+      },
+      "planned_date": "2026-10-29",
+      "aws_section": "SAA-C03 Content Domain 1, Task 1.3: Determine appropriate data security controls"
+    },
+    {
+      "day": 4,
+      "title": "Read fields from a document",
+      "python": "https://docs.python.org/3/tutorial/datastructures.html#dictionaries",
+      "python_section": "Dictionaries",
+      "optional_udemy_lesson": "Dictionaries (4:04), if accessible",
+      "ai_minutes": {
+        "lesson": 15,
+        "worked_example": 20,
+        "practice": 40,
+        "check": 15
+      },
+      "task": {
+        "file": "ai/fde_v2/beginner_first15/learner.py",
+        "function": "record_words",
+        "work": "Read title and text fields from a supplied record and return their words.",
+        "worked_example": {
+          "input": {
+            "title": "Plan",
+            "text": "Family coverage"
+          },
+          "output": [
+            "plan",
+            "family",
+            "coverage"
+          ]
+        },
+        "assigned_input": {
+          "title": "Deductible",
+          "text": "Individual coverage is 500 dollars"
+        },
+        "expected_output": [
+          "deductible",
+          "individual",
+          "coverage",
+          "is",
+          "500",
+          "dollars"
+        ],
+        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 4"
+      },
+      "aws": {
+        "topic": "Plan for an unavailable component",
+        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain2.html",
+        "check": "Find Task 2.2 and name one recovery approach from the task description."
+      },
+      "planned_date": "2026-10-30",
+      "aws_section": "SAA-C03 Content Domain 2, Task 2.2: Design highly available and/or fault-tolerant architectures"
+    },
+    {
+      "day": 5,
+      "title": "Handle an empty question",
+      "python": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
+      "python_section": "if Statements",
+      "optional_udemy_lesson": "Types of Data - Strings (5:40), revisit only if useful and accessible",
+      "ai_minutes": {
+        "lesson": 15,
+        "worked_example": 20,
+        "practice": 40,
+        "check": 15
+      },
+      "task": {
+        "file": "ai/fde_v2/beginner_first15/learner.py",
+        "function": "is_blank_question",
+        "work": "Return True for spaces-only input and False when a visible character exists.",
+        "worked_example": {
+          "input": "   ",
+          "output": true
+        },
+        "assigned_input": "\t ",
+        "expected_output": true,
+        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 5"
+      },
+      "aws": {
+        "topic": "Choose storage for performance and growth",
+        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html",
+        "check": "Find Task 3.1 and name one storage type it says to compare."
+      },
+      "planned_date": "2026-10-31",
+      "aws_section": "SAA-C03 Content Domain 3, Task 3.1: Determine high-performing and/or scalable storage solutions"
+    },
+    {
+      "day": 6,
+      "title": "Find records with a matching word",
+      "python": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
+      "python_section": "for Statements",
+      "optional_udemy_lesson": "For Loops (2:56), if accessible",
+      "ai_minutes": {
+        "lesson": 15,
+        "worked_example": 20,
+        "practice": 40,
+        "check": 15
+      },
+      "task": {
+        "file": "ai/fde_v2/beginner_first15/learner.py",
+        "function": "matching_records",
+        "work": "Loop over supplied records and keep records containing at least one question word.",
+        "worked_example": {
+          "question": "family",
+          "record_text": "family deductible",
+          "output": true
+        },
+        "assigned_input": {
+          "question": "claim denied",
+          "records": [
+            "appeals: claim denied",
+            "therapy: referral required"
+          ]
+        },
+        "expected_output": [
+          "appeals"
+        ],
+        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 6"
+      },
+      "aws": {
+        "topic": "Choose compute that can scale",
+        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html",
+        "check": "Find Task 3.2 and name one scaling approach in its listed knowledge."
+      },
+      "planned_date": "2026-11-01",
+      "aws_section": "SAA-C03 Content Domain 3, Task 3.2: Design high-performing and elastic compute solutions"
+    },
+    {
+      "day": 7,
+      "title": "Keep one copy of each word",
+      "python": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset",
+      "python_section": "Set Types",
+      "optional_udemy_lesson": "Dictionaries (4:04), revisit only if useful and accessible",
+      "ai_minutes": {
+        "lesson": 15,
+        "worked_example": 20,
+        "practice": 40,
+        "check": 15
+      },
+      "task": {
+        "file": "ai/fde_v2/beginner_first15/learner.py",
+        "function": "unique_question_words",
+        "work": "Turn repeated question words into a set of distinct words.",
+        "worked_example": {
+          "input": "cat cat dog",
+          "output": [
+            "cat",
+            "dog"
+          ]
+        },
+        "assigned_input": "appeal appeal review",
+        "expected_output": [
+          "appeal",
+          "review"
+        ],
+        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 7"
+      },
+      "aws": {
+        "topic": "Match a database to its access pattern",
+        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html",
+        "check": "Find Task 3.3 and name one database access pattern it mentions."
+      },
+      "planned_date": "2026-11-02",
+      "aws_section": "SAA-C03 Content Domain 3, Task 3.3: Determine high-performing database solutions"
+    },
+    {
+      "day": 8,
+      "title": "Count shared words",
+      "python": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset",
+      "python_section": "Set operations",
+      "optional_udemy_lesson": "For Loops (2:56), revisit only if accessible",
+      "ai_minutes": {
+        "lesson": 15,
+        "worked_example": 20,
+        "practice": 40,
+        "check": 15
+      },
+      "task": {
+        "file": "ai/fde_v2/beginner_first15/learner.py",
+        "function": "overlap_score",
+        "work": "Count distinct words shared by the question and one record.",
+        "worked_example": {
+          "question": "red red blue",
+          "record": "blue green",
+          "output": 1
+        },
+        "assigned_input": {
+          "question": "deductible deductible individual",
+          "record": "individual deductible is 500"
+        },
+        "expected_output": 2,
+        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 8"
+      },
+      "aws": {
+        "topic": "Understand scalable network design",
+        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html",
+        "check": "Find Task 3.4 and name one network design concept in the task."
+      },
+      "planned_date": "2026-11-03",
+      "aws_section": "SAA-C03 Content Domain 3, Task 3.4: Determine high-performing and/or scalable network architectures"
+    },
+    {
+      "day": 9,
+      "title": "Sort the best matches first",
+      "python": "https://docs.python.org/3/howto/sorting.html",
+      "python_section": "Key Functions; Sort Stability and Complex Sorts",
+      "optional_udemy_lesson": "Lists (4:02), if accessible",
+      "ai_minutes": {
+        "lesson": 15,
+        "worked_example": 20,
+        "practice": 40,
+        "check": 15
+      },
+      "task": {
+        "file": "ai/fde_v2/beginner_first15/learner.py",
+        "function": "rank_records",
+        "work": "Sort records by overlap score; break a tie by document ID so order is repeatable.",
+        "worked_example": {
+          "scores": {
+            "b": 1,
+            "a": 1
+          },
+          "output": [
+            "a",
+            "b"
+          ]
+        },
+        "assigned_input": {
+          "ids": [
+            "z",
+            "a"
+          ],
+          "equal_score": 1
+        },
+        "expected_output": [
+          "a",
+          "z"
+        ],
+        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 9"
+      },
+      "aws": {
+        "topic": "Understand data ingestion choices",
+        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html",
+        "check": "Find Task 3.5 and name one ingestion or transformation option."
+      },
+      "planned_date": "2026-11-04",
+      "aws_section": "SAA-C03 Content Domain 3, Task 3.5: Determine high-performing data ingestion and transformation solutions"
+    },
+    {
+      "day": 10,
+      "title": "Return no match honestly",
+      "python": "https://docs.python.org/3/tutorial/controlflow.html#more-on-defining-functions",
+      "python_section": "More on Defining Functions; return Values",
+      "optional_udemy_lesson": "Functions - Defining (2:02), if accessible",
+      "ai_minutes": {
+        "lesson": 15,
+        "worked_example": 20,
+        "practice": 40,
+        "check": 15
+      },
+      "task": {
+        "file": "ai/fde_v2/beginner_first15/learner.py",
+        "function": "best_record",
+        "work": "Return the highest-ranked record or None when every score is zero.",
+        "worked_example": {
+          "matches": [],
+          "output": null
+        },
+        "assigned_input": {
+          "question": "intergalactic moonstone",
+          "corpus": "the ten checked-in fictional records"
+        },
+        "expected_output": "None (the supplied corpus has no matching words)",
+        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 10"
+      },
+      "aws": {
+        "topic": "Protect an ingestion path",
+        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html",
+        "check": "Connect Task 3.5 to one data security control from Domain 1 Task 1.3."
+      },
+      "planned_date": "2026-11-05",
+      "aws_section": "SAA-C03 Content Domain 3, Task 3.5, with Domain 1 Task 1.3 data security controls"
+    },
+    {
+      "day": 11,
+      "title": "Show where a result came from",
+      "python": "https://docs.python.org/3/tutorial/inputoutput.html#formatted-string-literals",
+      "python_section": "Formatted String Literals",
+      "optional_udemy_lesson": "Functions - Parameter (3:49), if accessible",
+      "ai_minutes": {
+        "lesson": 15,
+        "worked_example": 20,
+        "practice": 40,
+        "check": 15
+      },
+      "task": {
+        "file": "ai/fde_v2/beginner_first15/learner.py",
+        "function": "source_label",
+        "work": "Format the supplied title and source as a short citation label; do not invent answer text.",
+        "worked_example": {
+          "title": "Guide",
+          "source": "fixture/guide",
+          "output": "Guide — fixture/guide"
+        },
+        "assigned_input": {
+          "title": "Appeals",
+          "source": "synthetic/appeals"
+        },
+        "expected_output": "Appeals — synthetic/appeals",
+        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 11"
+      },
+      "aws": {
+        "topic": "Choose a storage tier for cost and access needs",
+        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain4.html",
+        "check": "Find Task 4.1 and name one lifecycle or storage-tier tradeoff."
+      },
+      "planned_date": "2026-11-06",
+      "aws_section": "SAA-C03 Content Domain 4, Task 4.1: Design cost-optimized storage solutions"
+    },
+    {
+      "day": 12,
+      "title": "Check a document record",
+      "python": "https://docs.python.org/3/library/json.html",
+      "python_section": "Basic Usage; Decoding JSON",
+      "optional_udemy_lesson": "Python Variables (3:37), revisit if accessible",
+      "ai_minutes": {
+        "lesson": 15,
+        "worked_example": 20,
+        "practice": 40,
+        "check": 15
+      },
+      "task": {
+        "file": "ai/fde_v2/coverstory/learner.py",
+        "function": "parse_document_record",
+        "work": "Implement the existing small record-validation seam: valid ID, positive integer version, nonempty title/source/text, and content hash.",
+        "worked_example": {
+          "valid_record": "Use the tiny one-row example in the Day 12 card; inspect the returned Document fields."
+        },
+        "expected_output": "A Document with the supplied values and SHA-256 of its text; malformed version or blank text raises ValueError.",
+        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 12",
+        "assigned_input": {
+          "document_id": "sample",
+          "version": 1,
+          "title": "Sample",
+          "source": "fixture/sample",
+          "text": "short text"
+        }
+      },
+      "aws": {
+        "topic": "Control compute costs",
+        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain4.html",
+        "check": "Find Task 4.2 and name one scaling or purchasing option."
+      },
+      "planned_date": "2026-11-07",
+      "aws_section": "SAA-C03 Content Domain 4, Task 4.2: Design cost-optimized compute solutions"
+    },
+    {
+      "day": 13,
+      "title": "Combine the search steps",
+      "python": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
+      "python_section": "Defining Functions",
+      "optional_udemy_lesson": "Modules and Packages - Standard Library (4:24), if accessible",
+      "ai_minutes": {
+        "lesson": 15,
+        "worked_example": 20,
+        "practice": 40,
+        "check": 15
+      },
+      "task": {
+        "file": "ai/fde_v2/beginner_first15/learner.py",
+        "function": "search_records",
+        "work": "Use the earlier match and ranking functions together. A blank question returns an empty list.",
+        "worked_example": {
+          "question": "family deductible",
+          "output": "Only the best matching records, in stable order."
+        },
+        "assigned_input": {
+          "question": "individual deductible",
+          "corpus": "the ten checked-in fictional records"
+        },
+        "expected_output": "northstar-deductible is the first result; an empty question returns [].",
+        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 13"
+      },
+      "aws": {
+        "topic": "Design cost-aware database choices",
+        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain4.html",
+        "check": "Find Task 4.3 and name one cost-related database choice."
+      },
+      "planned_date": "2026-11-08",
+      "aws_section": "SAA-C03 Content Domain 4, Task 4.3: Design cost-optimized database solutions"
+    },
+    {
+      "day": 14,
+      "title": "Show sources and handle no matches",
+      "python": "https://docs.python.org/3/library/stdtypes.html#string-methods",
+      "python_section": "String methods; joining strings",
+      "optional_udemy_lesson": null,
+      "ai_minutes": {
+        "lesson": 15,
+        "worked_example": 20,
+        "practice": 40,
+        "check": 15
+      },
+      "task": {
+        "file": "ai/fde_v2/beginner_first15/learner.py",
+        "function": "format_search_results",
+        "work": "Format the earlier search results as source labels. Return an explicit no-match message when none are found; do not generate an answer.",
+        "worked_example": {
+          "question": "therapy referral",
+          "output": "Physical therapy — synthetic/therapy"
+        },
+        "assigned_input": {
+          "question": "appeal denied",
+          "corpus": "the three supplied fictional records"
+        },
+        "expected_output": "Appeals — synthetic/appeals; unmatched phrase returns No matching documents.",
+        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 14"
+      },
+      "aws": {
+        "topic": "Reduce network cost carefully",
+        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain4.html",
+        "check": "Find Task 4.4 and name one route or NAT cost tradeoff."
+      },
+      "planned_date": "2026-11-09",
+      "aws_section": "SAA-C03 Content Domain 4, Task 4.4: Design cost-optimized network architectures",
+      "transition_note": "This is a keyword-search presentation exercise; it does not complete U011."
+    },
+    {
+      "day": 15,
+      "title": "Search the sample collection end to end",
+      "python": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
+      "python_section": "Defining Functions; review String methods",
+      "optional_udemy_lesson": null,
+      "ai_minutes": {
+        "lesson": 15,
+        "worked_example": 20,
+        "practice": 40,
+        "check": 15
+      },
+      "task": {
+        "file": "ai/fde_v2/beginner_first15/learner.py",
+        "function": "search_response",
+        "work": "Compose question cleanup, search over the ten supplied fictional records, and source-label output. Blank questions and no-match queries must have distinct clear messages.",
+        "worked_example": {
+          "question": "therapy referral",
+          "output": "a matching source label"
+        },
+        "assigned_input": {
+          "question": "  INDIVIDUAL deductible? ",
+          "corpus": "the ten supplied fictional records"
+        },
+        "expected_output": "A Deductible source label on the first line; blank input asks for a question; unmatched moonstone returns No matching documents.",
+        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 15"
+      },
+      "aws": {
+        "topic": "Review secure, resilient, high-performing, and cost-aware choices",
+        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain1.html",
+        "check": "Read the names of the four official content domains across the linked Domain 1–4 pages; this is familiarization, not an exam-readiness test.",
+        "additional_sources": [
+          "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain2.html",
+          "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html",
+          "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain4.html"
+        ]
+      },
+      "planned_date": "2026-11-10",
+      "aws_section": "SAA-C03 Content Domains 1–4: official domain names overview",
+      "transition_note": "This small keyword-search composition does not complete U011, embeddings, RAG, or the Day 16 prerequisite."
+    }
+  ],
+  "handoff_note": "docs/fde-v2/amendments/day16-prerequisite-handoff.md"
+}

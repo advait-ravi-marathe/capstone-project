@@ -1,20 +1,23 @@
-# Capstone roadmap
+# Start learning
 
-The active curriculum is [AWS FDE v2.4](docs/fde-v2/README.md): 270 learning days across 12 milestones, with separate DSA, role/AWS, and AI project blocks. The selected dual AI/FDE + production-ML route extends to nominal Day382 through the [versioned ML-depth amendment](docs/fde-v2/amendments/2026-10-29-production-ml-depth-amendment.md) and [Days271–382 index](docs/fde-v2/ml-depth/README.md). The assistant owns capstone FE/BE application implementation; the existing 30-minute role bank includes bounded interview coding/debugging drills, and learner-owned ML/model training and separate-repository DSA remain in scope. See the [application-code responsibility overlay](docs/fde-v2/amendments/2026-10-29-application-code-responsibility-overlay.md). Learner progress remains **Not started** until supported by actual learner evidence.
+Begin with the plain-language [Start here guide](docs/fde-v2/start-here.md). It shows one working example, then points to your first small Python task. The app, UI, API, fixtures and setup are supplied; you learn how they work and implement a small function at a time.
 
-Start with the [Day 1 guide](docs/fde-v2/days/day-01.md). The runnable application is a local Python/FastAPI service and React UI. The baseline command is:
+For the first 15 days, the daily budget is 60 minutes of DSA in the separate repository, 30 minutes of AWS learning, and 90 minutes of guided AI/Python practice. See the [day-by-day plan](docs/fde-v2/amendments/2026-10-30-beginner-first-15.md).
+
+Your first command, which needs no model, API key or cloud account, is:
 
 ```sh
 python -m ai.fde_v2.coverstory.day01_baseline
 ```
 
-This is an instructor-owned synthetic keyword baseline, not generated output or proof of learner capability. See [runtime status](docs/fde-v2/runtime-verification.md) for the recorded model-access blocker. No live cloud, hosted-model, customer, or production result is claimed.
+It searches fictional sample documents with ordinary keyword matching. Then open [Day 1](docs/fde-v2/days/day-01.md) and try `document_title` in the learner exercise module. The example is supplied-system behavior; it is not a claim that you have completed the task.
 
-The repository keeps the DSA repository separate; it does not copy DSA problems or solutions here. The two current FDE v2 scaffold-review receipts remain under `evidence/fde-v2/`. Legacy unattempted placeholders, instructor smoke receipts, and standalone CAP assignments were removed from the active tree after the cleanup audit found no completed learner-attempt evidence; their Git history remains available. Superseded Java-first and model-building-first curriculum is removed from the active tree; the accepted contracts, attribution, and review records for the current roadmap remain under `docs/fde-v2/`.
+<details>
+<summary>Full roadmap and developer setup</summary>
 
-## Local setup and checks
+The full route is the [AWS FDE v2.4 roadmap](docs/fde-v2/README.md), with 270 core learning days and an additive production-ML extension through nominal Day 382. The assistant owns capstone frontend/backend plumbing; learner-owned DSA remains in its separate repository, and model/statistical/training work remains learner-owned. No learner progress is inferred from the authored scaffold.
 
-Use Python 3.12 and install the pinned local dependencies in a virtual environment. The PyTorch CPU index avoids a GPU build; these commands do not fetch model weights or contact a model provider.
+For full local development, use Python 3.12 and pinned dependencies:
 
 ```sh
 python3 -m venv .venv
@@ -31,4 +34,6 @@ python3 -m unittest discover -s ai/fde_v2/tests -p 'test_*.py'
 cd frontend && npm test && npm run build
 ```
 
-Some integration/evidence gates intentionally remain blocked until the learner supplies the required local capability or separately authorized external access. A reference-suite pass does not change learner status.
+A reference-suite pass does not change learner status. Live model, cloud, customer, and production evidence remains separate.
+
+</details>

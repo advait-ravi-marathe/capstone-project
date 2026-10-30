@@ -1,41 +1,54 @@
-# Learning day 07
+# Day 7: Keep one copy of each word
 
-**Status: Not started.** A planned learning-day number advances only when this session is attempted; missed dates do not silently complete a day.
+**Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-## Fixed daily budget
+**Planned date:** 2026-11-02 (calendar target only; it does not mark the day complete).
 
-- DSA: 60 minutes — use the corresponding current item in the separate DSA plan; no problem statements or solutions are copied here.
-- Role / certification bank: 30 minutes — Real-work story + short interview rehearsal.
-- AI engineering: 90 minutes total, including any listed visibility work.
-- Total: 180 minutes. If DSA takes 75/90 minutes, AI reduces to 75/60 minutes; carry unfinished AI work forward rather than compressing it.
+## Today: 180 minutes total
 
-## Role interview prompt (30 minutes)
+- **60 min DSA:** Use the current item in the separate DSA repository. DSA problems and answers are not copied here.
+- **30 min AWS:** Learn the short topic below. No AWS account or console is needed.
+- **90 min AI/Python:** Learn one idea, follow the example, make one small code change, then run its check. If DSA review runs long, reduce AI time to stay within 180 minutes and carry the unfinished work forward.
 
-Tell one true work story about diagnosing a difficult failure. Separate your own action from the team's, state observable evidence and outcome, then answer: what would you do differently?
+## AWS learning — 30 minutes
 
-Output: Practice one genuine incident/ownership story plus follow-up questions; distinguish own contribution and actual results. Re-estimate AI scope inside the weekly evidence note.
+**Topic:** Match a database to its access pattern
 
-Score using the [common rubric](../role-bank.md). Do not claim an interview pass, real customer feedback, or a result that did not occur.
+**Read this exact section:** SAA-C03 Content Domain 3, Task 3.3: Determine high-performing database solutions
 
-## AI engineering work (90 minutes)
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Find Task 3.3 and name one database access pattern it mentions. This is learning, not a readiness score.
 
-Inspect the supplied generation adapter and its explicit no-artifact failure path. No real generation trace exists because the model download was blocked; document the exact recorded blocker without producing a mock as evidence. Use this week's 30-minute visibility slot to write a concise, factual profile/evidence note; visibility is inside AI's 90 minutes, not extra time.
+Source: [Match a database to its access pattern](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html)
 
-### Scheduled dependency-unit segments
+## AI/Python learning — 90 minutes
 
-| Unit | Segment | Minutes | Contract |
-|---|---|---:|---|
-| AIFDE-V2-U005 — Understand inference and install a real runtime | primary | 30 | [unit contract](../units/u005.md) |
-| AIFDE-V2-U005 — Understand inference and install a real runtime | support | 30 | [unit contract](../units/u005.md) |
+**Python reference:** [Set Types](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset). Read only this section.
+- Optional Udemy supplement: **Dictionaries (4:04), revisit only if useful and accessible**. Course access is unverified; skip it if it is not already available. Do not buy or enroll for this plan.
 
-**Visibility/re-estimation:** 30 minutes included in the AI total. Use the output described in the accepted contract; do not add another time block.
+### Worked example (20 minutes)
 
-### Learning references
+Input `cat cat dog` gives `['cat', 'dog']`. This demonstrates the idea with a different input from your exercise.
 
-- [Qwen2.5-0.5B-Instruct model card](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct)
+### Your small coding task (40 minutes)
 
-### Acceptance and evidence
+**File:** [`ai/fde_v2/beginner_first15/learner.py`](../../../ai/fde_v2/beginner_first15/learner.py)
+**Function:** `unique_question_words`
 
-Run only the acceptance selector named in this day's unit contract after its assigned segment is complete. Tests for future units are deliberately kept out of the daily command. Keep actual model/runtime traces separate from deterministic mocked tests.
+Turn repeated question words into a set of distinct words.
 
-Record: command, exit status, changed learner-owned files, relevant output, model/runtime identity where applicable, and unresolved blockers. A mock-only result, reference witness, scaffold output or model-generated artifact is not learner completion.
+Assigned input: `appeal appeal review`
+**Expected result:** ['appeal', 'review']
+
+The app plumbing, fixtures, command-line runner and database setup are supplied. You are learning a small function, not building the full application. Reference output teaches the behavior but does not count as your implementation.
+
+### Check your work (15 minutes)
+
+```sh
+python -m ai.fde_v2.beginner_first15.acceptance --day 7
+```
+
+This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.
+
+## Next step
+
+The next page adds one small step. Keep the supplied application and demo unchanged.

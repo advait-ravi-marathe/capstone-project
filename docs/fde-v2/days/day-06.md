@@ -1,47 +1,54 @@
-# Learning day 06
+# Day 6: Find records with a matching word
 
-**Status: Not started.** A planned learning-day number advances only when this session is attempted; missed dates do not silently complete a day.
+**Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-## Fixed daily budget
+**Planned date:** 2026-11-01 (calendar target only; it does not mark the day complete).
 
-- DSA: 60 minutes — use the corresponding current item in the separate DSA plan; no problem statements or solutions are copied here.
-- Role / certification bank: 30 minutes — AWS certification: IAM diagnostic.
-- AI engineering: 90 minutes total, including any listed visibility work.
-- Total: 180 minutes. If DSA takes 75/90 minutes, AI reduces to 75/60 minutes; carry unfinished AI work forward rather than compressing it.
+## Today: 180 minutes total
 
-## Role interview prompt (30 minutes)
+- **60 min DSA:** Use the current item in the separate DSA repository. DSA problems and answers are not copied here.
+- **30 min AWS:** Learn the short topic below. No AWS account or console is needed.
+- **90 min AI/Python:** Learn one idea, follow the example, make one small code change, then run its check. If DSA review runs long, reduce AI time to stay within 180 minutes and carry the unfinished work forward.
 
-For a synthetic document-ingestion job, who or what should be the principal? Explain the least-privilege actions, resource scope and one way to avoid long-lived credentials.
+## AWS learning — 30 minutes
 
-Output: Explain principals, policies, roles and least privilege through one short design scenario; record actual gaps, without provisioning resources.
+**Topic:** Choose compute that can scale
 
-Score using the [common rubric](../role-bank.md). Do not claim an interview pass, real customer feedback, or a result that did not occur.
+**Read this exact section:** SAA-C03 Content Domain 3, Task 3.2: Design high-performing and elastic compute solutions
 
-## AWS study (this is today's 30-minute bank, not additional time)
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Find Task 3.2 and name one scaling approach in its listed knowledge. This is learning, not a readiness score.
 
-**Focus:** Design secure access
-**Current source:** [AWS Certified Solutions Architect – Associate (SAA-C03) official exam guide](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain1.html)
-**Exact section:** Content Domain 1; Task 1.1: Design secure access to AWS resources
-**Verified course titles and timebox:** See the [Sprint 1 course map](../sources/sprint1-course-map.md); use the listed free official fallback if paid-video access is unavailable.
-Use the official domain/task statement and one original synthetic scenario. No account setup, AWS deployment, course purchase or exam booking is authorized. If an already-owned course cannot be identified/accessed, record that unknown and use the official guide.
+Source: [Choose compute that can scale](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html)
 
-## AI engineering work (90 minutes)
+## AI/Python learning — 90 minutes
 
-Spend 30 minutes closing the API failure-path gap, then study tokenizer/context/output limits and the local runtime setup. Run the explicit dependency/model-feasibility check; do not silently substitute a mock if model installation is blocked.
+**Python reference:** [for Statements](https://docs.python.org/3/tutorial/controlflow.html#for-statements). Read only this section.
+- Optional Udemy supplement: **For Loops (2:56), if accessible**. Course access is unverified; skip it if it is not already available. Do not buy or enroll for this plan.
 
-### Scheduled dependency-unit segments
+### Worked example (20 minutes)
 
-| Unit | Segment | Minutes | Contract |
-|---|---|---:|---|
-| AIFDE-V2-U004 — Small API with observable failure paths | buffer | 30 | [unit contract](../units/u004.md) |
-| AIFDE-V2-U005 — Understand inference and install a real runtime | primary | 60 | [unit contract](../units/u005.md) |
+Input `` gives `True`. This demonstrates the idea with a different input from your exercise.
 
-### Learning references
+### Your small coding task (40 minutes)
 
-- [Qwen2.5-0.5B-Instruct model card](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct)
+**File:** [`ai/fde_v2/beginner_first15/learner.py`](../../../ai/fde_v2/beginner_first15/learner.py)
+**Function:** `matching_records`
 
-### Acceptance and evidence
+Loop over supplied records and keep records containing at least one question word.
 
-Run only the acceptance selector named in this day's unit contract after its assigned segment is complete. Tests for future units are deliberately kept out of the daily command. Keep actual model/runtime traces separate from deterministic mocked tests.
+Assigned input: `{"question": "claim denied", "records": ["appeals: claim denied", "therapy: referral required"]}`
+**Expected result:** ['appeals']
 
-Record: command, exit status, changed learner-owned files, relevant output, model/runtime identity where applicable, and unresolved blockers. A mock-only result, reference witness, scaffold output or model-generated artifact is not learner completion.
+The app plumbing, fixtures, command-line runner and database setup are supplied. You are learning a small function, not building the full application. Reference output teaches the behavior but does not count as your implementation.
+
+### Check your work (15 minutes)
+
+```sh
+python -m ai.fde_v2.beginner_first15.acceptance --day 6
+```
+
+This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.
+
+## Next step
+
+The next page adds one small step. Keep the supplied application and demo unchanged.

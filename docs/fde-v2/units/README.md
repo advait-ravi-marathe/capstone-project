@@ -1,6 +1,6 @@
 # AWS FDE v2.4 learning units
 
-A dependency unit can span multiple actual learning days. Only scheduled slices become active; real U013 embeddings and U019 generative RAG remain blocked until model artifacts are available and verified.
+A dependency unit can span multiple actual learning days. This table preserves the original accepted schedule as history; for active beginner-first Days1–15 tasks and budgets, follow the [versioned teaching overlay](../amendments/2026-10-30-beginner-first-15.md). Real U013 embeddings and U019 generative RAG remain blocked until model artifacts are available and verified.
 
 | Unit | Contract | Scheduled actual days |
 |---|---|---|

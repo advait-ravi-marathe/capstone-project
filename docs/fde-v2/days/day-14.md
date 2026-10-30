@@ -1,44 +1,54 @@
-# Learning day 14
+# Day 14: Show sources and handle no matches
 
-**Status: Not started.** A planned learning-day number advances only when this session is attempted; missed dates do not silently complete a day.
+**Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-## Fixed daily budget
+**Planned date:** 2026-11-09 (calendar target only; it does not mark the day complete).
 
-- DSA: 60 minutes — use the corresponding current item in the separate DSA plan; no problem statements or solutions are copied here.
-- Role / certification bank: 30 minutes — Short unfamiliar-code rehearsal.
-- AI engineering: 90 minutes total, including any listed visibility work.
-- Total: 180 minutes. If DSA takes 75/90 minutes, AI reduces to 75/60 minutes; carry unfinished AI work forward rather than compressing it.
+## Today: 180 minutes total
 
-## Role interview prompt (30 minutes)
+- **60 min DSA:** Use the current item in the separate DSA repository. DSA problems and answers are not copied here.
+- **30 min AWS:** Learn the short topic below. No AWS account or console is needed.
+- **90 min AI/Python:** Learn one idea, follow the example, make one small code change, then run its check. If DSA review runs long, reduce AI time to stay within 180 minutes and carry the unfinished work forward.
 
-Read the supplied request trace without running the feature. Identify the first incorrect assumption, the smallest diagnostic experiment and one result that would falsify your diagnosis.
+## AWS learning — 30 minutes
 
-Output: Use 20 min diagnosis + 10 min review; log root cause and missing knowledge.
+**Topic:** Reduce network cost carefully
 
-Score using the [common rubric](../role-bank.md). Do not claim an interview pass, real customer feedback, or a result that did not occur.
+**Read this exact section:** SAA-C03 Content Domain 4, Task 4.4: Design cost-optimized network architectures
 
-## AI engineering work (90 minutes)
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Find Task 4.4 and name one route or NAT cost tradeoff. This is learning, not a readiness score.
 
-Use 30 minutes to finish the malformed-output task assigned to U010. Start U011 for 30 minutes only: inspect the ten synthetic training records and manifest, review the assistant-supplied metadata table, then implement the first insert plus identical re-ingest check for one record. Do not claim all ten have been ingested or U011 complete; its remaining segments continue on a later actual learning day. The final 30 minutes are the scheduled private evidence note.
+Source: [Reduce network cost carefully](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain4.html)
 
-### Scheduled dependency-unit segments
+## AI/Python learning — 90 minutes
 
-| Unit | Segment | Minutes | Contract |
-|---|---|---:|---|
-| AIFDE-V2-U010 — Structured output without trusting it | support | 30 | [unit contract](../units/u010.md) |
-| AIFDE-V2-U011 — Versioned small corpus and SQL metadata | primary | 30 | [unit contract](../units/u011.md) |
+**Python reference:** [String methods](https://docs.python.org/3/library/stdtypes.html#string-methods), focusing on joining strings. Read only this section.
+- No Udemy lesson is assigned today; the named official reference is enough.
 
-**Visibility/re-estimation:** 30 minutes included in the AI total. Use the output described in the accepted contract; do not add another time block.
+### Worked example (20 minutes)
 
-### Learning references
+For query `"therapy referral"`, the supplied example search finds one record and displays `Physical therapy — synthetic/therapy`. For `"moonstone"`, it displays `No matching documents.` This is a citation label, not a generated answer.
 
-- [Python Tutorial](https://docs.python.org/3/tutorial/)
-- [Python unittest](https://docs.python.org/3/library/unittest.html)
-- [SQLite UPSERT](https://www.sqlite.org/lang_UPSERT.html)
-- [SQLite CREATE TABLE](https://www.sqlite.org/lang_createtable.html)
+### Your small coding task (40 minutes)
 
-### Acceptance and evidence
+**File:** [`ai/fde_v2/beginner_first15/learner.py`](../../../ai/fde_v2/beginner_first15/learner.py)
+**Function:** `format_search_results`
 
-Run only the acceptance selector named in this day's unit contract after its assigned segment is complete. Tests for future units are deliberately kept out of the daily command. Keep actual model/runtime traces separate from deterministic mocked tests.
+Use the earlier search and source-label functions. Return one source label per matching document, or the exact no-match message when there are no results. Do not invent an answer from the documents.
 
-Record: command, exit status, changed learner-owned files, relevant output, model/runtime identity where applicable, and unresolved blockers. A mock-only result, reference witness, scaffold output or model-generated artifact is not learner completion.
+Assigned query: `appeal denied` over the three supplied records.
+**Expected result:** `Appeals — synthetic/appeals`; `unmatched phrase` returns `No matching documents.`
+
+The search, records, worked example and check are supplied. You are adding one small display behavior, not building an application. The reference output teaches the behavior but does not count as your implementation.
+
+### Check your work (15 minutes)
+
+```sh
+python -m ai.fde_v2.beginner_first15.acceptance --day 14
+```
+
+This beginner exercise does not implement or complete U011. Its accepted contract remains unchanged and is a separate later prerequisite; see the [Day 16 prerequisite handoff](../amendments/day16-prerequisite-handoff.md).
+
+## Next step
+
+Day 15 connects the pieces into a search response over the supplied fictional corpus. The existing Day 16 lesson remains not ready until its original prerequisites are taught and passed.

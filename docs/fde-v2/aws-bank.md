@@ -1,6 +1,6 @@
 # AWS certification preparation bank
 
-AWS is the only active cloud/certification track. The first 30 learning days schedule eight 30-minute syllabus/diagnostic blocks inside the 30-minute role/certification allocation. No course purchase, enrollment, account creation, cloud resource, paid lab or exam booking is included.
+AWS is the only active cloud/certification track. The historical accepted schedule included eight 30-minute syllabus/diagnostic blocks in the first 30 days. The active Days1–15 amendment replaces those prompts with 30 minutes of guided AWS learning each day. No course purchase, enrollment, account creation, cloud resource, paid lab or exam booking is included.
 
 The current preparation target is **AWS Certified Solutions Architect – Associate (SAA-C03)**. The connected catalog lists **Ultimate AWS Certified Solutions Architect Associate 2026**, course ID **2196488** ([course page](https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/)); the course title, ID and mapped curriculum durations are recorded in the [verified Sprint 1 course map](sources/sprint1-course-map.md). Personal paid-video entitlement remains unverified. These 30-minute sessions map to current official exam-guide sections, not guessed video numbers. If the course is accessible, match the mapped topic to its current syllabus; otherwise use the free official guide. No extra viewing time is added.
 

@@ -47,6 +47,13 @@ class Sprint2ContractTests(unittest.TestCase):
             self.assertEqual(row["ai_total_minutes"], 90)
             self.assertEqual(sum(segment["minutes"] for segment in row["ai_segments"])
                              + row["visibility_minutes"], 90)
+            if number == 15:
+                self.assertIn("60 min DSA", page)
+                self.assertIn("30 min AWS", page)
+                self.assertIn("90 min AI/Python", page)
+                self.assertIn("U011", page)
+                self.assertIn("../units/u011.md", page)
+                continue
             for segment in row["ai_segments"]:
                 unit = segment["unit_id"].rsplit("-", 1)[1].lower()
                 self.assertTrue((DOCS / "units" / f"{unit}.md").is_file())
@@ -113,17 +120,21 @@ class Sprint2ContractTests(unittest.TestCase):
             self.assertEqual(result.returncode, 2)
             self.assertIn("50,000-byte", result.stderr)
 
-    def test_day14_u011_partial_row_becomes_body_complete_on_day15(self):
+    def test_historical_u011_contract_stays_intact_but_is_not_the_beginner_overlay(self):
         day14 = (DOCS / "days/day-14.md").read_text()
         day15 = (DOCS / "days/day-15.md").read_text()
         unit = (DOCS / "units/u011.md").read_text()
-        self.assertIn("30 minutes only", day14)
-        self.assertIn("Do not claim all ten have been ingested or U011 complete", day14)
+        overlay = (DOCS / "amendments/2026-10-30-beginner-first-15.md").read_text()
+        handoff = (DOCS / "amendments/day16-prerequisite-handoff.md").read_text()
+        self.assertIn("format_search_results", day14)
+        self.assertIn("search_response", day15)
+        self.assertIn("does not complete U011", handoff)
+        self.assertIn("accepted U011 contract remains unchanged", overlay)
         self.assertIn("Day 15: primary 60 min", unit)
         self.assertIn("persist text separately", unit)
-        self.assertIn("ten synthetic records", day15)
-        self.assertIn("same-version changed-content rejection", day15)
-        self.assertIn("fde_v2_version_counts.py", day15)
+        self.assertIn("ten synthetic records", unit)
+        self.assertIn("same-version changed text", unit)
+        self.assertIn("fde_v2_version_counts.py", unit)
         self.assertIn("fde_v2_version_counts.sql", unit)
         query = (ROOT / "scripts/fde_v2_version_counts.sql").read_text()
         self.assertIn("GROUP BY version", query)

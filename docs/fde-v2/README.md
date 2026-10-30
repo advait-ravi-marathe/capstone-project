@@ -1,6 +1,18 @@
 # AWS FDE v2.4 learning roadmap
 
-This is the accepted AWS-cloud-only, interview-first plan. **No learner days are complete.** A learning-day number advances only when that session is attempted; dates do not automatically change learner status. The repository contains the complete 270-day, 12-milestone scaffold, including conditional materials and daily pages. Days42–81 link to conditional M2.1/M2.2 proposal schedules and do not activate those milestones. U011 starts as a partial slice on Day14 and continues on Day15. U021 starts on Day28 and ends its scheduled selector mechanics on Day29; real development evaluation remains blocked while model weights are unavailable. U022 runs on Days29–30. Day30 is only the fixture-authoring portion of U023; deterministic execution/regression is scheduled on Day31, but actual generated behavior is still model-gated. U024–U030 have explicit closeout lessons and evidence tooling. No unit or P1 completion is inferred from authored pages or synthetic witnesses. U013 embeddings and U019 generated RAG remain unverified until verified local model artifacts are available.
+This custom roadmap has 270 core learning days. No learner days are complete. If you are new, start with the plain-language guide below. For Days1–15, keep 60 minutes for DSA in its separate repository, 30 minutes for AWS learning, and 90 minutes for guided AI/Python practice. The active instructions are the [beginner-first amendment](amendments/2026-10-30-beginner-first-15.md); accepted contracts stay available as historical references.
+
+The original **Day 30** entry (legacy key `Day30`) and its unit links remain in the preserved later curriculum; the first-15 amendment does not claim that later gates have been completed.
+
+## Start here
+
+Follow the [plain-language start guide](start-here.md), then the [Day 1 page](days/day-01.md). You do not need to launch the full API or React UI for the first 15 learning days. First run this supplied example from the repository root:
+
+```sh
+python -m ai.fde_v2.coverstory.day01_baseline
+```
+
+It searches ten fictional records with ordinary keyword matching. `northstar-deductible` should rank first. This is supplied-system behavior, not AI generation or learner completion. Day1's small learner task is the separate `document_title` function.
 
 ## Recommended dual-skill route: AI/FDE core plus production-ML depth
 
@@ -9,16 +21,6 @@ The existing v2.4 core remains intact as the 270-day applied AI/FDE base. For th
 On the recommended route, the assistant supplies all capstone FE/BE and application-plumbing code. The learner studies that running system by tracing, predicting, reviewing and diagnosing. The existing 30-minute role bank also includes short, isolated FE/BE interview coding/debugging drills; these never modify the capstone. Learner-owned model/statistical/training code and separate-repository DSA remain in scope. The binding [responsibility overlay](amendments/2026-10-29-application-code-responsibility-overlay.md) explains how it applies to the immutable historical day cards and units.
 
 Optional official OpenAI Academy courses can replace selected AI concept-reading minutes without changing the route or practical gates. See the [provider-course map and credential limits](provider-courses.md); all course and badge tracking currently starts as not started/not verified.
-
-## Start with actual learning Day 1
-
-Use Python 3.12 and the checked-in fictional corpus. This CPU-only worked example needs no model weights or third-party Python dependency:
-
-```sh
-python -m ai.fde_v2.coverstory.day01_baseline
-```
-
-It reads the synthetic JSON manifest, loads ten fictional records into in-memory SQLite FTS5, and ranks lexical matches. “What is the individual deductible?” starts with `northstar-deductible`. This is instructor-owned keyword retrieval, not generated text, embeddings, RAG or learner completion. Day 1's own task is the baseline/problem brief; see [Day 1](days/day-01.md).
 
 ## Run the supplied Sprint 1 application
 
@@ -46,9 +48,9 @@ VITE_FDE_V2_API_TARGET=http://127.0.0.1:8765 npm --prefix frontend run dev
 
 Open the Vite URL at `/fde-v2.html`. `VITE_FDE_V2_API_TARGET` proxies `/health`, `/documents`, `/generate`, `/retrieve` and `/ask` to the loopback API. Check `/health` and `/documents` without model weights. Until the pinned model is actually installed, `/generate` returns an explicit unavailable response; no mock or extractive fallback is used. Even after weights are available, the route uses the learner-owned `generate_text` seam and remains an explicit TODO failure until U008 is implemented; instructor reference code is never silently substituted. The runtime cannot perform real generation until the recorded Hub-access blocker is resolved and the separately documented pinned-file fetch is permitted. Startup, mocked tests and visible UI states are not inference evidence or learner completion.
 
-These commands only start supplied infrastructure. General HTTP, SQLite, Qdrant and React plumbing are supplied; the learner owns bounded Python AI behaviors and evaluation. From Day 15 onward, the RAG panel exercises the supplied `/retrieve` and `/ask` routes. Tests using fixed vectors or a test double validate mechanics only and never count as real embedding or generated-answer evidence.
+These commands only start supplied infrastructure. General HTTP, SQLite, Qdrant and React plumbing are supplied; the learner owns bounded Python AI behaviors and evaluation. The supplied RAG panel is a later conditional application feature; the active beginner-first Day 15 is only a local keyword-search exercise and does not satisfy U011, embeddings, or RAG prerequisites. Tests using fixed vectors or a test double validate mechanics only and never count as real embedding or generated-answer evidence.
 
-## Later conditional scaffolds: actual learning Days 15–41
+## Later conditional scaffolds: actual learning Days 16–41
 
 Days 15–41 and later milestones are present in the current repository as conditional starter scaffolds. Install the additional local persistence and embedding packages (no model files are downloaded by this command):
 
@@ -81,21 +83,21 @@ cd frontend && RUN_FDE_V2=true npx vitest run
 
 Fixed-vector and injected-pipeline tests verify mechanics only. They never satisfy real inference or model-backed retrieval.
 
-## Sprint 1: actual learning Days 1–14
+## First 15 days: active beginner-first instructions
 
-- [Daily pages, Days 1–14](days/)
-- [Unit contracts U001–U010](units/)
-- [U011 partial Day 14 slice](units/u011.md)
-- [Role interview bank and rubric](role-bank.md)
+- [Daily pages, Days 1–15](days/)
+- [Active schedule and teaching overlay](amendments/2026-10-30-beginner-first-15.md)
+- [Original unit contracts U001–U011](units/)
+- [Historical role interview bank and rubric](role-bank.md)
 - [AWS study map](aws-bank.md)
-- [Verified Sprint 1 course and documentation map](sources/sprint1-course-map.md)
+- [Historical accepted Sprint 1 course and documentation map](sources/sprint1-course-map.md)
 - [North Star and evidence-gated OKRs](governance/north-star-and-okrs.md)
 - [Role benchmark sources](role-benchmarks.md)
 - [Architecture and later outcome map](phase-map.md)
 - [Model runtime verification status](runtime-verification.md)
 - [Accepted v2.4 planning inputs](accepted/)
 
-Each day's page assigns DSA60 + role/AWS bank30 + AI90 = 180 minutes. A 75-minute DSA revision reduces AI to75; a90-minute revision reduces AI to60. The actual Day14 allocation spends U010 support30 + the first U011 segment30 + a private evidence note30. U011 remains incomplete. The current repository contains conditional starter guidance through Day270; those materials do not imply learner completion. Days42–81 are conditional daily cards linked to detailed M2.1/M2.2 proposals; Day62 is a shared boundary. Model/cloud/customer evidence remains independently gated.
+The historical accepted schedule records DSA60 + role/AWS bank30 + AI90 for its original first 14 days. Current active Day1–15 cards use DSA60 + AWS learning30 + AI90; the role-gap prompts and private paperwork are removed from those active instructions. Days42–81 remain conditional daily cards linked to detailed M2.1/M2.2 proposals; Day62 is a shared boundary. Model/cloud/customer evidence remains independently gated.
 
 ## P1 closeout: actual learning Days 31–41
 
@@ -114,7 +116,7 @@ python3 tools/dsa_operations.py queue --on-date ACTUAL_LOCAL_DATE --roadmap-day 
 
 Here `N` is the intended nominal learning position; `ACTUAL_LOCAL_DATE` is the real local date on which you are checking the queue, so review-due status uses actual elapsed dates. Always pass `--roadmap-day N`: leaving it out infers a position from the prior October 27 calendar and can select the wrong item after a zero-completion restart. The verified restart check on October 28 selected LC121 with explicit `--roadmap-day 1`, while omission selected LC1. The CLI does not persist a position cursor. Record attempts only on the dates they actually happen; never backdate attempts or clear review history.
 
-The daily role pages are the exact practice sequence. AWS work is inside the same 30-minute bank: Day5 course/syllabus audit; Day6 secure-access diagnostic; Day12 networking; Day13 data/storage protection. Current official SAA-C03 exam guide and its exact content-domain task headings are linked in [AWS bank](aws-bank.md). The connected catalog's Maarek course title, ID and listed curriculum durations are mapped in the [Sprint 1 course map](sources/sprint1-course-map.md); personal paid-video entitlement remains unverified. The connector did not return lesson URLs, so no guessed video number is assigned. Official AWS documentation is the fallback. Nothing here books an exam or claims a certificate.
+The old role-bank sequence remains in the historical accepted schedule. Current active Days1–15 replace that non-AWS interview/role work with 30 minutes of AWS learning each day; each daily card names the official source and a simple check. The current official SAA-C03 exam guide and its content-domain task headings are linked in [AWS bank](aws-bank.md). Later role-bank days retain their existing schedule. Nothing here books an exam or claims a certificate.
 
 ### Optional supplemental DSA practice source
 
