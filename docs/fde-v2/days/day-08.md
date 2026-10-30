@@ -27,7 +27,20 @@ Source: [Understand a VPC and its subnets](https://docs.aws.amazon.com/vpc/lates
 
 ### Worked example (20 minutes)
 
-Example: `overlap_score("red red blue", {"title": "", "text": "blue green"})` returns `1`: `blue` is the only distinct shared word.
+Run the supplied example command; it uses the completed instructor reference, not your learner function:
+
+```sh
+python3 -m ai.fde_v2.beginner_first15.examples --day 8
+```
+
+It prints the example input and output. Expected output:
+
+```text
+1
+```
+
+This walkthrough shows the behavior only. Your learner check below still tests your own function.
+
 
 ### Your small coding task (40 minutes)
 

@@ -121,6 +121,27 @@ class BeginnerFirst15Tests(unittest.TestCase):
                 self.assertIn("REFERENCE MECHANICS PASS", result.stdout)
                 self.assertIn("not learner evidence", result.stdout)
 
+    def test_each_day_has_a_runnable_reference_example_separate_from_learner_acceptance(self):
+        env = dict(os.environ)
+        env["BEGINNER_FIRST15_CANDIDATE"] = "deliberately.missing.learner"
+        env["FDE_V2_CANDIDATE"] = "deliberately.missing.coverstory"
+        for day in self.plan["days"]:
+            number = day["day"]
+            example = day["task"]["worked_example"]
+            command = example["command"].split()
+            result = subprocess.run(command, cwd=ROOT, text=True, capture_output=True,
+                                    check=False, timeout=15, env=env)
+            card = (ROOT / "docs/fde-v2/days" / f"day-{number:02}.md").read_text(encoding="utf-8")
+            expected = example["terminal_output"]
+            with self.subTest(day=number):
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertIn("instructor example (reference only; not learner evidence)", result.stdout)
+                self.assertIn("Input:", result.stdout)
+                self.assertIn("Output:\n" + expected, result.stdout)
+                self.assertIn(" ".join(command), card)
+                self.assertIn("```text\n" + expected + "\n```", card)
+                self.assertIn("reference, not your learner function", card)
+
     def test_day12_supplied_constructor_runs_only_after_learner_validation(self):
         validator = lambda record: reference.document_record_valid(record)
         with mock.patch.object(candidate, "document_record_valid", side_effect=validator):

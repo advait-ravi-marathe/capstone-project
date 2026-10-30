@@ -27,7 +27,20 @@ Source: [Understand what a managed relational database provides](https://docs.aw
 
 ### Worked example (20 minutes)
 
-Input `cat cat dog` gives the set `{'cat', 'dog'}`. A set keeps each value once; its display order is not important. This demonstrates the idea with a different input from your exercise.
+Run the supplied example command; it uses the completed instructor reference, not your learner function:
+
+```sh
+python3 -m ai.fde_v2.beginner_first15.examples --day 7
+```
+
+It prints the example input and output. Expected output:
+
+```text
+{'cat', 'dog'}
+```
+
+This walkthrough shows the behavior only. Your learner check below still tests your own function.
+
 
 ### Your small coding task (40 minutes)
 

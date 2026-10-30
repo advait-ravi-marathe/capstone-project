@@ -27,15 +27,20 @@ Source: [Learn cost-aware compute sizing](https://docs.aws.amazon.com/wellarchit
 
 ### Worked example (20 minutes)
 
-The assistant-supplied wrapper builds the `Document` and calculates its text hash. Your part is only to decide whether the dictionary has the five required fields, whether the four text values are nonempty, and whether `version` is a positive integer.
+Run the supplied example command; it uses the completed instructor reference, not your learner function:
 
-```python
-record = {"document_id": "toy", "version": 1, "title": "Guide", "source": "fixture/guide", "text": "hello"}
-isinstance(record, dict)  # True
-record.get("title", "")  # "Guide"
+```sh
+python3 -m ai.fde_v2.beginner_first15.examples --day 12
 ```
 
-This example has a valid shape. The assigned sample below is different.
+It prints the example input and output. Expected output:
+
+```text
+True
+```
+
+This walkthrough shows the behavior only. Your learner check below still tests your own function.
+
 
 ### Your small coding task (40 minutes)
 

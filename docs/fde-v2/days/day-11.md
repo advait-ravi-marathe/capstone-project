@@ -27,7 +27,20 @@ Source: [Match storage class to access pattern](https://docs.aws.amazon.com/Amaz
 
 ### Worked example (20 minutes)
 
-Example: `source_label({"title": "Guide", "source": "fixture/guide"})` returns `Guide — fixture/guide`.
+Run the supplied example command; it uses the completed instructor reference, not your learner function:
+
+```sh
+python3 -m ai.fde_v2.beginner_first15.examples --day 11
+```
+
+It prints the example input and output. Expected output:
+
+```text
+Guide — fixture/guide
+```
+
+This walkthrough shows the behavior only. Your learner check below still tests your own function.
+
 
 ### Your small coding task (40 minutes)
 

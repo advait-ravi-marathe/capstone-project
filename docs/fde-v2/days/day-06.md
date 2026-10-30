@@ -27,7 +27,20 @@ Source: [Understand an EC2 virtual server](https://docs.aws.amazon.com/AWSEC2/la
 
 ### Worked example (20 minutes)
 
-Example records: `[{"document_id": "family", "text": "family deductible"}, {"document_id": "appeals", "text": "claim review"}]`. Searching for `family` returns only the first record.
+Run the supplied example command; it uses the completed instructor reference, not your learner function:
+
+```sh
+python3 -m ai.fde_v2.beginner_first15.examples --day 6
+```
+
+It prints the example input and output. Expected output:
+
+```text
+['family']
+```
+
+This walkthrough shows the behavior only. Your learner check below still tests your own function.
+
 
 ### Your small coding task (40 minutes)
 

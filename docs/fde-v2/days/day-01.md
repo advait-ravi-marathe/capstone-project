@@ -35,16 +35,20 @@ Expected first line: `rank=1 document=northstar-deductible title=Northstar synth
 
 ### Worked example (20 minutes)
 
-In Python a dictionary is a small set of labeled values. Here, `record` is the dictionary and `"title"` is the label to look up:
+Run the supplied example command; it uses the completed instructor reference, not your learner function:
 
-```python
-def read_title(record):
-    return record.get("title", "")
-
-read_title({"title": "Appeals"})  # "Appeals"
+```sh
+python3 -m ai.fde_v2.beginner_first15.examples --day 1
 ```
 
-`get` returns the value for that label. If the label is missing, it returns the second value (`""`) instead of crashing. This is a worked example, not your assigned function.
+It prints the example input and output. Expected output:
+
+```text
+Appeals
+```
+
+This walkthrough shows the behavior only. Your learner check below still tests your own function.
+
 
 ### Your small coding task (40 minutes)
 

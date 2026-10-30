@@ -27,7 +27,20 @@ Source: [Know which security tasks belong to AWS and the customer](https://docs.
 
 ### Worked example (20 minutes)
 
-The starter includes `_split_words`, a small helper that changes common punctuation to spaces, makes text lowercase, and then uses `.split()` to make a list. For example, `_split_words("Blue, sky!")` returns `['blue', 'sky']`. You only need to call this helper in your function.
+Run the supplied example command; it uses the completed instructor reference, not your learner function:
+
+```sh
+python3 -m ai.fde_v2.beginner_first15.examples --day 3
+```
+
+It prints the example input and output. Expected output:
+
+```text
+['blue', 'sky']
+```
+
+This walkthrough shows the behavior only. Your learner check below still tests your own function.
+
 
 ### Your small coding task (40 minutes)
 

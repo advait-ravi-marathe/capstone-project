@@ -27,7 +27,20 @@ Source: [Understand encryption at rest in S3](https://docs.aws.amazon.com/Amazon
 
 ### Worked example (20 minutes)
 
-Example: `best_record("moonstone", [])` returns `None` instead of inventing a document.
+Run the supplied example command; it uses the completed instructor reference, not your learner function:
+
+```sh
+python3 -m ai.fde_v2.beginner_first15.examples --day 10
+```
+
+It prints the example input and output. Expected output:
+
+```text
+None
+```
+
+This walkthrough shows the behavior only. Your learner check below still tests your own function.
+
 
 ### Your small coding task (40 minutes)
 

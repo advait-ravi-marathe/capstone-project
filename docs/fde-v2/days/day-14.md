@@ -27,7 +27,21 @@ Source: [Understand why network traffic can cost money](https://docs.aws.amazon.
 
 ### Worked example (20 minutes)
 
-For query `"therapy referral"`, the supplied example search finds one record and displays `Physical therapy — synthetic/therapy`. For `"moonstone"`, it displays `No matching documents.` This is a citation label, not a generated answer.
+Run the supplied example command; it uses the completed instructor reference, not your learner function:
+
+```sh
+python3 -m ai.fde_v2.beginner_first15.examples --day 14
+```
+
+It prints the example input and output. Expected output:
+
+```text
+Physical therapy — synthetic/therapy
+No matching documents.
+```
+
+This walkthrough shows the behavior only. Your learner check below still tests your own function.
+
 
 ### Your small coding task (40 minutes)
 

@@ -27,7 +27,20 @@ Source: [Follow an object from upload to retrieval](https://docs.aws.amazon.com/
 
 ### Worked example (20 minutes)
 
-Example: two records with IDs `b` and `a`, each containing `red`, both score 1 for query `red`; the output order is `a`, then `b`.
+Run the supplied example command; it uses the completed instructor reference, not your learner function:
+
+```sh
+python3 -m ai.fde_v2.beginner_first15.examples --day 9
+```
+
+It prints the example input and output. Expected output:
+
+```text
+['a', 'b']
+```
+
+This walkthrough shows the behavior only. Your learner check below still tests your own function.
+
 
 ### Your small coding task (40 minutes)
 

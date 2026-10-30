@@ -27,7 +27,20 @@ Source: [Understand the AWS Well-Architected pillars](https://docs.aws.amazon.co
 
 ### Worked example (20 minutes)
 
-The worked example searches `"therapy referral"` and returns the matching source label. The assigned query is different so you trace the whole path instead of copying the output.
+Run the supplied example command; it uses the completed instructor reference, not your learner function:
+
+```sh
+python3 -m ai.fde_v2.beginner_first15.examples --day 15
+```
+
+It prints the example input and output. Expected output:
+
+```text
+Physical therapy — synthetic/therapy
+```
+
+This walkthrough shows the behavior only. Your learner check below still tests your own function.
+
 
 ### Your small coding task (40 minutes)
 

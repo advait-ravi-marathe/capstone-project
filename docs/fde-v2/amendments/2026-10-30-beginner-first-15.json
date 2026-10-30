@@ -39,7 +39,9 @@
           "input": {
             "title": "Appeals"
           },
-          "output": "Appeals"
+          "output": "Appeals",
+          "command": "python3 -m ai.fde_v2.beginner_first15.examples --day 1",
+          "terminal_output": "Appeals"
         },
         "assigned_input": {
           "document_id": "deductible",
@@ -76,7 +78,9 @@
         "work": "Remove spaces at the two ends and make the remaining question lowercase.",
         "worked_example": {
           "input": "  HELLO  ",
-          "output": "hello"
+          "output": "hello",
+          "command": "python3 -m ai.fde_v2.beginner_first15.examples --day 2",
+          "terminal_output": "hello"
         },
         "assigned_input": "  What is the deductible?  ",
         "expected_output": "what is the deductible?",
@@ -112,7 +116,9 @@
           "output": [
             "blue",
             "sky"
-          ]
+          ],
+          "command": "python3 -m ai.fde_v2.beginner_first15.examples --day 3",
+          "terminal_output": "['blue', 'sky']"
         },
         "assigned_input": "The deductible is 500",
         "expected_output": [
@@ -156,7 +162,9 @@
             "plan",
             "family",
             "coverage"
-          ]
+          ],
+          "command": "python3 -m ai.fde_v2.beginner_first15.examples --day 4",
+          "terminal_output": "['plan', 'family', 'coverage']"
         },
         "assigned_input": {
           "title": "Deductible",
@@ -198,7 +206,9 @@
         "work": "Return True for spaces-only input and False when a visible character exists.",
         "worked_example": {
           "input": "   ",
-          "output": true
+          "output": true,
+          "command": "python3 -m ai.fde_v2.beginner_first15.examples --day 5",
+          "terminal_output": "True"
         },
         "assigned_input": "\t ",
         "expected_output": true,
@@ -244,13 +254,23 @@
           ],
           "output": [
             "family"
-          ]
+          ],
+          "command": "python3 -m ai.fde_v2.beginner_first15.examples --day 6",
+          "terminal_output": "['family']"
         },
         "assigned_input": {
           "question": "claim denied",
           "records": [
-          {"document_id": "appeals", "title": "Appeals", "text": "claim denied"},
-          {"document_id": "therapy", "title": "Therapy", "text": "referral required"}
+            {
+              "document_id": "appeals",
+              "title": "Appeals",
+              "text": "claim denied"
+            },
+            {
+              "document_id": "therapy",
+              "title": "Therapy",
+              "text": "referral required"
+            }
           ]
         },
         "expected_output": "one matching record with document_id=appeals",
@@ -286,7 +306,9 @@
             "cat",
             "dog"
           ],
-          "output_type": "set; order is not important"
+          "output_type": "set; order is not important",
+          "command": "python3 -m ai.fde_v2.beginner_first15.examples --day 7",
+          "terminal_output": "{'cat', 'dog'}"
         },
         "assigned_input": "appeal appeal review",
         "expected_output": "The set {'appeal', 'review'}; order is not important.",
@@ -319,7 +341,9 @@
         "worked_example": {
           "question": "red red blue",
           "record": "blue green",
-          "output": 1
+          "output": 1,
+          "command": "python3 -m ai.fde_v2.beginner_first15.examples --day 8",
+          "terminal_output": "1"
         },
         "assigned_input": {
           "question": "deductible deductible individual",
@@ -369,7 +393,9 @@
           "output": [
             "a",
             "b"
-          ]
+          ],
+          "command": "python3 -m ai.fde_v2.beginner_first15.examples --day 9",
+          "terminal_output": "['a', 'b']"
         },
         "assigned_input": {
           "question": "red blue",
@@ -423,7 +449,9 @@
         "worked_example": {
           "question": "moonstone",
           "records": [],
-          "output": null
+          "output": null,
+          "command": "python3 -m ai.fde_v2.beginner_first15.examples --day 10",
+          "terminal_output": "None"
         },
         "assigned_input": {
           "question": "intergalactic moonstone",
@@ -461,7 +489,9 @@
             "title": "Guide",
             "source": "fixture/guide"
           },
-          "output": "Guide — fixture/guide"
+          "output": "Guide — fixture/guide",
+          "command": "python3 -m ai.fde_v2.beginner_first15.examples --day 11",
+          "terminal_output": "Guide — fixture/guide"
         },
         "assigned_input": {
           "title": "Appeals",
@@ -502,7 +532,9 @@
             "source": "fixture/guide",
             "text": "hello"
           },
-          "result": "valid"
+          "result": "valid",
+          "command": "python3 -m ai.fde_v2.beginner_first15.examples --day 12",
+          "terminal_output": "True"
         },
         "assigned_input": {
           "document_id": "sample",
@@ -554,7 +586,9 @@
           ],
           "output": [
             "family"
-          ]
+          ],
+          "command": "python3 -m ai.fde_v2.beginner_first15.examples --day 13",
+          "terminal_output": "['family']"
         },
         "assigned_input": {
           "question": "individual deductible",
@@ -589,7 +623,9 @@
         "work": "Format the earlier search results as source labels. Return an explicit no-match message when none are found; do not generate an answer.",
         "worked_example": {
           "question": "therapy referral",
-          "output": "Physical therapy — synthetic/therapy"
+          "output": "Physical therapy — synthetic/therapy",
+          "command": "python3 -m ai.fde_v2.beginner_first15.examples --day 14",
+          "terminal_output": "Physical therapy — synthetic/therapy\nNo matching documents."
         },
         "assigned_input": {
           "question": "appeal denied",
@@ -625,7 +661,9 @@
         "work": "Compose question cleanup, search over the ten supplied fictional records, and source-label output. Blank questions and no-match queries must have distinct clear messages.",
         "worked_example": {
           "question": "therapy referral",
-          "output": "Physical therapy — synthetic/therapy"
+          "output": "Physical therapy — synthetic/therapy",
+          "command": "python3 -m ai.fde_v2.beginner_first15.examples --day 15",
+          "terminal_output": "Physical therapy — synthetic/therapy"
         },
         "assigned_input": {
           "question": "  INDIVIDUAL deductible? ",

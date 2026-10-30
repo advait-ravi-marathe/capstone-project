@@ -27,7 +27,20 @@ Source: [Give an application only the access it needs](https://docs.aws.amazon.c
 
 ### Worked example (20 minutes)
 
-Input `  HELLO  ` gives `hello`. This demonstrates the idea with a different input from your exercise.
+Run the supplied example command; it uses the completed instructor reference, not your learner function:
+
+```sh
+python3 -m ai.fde_v2.beginner_first15.examples --day 2
+```
+
+It prints the example input and output. Expected output:
+
+```text
+hello
+```
+
+This walkthrough shows the behavior only. Your learner check below still tests your own function.
+
 
 ### Your small coding task (40 minutes)
 
