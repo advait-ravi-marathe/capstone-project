@@ -93,7 +93,19 @@ class ProviderCourseOverlayTests(unittest.TestCase):
             for slot in course["study_slots"]
         ]
         self.assertEqual(len(mapped_days), len(set(mapped_days)), "course substitutions must not double-book a day")
-        self.assertLess(max(slot["day"] for slot in self.courses["openai_evaluate_ai_applications"]["study_slots"]), 239)
+        evaluation_slots = self.courses["openai_evaluate_ai_applications"]["study_slots"]
+        self.assertLessEqual(max(slot["day"] for slot in evaluation_slots), 239)
+        self.assertEqual(evaluation_slots[0]["day"], 234)
+        self.assertEqual(evaluation_slots[-1]["day"], 239)
+        m52 = read_json("ai/fde_v2/m52/draft_schedule.json")
+        rows = {row["day"]: row for row in m52["days"]}
+        day234_stages = [part["stage"] for part in rows[234]["segments"]]
+        day239_stages = [part["stage"] for part in rows[239]["segments"]]
+        self.assertLess(day234_stages.index("M5.2-S02"), day234_stages.index("M5.2-S03"))
+        self.assertLess(day239_stages.index("M5.2-S05"), day239_stages.index("M5.2-S06"))
+        scope_slots = self.courses["openai_scope_ai_solutions"]["study_slots"]
+        self.assertEqual(scope_slots[0]["stage"], "M4.1-S04")
+        self.assertEqual(scope_slots[-1]["stage"], "M4.1-S05")
         self.assertLess(max(slot["day"] for slot in self.courses["openai_design_and_build_agentic_systems"]["study_slots"]), 156)
 
     def test_course_and_badge_progress_starts_unclaimed(self):
