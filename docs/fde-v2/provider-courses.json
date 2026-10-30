@@ -12,9 +12,15 @@
   "catalog_estimate_minutes_total": 340,
   "planned_assessment_minutes_total": 100,
   "planned_overlay_minutes_total": 440,
+  "conditional_deferred_minutes_total": 120,
+  "scheduled_overlay_minutes_total_excluding_conditional_m21": 320,
   "overrun_policy": "If an assessment exceeds its 20-minute planning allowance, defer the remainder to a later already-scheduled course-replacement or genuine repair slot only when it does not displace learner implementation, evidence, DSA, or interview/AWS work. If no compatible slot exists, leave the course and badge incomplete; do not add minutes.",
+  "course_slot_precedence": "Required milestone-specific reading, worked examples, learner implementation, and evidence win. A course may use only overlapping concept-reading time; it never replaces a mandatory technical reference or accepted task.",
+  "reduced_ai_day_policy": "For DSA sessions of 75 or 90 minutes, AI falls to 75 or 60 minutes. Skip optional course minutes first, keep the original required task/evidence, and resume only in a later already-scheduled compatible replacement or genuine repair slot. If none exists, defer the course; never add time.",
+  "resume_policy": "Pause at the next incomplete course section when a slot is unavailable; do not skip ahead. Record the course as in_progress and its next section. Resume only in a later already-scheduled compatible course-replacement or genuine repair slot without displacing required work; no such slot is guaranteed.",
+  "conditional_slot_policy": "The 440-minute map is a maximum, not guaranteed free capacity. The 120 M2.1 minutes on Days 43–48 are conditional and deferred by default because those days have mandatory specific readings and tasks.",
   "progress_state_options": {
-    "course_status": ["not_started", "completed"],
+    "course_status": ["not_started", "in_progress", "completed"],
     "badge_status": ["not_verified", "badge_verified"]
   },
   "openai_academy_badge_rule": "course completion plus assessment score >= 80%; verify the badge from actual platform evidence",
@@ -34,7 +40,8 @@
         {"day": 171, "stage": "M4.1-S05", "minutes": 20, "part": "assessment; planned allowance, not provider-published duration"}
       ],
       "course_status": "not_started",
-      "badge_status": "not_verified"
+      "badge_status": "not_verified",
+      "resume_section": null
     },
     {
       "id": "openai_evaluate_ai_applications",
@@ -53,7 +60,8 @@
         {"day": 239, "stage": "M5.2-S05", "minutes": 20, "part": "assessment; planned allowance, before the scheduled S06 development comparison"}
       ],
       "course_status": "not_started",
-      "badge_status": "not_verified"
+      "badge_status": "not_verified",
+      "resume_section": null
     },
     {
       "id": "openai_build_with_rag",
@@ -63,17 +71,20 @@
       "assessment_minutes": 20,
       "planned_substitution_minutes": 120,
       "prerequisite": "P1 actual RAG and learner-ownership gate passed before M2.1 progression; this study overlay does not pass that gate.",
+      "slot_policy": "conditional-deferred-by-default",
+      "required_reading_precedence": "Days 43–48 include mandatory scikit-learn GroupShuffleSplit, annotation/source-span/provenance, SQLite Transactions, and Qdrant Points readings for point IDs, upload/idempotence, deletion, and filtering. OpenAI Academy RAG material does not replace these. Use a listed course chunk only if its required day-specific reading and task are already complete within the existing block; otherwise pause the course at that section and resume in a later compatible existing slot. No later compatible slot is guaranteed.",
       "provider_api_labs": "Do not configure credentials or make provider calls. If a key is required, leave that lab and any dependent badge blocked; use the existing local/offline M2.1 exercises.",
       "study_slots": [
-        {"day": 43, "stage": "M2.1", "minutes": 20, "part": "course study"},
-        {"day": 44, "stage": "M2.1", "minutes": 20, "part": "course study"},
-        {"day": 45, "stage": "M2.1", "minutes": 20, "part": "course study"},
-        {"day": 46, "stage": "M2.1", "minutes": 20, "part": "course study"},
-        {"day": 47, "stage": "M2.1", "minutes": 20, "part": "course study"},
-        {"day": 48, "stage": "M2.1", "minutes": 20, "part": "assessment; planned allowance, not provider-published duration"}
+        {"day": 43, "stage": "M2.1", "minutes": 20, "part": "conditional course study after mandatory GroupShuffleSplit reading; otherwise defer"},
+        {"day": 44, "stage": "M2.1", "minutes": 20, "part": "conditional course study after required annotation/source-span reading; otherwise defer"},
+        {"day": 45, "stage": "M2.1", "minutes": 20, "part": "conditional course study after required provenance/manifest reading; otherwise defer"},
+        {"day": 46, "stage": "M2.1", "minutes": 20, "part": "conditional course study after required SQLite transaction/Qdrant point-ID reading; otherwise defer"},
+        {"day": 47, "stage": "M2.1", "minutes": 20, "part": "conditional course study after required Qdrant upload/idempotence reading; otherwise defer"},
+        {"day": 48, "stage": "M2.1", "minutes": 20, "part": "conditional assessment after required Qdrant deletion/filter reading; otherwise defer"}
       ],
       "course_status": "not_started",
-      "badge_status": "not_verified"
+      "badge_status": "not_verified",
+      "resume_section": null
     },
     {
       "id": "openai_design_and_build_agentic_systems",
@@ -96,7 +107,8 @@
         {"day": 154, "stage": "M3.3-S07", "minutes": 10, "part": "assessment; planned allowance, not provider-published duration"}
       ],
       "course_status": "not_started",
-      "badge_status": "not_verified"
+      "badge_status": "not_verified",
+      "resume_section": null
     },
     {
       "id": "openai_optimize_ai_application_performance",
@@ -112,7 +124,8 @@
         {"day": 247, "stage": "M5.2-S10", "minutes": 20, "part": "assessment; planned allowance, not provider-published duration"}
       ],
       "course_status": "not_started",
-      "badge_status": "not_verified"
+      "badge_status": "not_verified",
+      "resume_section": null
     }
   ],
   "credential_status": {
