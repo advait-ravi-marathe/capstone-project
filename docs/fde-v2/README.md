@@ -114,6 +114,10 @@ Here `N` is the intended nominal learning position; `ACTUAL_LOCAL_DATE` is the r
 
 The daily role pages are the exact practice sequence. AWS work is inside the same 30-minute bank: Day5 course/syllabus audit; Day6 secure-access diagnostic; Day12 networking; Day13 data/storage protection. Current official SAA-C03 exam guide and its exact content-domain task headings are linked in [AWS bank](aws-bank.md). The connected catalog's Maarek course title, ID and listed curriculum durations are mapped in the [Sprint 1 course map](sources/sprint1-course-map.md); personal paid-video entitlement remains unverified. The connector did not return lesson URLs, so no guessed video number is assigned. Official AWS documentation is the fallback. Nothing here books an exam or claims a certificate.
 
+### Optional supplemental DSA practice source
+
+Once per seven actual DSA study sessions, you may replace one existing related-practice slot inside the same 60-minute DSA block with a free [Prachub](https://prachub.com/) question variant matched to the pattern currently being studied and its prerequisites. This is a substitution, not extra homework or a new subscription. Keep scheduled DSA review anchors first; do not displace a due review or protected anchor to fit Prachub. Start with free content; if a question is locked or does not match the current pattern, use the DSA plan's existing practice instead. The [company filters](https://prachub.com/companies/openai) are community-reported and are not a guarantee that a question appeared or will appear in an interview. An advanced example such as [crash-resilient LRU cache](https://prachub.com/coding-questions/implement-a-crash-resilient-lru-cache) is only for after its data-structure, concurrency and persistence prerequisites. Keep all attempts, code and review history in the separate DSA repository; do not copy paid problem text or solutions into this repository.
+
 ## Deterministic checks
 
 The learner seams deliberately remain TODOs. Run the independent instructor/reference witnesses separately:

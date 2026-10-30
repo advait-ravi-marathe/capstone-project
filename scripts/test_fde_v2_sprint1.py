@@ -80,6 +80,16 @@ class Sprint1ContractTests(unittest.TestCase):
         self.assertIn("The CLI does not persist a position cursor", guide)
         self.assertIn("Record attempts only on the dates they actually happen", guide)
         self.assertIn("never backdate attempts or clear review history", guide)
+        self.assertIn("Once per seven actual DSA study sessions", guide)
+        self.assertIn("inside the same 60-minute DSA block", guide)
+        self.assertIn("Keep scheduled DSA review anchors first", guide)
+        self.assertIn("[Prachub](https://prachub.com/)", guide)
+        self.assertIn("https://prachub.com/companies/openai", guide)
+        self.assertIn("https://prachub.com/coding-questions/implement-a-crash-resilient-lru-cache", guide)
+        self.assertIn("community-reported", guide)
+        self.assertIn("not a guarantee that a question appeared or will appear", guide)
+        self.assertIn("if a question is locked or does not match", guide)
+        self.assertIn("do not copy paid problem text or solutions", guide)
 
     def test_course_map_preserves_history_but_links_current_runtime_and_behavior(self):
         guide = (DOCS / "sources/sprint1-course-map.md").read_text(encoding="utf-8")
