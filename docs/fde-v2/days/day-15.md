@@ -2,7 +2,7 @@
 
 **Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-**Planned date:** 2026-11-10 (calendar target only; it does not mark the day complete).
+**Planned date:** 2026-11-12 (calendar target only; it does not mark the day complete).
 
 ## Today: 180 minutes total
 
@@ -12,19 +12,13 @@
 
 ## AWS learning — 30 minutes
 
-**Topic:** Review secure, resilient, high-performing, and cost-aware choices
+**Topic:** Understand the AWS Well-Architected pillars
 
-**Read this exact section:** SAA-C03 Content Domains 1–4: official domain names overview
+**Read this exact section:** AWS Well-Architected Framework; the six pillars
 
-Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Read the names of the four official content domains across the linked Domain 1–4 pages; this is familiarization, not an exam-readiness test. This is learning, not a readiness score.
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes on this learning check: Name the six pillars and pick one that would guide a small document-search service. This is learning, not a readiness score; no AWS account, console action, or spend is needed.
 
-Source: [Review secure, resilient, high-performing, and cost-aware choices](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain1.html)
-
-Also read the domain headings here: [Domain 2](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain2.html).
-
-Also read the domain headings here: [Domain 3](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html).
-
-Also read the domain headings here: [Domain 4](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain4.html).
+Source: [Understand the AWS Well-Architected pillars](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html)
 
 ## AI/Python learning — 90 minutes
 
@@ -43,14 +37,14 @@ The worked example searches `"therapy referral"` and returns the matching source
 Use the functions from Days 2, 10, 11, 13 and 14: clean the question, search the supplied ten fictional records, and show the source label. A blank question gets a prompt; a query with no matches gets the no-match message. Do not generate an answer.
 
 Assigned query: `  INDIVIDUAL deductible? `.
-**Expected result:** `Deductible — <the supplied source label>` is the first line. Blank input returns `Please enter a question.`; `unmatched moonstone` returns `No matching documents.`
+**Expected result:** `Northstar synthetic plan: deductible — CC0 synthetic training fixture; fictional policy statement` is the first line. Blank input returns `Please enter a question.`; `unmatched moonstone` returns `No matching documents.`
 
 The collection, baseline, examples and check are supplied. The task is one learner function that connects earlier small functions, not a database, API or full application. Reference output teaches the behavior but does not count as your implementation.
 
 ### Check your work (15 minutes)
 
 ```sh
-python -m ai.fde_v2.beginner_first15.acceptance --day 15
+python3 -m ai.fde_v2.beginner_first15.acceptance --day 15
 ```
 
 This search exercise does **not** satisfy the accepted U011 contract, versioned ingestion, embeddings, RAG or Day 16. Those remain separate, uncompleted prerequisites; see the [Day 16 prerequisite handoff](../amendments/day16-prerequisite-handoff.md). The beginner-first sequence may be completed without claiming the later route is ready.

@@ -2,7 +2,10 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
+import importlib
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -10,8 +13,10 @@ ROOT = Path(__file__).resolve().parents[3]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from ai.fde_v2.beginner_first15 import learner
-from ai.fde_v2.coverstory import learner as coverstory_learner
+learner = importlib.import_module(os.environ.get(
+    "BEGINNER_FIRST15_CANDIDATE", "ai.fde_v2.beginner_first15.learner"))
+coverstory_learner = importlib.import_module(os.environ.get(
+    "FDE_V2_CANDIDATE", "ai.fde_v2.coverstory.learner"))
 
 RECORDS = [
     {"document_id": "appeals", "title": "Appeals", "text": "Ask for a review of a denied claim.", "source": "synthetic/appeals"},
@@ -40,8 +45,20 @@ def check(day: int) -> str:
     elif day == 8:
         assert learner.overlap_score("deductible deductible individual", RECORDS[1]) == 2
     elif day == 9:
-        rows = [dict(RECORDS[1], document_id="z"), dict(RECORDS[1], document_id="a")]
-        assert [row["document_id"] for row in learner.rank_records("deductible", rows, 2)] == ["a", "z"]
+        rows = [
+            {"document_id": "z", "title": "Red", "text": "red"},
+            {"document_id": "a", "title": "Red", "text": "red"},
+            {"document_id": "top", "title": "Red blue", "text": "red blue"},
+            {"document_id": "none", "title": "Green", "text": "green"},
+        ]
+        assert [row["document_id"] for row in learner.rank_records("red blue", rows, 2)] == ["top", "a"]
+        assert [row["document_id"] for row in learner.rank_records("red blue", rows, 3)] == ["top", "a", "z"]
+        try:
+            learner.rank_records("red blue", rows, 0)
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("zero result limit must be rejected")
     elif day == 10:
         from ai.fde_v2.coverstory.day01_baseline import CORPUS
         manifest = json.loads((CORPUS / "manifest.json").read_text(encoding="utf-8"))
@@ -54,15 +71,23 @@ def check(day: int) -> str:
     elif day == 12:
         raw = {"document_id": "sample", "version": 1, "title": "Sample", "source": "fixture", "text": "Hello"}
         document = coverstory_learner.parse_document_record(raw)
-        assert document.document_id == "sample" and document.content_sha256
-        for key, bad in (("version", True), ("text", "  ")):
-            with_bad = dict(raw, **{key: bad})
+        assert (document.document_id, document.version, document.title, document.source, document.text) == (
+            "sample", 1, "Sample", "fixture", "Hello")
+        assert document.content_sha256 == hashlib.sha256(b"Hello").hexdigest()
+        bad_records = (
+            dict(raw, version=True),
+            dict(raw, version=0),
+            dict(raw, text="  "),
+            dict(raw, title=""),
+            dict(raw, extra="unexpected"),
+        )
+        for with_bad in bad_records:
             try:
                 coverstory_learner.parse_document_record(with_bad)
             except (ValueError, TypeError):
                 pass
             else:
-                raise AssertionError(f"invalid {key} should be rejected")
+                raise AssertionError("malformed record should be rejected")
     elif day == 13:
         from ai.fde_v2.coverstory.day01_baseline import CORPUS
         manifest = json.loads((CORPUS / "manifest.json").read_text(encoding="utf-8"))
@@ -94,7 +119,14 @@ def main() -> int:
     parser.add_argument("--day", type=int, required=True, choices=range(1, 16))
     args = parser.parse_args()
     try:
-        print(check(args.day))
+        message = check(args.day)
+        reference_selected = (
+            os.environ.get("BEGINNER_FIRST15_CANDIDATE") == "ai.fde_v2.beginner_first15.reference"
+            or os.environ.get("FDE_V2_CANDIDATE") == "ai.fde_v2.coverstory.reference"
+        )
+        if reference_selected:
+            message = message.replace("PASS", "REFERENCE MECHANICS PASS") + " — not learner evidence"
+        print(message)
     except (AssertionError, NotImplementedError, ValueError, TypeError) as exc:
         print(f"Day {args.day:02}: NOT YET — {exc}", file=sys.stderr)
         return 1

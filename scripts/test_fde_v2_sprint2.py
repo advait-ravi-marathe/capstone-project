@@ -40,20 +40,25 @@ class Sprint2ContractTests(unittest.TestCase):
             number = row["planned_learning_day"]
             page_path = DOCS / "days" / f"day-{number:02d}.md"
             page = page_path.read_text(encoding="utf-8")
-            expected_date = date(2026, 10, 27) + timedelta(days=number - 1)
-            self.assertIn(expected_date.isoformat(), page)
             self.assertIn("Status: Not started", page)
             self.assertIn("180 minutes", page)
             self.assertEqual(row["ai_total_minutes"], 90)
             self.assertEqual(sum(segment["minutes"] for segment in row["ai_segments"])
                              + row["visibility_minutes"], 90)
             if number == 15:
+                self.assertIn("2026-11-12", page)
                 self.assertIn("60 min DSA", page)
                 self.assertIn("30 min AWS", page)
                 self.assertIn("90 min AI/Python", page)
                 self.assertIn("U011", page)
                 self.assertIn("../units/u011.md", page)
                 continue
+            if number == 16:
+                self.assertIn("NOT READY under the beginner-first reset", page)
+                self.assertNotIn("Planned date:", page)
+                continue
+            expected_date = date(2026, 10, 27) + timedelta(days=number - 1)
+            self.assertIn(expected_date.isoformat(), page)
             for segment in row["ai_segments"]:
                 unit = segment["unit_id"].rsplit("-", 1)[1].lower()
                 self.assertTrue((DOCS / "units" / f"{unit}.md").is_file())

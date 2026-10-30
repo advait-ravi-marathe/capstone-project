@@ -2,7 +2,7 @@
 
 **Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-**Planned date:** 2026-11-04 (calendar target only; it does not mark the day complete).
+**Planned date:** 2026-11-06 (calendar target only; it does not mark the day complete).
 
 ## Today: 180 minutes total
 
@@ -12,13 +12,13 @@
 
 ## AWS learning — 30 minutes
 
-**Topic:** Understand data ingestion choices
+**Topic:** Follow an object from upload to retrieval
 
-**Read this exact section:** SAA-C03 Content Domain 3, Task 3.5: Determine high-performing data ingestion and transformation solutions
+**Read this exact section:** Getting started with Amazon S3; upload and download an object
 
-Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Find Task 3.5 and name one ingestion or transformation option. This is learning, not a readiness score.
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes on this learning check: Describe the relationship between uploading an object and later retrieving it by its key. No bucket or account is needed. This is learning, not a readiness score; no AWS account, console action, or spend is needed.
 
-Source: [Understand data ingestion choices](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html)
+Source: [Follow an object from upload to retrieval](https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html)
 
 ## AI/Python learning — 90 minutes
 
@@ -27,24 +27,24 @@ Source: [Understand data ingestion choices](https://docs.aws.amazon.com/aws-cert
 
 ### Worked example (20 minutes)
 
-Input `` gives `['a', 'b']`. This demonstrates the idea with a different input from your exercise.
+Example: two records with IDs `b` and `a`, each containing `red`, both score 1 for query `red`; the output order is `a`, then `b`.
 
 ### Your small coding task (40 minutes)
 
 **File:** [`ai/fde_v2/beginner_first15/learner.py`](../../../ai/fde_v2/beginner_first15/learner.py)
 **Function:** `rank_records`
 
-Sort records by overlap score; break a tie by document ID so order is repeatable.
+Sort records from highest overlap score to lowest, break ties by document ID, omit zero-score records, and honor the requested result limit.
 
-Assigned input: `{"ids": ["z", "a"], "equal_score": 1}`
-**Expected result:** ['a', 'z']
+Assigned input: four records: `top` contains `red blue`, `a` and `z` each contain `red`, and `none` contains `green`; request `limit=2` for `red blue`.
+**Expected result:** `['top', 'a']`; zero-score rows are omitted, the strongest score comes first, and the tie breaks by ID.
 
 The app plumbing, fixtures, command-line runner and database setup are supplied. You are learning a small function, not building the full application. Reference output teaches the behavior but does not count as your implementation.
 
 ### Check your work (15 minutes)
 
 ```sh
-python -m ai.fde_v2.beginner_first15.acceptance --day 9
+python3 -m ai.fde_v2.beginner_first15.acceptance --day 9
 ```
 
 This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.

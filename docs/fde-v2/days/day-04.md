@@ -2,7 +2,7 @@
 
 **Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-**Planned date:** 2026-10-30 (calendar target only; it does not mark the day complete).
+**Planned date:** 2026-11-01 (calendar target only; it does not mark the day complete).
 
 ## Today: 180 minutes total
 
@@ -12,13 +12,13 @@
 
 ## AWS learning — 30 minutes
 
-**Topic:** Plan for an unavailable component
+**Topic:** Understand why Availability Zones are separated
 
-**Read this exact section:** SAA-C03 Content Domain 2, Task 2.2: Design highly available and/or fault-tolerant architectures
+**Read this exact section:** REL10-BP01; deploy to multiple locations, especially Availability Zones
 
-Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Find Task 2.2 and name one recovery approach from the task description. This is learning, not a readiness score.
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes on this learning check: Explain how separating resources across Availability Zones can reduce one building-level failure affecting everything. This is learning, not a readiness score; no AWS account, console action, or spend is needed.
 
-Source: [Plan for an unavailable component](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain2.html)
+Source: [Understand why Availability Zones are separated](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_fault_isolation_multiaz_region_system.html)
 
 ## AI/Python learning — 90 minutes
 
@@ -44,7 +44,7 @@ The app plumbing, fixtures, command-line runner and database setup are supplied.
 ### Check your work (15 minutes)
 
 ```sh
-python -m ai.fde_v2.beginner_first15.acceptance --day 4
+python3 -m ai.fde_v2.beginner_first15.acceptance --day 4
 ```
 
 This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.

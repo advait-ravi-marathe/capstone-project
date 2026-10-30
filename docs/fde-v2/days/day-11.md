@@ -2,7 +2,7 @@
 
 **Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-**Planned date:** 2026-11-06 (calendar target only; it does not mark the day complete).
+**Planned date:** 2026-11-08 (calendar target only; it does not mark the day complete).
 
 ## Today: 180 minutes total
 
@@ -12,13 +12,13 @@
 
 ## AWS learning — 30 minutes
 
-**Topic:** Choose a storage tier for cost and access needs
+**Topic:** Match storage class to access pattern
 
-**Read this exact section:** SAA-C03 Content Domain 4, Task 4.1: Design cost-optimized storage solutions
+**Read this exact section:** Understanding and managing Amazon S3 storage classes
 
-Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Find Task 4.1 and name one lifecycle or storage-tier tradeoff. This is learning, not a readiness score.
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes on this learning check: Explain why infrequently accessed data may use a different storage class, while considering retrieval needs. This is learning, not a readiness score; no AWS account, console action, or spend is needed.
 
-Source: [Choose a storage tier for cost and access needs](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain4.html)
+Source: [Match storage class to access pattern](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html)
 
 ## AI/Python learning — 90 minutes
 
@@ -27,7 +27,7 @@ Source: [Choose a storage tier for cost and access needs](https://docs.aws.amazo
 
 ### Worked example (20 minutes)
 
-Input `` gives `Guide — fixture/guide`. This demonstrates the idea with a different input from your exercise.
+Example: `source_label({"title": "Guide", "source": "fixture/guide"})` returns `Guide — fixture/guide`.
 
 ### Your small coding task (40 minutes)
 
@@ -44,7 +44,7 @@ The app plumbing, fixtures, command-line runner and database setup are supplied.
 ### Check your work (15 minutes)
 
 ```sh
-python -m ai.fde_v2.beginner_first15.acceptance --day 11
+python3 -m ai.fde_v2.beginner_first15.acceptance --day 11
 ```
 
 This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.

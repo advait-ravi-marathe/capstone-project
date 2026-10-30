@@ -1,12 +1,16 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 import unittest
+from unittest import mock
 from pathlib import Path
+from datetime import date, timedelta
 
 from ai.fde_v2.beginner_first15 import reference
+from ai.fde_v2.beginner_first15 import acceptance, learner as candidate
 
 ROOT = Path(__file__).resolve().parents[1]
 OVERLAY = ROOT / "docs/fde-v2/amendments/2026-10-30-beginner-first-15.json"
@@ -38,6 +42,14 @@ class BeginnerFirst15Tests(unittest.TestCase):
                 self.assertIn(day["python"], card)
                 self.assertIn(day["aws"]["source"], card)
                 self.assertIn(day["aws_section"], card)
+                self.assertIn(day["planned_date"], card)
+                self.assertNotIn("Find Task", card)
+                if day["day"] == 6:
+                    self.assertIn('"document_id": "appeals"', card)
+                    self.assertIn('one matching record, with `document_id="appeals"`', card)
+                self.assertTrue(day["aws"]["check"])
+                self.assertEqual(day["planned_date"],
+                                 (date(2026, 10, 29) + timedelta(days=day["day"] - 1)).isoformat())
                 for excluded in ("Role interview prompt", "target-role gap", "write a one-page problem brief"):
                     self.assertNotIn(excluded.lower(), card.lower())
 
@@ -94,6 +106,48 @@ class BeginnerFirst15Tests(unittest.TestCase):
                     self.assertIn("implement format_search_results", result.stderr)
                 if day == 15:
                     self.assertIn("implement search_response", result.stderr)
+
+    def test_reference_adapter_passes_all_fifteen_selectors_without_claiming_learner_evidence(self):
+        env = dict(os.environ)
+        env["BEGINNER_FIRST15_CANDIDATE"] = "ai.fde_v2.beginner_first15.reference"
+        env["FDE_V2_CANDIDATE"] = "ai.fde_v2.coverstory.reference"
+        for day in range(1, 16):
+            result = subprocess.run(
+                [sys.executable, "-m", "ai.fde_v2.beginner_first15.acceptance", "--day", str(day)],
+                cwd=ROOT, text=True, capture_output=True, check=False, timeout=15, env=env,
+            )
+            with self.subTest(day=day):
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertIn("REFERENCE MECHANICS PASS", result.stdout)
+                self.assertIn("not learner evidence", result.stdout)
+
+    def test_day12_supplied_constructor_runs_only_after_learner_validation(self):
+        validator = lambda record: reference.document_record_valid(record)
+        with mock.patch.object(candidate, "document_record_valid", side_effect=validator):
+            self.assertIn("PASS", acceptance.check(12))
+        with mock.patch.object(candidate, "document_record_valid", return_value=True):
+            with self.assertRaises((AssertionError, KeyError, ValueError)):
+                acceptance.check(12)
+
+    def test_meaningful_wrong_implementations_fail_and_day1_ignores_future_todos(self):
+        records = [
+            {"document_id": "z", "title": "Red", "text": "red", "source": "z"},
+            {"document_id": "a", "title": "Red", "text": "red", "source": "a"},
+            {"document_id": "top", "title": "Red blue", "text": "red blue", "source": "top"},
+            {"document_id": "none", "title": "Green", "text": "green", "source": "none"},
+        ]
+        with mock.patch.object(candidate, "rank_records", return_value=records[:2]):
+            with self.assertRaises(AssertionError):
+                acceptance.check(9)
+        with mock.patch.object(candidate, "format_search_results", return_value="Appeals — synthetic/appeals"):
+            with self.assertRaises(AssertionError):
+                acceptance.check(14)
+        with mock.patch.object(candidate, "search_response", return_value="Deductible — a source"):
+            with self.assertRaises(AssertionError):
+                acceptance.check(15)
+        with mock.patch.object(candidate, "document_title", side_effect=lambda record: record.get("title", "")), \
+             mock.patch.object(candidate, "normalize_question", side_effect=AssertionError("future TODO called")):
+            self.assertIn("PASS", acceptance.check(1))
 
     def test_supplied_keyword_demo_still_runs_without_learner_todos_or_models(self):
         result = subprocess.run(

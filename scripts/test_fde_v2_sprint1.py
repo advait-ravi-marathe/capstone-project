@@ -81,7 +81,7 @@ class Sprint1ContractTests(unittest.TestCase):
     def test_day03_prose_matches_scheduled_unit_minutes(self):
         day = (DOCS / "days/day-03.md").read_text(encoding="utf-8")
         self.assertIn("Function:** `question_words`", day)
-        self.assertIn("python -m ai.fde_v2.beginner_first15.acceptance --day 3", day)
+        self.assertIn("python3 -m ai.fde_v2.beginner_first15.acceptance --day 3", day)
         self.assertIn("split a normalized question", (ROOT / "ai/fde_v2/beginner_first15/learner.py").read_text())
 
     def test_shared_dsa_guidance_uses_explicit_roadmap_position_and_actual_date(self):
@@ -168,7 +168,7 @@ class Sprint1ContractTests(unittest.TestCase):
                 text=True, capture_output=True, check=False, timeout=10,
             )
         self.assertNotEqual(run_result.returncode, 0, "the unimplemented learner seam must stay red")
-        self.assertIn("NotImplementedError: Day 12 active entry (historical U003): implement parse_document_record",
+        self.assertIn("NotImplementedError: Day 12: implement document_record_valid",
                       run_result.stderr)
         self.assertNotIn("ModuleNotFoundError", run_result.stderr)
 

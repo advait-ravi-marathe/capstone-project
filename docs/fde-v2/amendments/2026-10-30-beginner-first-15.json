@@ -21,8 +21,8 @@
     {
       "day": 1,
       "title": "Read one supplied result",
-      "python": "https://docs.python.org/3/tutorial/introduction.html",
-      "python_section": "Using Python as a Calculator; Strings",
+      "python": "https://docs.python.org/3/tutorial/datastructures.html#dictionaries",
+      "python_section": "Dictionaries; look up a key with get and a default value",
       "optional_udemy_lesson": "Python Variables (3:37), if present in the learner's course catalog",
       "ai_minutes": {
         "lesson": 15,
@@ -35,6 +35,7 @@
         "function": "document_title",
         "work": "Return the title from a supplied dictionary; return an empty string if it is missing.",
         "worked_example": {
+          "code": "def read_title(record):\\n    return record.get(\"title\", \"\")",
           "input": {
             "title": "Appeals"
           },
@@ -45,17 +46,17 @@
           "title": "Deductible"
         },
         "expected_output": "Deductible",
-        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 1",
-        "setup_command": "python -m ai.fde_v2.coverstory.day01_baseline",
+        "command": "python3 -m ai.fde_v2.beginner_first15.acceptance --day 1",
+        "setup_command": "python3 -m ai.fde_v2.coverstory.day01_baseline",
         "setup_expected": "The supplied example lists northstar-deductible as rank 1; this is instructor code, not your pass."
       },
       "aws": {
-        "topic": "What AWS is and how its global infrastructure is named",
+        "topic": "Understand Regions and Availability Zones",
         "source": "https://docs.aws.amazon.com/whitepapers/latest/aws-overview/global-infrastructure.html",
-        "check": "Name one AWS Region and one Availability Zone from the reading; no account or console required."
+        "check": "Explain how a Region differs from an Availability Zone."
       },
-      "planned_date": "2026-10-27",
-      "aws_section": "AWS Overview: Global Infrastructure"
+      "planned_date": "2026-10-29",
+      "aws_section": "AWS Overview: Global Infrastructure; Regions and Availability Zones"
     },
     {
       "day": 2,
@@ -79,21 +80,21 @@
         },
         "assigned_input": "  What is the deductible?  ",
         "expected_output": "what is the deductible?",
-        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 2"
+        "command": "python3 -m ai.fde_v2.beginner_first15.acceptance --day 2"
       },
       "aws": {
-        "topic": "Secure access: users, roles, and least privilege",
-        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain1.html",
-        "check": "Explain in one spoken sentence why an application should receive only the permissions it needs."
+        "topic": "Give an application only the access it needs",
+        "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+        "check": "For a document-search app, say why its role should be limited to reading only its required data."
       },
-      "planned_date": "2026-10-28",
-      "aws_section": "SAA-C03 Content Domain 1, Task 1.1: Design secure access to AWS resources"
+      "planned_date": "2026-10-30",
+      "aws_section": "IAM security best practices; apply least privilege"
     },
     {
       "day": 3,
       "title": "Split a question into words",
-      "python": "https://docs.python.org/3/library/re.html#re.findall",
-      "python_section": "Finding all matches",
+      "python": "https://docs.python.org/3/library/stdtypes.html#str.split",
+      "python_section": "String split; make a list of words",
       "optional_udemy_lesson": "For Loops (2:56), if accessible",
       "ai_minutes": {
         "lesson": 15,
@@ -104,12 +105,13 @@
       "task": {
         "file": "ai/fde_v2/beginner_first15/learner.py",
         "function": "question_words",
-        "work": "Use the supplied word-matching helper to return the words in a question as a list.",
+        "work": "Return the supplied _split_words(question) helper result as a list; punctuation cleanup and splitting are supplied.",
         "worked_example": {
-          "input": "one two",
+          "input": "Blue, sky!",
+          "helper": "_split_words",
           "output": [
-            "one",
-            "two"
+            "blue",
+            "sky"
           ]
         },
         "assigned_input": "The deductible is 500",
@@ -119,15 +121,15 @@
           "is",
           "500"
         ],
-        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 3"
+        "command": "python3 -m ai.fde_v2.beginner_first15.acceptance --day 3"
       },
       "aws": {
-        "topic": "Protect data with encryption and controlled access",
-        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain1.html",
-        "check": "Point to the task heading about data security controls."
+        "topic": "Know which security tasks belong to AWS and the customer",
+        "source": "https://docs.aws.amazon.com/whitepapers/latest/aws-risk-and-compliance/shared-responsibility-model.html",
+        "check": "Compare one responsibility for an EC2 virtual machine with one responsibility AWS handles for its physical infrastructure."
       },
-      "planned_date": "2026-10-29",
-      "aws_section": "SAA-C03 Content Domain 1, Task 1.3: Determine appropriate data security controls"
+      "planned_date": "2026-10-31",
+      "aws_section": "Shared responsibility model; security of the cloud and security in the cloud"
     },
     {
       "day": 4,
@@ -168,15 +170,15 @@
           "500",
           "dollars"
         ],
-        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 4"
+        "command": "python3 -m ai.fde_v2.beginner_first15.acceptance --day 4"
       },
       "aws": {
-        "topic": "Plan for an unavailable component",
-        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain2.html",
-        "check": "Find Task 2.2 and name one recovery approach from the task description."
+        "topic": "Understand why Availability Zones are separated",
+        "source": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_fault_isolation_multiaz_region_system.html",
+        "check": "Explain how separating resources across Availability Zones can reduce one building-level failure affecting everything."
       },
-      "planned_date": "2026-10-30",
-      "aws_section": "SAA-C03 Content Domain 2, Task 2.2: Design highly available and/or fault-tolerant architectures"
+      "planned_date": "2026-11-01",
+      "aws_section": "REL10-BP01; deploy to multiple locations, especially Availability Zones"
     },
     {
       "day": 5,
@@ -200,15 +202,15 @@
         },
         "assigned_input": "\t ",
         "expected_output": true,
-        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 5"
+        "command": "python3 -m ai.fde_v2.beginner_first15.acceptance --day 5"
       },
       "aws": {
-        "topic": "Choose storage for performance and growth",
-        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html",
-        "check": "Find Task 3.1 and name one storage type it says to compare."
+        "topic": "Understand buckets, objects, and keys",
+        "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingObjects.html",
+        "check": "In your own words, identify the bucket, object key, and object data in an S3 example."
       },
-      "planned_date": "2026-10-31",
-      "aws_section": "SAA-C03 Content Domain 3, Task 3.1: Determine high-performing and/or scalable storage solutions"
+      "planned_date": "2026-11-02",
+      "aws_section": "Amazon S3 objects overview; object keys and object data"
     },
     {
       "day": 6,
@@ -228,28 +230,39 @@
         "work": "Loop over supplied records and keep records containing at least one question word.",
         "worked_example": {
           "question": "family",
-          "record_text": "family deductible",
-          "output": true
+          "records": [
+            {
+              "document_id": "family",
+              "title": "Family",
+              "text": "family deductible"
+            },
+            {
+              "document_id": "appeals",
+              "title": "Appeals",
+              "text": "claim review"
+            }
+          ],
+          "output": [
+            "family"
+          ]
         },
         "assigned_input": {
           "question": "claim denied",
           "records": [
-            "appeals: claim denied",
-            "therapy: referral required"
+          {"document_id": "appeals", "title": "Appeals", "text": "claim denied"},
+          {"document_id": "therapy", "title": "Therapy", "text": "referral required"}
           ]
         },
-        "expected_output": [
-          "appeals"
-        ],
-        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 6"
+        "expected_output": "one matching record with document_id=appeals",
+        "command": "python3 -m ai.fde_v2.beginner_first15.acceptance --day 6"
       },
       "aws": {
-        "topic": "Choose compute that can scale",
-        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html",
-        "check": "Find Task 3.2 and name one scaling approach in its listed knowledge."
+        "topic": "Understand an EC2 virtual server",
+        "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html",
+        "check": "Explain what an EC2 instance is and what an instance type determines."
       },
-      "planned_date": "2026-11-01",
-      "aws_section": "SAA-C03 Content Domain 3, Task 3.2: Design high-performing and elastic compute solutions"
+      "planned_date": "2026-11-03",
+      "aws_section": "What is Amazon EC2?; instances and instance types"
     },
     {
       "day": 7,
@@ -272,22 +285,20 @@
           "output": [
             "cat",
             "dog"
-          ]
+          ],
+          "output_type": "set; order is not important"
         },
         "assigned_input": "appeal appeal review",
-        "expected_output": [
-          "appeal",
-          "review"
-        ],
-        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 7"
+        "expected_output": "The set {'appeal', 'review'}; order is not important.",
+        "command": "python3 -m ai.fde_v2.beginner_first15.acceptance --day 7"
       },
       "aws": {
-        "topic": "Match a database to its access pattern",
-        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html",
-        "check": "Find Task 3.3 and name one database access pattern it mentions."
+        "topic": "Understand what a managed relational database provides",
+        "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html",
+        "check": "Name one database-operation task RDS manages and one decision the application team still owns."
       },
-      "planned_date": "2026-11-02",
-      "aws_section": "SAA-C03 Content Domain 3, Task 3.3: Determine high-performing database solutions"
+      "planned_date": "2026-11-04",
+      "aws_section": "What is Amazon RDS?; managed relational database responsibilities"
     },
     {
       "day": 8,
@@ -315,15 +326,15 @@
           "record": "individual deductible is 500"
         },
         "expected_output": 2,
-        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 8"
+        "command": "python3 -m ai.fde_v2.beginner_first15.acceptance --day 8"
       },
       "aws": {
-        "topic": "Understand scalable network design",
-        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html",
-        "check": "Find Task 3.4 and name one network design concept in the task."
+        "topic": "Understand a VPC and its subnets",
+        "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html",
+        "check": "Explain what a VPC is and why each subnet belongs to one Availability Zone."
       },
-      "planned_date": "2026-11-03",
-      "aws_section": "SAA-C03 Content Domain 3, Task 3.4: Determine high-performing and/or scalable network architectures"
+      "planned_date": "2026-11-05",
+      "aws_section": "What is Amazon VPC?; VPCs, subnets, and Availability Zones"
     },
     {
       "day": 9,
@@ -340,37 +351,58 @@
       "task": {
         "file": "ai/fde_v2/beginner_first15/learner.py",
         "function": "rank_records",
-        "work": "Sort records by overlap score; break a tie by document ID so order is repeatable.",
+        "work": "Sort by descending overlap score, break ties by document ID, remove zero-score rows, and honor limit.",
         "worked_example": {
-          "scores": {
-            "b": 1,
-            "a": 1
-          },
+          "question": "red",
+          "records": [
+            {
+              "document_id": "b",
+              "title": "Red",
+              "text": "red"
+            },
+            {
+              "document_id": "a",
+              "title": "Red",
+              "text": "red"
+            }
+          ],
           "output": [
             "a",
             "b"
           ]
         },
         "assigned_input": {
-          "ids": [
-            "z",
-            "a"
+          "question": "red blue",
+          "records": [
+            {
+              "document_id": "z",
+              "text": "red"
+            },
+            {
+              "document_id": "a",
+              "text": "red"
+            },
+            {
+              "document_id": "top",
+              "text": "red blue"
+            },
+            {
+              "document_id": "none",
+              "text": "green"
+            }
           ],
-          "equal_score": 1
+          "limit": 2
         },
-        "expected_output": [
-          "a",
-          "z"
-        ],
-        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 9"
+        "expected_output": "['top', 'a']; excludes zero-score row and respects limit 2.",
+        "command": "python3 -m ai.fde_v2.beginner_first15.acceptance --day 9"
       },
       "aws": {
-        "topic": "Understand data ingestion choices",
-        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html",
-        "check": "Find Task 3.5 and name one ingestion or transformation option."
+        "topic": "Follow an object from upload to retrieval",
+        "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html",
+        "check": "Describe the relationship between uploading an object and later retrieving it by its key. No bucket or account is needed."
       },
-      "planned_date": "2026-11-04",
-      "aws_section": "SAA-C03 Content Domain 3, Task 3.5: Determine high-performing data ingestion and transformation solutions"
+      "planned_date": "2026-11-06",
+      "aws_section": "Getting started with Amazon S3; upload and download an object"
     },
     {
       "day": 10,
@@ -389,7 +421,8 @@
         "function": "best_record",
         "work": "Return the highest-ranked record or None when every score is zero.",
         "worked_example": {
-          "matches": [],
+          "question": "moonstone",
+          "records": [],
           "output": null
         },
         "assigned_input": {
@@ -397,15 +430,15 @@
           "corpus": "the ten checked-in fictional records"
         },
         "expected_output": "None (the supplied corpus has no matching words)",
-        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 10"
+        "command": "python3 -m ai.fde_v2.beginner_first15.acceptance --day 10"
       },
       "aws": {
-        "topic": "Protect an ingestion path",
-        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html",
-        "check": "Connect Task 3.5 to one data security control from Domain 1 Task 1.3."
+        "topic": "Understand encryption at rest in S3",
+        "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/serv-side-encryption.html",
+        "check": "Explain what server-side encryption protects and why it is different from deciding who may read an object."
       },
-      "planned_date": "2026-11-05",
-      "aws_section": "SAA-C03 Content Domain 3, Task 3.5, with Domain 1 Task 1.3 data security controls"
+      "planned_date": "2026-11-07",
+      "aws_section": "Protecting data with server-side encryption"
     },
     {
       "day": 11,
@@ -424,8 +457,10 @@
         "function": "source_label",
         "work": "Format the supplied title and source as a short citation label; do not invent answer text.",
         "worked_example": {
-          "title": "Guide",
-          "source": "fixture/guide",
+          "input": {
+            "title": "Guide",
+            "source": "fixture/guide"
+          },
           "output": "Guide — fixture/guide"
         },
         "assigned_input": {
@@ -433,21 +468,21 @@
           "source": "synthetic/appeals"
         },
         "expected_output": "Appeals — synthetic/appeals",
-        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 11"
+        "command": "python3 -m ai.fde_v2.beginner_first15.acceptance --day 11"
       },
       "aws": {
-        "topic": "Choose a storage tier for cost and access needs",
-        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain4.html",
-        "check": "Find Task 4.1 and name one lifecycle or storage-tier tradeoff."
+        "topic": "Match storage class to access pattern",
+        "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html",
+        "check": "Explain why infrequently accessed data may use a different storage class, while considering retrieval needs."
       },
-      "planned_date": "2026-11-06",
-      "aws_section": "SAA-C03 Content Domain 4, Task 4.1: Design cost-optimized storage solutions"
+      "planned_date": "2026-11-08",
+      "aws_section": "Understanding and managing Amazon S3 storage classes"
     },
     {
       "day": 12,
       "title": "Check a document record",
-      "python": "https://docs.python.org/3/library/json.html",
-      "python_section": "Basic Usage; Decoding JSON",
+      "python": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
+      "python_section": "Mapping/dictionary lookups and required keys",
       "optional_udemy_lesson": "Python Variables (3:37), revisit if accessible",
       "ai_minutes": {
         "lesson": 15,
@@ -456,29 +491,36 @@
         "check": 15
       },
       "task": {
-        "file": "ai/fde_v2/coverstory/learner.py",
-        "function": "parse_document_record",
-        "work": "Implement the existing small record-validation seam: valid ID, positive integer version, nonempty title/source/text, and content hash.",
+        "file": "ai/fde_v2/beginner_first15/learner.py",
+        "function": "document_record_valid",
+        "work": "Check that the supplied value is a dictionary with nonempty document_id, title, source, and text fields, plus a positive integer version (a bool is not an integer version). The assistant-supplied wrapper constructs the Document and computes SHA-256.",
         "worked_example": {
-          "valid_record": "Use the tiny one-row example in the Day 12 card; inspect the returned Document fields."
+          "input": {
+            "document_id": "toy",
+            "version": 1,
+            "title": "Guide",
+            "source": "fixture/guide",
+            "text": "hello"
+          },
+          "result": "valid"
         },
-        "expected_output": "A Document with the supplied values and SHA-256 of its text; malformed version or blank text raises ValueError.",
-        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 12",
         "assigned_input": {
           "document_id": "sample",
           "version": 1,
           "title": "Sample",
           "source": "fixture/sample",
           "text": "short text"
-        }
+        },
+        "expected_output": "True for the assigned record; False for blank text or version 0.",
+        "command": "python3 -m ai.fde_v2.beginner_first15.acceptance --day 12"
       },
       "aws": {
-        "topic": "Control compute costs",
-        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain4.html",
-        "check": "Find Task 4.2 and name one scaling or purchasing option."
+        "topic": "Learn cost-aware compute sizing",
+        "source": "https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/cost_type_size_number_resources_metrics.html",
+        "check": "Explain why observed CPU and memory use should inform instance size; do not invent savings without measurements."
       },
-      "planned_date": "2026-11-07",
-      "aws_section": "SAA-C03 Content Domain 4, Task 4.2: Design cost-optimized compute solutions"
+      "planned_date": "2026-11-09",
+      "aws_section": "COST06-BP03; select resource type, size, and number using metrics"
     },
     {
       "day": 13,
@@ -498,22 +540,36 @@
         "work": "Use the earlier match and ranking functions together. A blank question returns an empty list.",
         "worked_example": {
           "question": "family deductible",
-          "output": "Only the best matching records, in stable order."
+          "records": [
+            {
+              "document_id": "family",
+              "title": "Family deductible",
+              "text": "Family deductible is 500"
+            },
+            {
+              "document_id": "appeals",
+              "title": "Appeals",
+              "text": "Review a denied claim"
+            }
+          ],
+          "output": [
+            "family"
+          ]
         },
         "assigned_input": {
           "question": "individual deductible",
           "corpus": "the ten checked-in fictional records"
         },
         "expected_output": "northstar-deductible is the first result; an empty question returns [].",
-        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 13"
+        "command": "python3 -m ai.fde_v2.beginner_first15.acceptance --day 13"
       },
       "aws": {
-        "topic": "Design cost-aware database choices",
-        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain4.html",
-        "check": "Find Task 4.3 and name one cost-related database choice."
+        "topic": "Understand a DynamoDB partition key",
+        "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html",
+        "check": "Explain how a partition key helps find or group items in a table."
       },
-      "planned_date": "2026-11-08",
-      "aws_section": "SAA-C03 Content Domain 4, Task 4.3: Design cost-optimized database solutions"
+      "planned_date": "2026-11-10",
+      "aws_section": "Core components of Amazon DynamoDB; partition and sort keys"
     },
     {
       "day": 14,
@@ -540,15 +596,15 @@
           "corpus": "the three supplied fictional records"
         },
         "expected_output": "Appeals — synthetic/appeals; unmatched phrase returns No matching documents.",
-        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 14"
+        "command": "python3 -m ai.fde_v2.beginner_first15.acceptance --day 14"
       },
       "aws": {
-        "topic": "Reduce network cost carefully",
-        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain4.html",
-        "check": "Find Task 4.4 and name one route or NAT cost tradeoff."
+        "topic": "Understand why network traffic can cost money",
+        "source": "https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/plan-for-data-transfer.html",
+        "check": "Name two facts needed before estimating transfer cost, such as data volume and where it travels. Do not calculate or claim actual spend."
       },
-      "planned_date": "2026-11-09",
-      "aws_section": "SAA-C03 Content Domain 4, Task 4.4: Design cost-optimized network architectures",
+      "planned_date": "2026-11-11",
+      "aws_section": "COST08-BP01; perform data transfer modeling",
       "transition_note": "This is a keyword-search presentation exercise; it does not complete U011."
     },
     {
@@ -569,27 +625,22 @@
         "work": "Compose question cleanup, search over the ten supplied fictional records, and source-label output. Blank questions and no-match queries must have distinct clear messages.",
         "worked_example": {
           "question": "therapy referral",
-          "output": "a matching source label"
+          "output": "Physical therapy — synthetic/therapy"
         },
         "assigned_input": {
           "question": "  INDIVIDUAL deductible? ",
           "corpus": "the ten supplied fictional records"
         },
-        "expected_output": "A Deductible source label on the first line; blank input asks for a question; unmatched moonstone returns No matching documents.",
-        "command": "python -m ai.fde_v2.beginner_first15.acceptance --day 15"
+        "expected_output": "Northstar synthetic plan: deductible — CC0 synthetic training fixture; fictional policy statement is first; blank and no-match messages remain distinct.",
+        "command": "python3 -m ai.fde_v2.beginner_first15.acceptance --day 15"
       },
       "aws": {
-        "topic": "Review secure, resilient, high-performing, and cost-aware choices",
-        "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain1.html",
-        "check": "Read the names of the four official content domains across the linked Domain 1–4 pages; this is familiarization, not an exam-readiness test.",
-        "additional_sources": [
-          "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain2.html",
-          "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html",
-          "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain4.html"
-        ]
+        "topic": "Understand the AWS Well-Architected pillars",
+        "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
+        "check": "Name the six pillars and pick one that would guide a small document-search service."
       },
-      "planned_date": "2026-11-10",
-      "aws_section": "SAA-C03 Content Domains 1–4: official domain names overview",
+      "planned_date": "2026-11-12",
+      "aws_section": "AWS Well-Architected Framework; the six pillars",
       "transition_note": "This small keyword-search composition does not complete U011, embeddings, RAG, or the Day 16 prerequisite."
     }
   ],

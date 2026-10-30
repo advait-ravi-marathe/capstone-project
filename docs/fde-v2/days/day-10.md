@@ -2,7 +2,7 @@
 
 **Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-**Planned date:** 2026-11-05 (calendar target only; it does not mark the day complete).
+**Planned date:** 2026-11-07 (calendar target only; it does not mark the day complete).
 
 ## Today: 180 minutes total
 
@@ -12,13 +12,13 @@
 
 ## AWS learning — 30 minutes
 
-**Topic:** Protect an ingestion path
+**Topic:** Understand encryption at rest in S3
 
-**Read this exact section:** SAA-C03 Content Domain 3, Task 3.5, with Domain 1 Task 1.3 data security controls
+**Read this exact section:** Protecting data with server-side encryption
 
-Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Connect Task 3.5 to one data security control from Domain 1 Task 1.3. This is learning, not a readiness score.
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes on this learning check: Explain what server-side encryption protects and why it is different from deciding who may read an object. This is learning, not a readiness score; no AWS account, console action, or spend is needed.
 
-Source: [Protect an ingestion path](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html)
+Source: [Understand encryption at rest in S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/serv-side-encryption.html)
 
 ## AI/Python learning — 90 minutes
 
@@ -27,7 +27,7 @@ Source: [Protect an ingestion path](https://docs.aws.amazon.com/aws-certificatio
 
 ### Worked example (20 minutes)
 
-Input `` gives `None`. This demonstrates the idea with a different input from your exercise.
+Example: `best_record("moonstone", [])` returns `None` instead of inventing a document.
 
 ### Your small coding task (40 minutes)
 
@@ -44,7 +44,7 @@ The app plumbing, fixtures, command-line runner and database setup are supplied.
 ### Check your work (15 minutes)
 
 ```sh
-python -m ai.fde_v2.beginner_first15.acceptance --day 10
+python3 -m ai.fde_v2.beginner_first15.acceptance --day 10
 ```
 
 This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.

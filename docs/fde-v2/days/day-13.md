@@ -2,7 +2,7 @@
 
 **Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-**Planned date:** 2026-11-08 (calendar target only; it does not mark the day complete).
+**Planned date:** 2026-11-10 (calendar target only; it does not mark the day complete).
 
 ## Today: 180 minutes total
 
@@ -12,13 +12,13 @@
 
 ## AWS learning — 30 minutes
 
-**Topic:** Design cost-aware database choices
+**Topic:** Understand a DynamoDB partition key
 
-**Read this exact section:** SAA-C03 Content Domain 4, Task 4.3: Design cost-optimized database solutions
+**Read this exact section:** Core components of Amazon DynamoDB; partition and sort keys
 
-Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Find Task 4.3 and name one cost-related database choice. This is learning, not a readiness score.
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes on this learning check: Explain how a partition key helps find or group items in a table. This is learning, not a readiness score; no AWS account, console action, or spend is needed.
 
-Source: [Design cost-aware database choices](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain4.html)
+Source: [Understand a DynamoDB partition key](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html)
 
 ## AI/Python learning — 90 minutes
 
@@ -44,7 +44,7 @@ The app plumbing, fixtures, command-line runner and database setup are supplied.
 ### Check your work (15 minutes)
 
 ```sh
-python -m ai.fde_v2.beginner_first15.acceptance --day 13
+python3 -m ai.fde_v2.beginner_first15.acceptance --day 13
 ```
 
 This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.

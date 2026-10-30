@@ -2,7 +2,7 @@
 
 **NOT READY under the beginner-first reset.** The first-15 keyword-search exercises do not teach or pass the historical CoverStory ingestion, chunking, embedding or retrieval prerequisites. Do not start this page as the next lesson until the separate prerequisites in the [handoff note](../amendments/day16-prerequisite-handoff.md) are taught and accepted. This page is retained as historical planned content; its presence is not readiness evidence.
 
-**Status: Not started.** Planned date: **2026-11-11** (calendar planning only; a date never advances completion).
+**Status: Not started.** The previous calendar date is superseded by the beginner-first reset; no active date is assigned.
 
 **Prerequisite:** U011 versioned ingestion must pass its learner acceptance check before you count this chunking task as complete. If U011 is unfinished, continue it first; the supplied chunker/reference output is only a worked example.
 

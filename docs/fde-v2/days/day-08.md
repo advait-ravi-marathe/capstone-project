@@ -2,7 +2,7 @@
 
 **Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-**Planned date:** 2026-11-03 (calendar target only; it does not mark the day complete).
+**Planned date:** 2026-11-05 (calendar target only; it does not mark the day complete).
 
 ## Today: 180 minutes total
 
@@ -12,13 +12,13 @@
 
 ## AWS learning — 30 minutes
 
-**Topic:** Understand scalable network design
+**Topic:** Understand a VPC and its subnets
 
-**Read this exact section:** SAA-C03 Content Domain 3, Task 3.4: Determine high-performing and/or scalable network architectures
+**Read this exact section:** What is Amazon VPC?; VPCs, subnets, and Availability Zones
 
-Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Find Task 3.4 and name one network design concept in the task. This is learning, not a readiness score.
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes on this learning check: Explain what a VPC is and why each subnet belongs to one Availability Zone. This is learning, not a readiness score; no AWS account, console action, or spend is needed.
 
-Source: [Understand scalable network design](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html)
+Source: [Understand a VPC and its subnets](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)
 
 ## AI/Python learning — 90 minutes
 
@@ -27,7 +27,7 @@ Source: [Understand scalable network design](https://docs.aws.amazon.com/aws-cer
 
 ### Worked example (20 minutes)
 
-Input `` gives `1`. This demonstrates the idea with a different input from your exercise.
+Example: `overlap_score("red red blue", {"title": "", "text": "blue green"})` returns `1`: `blue` is the only distinct shared word.
 
 ### Your small coding task (40 minutes)
 
@@ -44,7 +44,7 @@ The app plumbing, fixtures, command-line runner and database setup are supplied.
 ### Check your work (15 minutes)
 
 ```sh
-python -m ai.fde_v2.beginner_first15.acceptance --day 8
+python3 -m ai.fde_v2.beginner_first15.acceptance --day 8
 ```
 
 This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.

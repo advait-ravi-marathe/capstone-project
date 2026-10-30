@@ -2,7 +2,7 @@
 
 **Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-**Planned date:** 2026-11-01 (calendar target only; it does not mark the day complete).
+**Planned date:** 2026-11-03 (calendar target only; it does not mark the day complete).
 
 ## Today: 180 minutes total
 
@@ -12,13 +12,13 @@
 
 ## AWS learning — 30 minutes
 
-**Topic:** Choose compute that can scale
+**Topic:** Understand an EC2 virtual server
 
-**Read this exact section:** SAA-C03 Content Domain 3, Task 3.2: Design high-performing and elastic compute solutions
+**Read this exact section:** What is Amazon EC2?; instances and instance types
 
-Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Find Task 3.2 and name one scaling approach in its listed knowledge. This is learning, not a readiness score.
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes on this learning check: Explain what an EC2 instance is and what an instance type determines. This is learning, not a readiness score; no AWS account, console action, or spend is needed.
 
-Source: [Choose compute that can scale](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html)
+Source: [Understand an EC2 virtual server](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
 
 ## AI/Python learning — 90 minutes
 
@@ -27,7 +27,7 @@ Source: [Choose compute that can scale](https://docs.aws.amazon.com/aws-certific
 
 ### Worked example (20 minutes)
 
-Input `` gives `True`. This demonstrates the idea with a different input from your exercise.
+Example records: `[{"document_id": "family", "text": "family deductible"}, {"document_id": "appeals", "text": "claim review"}]`. Searching for `family` returns only the first record.
 
 ### Your small coding task (40 minutes)
 
@@ -36,15 +36,15 @@ Input `` gives `True`. This demonstrates the idea with a different input from yo
 
 Loop over supplied records and keep records containing at least one question word.
 
-Assigned input: `{"question": "claim denied", "records": ["appeals: claim denied", "therapy: referral required"]}`
-**Expected result:** ['appeals']
+Assigned input: `question="claim denied"`, with these supplied records: `[{"document_id": "appeals", "title": "Appeals", "text": "claim denied"}, {"document_id": "therapy", "title": "Therapy", "text": "referral required"}]`
+**Expected result:** one matching record, with `document_id="appeals"`.
 
 The app plumbing, fixtures, command-line runner and database setup are supplied. You are learning a small function, not building the full application. Reference output teaches the behavior but does not count as your implementation.
 
 ### Check your work (15 minutes)
 
 ```sh
-python -m ai.fde_v2.beginner_first15.acceptance --day 6
+python3 -m ai.fde_v2.beginner_first15.acceptance --day 6
 ```
 
 This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.

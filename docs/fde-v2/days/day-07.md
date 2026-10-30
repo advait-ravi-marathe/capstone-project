@@ -2,7 +2,7 @@
 
 **Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-**Planned date:** 2026-11-02 (calendar target only; it does not mark the day complete).
+**Planned date:** 2026-11-04 (calendar target only; it does not mark the day complete).
 
 ## Today: 180 minutes total
 
@@ -12,13 +12,13 @@
 
 ## AWS learning — 30 minutes
 
-**Topic:** Match a database to its access pattern
+**Topic:** Understand what a managed relational database provides
 
-**Read this exact section:** SAA-C03 Content Domain 3, Task 3.3: Determine high-performing database solutions
+**Read this exact section:** What is Amazon RDS?; managed relational database responsibilities
 
-Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Find Task 3.3 and name one database access pattern it mentions. This is learning, not a readiness score.
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes on this learning check: Name one database-operation task RDS manages and one decision the application team still owns. This is learning, not a readiness score; no AWS account, console action, or spend is needed.
 
-Source: [Match a database to its access pattern](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html)
+Source: [Understand what a managed relational database provides](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html)
 
 ## AI/Python learning — 90 minutes
 
@@ -27,24 +27,24 @@ Source: [Match a database to its access pattern](https://docs.aws.amazon.com/aws
 
 ### Worked example (20 minutes)
 
-Input `cat cat dog` gives `['cat', 'dog']`. This demonstrates the idea with a different input from your exercise.
+Input `cat cat dog` gives the set `{'cat', 'dog'}`. A set keeps each value once; its display order is not important. This demonstrates the idea with a different input from your exercise.
 
 ### Your small coding task (40 minutes)
 
 **File:** [`ai/fde_v2/beginner_first15/learner.py`](../../../ai/fde_v2/beginner_first15/learner.py)
 **Function:** `unique_question_words`
 
-Turn repeated question words into a set of distinct words.
+Turn repeated question words into a Python set of distinct words.
 
 Assigned input: `appeal appeal review`
-**Expected result:** ['appeal', 'review']
+**Expected result:** `{'appeal', 'review'}`; order is not important.
 
 The app plumbing, fixtures, command-line runner and database setup are supplied. You are learning a small function, not building the full application. Reference output teaches the behavior but does not count as your implementation.
 
 ### Check your work (15 minutes)
 
 ```sh
-python -m ai.fde_v2.beginner_first15.acceptance --day 7
+python3 -m ai.fde_v2.beginner_first15.acceptance --day 7
 ```
 
 This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.

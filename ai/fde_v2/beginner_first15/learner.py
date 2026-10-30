@@ -9,6 +9,15 @@ from __future__ import annotations
 from collections.abc import Mapping, Sequence
 from typing import Any
 
+_WORD_PUNCTUATION = ",.!?;:()[]{}\"'"
+
+
+def _split_words(text: str) -> list[str]:
+    """Instructor-supplied helper: replace common punctuation, lowercase, split."""
+    for mark in _WORD_PUNCTUATION:
+        text = text.replace(mark, " ")
+    return text.lower().split()
+
 
 def document_title(record: Mapping[str, Any]) -> str:
     """Day 1: return a record's title, or an empty string when absent."""
@@ -21,7 +30,7 @@ def normalize_question(question: str) -> str:
 
 
 def question_words(question: str) -> list[str]:
-    """Day 3: split a normalized question into nonempty words."""
+    """Day 3: use the supplied helper to split a normalized question."""
     raise NotImplementedError("Day 3: implement question_words")
 
 
@@ -78,3 +87,8 @@ def format_search_results(question: str, records: Sequence[Mapping[str, Any]]) -
 def search_response(question: str, records: Sequence[Mapping[str, Any]]) -> str:
     """Day 15: normalize a new question, search, and format the result."""
     raise NotImplementedError("Day 15: implement search_response")
+
+
+def document_record_valid(raw: Mapping[str, Any]) -> bool:
+    """Day 12: validate required dictionary fields and a positive integer version."""
+    raise NotImplementedError("Day 12: implement document_record_valid")

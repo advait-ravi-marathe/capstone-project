@@ -2,7 +2,7 @@
 
 **Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-**Planned date:** 2026-10-29 (calendar target only; it does not mark the day complete).
+**Planned date:** 2026-10-31 (calendar target only; it does not mark the day complete).
 
 ## Today: 180 minutes total
 
@@ -12,39 +12,39 @@
 
 ## AWS learning — 30 minutes
 
-**Topic:** Protect data with encryption and controlled access
+**Topic:** Know which security tasks belong to AWS and the customer
 
-**Read this exact section:** SAA-C03 Content Domain 1, Task 1.3: Determine appropriate data security controls
+**Read this exact section:** Shared responsibility model; security of the cloud and security in the cloud
 
-Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Point to the task heading about data security controls. This is learning, not a readiness score.
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes on this learning check: Compare one responsibility for a virtual server with one responsibility AWS handles for its physical infrastructure. This is learning, not a readiness score; no AWS account, console action, or spend is needed.
 
-Source: [Protect data with encryption and controlled access](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain1.html)
+Source: [Know which security tasks belong to AWS and the customer](https://docs.aws.amazon.com/whitepapers/latest/aws-risk-and-compliance/shared-responsibility-model.html)
 
 ## AI/Python learning — 90 minutes
 
-**Python reference:** [Finding all matches](https://docs.python.org/3/library/re.html#re.findall). Read only this section.
+**Python reference:** [String `split`](https://docs.python.org/3/library/stdtypes.html#str.split). Read only this method.
 - Optional Udemy supplement: **For Loops (2:56), if accessible**. Course access is unverified; skip it if it is not already available. Do not buy or enroll for this plan.
 
 ### Worked example (20 minutes)
 
-Input `one two` gives `['one', 'two']`. This demonstrates the idea with a different input from your exercise.
+The starter includes `_split_words`, a small helper that changes common punctuation to spaces, makes text lowercase, and then uses `.split()` to make a list. For example, `_split_words("Blue, sky!")` returns `['blue', 'sky']`. You only need to call this helper in your function.
 
 ### Your small coding task (40 minutes)
 
 **File:** [`ai/fde_v2/beginner_first15/learner.py`](../../../ai/fde_v2/beginner_first15/learner.py)
 **Function:** `question_words`
 
-Use the supplied word-matching helper to return the words in a question as a list.
+Return `_split_words(question)`. A list keeps the words in order; you do not need to write the punctuation cleanup yourself.
 
 Assigned input: `The deductible is 500`
 **Expected result:** ['the', 'deductible', 'is', '500']
 
-The app plumbing, fixtures, command-line runner and database setup are supplied. You are learning a small function, not building the full application. Reference output teaches the behavior but does not count as your implementation.
+The helper, fixtures, command-line runner and app plumbing are supplied. You are learning to call a function and return its result, not building the full application. Reference output teaches the behavior but does not count as your implementation.
 
 ### Check your work (15 minutes)
 
 ```sh
-python -m ai.fde_v2.beginner_first15.acceptance --day 3
+python3 -m ai.fde_v2.beginner_first15.acceptance --day 3
 ```
 
 This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.

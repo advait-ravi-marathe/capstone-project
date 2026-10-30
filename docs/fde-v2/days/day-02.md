@@ -2,7 +2,7 @@
 
 **Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-**Planned date:** 2026-10-28 (calendar target only; it does not mark the day complete).
+**Planned date:** 2026-10-30 (calendar target only; it does not mark the day complete).
 
 ## Today: 180 minutes total
 
@@ -12,13 +12,13 @@
 
 ## AWS learning — 30 minutes
 
-**Topic:** Secure access: users, roles, and least privilege
+**Topic:** Give an application only the access it needs
 
-**Read this exact section:** SAA-C03 Content Domain 1, Task 1.1: Design secure access to AWS resources
+**Read this exact section:** IAM security best practices; apply least privilege
 
-Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Explain in one spoken sentence why an application should receive only the permissions it needs. This is learning, not a readiness score.
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes on this learning check: For a document-search app, say why its role should be limited to reading only its required data. This is learning, not a readiness score; no AWS account, console action, or spend is needed.
 
-Source: [Secure access: users, roles, and least privilege](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain1.html)
+Source: [Give an application only the access it needs](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
 
 ## AI/Python learning — 90 minutes
 
@@ -44,7 +44,7 @@ The app plumbing, fixtures, command-line runner and database setup are supplied.
 ### Check your work (15 minutes)
 
 ```sh
-python -m ai.fde_v2.beginner_first15.acceptance --day 2
+python3 -m ai.fde_v2.beginner_first15.acceptance --day 2
 ```
 
 This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.

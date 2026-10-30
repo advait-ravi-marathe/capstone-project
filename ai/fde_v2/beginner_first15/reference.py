@@ -1,11 +1,16 @@
 """Instructor reference functions for worked examples; never learner evidence."""
 from __future__ import annotations
 
-import re
 from collections.abc import Mapping, Sequence
 from typing import Any
 
-_WORD = re.compile(r"[a-z0-9]+", re.IGNORECASE)
+_WORD_PUNCTUATION = ",.!?;:()[]{}\"'"
+
+
+def _split_words(text: str) -> list[str]:
+    for mark in _WORD_PUNCTUATION:
+        text = text.replace(mark, " ")
+    return text.lower().split()
 
 
 def document_title(record: Mapping[str, Any]) -> str:
@@ -18,13 +23,13 @@ def normalize_question(question: str) -> str:
 
 
 def question_words(question: str) -> list[str]:
-    return _WORD.findall(normalize_question(question))
+    return _split_words(normalize_question(question))
 
 
 def record_words(record: Mapping[str, Any]) -> list[str]:
     title = record.get("title", "")
     text = record.get("text", "")
-    return _WORD.findall(f"{title} {text}".lower())
+    return _split_words(f"{title} {text}")
 
 
 def is_blank_question(question: str) -> bool:
@@ -84,3 +89,13 @@ def search_response(question: str, records: Sequence[Mapping[str, Any]]) -> str:
     if is_blank_question(normalized):
         return "Please enter a question."
     return format_search_results(normalized, records)
+
+
+def document_record_valid(raw: Mapping[str, Any]) -> bool:
+    required = {"document_id", "version", "title", "source", "text"}
+    if not isinstance(raw, Mapping) or set(raw) != required:
+        return False
+    if type(raw.get("version")) is not int or raw["version"] < 1:
+        return False
+    return all(isinstance(raw.get(key), str) and raw[key].strip()
+               for key in ("document_id", "title", "source", "text"))

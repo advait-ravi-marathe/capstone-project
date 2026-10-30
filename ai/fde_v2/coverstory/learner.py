@@ -10,12 +10,17 @@ from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any
 
+from ai.fde_v2.beginner_first15 import learner as beginner_learner
+
 from .contracts import Answer, Chunk, Document, RetrievedChunk
+from .record_builders import build_document
 
 
 def parse_document_record(raw: Mapping[str, Any]) -> Document:
     """Active beginner-first Day 12 (historical U003): validate a synthetic record."""
-    raise NotImplementedError("Day 12 active entry (historical U003): implement parse_document_record")
+    if not beginner_learner.document_record_valid(raw):
+        raise ValueError("document record is invalid")
+    return build_document(raw)
 
 
 def generate_text(generator, prompt: str, max_new_tokens: int = 160) -> tuple[str, float]:

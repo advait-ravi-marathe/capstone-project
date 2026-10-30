@@ -2,7 +2,7 @@
 
 **Status: Not started.** Follow this page in order. A missed date does not count as a finished day.
 
-**Planned date:** 2026-10-31 (calendar target only; it does not mark the day complete).
+**Planned date:** 2026-11-02 (calendar target only; it does not mark the day complete).
 
 ## Today: 180 minutes total
 
@@ -12,13 +12,13 @@
 
 ## AWS learning — 30 minutes
 
-**Topic:** Choose storage for performance and growth
+**Topic:** Understand buckets, objects, and keys
 
-**Read this exact section:** SAA-C03 Content Domain 3, Task 3.1: Determine high-performing and/or scalable storage solutions
+**Read this exact section:** Amazon S3 objects overview; object keys and object data
 
-Read the linked official section for about 20 minutes. Spend the remaining 10 minutes answering this aloud or in one short sentence: Find Task 3.1 and name one storage type it says to compare. This is learning, not a readiness score.
+Read the linked official section for about 20 minutes. Spend the remaining 10 minutes on this learning check: In your own words, identify the bucket, object key, and object data in an S3 example. This is learning, not a readiness score; no AWS account, console action, or spend is needed.
 
-Source: [Choose storage for performance and growth](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html)
+Source: [Understand buckets, objects, and keys](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingObjects.html)
 
 ## AI/Python learning — 90 minutes
 
@@ -36,7 +36,7 @@ Input `   ` gives `True`. This demonstrates the idea with a different input from
 
 Return True for spaces-only input and False when a visible character exists.
 
-Assigned input: `	 `
+Assigned input: `"\t "` (a tab followed by a space)
 **Expected result:** True
 
 The app plumbing, fixtures, command-line runner and database setup are supplied. You are learning a small function, not building the full application. Reference output teaches the behavior but does not count as your implementation.
@@ -44,7 +44,7 @@ The app plumbing, fixtures, command-line runner and database setup are supplied.
 ### Check your work (15 minutes)
 
 ```sh
-python -m ai.fde_v2.beginner_first15.acceptance --day 5
+python3 -m ai.fde_v2.beginner_first15.acceptance --day 5
 ```
 
 This checks today’s learner behavior. An unsolved TODO should say `NOT YET`; do not switch to instructor reference code to make it green.
