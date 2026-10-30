@@ -84,6 +84,8 @@ class ProviderCourseOverlayTests(unittest.TestCase):
             + self.overlay["planned_assessment_minutes_total"],
             self.overlay["planned_overlay_minutes_total"],
         )
+        self.assertIn("do not add minutes", self.overlay["overrun_policy"])
+        self.assertIn("does not displace learner implementation", self.overlay["overrun_policy"])
 
         mapped_days = [
             slot["day"]
